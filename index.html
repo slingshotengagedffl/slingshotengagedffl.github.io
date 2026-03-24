@@ -247,7 +247,6 @@
     border: 1px solid var(--border);
     border-radius: 6px;
     padding: 28px 24px;
-    text-align: center;
   }
 
   .league-note-placeholder {
@@ -257,6 +256,15 @@
     letter-spacing: 0.14em;
     text-transform: uppercase;
     color: var(--text-muted);
+    text-align: center;
+  }
+
+  .league-note-text {
+    font-family: 'Barlow', sans-serif;
+    font-size: 1rem;
+    line-height: 1.7;
+    color: #dddddd;
+    white-space: pre-wrap;
   }
 </style>
 </head>
@@ -339,13 +347,14 @@
 <div class="league-note-section">
   <div class="league-note-header">
     <div class="league-note-title">The League Note</div>
-    <div class="league-note-week">Week — · 2026</div>
+    <div class="league-note-week" id="leagueWeekLabel">Week — · 2026</div>
   </div>
-  <div class="league-note-body">
+  <div class="league-note-body" id="leagueNoteBody">
     <div class="league-note-placeholder">The league note will appear here each week during the season.</div>
   </div>
 </div>
 
+<script src="data.js"></script>
 <script>
   const toggle = document.getElementById('menuToggle');
   const overlay = document.getElementById('menuOverlay');
@@ -366,6 +375,20 @@
   toggle.addEventListener('click', openMenu);
   close.addEventListener('click', closeMenu);
   overlay.addEventListener('click', closeMenu);
+
+  // Load league note from data.js
+  if (typeof leagueNote !== 'undefined') {
+    const body = document.getElementById('leagueNoteBody');
+    const weekLabel = document.getElementById('leagueWeekLabel');
+
+    if (leagueNote.week) {
+      weekLabel.textContent = 'Week ' + leagueNote.week + ' · ' + (leagueNote.year || '2026');
+    }
+
+    if (leagueNote.text && leagueNote.text.trim() !== '') {
+      body.innerHTML = '<div class="league-note-text">' + leagueNote.text.replace(/</g, '&lt;').replace(/>/g, '&gt;') + '</div>';
+    }
+  }
 </script>
 </body>
 </html>
