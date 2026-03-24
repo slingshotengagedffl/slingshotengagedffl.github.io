@@ -1,0 +1,408 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>League Note Editor — Slingshot Engaged</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Barlow+Condensed:wght@400;600;700&family=Barlow:wght@400;500;600&display=swap');
+
+  :root {
+    --red: #c0392b;
+    --red-bright: #e74c3c;
+    --bg: #0a0a0a;
+    --bg3: #1a1a1a;
+    --bg4: #222222;
+    --border: #2a2a2a;
+    --border2: #3a3a3a;
+    --text: #ffffff;
+    --text-muted: #888888;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: 'Barlow', sans-serif;
+    min-height: 100vh;
+  }
+
+  nav {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 24px;
+    height: 60px;
+    background: #0d0d0d;
+    border-bottom: 2px solid var(--red);
+  }
+  .nav-logo {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 1.35rem;
+    letter-spacing: 0.1em;
+    color: var(--red-bright);
+  }
+  .nav-badge {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 0.75rem;
+    font-weight: 600;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--text-muted);
+    background: var(--bg3);
+    border: 1px solid var(--border2);
+    padding: 4px 10px;
+    border-radius: 3px;
+  }
+
+  .container {
+    max-width: 860px;
+    margin: 0 auto;
+    padding: 36px 20px 60px;
+  }
+
+  .page-title {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 2rem;
+    letter-spacing: 0.08em;
+    color: #fff;
+    margin-bottom: 6px;
+  }
+  .page-sub {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 0.85rem;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--text-muted);
+    margin-bottom: 28px;
+  }
+
+  .meta-row {
+    display: flex;
+    gap: 16px;
+    margin-bottom: 20px;
+  }
+  .meta-field {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+  }
+  .meta-field label {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 0.75rem;
+    font-weight: 600;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--text-muted);
+  }
+  .meta-field input {
+    background: var(--bg3);
+    border: 1px solid var(--border2);
+    border-radius: 4px;
+    color: #fff;
+    font-family: 'Barlow', sans-serif;
+    font-size: 1rem;
+    padding: 8px 12px;
+    width: 120px;
+    outline: none;
+    transition: border-color 0.15s;
+  }
+  .meta-field input:focus { border-color: var(--red-bright); }
+
+  .editor-wrap {
+    border: 1px solid var(--border2);
+    border-radius: 6px;
+    overflow: hidden;
+    margin-bottom: 20px;
+  }
+
+  .toolbar {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 4px;
+    padding: 10px 12px;
+    background: var(--bg4);
+    border-bottom: 1px solid var(--border2);
+  }
+
+  .toolbar-group {
+    display: flex;
+    gap: 2px;
+    padding-right: 10px;
+    margin-right: 6px;
+    border-right: 1px solid var(--border);
+  }
+  .toolbar-group:last-child { border-right: none; padding-right: 0; margin-right: 0; }
+
+  .tb-btn {
+    background: transparent;
+    border: 1px solid transparent;
+    border-radius: 3px;
+    color: #ccc;
+    cursor: pointer;
+    font-size: 0.85rem;
+    font-family: 'Barlow', sans-serif;
+    font-weight: 600;
+    padding: 5px 9px;
+    line-height: 1;
+    transition: background 0.12s, color 0.12s, border-color 0.12s;
+    white-space: nowrap;
+  }
+  .tb-btn:hover { background: var(--bg3); border-color: var(--border2); color: #fff; }
+
+  #editor {
+    background: var(--bg3);
+    color: #e0e0e0;
+    font-family: 'Barlow', sans-serif;
+    font-size: 1rem;
+    line-height: 1.7;
+    min-height: 260px;
+    padding: 20px 22px;
+    outline: none;
+  }
+  #editor:empty:before {
+    content: 'Write your league note here...';
+    color: var(--text-muted);
+    pointer-events: none;
+  }
+  #editor h1 { font-family: 'Bebas Neue', sans-serif; font-size: 2rem; letter-spacing: 0.06em; color: #fff; margin: 12px 0 6px; font-weight: 400; }
+  #editor h2 { font-family: 'Bebas Neue', sans-serif; font-size: 1.4rem; letter-spacing: 0.06em; color: var(--red-bright); margin: 10px 0 4px; font-weight: 400; }
+  #editor p { margin: 0 0 10px; }
+  #editor strong { color: #fff; }
+  #editor em { color: #ccc; }
+  #editor ul, #editor ol { padding-left: 22px; margin: 6px 0 10px; }
+  #editor li { margin-bottom: 4px; }
+  #editor hr { border: none; border-top: 1px solid var(--border2); margin: 16px 0; }
+
+  .output-label {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 0.75rem;
+    font-weight: 600;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--text-muted);
+    margin-bottom: 8px;
+  }
+
+  #outputBox {
+    background: #0d0d0d;
+    border: 1px solid var(--border2);
+    border-radius: 4px;
+    color: #7ec8a4;
+    font-family: 'Courier New', monospace;
+    font-size: 0.82rem;
+    line-height: 1.6;
+    padding: 16px 18px;
+    white-space: pre-wrap;
+    word-break: break-all;
+    min-height: 80px;
+    max-height: 220px;
+    overflow-y: auto;
+    user-select: all;
+    margin-bottom: 20px;
+  }
+
+  .btn-row {
+    display: flex;
+    gap: 12px;
+    margin-bottom: 20px;
+    align-items: center;
+  }
+
+  .btn {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 1rem;
+    letter-spacing: 0.1em;
+    padding: 11px 24px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: filter 0.15s, transform 0.15s;
+  }
+  .btn:hover { filter: brightness(1.15); transform: translateY(-1px); }
+  .btn-primary { background: var(--red); color: #fff; }
+  .btn-secondary { background: var(--bg4); color: #ccc; border: 1px solid var(--border2); }
+
+  .copy-confirm {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 0.8rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: #5dba7d;
+    opacity: 0;
+    transition: opacity 0.3s;
+  }
+  .copy-confirm.show { opacity: 1; }
+
+  .instructions {
+    background: var(--bg3);
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    padding: 20px 22px;
+    margin-top: 28px;
+  }
+  .instructions-title {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 1.1rem;
+    letter-spacing: 0.08em;
+    color: var(--red-bright);
+    margin-bottom: 12px;
+  }
+  .instructions ol {
+    padding-left: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+  }
+  .instructions li {
+    font-size: 0.9rem;
+    color: #aaa;
+    line-height: 1.5;
+  }
+  .instructions li strong { color: #ddd; }
+  .instructions code {
+    background: #0d0d0d;
+    border: 1px solid var(--border2);
+    border-radius: 3px;
+    padding: 1px 6px;
+    font-size: 0.8rem;
+    color: #7ec8a4;
+  }
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="nav-logo">Slingshot Engaged</div>
+  <div class="nav-badge">League Note Editor</div>
+</nav>
+
+<div class="container">
+  <div class="page-title">League Note Editor</div>
+  <div class="page-sub">Write your note below, then copy the output into data.js on GitHub</div>
+
+  <div class="meta-row">
+    <div class="meta-field">
+      <label>Week</label>
+      <input type="text" id="weekInput" placeholder="e.g. 5" value="—" />
+    </div>
+    <div class="meta-field">
+      <label>Year</label>
+      <input type="text" id="yearInput" placeholder="e.g. 2026" value="2026" />
+    </div>
+  </div>
+
+  <div class="editor-wrap">
+    <div class="toolbar">
+      <div class="toolbar-group">
+        <button class="tb-btn" onclick="cmd('formatBlock','H1')" title="Big Header">H1</button>
+        <button class="tb-btn" onclick="cmd('formatBlock','H2')" title="Small Header">H2</button>
+        <button class="tb-btn" onclick="cmd('formatBlock','P')" title="Normal text">¶ Normal</button>
+      </div>
+      <div class="toolbar-group">
+        <button class="tb-btn" onclick="cmd('bold')"><strong>B</strong></button>
+        <button class="tb-btn" onclick="cmd('italic')"><em>I</em></button>
+        <button class="tb-btn" onclick="cmd('underline')"><u>U</u></button>
+      </div>
+      <div class="toolbar-group">
+        <button class="tb-btn" onclick="cmd('justifyLeft')">⬅ Left</button>
+        <button class="tb-btn" onclick="cmd('justifyCenter')">↔ Center</button>
+        <button class="tb-btn" onclick="cmd('justifyRight')">Right ➡</button>
+      </div>
+      <div class="toolbar-group">
+        <button class="tb-btn" onclick="cmd('insertUnorderedList')">• List</button>
+        <button class="tb-btn" onclick="cmd('insertOrderedList')">1. List</button>
+      </div>
+      <div class="toolbar-group">
+        <button class="tb-btn" onclick="insertHR()">— Divider</button>
+        <button class="tb-btn" onclick="clearEditor()" style="color:#e74c3c;">✕ Clear</button>
+      </div>
+    </div>
+    <div id="editor" contenteditable="true" spellcheck="true"></div>
+  </div>
+
+  <div class="output-label">Paste this entire block into data.js on GitHub ↓</div>
+  <div id="outputBox">Start writing above and the output will appear here automatically.</div>
+
+  <div class="btn-row">
+    <button class="btn btn-primary" onclick="copyOutput()">Copy to Clipboard</button>
+    <a href="/" class="btn btn-secondary">← Back to Site</a>
+    <span class="copy-confirm" id="copyConfirm">✓ Copied!</span>
+  </div>
+
+  <div class="instructions">
+    <div class="instructions-title">How to publish your note</div>
+    <ol>
+      <li>Set the <strong>Week</strong> and <strong>Year</strong>, then write your note using the toolbar for formatting.</li>
+      <li>Click <strong>Copy to Clipboard</strong>.</li>
+      <li>Go to your GitHub repo and click <code>data.js</code>.</li>
+      <li>Click the <strong>pencil icon</strong>, select all the existing text, and paste.</li>
+      <li>Click <strong>Commit changes</strong> — your site updates in about 30 seconds.</li>
+    </ol>
+  </div>
+</div>
+
+<script>
+  function cmd(command, value) {
+    document.execCommand(command, false, value || null);
+    document.getElementById('editor').focus();
+  }
+
+  function insertHR() {
+    document.execCommand('insertHorizontalRule', false, null);
+    document.getElementById('editor').focus();
+  }
+
+  function clearEditor() {
+    if (confirm('Clear the editor?')) {
+      document.getElementById('editor').innerHTML = '';
+      updateOutput();
+    }
+  }
+
+  function updateOutput() {
+    const week = document.getElementById('weekInput').value.trim() || '—';
+    const year = document.getElementById('yearInput').value.trim() || '2026';
+    const html = document.getElementById('editor').innerHTML.trim();
+
+    const escaped = html
+      .replace(/\\/g, '\\\\')
+      .replace(/`/g, '\\`')
+      .replace(/\$\{/g, '\\${');
+
+    const output =
+`// ─────────────────────────────────────────
+//  LEAGUE NOTE — edit this each week
+// ─────────────────────────────────────────
+
+var leagueNote = {
+
+  week: "${week}",
+  year: "${year}",
+
+  text: \`${escaped}\`
+
+};`;
+
+    document.getElementById('outputBox').textContent = output;
+  }
+
+  function copyOutput() {
+    const text = document.getElementById('outputBox').textContent;
+    navigator.clipboard.writeText(text).then(() => {
+      const el = document.getElementById('copyConfirm');
+      el.classList.add('show');
+      setTimeout(() => el.classList.remove('show'), 2500);
+    });
+  }
+
+  document.getElementById('editor').addEventListener('input', updateOutput);
+  document.getElementById('weekInput').addEventListener('input', updateOutput);
+  document.getElementById('yearInput').addEventListener('input', updateOutput);
+
+  // Init output on load
+  updateOutput();
+</script>
+</body>
+</html>

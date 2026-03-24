@@ -264,8 +264,14 @@
     font-size: 1rem;
     line-height: 1.7;
     color: #dddddd;
-    white-space: pre-wrap;
   }
+  .league-note-text h1 { font-family: 'Bebas Neue', sans-serif; font-size: 1.8rem; letter-spacing: 0.06em; color: #fff; margin: 8px 0 4px; }
+  .league-note-text h2 { font-family: 'Bebas Neue', sans-serif; font-size: 1.3rem; letter-spacing: 0.06em; color: var(--red-bright); margin: 6px 0 4px; }
+  .league-note-text p { margin: 6px 0; }
+  .league-note-text strong { color: #fff; }
+  .league-note-text em { color: #bbb; }
+  .league-note-text ul { padding-left: 20px; margin: 6px 0; }
+  .league-note-text li { margin: 3px 0; }
 </style>
 </head>
 <body>
@@ -386,7 +392,7 @@
     }
 
     if (leagueNote.text && leagueNote.text.trim() !== '') {
-      body.innerHTML = '<div class="league-note-text">' + leagueNote.text.replace(/</g, '&lt;').replace(/>/g, '&gt;') + '</div>';
+      body.innerHTML = '<div class="league-note-text">' + leagueNote.text + '</div>';
     }
   }
 </script>
