@@ -1,0 +1,545 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Beefcakes · Slingshot Engaged</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Barlow+Condensed:wght@400;600;700;800;900&family=Barlow:wght@400;500;600&display=swap');
+
+  :root {
+    --red: #c0392b;
+    --red-bright: #e74c3c;
+    --bg: #0a0a0a;
+    --bg2: #111111;
+    --bg3: #1a1a1a;
+    --border: #2a2a2a;
+    --text: #ffffff;
+    --text-muted: #666666;
+    --text-dim: #999999;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: 'Barlow', sans-serif;
+    min-height: 100vh;
+    overflow-x: hidden;
+  }
+
+  /* ── PAGE HEADER ── */
+  .page-header {
+    text-align: center;
+    padding: 36px 20px 16px;
+  }
+
+  .page-title {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: clamp(2.8rem, 8vw, 5rem);
+    letter-spacing: 0.08em;
+    color: var(--red-bright);
+    text-transform: uppercase;
+  }
+
+  .page-subtitle {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-weight: 600;
+    font-size: 0.85rem;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: var(--text-muted);
+    margin-top: 6px;
+  }
+
+  /* ── CHARACTER GRID ── */
+  .grid-wrapper {
+    padding: 16px;
+    max-width: 900px;
+    margin: 0 auto;
+  }
+
+  .character-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 6px;
+    border: 1px solid var(--border);
+    background: var(--border);
+  }
+
+  .character-card {
+    position: relative;
+    aspect-ratio: 1/1;
+    background: var(--bg3);
+    cursor: pointer;
+    overflow: hidden;
+    transition: transform 0.15s, filter 0.15s;
+  }
+
+  .character-card:hover {
+    filter: brightness(1.15);
+    transform: scale(1.02);
+    z-index: 2;
+  }
+
+  .character-card:active {
+    transform: scale(0.98);
+  }
+
+  /* red border flash on hover like SF select screen */
+  .character-card::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    border: 2px solid transparent;
+    transition: border-color 0.15s;
+    pointer-events: none;
+    z-index: 3;
+  }
+  .character-card:hover::after {
+    border-color: var(--red-bright);
+  }
+
+  .card-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: top center;
+    display: block;
+  }
+
+  /* placeholder when no image */
+  .card-placeholder {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .card-placeholder-name {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-weight: 700;
+    font-size: 0.75rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--text-muted);
+  }
+
+  .card-name-bar {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background: linear-gradient(transparent, rgba(0,0,0,0.85) 40%);
+    padding: 24px 12px 10px;
+    z-index: 2;
+    text-align: center;
+  }
+
+  .card-name {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 1.15rem;
+    letter-spacing: 0.12em;
+    color: #fff;
+    text-transform: uppercase;
+  }
+
+  /* ── MODAL ── */
+  .modal-overlay {
+    position: fixed;
+    inset: 0;
+    background: rgba(0,0,0,0.75);
+    z-index: 400;
+    display: flex;
+    align-items: flex-start;
+    justify-content: center;
+    padding: 16px;
+    overflow-y: auto;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.2s;
+  }
+  .modal-overlay.open {
+    opacity: 1;
+    pointer-events: all;
+  }
+
+  .modal {
+    background: var(--bg2);
+    width: 100%;
+    max-width: 380px;
+    border: 1px solid var(--border);
+    border-radius: 4px;
+    overflow: hidden;
+    transform: scale(0.94);
+    transition: transform 0.2s;
+    position: relative;
+    margin: auto;
+  }
+  .modal-overlay.open .modal {
+    transform: scale(1);
+  }
+
+  .modal-close {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    width: 36px;
+    height: 36px;
+    background: rgba(0,0,0,0.7);
+    border: 2px solid rgba(255,255,255,0.3);
+    border-radius: 50%;
+    color: #fff;
+    font-size: 1rem;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 10;
+    transition: background 0.15s;
+  }
+  .modal-close:hover { background: var(--red); }
+
+  .modal-img-wrap {
+    width: 100%;
+    aspect-ratio: 1/1;
+    background: var(--bg3);
+    overflow: hidden;
+  }
+
+  .modal-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: top center;
+    display: block;
+  }
+
+  .modal-placeholder-img {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: var(--bg3);
+  }
+
+  .modal-placeholder-img span {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 0.8rem;
+    letter-spacing: 0.2em;
+    color: var(--text-muted);
+    text-transform: uppercase;
+  }
+
+  .modal-body {
+    padding: 20px 18px 22px;
+  }
+
+  .modal-name-row {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    margin-bottom: 4px;
+  }
+
+  .modal-name {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 2rem;
+    letter-spacing: 0.06em;
+    color: #fff;
+    line-height: 1;
+  }
+
+  .modal-location {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-weight: 600;
+    font-size: 0.8rem;
+    letter-spacing: 0.1em;
+    color: var(--text-dim);
+    text-transform: uppercase;
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    padding-top: 6px;
+  }
+
+  .modal-nickname {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-weight: 700;
+    font-size: 0.8rem;
+    letter-spacing: 0.12em;
+    color: var(--red-bright);
+    text-transform: uppercase;
+    margin-bottom: 16px;
+  }
+
+  .modal-stats {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 6px;
+    margin-bottom: 16px;
+  }
+
+  .stat-box {
+    background: var(--bg3);
+    border: 1px solid var(--border);
+    padding: 10px 8px;
+    text-align: center;
+  }
+
+  .stat-value {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 1.3rem;
+    letter-spacing: 0.06em;
+    color: var(--red-bright);
+    display: block;
+    line-height: 1;
+  }
+
+  .stat-label {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-weight: 700;
+    font-size: 0.6rem;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--text-muted);
+    display: block;
+    margin-top: 4px;
+    line-height: 1.2;
+  }
+
+  .modal-profile-btn {
+    display: block;
+    width: 100%;
+    background: var(--red);
+    border: none;
+    padding: 14px;
+    text-align: center;
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 1.1rem;
+    letter-spacing: 0.14em;
+    color: #fff;
+    text-transform: uppercase;
+    text-decoration: none;
+    cursor: pointer;
+    transition: background 0.15s, filter 0.15s;
+  }
+  .modal-profile-btn:hover {
+    background: var(--red-bright);
+    filter: brightness(1.1);
+  }
+
+</style>
+</head>
+<body>
+<script src="nav.js"></script>
+
+
+<!-- PAGE HEADER -->
+<div class="page-header">
+  <div class="page-title">Select Your Beefcake</div>
+
+</div>
+
+<!-- CHARACTER GRID -->
+<div class="grid-wrapper">
+  <div class="character-grid" id="characterGrid">
+
+    <div class="character-card" onclick="openModal('alex')">
+      <img class="card-img" src="images/alex.jpg" alt="Alex"
+        onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+      <div class="card-placeholder" style="display:none;position:absolute;inset:0"><span class="card-placeholder-name">Alex</span></div>
+      <div class="card-name-bar"><div class="card-name">Alex</div></div>
+    </div>
+
+    <div class="character-card" onclick="openModal('andy')">
+      <img class="card-img" src="images/andy.jpg" alt="Andy"
+        onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+      <div class="card-placeholder" style="display:none;position:absolute;inset:0"><span class="card-placeholder-name">Andy</span></div>
+      <div class="card-name-bar"><div class="card-name">Andy</div></div>
+    </div>
+
+    <div class="character-card" onclick="openModal('brian')">
+      <img class="card-img" src="images/brian.png" alt="Brian"
+        onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+      <div class="card-placeholder" style="display:none;position:absolute;inset:0"><span class="card-placeholder-name">Brian</span></div>
+      <div class="card-name-bar"><div class="card-name">Brian</div></div>
+    </div>
+
+    <div class="character-card" onclick="openModal('daniel')">
+      <img class="card-img" src="images/daniel.jpg" alt="Daniel"
+        onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+      <div class="card-placeholder" style="display:none;position:absolute;inset:0"><span class="card-placeholder-name">Daniel</span></div>
+      <div class="card-name-bar"><div class="card-name">Daniel</div></div>
+    </div>
+
+    <div class="character-card" onclick="openModal('dylan')">
+      <img class="card-img" src="images/dylan.jpg" alt="Dylan"
+        onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+      <div class="card-placeholder" style="display:none;position:absolute;inset:0"><span class="card-placeholder-name">Dylan</span></div>
+      <div class="card-name-bar"><div class="card-name">Dylan</div></div>
+    </div>
+
+    <div class="character-card" onclick="openModal('jack')">
+      <img class="card-img" src="images/jack.jpg" alt="Jack"
+        onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+      <div class="card-placeholder" style="display:none;position:absolute;inset:0"><span class="card-placeholder-name">Jack</span></div>
+      <div class="card-name-bar"><div class="card-name">Jack</div></div>
+    </div>
+
+    <div class="character-card" onclick="openModal('jordan')">
+      <img class="card-img" src="images/jordan.jpg" alt="Jordan"
+        onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+      <div class="card-placeholder" style="display:none;position:absolute;inset:0"><span class="card-placeholder-name">Jordan</span></div>
+      <div class="card-name-bar"><div class="card-name">Jordan</div></div>
+    </div>
+
+    <div class="character-card" onclick="openModal('kyle')">
+      <img class="card-img" src="images/kyle.png" alt="Kyle"
+        onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+      <div class="card-placeholder" style="display:none;position:absolute;inset:0"><span class="card-placeholder-name">Kyle</span></div>
+      <div class="card-name-bar"><div class="card-name">Kyle</div></div>
+    </div>
+
+    <div class="character-card" onclick="openModal('luke')">
+      <img class="card-img" src="images/luke.jpg" alt="Luke"
+        onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+      <div class="card-placeholder" style="display:none;position:absolute;inset:0"><span class="card-placeholder-name">Luke</span></div>
+      <div class="card-name-bar"><div class="card-name">Luke</div></div>
+    </div>
+
+    <div class="character-card" onclick="openModal('matt')">
+      <img class="card-img" src="images/matt.jpg" alt="Matt"
+        onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+      <div class="card-placeholder" style="display:none;position:absolute;inset:0"><span class="card-placeholder-name">Matt</span></div>
+      <div class="card-name-bar"><div class="card-name">Matt</div></div>
+    </div>
+
+    <div class="character-card" onclick="openModal('mike')">
+      <img class="card-img" src="images/mike.jpg" alt="Mike"
+        onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+      <div class="card-placeholder" style="display:none;position:absolute;inset:0"><span class="card-placeholder-name">Mike</span></div>
+      <div class="card-name-bar"><div class="card-name">Mike</div></div>
+    </div>
+
+    <div class="character-card" onclick="openModal('scott')">
+      <img class="card-img" src="images/scott.jpg" alt="Scott"
+        onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+      <div class="card-placeholder" style="display:none;position:absolute;inset:0"><span class="card-placeholder-name">Scott</span></div>
+      <div class="card-name-bar"><div class="card-name">Scott</div></div>
+    </div>
+
+    <div class="character-card" onclick="openModal('tim')">
+      <img class="card-img" src="images/tim.jpg" alt="Tim"
+        onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+      <div class="card-placeholder" style="display:none;position:absolute;inset:0"><span class="card-placeholder-name">Tim</span></div>
+      <div class="card-name-bar"><div class="card-name">Tim</div></div>
+    </div>
+
+    <div class="character-card" onclick="openModal('wade')">
+      <img class="card-img" src="images/wade.jpg" alt="Wade"
+        onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+      <div class="card-placeholder" style="display:none;position:absolute;inset:0"><span class="card-placeholder-name">Wade</span></div>
+      <div class="card-name-bar"><div class="card-name">Wade</div></div>
+    </div>
+
+  </div>
+</div>
+
+<!-- MODAL -->
+<div class="modal-overlay" id="modalOverlay" onclick="handleOverlayClick(event)">
+  <div class="modal" id="modal">
+    <button class="modal-close" onclick="closeModal()">✕</button>
+    <div class="modal-img-wrap" id="modalImgWrap"></div>
+    <div class="modal-body">
+      <div class="modal-name-row">
+        <div class="modal-name" id="modalName"></div>
+        <div class="modal-location" id="modalLocation"></div>
+      </div>
+      <div class="modal-nickname" id="modalNickname"></div>
+      <div class="modal-stats">
+        <div class="stat-box">
+          <span class="stat-value" id="statRank"></span>
+          <span class="stat-label">Prestige Rank<br>(out of 25)</span>
+        </div>
+        <div class="stat-box">
+          <span class="stat-value" id="statSince"></span>
+          <span class="stat-label">Member Since</span>
+        </div>
+        <div class="stat-box">
+          <span class="stat-value" id="statTrophies"></span>
+          <span class="stat-label">D*****S</span>
+        </div>
+      </div>
+      <a href="#" class="modal-profile-btn" id="modalProfileBtn">View Full Profile →</a>
+    </div>
+  </div>
+</div>
+
+<script>
+  // ── BEEFCAKE DATA ──
+  // Fill in real data as you have it. image paths are relative to this file.
+  const beefcakes = {
+    alex:   { name: 'Alex',   nickname: '"AVL"',            location: '❄️ Minnesota',      rank: '—', since: '2016', trophies: '1', img: 'images/alex.jpg',   profile: 'profiles/alex.html' },
+    andy:   { name: 'Andy',   nickname: '"Bronco Superfan"',location: '🏔️ Colorado',       rank: '—', since: '2022', trophies: '0', img: 'images/andy.jpg',   profile: 'profiles/andy.html' },
+    brian:  { name: 'Brian',  nickname: '"BThax"',          location: '🦀 Maryland',       rank: '—', since: '2014', trophies: '1', img: 'images/brian.png',  profile: 'profiles/brian.html' },
+    daniel: { name: 'Daniel', nickname: '"Naughty Man"',    location: '🏔️ Colorado',       rank: '—', since: '2014', trophies: '0', img: 'images/daniel.jpg', profile: 'profiles/daniel.html' },
+    dylan:  { name: 'Dylan',  nickname: '"Dyl"',            location: '🦀 Maryland',       rank: '—', since: '2015', trophies: '3', img: 'images/dylan.jpg',  profile: 'profiles/dylan.html' },
+    jack:   { name: 'Jack',   nickname: '"The Commish"',    location: '🌴 California',     rank: '—', since: '2014', trophies: '2', img: 'images/jack.jpg',   profile: 'profiles/jack.html' },
+    jordan: { name: 'Jordan', nickname: '"JopO"',           location: '🌲 North Carolina', rank: '—', since: '2019', trophies: '0', img: 'images/jordan.jpg', profile: 'profiles/jordan.html' },
+    kyle:   { name: 'Kyle',   nickname: '"The Snoot"',      location: '🏔️ Colorado',       rank: '—', since: '2018', trophies: '2', img: 'images/kyle.png',   profile: 'profiles/kyle.html' },
+    luke:   { name: 'Luke',   nickname: '"The Rook"',       location: '❄️ Minnesota',      rank: '—', since: '2026', trophies: '0', img: 'images/luke.jpg',   profile: 'profiles/luke.html' },
+    matt:   { name: 'Matt',   nickname: '"Dad Bod"',        location: '🏔️ Colorado',       rank: '—', since: '2015', trophies: '0', img: 'images/matt.jpg',   profile: 'profiles/matt.html' },
+    mike:   { name: 'Mike',   nickname: '"The Contrarian"', location: '🔔 Pennsylvania',   rank: '—', since: '2014', trophies: '1', img: 'images/mike.jpg',   profile: 'profiles/mike.html' },
+    scott:  { name: 'Scott',  nickname: '"Murph"',          location: '🌴 California',     rank: '—', since: '2014', trophies: '0', img: 'images/scott.jpg',  profile: 'profiles/scott.html' },
+    tim:    { name: 'Tim',    nickname: '"Hot Tim"',        location: '🏔️ Colorado',       rank: '—', since: '2020', trophies: '0', img: 'images/tim.jpg',    profile: 'profiles/tim.html' },
+    wade:   { name: 'Wade',   nickname: '"Bathhouse"',      location: '🔔 Pennsylvania',   rank: '—', since: '2020', trophies: '0', img: 'images/wade.jpg',   profile: 'profiles/wade.html' },
+  };
+
+  // ── MODAL ──
+  function openModal(key) {
+    const b = beefcakes[key];
+    if (!b) return;
+
+    // image
+    const wrap = document.getElementById('modalImgWrap');
+    wrap.innerHTML = '';
+    const img = document.createElement('img');
+    img.className = 'modal-img';
+    img.alt = b.name;
+    img.src = b.img;
+    img.onerror = function() {
+      wrap.innerHTML = '<div class="modal-placeholder-img"><span>' + b.name + '</span></div>';
+    };
+    wrap.appendChild(img);
+
+    document.getElementById('modalName').textContent = b.name;
+    document.getElementById('modalLocation').textContent = b.location;
+    document.getElementById('modalNickname').textContent = b.nickname;
+    document.getElementById('statRank').textContent = b.rank;
+    document.getElementById('statSince').textContent = b.since;
+    document.getElementById('statTrophies').textContent = b.trophies;
+    document.getElementById('modalProfileBtn').href = b.profile;
+
+    document.getElementById('modalOverlay').classList.add('open');
+    document.body.style.overflow = 'hidden';
+  }
+
+  function closeModal() {
+    document.getElementById('modalOverlay').classList.remove('open');
+    document.body.style.overflow = '';
+  }
+
+  function handleOverlayClick(e) {
+    if (e.target === document.getElementById('modalOverlay')) closeModal();
+  }
+
+  document.addEventListener('keydown', function(e) {
+    if (e.key === 'Escape') closeModal();
+  });
+</script>
+</body>
+</html>

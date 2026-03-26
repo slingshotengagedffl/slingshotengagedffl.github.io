@@ -1,14 +1,11 @@
-// ── SLINGSHOT ENGAGED · SHARED NAV ──
-// Edit this file to update navigation across ALL pages.
-
 (function () {
   const NAV_ITEMS = [
-    { emoji: '🏠', label: 'Home',                   href: 'index.html' },
-    { emoji: '💪', label: 'Beefcakes',              href: 'beefcakes.html' },
-    { emoji: '📊', label: 'Record Book',            href: 'record-book.html' },
-    { emoji: '📋', label: 'Constitution',           href: 'constitution.html' },
-    { emoji: '📸', label: 'Album',                  href: 'album.html' },
-    { emoji: '🌍', label: "Franks 'Round the World", href: 'franks.html' },
+    { emoji: '🏠', label: 'Home',                    href: 'index.html',        external: false },
+    { emoji: '💪', label: 'Beefcakes',               href: 'beefcakes.html',    external: false },
+    { emoji: '📊', label: 'Record Book',             href: 'record-book.html',  external: false },
+    { emoji: '📋', label: 'Constitution',            href: 'https://drive.google.com/file/d/1u5CjjgncTrwKSedc5rtYRhpPllhlc3w7/view?usp=drivesdk', external: true },
+    { emoji: '📸', label: 'Album',                   href: 'https://photos.app.goo.gl/B97a54JNwhCwhof39', external: true },
+    { emoji: '🌍', label: "Franks 'Round the World", href: 'https://maps.app.goo.gl/jM1vFzPdmUkwxZN57?g_st=ac', external: true },
   ];
 
   // Inject CSS
@@ -92,7 +89,9 @@
     </div>
     <div class="menu-items">
       ${NAV_ITEMS.map(item => `
-        <a href="${item.href}" class="menu-item${currentPage === item.href ? ' active' : ''}">
+        <a href="${item.href}"
+           class="menu-item${(!item.external && currentPage === item.href) ? ' active' : ''}"
+           ${item.external ? 'target="_blank" rel="noopener noreferrer"' : ''}>
           <span class="menu-item-emoji">${item.emoji}</span>
           <span class="menu-item-label">${item.label}</span>
         </a>
