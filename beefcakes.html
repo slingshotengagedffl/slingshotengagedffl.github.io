@@ -29,6 +29,111 @@
     overflow-x: hidden;
   }
 
+  /* ── NAVBAR ── */
+  nav {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 20px;
+    height: 60px;
+    background: #0d0d0d;
+    border-bottom: 2px solid var(--red);
+    position: sticky;
+    top: 0;
+    z-index: 100;
+  }
+
+  .nav-logo {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 1.35rem;
+    letter-spacing: 0.1em;
+    color: var(--red-bright);
+    text-transform: uppercase;
+    text-decoration: none;
+  }
+
+  .hotdog-btn {
+    background: none;
+    border: none;
+    cursor: pointer;
+    font-size: 1.75rem;
+    line-height: 1;
+    padding: 4px;
+    transition: transform 0.2s;
+  }
+  .hotdog-btn:hover { transform: scale(1.15) rotate(-5deg); }
+
+  /* ── SLIDE-OUT MENU ── */
+  .menu-overlay {
+    position: fixed;
+    inset: 0;
+    background: rgba(0,0,0,0.6);
+    z-index: 200;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.25s;
+  }
+  .menu-overlay.open { opacity: 1; pointer-events: all; }
+
+  .slide-menu {
+    position: fixed;
+    top: 0; right: 0;
+    width: min(340px, 100vw);
+    height: 100vh;
+    background: #0d0d0d;
+    border-left: 2px solid var(--red);
+    z-index: 300;
+    transform: translateX(100%);
+    transition: transform 0.3s cubic-bezier(0.4,0,0.2,1);
+    display: flex;
+    flex-direction: column;
+  }
+  .slide-menu.open { transform: translateX(0); }
+
+  .slide-menu-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 20px;
+    height: 60px;
+    border-bottom: 2px solid var(--red);
+  }
+
+  .close-btn {
+    background: none;
+    border: none;
+    color: var(--text-muted);
+    font-size: 1.5rem;
+    cursor: pointer;
+    line-height: 1;
+  }
+  .close-btn:hover { color: var(--text); }
+
+  .menu-items { display: flex; flex-direction: column; }
+
+  .menu-item {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    padding: 20px 22px;
+    border-bottom: 1px solid var(--border);
+    cursor: pointer;
+    text-decoration: none;
+    transition: background 0.15s;
+  }
+  .menu-item:hover { background: var(--bg3); }
+
+  .menu-item-emoji { font-size: 1.4rem; }
+
+  .menu-item-label {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 1.2rem;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--text);
+  }
+  .menu-item.active .menu-item-label { color: var(--red-bright); }
+
   /* ── PAGE HEADER ── */
   .page-header {
     text-align: center;
@@ -37,9 +142,9 @@
 
   .page-title {
     font-family: 'Bebas Neue', sans-serif;
-    font-size: clamp(2.8rem, 8vw, 5rem);
+    font-size: clamp(2.2rem, 8vw, 3.5rem);
     letter-spacing: 0.08em;
-    color: var(--red-bright);
+    color: #fff;
     text-transform: uppercase;
   }
 
@@ -311,7 +416,27 @@
     line-height: 1.2;
   }
 
-  .modal-profile-btn {
+  .trophy-icons {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    gap: 3px;
+    min-height: 24px;
+  }
+
+  .trophy-icon {
+    height: 24px;
+    width: auto;
+    object-fit: contain;
+  }
+
+  .trophy-none {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-weight: 700;
+    font-size: 1rem;
+    color: var(--text-muted);
+  }
     display: block;
     width: 100%;
     background: var(--red);
@@ -335,8 +460,49 @@
 </style>
 </head>
 <body>
-<script src="nav.js"></script>
 
+<!-- NAVBAR -->
+<nav>
+  <a href="index.html" class="nav-logo">Slingshot Engaged</a>
+  <button class="hotdog-btn" id="menuToggle" aria-label="Open menu">🌭</button>
+</nav>
+
+<!-- SLIDE-OUT MENU OVERLAY -->
+<div class="menu-overlay" id="menuOverlay"></div>
+
+<!-- SLIDE-OUT MENU -->
+<div class="slide-menu" id="slideMenu">
+  <div class="slide-menu-header">
+    <div class="nav-logo">Slingshot Engaged</div>
+    <button class="close-btn" id="menuClose">✕</button>
+  </div>
+  <div class="menu-items">
+    <a href="index.html" class="menu-item">
+      <span class="menu-item-emoji">🏠</span>
+      <span class="menu-item-label">Home</span>
+    </a>
+    <a href="beefcakes.html" class="menu-item active">
+      <span class="menu-item-emoji">💪</span>
+      <span class="menu-item-label">Beefcakes</span>
+    </a>
+    <a href="record-book.html" class="menu-item">
+      <span class="menu-item-emoji">📊</span>
+      <span class="menu-item-label">Record Book</span>
+    </a>
+    <a href="constitution.html" class="menu-item">
+      <span class="menu-item-emoji">📋</span>
+      <span class="menu-item-label">Constitution</span>
+    </a>
+    <a href="album.html" class="menu-item">
+      <span class="menu-item-emoji">📸</span>
+      <span class="menu-item-label">Album</span>
+    </a>
+    <a href="franks.html" class="menu-item">
+      <span class="menu-item-emoji">🌍</span>
+      <span class="menu-item-label">Franks 'Round the World</span>
+    </a>
+  </div>
+</div>
 
 <!-- PAGE HEADER -->
 <div class="page-header">
@@ -463,15 +629,15 @@
       <div class="modal-stats">
         <div class="stat-box">
           <span class="stat-value" id="statRank"></span>
-          <span class="stat-label">Prestige Rank<br>(out of 25)</span>
+          <span class="stat-label">Prestige Rank<br>(out of 27)</span>
         </div>
         <div class="stat-box">
           <span class="stat-value" id="statSince"></span>
           <span class="stat-label">Member Since</span>
         </div>
         <div class="stat-box">
-          <span class="stat-value" id="statTrophies"></span>
-          <span class="stat-label">D*****S</span>
+          <div class="trophy-icons" id="statTrophies"></div>
+          <span class="stat-label">D***ies</span>
         </div>
       </div>
       <a href="#" class="modal-profile-btn" id="modalProfileBtn">View Full Profile →</a>
@@ -480,23 +646,43 @@
 </div>
 
 <script>
+  // ── MENU ──
+  const toggle = document.getElementById('menuToggle');
+  const overlay = document.getElementById('menuOverlay');
+  const menu = document.getElementById('slideMenu');
+  const closeMenuBtn = document.getElementById('menuClose');
+
+  function openMenu() {
+    menu.classList.add('open');
+    overlay.classList.add('open');
+    document.body.style.overflow = 'hidden';
+  }
+  function closeMenu() {
+    menu.classList.remove('open');
+    overlay.classList.remove('open');
+    document.body.style.overflow = '';
+  }
+  toggle.addEventListener('click', openMenu);
+  closeMenuBtn.addEventListener('click', closeMenu);
+  overlay.addEventListener('click', closeMenu);
+
   // ── BEEFCAKE DATA ──
   // Fill in real data as you have it. image paths are relative to this file.
   const beefcakes = {
-    alex:   { name: 'Alex',   nickname: '"AVL"',            location: '❄️ Minnesota',      rank: '—', since: '2016', trophies: '1', img: 'images/alex.jpg',   profile: 'profiles/alex.html' },
-    andy:   { name: 'Andy',   nickname: '"Bronco Superfan"',location: '🏔️ Colorado',       rank: '—', since: '2022', trophies: '0', img: 'images/andy.jpg',   profile: 'profiles/andy.html' },
-    brian:  { name: 'Brian',  nickname: '"BThax"',          location: '🦀 Maryland',       rank: '—', since: '2014', trophies: '1', img: 'images/brian.png',  profile: 'profiles/brian.html' },
-    daniel: { name: 'Daniel', nickname: '"Naughty Man"',    location: '🏔️ Colorado',       rank: '—', since: '2014', trophies: '0', img: 'images/daniel.jpg', profile: 'profiles/daniel.html' },
-    dylan:  { name: 'Dylan',  nickname: '"Dyl"',            location: '🦀 Maryland',       rank: '—', since: '2015', trophies: '3', img: 'images/dylan.jpg',  profile: 'profiles/dylan.html' },
-    jack:   { name: 'Jack',   nickname: '"The Commish"',    location: '🌴 California',     rank: '—', since: '2014', trophies: '2', img: 'images/jack.jpg',   profile: 'profiles/jack.html' },
-    jordan: { name: 'Jordan', nickname: '"JopO"',           location: '🌲 North Carolina', rank: '—', since: '2019', trophies: '0', img: 'images/jordan.jpg', profile: 'profiles/jordan.html' },
-    kyle:   { name: 'Kyle',   nickname: '"The Snoot"',      location: '🏔️ Colorado',       rank: '—', since: '2018', trophies: '2', img: 'images/kyle.png',   profile: 'profiles/kyle.html' },
-    luke:   { name: 'Luke',   nickname: '"The Rook"',       location: '❄️ Minnesota',      rank: '—', since: '2026', trophies: '0', img: 'images/luke.jpg',   profile: 'profiles/luke.html' },
-    matt:   { name: 'Matt',   nickname: '"Dad Bod"',        location: '🏔️ Colorado',       rank: '—', since: '2015', trophies: '0', img: 'images/matt.jpg',   profile: 'profiles/matt.html' },
-    mike:   { name: 'Mike',   nickname: '"The Contrarian"', location: '🔔 Pennsylvania',   rank: '—', since: '2014', trophies: '1', img: 'images/mike.jpg',   profile: 'profiles/mike.html' },
-    scott:  { name: 'Scott',  nickname: '"Murph"',          location: '🌴 California',     rank: '—', since: '2014', trophies: '0', img: 'images/scott.jpg',  profile: 'profiles/scott.html' },
-    tim:    { name: 'Tim',    nickname: '"Hot Tim"',        location: '🏔️ Colorado',       rank: '—', since: '2020', trophies: '0', img: 'images/tim.jpg',    profile: 'profiles/tim.html' },
-    wade:   { name: 'Wade',   nickname: '"Bathhouse"',      location: '🔔 Pennsylvania',   rank: '—', since: '2020', trophies: '0', img: 'images/wade.jpg',   profile: 'profiles/wade.html' },
+    alex:   { name: 'Alex',   nickname: '"AVL"',            location: '❄️ Minnesota',      rank: '#5',  since: '2016', trophies: 1, img: 'images/alex.jpg',   profile: 'profiles/alex.html' },
+    andy:   { name: 'Andy',   nickname: '"Bronco Superfan"',location: '🏔️ Colorado',       rank: '#16', since: '2022', trophies: 0, img: 'images/andy.jpg',   profile: 'profiles/andy.html' },
+    brian:  { name: 'Brian',  nickname: '"BThax"',          location: '🦀 Maryland',       rank: '#7',  since: '2014', trophies: 1, img: 'images/brian.png',  profile: 'profiles/brian.html' },
+    daniel: { name: 'Daniel', nickname: '"Naughty Man"',    location: '🏔️ Colorado',       rank: '#6',  since: '2014', trophies: 0, img: 'images/daniel.jpg', profile: 'profiles/daniel.html' },
+    dylan:  { name: 'Dylan',  nickname: '"Dyl"',            location: '🦀 Maryland',       rank: '#1',  since: '2015', trophies: 3, img: 'images/dylan.jpg',  profile: 'profiles/dylan.html' },
+    jack:   { name: 'Jack',   nickname: '"The Commish"',    location: '🌴 California',     rank: '#2',  since: '2014', trophies: 2, img: 'images/jack.jpg',   profile: 'profiles/jack.html' },
+    jordan: { name: 'Jordan', nickname: '"JopO"',           location: '🌲 North Carolina', rank: '#17', since: '2019', trophies: 0, img: 'images/jordan.jpg', profile: 'profiles/jordan.html' },
+    kyle:   { name: 'Kyle',   nickname: '"The Snoot"',      location: '🏔️ Colorado',       rank: '#3',  since: '2018', trophies: 2, img: 'images/kyle.png',   profile: 'profiles/kyle.html' },
+    luke:   { name: 'Luke',   nickname: '"The Rook"',       location: '❄️ Minnesota',      rank: '#27', since: '2026', trophies: 0, img: 'images/luke.jpg',   profile: 'profiles/luke.html' },
+    matt:   { name: 'Matt',   nickname: '"Dad Bod"',        location: '🏔️ Colorado',       rank: '#10', since: '2015', trophies: 0, img: 'images/matt.jpg',   profile: 'profiles/matt.html' },
+    mike:   { name: 'Mike',   nickname: '"The Contrarian"', location: '🔔 Pennsylvania',   rank: '#4',  since: '2014', trophies: 1, img: 'images/mike.jpg',   profile: 'profiles/mike.html' },
+    scott:  { name: 'Scott',  nickname: '"Murph"',          location: '🌴 California',     rank: '#11', since: '2014', trophies: 0, img: 'images/scott.jpg',  profile: 'profiles/scott.html' },
+    tim:    { name: 'Tim',    nickname: '"Hot Tim"',        location: '🏔️ Colorado',       rank: '#15', since: '2020', trophies: 0, img: 'images/tim.jpg',    profile: 'profiles/tim.html' },
+    wade:   { name: 'Wade',   nickname: '"Bathhouse"',      location: '🔔 Pennsylvania',   rank: '#14', since: '2020', trophies: 0, img: 'images/wade.jpg',   profile: 'profiles/wade.html' },
   };
 
   // ── MODAL ──
@@ -521,7 +707,21 @@
     document.getElementById('modalNickname').textContent = b.nickname;
     document.getElementById('statRank').textContent = b.rank;
     document.getElementById('statSince').textContent = b.since;
-    document.getElementById('statTrophies').textContent = b.trophies;
+
+    // render trophy images
+    const trophyEl = document.getElementById('statTrophies');
+    trophyEl.innerHTML = '';
+    if (b.trophies === 0) {
+      trophyEl.innerHTML = '<span class="trophy-none">—</span>';
+    } else {
+      for (let i = 0; i < b.trophies; i++) {
+        const img = document.createElement('img');
+        img.src = 'images/trophy.jpg';
+        img.alt = 'D***y';
+        img.className = 'trophy-icon';
+        trophyEl.appendChild(img);
+      }
+    }
     document.getElementById('modalProfileBtn').href = b.profile;
 
     document.getElementById('modalOverlay').classList.add('open');
