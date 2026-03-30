@@ -101,6 +101,16 @@
     letter-spacing: 4px;
     text-transform: uppercase;
     color: var(--muted);
+    margin-bottom: 6px;
+  }
+
+  .owner-champion {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 1rem;
+    font-weight: 600;
+    letter-spacing: 4px;
+    text-transform: uppercase;
+    color: var(--muted);
     margin-bottom: 24px;
   }
 
@@ -398,8 +408,8 @@
 
   .section-label {
     font-family: 'Bebas Neue', sans-serif;
-    font-size: 0.9rem;
-    letter-spacing: 5px;
+    font-size: 1.6rem;
+    letter-spacing: 4px;
     text-transform: uppercase;
     color: var(--red);
     margin-bottom: 12px;
@@ -630,7 +640,7 @@
     display: flex;
     align-items: center;
     gap: 16px;
-    padding: 16px 20px;
+    padding: 14px 20px;
     border-bottom: 1px solid #1a1a1a;
   }
 
@@ -642,23 +652,22 @@
     flex-wrap: nowrap;
     gap: 4px;
     flex-shrink: 0;
-    width: 120px;
-    justify-content: flex-start;
+    width: 160px;
     align-items: center;
+    overflow: hidden;
   }
 
   .trophy-img {
-    width: 44px;
-    height: 44px;
+    width: 40px;
+    height: 40px;
     object-fit: contain;
-    filter: drop-shadow(0 2px 6px rgba(0,0,0,0.6));
     flex-shrink: 0;
   }
 
   .trophy-img-placeholder {
-    width: 44px;
-    height: 44px;
-    font-size: 2rem;
+    width: 40px;
+    height: 40px;
+    font-size: 1.8rem;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -667,9 +676,6 @@
   }
 
   .trophy-info {
-    display: flex;
-    flex-direction: column;
-    gap: 0;
     flex: 1;
   }
 
@@ -785,10 +791,6 @@ function renderProfile(p) {
     <div class="fact-row">
       <span class="fact-label">Owns:</span>
       <span class="fact-value">${p.rivalries.owns.name} (${p.rivalries.owns.record})</span>
-    </div>
-    <div class="h2h-bar-wrap">
-      <div class="h2h-bar"><div class="h2h-bar-fill" style="width:${p.rivalries.owns.winPct}%"></div></div>
-      <div class="h2h-label"><span>W ${p.rivalries.owns.winPct}%</span><span>all-time vs ${p.rivalries.owns.name}</span></div>
     </div>` : '';
 
   const ownedByHTML = `
@@ -796,6 +798,13 @@ function renderProfile(p) {
       <span class="fact-label">Owned by:</span>
       <span class="fact-value">${p.rivalries.ownedBy || 'No one'}</span>
     </div>`;
+
+  const championCount = p.trophies.filter(t => t.name === 'League Champion').reduce((sum, t) => sum + t.count, 0);
+  const championHTML = championCount > 1
+    ? `<div class="owner-champion">${championCount}x League Champion</div>`
+    : championCount === 1
+    ? `<div class="owner-champion">League Champion</div>`
+    : '';
 
   const statsHTML = p.careerStats.map(s => `
     <tr>
@@ -827,13 +836,11 @@ function renderProfile(p) {
     const images = Array(t.count).fill(0).map(() =>
       `<div class="trophy-img-placeholder">${t.emoji}</div>`
     ).join('');
-    const countLabel = t.count > 1 ? `<div class="trophy-count">× ${t.count}</div>` : '';
     return `
     <div class="trophy-row">
       <div class="trophy-images">${images}</div>
       <div class="trophy-info">
         <div class="trophy-name">${t.name}</div>
-        ${countLabel}
       </div>
     </div>`;
   }).join('');
@@ -844,6 +851,7 @@ function renderProfile(p) {
       <div class="owner-name">${p.name}</div>
       <div class="owner-name-nickname">"${p.nickname}"</div>
       <div class="owner-subtitle">Member Since ${p.memberSince}</div>
+      ${championHTML}
       <div class="avatar-wrap">${photoHTML}</div>
     </section>
 
@@ -899,10 +907,6 @@ function renderProfile(p) {
       ${ownsHTML}
       ${ownedByHTML}
       <div class="fact-row">
-        <span class="fact-label">Nemesis:</span>
-        <span class="fact-value">${p.rivalries.nemesis}</span>
-      </div>
-      <div class="fact-row">
         <span class="fact-label">${p.currentSeason.year} Rivals:</span>
         <span class="fact-value">${p.rivalries.rivals}</span>
       </div>
@@ -940,13 +944,6 @@ function renderProfile(p) {
       <div class="trophy-header">🏆 Trophy Case 🏆</div>
       <div class="trophy-list">${trophiesHTML}</div>
     </section>
-
-    <!-- SHARE -->
-    <div class="share-wrap">
-      <button class="share-btn" onclick="shareProfile()" id="shareBtn">
-        <span>🔗</span><span id="shareBtnText">Share This Page</span>
-      </button>
-    </div>
   `;
 
   document.getElementById('loadingState').style.display = 'none';
@@ -965,20 +962,6 @@ function renderProfile(p) {
 
 function toggleAccordion(btn) {
   btn.closest('.accordion-item').classList.toggle('open');
-}
-
-function shareProfile() {
-  const btn = document.getElementById('shareBtn');
-  const txt = document.getElementById('shareBtnText');
-  if (navigator.share) {
-    navigator.share({ title: document.title, url: window.location.href });
-  } else {
-    navigator.clipboard.writeText(window.location.href).then(() => {
-      btn.classList.add('copied');
-      txt.textContent = 'Link Copied!';
-      setTimeout(() => { btn.classList.remove('copied'); txt.textContent = 'Share This Page'; }, 2000);
-    });
-  }
 }
 
 loadProfile();
