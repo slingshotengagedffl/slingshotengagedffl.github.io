@@ -19,14 +19,33 @@
         { label: 'Wade',   href: 'profiles/wade.html' },
       ]
     },
-    { emoji: '📊', label: 'Record Book',             href: 'record-book.html',  external: false },
+    { emoji: '📊', label: 'Record Book',             href: 'record-book.html',  external: false,
+      submenu: [
+        { label: 'Single Season Stats',          href: 'rb-single-season-stats.html' },
+        { label: 'Single Game Records',          href: 'rb-single-game-records.html' },
+        { label: 'Single Season Records',        href: 'rb-single-season-records.html' },
+        { label: 'Career Stats',                 href: 'rb-career-stats.html' },
+        { label: 'Career Records',               href: 'rb-career-records.html' },
+        { label: 'Career Playoff Records',       href: 'rb-career-playoff-records.html' },
+        { label: 'Season Summaries',             href: 'rb-season-summaries.html' },
+        { label: 'Prestige Rankings',            href: 'rb-prestige-rankings.html' },
+        { label: 'Head-To-Head',                 href: 'rb-head-to-head.html' },
+        { label: 'Playoff Odds',                 href: 'rb-playoff-odds.html' },
+        { label: 'Draft Position Success',       href: 'rb-draft-position-success.html' },
+        { label: 'Correlation To Wins',          href: 'rb-correlation-to-wins.html' },
+        { label: 'Lucky / Unlucky',              href: 'rb-lucky-unlucky.html' },
+        { label: 'Boom Or Bust',                 href: 'rb-boom-or-bust.html' },
+        { label: 'The Streak And The Drought',   href: 'rb-streak-and-drought.html' },
+        { label: 'The Intercontinental Championship', href: 'rb-intercontinental-championship.html' },
+      ]
+    },
     { emoji: '📋', label: 'Constitution',            href: 'https://drive.google.com/file/d/1u5CjjgncTrwKSedc5rtYRhpPllhlc3w7/view?usp=drivesdk', external: true },
     { emoji: '📸', label: 'Album',                   href: 'https://photos.app.goo.gl/B97a54JNwhCwhof39', external: true },
     { emoji: '🌍', label: "Franks 'Round the World", href: 'https://maps.app.goo.gl/jM1vFzPdmUkwxZN57?g_st=ac', external: true },
   ];
 
   // Detect if we're in a subfolder (e.g. profiles/)
-  const inSubfolder = location.pathname.split('/').filter(Boolean).length > 1;
+  const inSubfolder = location.pathname.includes('/profiles/');
   const prefix = inSubfolder ? '../' : '';
 
   // Determine active page filename
