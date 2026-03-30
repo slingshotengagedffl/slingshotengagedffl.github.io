@@ -361,7 +361,7 @@
   .modal-location {
     font-family: 'Barlow Condensed', sans-serif;
     font-weight: 600;
-    font-size: 0.8rem;
+    font-size: 1rem;
     letter-spacing: 0.1em;
     color: var(--text-dim);
     text-transform: uppercase;
@@ -374,7 +374,7 @@
   .modal-nickname {
     font-family: 'Barlow Condensed', sans-serif;
     font-weight: 700;
-    font-size: 0.8rem;
+    font-size: 1rem;
     letter-spacing: 0.12em;
     color: var(--red-bright);
     text-transform: uppercase;
@@ -407,7 +407,7 @@
   .stat-label {
     font-family: 'Barlow Condensed', sans-serif;
     font-weight: 700;
-    font-size: 0.6rem;
+    font-size: 0.75rem;
     letter-spacing: 0.14em;
     text-transform: uppercase;
     color: var(--text-muted);
@@ -630,12 +630,12 @@
       <div class="modal-nickname" id="modalNickname"></div>
       <div class="modal-stats">
         <div class="stat-box">
-          <span class="stat-value" id="statRank"></span>
-          <span class="stat-label">Prestige Rank<br>(out of 27)</span>
-        </div>
-        <div class="stat-box">
           <span class="stat-value" id="statSince"></span>
           <span class="stat-label">Member Since</span>
+        </div>
+        <div class="stat-box">
+          <span class="stat-value" id="statRank"></span>
+          <span class="stat-label">Prestige Rank<br>(out of 27)</span>
         </div>
         <div class="stat-box">
           <div class="trophy-icons" id="statTrophies"></div>
@@ -718,7 +718,7 @@
     } else {
       for (let i = 0; i < b.trophies; i++) {
         const img = document.createElement('img');
-        img.src = 'images/trophy.jpg';
+        img.src = 'images/trophy.png';
         img.alt = 'D***y';
         img.className = 'trophy-icon';
         trophyEl.appendChild(img);
