@@ -1,0 +1,936 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Jack "The Commish" — Slingshot Engaged</title>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Barlow+Condensed:wght@400;600;700&family=Barlow:ital,wght@0,400;0,500;1,400&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --red: #D93B2B;
+    --red-dark: #a82d1f;
+    --black: #0a0a0a;
+    --dark: #111111;
+    --card: #1a1a1a;
+    --card2: #222222;
+    --gray: #2a2a2a;
+    --gray-light: #333333;
+    --white: #f5f5f5;
+    --muted: #888;
+    --gold: #c9a84c;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    background: var(--black);
+    color: var(--white);
+    font-family: 'Barlow', sans-serif;
+    min-height: 100vh;
+    overflow-x: hidden;
+  }
+
+  body::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    background-image: repeating-linear-gradient(
+      180deg,
+      transparent 0px, transparent 38px,
+      rgba(255,255,255,0.018) 38px, rgba(255,255,255,0.018) 40px
+    );
+    pointer-events: none;
+    z-index: 0;
+  }
+
+  .page-wrap {
+    max-width: 780px;
+    margin: 0 auto;
+    background: var(--black);
+    min-height: 100vh;
+    position: relative;
+    box-shadow: 0 0 60px rgba(0,0,0,0.8);
+  }
+
+  /* ── HERO ── */
+  .hero {
+    position: relative;
+    z-index: 1;
+    background: linear-gradient(180deg, #1a0a08 0%, var(--black) 100%);
+    padding: 32px 20px 0;
+    text-align: center;
+    overflow: hidden;
+  }
+
+  .hero::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 50%;
+    transform: translateX(-50%);
+    width: 300px; height: 300px;
+    background: radial-gradient(circle, rgba(217,59,43,0.15) 0%, transparent 70%);
+    pointer-events: none;
+  }
+
+  .owner-nickname {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 2.6rem;
+    letter-spacing: 3px;
+    color: var(--white);
+    line-height: 1;
+    margin-bottom: 6px;
+    position: relative;
+    z-index: 1;
+  }
+
+  .owner-nickname span { color: var(--red); }
+
+  .owner-subtitle {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 0.75rem;
+    font-weight: 600;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: var(--muted);
+    margin-bottom: 20px;
+  }
+
+  .avatar-wrap {
+    position: relative;
+    display: inline-block;
+    margin: 0 auto;
+  }
+
+  .avatar-wrap img {
+    width: 240px;
+    height: 240px;
+    display: block;
+    margin: 0 auto;
+    object-fit: cover;
+    object-position: top;
+    border-radius: 50%;
+    border: 3px solid var(--red);
+    filter: drop-shadow(0 8px 24px rgba(0,0,0,0.8));
+    position: relative;
+    z-index: 1;
+  }
+
+  .avatar-placeholder {
+    width: 240px;
+    height: 240px;
+    background: var(--card);
+    border: 2px dashed #333;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--muted);
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 0.8rem;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    margin: 0 auto;
+  }
+
+  /* ── LIVE SEASON BANNER ── */
+  .live-banner {
+    position: relative;
+    z-index: 1;
+    margin: 24px 20px 0;
+    background: #0f0f0f;
+    border: 1px solid #2a2a2a;
+    border-radius: 8px;
+    padding: 14px 16px;
+  }
+
+  .live-dot {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 0.7rem;
+    font-weight: 700;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--red);
+    margin-bottom: 10px;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+  }
+
+  .live-dot::before {
+    content: '';
+    width: 7px; height: 7px;
+    border-radius: 50%;
+    background: var(--red);
+    display: inline-block;
+  }
+
+  .live-stats {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 8px;
+    margin-bottom: 12px;
+  }
+
+  .live-stat {
+    text-align: center;
+  }
+
+  .live-stat-val {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 1.6rem;
+    color: var(--white);
+    line-height: 1;
+  }
+
+  .live-stat-label {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 0.65rem;
+    font-weight: 700;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--muted);
+    margin-top: 2px;
+  }
+
+  .live-last-game {
+    border-top: 1px solid #222;
+    padding-top: 10px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    flex-wrap: wrap;
+  }
+
+  .last-game-label {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 0.65rem;
+    font-weight: 700;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--muted);
+  }
+
+  .last-game-result {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    flex: 1;
+  }
+
+  .result-pill {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 0.9rem;
+    width: 26px; height: 26px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+  }
+
+  .result-pill.win { background: #1a3a1a; color: #6aaa6a; border: 1px solid #6aaa6a; }
+  .result-pill.loss { background: #3a1a1a; color: #aa6a6a; border: 1px solid #aa6a6a; }
+
+  .last-game-detail {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 0.9rem;
+    color: var(--white);
+  }
+
+  .last-game-record {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 0.8rem;
+    color: var(--muted);
+    margin-left: auto;
+  }
+
+  /* ── PRESTIGE BLOCK ── */
+  .prestige-block {
+    position: relative;
+    z-index: 1;
+    margin: 12px 20px 0;
+    background: linear-gradient(135deg, #1a1500 0%, #111000 100%);
+    border: 1px solid #3a3010;
+    border-radius: 8px;
+    padding: 16px 20px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  .prestige-left {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+  }
+
+  .prestige-title {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 0.65rem;
+    font-weight: 700;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--gold);
+    opacity: 0.7;
+  }
+
+  .prestige-rank {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 2rem;
+    color: var(--gold);
+    line-height: 1;
+  }
+
+  .prestige-divider {
+    width: 1px;
+    background: #3a3010;
+    align-self: stretch;
+    margin: 0 16px;
+  }
+
+  /* ── TRAITS ── */
+  .traits-grid {
+    position: relative;
+    z-index: 1;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 10px;
+    padding: 12px 20px 0;
+  }
+
+  .trait-item {
+    background: #1a1a1a;
+    border: 1px solid #2a2a2a;
+    border-radius: 6px;
+    padding: 12px 10px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+
+  .trait-icon { font-size: 1.6rem; line-height: 1; flex-shrink: 0; }
+
+  .trait-label {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 0.85rem;
+    font-weight: 700;
+    letter-spacing: 0.5px;
+    text-transform: uppercase;
+    color: var(--white);
+    line-height: 1.2;
+  }
+
+  /* ── QUICK FACTS ── */
+  .quick-facts {
+    position: relative;
+    z-index: 1;
+    background: var(--card);
+    border-top: 2px solid #2a2a2a;
+    border-bottom: 2px solid #2a2a2a;
+    padding: 16px 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    margin-top: 16px;
+  }
+
+  .fact-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 0.95rem;
+  }
+
+  .fact-label { font-weight: 700; color: var(--white); letter-spacing: 0.5px; }
+  .fact-value { color: var(--muted); font-weight: 400; text-align: right; }
+
+  .location-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 0.95rem;
+    padding-bottom: 10px;
+    border-bottom: 1px solid #2a2a2a;
+  }
+
+  .h2h-bar-wrap { margin-top: 4px; }
+
+  .h2h-bar {
+    height: 6px;
+    background: #2a2a2a;
+    border-radius: 3px;
+    overflow: hidden;
+    margin-top: 4px;
+  }
+
+  .h2h-bar-fill {
+    height: 100%;
+    background: var(--red);
+    border-radius: 3px;
+  }
+
+  .h2h-label {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 0.7rem;
+    color: var(--muted);
+    display: flex;
+    justify-content: space-between;
+    margin-top: 3px;
+  }
+
+  /* ── NARRATIVE ── */
+  .narrative-section {
+    position: relative;
+    z-index: 1;
+    padding: 28px 20px;
+  }
+
+  .section-label {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 0.7rem;
+    letter-spacing: 4px;
+    text-transform: uppercase;
+    color: var(--red);
+    margin-bottom: 10px;
+  }
+
+  .pull-quote {
+    border-left: 3px solid var(--red);
+    padding-left: 16px;
+    margin-bottom: 18px;
+    font-style: italic;
+    font-size: 1.15rem;
+    font-weight: 500;
+    color: var(--white);
+    line-height: 1.5;
+  }
+
+  .narrative-text {
+    font-size: 1rem;
+    line-height: 1.7;
+    color: #ccc;
+  }
+
+  .narrative-text strong { color: var(--white); font-weight: 600; }
+
+  /* ── CAREER STATS ── */
+  .stats-section {
+    position: relative;
+    z-index: 1;
+    padding: 0 20px 28px;
+  }
+
+  .section-title {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 1.6rem;
+    letter-spacing: 2px;
+    color: var(--white);
+    margin-bottom: 14px;
+  }
+
+  .stats-table {
+    width: 100%;
+    border-collapse: collapse;
+    border-radius: 6px;
+    overflow: hidden;
+    font-family: 'Barlow Condensed', sans-serif;
+  }
+
+  .stats-table thead tr { background: var(--red); }
+
+  .stats-table thead th {
+    padding: 12px 14px;
+    text-align: left;
+    font-size: 0.85rem;
+    font-weight: 700;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    color: var(--white);
+  }
+
+  .stats-table thead th:last-child { text-align: right; }
+
+  .stats-table tbody tr:nth-child(odd) { background: #1e1e1e; }
+  .stats-table tbody tr:nth-child(even) { background: #1a1a1a; }
+
+  .stats-table tbody td {
+    padding: 11px 14px;
+    font-size: 0.95rem;
+    color: var(--white);
+    border-bottom: 1px solid rgba(255,255,255,0.04);
+  }
+
+  .stats-table tbody td:last-child {
+    text-align: right;
+    font-weight: 600;
+  }
+
+  .rank-badge {
+    display: inline-block;
+    font-size: 0.75rem;
+    font-weight: 600;
+    color: var(--gold);
+    margin-left: 4px;
+  }
+
+  .earnings-val { color: #6aaa6a; }
+
+  .table-footnote {
+    font-family: 'Barlow', sans-serif;
+    font-style: italic;
+    font-size: 0.75rem;
+    color: var(--muted);
+    margin-top: 10px;
+    text-align: center;
+  }
+
+  /* ── SEASON ACCORDION ── */
+  .accordion-section {
+    position: relative;
+    z-index: 1;
+    padding: 0 20px 28px;
+  }
+
+  .accordion-item {
+    margin-bottom: 4px;
+    border-radius: 4px;
+    overflow: hidden;
+  }
+
+  .accordion-trigger {
+    width: 100%;
+    background: var(--red-dark);
+    border: none;
+    padding: 13px 16px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    cursor: pointer;
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 1rem;
+    font-weight: 700;
+    letter-spacing: 1px;
+    color: var(--white);
+    text-transform: uppercase;
+    transition: background 0.2s;
+  }
+
+  .accordion-trigger:hover { background: var(--red); }
+
+  .accordion-item:nth-child(even) .accordion-trigger { background: #252525; }
+  .accordion-item:nth-child(even) .accordion-trigger:hover { background: #2e2e2e; }
+
+  .accordion-trigger-left {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+
+  .accordion-icon {
+    font-size: 1.2rem;
+    transition: transform 0.25s;
+    color: rgba(255,255,255,0.5);
+  }
+
+  .accordion-item.open .accordion-icon { transform: rotate(45deg); }
+
+  .accordion-content {
+    display: none;
+    background: #141414;
+    border: 1px solid #2a2a2a;
+    border-top: none;
+  }
+
+  .accordion-item.open .accordion-content { display: block; }
+
+  .season-grid { padding: 16px; }
+
+  .season-team-name {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 1.1rem;
+    font-weight: 700;
+    color: var(--gold);
+    text-align: center;
+    padding: 6px 0 10px;
+    border-bottom: 1px solid #222;
+    margin-bottom: 8px;
+  }
+
+  .season-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    padding: 9px 0;
+    border-bottom: 1px solid #222;
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 0.95rem;
+  }
+
+  .season-row:last-child { border-bottom: none; }
+  .season-row .s-label { font-weight: 600; color: #aaa; }
+  .season-row .s-value { font-weight: 400; color: var(--white); text-align: right; }
+
+  /* Season badges */
+  .season-badge {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 0.7rem;
+    font-weight: 700;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    padding: 2px 8px;
+    border-radius: 20px;
+  }
+
+  .badge-champion { background: var(--gold); color: #000; }
+  .badge-finalist { background: #888; color: #000; }
+  .badge-playoff { background: #2a3a2a; color: #6aaa6a; border: 1px solid #6aaa6a; }
+
+  /* ── TROPHY CASE ── */
+  .trophy-section {
+    position: relative;
+    z-index: 1;
+    padding: 0 20px 28px;
+  }
+
+  .trophy-header {
+    background: var(--red);
+    border-radius: 6px 6px 0 0;
+    padding: 14px 20px;
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 1.4rem;
+    letter-spacing: 3px;
+    text-align: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+  }
+
+  .trophy-grid {
+    background: #0f0f0f;
+    border: 1px solid #2a2a2a;
+    border-top: none;
+    border-radius: 0 0 6px 6px;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 0;
+  }
+
+  .trophy-item {
+    padding: 20px 12px;
+    text-align: center;
+    border-right: 1px solid #1a1a1a;
+    border-bottom: 1px solid #1a1a1a;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 8px;
+  }
+
+  .trophy-item:nth-child(even) { border-right: none; }
+
+  .trophy-emoji { font-size: 2rem; line-height: 1; }
+
+  .trophy-name {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 0.75rem;
+    font-weight: 700;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    color: var(--white);
+    text-align: center;
+    line-height: 1.3;
+  }
+
+  /* ── SHARE ── */
+  .share-wrap {
+    position: relative;
+    z-index: 1;
+    padding: 8px 20px 40px;
+    text-align: center;
+  }
+
+  .share-btn {
+    background: transparent;
+    border: 1px solid #333;
+    border-radius: 6px;
+    padding: 14px 32px;
+    color: var(--muted);
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 0.9rem;
+    font-weight: 700;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    cursor: pointer;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    transition: all 0.2s;
+    width: 100%;
+    justify-content: center;
+  }
+
+  .share-btn:hover { border-color: var(--red); color: var(--white); }
+  .share-btn.copied { border-color: #6aaa6a; color: #6aaa6a; }
+
+  /* ── FADE IN ── */
+  .fade-in { opacity: 0; transform: translateY(16px); transition: opacity 0.5s ease, transform 0.5s ease; }
+  .fade-in.visible { opacity: 1; transform: translateY(0); }
+
+  /* ── LOADING ── */
+  #loadingState {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 60vh;
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 1rem;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--muted);
+  }
+</style>
+</head>
+<body>
+<div class="page-wrap">
+
+  <div id="loadingState">Loading...</div>
+  <div id="profileContent" style="display:none"></div>
+
+</div>
+
+<script src="../nav.js"></script>
+<script>
+const OWNER_ID = 'jack';
+
+async function loadProfile() {
+  try {
+    const res = await fetch('../profiles-data.json?v=' + Date.now());
+    const data = await res.json();
+    const p = data.owners[OWNER_ID];
+    if (!p) throw new Error('Owner not found');
+    renderProfile(p);
+  } catch (e) {
+    document.getElementById('loadingState').textContent = 'Failed to load profile.';
+    console.error(e);
+  }
+}
+
+function badgeHTML(result) {
+  if (!result) return '';
+  if (result === 'champion') return '<span class="season-badge badge-champion">Champion</span>';
+  if (result === 'finalist') return '<span class="season-badge badge-finalist">Finalist</span>';
+  if (result === 'playoff') return '<span class="season-badge badge-playoff">Playoff</span>';
+  return '';
+}
+
+function renderProfile(p) {
+  const photoHTML = p.photo
+    ? `<img src="${p.photo}" alt="${p.name}">`
+    : `<div class="avatar-placeholder">Photo Coming Soon</div>`;
+
+  const lastGame = p.currentSeason.lastGame;
+  const resultClass = lastGame.result === 'W' ? 'win' : 'loss';
+
+  const traitsHTML = p.traits.map(t => `
+    <div class="trait-item">
+      <span class="trait-icon">${t.emoji}</span>
+      <span class="trait-label">${t.label}</span>
+    </div>`).join('');
+
+  const ownsHTML = p.rivalries.owns ? `
+    <div class="fact-row">
+      <span class="fact-label">Owns:</span>
+      <span class="fact-value">${p.rivalries.owns.name} (${p.rivalries.owns.record})</span>
+    </div>
+    <div class="h2h-bar-wrap">
+      <div class="h2h-bar"><div class="h2h-bar-fill" style="width:${p.rivalries.owns.winPct}%"></div></div>
+      <div class="h2h-label"><span>W ${p.rivalries.owns.winPct}%</span><span>all-time vs ${p.rivalries.owns.name}</span></div>
+    </div>` : '';
+
+  const ownedByHTML = `
+    <div class="fact-row" style="margin-top:6px;">
+      <span class="fact-label">Owned by:</span>
+      <span class="fact-value">${p.rivalries.ownedBy || 'No one'}</span>
+    </div>`;
+
+  const statsHTML = p.careerStats.map(s => `
+    <tr>
+      <td>${s.stat}</td>
+      <td class="${s.isEarnings ? 'earnings-val' : ''}">${s.value}${s.rank ? `<span class="rank-badge">(${s.rank})</span>` : ''}</td>
+    </tr>`).join('');
+
+  const seasonsHTML = p.seasons.map(s => `
+    <div class="accordion-item">
+      <button class="accordion-trigger" onclick="toggleAccordion(this)">
+        <div class="accordion-trigger-left">
+          <span>${s.year}</span>
+          ${badgeHTML(s.result)}
+        </div>
+        <span class="accordion-icon">+</span>
+      </button>
+      <div class="accordion-content">
+        <div class="season-grid">
+          ${s.teamName && s.teamName !== 'TBD' ? `<div class="season-team-name">${s.teamName}</div>` : ''}
+          <div class="season-row"><span class="s-label">Record</span><span class="s-value">${s.record}</span></div>
+          <div class="season-row"><span class="s-label">Finish</span><span class="s-value">${s.finish}</span></div>
+          <div class="season-row"><span class="s-label">Pts For</span><span class="s-value">${s.ptsFor}</span></div>
+          <div class="season-row"><span class="s-label">Pts Against</span><span class="s-value">${s.ptsAgainst}</span></div>
+        </div>
+      </div>
+    </div>`).join('');
+
+  const trophiesHTML = p.trophies.map(t => `
+    <div class="trophy-item">
+      <div class="trophy-emoji">${t.emoji}</div>
+      <div class="trophy-name">${t.name}</div>
+    </div>`).join('');
+
+  const html = `
+    <!-- HERO -->
+    <section class="hero">
+      <div class="owner-nickname">${p.name} <span>"${p.nickname}"</span></div>
+      <div class="owner-subtitle">Member Since ${p.memberSince}</div>
+      <div class="avatar-wrap">${photoHTML}</div>
+    </section>
+
+    <!-- LIVE SEASON BANNER -->
+    <div class="live-banner fade-in">
+      <div class="live-dot">${p.currentSeason.year} Season</div>
+      <div class="live-stats">
+        <div class="live-stat">
+          <div class="live-stat-val">${p.currentSeason.record}</div>
+          <div class="live-stat-label">Record</div>
+        </div>
+        <div class="live-stat">
+          <div class="live-stat-val">${p.currentSeason.standing}</div>
+          <div class="live-stat-label">Standing</div>
+        </div>
+        <div class="live-stat">
+          <div class="live-stat-val">${p.currentSeason.ptsPerGame}</div>
+          <div class="live-stat-label">Pts/Gm</div>
+        </div>
+      </div>
+      <div class="live-last-game">
+        <span class="last-game-label">Last Game</span>
+        <div class="last-game-result">
+          <div class="result-pill ${resultClass}">${lastGame.result}</div>
+          <div class="last-game-detail">vs. ${lastGame.opponent} · ${lastGame.score}</div>
+        </div>
+        <div class="last-game-record">Lifetime ${lastGame.lifetimeVsOpponent}</div>
+      </div>
+    </div>
+
+    <!-- PRESTIGE BLOCK -->
+    <div class="prestige-block fade-in">
+      <div class="prestige-left">
+        <div class="prestige-title">Prestige Ranking</div>
+        <div class="prestige-rank">#${p.prestige.rank} of ${p.prestige.outOf}</div>
+      </div>
+      <div class="prestige-divider"></div>
+      <div class="prestige-left">
+        <div class="prestige-title">Prestige Points</div>
+        <div class="prestige-rank">${p.prestige.points.toLocaleString()}</div>
+      </div>
+    </div>
+
+    <!-- TRAITS -->
+    <div class="traits-grid fade-in">${traitsHTML}</div>
+
+    <!-- QUICK FACTS -->
+    <div class="quick-facts fade-in">
+      <div class="location-row">
+        <span class="fact-label">Location:</span>
+        <span class="fact-value">${p.locationEmoji} ${p.location}</span>
+      </div>
+      ${ownsHTML}
+      ${ownedByHTML}
+      <div class="fact-row">
+        <span class="fact-label">Nemesis:</span>
+        <span class="fact-value">${p.rivalries.nemesis}</span>
+      </div>
+      <div class="fact-row">
+        <span class="fact-label">${p.currentSeason.year} Rivals:</span>
+        <span class="fact-value">${p.rivalries.rivals}</span>
+      </div>
+      <div class="fact-row">
+        <span class="fact-label">${p.currentSeason.year} Ryder Cup:</span>
+        <span class="fact-value">${p.rivalries.ryderCup}</span>
+      </div>
+    </div>
+
+    <!-- NARRATIVE -->
+    <section class="narrative-section fade-in">
+      <div class="section-label">${p.narrative.sectionLabel}</div>
+      <div class="pull-quote">"${p.narrative.pullQuote}"</div>
+      <p class="narrative-text">${p.narrative.body}</p>
+    </section>
+
+    <!-- CAREER STATS -->
+    <section class="stats-section fade-in">
+      <div class="section-title">Career Stats</div>
+      <table class="stats-table">
+        <thead><tr><th>Stat</th><th>Value (Rank)</th></tr></thead>
+        <tbody>${statsHTML}</tbody>
+      </table>
+      <div class="table-footnote">*Indicates tied with another owner. Rankings out of ${p.prestige.outOf} active owners.</div>
+    </section>
+
+    <!-- SEASON BY SEASON -->
+    <section class="accordion-section fade-in">
+      <div class="section-title">Season by Season</div>
+      ${seasonsHTML}
+    </section>
+
+    <!-- TROPHY CASE -->
+    <section class="trophy-section fade-in">
+      <div class="trophy-header">🏆 Trophy Case 🏆</div>
+      <div class="trophy-grid">${trophiesHTML}</div>
+    </section>
+
+    <!-- SHARE -->
+    <div class="share-wrap">
+      <button class="share-btn" onclick="shareProfile()" id="shareBtn">
+        <span>🔗</span><span id="shareBtnText">Share This Page</span>
+      </button>
+    </div>
+  `;
+
+  document.getElementById('loadingState').style.display = 'none';
+  const content = document.getElementById('profileContent');
+  content.innerHTML = html;
+  content.style.display = 'block';
+
+  // Scroll fade-in
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+      if (e.isIntersecting) { e.target.classList.add('visible'); observer.unobserve(e.target); }
+    });
+  }, { threshold: 0.1 });
+  document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
+}
+
+function toggleAccordion(btn) {
+  btn.closest('.accordion-item').classList.toggle('open');
+}
+
+function shareProfile() {
+  const btn = document.getElementById('shareBtn');
+  const txt = document.getElementById('shareBtnText');
+  if (navigator.share) {
+    navigator.share({ title: document.title, url: window.location.href });
+  } else {
+    navigator.clipboard.writeText(window.location.href).then(() => {
+      btn.classList.add('copied');
+      txt.textContent = 'Link Copied!';
+      setTimeout(() => { btn.classList.remove('copied'); txt.textContent = 'Share This Page'; }, 2000);
+    });
+  }
+}
+
+loadProfile();
+</script>
+</body>
+</html>
