@@ -1,0 +1,395 @@
+{
+  "owners": {
+    "jack": {
+      "id": "jack",
+      "name": "Jack",
+      "nickname": "The Commish",
+      "memberSince": 2014,
+      "location": "California",
+      "locationEmoji": "🌴",
+      "photo": "../images/jack.png",
+
+      "currentSeason": {
+        "year": 2026,
+        "record": "—",
+        "standing": "—",
+        "ptsPerGame": "—",
+        "lastGame": {
+          "result": "W",
+          "opponent": "Matt",
+          "score": "124–98",
+          "lifetimeVsOpponent": "7–3"
+        }
+      },
+
+      "prestige": {
+        "rank": 1,
+        "outOf": 14,
+        "points": 1951
+      },
+
+      "traits": [
+        { "emoji": "🏆", "label": "#ChampsGang" },
+        { "emoji": "👑", "label": "Dictator Tendencies" },
+        { "emoji": "🔄", "label": "Elite Trader" },
+        { "emoji": "🐷", "label": "Hall of Greatness" }
+      ],
+
+      "rivalries": {
+        "owns": { "name": "Matt", "record": "7–3", "winPct": 70 },
+        "ownedBy": null,
+        "nemesis": "Kyle",
+        "rivals": "Dylan & Daniel",
+        "ryderCup": "TBD"
+      },
+
+      "narrative": {
+        "sectionLabel": "Why 2026 Is His Year",
+        "pullQuote": "The league's first dynasty. And he's not done.",
+        "body": "You don't accidentally lead the league in wins, points, and Prestige. Jack was <strong>that dude in the late 2010s</strong> — back-to-back titles, the league's first dynasty. But the last few years? Injuries, bad luck, and near-misses. Still, he's five Prestige points clear of Kyle, clinging to the GOAT throne, and about to become the first to hit 15,000 regular season points. At some point, the bouncebacks come. The injuries stop. The stars align. And the legend reminds you why he became a legend in the first place. <strong>Jack's not done — he's reloading.</strong>"
+      },
+
+      "careerStats": [
+        { "stat": "Seasons Played", "value": "11", "rank": null },
+        { "stat": "Championships", "value": "2", "rank": "1st*" },
+        { "stat": "Regular Season Wins", "value": "89", "rank": "1st" },
+        { "stat": "Regular Season Win %", "value": "0.605", "rank": "1st" },
+        { "stat": "Reg. Season Pts/Game", "value": "98.84", "rank": "2nd" },
+        { "stat": "Reg. Season Power Score", "value": "131.4", "rank": "2nd" },
+        { "stat": "Career High Score", "value": "168.80", "rank": "4th" },
+        { "stat": "Playoff Appearances", "value": "7", "rank": "1st*" },
+        { "stat": "Playoff Win %", "value": "0.583", "rank": "4th" },
+        { "stat": "Career Net Earnings", "value": "$679.50", "rank": "2nd", "isEarnings": true },
+        { "stat": "Prestige Points", "value": "1,951", "rank": "1st" }
+      ],
+
+      "seasons": [
+        { "year": 2025, "result": "playoff", "teamName": "TBD", "record": "TBD", "finish": "TBD", "ptsFor": "TBD", "ptsAgainst": "TBD" },
+        { "year": 2024, "result": null, "teamName": "TBD", "record": "TBD", "finish": "TBD", "ptsFor": "TBD", "ptsAgainst": "TBD" },
+        { "year": 2023, "result": "playoff", "teamName": "TBD", "record": "TBD", "finish": "TBD", "ptsFor": "TBD", "ptsAgainst": "TBD" },
+        { "year": 2022, "result": null, "teamName": "TBD", "record": "TBD", "finish": "TBD", "ptsFor": "TBD", "ptsAgainst": "TBD" },
+        { "year": 2021, "result": null, "teamName": "TBD", "record": "TBD", "finish": "TBD", "ptsFor": "TBD", "ptsAgainst": "TBD" },
+        { "year": 2020, "result": null, "teamName": "TBD", "record": "TBD", "finish": "TBD", "ptsFor": "TBD", "ptsAgainst": "TBD" },
+        { "year": 2019, "result": "champion", "teamName": "TBD", "record": "TBD", "finish": "1st", "ptsFor": "TBD", "ptsAgainst": "TBD" },
+        { "year": 2018, "result": "champion", "teamName": "TBD", "record": "TBD", "finish": "1st", "ptsFor": "TBD", "ptsAgainst": "TBD" },
+        { "year": 2017, "result": "playoff", "teamName": "TBD", "record": "TBD", "finish": "TBD", "ptsFor": "TBD", "ptsAgainst": "TBD" },
+        { "year": 2016, "result": "playoff", "teamName": "TBD", "record": "TBD", "finish": "TBD", "ptsFor": "TBD", "ptsAgainst": "TBD" },
+        { "year": 2015, "result": "playoff", "teamName": "TBD", "record": "TBD", "finish": "TBD", "ptsFor": "TBD", "ptsAgainst": "TBD" },
+        { "year": 2014, "result": "finalist", "teamName": "TBD", "record": "TBD", "finish": "2nd", "ptsFor": "TBD", "ptsAgainst": "TBD" }
+      ],
+
+      "trophies": [
+        { "emoji": "🏈🏈", "name": "League Champion", "count": 2 },
+        { "emoji": "🥈", "name": "2nd Place", "count": 1 },
+        { "emoji": "⭐⭐⭐", "name": "Reg. Season Champ", "count": 3 },
+        { "emoji": "🏅🏅", "name": "Hottest Team in Sports Bowl", "count": 2 },
+        { "emoji": "✴️", "name": "Hung the * Chain", "count": 1 },
+        { "emoji": "❓❓❓", "name": "Somehow the Champion", "count": 3 },
+        { "emoji": "🎯🎯", "name": "Survivor King", "count": 2 },
+        { "emoji": "🧠", "name": "Degen Bowl", "count": 1 },
+        { "emoji": "⚙️⚙️", "name": "Dad Bod's Preseason Rankings", "count": 2 },
+        { "emoji": "👑👑", "name": "JopO or KG Pick 'Em", "count": 2 }
+      ]
+    },
+
+    "alex": {
+      "id": "alex",
+      "name": "Alex",
+      "nickname": "AVL",
+      "memberSince": 2016,
+      "location": "Minnesota",
+      "locationEmoji": "❄️",
+      "photo": "../images/alex.png",
+      "currentSeason": { "year": 2026, "record": "—", "standing": "—", "ptsPerGame": "—", "lastGame": { "result": "W", "opponent": "TBD", "score": "—", "lifetimeVsOpponent": "—" } },
+      "prestige": { "rank": null, "outOf": 14, "points": null },
+      "traits": [
+        { "emoji": "🏆", "label": "#ChampsGang" },
+        { "emoji": "🧻", "label": "Incredibly Pale" },
+        { "emoji": "👀", "label": "Body Analyst" },
+        { "emoji": "❄️", "label": "Minnesota Nice" }
+      ],
+      "rivalries": { "owns": null, "ownedBy": null, "nemesis": "TBD", "rivals": "TBD", "ryderCup": "TBD" },
+      "narrative": { "sectionLabel": "Why 2026 Is His Year", "pullQuote": "TBD", "body": "TBD" },
+      "careerStats": [],
+      "seasons": [],
+      "trophies": []
+    },
+
+    "andy": {
+      "id": "andy",
+      "name": "Andy",
+      "nickname": "Bronco Superfan",
+      "memberSince": 2022,
+      "location": "Colorado",
+      "locationEmoji": "🏔️",
+      "photo": "../images/andy.png",
+      "currentSeason": { "year": 2026, "record": "—", "standing": "—", "ptsPerGame": "—", "lastGame": { "result": "W", "opponent": "TBD", "score": "—", "lifetimeVsOpponent": "—" } },
+      "prestige": { "rank": null, "outOf": 14, "points": null },
+      "traits": [
+        { "emoji": "🤮", "label": "Beer Mile Puker" },
+        { "emoji": "🪙", "label": "FAAB Penny Pincher" },
+        { "emoji": "📣", "label": "Loud" },
+        { "emoji": "👕", "label": "Shirt Optional" }
+      ],
+      "rivalries": { "owns": null, "ownedBy": null, "nemesis": "TBD", "rivals": "TBD", "ryderCup": "TBD" },
+      "narrative": { "sectionLabel": "Why 2026 Is His Year", "pullQuote": "TBD", "body": "TBD" },
+      "careerStats": [],
+      "seasons": [],
+      "trophies": []
+    },
+
+    "brian": {
+      "id": "brian",
+      "name": "Brian",
+      "nickname": "BThax",
+      "memberSince": 2014,
+      "location": "Maryland",
+      "locationEmoji": "🦀",
+      "photo": "../images/brian.png",
+      "currentSeason": { "year": 2026, "record": "—", "standing": "—", "ptsPerGame": "—", "lastGame": { "result": "W", "opponent": "TBD", "score": "—", "lifetimeVsOpponent": "—" } },
+      "prestige": { "rank": null, "outOf": 14, "points": null },
+      "traits": [
+        { "emoji": "🏆", "label": "#ChampsGang" },
+        { "emoji": "💪", "label": "Jacked Upper Body" },
+        { "emoji": "🏥", "label": "Injury Prone" },
+        { "emoji": "💬", "label": "Prolific Chatter" }
+      ],
+      "rivalries": { "owns": null, "ownedBy": null, "nemesis": "TBD", "rivals": "TBD", "ryderCup": "TBD" },
+      "narrative": { "sectionLabel": "Why 2026 Is His Year", "pullQuote": "TBD", "body": "TBD" },
+      "careerStats": [],
+      "seasons": [],
+      "trophies": []
+    },
+
+    "daniel": {
+      "id": "daniel",
+      "name": "Daniel",
+      "nickname": "Naughty Man",
+      "memberSince": 2014,
+      "location": "Colorado",
+      "locationEmoji": "🏔️",
+      "photo": "../images/daniel.png",
+      "currentSeason": { "year": 2026, "record": "—", "standing": "—", "ptsPerGame": "—", "lastGame": { "result": "W", "opponent": "TBD", "score": "—", "lifetimeVsOpponent": "—" } },
+      "prestige": { "rank": null, "outOf": 14, "points": null },
+      "traits": [
+        { "emoji": "🧗", "label": "Beautiful Movement" },
+        { "emoji": "🍆", "label": "Perv" },
+        { "emoji": "😬", "label": "Unprepared Drafter" },
+        { "emoji": "🗣️", "label": "Certified Trash Talker" }
+      ],
+      "rivalries": { "owns": null, "ownedBy": null, "nemesis": "TBD", "rivals": "TBD", "ryderCup": "TBD" },
+      "narrative": { "sectionLabel": "Why 2026 Is His Year", "pullQuote": "TBD", "body": "TBD" },
+      "careerStats": [],
+      "seasons": [],
+      "trophies": []
+    },
+
+    "dylan": {
+      "id": "dylan",
+      "name": "Dylan",
+      "nickname": "Dyl",
+      "memberSince": 2015,
+      "location": "Maryland",
+      "locationEmoji": "🦀",
+      "photo": "../images/dylan.png",
+      "currentSeason": { "year": 2026, "record": "—", "standing": "—", "ptsPerGame": "—", "lastGame": { "result": "W", "opponent": "TBD", "score": "—", "lifetimeVsOpponent": "—" } },
+      "prestige": { "rank": null, "outOf": 14, "points": null },
+      "traits": [
+        { "emoji": "🏆", "label": "#ChampsGang" },
+        { "emoji": "🐷", "label": "Hall of Greatness" },
+        { "emoji": "☀️", "label": "Positive Attitude" },
+        { "emoji": "🍪", "label": "Snack Master" }
+      ],
+      "rivalries": { "owns": null, "ownedBy": null, "nemesis": "TBD", "rivals": "TBD", "ryderCup": "TBD" },
+      "narrative": { "sectionLabel": "Why 2026 Is His Year", "pullQuote": "TBD", "body": "TBD" },
+      "careerStats": [],
+      "seasons": [],
+      "trophies": []
+    },
+
+    "jordan": {
+      "id": "jordan",
+      "name": "Jordan",
+      "nickname": "JopO",
+      "memberSince": 2019,
+      "location": "North Carolina",
+      "locationEmoji": "🌲",
+      "photo": "../images/jordan.png",
+      "currentSeason": { "year": 2026, "record": "—", "standing": "—", "ptsPerGame": "—", "lastGame": { "result": "W", "opponent": "TBD", "score": "—", "lifetimeVsOpponent": "—" } },
+      "prestige": { "rank": null, "outOf": 14, "points": null },
+      "traits": [
+        { "emoji": "🗡️", "label": "Cutting Commentary" },
+        { "emoji": "🧔", "label": "Memorable Facial Hair" },
+        { "emoji": "👻", "label": "Questionable Availability" },
+        { "emoji": "🤐", "label": "Withholding" }
+      ],
+      "rivalries": { "owns": null, "ownedBy": null, "nemesis": "TBD", "rivals": "TBD", "ryderCup": "TBD" },
+      "narrative": { "sectionLabel": "Why 2026 Is His Year", "pullQuote": "TBD", "body": "TBD" },
+      "careerStats": [],
+      "seasons": [],
+      "trophies": []
+    },
+
+    "kyle": {
+      "id": "kyle",
+      "name": "Kyle",
+      "nickname": "The Snoot",
+      "memberSince": 2018,
+      "location": "Colorado",
+      "locationEmoji": "🏔️",
+      "photo": "../images/kyle.png",
+      "currentSeason": { "year": 2026, "record": "—", "standing": "—", "ptsPerGame": "—", "lastGame": { "result": "W", "opponent": "TBD", "score": "—", "lifetimeVsOpponent": "—" } },
+      "prestige": { "rank": null, "outOf": 14, "points": null },
+      "traits": [
+        { "emoji": "🏆", "label": "#ChampsGang" },
+        { "emoji": "🐷", "label": "Hall of Greatness" },
+        { "emoji": "🧐", "label": "Snooty" },
+        { "emoji": "💻", "label": "Tech Bro" }
+      ],
+      "rivalries": { "owns": null, "ownedBy": null, "nemesis": "TBD", "rivals": "TBD", "ryderCup": "TBD" },
+      "narrative": { "sectionLabel": "Why 2026 Is His Year", "pullQuote": "TBD", "body": "TBD" },
+      "careerStats": [],
+      "seasons": [],
+      "trophies": []
+    },
+
+    "luke": {
+      "id": "luke",
+      "name": "Luke",
+      "nickname": "The Rook",
+      "memberSince": 2026,
+      "location": "Minnesota",
+      "locationEmoji": "❄️",
+      "photo": "../images/luke.png",
+      "currentSeason": { "year": 2026, "record": "—", "standing": "—", "ptsPerGame": "—", "lastGame": { "result": "W", "opponent": "TBD", "score": "—", "lifetimeVsOpponent": "—" } },
+      "prestige": { "rank": null, "outOf": 14, "points": null },
+      "traits": [
+        { "emoji": "💍", "label": "Eligible Bachelor" },
+        { "emoji": "🔄", "label": "Elite Trader" },
+        { "emoji": "⏱️", "label": "Short Timer" },
+        { "emoji": "❓", "label": "Unknown Potential" }
+      ],
+      "rivalries": { "owns": null, "ownedBy": null, "nemesis": "TBD", "rivals": "TBD", "ryderCup": "TBD" },
+      "narrative": { "sectionLabel": "Why 2026 Is His Year", "pullQuote": "TBD", "body": "TBD" },
+      "careerStats": [],
+      "seasons": [],
+      "trophies": []
+    },
+
+    "matt": {
+      "id": "matt",
+      "name": "Matt",
+      "nickname": "Dad Bod",
+      "memberSince": 2015,
+      "location": "Colorado",
+      "locationEmoji": "🏔️",
+      "photo": "../images/matt.png",
+      "currentSeason": { "year": 2026, "record": "—", "standing": "—", "ptsPerGame": "—", "lastGame": { "result": "L", "opponent": "Jack", "score": "98–124", "lifetimeVsOpponent": "3–7" } },
+      "prestige": { "rank": null, "outOf": 14, "points": null },
+      "traits": [
+        { "emoji": "🎨", "label": "Culture Maker" },
+        { "emoji": "🎉", "label": "Party Commish" },
+        { "emoji": "☀️", "label": "Positive Attitude" },
+        { "emoji": "💬", "label": "Prolific Chatter" }
+      ],
+      "rivalries": { "owns": null, "ownedBy": null, "nemesis": "TBD", "rivals": "TBD", "ryderCup": "TBD" },
+      "narrative": { "sectionLabel": "Why 2026 Is His Year", "pullQuote": "TBD", "body": "TBD" },
+      "careerStats": [],
+      "seasons": [],
+      "trophies": []
+    },
+
+    "mike": {
+      "id": "mike",
+      "name": "Mike",
+      "nickname": "The Contrarian",
+      "memberSince": 2014,
+      "location": "Pennsylvania",
+      "locationEmoji": "🔔",
+      "photo": "../images/mike.png",
+      "currentSeason": { "year": 2026, "record": "—", "standing": "—", "ptsPerGame": "—", "lastGame": { "result": "W", "opponent": "TBD", "score": "—", "lifetimeVsOpponent": "—" } },
+      "prestige": { "rank": null, "outOf": 14, "points": null },
+      "traits": [
+        { "emoji": "🏆", "label": "#ChampsGang" },
+        { "emoji": "😤", "label": "Disagreeable" },
+        { "emoji": "💍", "label": "Eligible Bachelor" },
+        { "emoji": "📅", "label": "Many Meetings" }
+      ],
+      "rivalries": { "owns": null, "ownedBy": null, "nemesis": "TBD", "rivals": "TBD", "ryderCup": "TBD" },
+      "narrative": { "sectionLabel": "Why 2026 Is His Year", "pullQuote": "TBD", "body": "TBD" },
+      "careerStats": [],
+      "seasons": [],
+      "trophies": []
+    },
+
+    "scott": {
+      "id": "scott",
+      "name": "Scott",
+      "nickname": "Murph",
+      "memberSince": 2014,
+      "location": "California",
+      "locationEmoji": "🌴",
+      "photo": "../images/scott.png",
+      "currentSeason": { "year": 2026, "record": "—", "standing": "—", "ptsPerGame": "—", "lastGame": { "result": "W", "opponent": "TBD", "score": "—", "lifetimeVsOpponent": "—" } },
+      "prestige": { "rank": null, "outOf": 14, "points": null },
+      "traits": [
+        { "emoji": "🔩", "label": "High Motor" },
+        { "emoji": "🪙", "label": "FAAB Penny Pincher" },
+        { "emoji": "🧔", "label": "Memorable Facial Hair" },
+        { "emoji": "🤐", "label": "Withholding" }
+      ],
+      "rivalries": { "owns": null, "ownedBy": null, "nemesis": "TBD", "rivals": "TBD", "ryderCup": "TBD" },
+      "narrative": { "sectionLabel": "Why 2026 Is His Year", "pullQuote": "TBD", "body": "TBD" },
+      "careerStats": [],
+      "seasons": [],
+      "trophies": []
+    },
+
+    "tim": {
+      "id": "tim",
+      "name": "Tim",
+      "nickname": "Hot Tim",
+      "memberSince": 2020,
+      "location": "Colorado",
+      "locationEmoji": "🏔️",
+      "photo": "../images/tim.png",
+      "currentSeason": { "year": 2026, "record": "—", "standing": "—", "ptsPerGame": "—", "lastGame": { "result": "W", "opponent": "TBD", "score": "—", "lifetimeVsOpponent": "—" } },
+      "prestige": { "rank": null, "outOf": 14, "points": null },
+      "traits": [
+        { "emoji": "🔄", "label": "Elite Trader" },
+        { "emoji": "🤦", "label": "Poor Copy/Paste Skills" },
+        { "emoji": "🍆", "label": "Perv" },
+        { "emoji": "🧐", "label": "Snooty" }
+      ],
+      "rivalries": { "owns": null, "ownedBy": null, "nemesis": "TBD", "rivals": "TBD", "ryderCup": "TBD" },
+      "narrative": { "sectionLabel": "Why 2026 Is His Year", "pullQuote": "TBD", "body": "TBD" },
+      "careerStats": [],
+      "seasons": [],
+      "trophies": []
+    },
+
+    "wade": {
+      "id": "wade",
+      "name": "Wade",
+      "nickname": "Bathhouse",
+      "memberSince": 2020,
+      "location": "Pennsylvania",
+      "locationEmoji": "🔔",
+      "photo": "../images/wade.png",
+      "currentSeason": { "year": 2026, "record": "—", "standing": "—", "ptsPerGame": "—", "lastGame": { "result": "W", "opponent": "TBD", "score": "—", "lifetimeVsOpponent": "—" } },
+      "prestige": { "rank": null, "outOf": 14, "points": null },
+      "traits": [
+        { "emoji": "🧔", "label": "Memorable Facial Hair" },
+        { "emoji": "💬", "label": "Prolific Chatter" },
+        { "emoji": "🍆", "label": "Perv" },
+        { "emoji": "🗣️", "label": "Certified Trash Talker" }
+      ],
+      "rivalries": { "owns": null, "ownedBy": null, "nemesis": "TBD", "rivals": "TBD", "ryderCup": "TBD" },
+      "narrative": { "sectionLabel": "Why 2026 Is His Year", "pullQuote": "TBD", "body": "TBD" },
+      "careerStats": [],
+      "seasons": [],
+      "trophies": []
+    }
+
+  }
+}
