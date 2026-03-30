@@ -26,6 +26,7 @@
     background: var(--black);
     color: var(--white);
     font-family: 'Barlow', sans-serif;
+    font-size: 18px;
     min-height: 100vh;
     overflow-x: hidden;
   }
@@ -327,10 +328,10 @@
     background: var(--card);
     border-top: 2px solid #2a2a2a;
     border-bottom: 2px solid #2a2a2a;
-    padding: 16px 20px;
+    padding: 14px 20px;
     display: flex;
     flex-direction: column;
-    gap: 12px;
+    gap: 8px;
     margin-top: 16px;
   }
 
@@ -339,7 +340,7 @@
     justify-content: space-between;
     align-items: baseline;
     font-family: 'Barlow Condensed', sans-serif;
-    font-size: 1.15rem;
+    font-size: 1.25rem;
   }
 
   .fact-label { font-weight: 700; color: var(--white); letter-spacing: 0.5px; }
@@ -350,12 +351,12 @@
     justify-content: space-between;
     align-items: baseline;
     font-family: 'Barlow Condensed', sans-serif;
-    font-size: 1.15rem;
-    padding-bottom: 10px;
+    font-size: 1.25rem;
+    padding-bottom: 8px;
     border-bottom: 1px solid #2a2a2a;
   }
 
-  .h2h-bar-wrap { margin-top: 4px; }
+  .h2h-bar-wrap { margin-top: 2px; margin-bottom: 2px; }
 
   .h2h-bar {
     height: 6px;
@@ -373,7 +374,7 @@
 
   .h2h-label {
     font-family: 'Barlow Condensed', sans-serif;
-    font-size: 0.9rem;
+    font-size: 0.95rem;
     color: var(--muted);
     display: flex;
     justify-content: space-between;
@@ -751,7 +752,7 @@ function renderProfile(p) {
     </div>` : '';
 
   const ownedByHTML = `
-    <div class="fact-row" style="margin-top:6px;">
+    <div class="fact-row">
       <span class="fact-label">Owned by:</span>
       <span class="fact-value">${p.rivalries.ownedBy || 'No one'}</span>
     </div>`;
