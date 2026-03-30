@@ -343,61 +343,58 @@
   .quick-facts {
     position: relative;
     z-index: 1;
-    background: var(--card);
-    border-top: 2px solid #2a2a2a;
-    border-bottom: 2px solid #2a2a2a;
     padding: 18px 20px;
-    display: flex;
-    flex-direction: column;
-    gap: 10px;
     margin-top: 18px;
   }
 
-  .fact-row {
+  .quick-facts-title {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 2.4rem;
+    letter-spacing: 3px;
+    color: var(--white);
+    margin-bottom: 14px;
+  }
+
+  .facts-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 10px;
+  }
+
+  .fact-card {
+    background: var(--card);
+    border: 1px solid #2a2a2a;
+    border-radius: 6px;
+    padding: 12px 14px;
     display: flex;
-    justify-content: space-between;
-    align-items: baseline;
+    flex-direction: column;
+    gap: 3px;
+  }
+
+  .fact-card-label {
     font-family: 'Barlow Condensed', sans-serif;
-    font-size: 1.25rem;
-  }
-
-  .fact-label { font-weight: 700; color: var(--white); letter-spacing: 0.5px; }
-  .fact-value { color: var(--muted); font-weight: 400; text-align: right; }
-
-  .location-row {
-    display: flex;
-    justify-content: space-between;
-    align-items: baseline;
-    font-family: 'Barlow Condensed', sans-serif;
-    font-size: 1.25rem;
-    padding-bottom: 10px;
-    border-bottom: 1px solid #2a2a2a;
-  }
-
-  .h2h-bar-wrap { margin-top: 0; margin-bottom: 2px; }
-
-  .h2h-bar {
-    height: 6px;
-    background: #2a2a2a;
-    border-radius: 3px;
-    overflow: hidden;
-    margin-top: 4px;
-  }
-
-  .h2h-bar-fill {
-    height: 100%;
-    background: var(--red);
-    border-radius: 3px;
-  }
-
-  .h2h-label {
-    font-family: 'Barlow Condensed', sans-serif;
-    font-size: 0.95rem;
+    font-size: 0.75rem;
+    font-weight: 700;
+    letter-spacing: 2px;
+    text-transform: uppercase;
     color: var(--muted);
-    display: flex;
-    justify-content: space-between;
-    margin-top: 4px;
   }
+
+  .fact-card-value {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 1.15rem;
+    font-weight: 700;
+    color: var(--white);
+    line-height: 1.2;
+  }
+
+  /* keep old classes so nothing breaks if referenced */
+  .fact-row { display: none; }
+  .location-row { display: none; }
+  .h2h-bar-wrap { display: none; }
+  .h2h-bar { display: none; }
+  .h2h-bar-fill { display: none; }
+  .h2h-label { display: none; }
 
   /* ── NARRATIVE ── */
   .narrative-section {
@@ -408,11 +405,11 @@
 
   .section-label {
     font-family: 'Bebas Neue', sans-serif;
-    font-size: 1.6rem;
-    letter-spacing: 4px;
+    font-size: 2.4rem;
+    letter-spacing: 3px;
     text-transform: uppercase;
-    color: var(--red);
-    margin-bottom: 12px;
+    color: var(--white);
+    margin-bottom: 16px;
   }
 
   .pull-quote {
@@ -614,33 +611,29 @@
   }
 
   .trophy-header {
-    background: var(--red);
-    border-radius: 6px 6px 0 0;
-    padding: 16px 20px;
     font-family: 'Bebas Neue', sans-serif;
-    font-size: 2rem;
-    letter-spacing: 4px;
-    text-align: center;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 14px;
+    font-size: 2.4rem;
+    letter-spacing: 3px;
+    color: var(--white);
+    margin-bottom: 16px;
   }
 
   .trophy-list {
-    background: #0f0f0f;
-    border: 1px solid #2a2a2a;
-    border-top: none;
-    border-radius: 0 0 6px 6px;
     display: flex;
     flex-direction: column;
+    gap: 0;
   }
 
   .trophy-row {
     display: flex;
+    flex-direction: column;
     align-items: center;
-    gap: 16px;
-    padding: 14px 20px;
+    padding: 24px 0;
+    border-bottom: 1px solid #2a2a2a;
+    text-align: center;
+  }
+
+  .trophy-row:last-child { border-bottom: none; }
     border-bottom: 1px solid #1a1a1a;
   }
 
@@ -650,24 +643,23 @@
     display: flex;
     flex-direction: row;
     flex-wrap: nowrap;
-    gap: 4px;
-    flex-shrink: 0;
-    width: 160px;
+    gap: 12px;
+    justify-content: center;
     align-items: center;
-    overflow: hidden;
+    margin-bottom: 10px;
   }
 
   .trophy-img {
-    width: 40px;
-    height: 40px;
+    width: 80px;
+    height: 80px;
     object-fit: contain;
     flex-shrink: 0;
   }
 
   .trophy-img-placeholder {
-    width: 40px;
-    height: 40px;
-    font-size: 1.8rem;
+    width: 80px;
+    height: 80px;
+    font-size: 3.5rem;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -676,17 +668,20 @@
   }
 
   .trophy-info {
-    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
   }
 
   .trophy-name {
     font-family: 'Barlow Condensed', sans-serif;
-    font-size: 1.1rem;
+    font-size: 1.2rem;
     font-weight: 700;
-    letter-spacing: 1px;
+    letter-spacing: 1.5px;
     text-transform: uppercase;
     color: var(--white);
     line-height: 1.2;
+    text-align: center;
   }
 
   .trophy-count { display: none; }
@@ -779,6 +774,7 @@ function renderProfile(p) {
     : `<div class="avatar-placeholder">Photo Coming Soon</div>`;
 
   const lastGame = p.currentSeason.lastGame;
+  const nextGame = p.currentSeason.nextGame;
   const resultClass = lastGame.result === 'W' ? 'win' : 'loss';
 
   const traitsHTML = p.traits.map(t => `
@@ -787,24 +783,27 @@ function renderProfile(p) {
       <span class="trait-label">${t.label}</span>
     </div>`).join('');
 
-  const ownsHTML = p.rivalries.owns ? `
-    <div class="fact-row">
-      <span class="fact-label">Owns:</span>
-      <span class="fact-value">${p.rivalries.owns.name} (${p.rivalries.owns.record})</span>
-    </div>` : '';
-
-  const ownedByHTML = `
-    <div class="fact-row">
-      <span class="fact-label">Owned by:</span>
-      <span class="fact-value">${p.rivalries.ownedBy || 'No one'}</span>
-    </div>`;
-
   const championCount = p.trophies.filter(t => t.name === 'League Champion').reduce((sum, t) => sum + t.count, 0);
   const championHTML = championCount > 1
     ? `<div class="owner-champion">${championCount}x League Champion</div>`
     : championCount === 1
     ? `<div class="owner-champion">League Champion</div>`
     : '';
+
+  const ownsCard = p.rivalries.owns
+    ? `<div class="fact-card"><div class="fact-card-label">Owns</div><div class="fact-card-value">${p.rivalries.owns.name} (${p.rivalries.owns.record})</div></div>`
+    : '';
+
+  const ownedByCard = `<div class="fact-card"><div class="fact-card-label">Owned By</div><div class="fact-card-value">${p.rivalries.ownedBy || 'No one'}</div></div>`;
+
+  const nextGameHTML = nextGame ? `
+      <div class="live-last-game" style="margin-top:10px; padding-top:10px; border-top:1px solid #222;">
+        <span class="last-game-label">Next Game</span>
+        <div class="last-game-result">
+          <div class="last-game-detail">vs. ${nextGame.opponent}</div>
+        </div>
+        <div class="last-game-record">Lifetime ${nextGame.lifetimeVsOpponent}</div>
+      </div>` : '';
 
   const statsHTML = p.careerStats.map(s => `
     <tr>
@@ -838,10 +837,8 @@ function renderProfile(p) {
     ).join('');
     return `
     <div class="trophy-row">
+      <div class="trophy-name">${t.name}</div>
       <div class="trophy-images">${images}</div>
-      <div class="trophy-info">
-        <div class="trophy-name">${t.name}</div>
-      </div>
     </div>`;
   }).join('');
 
@@ -880,6 +877,7 @@ function renderProfile(p) {
         </div>
         <div class="last-game-record">Lifetime ${lastGame.lifetimeVsOpponent}</div>
       </div>
+      ${nextGameHTML}
     </div>
 
     <!-- PRESTIGE BLOCK -->
@@ -900,19 +898,14 @@ function renderProfile(p) {
 
     <!-- QUICK FACTS -->
     <div class="quick-facts fade-in">
-      <div class="location-row">
-        <span class="fact-label">Location:</span>
-        <span class="fact-value">${p.locationEmoji} ${p.location}</span>
-      </div>
-      ${ownsHTML}
-      ${ownedByHTML}
-      <div class="fact-row">
-        <span class="fact-label">${p.currentSeason.year} Rivals:</span>
-        <span class="fact-value">${p.rivalries.rivals}</span>
-      </div>
-      <div class="fact-row">
-        <span class="fact-label">${p.currentSeason.year} Ryder Cup:</span>
-        <span class="fact-value">${p.rivalries.ryderCup}</span>
+      <div class="quick-facts-title">Stats & Info</div>
+      <div class="facts-grid">
+        <div class="fact-card"><div class="fact-card-label">Location</div><div class="fact-card-value">${p.locationEmoji} ${p.location}</div></div>
+        <div class="fact-card"><div class="fact-card-label">Member Since</div><div class="fact-card-value">${p.memberSince}</div></div>
+        ${ownsCard}
+        ${ownedByCard}
+        <div class="fact-card"><div class="fact-card-label">${p.currentSeason.year} Rivals</div><div class="fact-card-value">${p.rivalries.rivals}</div></div>
+        <div class="fact-card"><div class="fact-card-label">${p.currentSeason.year} Ryder Cup</div><div class="fact-card-value">${p.rivalries.ryderCup}</div></div>
       </div>
     </div>
 
@@ -930,7 +923,7 @@ function renderProfile(p) {
         <thead><tr><th>Stat</th><th>Value (Rank)</th></tr></thead>
         <tbody>${statsHTML}</tbody>
       </table>
-      <div class="table-footnote">*Indicates tied with another owner. Rankings out of ${p.prestige.outOf} active owners.</div>
+      <div class="table-footnote">*Indicates tied with another owner. Rankings out of 14 active owners.</div>
     </section>
 
     <!-- SEASON BY SEASON -->
@@ -941,7 +934,7 @@ function renderProfile(p) {
 
     <!-- TROPHY CASE -->
     <section class="trophy-section fade-in">
-      <div class="trophy-header">🏆 Trophy Case 🏆</div>
+      <div class="trophy-header">Trophy Case</div>
       <div class="trophy-list">${trophiesHTML}</div>
     </section>
   `;
