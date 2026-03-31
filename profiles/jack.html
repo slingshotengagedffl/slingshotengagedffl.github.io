@@ -446,60 +446,130 @@
     margin-bottom: 16px;
   }
 
-  .stats-table {
-    width: 100%;
-    border-collapse: collapse;
-    border-radius: 6px;
-    overflow: hidden;
-    font-family: 'Barlow Condensed', sans-serif;
-  }
+  .stats-bucket { margin-bottom: 20px; }
 
-  .stats-table thead tr { background: var(--red); }
-
-  .stats-table thead th {
-    padding: 14px 16px;
-    text-align: left;
-    font-size: 1rem;
+  .stats-bucket-label {
+    font-size: 0.78rem;
     font-weight: 700;
-    letter-spacing: 1.5px;
+    letter-spacing: 2.5px;
     text-transform: uppercase;
+    color: var(--red);
+    margin-bottom: 8px;
+    padding-bottom: 6px;
+    border-bottom: 1px solid #2a2a2a;
+  }
+
+  .stats-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 14px;
+  }
+
+  .stats-row:nth-child(odd) { background: #1e1e1e; }
+  .stats-row:nth-child(even) { background: #1a1a1a; }
+  .stats-row:first-child { border-radius: 4px 4px 0 0; }
+  .stats-row:last-child { border-radius: 0 0 4px 4px; }
+
+  .stats-left {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+    flex: 1;
+  }
+
+  .stats-name {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 1rem;
+    color: #bbb;
+    line-height: 1.2;
+  }
+
+  .stats-explainer {
+    font-family: 'Barlow', sans-serif;
+    font-size: 0.75rem;
+    font-style: italic;
+    color: #555;
+    line-height: 1.3;
+  }
+
+  .stats-right {
+    display: flex;
+    align-items: baseline;
+    gap: 8px;
+    flex-shrink: 0;
+    margin-left: 12px;
+  }
+
+  .stats-val {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 1.1rem;
+    font-weight: 700;
     color: var(--white);
   }
 
-  .stats-table thead th:last-child { text-align: right; }
+  .stats-val.earnings { color: #6aaa6a; }
 
-  .stats-table tbody tr:nth-child(odd) { background: #1e1e1e; }
-  .stats-table tbody tr:nth-child(even) { background: #1a1a1a; }
-
-  .stats-table tbody td {
-    padding: 13px 16px;
-    font-size: 1.05rem;
-    color: var(--white);
-    border-bottom: 1px solid rgba(255,255,255,0.04);
-  }
-
-  .stats-table tbody td:last-child {
-    text-align: right;
-    font-weight: 600;
-  }
-
-  .rank-badge {
-    display: inline-block;
-    font-size: 0.9rem;
-    font-weight: 600;
+  .stats-rank {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 0.85rem;
+    font-weight: 700;
     color: var(--gold);
-    margin-left: 5px;
   }
-
-  .earnings-val { color: #6aaa6a; }
 
   .table-footnote {
     font-family: 'Barlow', sans-serif;
     font-style: italic;
-    font-size: 0.9rem;
+    font-size: 0.85rem;
     color: var(--muted);
-    margin-top: 12px;
+    margin-top: 10px;
     text-align: center;
+  }
+
+  /* ── CAREER TRENDS ── */
+  .trends-section {
+    position: relative;
+    z-index: 1;
+    padding: 0 20px 32px;
+  }
+
+  .chart-block {
+    background: #111;
+    border: 1px solid #222;
+    border-radius: 8px;
+    padding: 18px 14px 14px;
+    margin-bottom: 16px;
+  }
+
+  .chart-label {
+    font-size: 0.78rem;
+    font-weight: 700;
+    letter-spacing: 2.5px;
+    text-transform: uppercase;
+    color: var(--red);
+    margin-bottom: 14px;
+  }
+
+  .chart-legend {
+    display: flex;
+    gap: 16px;
+    margin-top: 10px;
+  }
+
+  .legend-item {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 0.8rem;
+    color: #888;
+  }
+
+  .legend-dot {
+    width: 14px;
+    height: 3px;
+    border-radius: 2px;
+    flex-shrink: 0;
   }
 
   /* ── SEASON ACCORDION ── */
@@ -510,98 +580,150 @@
   }
 
   .accordion-item {
-    margin-bottom: 4px;
-    border-radius: 4px;
+    margin-bottom: 6px;
+    border-radius: 6px;
     overflow: hidden;
   }
 
   .accordion-trigger {
     width: 100%;
-    background: var(--red-dark);
-    border: none;
-    padding: 16px 18px;
+    background: #1a1a1a;
+    border: 1px solid #2a2a2a;
+    border-radius: 6px;
+    padding: 14px 16px;
     display: flex;
+    align-items: center;
     justify-content: space-between;
-    align-items: center;
     cursor: pointer;
-    font-family: 'Barlow Condensed', sans-serif;
-    font-size: 1.3rem;
-    font-weight: 700;
-    letter-spacing: 1px;
-    color: var(--white);
-    text-transform: uppercase;
-    transition: background 0.2s;
-  }
-
-  .accordion-trigger:hover { background: var(--red); }
-
-  .accordion-item:nth-child(even) .accordion-trigger { background: #252525; }
-  .accordion-item:nth-child(even) .accordion-trigger:hover { background: #2e2e2e; }
-
-  .accordion-trigger-left {
-    display: flex;
-    align-items: center;
     gap: 12px;
   }
 
-  .accordion-icon {
-    font-size: 1.4rem;
-    transition: transform 0.25s;
-    color: rgba(255,255,255,0.5);
+  .accordion-item.open .accordion-trigger {
+    border-radius: 6px 6px 0 0;
+    border-bottom-color: #111;
   }
 
-  .accordion-item.open .accordion-icon { transform: rotate(45deg); }
+  .trigger-left {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    flex: 1;
+  }
+
+  .trigger-year {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 1.8rem;
+    color: var(--white);
+    letter-spacing: 2px;
+    line-height: 1;
+    flex-shrink: 0;
+  }
+
+  .trigger-badge {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 0.72rem;
+    font-weight: 700;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    padding: 3px 10px;
+    border-radius: 20px;
+    flex-shrink: 0;
+  }
+
+  .badge-champion { background: var(--gold); color: #000; }
+  .badge-finalist { background: #888; color: #000; }
+  .badge-playoff { background: #1a3a1a; color: #6aaa6a; border: 1px solid #6aaa6a; }
+  .badge-missed { background: #2a1a1a; color: #aa5555; border: 1px solid #aa5555; }
+  .badge-bronze { background: #2a1a0a; color: #cd7f32; border: 1px solid #cd7f32; }
+
+  .trigger-snapshot {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    gap: 2px;
+    flex-shrink: 0;
+  }
+
+  .snapshot-record {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 1.2rem;
+    color: var(--white);
+    line-height: 1;
+  }
+
+  .snapshot-finish {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 0.78rem;
+    font-weight: 700;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    color: #666;
+  }
+
+  .trigger-chevron {
+    font-size: 0.9rem;
+    color: #555;
+    transition: transform 0.25s;
+    flex-shrink: 0;
+  }
+
+  .accordion-item.open .trigger-chevron { transform: rotate(180deg); }
 
   .accordion-content {
     display: none;
     background: #141414;
     border: 1px solid #2a2a2a;
     border-top: none;
+    border-radius: 0 0 6px 6px;
+    padding: 16px;
   }
 
   .accordion-item.open .accordion-content { display: block; }
 
-  .season-grid { padding: 18px; }
+  .acc-bucket { margin-bottom: 16px; }
+  .acc-bucket:last-child { margin-bottom: 0; }
 
-  .season-team-name {
+  .acc-bucket-label {
+    font-size: 0.75rem;
+    font-weight: 700;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--red);
+    margin-bottom: 8px;
+    padding-bottom: 5px;
+    border-bottom: 1px solid #2a2a2a;
+  }
+
+  .acc-team-name {
     font-family: 'Barlow Condensed', sans-serif;
     font-size: 1.2rem;
     font-weight: 700;
     color: var(--gold);
     text-align: center;
-    padding: 6px 0 12px;
-    border-bottom: 1px solid #222;
-    margin-bottom: 10px;
+    padding: 10px 12px;
+    background: #1e1e1e;
+    border-radius: 4px;
   }
 
-  .season-row {
+  .acc-row {
     display: flex;
     justify-content: space-between;
     align-items: baseline;
-    padding: 10px 0;
-    border-bottom: 1px solid #222;
+    padding: 9px 12px;
     font-family: 'Barlow Condensed', sans-serif;
-    font-size: 1.15rem;
+    font-size: 0.95rem;
   }
 
-  .season-row:last-child { border-bottom: none; }
-  .season-row .s-label { font-weight: 600; color: #aaa; }
-  .season-row .s-value { font-weight: 400; color: var(--white); text-align: right; }
+  .acc-row:nth-child(odd) { background: #1e1e1e; }
+  .acc-row:nth-child(even) { background: #1a1a1a; }
+  .acc-row:first-child { border-radius: 4px 4px 0 0; }
+  .acc-row:last-child { border-radius: 0 0 4px 4px; }
 
-  /* Season badges */
-  .season-badge {
-    font-family: 'Barlow Condensed', sans-serif;
-    font-size: 0.85rem;
-    font-weight: 700;
-    letter-spacing: 1px;
-    text-transform: uppercase;
-    padding: 3px 10px;
-    border-radius: 20px;
-  }
-
-  .badge-champion { background: var(--gold); color: #000; }
-  .badge-finalist { background: #888; color: #000; }
-  .badge-playoff { background: #2a3a2a; color: #6aaa6a; border: 1px solid #6aaa6a; }
+  .acc-label { color: #888; }
+  .acc-val { color: var(--white); font-weight: 700; }
+  .acc-val.earnings { color: #6aaa6a; }
+  .acc-val.loss { color: #aa5555; }
+  .acc-val.bronze { color: #cd7f32; }
 
   /* ── TROPHY CASE ── */
   .trophy-section {
@@ -761,6 +883,7 @@
     color: var(--muted);
   }
 </style>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.min.js"></script>
 </head>
 <body>
 <div class="page-wrap">
@@ -785,14 +908,6 @@ async function loadProfile() {
     document.getElementById('loadingState').textContent = 'Failed to load profile.';
     console.error(e);
   }
-}
-
-function badgeHTML(result) {
-  if (!result) return '';
-  if (result === 'champion') return '<span class="season-badge badge-champion">Champion</span>';
-  if (result === 'finalist') return '<span class="season-badge badge-finalist">Finalist</span>';
-  if (result === 'playoff') return '<span class="season-badge badge-playoff">Playoff</span>';
-  return '';
 }
 
 function renderProfile(p) {
@@ -832,28 +947,78 @@ function renderProfile(p) {
         <div class="last-game-record">Lifetime ${nextGame.lifetimeVsOpponent}</div>
       </div>` : '';
 
-  const statsHTML = p.careerStats.map(s => `
-    <tr>
-      <td>${s.stat}</td>
-      <td class="${s.isEarnings ? 'earnings-val' : ''}">${s.value}${s.rank ? `<span class="rank-badge">(${s.rank})</span>` : ''}</td>
-    </tr>`).join('');
+  function renderStatBucket(stats) {
+    return stats.map(s => `
+      <div class="stats-row">
+        <div class="stats-left">
+          <span class="stats-name">${s.stat}</span>
+          ${s.explainer ? `<span class="stats-explainer">${s.explainer}</span>` : ''}
+        </div>
+        <div class="stats-right">
+          <span class="stats-val${s.isEarnings ? ' earnings' : ''}">${s.value}</span>
+          ${s.rank ? `<span class="stats-rank">(${s.rank})</span>` : ''}
+        </div>
+      </div>`).join('');
+  }
+
+  const statsHTML = `
+    <div class="stats-bucket">
+      <div class="stats-bucket-label">General</div>
+      ${renderStatBucket(p.careerStats.general)}
+    </div>
+    <div class="stats-bucket">
+      <div class="stats-bucket-label">Regular Season</div>
+      ${renderStatBucket(p.careerStats.regularSeason)}
+    </div>
+    <div class="stats-bucket">
+      <div class="stats-bucket-label">Playoffs</div>
+      ${renderStatBucket(p.careerStats.playoffs)}
+    </div>
+  `;
+
+  function seasonBadge(result) {
+    const map = {
+      champion: ['badge-champion', 'Champion'],
+      finalist: ['badge-finalist', 'Finalist'],
+      playoff:  ['badge-playoff', 'Playoffs'],
+      missed:   ['badge-missed', 'Missed'],
+      bronze:   ['badge-bronze', 'Bronze Franz']
+    };
+    const [cls, label] = map[result] || ['badge-missed', 'Missed'];
+    return `<span class="trigger-badge ${cls}">${label}</span>`;
+  }
 
   const seasonsHTML = p.seasons.map(s => `
     <div class="accordion-item">
-      <button class="accordion-trigger" onclick="toggleAccordion(this)">
-        <div class="accordion-trigger-left">
-          <span>${s.year}</span>
-          ${badgeHTML(s.result)}
+      <button class="accordion-trigger" onclick="this.closest('.accordion-item').classList.toggle('open')">
+        <div class="trigger-left">
+          <div class="trigger-year">${s.year}</div>
+          ${seasonBadge(s.result)}
         </div>
-        <span class="accordion-icon">+</span>
+        <div class="trigger-snapshot">
+          <div class="snapshot-record">${s.record}</div>
+          <div class="snapshot-finish">${s.finish !== 'TBD' ? s.finish + ' Place' : '—'}</div>
+        </div>
+        <div class="trigger-chevron">▼</div>
       </button>
       <div class="accordion-content">
-        <div class="season-grid">
-          ${s.teamName && s.teamName !== 'TBD' ? `<div class="season-team-name">${s.teamName}</div>` : ''}
-          <div class="season-row"><span class="s-label">Record</span><span class="s-value">${s.record}</span></div>
-          <div class="season-row"><span class="s-label">Finish</span><span class="s-value">${s.finish}</span></div>
-          <div class="season-row"><span class="s-label">Pts For</span><span class="s-value">${s.ptsFor}</span></div>
-          <div class="season-row"><span class="s-label">Pts Against</span><span class="s-value">${s.ptsAgainst}</span></div>
+        <div class="acc-bucket">
+          <div class="acc-bucket-label">Team Name</div>
+          <div class="acc-team-name">${s.teamName && s.teamName !== 'TBD' ? s.teamName : '—'}</div>
+        </div>
+        <div class="acc-bucket">
+          <div class="acc-bucket-label">Regular Season</div>
+          <div class="acc-row"><span class="acc-label">Finish</span><span class="acc-val">${s.finish}</span></div>
+          <div class="acc-row"><span class="acc-label">Record</span><span class="acc-val">${s.record}</span></div>
+          <div class="acc-row"><span class="acc-label">Points Per Game</span><span class="acc-val">${s.ptsPerGame}</span></div>
+          <div class="acc-row"><span class="acc-label">Point Share</span><span class="acc-val">${s.pointShare}</span></div>
+          <div class="acc-row"><span class="acc-label">Power Score</span><span class="acc-val">${s.powerScore}</span></div>
+        </div>
+        <div class="acc-bucket">
+          <div class="acc-bucket-label">Season Summary</div>
+          <div class="acc-row"><span class="acc-label">Net Earnings</span><span class="acc-val ${s.netEarnings && s.netEarnings.startsWith('-') ? 'loss' : 'earnings'}">${s.netEarnings}</span></div>
+          <div class="acc-row"><span class="acc-label">Prestige Earned</span><span class="acc-val">${s.prestigeEarned}</span></div>
+          <div class="acc-row"><span class="acc-label">Playoff Result</span><span class="acc-val ${s.result === 'champion' ? '' : s.result === 'missed' ? 'loss' : s.result === 'bronze' ? 'bronze' : ''}">${s.playoffResult}</span></div>
         </div>
       </div>
     </div>`).join('');
@@ -953,6 +1118,11 @@ function renderProfile(p) {
       ${nextGameHTML}
     </div>
 
+    <!-- LAST UPDATED -->
+    <div style="text-align:right; padding: 6px 20px 0; position:relative; z-index:1;">
+      <span style="font-family:'Barlow Condensed',sans-serif; font-size:0.78rem; color:#444; letter-spacing:1px; text-transform:uppercase;">Updated ${p.lastUpdated || '—'}</span>
+    </div>
+
     <!-- PRESTIGE BLOCK -->
     <div class="prestige-block fade-in">
       <div class="prestige-left">
@@ -992,11 +1162,49 @@ function renderProfile(p) {
     <!-- CAREER STATS -->
     <section class="stats-section fade-in">
       <div class="section-title">Career Stats</div>
-      <table class="stats-table">
-        <thead><tr><th>Stat</th><th>Value (Rank)</th></tr></thead>
-        <tbody>${statsHTML}</tbody>
-      </table>
-      <div class="table-footnote">*Indicates tied with another owner. Rankings out of 14 active owners.</div>
+      ${statsHTML}
+      <div class="table-footnote">* Indicates tied. Rankings out of 14 active owners.</div>
+    </section>
+
+    <!-- ANALYTICS -->
+    <section class="trends-section fade-in">
+      <div class="section-title">Analytics</div>
+
+      <div class="chart-block">
+        <div class="chart-label">Wins &amp; Finish</div>
+        <canvas id="combinedChart" height="200"></canvas>
+        <div class="chart-legend">
+          <div class="legend-item"><div class="legend-dot" style="background:#22c55e;"></div> Wins (L)</div>
+          <div class="legend-item"><div class="legend-dot" style="background:#60a5fa;"></div> Finish (R)</div>
+        </div>
+      </div>
+
+      <div class="chart-block">
+        <div class="chart-label">Point Share</div>
+        <canvas id="pointShareChart" height="200"></canvas>
+        <div class="chart-legend">
+          <div class="legend-item"><div class="legend-dot" style="background:#22c55e;"></div> Point Share</div>
+          <div class="legend-item"><div class="legend-dot" style="background:#c0392b; height:0; border-top:2px dashed #c0392b;"></div> Trend</div>
+        </div>
+      </div>
+
+      <div class="chart-block">
+        <div class="chart-label">Season Winnings</div>
+        <canvas id="winningsChart" height="200"></canvas>
+        <div class="chart-legend">
+          <div class="legend-item"><div class="legend-dot" style="background:#22c55e;"></div> Winnings</div>
+          <div class="legend-item"><div class="legend-dot" style="background:#c0392b; height:0; border-top:2px dashed #c0392b;"></div> Trend</div>
+        </div>
+      </div>
+
+      <div class="chart-block">
+        <div class="chart-label">Prestige Points Per Season</div>
+        <canvas id="prestigeChart" height="200"></canvas>
+        <div class="chart-legend">
+          <div class="legend-item"><div class="legend-dot" style="background:#c9a84c;"></div> Points Earned</div>
+          <div class="legend-item"><div class="legend-dot" style="background:#555; height:0; border-top:2px dashed #555;"></div> Career Avg</div>
+        </div>
+      </div>
     </section>
 
     <!-- SEASON BY SEASON -->
@@ -1025,13 +1233,154 @@ function renderProfile(p) {
     });
   }, { threshold: 0.1 });
   document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
-}
 
-function toggleAccordion(btn) {
-  btn.closest('.accordion-item').classList.toggle('open');
+  // Init charts after DOM is ready
+  initCharts(p);
 }
 
 loadProfile();
+
+// ── CHARTS ──
+function initCharts(p) {
+  const c = p.charts;
+  const labels = c.winsAndFinish.years.map(y => "'" + String(y).slice(2));
+
+  const tooltipDefaults = {
+    backgroundColor: '#1a1a1a',
+    borderColor: '#444',
+    borderWidth: 1,
+    titleColor: '#f5f5f5',
+    bodyColor: '#c9a84c',
+    titleFont: { family: 'Barlow Condensed', size: 14, weight: 'bold' },
+    bodyFont: { family: 'Barlow Condensed', size: 16, weight: 'bold' },
+    padding: 10,
+    displayColors: false
+  };
+
+  const scaleX = {
+    grid: { color: 'rgba(255,255,255,0.04)' },
+    ticks: { color: '#666', font: { family: 'Barlow Condensed', size: 11 } },
+    border: { color: '#222' }
+  };
+
+  const scaleY = {
+    grid: { color: 'rgba(255,255,255,0.06)', borderDash: [4,4] },
+    ticks: { color: '#666', font: { family: 'Barlow Condensed', size: 11 } },
+    border: { color: '#222' }
+  };
+
+  const animOpts = { duration: 1000, easing: 'easeInOutQuart' };
+  const interactionOpts = { mode: 'nearest', intersect: false, axis: 'x' };
+
+  function trendLine(data) {
+    const clean = data.filter(v => v !== null);
+    if (clean.length < 2) return data.map(() => null);
+    const n = data.length;
+    const xMean = (n - 1) / 2;
+    const yMean = data.reduce((a, b) => a + (b || 0), 0) / n;
+    let num = 0, den = 0;
+    data.forEach((y, x) => { if (y !== null) { num += (x - xMean) * (y - yMean); den += (x - xMean) ** 2; } });
+    const slope = den ? num / den : 0;
+    const intercept = yMean - slope * xMean;
+    return data.map((_, x) => parseFloat((slope * x + intercept).toFixed(2)));
+  }
+
+  const chartBuilders = {};
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting && chartBuilders[entry.target.id]) {
+        chartBuilders[entry.target.id]();
+        observer.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.3 });
+
+  function registerChart(id, fn) {
+    const el = document.getElementById(id);
+    if (!el) return;
+    chartBuilders[id] = fn;
+    observer.observe(el);
+  }
+
+  // Combined wins + finish
+  registerChart('combinedChart', () => new Chart(document.getElementById('combinedChart'), {
+    type: 'line',
+    data: {
+      labels,
+      datasets: [
+        { label: 'Wins', data: c.winsAndFinish.wins, borderColor: '#22c55e', backgroundColor: 'rgba(34,197,94,0.06)', fill: true, pointBackgroundColor: '#22c55e', borderWidth: 2, yAxisID: 'yWins', order: 2, tension: 0.3 },
+        { label: 'Finish', data: c.winsAndFinish.finish, borderColor: '#60a5fa', backgroundColor: 'rgba(96,165,250,0.04)', fill: false, pointBackgroundColor: '#60a5fa', borderWidth: 2, yAxisID: 'yFinish', order: 1, tension: 0.3 }
+      ]
+    },
+    options: {
+      animation: animOpts, interaction: interactionOpts, responsive: true, layout: { padding: { top: 16 } },
+      plugins: { legend: { display: false }, tooltip: { ...tooltipDefaults, callbacks: { title: i => i[0].label, label: i => i.dataset.label + ': ' + i.formattedValue } } },
+      scales: {
+        x: scaleX,
+        yWins: { ...scaleY, type: 'linear', position: 'left', min: 0, max: 14, ticks: { ...scaleY.ticks, stepSize: 2, color: '#22c55e' }, title: { display: true, text: 'Wins', color: '#22c55e', font: { family: 'Barlow Condensed', size: 11 } } },
+        yFinish: { ...scaleY, type: 'linear', position: 'right', min: 1, max: 14, reverse: true, grid: { drawOnChartArea: false }, ticks: { ...scaleY.ticks, stepSize: 2, color: '#60a5fa' }, title: { display: true, text: 'Finish', color: '#60a5fa', font: { family: 'Barlow Condensed', size: 11 } } }
+      },
+      elements: { point: { radius: 4, hoverRadius: 6 }, line: { tension: 0.3 } }
+    }
+  }));
+
+  // Point share
+  const psData = c.pointShare.values;
+  registerChart('pointShareChart', () => new Chart(document.getElementById('pointShareChart'), {
+    type: 'line',
+    data: {
+      labels,
+      datasets: [
+        { label: 'Point Share', data: psData, borderColor: '#22c55e', backgroundColor: 'rgba(34,197,94,0.08)', fill: true, pointBackgroundColor: '#22c55e', borderWidth: 2, order: 2, tension: 0.3 },
+        { label: 'Trend', data: trendLine(psData), borderColor: '#c0392b', borderDash: [6,4], borderWidth: 2, pointRadius: 0, fill: false, order: 1 }
+      ]
+    },
+    options: {
+      animation: animOpts, interaction: interactionOpts, responsive: true, layout: { padding: { top: 12 } },
+      plugins: { legend: { display: false }, tooltip: { ...tooltipDefaults, filter: i => i.datasetIndex === 0, callbacks: { title: i => i[0].label, label: i => i.parsed.y + '%' } } },
+      scales: { x: scaleX, y: { ...scaleY, min: 0, ticks: { ...scaleY.ticks, callback: v => v + '%' } } },
+      elements: { point: { radius: 4, hoverRadius: 6, backgroundColor: '#22c55e', borderColor: '#22c55e' }, line: { tension: 0.3 } }
+    }
+  }));
+
+  // Winnings
+  const wData = c.winnings.values;
+  registerChart('winningsChart', () => new Chart(document.getElementById('winningsChart'), {
+    type: 'line',
+    data: {
+      labels,
+      datasets: [
+        { label: 'Winnings', data: wData, borderColor: '#22c55e', backgroundColor: 'rgba(34,197,94,0.08)', fill: true, pointBackgroundColor: '#22c55e', borderWidth: 2, order: 2, tension: 0.3 },
+        { label: 'Trend', data: trendLine(wData), borderColor: '#c0392b', borderDash: [6,4], borderWidth: 2, pointRadius: 0, fill: false, order: 1 }
+      ]
+    },
+    options: {
+      animation: animOpts, interaction: interactionOpts, responsive: true, layout: { padding: { top: 12 } },
+      plugins: { legend: { display: false }, tooltip: { ...tooltipDefaults, filter: i => i.datasetIndex === 0, callbacks: { title: i => i[0].label, label: i => '$' + i.parsed.y } } },
+      scales: { x: scaleX, y: { ...scaleY, min: 0, ticks: { ...scaleY.ticks, stepSize: 50, callback: v => '$' + v } } },
+      elements: { point: { radius: 4, hoverRadius: 6, backgroundColor: '#22c55e', borderColor: '#22c55e' }, line: { tension: 0.3 } }
+    }
+  }));
+
+  // Prestige per season bar
+  const prData = c.prestigePerSeason.values;
+  const prAvg = prData.filter(v => v !== null).reduce((a,b) => a+b, 0) / prData.filter(v => v !== null).length || 0;
+  registerChart('prestigeChart', () => new Chart(document.getElementById('prestigeChart'), {
+    type: 'bar',
+    data: {
+      labels,
+      datasets: [
+        { label: 'Points', data: prData, backgroundColor: prData.map(v => v !== null && v >= prAvg ? 'rgba(201,168,76,0.85)' : 'rgba(201,168,76,0.35)'), borderColor: prData.map(v => v !== null && v >= prAvg ? '#c9a84c' : 'rgba(201,168,76,0.5)'), borderWidth: 1, borderRadius: 3, order: 2 },
+        { label: 'Career Avg', data: prData.map(() => prAvg ? parseFloat(prAvg.toFixed(1)) : null), type: 'line', borderColor: '#555', borderDash: [6,4], borderWidth: 2, pointRadius: 0, fill: false, order: 1 }
+      ]
+    },
+    options: {
+      animation: animOpts, interaction: interactionOpts, responsive: true, layout: { padding: { top: 12 } },
+      plugins: { legend: { display: false }, tooltip: { ...tooltipDefaults, filter: i => i.datasetIndex === 0, callbacks: { title: i => i[0].label, label: i => i.parsed.y + ' pts' } } },
+      scales: { x: scaleX, y: { ...scaleY, min: 0, ticks: { ...scaleY.ticks, stepSize: 50 } } }
+    }
+  }));
+}
 </script>
 </body>
 </html>
