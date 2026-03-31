@@ -621,61 +621,78 @@
   .trophy-list {
     display: flex;
     flex-direction: column;
-    gap: 0;
+    gap: 8px;
   }
 
-  .trophy-row {
+  .trophy-card {
+    border-radius: 8px;
+    padding: 16px 14px 12px;
     display: flex;
     flex-direction: column;
     align-items: center;
-    padding: 24px 0;
-    border-bottom: 1px solid #2a2a2a;
-    text-align: center;
+    gap: 10px;
   }
 
-  .trophy-row:last-child { border-bottom: none; }
-    border-bottom: 1px solid #1a1a1a;
+  .trophy-card.won {
+    background: #1a1a1a;
+    border: 1px solid #333;
   }
 
-  .trophy-row:last-child { border-bottom: none; }
+  .trophy-card.locked {
+    background: #111;
+    border: 1px solid #1c1c1c;
+    opacity: 0.38;
+    filter: grayscale(1);
+  }
 
   .trophy-images {
     display: flex;
     flex-direction: row;
     flex-wrap: nowrap;
-    gap: 12px;
+    gap: 8px;
     justify-content: center;
-    align-items: center;
-    margin-bottom: 10px;
+    align-items: flex-end;
   }
 
   .trophy-img {
-    width: 80px;
-    height: 80px;
+    height: 90px;
+    width: auto;
+    max-width: 90px;
     object-fit: contain;
     flex-shrink: 0;
+    display: block;
   }
 
-  .trophy-img-placeholder {
-    width: 80px;
-    height: 80px;
-    font-size: 3.5rem;
+  .trophy-lock {
+    height: 90px;
+    width: 70px;
+    background: #181818;
+    border-radius: 6px;
     display: flex;
     align-items: center;
     justify-content: center;
-    line-height: 1;
-    flex-shrink: 0;
   }
 
-  .trophy-info {
+  .trophy-lock-icon {
+    width: 24px;
+    height: 28px;
+    border: 2px solid #2a2a2a;
+    border-radius: 4px;
     display: flex;
-    flex-direction: column;
     align-items: center;
+    justify-content: center;
+  }
+
+  .trophy-lock-dot {
+    width: 8px;
+    height: 8px;
+    background: #2a2a2a;
+    border-radius: 50%;
   }
 
   .trophy-name {
     font-family: 'Barlow Condensed', sans-serif;
-    font-size: 1.2rem;
+    font-size: 1.1rem;
     font-weight: 700;
     letter-spacing: 1.5px;
     text-transform: uppercase;
@@ -684,7 +701,17 @@
     text-align: center;
   }
 
-  .trophy-count { display: none; }
+  .trophy-card.locked .trophy-name {
+    color: #444;
+  }
+
+  .trophy-count {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 0.95rem;
+    font-weight: 700;
+    letter-spacing: 1px;
+    color: var(--gold);
+  }
 
   /* ── SHARE ── */
   .share-wrap {
@@ -831,15 +858,61 @@ function renderProfile(p) {
       </div>
     </div>`).join('');
 
-  const trophiesHTML = p.trophies.map(t => {
-    const images = Array(t.count).fill(0).map(() =>
-      `<div class="trophy-img-placeholder">${t.emoji}</div>`
-    ).join('');
-    return `
-    <div class="trophy-row">
-      <div class="trophy-name">${t.name}</div>
-      <div class="trophy-images">${images}</div>
-    </div>`;
+  const TROPHY_IMAGES = {
+    'League Champion':                 'Daddy_Graphic.png',
+    '2nd Place':                       '2nd.png',
+    '3rd Place':                       '3rd.png',
+    'Regular Season Champion':         'regular_season.png',
+    'Owner of the Year':               'OOTY.png',
+    'AVL Memorial Cup':                'avl_memorial.png',
+    'Rivalry Week':                    'rivalry_week.png',
+    'Hottest Team in Sports Bowl':     'Hottest_Team_in_Sports_Bowl.png',
+    'Hung the * Chain':                'asterisk.png',
+    'Intercontinental Champ':          'intercontinental.png',
+    'Somehow the Champion':            'somehow.png',
+    'Survivor King':                   'survivor.png',
+    'Degen Bowl':                      'Gambler.png',
+    "Dad Bod's Preseason Rankings":    'Preseason.png',
+    "JopO or KG Pick 'Em":            'pick_em.png',
+    'Da Choppaaa Champ':               'da_choppaaa.png',
+    'Bronze Franz':                    'bronze_franz.png'
+  };
+
+  const ALL_TROPHIES = [
+    'League Champion', '2nd Place', '3rd Place', 'Regular Season Champion',
+    'Owner of the Year', 'AVL Memorial Cup', 'Rivalry Week',
+    'Hottest Team in Sports Bowl', 'Hung the * Chain', 'Intercontinental Champ',
+    'Somehow the Champion', 'Survivor King', 'Degen Bowl',
+    "Dad Bod's Preseason Rankings", "JopO or KG Pick 'Em",
+    'Da Choppaaa Champ', 'Bronze Franz'
+  ];
+
+  const wonMap = {};
+  p.trophies.forEach(t => { wonMap[t.name] = t.count; });
+
+  const trophiesHTML = ALL_TROPHIES.map(name => {
+    const count = wonMap[name] || 0;
+    const imgFile = TROPHY_IMAGES[name];
+    const won = count > 0;
+    if (won) {
+      const images = Array(count).fill(0).map(() =>
+        `<img class="trophy-img" src="../images/${imgFile}" alt="${name}">`
+      ).join('');
+      return `
+      <div class="trophy-card won">
+        <div class="trophy-images">${images}</div>
+        <div class="trophy-name">${name}</div>
+        <div class="trophy-count">${count}x</div>
+      </div>`;
+    } else {
+      return `
+      <div class="trophy-card locked">
+        <div class="trophy-images">
+          <div class="trophy-lock"><div class="trophy-lock-icon"><div class="trophy-lock-dot"></div></div></div>
+        </div>
+        <div class="trophy-name">${name}</div>
+      </div>`;
+    }
   }).join('');
 
   const html = `
@@ -889,7 +962,7 @@ function renderProfile(p) {
       <div class="prestige-divider"></div>
       <div class="prestige-left">
         <div class="prestige-title">Prestige Points</div>
-        <div class="prestige-rank">${p.prestige.points.toLocaleString()}</div>
+        <div class="prestige-rank">${p.prestige.points != null ? p.prestige.points.toLocaleString() : '—'}</div>
       </div>
     </div>
 
@@ -937,6 +1010,7 @@ function renderProfile(p) {
       <div class="trophy-header">Trophy Case</div>
       <div class="trophy-list">${trophiesHTML}</div>
     </section>
+
   `;
 
   document.getElementById('loadingState').style.display = 'none';
