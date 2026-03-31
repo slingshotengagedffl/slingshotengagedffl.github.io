@@ -243,9 +243,14 @@
           "count": 1
         },
         {
-          "emoji": "⭐⭐⭐",
-          "name": "Reg. Season Champ",
-          "count": 3
+          "emoji": "🥉",
+          "name": "3rd Place",
+          "count": 1
+        },
+        {
+          "emoji": "⭐⭐⭐⭐",
+          "name": "Regular Season Champion",
+          "count": 4
         },
         {
           "emoji": "🏅🏅",
