@@ -3,6 +3,7 @@
     "jack": {
       "id": "jack",
       "name": "Jack",
+      "lastUpdated": "March 31, 2026",
       "nickname": "The Commish",
       "memberSince": 2014,
       "location": "California",
@@ -63,82 +64,91 @@
         "pullQuote": "The league's first dynasty. And he's not done.",
         "body": "You don't accidentally lead the league in wins, points, and Prestige. Jack was <strong>that dude in the late 2010s</strong> — back-to-back titles, the league's first dynasty. But the last few years? Injuries, bad luck, and near-misses. Still, he's five Prestige points clear of Kyle, clinging to the GOAT throne, and about to become the first to hit 15,000 regular season points. At some point, the bouncebacks come. The injuries stop. The stars align. And the legend reminds you why he became a legend in the first place. <strong>Jack's not done — he's reloading.</strong>"
       },
-      "careerStats": [
-        {
-          "stat": "Seasons Played",
-          "value": "11",
-          "rank": null
+      "careerStats": {
+        "general": [
+          { "stat": "Seasons Played", "value": "11", "rank": null, "explainer": null },
+          { "stat": "Career Net Earnings", "value": "$679.50", "rank": "2nd", "explainer": null, "isEarnings": true },
+          { "stat": "Prestige Points", "value": "1,951", "rank": "1st", "explainer": null }
+        ],
+        "regularSeason": [
+          { "stat": "Wins", "value": "89", "rank": "1st", "explainer": null },
+          { "stat": "Win %", "value": "0.605", "rank": "1st", "explainer": null },
+          { "stat": "Avg Finish", "value": "TBD", "rank": "TBD", "explainer": null },
+          { "stat": "Points Per Game", "value": "98.84", "rank": "2nd", "explainer": null },
+          { "stat": "Point Share", "value": "TBD", "rank": "TBD", "explainer": "% of all league points scored" },
+          { "stat": "Career High Score", "value": "168.80", "rank": "4th", "explainer": null },
+          { "stat": "Weekly High Scores", "value": "TBD", "rank": "TBD", "explainer": null },
+          { "stat": "Power Score", "value": "131.4", "rank": "2nd", "explainer": null },
+          { "stat": "Weeks at #1 Power Score", "value": "TBD", "rank": "TBD", "explainer": null },
+          { "stat": "Boom Rate", "value": "TBD", "rank": "TBD", "explainer": "% of scores 120%+ above season avg" },
+          { "stat": "Start Rate", "value": "TBD", "rank": "TBD", "explainer": "% of scores at or above league avg" },
+          { "stat": "Luck Rate", "value": "TBD", "rank": "TBD", "explainer": "Actual win % vs. expected win % against every team" }
+        ],
+        "playoffs": [
+          { "stat": "Appearances", "value": "7", "rank": "1st*", "explainer": null },
+          { "stat": "Wins", "value": "TBD", "rank": "TBD", "explainer": null },
+          { "stat": "Win %", "value": "0.583", "rank": "4th", "explainer": null },
+          { "stat": "Championships", "value": "2", "rank": "1st*", "explainer": null }
+        ]
+      },
+      "charts": {
+        "winsAndFinish": {
+          "years": [2014,2015,2016,2017,2018,2019,2020,2021,2022,2023,2024,2025],
+          "wins":   [null,null,null,null,null,null,null,null,null,null,null,null],
+          "finish": [null,null,null,null,null,null,null,null,null,null,null,null]
         },
-        {
-          "stat": "Championships",
-          "value": "2",
-          "rank": "1st*"
+        "pointShare": {
+          "years": [2014,2015,2016,2017,2018,2019,2020,2021,2022,2023,2024,2025],
+          "values": [null,null,null,null,null,null,null,null,null,null,null,null]
         },
-        {
-          "stat": "Regular Season Wins",
-          "value": "89",
-          "rank": "1st"
+        "winnings": {
+          "years": [2014,2015,2016,2017,2018,2019,2020,2021,2022,2023,2024,2025],
+          "values": [null,null,null,null,null,null,null,null,null,null,null,null]
         },
-        {
-          "stat": "Regular Season Win %",
-          "value": "0.605",
-          "rank": "1st"
-        },
-        {
-          "stat": "Reg. Season Pts/Game",
-          "value": "98.84",
-          "rank": "2nd"
-        },
-        {
-          "stat": "Reg. Season Power Score",
-          "value": "131.4",
-          "rank": "2nd"
-        },
-        {
-          "stat": "Career High Score",
-          "value": "168.80",
-          "rank": "4th"
-        },
-        {
-          "stat": "Playoff Appearances",
-          "value": "7",
-          "rank": "1st*"
-        },
-        {
-          "stat": "Playoff Win %",
-          "value": "0.583",
-          "rank": "4th"
-        },
-        {
-          "stat": "Career Net Earnings",
-          "value": "$679.50",
-          "rank": "2nd",
-          "isEarnings": true
-        },
-        {
-          "stat": "Prestige Points",
-          "value": "1,951",
-          "rank": "1st"
+        "prestigePerSeason": {
+          "years": [2014,2015,2016,2017,2018,2019,2020,2021,2022,2023,2024,2025],
+          "values": [null,null,null,null,null,null,null,null,null,null,null,null]
         }
-      ],
+      },
       "seasons": [
+        {
+          "year": 2026,
+          "result": "playoff",
+          "teamName": "TBD",
+          "record": "TBD",
+          "finish": "TBD",
+          "ptsPerGame": "TBD",
+          "pointShare": "TBD",
+          "powerScore": "TBD",
+          "netEarnings": "TBD",
+          "prestigeEarned": "TBD",
+          "playoffResult": "TBD"
+        },
         {
           "year": 2025,
           "result": "playoff",
           "teamName": "TBD",
           "record": "TBD",
           "finish": "TBD",
-          "ptsFor": "TBD",
-          "ptsAgainst": "TBD"
+          "ptsPerGame": "TBD",
+          "pointShare": "TBD",
+          "powerScore": "TBD",
+          "netEarnings": "TBD",
+          "prestigeEarned": "TBD",
+          "playoffResult": "TBD"
         },
         {
           "year": 2024,
-          "result": null,
+          "result": "missed",
           "teamName": "TBD",
           "record": "TBD",
           "finish": "TBD",
-          "ptsFor": "TBD",
-          "ptsAgainst": "TBD"
+          "ptsPerGame": "TBD",
+          "pointShare": "TBD",
+          "powerScore": "TBD",
+          "netEarnings": "TBD",
+          "prestigeEarned": "TBD",
+          "playoffResult": "Missed"
         },
         {
           "year": 2023,
@@ -146,35 +156,51 @@
           "teamName": "TBD",
           "record": "TBD",
           "finish": "TBD",
-          "ptsFor": "TBD",
-          "ptsAgainst": "TBD"
+          "ptsPerGame": "TBD",
+          "pointShare": "TBD",
+          "powerScore": "TBD",
+          "netEarnings": "TBD",
+          "prestigeEarned": "TBD",
+          "playoffResult": "TBD"
         },
         {
           "year": 2022,
-          "result": null,
+          "result": "missed",
           "teamName": "TBD",
           "record": "TBD",
           "finish": "TBD",
-          "ptsFor": "TBD",
-          "ptsAgainst": "TBD"
+          "ptsPerGame": "TBD",
+          "pointShare": "TBD",
+          "powerScore": "TBD",
+          "netEarnings": "TBD",
+          "prestigeEarned": "TBD",
+          "playoffResult": "Missed"
         },
         {
           "year": 2021,
-          "result": null,
+          "result": "missed",
           "teamName": "TBD",
           "record": "TBD",
           "finish": "TBD",
-          "ptsFor": "TBD",
-          "ptsAgainst": "TBD"
+          "ptsPerGame": "TBD",
+          "pointShare": "TBD",
+          "powerScore": "TBD",
+          "netEarnings": "TBD",
+          "prestigeEarned": "TBD",
+          "playoffResult": "Missed"
         },
         {
           "year": 2020,
-          "result": null,
+          "result": "missed",
           "teamName": "TBD",
           "record": "TBD",
           "finish": "TBD",
-          "ptsFor": "TBD",
-          "ptsAgainst": "TBD"
+          "ptsPerGame": "TBD",
+          "pointShare": "TBD",
+          "powerScore": "TBD",
+          "netEarnings": "TBD",
+          "prestigeEarned": "TBD",
+          "playoffResult": "Missed"
         },
         {
           "year": 2019,
@@ -182,8 +208,12 @@
           "teamName": "TBD",
           "record": "TBD",
           "finish": "1st",
-          "ptsFor": "TBD",
-          "ptsAgainst": "TBD"
+          "ptsPerGame": "TBD",
+          "pointShare": "TBD",
+          "powerScore": "TBD",
+          "netEarnings": "TBD",
+          "prestigeEarned": "TBD",
+          "playoffResult": "Champion"
         },
         {
           "year": 2018,
@@ -191,8 +221,12 @@
           "teamName": "TBD",
           "record": "TBD",
           "finish": "1st",
-          "ptsFor": "TBD",
-          "ptsAgainst": "TBD"
+          "ptsPerGame": "TBD",
+          "pointShare": "TBD",
+          "powerScore": "TBD",
+          "netEarnings": "TBD",
+          "prestigeEarned": "TBD",
+          "playoffResult": "Champion"
         },
         {
           "year": 2017,
@@ -200,8 +234,12 @@
           "teamName": "TBD",
           "record": "TBD",
           "finish": "TBD",
-          "ptsFor": "TBD",
-          "ptsAgainst": "TBD"
+          "ptsPerGame": "TBD",
+          "pointShare": "TBD",
+          "powerScore": "TBD",
+          "netEarnings": "TBD",
+          "prestigeEarned": "TBD",
+          "playoffResult": "TBD"
         },
         {
           "year": 2016,
@@ -209,8 +247,12 @@
           "teamName": "TBD",
           "record": "TBD",
           "finish": "TBD",
-          "ptsFor": "TBD",
-          "ptsAgainst": "TBD"
+          "ptsPerGame": "TBD",
+          "pointShare": "TBD",
+          "powerScore": "TBD",
+          "netEarnings": "TBD",
+          "prestigeEarned": "TBD",
+          "playoffResult": "TBD"
         },
         {
           "year": 2015,
@@ -218,8 +260,12 @@
           "teamName": "TBD",
           "record": "TBD",
           "finish": "TBD",
-          "ptsFor": "TBD",
-          "ptsAgainst": "TBD"
+          "ptsPerGame": "TBD",
+          "pointShare": "TBD",
+          "powerScore": "TBD",
+          "netEarnings": "TBD",
+          "prestigeEarned": "TBD",
+          "playoffResult": "TBD"
         },
         {
           "year": 2014,
@@ -227,8 +273,12 @@
           "teamName": "TBD",
           "record": "TBD",
           "finish": "2nd",
-          "ptsFor": "TBD",
-          "ptsAgainst": "TBD"
+          "ptsPerGame": "TBD",
+          "pointShare": "TBD",
+          "powerScore": "TBD",
+          "netEarnings": "TBD",
+          "prestigeEarned": "TBD",
+          "playoffResult": "Finalist"
         }
       ],
       "trophies": [
