@@ -32,8 +32,8 @@
       },
       "traits": [
         {
-          "emoji": "🏆",
-          "label": "#ChampsGang"
+          "emoji": "💩",
+          "label": "Big Dumps"
         },
         {
           "emoji": "👑",
@@ -66,48 +66,261 @@
       },
       "careerStats": {
         "general": [
-          { "stat": "Seasons Played", "value": "11", "rank": null, "explainer": null },
-          { "stat": "Career Net Earnings", "value": "$679.50", "rank": "2nd", "explainer": null, "isEarnings": true },
-          { "stat": "Prestige Points", "value": "1,951", "rank": "1st", "explainer": null }
+          {
+            "stat": "Seasons Played",
+            "value": "11",
+            "rank": null,
+            "explainer": null
+          },
+          {
+            "stat": "Career Net Earnings",
+            "value": "$679.50",
+            "rank": "2nd",
+            "explainer": null,
+            "isEarnings": true
+          },
+          {
+            "stat": "Prestige Points",
+            "value": "1,951",
+            "rank": "1st",
+            "explainer": null
+          }
         ],
         "regularSeason": [
-          { "stat": "Wins", "value": "89", "rank": "1st", "explainer": null },
-          { "stat": "Win %", "value": "0.605", "rank": "1st", "explainer": null },
-          { "stat": "Avg Finish", "value": "TBD", "rank": "TBD", "explainer": null },
-          { "stat": "Points Per Game", "value": "98.84", "rank": "2nd", "explainer": null },
-          { "stat": "Point Share", "value": "TBD", "rank": "TBD", "explainer": "% of all league points scored" },
-          { "stat": "Career High Score", "value": "168.80", "rank": "4th", "explainer": null },
-          { "stat": "Weekly High Scores", "value": "TBD", "rank": "TBD", "explainer": null },
-          { "stat": "Power Score", "value": "131.4", "rank": "2nd", "explainer": null },
-          { "stat": "Weeks at #1 Power Score", "value": "TBD", "rank": "TBD", "explainer": null },
-          { "stat": "Boom Rate", "value": "TBD", "rank": "TBD", "explainer": "% of scores 120%+ above season avg" },
-          { "stat": "Start Rate", "value": "TBD", "rank": "TBD", "explainer": "% of scores at or above league avg" },
-          { "stat": "Luck Rate", "value": "TBD", "rank": "TBD", "explainer": "Actual win % vs. expected win % against every team" }
+          {
+            "stat": "Wins",
+            "value": "89",
+            "rank": "1st",
+            "explainer": null
+          },
+          {
+            "stat": "Win %",
+            "value": "0.605",
+            "rank": "1st",
+            "explainer": null
+          },
+          {
+            "stat": "Avg Finish",
+            "value": "TBD",
+            "rank": "TBD",
+            "explainer": null
+          },
+          {
+            "stat": "Points Per Game",
+            "value": "98.84",
+            "rank": "2nd",
+            "explainer": null
+          },
+          {
+            "stat": "Point Share",
+            "value": "TBD",
+            "rank": "TBD",
+            "explainer": "% of all league points scored"
+          },
+          {
+            "stat": "Career High Score",
+            "value": "168.80",
+            "rank": "4th",
+            "explainer": null
+          },
+          {
+            "stat": "Weekly High Scores",
+            "value": "TBD",
+            "rank": "TBD",
+            "explainer": null
+          },
+          {
+            "stat": "Power Score",
+            "value": "131.4",
+            "rank": "2nd",
+            "explainer": null
+          },
+          {
+            "stat": "Weeks at #1 Power Score",
+            "value": "TBD",
+            "rank": "TBD",
+            "explainer": null
+          },
+          {
+            "stat": "Boom Rate",
+            "value": "TBD",
+            "rank": "TBD",
+            "explainer": "% of scores 120%+ above season avg"
+          },
+          {
+            "stat": "Start Rate",
+            "value": "TBD",
+            "rank": "TBD",
+            "explainer": "% of scores at or above league avg"
+          },
+          {
+            "stat": "Luck Rate",
+            "value": "TBD",
+            "rank": "TBD",
+            "explainer": "Actual win % vs. expected win % against every team"
+          }
         ],
         "playoffs": [
-          { "stat": "Appearances", "value": "7", "rank": "1st*", "explainer": null },
-          { "stat": "Wins", "value": "TBD", "rank": "TBD", "explainer": null },
-          { "stat": "Win %", "value": "0.583", "rank": "4th", "explainer": null },
-          { "stat": "Championships", "value": "2", "rank": "1st*", "explainer": null }
+          {
+            "stat": "Appearances",
+            "value": "7",
+            "rank": "1st*",
+            "explainer": null
+          },
+          {
+            "stat": "Wins",
+            "value": "TBD",
+            "rank": "TBD",
+            "explainer": null
+          },
+          {
+            "stat": "Win %",
+            "value": "0.583",
+            "rank": "4th",
+            "explainer": null
+          },
+          {
+            "stat": "Championships",
+            "value": "2",
+            "rank": "1st*",
+            "explainer": null
+          }
         ]
       },
       "charts": {
         "winsAndFinish": {
-          "years": [2014,2015,2016,2017,2018,2019,2020,2021,2022,2023,2024,2025],
-          "wins":   [null,null,null,null,null,null,null,null,null,null,null,null],
-          "finish": [null,null,null,null,null,null,null,null,null,null,null,null]
+          "years": [
+            2014,
+            2015,
+            2016,
+            2017,
+            2018,
+            2019,
+            2020,
+            2021,
+            2022,
+            2023,
+            2024,
+            2025
+          ],
+          "wins": [
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null
+          ],
+          "finish": [
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null
+          ]
         },
         "pointShare": {
-          "years": [2014,2015,2016,2017,2018,2019,2020,2021,2022,2023,2024,2025],
-          "values": [null,null,null,null,null,null,null,null,null,null,null,null]
+          "years": [
+            2014,
+            2015,
+            2016,
+            2017,
+            2018,
+            2019,
+            2020,
+            2021,
+            2022,
+            2023,
+            2024,
+            2025
+          ],
+          "values": [
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null
+          ]
         },
         "winnings": {
-          "years": [2014,2015,2016,2017,2018,2019,2020,2021,2022,2023,2024,2025],
-          "values": [null,null,null,null,null,null,null,null,null,null,null,null]
+          "years": [
+            2014,
+            2015,
+            2016,
+            2017,
+            2018,
+            2019,
+            2020,
+            2021,
+            2022,
+            2023,
+            2024,
+            2025
+          ],
+          "values": [
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null
+          ]
         },
         "prestigePerSeason": {
-          "years": [2014,2015,2016,2017,2018,2019,2020,2021,2022,2023,2024,2025],
-          "values": [null,null,null,null,null,null,null,null,null,null,null,null]
+          "years": [
+            2014,
+            2015,
+            2016,
+            2017,
+            2018,
+            2019,
+            2020,
+            2021,
+            2022,
+            2023,
+            2024,
+            2025
+          ],
+          "values": [
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null
+          ]
         }
       },
       "seasons": [
