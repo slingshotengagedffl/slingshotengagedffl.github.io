@@ -768,7 +768,7 @@
     background: #111;
     border: 1px solid #2a2a2a;
     opacity: 0.4;
-    filter: grayscale(1) brightness(0.7);
+    filter: grayscale(1);
   }
 
   .trophy-images {
@@ -828,7 +828,7 @@
   }
 
   .trophy-card.locked .trophy-name {
-    color: #444;
+    color: #777;
   }
 
   .trophy-count {
@@ -884,11 +884,9 @@
     border-radius: 8px;
     padding: 14px 16px;
     display: flex;
-    align-items: center;
-    flex-wrap: wrap;
+    flex-direction: column;
     gap: 10px;
     box-sizing: border-box;
-    width: 100%;
   }
 
   .compare-bar-label {
@@ -896,13 +894,10 @@
     font-size: 1.3rem;
     letter-spacing: 2px;
     color: var(--red);
-    flex-shrink: 0;
-    width: 100%;
   }
 
   .compare-select {
-    flex: 1;
-    min-width: 0;
+    width: 100%;
     background: #222;
     border: 1px solid #333;
     border-radius: 6px;
@@ -929,14 +924,14 @@
     color: var(--white);
     border: none;
     border-radius: 6px;
-    padding: 8px 20px;
+    padding: 10px 20px;
     font-family: 'Barlow Condensed', sans-serif;
     font-size: 1rem;
     font-weight: 700;
     letter-spacing: 2px;
     text-transform: uppercase;
     cursor: pointer;
-    flex-shrink: 0;
+    width: 100%;
     transition: background 0.15s;
   }
 
