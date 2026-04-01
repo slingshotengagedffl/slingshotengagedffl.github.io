@@ -19,7 +19,7 @@
         { label: 'Wade',   href: 'profiles/wade.html' },
       ]
     },
-    { emoji: '📊', label: 'Record Book',             href: 'record-book.html',  external: false,
+    { emoji: '📊', label: 'The Annals',              href: 'annals.html',       external: false,
       submenu: [
         { label: 'Single Season Stats',          href: 'rb-single-season-stats.html' },
         { label: 'Single Game Records',          href: 'rb-single-game-records.html' },

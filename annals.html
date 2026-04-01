@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>The Annals of History · Slingshot Engaged</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Barlow:wght@400;600&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --red: #c0392b;
+      --red-bright: #e74c3c;
+      --bg: #0d0d0d;
+      --surface: #161616;
+      --surface2: #1e1e1e;
+      --text: #f0f0f0;
+      --muted: #888;
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: 'Barlow', sans-serif;
+      min-height: 100vh;
+    }
+
+    /* ── Page Header ── */
+    .page-header {
+      padding: 48px 24px 32px;
+      text-align: center;
+      border-bottom: 2px solid var(--red);
+    }
+    .page-header h1 {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: clamp(2.8rem, 8vw, 5rem);
+      letter-spacing: 0.08em;
+      color: var(--red-bright);
+      line-height: 1;
+      text-transform: uppercase;
+    }
+    .page-header p {
+      margin-top: 10px;
+      color: var(--muted);
+      font-size: 0.95rem;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+    }
+
+    /* ── Grid ── */
+    .record-grid {
+      max-width: 900px;
+      margin: 0 auto;
+      padding: 40px 20px 60px;
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+      gap: 16px;
+    }
+    .section-label {
+      grid-column: 1 / -1;
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 0.85rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--muted);
+      padding: 8px 0 4px;
+      border-bottom: 1px solid #2a2a2a;
+      margin-bottom: 4px;
+    }
+    .record-card {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      background: var(--surface);
+      border: 1px solid #2a2a2a;
+      border-left: 4px solid var(--red);
+      padding: 18px 20px;
+      text-decoration: none;
+      color: var(--text);
+      border-radius: 2px;
+      transition: background 0.18s, border-left-color 0.18s, transform 0.18s;
+      animation: fadeUp 0.35s ease both;
+    }
+    .record-card:hover {
+      background: var(--surface2);
+      border-left-color: var(--red-bright);
+      transform: translateX(4px);
+    }
+    .card-emoji { font-size: 1.6rem; flex-shrink: 0; width: 36px; text-align: center; }
+    .card-label {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 1.15rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      line-height: 1.2;
+    }
+
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(16px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+  </style>
+</head>
+<body>
+  <script src="nav.js"></script>
+
+  <div class="page-header">
+    <h1>The Annals of History</h1>
+  </div>
+
+  <div class="record-grid">
+
+    <div class="section-label">Season Stats</div>
+    <a class="record-card" href="rb-single-season-stats.html" style="animation-delay:0.04s">
+      <span class="card-emoji">📅</span><span class="card-label">Single Season Stats</span>
+    </a>
+    <a class="record-card" href="rb-single-game-records.html" style="animation-delay:0.08s">
+      <span class="card-emoji">🎯</span><span class="card-label">Single Game Records</span>
+    </a>
+    <a class="record-card" href="rb-single-season-records.html" style="animation-delay:0.12s">
+      <span class="card-emoji">🏆</span><span class="card-label">Single Season Records</span>
+    </a>
+
+    <div class="section-label">Career</div>
+    <a class="record-card" href="rb-career-stats.html" style="animation-delay:0.16s">
+      <span class="card-emoji">📈</span><span class="card-label">Career Stats</span>
+    </a>
+    <a class="record-card" href="rb-career-records.html" style="animation-delay:0.20s">
+      <span class="card-emoji">🎖️</span><span class="card-label">Career Records</span>
+    </a>
+    <a class="record-card" href="rb-career-playoff-records.html" style="animation-delay:0.24s">
+      <span class="card-emoji">🏅</span><span class="card-label">Career Playoff Records</span>
+    </a>
+
+    <div class="section-label">Analysis</div>
+    <a class="record-card" href="rb-season-summaries.html" style="animation-delay:0.28s">
+      <span class="card-emoji">📖</span><span class="card-label">Season Summaries</span>
+    </a>
+    <a class="record-card" href="rb-prestige-rankings.html" style="animation-delay:0.32s">
+      <span class="card-emoji">👑</span><span class="card-label">Prestige Rankings</span>
+    </a>
+    <a class="record-card" href="rb-head-to-head.html" style="animation-delay:0.36s">
+      <span class="card-emoji">⚔️</span><span class="card-label">Head-to-Head</span>
+    </a>
+    <a class="record-card" href="rb-playoff-odds.html" style="animation-delay:0.40s">
+      <span class="card-emoji">🎲</span><span class="card-label">Playoff Odds</span>
+    </a>
+    <a class="record-card" href="rb-draft-position-success.html" style="animation-delay:0.44s">
+      <span class="card-emoji">🎽</span><span class="card-label">Draft Position Success</span>
+    </a>
+    <a class="record-card" href="rb-correlation-to-wins.html" style="animation-delay:0.48s">
+      <span class="card-emoji">📉</span><span class="card-label">Correlation to Wins</span>
+    </a>
+    <a class="record-card" href="rb-lucky-unlucky.html" style="animation-delay:0.52s">
+      <span class="card-emoji">🍀</span><span class="card-label">Lucky / Unlucky</span>
+    </a>
+    <a class="record-card" href="rb-boom-or-bust.html" style="animation-delay:0.56s">
+      <span class="card-emoji">💥</span><span class="card-label">Boom or Bust</span>
+    </a>
+    <a class="record-card" href="rb-streak-and-drought.html" style="animation-delay:0.60s">
+      <span class="card-emoji">🔥</span><span class="card-label">The Streak and the Drought</span>
+    </a>
+    <a class="record-card" href="rb-intercontinental-championship.html" style="animation-delay:0.64s">
+      <span class="card-emoji">🌎</span><span class="card-label">The Intercontinental Championship</span>
+    </a>
+
+  </div>
+</body>
+</html>
