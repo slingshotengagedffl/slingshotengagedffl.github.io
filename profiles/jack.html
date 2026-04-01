@@ -945,13 +945,13 @@ function renderProfile(p) {
     : (p.rivalries.ownedBy ? `${p.rivalries.ownedBy}${p.rivalries.ownedByRecord ? ' (' + p.rivalries.ownedByRecord + ')' : ''}` : 'No one');
   const ownedByCard = `<div class="fact-card"><div class="fact-card-label">Owned By</div><div class="fact-card-value">${ownedByVal}</div></div>`;
 
-  const nextGameHTML = nextGame ? `
+  const nextGameHTML = nextGame && nextGame.opponent ? `
       <div class="live-last-game" style="margin-top:10px; padding-top:10px; border-top:1px solid #222;">
         <span class="last-game-label">Next Game</span>
         <div class="last-game-result">
-          <div class="last-game-detail">vs. ${nextGame.opponent}</div>
+          <div class="last-game-detail">vs. ${d(nextGame.opponent)}</div>
         </div>
-        <div class="last-game-record">Lifetime ${nextGame.lifetimeVsOpponent}</div>
+        <div class="last-game-record">Lifetime ${d(nextGame.lifetimeVsOpponent)}</div>
       </div>` : '';
 
   const explainerOverrides = {
@@ -1117,15 +1117,15 @@ function renderProfile(p) {
       <div class="live-dot">${p.currentSeason.year} Season</div>
       <div class="live-stats">
         <div class="live-stat">
-          <div class="live-stat-val">${p.currentSeason.record}</div>
+          <div class="live-stat-val">${d(p.currentSeason.record)}</div>
           <div class="live-stat-label">Record</div>
         </div>
         <div class="live-stat">
-          <div class="live-stat-val">${p.currentSeason.standing}</div>
+          <div class="live-stat-val">${d(p.currentSeason.standing)}</div>
           <div class="live-stat-label">Standing</div>
         </div>
         <div class="live-stat">
-          <div class="live-stat-val">${p.currentSeason.ptsPerGame}</div>
+          <div class="live-stat-val">${d(p.currentSeason.ptsPerGame)}</div>
           <div class="live-stat-label">Pts/Gm</div>
         </div>
       </div>
@@ -1133,9 +1133,9 @@ function renderProfile(p) {
         <span class="last-game-label">Last Game</span>
         <div class="last-game-result">
           <div class="result-pill ${resultClass}">${lastGame.result}</div>
-          <div class="last-game-detail">vs. ${lastGame.opponent} · ${lastGame.score}</div>
+          <div class="last-game-detail">vs. ${d(lastGame.opponent)} · ${d(lastGame.score)}</div>
         </div>
-        <div class="last-game-record">Lifetime ${lastGame.lifetimeVsOpponent}</div>
+        <div class="last-game-record">Lifetime ${d(lastGame.lifetimeVsOpponent)}</div>
       </div>
       ${nextGameHTML}
     </div>
@@ -1206,6 +1206,7 @@ function renderProfile(p) {
         <canvas id="pointShareChart" height="200"></canvas>
         <div class="chart-legend">
           <div class="legend-item"><div class="legend-dot" style="background:#22c55e;"></div> Point Share</div>
+          <div class="legend-item"><div class="legend-dot" style="background:#555; height:0; border-top:2px dashed #555;"></div> League Avg</div>
         </div>
       </div>
 
@@ -1343,30 +1344,32 @@ function initCharts(p) {
       ]
     },
     options: {
-      animation: animOpts, interaction: interactionOpts, responsive: true, layout: { padding: { top: 24, right: 8 } },
+      animation: animOpts, interaction: interactionOpts, responsive: true, layout: { padding: { top: 36, right: 8 } },
       plugins: { legend: { display: false }, tooltip: { ...tooltipDefaults, callbacks: { title: i => i[0].label, label: i => i.dataset.label + ': ' + i.formattedValue } } },
       scales: {
         x: scaleX,
         yWins: { ...scaleY, type: 'linear', position: 'left', min: 0, max: 14, ticks: { ...scaleY.ticks, stepSize: 2, color: '#22c55e' }, title: { display: true, text: 'Wins', color: '#22c55e', font: { family: 'Barlow Condensed', size: 11 } } },
-        yFinish: { ...scaleY, type: 'linear', position: 'right', min: 1, max: 15, reverse: true, grid: { drawOnChartArea: false }, ticks: { ...scaleY.ticks, stepSize: 2, color: '#60a5fa' }, title: { display: true, text: 'Finish', color: '#60a5fa', font: { family: 'Barlow Condensed', size: 11 } } }
+        yFinish: { ...scaleY, type: 'linear', position: 'right', min: 1, max: 14, reverse: true, grid: { drawOnChartArea: false }, ticks: { ...scaleY.ticks, stepSize: 2, color: '#60a5fa' }, title: { display: true, text: 'Finish', color: '#60a5fa', font: { family: 'Barlow Condensed', size: 11 } } }
       },
       elements: { point: { radius: 4, hoverRadius: 6 }, line: { tension: 0.3 } }
     }
   }));
 
   // Point share
+  const PS_LEAGUE_AVG = 7.14;
   registerChart('pointShareChart', () => new Chart(document.getElementById('pointShareChart'), {
     type: 'line',
     data: {
       labels,
       datasets: [
-        { label: 'Point Share', data: psData, borderColor: '#22c55e', backgroundColor: 'rgba(34,197,94,0.08)', fill: true, pointBackgroundColor: '#22c55e', borderWidth: 2, tension: 0.3 }
+        { label: 'Point Share', data: psData, borderColor: '#22c55e', backgroundColor: 'rgba(34,197,94,0.08)', fill: true, pointBackgroundColor: '#22c55e', borderWidth: 2, tension: 0.3, order: 2 },
+        { label: 'League Avg', data: psData.map(v => v != null ? PS_LEAGUE_AVG : null), borderColor: '#555', borderDash: [6,4], borderWidth: 2, pointRadius: 0, fill: false, order: 1 }
       ]
     },
     options: {
       animation: animOpts, interaction: interactionOpts, responsive: true, layout: { padding: { top: 12 } },
-      plugins: { legend: { display: false }, tooltip: { ...tooltipDefaults, callbacks: { title: i => i[0].label, label: i => i.parsed.y.toFixed(1) + '%' } } },
-      scales: { x: scaleX, y: { ...scaleY, min: 4, max: 10, ticks: { ...scaleY.ticks, callback: v => v + '%' } } },
+      plugins: { legend: { display: false }, tooltip: { ...tooltipDefaults, filter: i => i.datasetIndex === 0, callbacks: { title: i => i[0].label, label: i => i.parsed.y.toFixed(1) + '%' } } },
+      scales: { x: scaleX, y: { ...scaleY, min: 5, max: 10, ticks: { ...scaleY.ticks, callback: v => v + '%' } } },
       elements: { point: { radius: 4, hoverRadius: 6, backgroundColor: '#22c55e', borderColor: '#22c55e' }, line: { tension: 0.3 } }
     }
   }));
