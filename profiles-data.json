@@ -5,9 +5,14 @@
       "nickname": "The Commish",
       "memberSince": 2014,
       "photo": "../images/jack.jpg",
-      "lastUpdated": null,
+      "lastUpdated": "April 1, 2026",
       "location": "California",
       "locationEmoji": "🌴",
+      "broughtInBy": "League Founder",
+      "statusLines": [
+        "2x League Champion",
+        "Hall Of Greatness Inductee"
+      ],
       "prestige": {
         "rank": 2,
         "points": 2155,
@@ -19,16 +24,16 @@
           "label": "Serial Trader"
         },
         {
-          "emoji": "🐷",
-          "label": "Hall of Greatness Inductee"
-        },
-        {
-          "emoji": "🏆",
-          "label": "#ChampsGang"
-        },
-        {
           "emoji": "🦒",
-          "label": "Long"
+          "label": "Elite Length"
+        },
+        {
+          "emoji": "👑",
+          "label": "Dictator Tendencies"
+        },
+        {
+          "emoji": "😤",
+          "label": "Plays Desperate"
         }
       ],
       "currentSeason": {
@@ -39,7 +44,7 @@
         "lastGame": {
           "result": "W",
           "opponent": "Matt",
-          "score": "153.64",
+          "score": "153.64-101.20",
           "lifetimeVsOpponent": "9-3"
         },
         "nextGame": {
@@ -48,18 +53,24 @@
         }
       },
       "rivalries": {
-        "owns": {
-          "name": "Matt",
-          "record": "9-3"
-        },
-        "ownedBy": null,
+        "owns": [
+          {
+            "name": "Matt",
+            "record": "9-3"
+          },
+          {
+            "name": "Andy",
+            "record": "3-1"
+          }
+        ],
+        "ownedBy": [],
         "rivals": "Dylan & Daniel",
-        "ryderCup": "Muscular"
+        "ryderCup": "The Muscular"
       },
       "narrative": {
         "sectionLabel": "The Narrative",
-        "pullQuote": "He's gonna feast on ass this year",
-        "body": "Jack was that dude in the late 2010s—back-to-back titles, the league’s first dynasty. But the last few years? Injuries, bad luck, and near-misses. Still, he’s five Prestige points clear of Kyle, clinging to the GOAT throne, and about to become the first to hit 15,000 regular season points. At some point, the bouncebacks come. The injuries stop. The stars align. And the legend reminds you why he became a legend in the first place. Jack’s not done—he’s reloading."
+        "pullQuote": "That'S Showbiz Baby",
+        "body": "OH YEAH THIS IS SICK AS HELL. COMMISH GONNA GO WILD IN 2026 CAUSE IT'S HIS YEAR. #MYNINERS"
       },
       "careerStats": {
         "general": [
@@ -72,15 +83,15 @@
           },
           {
             "stat": "Net Earnings",
-            "value": "$729.5",
-            "rank": null,
+            "value": 729.5,
+            "rank": "#2 of 14",
             "explainer": null,
             "isEarnings": true
           },
           {
             "stat": "Prestige Points",
             "value": 2155,
-            "rank": null,
+            "rank": "#2 of 14",
             "explainer": null,
             "isEarnings": false
           }
@@ -89,85 +100,85 @@
           {
             "stat": "Wins",
             "value": 99,
-            "rank": null,
+            "rank": "#1 of 14",
             "explainer": null,
             "isEarnings": false
           },
           {
             "stat": "Win %",
             "value": 0.615,
-            "rank": null,
+            "rank": "#2 of 14",
             "explainer": null,
             "isEarnings": false
           },
           {
             "stat": "Avg Finish",
             "value": 5.3,
-            "rank": null,
+            "rank": "#2 of 14",
             "explainer": null,
             "isEarnings": false
           },
           {
             "stat": "Pts Per Game",
             "value": 96.41,
-            "rank": null,
+            "rank": "#2 of 14",
             "explainer": null,
             "isEarnings": false
           },
           {
             "stat": "Point Share",
-            "value": null,
-            "rank": null,
+            "value": "8.1%",
+            "rank": "#2 of 14",
             "explainer": "% of total league points scored",
             "isEarnings": false
           },
           {
             "stat": "Career High Score",
             "value": 168.8,
-            "rank": null,
+            "rank": "#5 of 14",
             "explainer": null,
             "isEarnings": false
           },
           {
             "stat": "Weekly High Scores",
             "value": 19,
-            "rank": null,
+            "rank": "#1 of 14",
             "explainer": null,
             "isEarnings": false
           },
           {
             "stat": "Power Score",
             "value": 132.4,
-            "rank": null,
+            "rank": "#2 of 14",
             "explainer": null,
             "isEarnings": false
           },
           {
             "stat": "Weeks at #1",
             "value": 27,
-            "rank": null,
+            "rank": "#1 of 14",
             "explainer": null,
             "isEarnings": false
           },
           {
             "stat": "Boom Rate",
             "value": "31.1%",
-            "rank": null,
-            "explainer": "% of weeks scoring 110+",
+            "rank": "#2 of 14",
+            "explainer": "% of games scoring 120% or more of league average",
             "isEarnings": false
           },
           {
             "stat": "Start Rate",
             "value": "60.2%",
-            "rank": null,
-            "explainer": "% of optimal lineup started",
+            "rank": "#2 of 14",
+            "explainer": "% of games scoring at or above league average",
             "isEarnings": false
           },
           {
             "stat": "Luck Rate",
             "value": "3.4%",
-            "rank": null,
-            "explainer": "Wins above/below expected",
+            "rank": "#2 of 14",
+            "explainer": "Win % above/below expected",
             "isEarnings": false
           }
         ],
@@ -175,28 +186,28 @@
           {
             "stat": "Appearances",
             "value": 8,
-            "rank": null,
+            "rank": "#2 of 14",
             "explainer": null,
             "isEarnings": false
           },
           {
             "stat": "Wins",
             "value": 7,
-            "rank": null,
+            "rank": "#3 of 14",
             "explainer": null,
             "isEarnings": false
           },
           {
             "stat": "Win %",
             "value": 0.538,
-            "rank": null,
+            "rank": "#4 of 14",
             "explainer": null,
             "isEarnings": false
           },
           {
             "stat": "Championships",
             "value": 2,
-            "rank": null,
+            "rank": "#2 of 14",
             "explainer": null,
             "isEarnings": false
           }
@@ -205,145 +216,145 @@
       "charts": {
         "winsAndFinish": {
           "years": [
-            2026,
-            2025,
-            2024,
-            2023,
-            2022,
-            2021,
-            2020,
-            2019,
-            2018,
-            2017,
-            2016,
+            2014,
             2015,
-            2014
+            2016,
+            2017,
+            2018,
+            2019,
+            2020,
+            2021,
+            2022,
+            2023,
+            2024,
+            2025,
+            2026
           ],
           "wins": [
+            10,
+            7,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
             null,
             10,
-            6,
-            9,
-            7,
-            7,
-            6,
-            10,
-            12,
-            8,
-            7,
-            7,
-            10
+            null
           ],
           "finish": [
+            1,
+            5,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
             null,
             1,
-            11,
-            3,
-            8,
-            8,
-            9,
-            2,
-            1,
-            5,
-            5,
-            5,
-            1
+            null
           ]
         },
         "pointShare": {
           "years": [
-            2026,
-            2025,
-            2024,
-            2023,
-            2022,
-            2021,
-            2020,
-            2019,
-            2018,
-            2017,
-            2016,
+            2014,
             2015,
-            2014
+            2016,
+            2017,
+            2018,
+            2019,
+            2020,
+            2021,
+            2022,
+            2023,
+            2024,
+            2025,
+            2026
           ],
           "values": [
+            8.62,
+            7.42,
             null,
-            0.081543,
-            0.068771,
-            0.081726,
-            0.068745,
-            0.073733,
-            0.072487,
-            0.075241,
-            0.088419,
-            0.076575,
-            0.074213,
-            0.074242,
-            0.086238
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            8.15,
+            null
           ]
         },
         "winnings": {
           "years": [
-            2026,
-            2025,
-            2024,
-            2023,
-            2022,
-            2021,
-            2020,
-            2019,
-            2018,
-            2017,
-            2016,
+            2014,
             2015,
-            2014
+            2016,
+            2017,
+            2018,
+            2019,
+            2020,
+            2021,
+            2022,
+            2023,
+            2024,
+            2025,
+            2026
           ],
           "values": [
+            55,
+            -25,
             null,
-            220,
-            235,
-            317,
-            15,
-            107.5,
-            75,
-            210,
-            330,
-            10,
-            0,
-            0,
-            75
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            110,
+            null
           ]
         },
         "prestigePerSeason": {
           "years": [
-            2026,
-            2025,
-            2024,
-            2023,
-            2022,
-            2021,
-            2020,
-            2019,
-            2018,
-            2017,
-            2016,
+            2014,
             2015,
-            2014
+            2016,
+            2017,
+            2018,
+            2019,
+            2020,
+            2021,
+            2022,
+            2023,
+            2024,
+            2025,
+            2026
           ],
           "values": [
+            251,
+            108,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
             null,
             191,
-            54,
-            139,
-            42,
-            59,
-            74,
-            480,
-            571,
-            125,
-            61,
-            108,
-            251
+            null
           ]
         }
       },
@@ -363,15 +374,15 @@
         },
         {
           "year": 2025,
-          "teamName": null,
-          "record": null,
-          "finish": null,
-          "ptsPerGame": null,
-          "pointShare": null,
-          "powerScore": null,
-          "netEarnings": null,
-          "prestigeEarned": null,
-          "playoffResult": null,
+          "teamName": "Proper Feck'n Eejits ☘️",
+          "record": "10-4",
+          "finish": 1,
+          "ptsPerGame": 104.97714285714288,
+          "pointShare": "8.15%",
+          "powerScore": 146.37544483884108,
+          "netEarnings": 110,
+          "prestigeEarned": 191,
+          "playoffResult": "LOST SEMIFINALS",
           "result": "playoff"
         },
         {
@@ -385,7 +396,7 @@
           "netEarnings": null,
           "prestigeEarned": null,
           "playoffResult": null,
-          "result": "missed"
+          "result": null
         },
         {
           "year": 2023,
@@ -398,7 +409,7 @@
           "netEarnings": null,
           "prestigeEarned": null,
           "playoffResult": null,
-          "result": "playoff"
+          "result": null
         },
         {
           "year": 2022,
@@ -411,7 +422,7 @@
           "netEarnings": null,
           "prestigeEarned": null,
           "playoffResult": null,
-          "result": "missed"
+          "result": null
         },
         {
           "year": 2021,
@@ -424,7 +435,7 @@
           "netEarnings": null,
           "prestigeEarned": null,
           "playoffResult": null,
-          "result": "missed"
+          "result": null
         },
         {
           "year": 2020,
@@ -437,7 +448,7 @@
           "netEarnings": null,
           "prestigeEarned": null,
           "playoffResult": null,
-          "result": "missed"
+          "result": null
         },
         {
           "year": 2019,
@@ -450,7 +461,7 @@
           "netEarnings": null,
           "prestigeEarned": null,
           "playoffResult": null,
-          "result": "champion"
+          "result": null
         },
         {
           "year": 2018,
@@ -463,7 +474,7 @@
           "netEarnings": null,
           "prestigeEarned": null,
           "playoffResult": null,
-          "result": "champion"
+          "result": null
         },
         {
           "year": 2017,
@@ -476,7 +487,7 @@
           "netEarnings": null,
           "prestigeEarned": null,
           "playoffResult": null,
-          "result": "playoff"
+          "result": null
         },
         {
           "year": 2016,
@@ -489,32 +500,32 @@
           "netEarnings": null,
           "prestigeEarned": null,
           "playoffResult": null,
-          "result": "playoff"
+          "result": null
         },
         {
           "year": 2015,
-          "teamName": null,
-          "record": null,
-          "finish": null,
-          "ptsPerGame": null,
-          "pointShare": null,
-          "powerScore": null,
-          "netEarnings": null,
-          "prestigeEarned": null,
-          "playoffResult": null,
+          "teamName": "The Dezman Cometh",
+          "record": "7-6",
+          "finish": 5,
+          "ptsPerGame": 93.21538461538461,
+          "pointShare": "7.42%",
+          "powerScore": 118.20331651217853,
+          "netEarnings": -25,
+          "prestigeEarned": 108,
+          "playoffResult": "LOST SEMIFINALS",
           "result": "playoff"
         },
         {
           "year": 2014,
-          "teamName": null,
-          "record": null,
-          "finish": null,
-          "ptsPerGame": null,
-          "pointShare": null,
-          "powerScore": null,
-          "netEarnings": null,
-          "prestigeEarned": null,
-          "playoffResult": null,
+          "teamName": "Action Jaxson",
+          "record": "10-3",
+          "finish": 1,
+          "ptsPerGame": 110.83076923076922,
+          "pointShare": "8.62%",
+          "powerScore": 151.21929007274315,
+          "netEarnings": 55,
+          "prestigeEarned": 251,
+          "playoffResult": "LOST FINALS",
           "result": "finalist"
         }
       ],
@@ -587,12 +598,7 @@
           "name": "Bronze Franz",
           "count": 0
         }
-      ],
-      "statusLines": [
-        "2x League Champion",
-        "Reigning Regular Season Champion"
-      ],
-      "broughtInBy": "Founder"
+      ]
     }
   }
 }
