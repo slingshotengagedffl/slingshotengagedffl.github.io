@@ -984,7 +984,7 @@ function renderProfile(p) {
         </div>
         <div class="stats-right">
           <span class="stats-val${s.isEarnings ? ' earnings' : s.stat === 'Luck Rate' && displayVal !== '—' ? (parseFloat(displayVal) >= 0 ? ' luck-pos' : ' luck-neg') : ''}">${s.stat === 'Luck Rate' && displayVal !== '—' ? (parseFloat(displayVal) >= 0 ? '+' : '') + displayVal : displayVal}</span>
-          ${s.rank ? `<span class="stats-rank">(${s.rank})</span>` : ''}
+          ${s.rank ? `<span class="stats-rank">${s.rank.replace(' of 14', '')}</span>` : ''}
         </div>
       </div>`;
     }).join('');
@@ -1029,8 +1029,7 @@ function renderProfile(p) {
           ${badgeHTML}
         </div>
         <div class="trigger-snapshot">
-          <div class="snapshot-record">${rec}</div>
-          <div class="snapshot-finish">${s.finish != null ? s.finish + ' Place' : '—'}</div>
+          ${rec !== '—' ? `<div class="snapshot-record">${rec}</div>` : ''}
         </div>
         <div class="trigger-chevron">▼</div>
       </button>
@@ -1041,15 +1040,15 @@ function renderProfile(p) {
         </div>
         <div class="acc-bucket">
           <div class="acc-bucket-label">Regular Season</div>
-          <div class="acc-row"><span class="acc-label">Finish</span><span class="acc-val">${d(s.finish)}</span></div>
+          <div class="acc-row"><span class="acc-label">Finish</span><span class="acc-val">${s.finish != null ? s.finish + (s.finish === 1 ? "st" : s.finish === 2 ? "nd" : s.finish === 3 ? "rd" : "th") : "—"}</span></div>
           <div class="acc-row"><span class="acc-label">Record</span><span class="acc-val">${d(s.record)}</span></div>
-          <div class="acc-row"><span class="acc-label">Points Per Game</span><span class="acc-val">${d(s.ptsPerGame)}</span></div>
+          <div class="acc-row"><span class="acc-label">Points Per Game</span><span class="acc-val">${s.ptsPerGame != null ? parseFloat(s.ptsPerGame).toFixed(2) : "—"}</span></div>
           <div class="acc-row"><span class="acc-label">Point Share</span><span class="acc-val">${d(s.pointShare)}</span></div>
-          <div class="acc-row"><span class="acc-label">Power Score</span><span class="acc-val">${d(s.powerScore)}</span></div>
+          <div class="acc-row"><span class="acc-label">Power Score</span><span class="acc-val">${s.powerScore != null ? parseFloat(s.powerScore).toFixed(1) : "—"}</span></div>
         </div>
         <div class="acc-bucket">
           <div class="acc-bucket-label">Season Summary</div>
-          <div class="acc-row"><span class="acc-label">Net Earnings</span><span class="acc-val ${s.netEarnings != null && String(s.netEarnings).startsWith('-') ? 'loss' : 'earnings'}">${d(s.netEarnings)}</span></div>
+          <div class="acc-row"><span class="acc-label">Earnings</span><span class="acc-val earnings">${s.netEarnings != null ? "$" + parseFloat(s.netEarnings).toFixed(2) : "—"}</span></div>
           <div class="acc-row"><span class="acc-label">Prestige Earned</span><span class="acc-val">${d(s.prestigeEarned)}</span></div>
           <div class="acc-row"><span class="acc-label">Playoff Result</span><span class="acc-val ${s.result === 'champion' ? '' : s.result === 'missed' ? 'loss' : s.result === 'bronze' ? 'bronze' : ''}">${d(s.playoffResult)}</span></div>
         </div>
