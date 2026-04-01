@@ -932,11 +932,18 @@ function renderProfile(p) {
     ? `<div class="owner-champion">League Champion</div>`
     : '';
 
-  const ownsCard = p.rivalries.owns
-    ? `<div class="fact-card"><div class="fact-card-label">Owns</div><div class="fact-card-value">${p.rivalries.owns.name} (${p.rivalries.owns.record})</div></div>`
+  function d(v) { return (v == null || v === 'null') ? '—' : v; }
+
+  const ownsCard = (p.rivalries.owns && p.rivalries.owns.length)
+    ? `<div class="fact-card"><div class="fact-card-label">Owns</div><div class="fact-card-value">${p.rivalries.owns.map(o => `${o.name} (${o.record})`).join('<br>')}</div></div>`
+    : p.rivalries.owns && p.rivalries.owns.name
+    ? `<div class="fact-card"><div class="fact-card-label">Owns</div><div class="fact-card-value">${p.rivalries.owns.name} (${d(p.rivalries.owns.record)})</div></div>`
     : '';
 
-  const ownedByCard = `<div class="fact-card"><div class="fact-card-label">Owned By</div><div class="fact-card-value">${p.rivalries.ownedBy || 'No one'}</div></div>`;
+  const ownedByVal = Array.isArray(p.rivalries.ownedBy)
+    ? p.rivalries.ownedBy.map(o => `${o.name} (${o.record})`).join('<br>')
+    : (p.rivalries.ownedBy ? `${p.rivalries.ownedBy}${p.rivalries.ownedByRecord ? ' (' + p.rivalries.ownedByRecord + ')' : ''}` : 'No one');
+  const ownedByCard = `<div class="fact-card"><div class="fact-card-label">Owned By</div><div class="fact-card-value">${ownedByVal}</div></div>`;
 
   const nextGameHTML = nextGame ? `
       <div class="live-last-game" style="margin-top:10px; padding-top:10px; border-top:1px solid #222;">
@@ -947,18 +954,28 @@ function renderProfile(p) {
         <div class="last-game-record">Lifetime ${nextGame.lifetimeVsOpponent}</div>
       </div>` : '';
 
+  const explainerOverrides = {
+    'Boom Rate': '% of games scoring 120% or more of league average',
+    'Start Rate': '% of games scoring at or above league average',
+    'Luck Rate': 'Win % above/below expected'
+  };
+
   function renderStatBucket(stats) {
-    return stats.map(s => `
+    return stats.map(s => {
+      const explainer = explainerOverrides[s.stat] || s.explainer;
+      const displayVal = (s.value == null || s.value === 'null') ? '—' : s.value;
+      return `
       <div class="stats-row">
         <div class="stats-left">
           <span class="stats-name">${s.stat}</span>
-          ${s.explainer ? `<span class="stats-explainer">${s.explainer}</span>` : ''}
+          ${explainer ? `<span class="stats-explainer">${explainer}</span>` : ''}
         </div>
         <div class="stats-right">
-          <span class="stats-val${s.isEarnings ? ' earnings' : ''}">${s.value}</span>
+          <span class="stats-val${s.isEarnings ? ' earnings' : ''}">${displayVal}</span>
           ${s.rank ? `<span class="stats-rank">(${s.rank})</span>` : ''}
         </div>
-      </div>`).join('');
+      </div>`;
+    }).join('');
   }
 
   const statsHTML = `
@@ -988,40 +1005,45 @@ function renderProfile(p) {
     return `<span class="trigger-badge ${cls}">${label}</span>`;
   }
 
-  const seasonsHTML = p.seasons.map(s => `
+  const seasonsHTML = p.seasons.map(s => {
+    const badgeHTML = s.result ? seasonBadge(s.result) : '';
+    const rec = d(s.record);
+    const fin = s.finish != null ? s.finish + ' Place' : '—';
+    return `
     <div class="accordion-item">
       <button class="accordion-trigger" onclick="this.closest('.accordion-item').classList.toggle('open')">
         <div class="trigger-left">
           <div class="trigger-year">${s.year}</div>
-          ${seasonBadge(s.result)}
+          ${badgeHTML}
         </div>
         <div class="trigger-snapshot">
-          <div class="snapshot-record">${s.record}</div>
-          <div class="snapshot-finish">${s.finish !== 'TBD' ? s.finish + ' Place' : '—'}</div>
+          <div class="snapshot-record">${rec}</div>
+          <div class="snapshot-finish">${s.finish != null ? s.finish + ' Place' : '—'}</div>
         </div>
         <div class="trigger-chevron">▼</div>
       </button>
       <div class="accordion-content">
         <div class="acc-bucket">
           <div class="acc-bucket-label">Team Name</div>
-          <div class="acc-team-name">${s.teamName && s.teamName !== 'TBD' ? s.teamName : '—'}</div>
+          <div class="acc-team-name">${d(s.teamName)}</div>
         </div>
         <div class="acc-bucket">
           <div class="acc-bucket-label">Regular Season</div>
-          <div class="acc-row"><span class="acc-label">Finish</span><span class="acc-val">${s.finish}</span></div>
-          <div class="acc-row"><span class="acc-label">Record</span><span class="acc-val">${s.record}</span></div>
-          <div class="acc-row"><span class="acc-label">Points Per Game</span><span class="acc-val">${s.ptsPerGame}</span></div>
-          <div class="acc-row"><span class="acc-label">Point Share</span><span class="acc-val">${s.pointShare}</span></div>
-          <div class="acc-row"><span class="acc-label">Power Score</span><span class="acc-val">${s.powerScore}</span></div>
+          <div class="acc-row"><span class="acc-label">Finish</span><span class="acc-val">${d(s.finish)}</span></div>
+          <div class="acc-row"><span class="acc-label">Record</span><span class="acc-val">${d(s.record)}</span></div>
+          <div class="acc-row"><span class="acc-label">Points Per Game</span><span class="acc-val">${d(s.ptsPerGame)}</span></div>
+          <div class="acc-row"><span class="acc-label">Point Share</span><span class="acc-val">${d(s.pointShare)}</span></div>
+          <div class="acc-row"><span class="acc-label">Power Score</span><span class="acc-val">${d(s.powerScore)}</span></div>
         </div>
         <div class="acc-bucket">
           <div class="acc-bucket-label">Season Summary</div>
-          <div class="acc-row"><span class="acc-label">Net Earnings</span><span class="acc-val ${s.netEarnings && s.netEarnings.startsWith('-') ? 'loss' : 'earnings'}">${s.netEarnings}</span></div>
-          <div class="acc-row"><span class="acc-label">Prestige Earned</span><span class="acc-val">${s.prestigeEarned}</span></div>
-          <div class="acc-row"><span class="acc-label">Playoff Result</span><span class="acc-val ${s.result === 'champion' ? '' : s.result === 'missed' ? 'loss' : s.result === 'bronze' ? 'bronze' : ''}">${s.playoffResult}</span></div>
+          <div class="acc-row"><span class="acc-label">Net Earnings</span><span class="acc-val ${s.netEarnings != null && String(s.netEarnings).startsWith('-') ? 'loss' : 'earnings'}">${d(s.netEarnings)}</span></div>
+          <div class="acc-row"><span class="acc-label">Prestige Earned</span><span class="acc-val">${d(s.prestigeEarned)}</span></div>
+          <div class="acc-row"><span class="acc-label">Playoff Result</span><span class="acc-val ${s.result === 'champion' ? '' : s.result === 'missed' ? 'loss' : s.result === 'bronze' ? 'bronze' : ''}">${d(s.playoffResult)}</span></div>
         </div>
       </div>
-    </div>`).join('');
+    </div>`;
+  }).join('');
 
   const TROPHY_IMAGES = {
     'League Champion':                 'Daddy Graphic.png',
@@ -1184,7 +1206,6 @@ function renderProfile(p) {
         <canvas id="pointShareChart" height="200"></canvas>
         <div class="chart-legend">
           <div class="legend-item"><div class="legend-dot" style="background:#22c55e;"></div> Point Share</div>
-          <div class="legend-item"><div class="legend-dot" style="background:#c0392b; height:0; border-top:2px dashed #c0392b;"></div> Trend</div>
         </div>
       </div>
 
@@ -1193,7 +1214,6 @@ function renderProfile(p) {
         <canvas id="winningsChart" height="200"></canvas>
         <div class="chart-legend">
           <div class="legend-item"><div class="legend-dot" style="background:#22c55e;"></div> Winnings</div>
-          <div class="legend-item"><div class="legend-dot" style="background:#c0392b; height:0; border-top:2px dashed #c0392b;"></div> Trend</div>
         </div>
       </div>
 
@@ -1243,7 +1263,17 @@ loadProfile();
 // ── CHARTS ──
 function initCharts(p) {
   const c = p.charts;
-  const labels = c.winsAndFinish.years.map(y => "'" + String(y).slice(2));
+  const labels = [...c.winsAndFinish.years].reverse().map(y => "'" + String(y).slice(2));
+  const wfWins = [...c.winsAndFinish.wins].reverse();
+  const wfFinish = [...c.winsAndFinish.finish].reverse();
+  const psRaw = [...c.pointShare.values].reverse();
+  const psData = psRaw.map(v => v == null ? null : parseFloat((v * 100).toFixed(2)));
+  const wData = [...c.winnings.values].reverse();
+  const prData = [...c.prestigePerSeason.values].reverse();
+  const prAvg = (() => {
+    const valid = prData.filter(v => v != null && v > 0);
+    return valid.length ? parseFloat((valid.reduce((a,b) => a+b, 0) / valid.length).toFixed(1)) : 0;
+  })();
 
   const tooltipDefaults = {
     backgroundColor: '#1a1a1a',
@@ -1308,70 +1338,64 @@ function initCharts(p) {
     data: {
       labels,
       datasets: [
-        { label: 'Wins', data: c.winsAndFinish.wins, borderColor: '#22c55e', backgroundColor: 'rgba(34,197,94,0.06)', fill: true, pointBackgroundColor: '#22c55e', borderWidth: 2, yAxisID: 'yWins', order: 2, tension: 0.3 },
-        { label: 'Finish', data: c.winsAndFinish.finish, borderColor: '#60a5fa', backgroundColor: 'rgba(96,165,250,0.04)', fill: false, pointBackgroundColor: '#60a5fa', borderWidth: 2, yAxisID: 'yFinish', order: 1, tension: 0.3 }
+        { label: 'Wins', data: wfWins, borderColor: '#22c55e', backgroundColor: 'rgba(34,197,94,0.06)', fill: true, pointBackgroundColor: '#22c55e', borderWidth: 2, yAxisID: 'yWins', order: 2, tension: 0.3 },
+        { label: 'Finish', data: wfFinish, borderColor: '#60a5fa', backgroundColor: 'rgba(96,165,250,0.04)', fill: false, pointBackgroundColor: '#60a5fa', borderWidth: 2, yAxisID: 'yFinish', order: 1, tension: 0.3 }
       ]
     },
     options: {
-      animation: animOpts, interaction: interactionOpts, responsive: true, layout: { padding: { top: 16 } },
+      animation: animOpts, interaction: interactionOpts, responsive: true, layout: { padding: { top: 24, right: 8 } },
       plugins: { legend: { display: false }, tooltip: { ...tooltipDefaults, callbacks: { title: i => i[0].label, label: i => i.dataset.label + ': ' + i.formattedValue } } },
       scales: {
         x: scaleX,
         yWins: { ...scaleY, type: 'linear', position: 'left', min: 0, max: 14, ticks: { ...scaleY.ticks, stepSize: 2, color: '#22c55e' }, title: { display: true, text: 'Wins', color: '#22c55e', font: { family: 'Barlow Condensed', size: 11 } } },
-        yFinish: { ...scaleY, type: 'linear', position: 'right', min: 1, max: 14, reverse: true, grid: { drawOnChartArea: false }, ticks: { ...scaleY.ticks, stepSize: 2, color: '#60a5fa' }, title: { display: true, text: 'Finish', color: '#60a5fa', font: { family: 'Barlow Condensed', size: 11 } } }
+        yFinish: { ...scaleY, type: 'linear', position: 'right', min: 1, max: 15, reverse: true, grid: { drawOnChartArea: false }, ticks: { ...scaleY.ticks, stepSize: 2, color: '#60a5fa' }, title: { display: true, text: 'Finish', color: '#60a5fa', font: { family: 'Barlow Condensed', size: 11 } } }
       },
       elements: { point: { radius: 4, hoverRadius: 6 }, line: { tension: 0.3 } }
     }
   }));
 
   // Point share
-  const psData = c.pointShare.values;
   registerChart('pointShareChart', () => new Chart(document.getElementById('pointShareChart'), {
     type: 'line',
     data: {
       labels,
       datasets: [
-        { label: 'Point Share', data: psData, borderColor: '#22c55e', backgroundColor: 'rgba(34,197,94,0.08)', fill: true, pointBackgroundColor: '#22c55e', borderWidth: 2, order: 2, tension: 0.3 },
-        { label: 'Trend', data: trendLine(psData), borderColor: '#c0392b', borderDash: [6,4], borderWidth: 2, pointRadius: 0, fill: false, order: 1 }
+        { label: 'Point Share', data: psData, borderColor: '#22c55e', backgroundColor: 'rgba(34,197,94,0.08)', fill: true, pointBackgroundColor: '#22c55e', borderWidth: 2, tension: 0.3 }
       ]
     },
     options: {
       animation: animOpts, interaction: interactionOpts, responsive: true, layout: { padding: { top: 12 } },
-      plugins: { legend: { display: false }, tooltip: { ...tooltipDefaults, filter: i => i.datasetIndex === 0, callbacks: { title: i => i[0].label, label: i => i.parsed.y + '%' } } },
-      scales: { x: scaleX, y: { ...scaleY, min: 0, ticks: { ...scaleY.ticks, callback: v => v + '%' } } },
+      plugins: { legend: { display: false }, tooltip: { ...tooltipDefaults, callbacks: { title: i => i[0].label, label: i => i.parsed.y.toFixed(1) + '%' } } },
+      scales: { x: scaleX, y: { ...scaleY, min: 4, max: 10, ticks: { ...scaleY.ticks, callback: v => v + '%' } } },
       elements: { point: { radius: 4, hoverRadius: 6, backgroundColor: '#22c55e', borderColor: '#22c55e' }, line: { tension: 0.3 } }
     }
   }));
 
   // Winnings
-  const wData = c.winnings.values;
   registerChart('winningsChart', () => new Chart(document.getElementById('winningsChart'), {
     type: 'line',
     data: {
       labels,
       datasets: [
-        { label: 'Winnings', data: wData, borderColor: '#22c55e', backgroundColor: 'rgba(34,197,94,0.08)', fill: true, pointBackgroundColor: '#22c55e', borderWidth: 2, order: 2, tension: 0.3 },
-        { label: 'Trend', data: trendLine(wData), borderColor: '#c0392b', borderDash: [6,4], borderWidth: 2, pointRadius: 0, fill: false, order: 1 }
+        { label: 'Winnings', data: wData, borderColor: '#22c55e', backgroundColor: 'rgba(34,197,94,0.08)', fill: true, pointBackgroundColor: '#22c55e', borderWidth: 2, tension: 0.3 }
       ]
     },
     options: {
       animation: animOpts, interaction: interactionOpts, responsive: true, layout: { padding: { top: 12 } },
-      plugins: { legend: { display: false }, tooltip: { ...tooltipDefaults, filter: i => i.datasetIndex === 0, callbacks: { title: i => i[0].label, label: i => '$' + i.parsed.y } } },
+      plugins: { legend: { display: false }, tooltip: { ...tooltipDefaults, callbacks: { title: i => i[0].label, label: i => '$' + i.parsed.y } } },
       scales: { x: scaleX, y: { ...scaleY, min: 0, ticks: { ...scaleY.ticks, stepSize: 50, callback: v => '$' + v } } },
       elements: { point: { radius: 4, hoverRadius: 6, backgroundColor: '#22c55e', borderColor: '#22c55e' }, line: { tension: 0.3 } }
     }
   }));
 
   // Prestige per season bar
-  const prData = c.prestigePerSeason.values;
-  const prAvg = prData.filter(v => v !== null).reduce((a,b) => a+b, 0) / prData.filter(v => v !== null).length || 0;
   registerChart('prestigeChart', () => new Chart(document.getElementById('prestigeChart'), {
     type: 'bar',
     data: {
       labels,
       datasets: [
-        { label: 'Points', data: prData, backgroundColor: prData.map(v => v !== null && v >= prAvg ? 'rgba(201,168,76,0.85)' : 'rgba(201,168,76,0.35)'), borderColor: prData.map(v => v !== null && v >= prAvg ? '#c9a84c' : 'rgba(201,168,76,0.5)'), borderWidth: 1, borderRadius: 3, order: 2 },
-        { label: 'Career Avg', data: prData.map(() => prAvg ? parseFloat(prAvg.toFixed(1)) : null), type: 'line', borderColor: '#555', borderDash: [6,4], borderWidth: 2, pointRadius: 0, fill: false, order: 1 }
+        { label: 'Points', data: prData, backgroundColor: prData.map(v => v != null && v > 0 && v >= prAvg ? 'rgba(201,168,76,0.85)' : 'rgba(201,168,76,0.35)'), borderColor: prData.map(v => v != null && v > 0 && v >= prAvg ? '#c9a84c' : 'rgba(201,168,76,0.5)'), borderWidth: 1, borderRadius: 3, order: 2 },
+        { label: 'Career Avg', data: prData.map(v => v != null && v > 0 ? prAvg : null), type: 'line', borderColor: '#555', borderDash: [6,4], borderWidth: 2, pointRadius: 0, fill: false, order: 1 }
       ]
     },
     options: {
