@@ -587,7 +587,12 @@
           "name": "Bronze Franz",
           "count": 0
         }
-      ]
+      ],
+      "statusLines": [
+        "2x League Champion",
+        "Reigning Regular Season Champion"
+      ],
+      "broughtInBy": "Founder"
     }
   }
 }
