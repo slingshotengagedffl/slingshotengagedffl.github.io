@@ -195,14 +195,14 @@
 
   .live-stat-val {
     font-family: 'Bebas Neue', sans-serif;
-    font-size: 2.2rem;
+    font-size: 2.5rem;
     color: var(--white);
     line-height: 1;
   }
 
   .live-stat-label {
     font-family: 'Barlow Condensed', sans-serif;
-    font-size: 0.85rem;
+    font-size: 0.98rem;
     font-weight: 700;
     letter-spacing: 2px;
     text-transform: uppercase;
@@ -252,13 +252,13 @@
 
   .last-game-detail {
     font-family: 'Barlow Condensed', sans-serif;
-    font-size: 1.15rem;
+    font-size: 1.32rem;
     color: var(--white);
   }
 
   .last-game-record {
     font-family: 'Barlow Condensed', sans-serif;
-    font-size: 1rem;
+    font-size: 1.15rem;
     color: var(--muted);
     margin-left: auto;
   }
@@ -373,7 +373,7 @@
 
   .fact-card-label {
     font-family: 'Barlow Condensed', sans-serif;
-    font-size: 0.75rem;
+    font-size: 0.86rem;
     font-weight: 700;
     letter-spacing: 2px;
     text-transform: uppercase;
@@ -382,7 +382,7 @@
 
   .fact-card-value {
     font-family: 'Barlow Condensed', sans-serif;
-    font-size: 1.15rem;
+    font-size: 1.32rem;
     font-weight: 700;
     color: var(--white);
     line-height: 1.2;
@@ -424,7 +424,7 @@
   }
 
   .narrative-text {
-    font-size: 1.05rem;
+    font-size: 1.21rem;
     line-height: 1.8;
     color: #ccc;
   }
@@ -480,14 +480,14 @@
 
   .stats-name {
     font-family: 'Barlow Condensed', sans-serif;
-    font-size: 1rem;
+    font-size: 1.15rem;
     color: #bbb;
     line-height: 1.2;
   }
 
   .stats-explainer {
     font-family: 'Barlow', sans-serif;
-    font-size: 0.75rem;
+    font-size: 0.86rem;
     font-style: italic;
     color: #555;
     line-height: 1.3;
@@ -503,16 +503,18 @@
 
   .stats-val {
     font-family: 'Barlow Condensed', sans-serif;
-    font-size: 1.1rem;
+    font-size: 1.26rem;
     font-weight: 700;
     color: var(--white);
   }
 
   .stats-val.earnings { color: #6aaa6a; }
+  .stats-val.luck-pos { color: #6aaa6a; }
+  .stats-val.luck-neg { color: #aa5555; }
 
   .stats-rank {
     font-family: 'Barlow Condensed', sans-serif;
-    font-size: 0.85rem;
+    font-size: 0.98rem;
     font-weight: 700;
     color: var(--gold);
   }
@@ -646,14 +648,14 @@
 
   .snapshot-record {
     font-family: 'Bebas Neue', sans-serif;
-    font-size: 1.2rem;
+    font-size: 1.38rem;
     color: var(--white);
     line-height: 1;
   }
 
   .snapshot-finish {
     font-family: 'Barlow Condensed', sans-serif;
-    font-size: 0.78rem;
+    font-size: 0.9rem;
     font-weight: 700;
     letter-spacing: 1px;
     text-transform: uppercase;
@@ -696,7 +698,7 @@
 
   .acc-team-name {
     font-family: 'Barlow Condensed', sans-serif;
-    font-size: 1.2rem;
+    font-size: 1.38rem;
     font-weight: 700;
     color: var(--gold);
     text-align: center;
@@ -711,7 +713,7 @@
     align-items: baseline;
     padding: 9px 12px;
     font-family: 'Barlow Condensed', sans-serif;
-    font-size: 0.95rem;
+    font-size: 1.09rem;
   }
 
   .acc-row:nth-child(odd) { background: #1e1e1e; }
@@ -925,12 +927,8 @@ function renderProfile(p) {
       <span class="trait-label">${t.label}</span>
     </div>`).join('');
 
-  const championCount = p.trophies.filter(t => t.name === 'League Champion').reduce((sum, t) => sum + t.count, 0);
-  const championHTML = championCount > 1
-    ? `<div class="owner-champion">${championCount}x League Champion</div>`
-    : championCount === 1
-    ? `<div class="owner-champion">League Champion</div>`
-    : '';
+  const statusLines = Array.isArray(p.statusLines) ? p.statusLines.filter(l => l && l.trim()) : [];
+  const statusHTML = statusLines.map(l => `<div class="owner-champion">${l}</div>`).join('');
 
   function d(v) { return (v == null || v === 'null') ? '—' : v; }
 
@@ -959,19 +957,31 @@ function renderProfile(p) {
     'Start Rate': '% of games scoring at or above league average',
     'Luck Rate': 'Win % above/below expected'
   };
+  const statNameOverrides = {
+    'Weeks at #1': 'Weeks at #1 in Power Score'
+  };
 
   function renderStatBucket(stats) {
     return stats.map(s => {
       const explainer = explainerOverrides[s.stat] || s.explainer;
-      const displayVal = (s.value == null || s.value === 'null') ? '—' : s.value;
+      let displayVal = (s.value == null || s.value === 'null') ? '—' : s.value;
+      if (s.isEarnings && displayVal !== '—') {
+        const num = parseFloat(String(displayVal).replace(/[^\d.-]/g, ''));
+        if (!isNaN(num)) {
+          const sign = num < 0 ? '-' : '';
+          displayVal = sign + '$' + Math.abs(num).toLocaleString('en-US', {minimumFractionDigits:2, maximumFractionDigits:2});
+        }
+      } else if (typeof displayVal === 'number' && displayVal >= 1000) {
+        displayVal = displayVal.toLocaleString('en-US');
+      }
       return `
       <div class="stats-row">
         <div class="stats-left">
-          <span class="stats-name">${s.stat}</span>
+          <span class="stats-name">${statNameOverrides[s.stat] || s.stat}</span>
           ${explainer ? `<span class="stats-explainer">${explainer}</span>` : ''}
         </div>
         <div class="stats-right">
-          <span class="stats-val${s.isEarnings ? ' earnings' : ''}">${displayVal}</span>
+          <span class="stats-val${s.isEarnings ? ' earnings' : s.stat === 'Luck Rate' && displayVal !== '—' ? (parseFloat(displayVal) >= 0 ? ' luck-pos' : ' luck-neg') : ''}">${s.stat === 'Luck Rate' && displayVal !== '—' ? (parseFloat(displayVal) >= 0 ? '+' : '') + displayVal : displayVal}</span>
           ${s.rank ? `<span class="stats-rank">(${s.rank})</span>` : ''}
         </div>
       </div>`;
@@ -1108,7 +1118,7 @@ function renderProfile(p) {
       <div class="owner-name">${p.name}</div>
       <div class="owner-name-nickname">"${p.nickname}"</div>
       <div class="owner-subtitle">Member Since ${p.memberSince}</div>
-      ${championHTML}
+      ${statusHTML}
       <div class="avatar-wrap">${photoHTML}</div>
     </section>
 
@@ -1163,14 +1173,14 @@ function renderProfile(p) {
 
     <!-- QUICK FACTS -->
     <div class="quick-facts fade-in">
-      <div class="quick-facts-title">Stats & Info</div>
+      <div class="quick-facts-title">Profile</div>
       <div class="facts-grid">
         <div class="fact-card"><div class="fact-card-label">Location</div><div class="fact-card-value">${p.locationEmoji} ${p.location}</div></div>
-        <div class="fact-card"><div class="fact-card-label">Member Since</div><div class="fact-card-value">${p.memberSince}</div></div>
+        <div class="fact-card"><div class="fact-card-label">Brought In By</div><div class="fact-card-value">${d(p.broughtInBy)}</div></div>
         ${ownsCard}
         ${ownedByCard}
         <div class="fact-card"><div class="fact-card-label">${p.currentSeason.year} Rivals</div><div class="fact-card-value">${p.rivalries.rivals}</div></div>
-        <div class="fact-card"><div class="fact-card-label">${p.currentSeason.year} Ryder Cup</div><div class="fact-card-value">${p.rivalries.ryderCup}</div></div>
+        <div class="fact-card"><div class="fact-card-label">${p.currentSeason.year} Ryder Cup Team</div><div class="fact-card-value">${p.rivalries.ryderCup}</div></div>
       </div>
     </div>
 
@@ -1290,13 +1300,13 @@ function initCharts(p) {
 
   const scaleX = {
     grid: { color: 'rgba(255,255,255,0.04)' },
-    ticks: { color: '#666', font: { family: 'Barlow Condensed', size: 11 } },
+    ticks: { color: '#666', font: { family: 'Barlow Condensed', size: 13 } },
     border: { color: '#222' }
   };
 
   const scaleY = {
     grid: { color: 'rgba(255,255,255,0.06)', borderDash: [4,4] },
-    ticks: { color: '#666', font: { family: 'Barlow Condensed', size: 11 } },
+    ticks: { color: '#666', font: { family: 'Barlow Condensed', size: 13 } },
     border: { color: '#222' }
   };
 
@@ -1348,8 +1358,8 @@ function initCharts(p) {
       plugins: { legend: { display: false }, tooltip: { ...tooltipDefaults, callbacks: { title: i => i[0].label, label: i => i.dataset.label + ': ' + i.formattedValue } } },
       scales: {
         x: scaleX,
-        yWins: { ...scaleY, type: 'linear', position: 'left', min: 0, max: 14, ticks: { ...scaleY.ticks, stepSize: 2, color: '#22c55e' }, title: { display: true, text: 'Wins', color: '#22c55e', font: { family: 'Barlow Condensed', size: 11 } } },
-        yFinish: { ...scaleY, type: 'linear', position: 'right', min: 1, max: 14, reverse: true, grid: { drawOnChartArea: false }, ticks: { ...scaleY.ticks, stepSize: 2, color: '#60a5fa' }, title: { display: true, text: 'Finish', color: '#60a5fa', font: { family: 'Barlow Condensed', size: 11 } } }
+        yWins: { ...scaleY, type: 'linear', position: 'left', min: -0.5, max: 15, ticks: { ...scaleY.ticks, stepSize: 2, color: '#22c55e', callback: v => (v >= 0 && v <= 14 && v % 2 === 0) ? v : '' }, title: { display: true, text: 'Wins', color: '#22c55e', font: { family: 'Barlow Condensed', size: 11 } } },
+        yFinish: { ...scaleY, type: 'linear', position: 'right', min: 0, max: 15, reverse: true, grid: { drawOnChartArea: false }, ticks: { ...scaleY.ticks, stepSize: 2, color: '#60a5fa', callback: v => (v >= 1 && v <= 14 && v % 2 === 1) ? v : '' }, title: { display: true, text: 'Finish', color: '#60a5fa', font: { family: 'Barlow Condensed', size: 11 } } }
       },
       elements: { point: { radius: 4, hoverRadius: 6 }, line: { tension: 0.3 } }
     }
@@ -1357,37 +1367,57 @@ function initCharts(p) {
 
   // Point share
   const PS_LEAGUE_AVG = 7.14;
+  const avgLabelPlugin = {
+    id: 'avgLabel',
+    afterDraw(chart) {
+      if (chart.canvas.id !== 'pointShareChart' && chart.canvas.id !== 'prestigeChart') return;
+      const { ctx, chartArea: { right }, scales } = chart;
+      const yScale = scales.y;
+      const isPS = chart.canvas.id === 'pointShareChart';
+      const val = isPS ? PS_LEAGUE_AVG : prAvg;
+      if (!val) return;
+      const y = yScale.getPixelForValue(val);
+      const label = isPS ? '7.14% League Avg' : prAvg + ' Career Avg';
+      ctx.save();
+      ctx.font = 'bold 10px Barlow Condensed, sans-serif';
+      ctx.fillStyle = '#aaa';
+      ctx.textAlign = 'right';
+      ctx.fillText(label, right - 4, y - 5);
+      ctx.restore();
+    }
+  };
+  Chart.register(avgLabelPlugin);
+
   registerChart('pointShareChart', () => new Chart(document.getElementById('pointShareChart'), {
     type: 'line',
     data: {
       labels,
       datasets: [
         { label: 'Point Share', data: psData, borderColor: '#22c55e', backgroundColor: 'rgba(34,197,94,0.08)', fill: true, pointBackgroundColor: '#22c55e', borderWidth: 2, tension: 0.3, order: 2 },
-        { label: 'League Avg', data: psData.map(v => v != null ? PS_LEAGUE_AVG : null), borderColor: '#555', borderDash: [6,4], borderWidth: 2, pointRadius: 0, fill: false, order: 1 }
+        { label: 'League Avg', data: psData.map(v => v != null ? PS_LEAGUE_AVG : null), borderColor: '#aaa', borderDash: [6,4], borderWidth: 2, pointRadius: 0, fill: false, order: 1 }
       ]
     },
     options: {
-      animation: animOpts, interaction: interactionOpts, responsive: true, layout: { padding: { top: 12 } },
+      animation: animOpts, interaction: interactionOpts, responsive: true, layout: { padding: { top: 20, right: 100 } },
       plugins: { legend: { display: false }, tooltip: { ...tooltipDefaults, filter: i => i.datasetIndex === 0, callbacks: { title: i => i[0].label, label: i => i.parsed.y.toFixed(1) + '%' } } },
       scales: { x: scaleX, y: { ...scaleY, min: 5, max: 10, ticks: { ...scaleY.ticks, callback: v => v + '%' } } },
       elements: { point: { radius: 4, hoverRadius: 6, backgroundColor: '#22c55e', borderColor: '#22c55e' }, line: { tension: 0.3 } }
     }
   }));
 
-  // Winnings
+  // Winnings (bar)
   registerChart('winningsChart', () => new Chart(document.getElementById('winningsChart'), {
-    type: 'line',
+    type: 'bar',
     data: {
       labels,
       datasets: [
-        { label: 'Winnings', data: wData, borderColor: '#22c55e', backgroundColor: 'rgba(34,197,94,0.08)', fill: true, pointBackgroundColor: '#22c55e', borderWidth: 2, tension: 0.3 }
+        { label: 'Winnings', data: wData, backgroundColor: wData.map(v => v != null && v > 0 ? 'rgba(34,197,94,0.75)' : 'rgba(170,85,85,0.6)'), borderColor: wData.map(v => v != null && v > 0 ? '#22c55e' : '#aa5555'), borderWidth: 1, borderRadius: 3 }
       ]
     },
     options: {
       animation: animOpts, interaction: interactionOpts, responsive: true, layout: { padding: { top: 12 } },
-      plugins: { legend: { display: false }, tooltip: { ...tooltipDefaults, callbacks: { title: i => i[0].label, label: i => '$' + i.parsed.y } } },
-      scales: { x: scaleX, y: { ...scaleY, min: 0, ticks: { ...scaleY.ticks, stepSize: 50, callback: v => '$' + v } } },
-      elements: { point: { radius: 4, hoverRadius: 6, backgroundColor: '#22c55e', borderColor: '#22c55e' }, line: { tension: 0.3 } }
+      plugins: { legend: { display: false }, tooltip: { ...tooltipDefaults, callbacks: { title: i => i[0].label, label: i => '$' + i.parsed.y.toLocaleString() } } },
+      scales: { x: scaleX, y: { ...scaleY, ticks: { ...scaleY.ticks, stepSize: 50, callback: v => '$' + v } } }
     }
   }));
 
@@ -1398,11 +1428,11 @@ function initCharts(p) {
       labels,
       datasets: [
         { label: 'Points', data: prData, backgroundColor: prData.map(v => v != null && v > 0 && v >= prAvg ? 'rgba(201,168,76,0.85)' : 'rgba(201,168,76,0.35)'), borderColor: prData.map(v => v != null && v > 0 && v >= prAvg ? '#c9a84c' : 'rgba(201,168,76,0.5)'), borderWidth: 1, borderRadius: 3, order: 2 },
-        { label: 'Career Avg', data: prData.map(v => v != null && v > 0 ? prAvg : null), type: 'line', borderColor: '#555', borderDash: [6,4], borderWidth: 2, pointRadius: 0, fill: false, order: 1 }
+        { label: 'Career Avg', data: prData.map(v => v != null && v > 0 ? prAvg : null), type: 'line', borderColor: '#aaa', borderDash: [6,4], borderWidth: 2.5, pointRadius: 0, fill: false, order: 1 }
       ]
     },
     options: {
-      animation: animOpts, interaction: interactionOpts, responsive: true, layout: { padding: { top: 12 } },
+      animation: animOpts, interaction: interactionOpts, responsive: true, layout: { padding: { top: 20, right: 100 } },
       plugins: { legend: { display: false }, tooltip: { ...tooltipDefaults, filter: i => i.datasetIndex === 0, callbacks: { title: i => i[0].label, label: i => i.parsed.y + ' pts' } } },
       scales: { x: scaleX, y: { ...scaleY, min: 0, ticks: { ...scaleY.ticks, stepSize: 50 } } }
     }
