@@ -1293,6 +1293,7 @@ function renderProfile(p) {
       </div>` : '';
 
   const explainerOverrides = {
+    'Net Earnings': 'Total winnings minus entry fees',
     'Boom Rate': '% of games scoring 120% or more of league average',
     'Start Rate': '% of games scoring at or above league average',
     'Luck Rate': 'Win % above/below expected'
@@ -1321,7 +1322,7 @@ function renderProfile(p) {
           ${explainer ? `<span class="stats-explainer">${explainer}</span>` : ''}
         </div>
         <div class="stats-right">
-          <span class="stats-val${s.isEarnings ? ' earnings' : s.stat === 'Luck Rate' && displayVal !== '—' ? (parseFloat(displayVal) >= 0 ? ' luck-pos' : ' luck-neg') : ''}">${s.stat === 'Luck Rate' && displayVal !== '—' ? (parseFloat(displayVal) >= 0 ? '+' : '') + displayVal : displayVal}</span>
+          <span class="stats-val${s.isEarnings && displayVal !== '—' ? (parseFloat(String(displayVal).replace(/[^\d.-]/g,'')) >= 0 ? ' earnings' : ' luck-neg') : s.stat === 'Luck Rate' && displayVal !== '—' ? (parseFloat(displayVal) >= 0 ? ' luck-pos' : ' luck-neg') : ''}">${s.stat === 'Luck Rate' && displayVal !== '—' ? (parseFloat(displayVal) >= 0 ? '+' : '') + displayVal : displayVal}</span>
           ${s.rank ? `<span class="stats-rank">(${s.rank.replace(' of 14', '')})</span>` : ''}
         </div>
       </div>`;
@@ -1389,7 +1390,7 @@ function renderProfile(p) {
         </div>
         <div class="acc-bucket">
           <div class="acc-bucket-label">Season Summary</div>
-          <div class="acc-row"><span class="acc-label">Earnings</span><span class="acc-val earnings">${s.netEarnings != null ? "$" + parseFloat(s.netEarnings).toFixed(2) : "—"}</span></div>
+          <div class="acc-row"><span class="acc-label">Winnings</span><span class="acc-val earnings">${s.netEarnings != null ? "$" + parseFloat(s.netEarnings).toFixed(2) : "—"}</span></div>
           <div class="acc-row"><span class="acc-label">Prestige Earned</span><span class="acc-val">${d(s.prestigeEarned)}</span></div>
           <div class="acc-row"><span class="acc-label">Playoff Result</span><span class="acc-val ${s.result === 'champion' ? '' : s.result === 'missed' ? 'loss' : s.result === 'bronze' ? 'bronze' : ''}">${d(s.playoffResult)}</span></div>
         </div>
