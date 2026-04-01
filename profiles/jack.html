@@ -419,7 +419,7 @@
     padding-left: 18px;
     margin-bottom: 20px;
     font-style: italic;
-    font-size: 1.3rem;
+    font-size: 1.65rem;
     font-weight: 500;
     color: var(--white);
     line-height: 1.5;
@@ -565,8 +565,8 @@
     align-items: center;
     gap: 6px;
     font-family: 'Barlow Condensed', sans-serif;
-    font-size: 0.8rem;
-    color: #888;
+    font-size: 1rem;
+    color: #aaa;
   }
 
   .legend-dot {
@@ -1208,8 +1208,8 @@ function renderProfile(p) {
         <div class="chart-label">Wins &amp; Finish</div>
         <canvas id="combinedChart" height="200"></canvas>
         <div class="chart-legend">
-          <div class="legend-item"><div class="legend-dot" style="background:#22c55e;"></div> Wins (L)</div>
-          <div class="legend-item"><div class="legend-dot" style="background:#60a5fa;"></div> Finish (R)</div>
+          <div class="legend-item"><div class="legend-dot" style="background:#22c55e;"></div> Wins (0–14)</div>
+          <div class="legend-item"><div class="legend-dot" style="background:#60a5fa;"></div> Finish (1–14)</div>
         </div>
       </div>
 
@@ -1235,7 +1235,7 @@ function renderProfile(p) {
         <canvas id="prestigeChart" height="200"></canvas>
         <div class="chart-legend">
           <div class="legend-item"><div class="legend-dot" style="background:#c9a84c;"></div> Points Earned</div>
-          <div class="legend-item"><div class="legend-dot" style="background:#e0e0e0; height:0; border-top:2px dashed #e0e0e0;"></div> Career Avg</div>
+          <div class="legend-item"><div class="legend-dot" style="background:#e0e0e0; height:0; border-top:2px dashed #e0e0e0;"></div> <span id="prestigeAvgLabel">Career Avg</span></div>
         </div>
       </div>
     </section>
@@ -1360,8 +1360,8 @@ function initCharts(p) {
       plugins: { legend: { display: false }, tooltip: { ...tooltipDefaults, callbacks: { title: i => i[0].label, label: i => i.dataset.label + ': ' + i.formattedValue } } },
       scales: {
         x: scaleX,
-        yWins: { ...scaleY, type: 'linear', position: 'left', min: -0.5, max: 15, ticks: { ...scaleY.ticks, stepSize: 2, color: '#22c55e', callback: v => (Number.isInteger(v) && v >= 0 && v <= 14) ? v : '' }, title: { display: true, text: 'Wins', color: '#22c55e', font: { family: 'Barlow Condensed', size: 14 } } },
-        yFinish: { ...scaleY, type: 'linear', position: 'right', min: 0, max: 15, reverse: true, grid: { drawOnChartArea: false }, ticks: { ...scaleY.ticks, stepSize: 2, color: '#60a5fa', callback: v => (Number.isInteger(v) && v >= 1 && v <= 14) ? v : '' }, title: { display: true, text: 'Finish', color: '#60a5fa', font: { family: 'Barlow Condensed', size: 14 } } }
+        yWins: { ...scaleY, type: 'linear', position: 'left', min: -0.5, max: 15, ticks: { ...scaleY.ticks, stepSize: 2, color: '#22c55e', callback: v => (Number.isInteger(v) && v >= 0 && v <= 14) ? v : '' }, title: { display: false } },
+        yFinish: { ...scaleY, type: 'linear', position: 'right', min: 0, max: 15, reverse: true, grid: { drawOnChartArea: false }, ticks: { ...scaleY.ticks, stepSize: 2, color: '#60a5fa', callback: v => (Number.isInteger(v) && v >= 1 && v <= 14) ? v : '' }, title: { display: false } }
       },
       elements: { point: { radius: 4, hoverRadius: 6 }, line: { tension: 0.3 } }
     }
@@ -1403,6 +1403,9 @@ function initCharts(p) {
   }));
 
   // Prestige per season bar
+  const prestigeAvgEl = document.getElementById('prestigeAvgLabel');
+  if (prestigeAvgEl && prAvg) prestigeAvgEl.textContent = 'Career Avg (' + Math.round(prAvg) + ' pts)';
+
   registerChart('prestigeChart', () => new Chart(document.getElementById('prestigeChart'), {
     type: 'bar',
     data: {
