@@ -1689,6 +1689,26 @@ function openCompare() {
   }
 
   // ── STAT SECTIONS ──
+  const h2h = me.headToHead && me.headToHead[oppId] ? me.headToHead[oppId] : null;
+  const h2hOpp = opp.headToHead && opp.headToHead[OWNER_ID] ? opp.headToHead[OWNER_ID] : null;
+  const h2hWinsA = h2h ? h2h.wins : null;
+  const h2hWinsB = h2hOpp ? h2hOpp.wins : null;
+  const h2hPctA = h2h ? h2h.winPct : null;
+  const h2hPctB = h2hOpp ? h2hOpp.winPct : null;
+  const [h2hWinClsA, h2hWinClsB] = h2hWinsA != null && h2hWinsB != null ? (h2hWinsA > h2hWinsB ? ['cmp-winner','cmp-loser'] : h2hWinsA < h2hWinsB ? ['cmp-loser','cmp-winner'] : ['cmp-tied','cmp-tied']) : ['',''];
+  const [h2hPctClsA, h2hPctClsB] = h2hPctA != null && h2hPctB != null ? (h2hPctA > h2hPctB ? ['cmp-winner','cmp-loser'] : h2hPctA < h2hPctB ? ['cmp-loser','cmp-winner'] : ['cmp-tied','cmp-tied']) : ['',''];
+  const h2hRow = `
+    <div class="cmp-stat-row">
+      <div class="cmp-val-a ${h2hWinClsA}">${h2hWinsA != null ? h2hWinsA : '—'}</div>
+      <div class="cmp-stat-name">Wins${h2hWinsA == null ? '<span class=\"cmp-stat-sub\">coming soon</span>' : ''}</div>
+      <div class="cmp-val-b ${h2hWinClsB}">${h2hWinsB != null ? h2hWinsB : '—'}</div>
+    </div>
+    <div class="cmp-stat-row">
+      <div class="cmp-val-a ${h2hPctClsA}">${h2hPctA != null ? h2hPctA : '—'}</div>
+      <div class="cmp-stat-name">Win %${h2hPctA == null ? '<span class=\"cmp-stat-sub\">coming soon</span>' : ''}</div>
+      <div class="cmp-val-b ${h2hPctClsB}">${h2hPctB != null ? h2hPctB : '—'}</div>
+    </div>`;
+
   const generalRows = [
     statRow('Seasons Played', getStat(me,'general','Seasons Played'), getStat(opp,'general','Seasons Played')),
     statRow('Net Earnings', getStat(me,'general','Net Earnings'), getStat(opp,'general','Net Earnings')),
@@ -1829,6 +1849,10 @@ function openCompare() {
 
   // ── ASSEMBLE BODY ──
   document.getElementById('cmpBody').innerHTML = `
+    <div class="cmp-section">
+      <div class="cmp-section-title">Head to Head</div>
+      ${h2hRow}
+    </div>
     ${buildStatSection('Career — General', generalRows)}
     ${buildStatSection('Career — Regular Season', rsRows)}
     ${buildStatSection('Career — Playoffs', poRows)}
