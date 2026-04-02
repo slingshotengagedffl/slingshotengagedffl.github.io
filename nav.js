@@ -63,7 +63,7 @@
     .nav-logo {
       font-family: 'Bebas Neue', sans-serif; font-weight: 400;
       font-size: 1.35rem; letter-spacing: 0.1em;
-      color: #e74c3c; text-transform: uppercase;
+      color: #e74c3c; text-transform: uppercase; text-decoration: none;
     }
     .hotdog-btn {
       background: none; border: none; cursor: pointer;
@@ -140,7 +140,7 @@
 
   const nav = document.createElement('nav');
   nav.innerHTML = `
-    <div class="nav-logo">Slingshot Engaged</div>
+    <a href="${prefix}index.html" class="nav-logo">Slingshot Engaged</a>
     <button class="hotdog-btn" id="menuToggle" aria-label="Open menu">🌭</button>
   `;
 
