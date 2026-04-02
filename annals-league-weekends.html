@@ -16,7 +16,7 @@
       --surface2: #1c1c1c;
       --surface3: #242424;
       --text: #f0f0f0;
-      --muted: #666;
+      --muted: #999;
       --border: #2a2a2a;
       --gold: #c9a84c;
     }
@@ -90,10 +90,23 @@
 
     .weekend-card {
       background: var(--surface);
-      border: 1px solid var(--border);
+      border: 2px solid var(--border);
       border-radius: 10px;
       overflow: hidden;
     }
+
+    /* Per-card accent colors */
+    .weekend-card[data-color="0"] { border-color: #e74c3c; }  /* red        – Iron Mansion 2026 */
+    .weekend-card[data-color="1"] { border-color: #3498db; }  /* blue       – Twin Cities 2025 */
+    .weekend-card[data-color="2"] { border-color: #e67e22; }  /* orange     – Texas Hill Country 2024 */
+    .weekend-card[data-color="3"] { border-color: #9b59b6; }  /* purple     – Nashville 2023 */
+    .weekend-card[data-color="4"] { border-color: #c9a84c; }  /* gold       – Sacramento 2022 */
+    .weekend-card[data-color="5"] { border-color: #1abc9c; }  /* teal       – Deep Creek 2021 */
+    .weekend-card[data-color="6"] { border-color: #7f8c8d; }  /* slate      – Virtual Draft 2020 */
+    .weekend-card[data-color="7"] { border-color: #e91e8c; }  /* pink       – Denver IV 2019 */
+    .weekend-card[data-color="8"] { border-color: #27ae60; }  /* green      – Denver III 2018 */
+    .weekend-card[data-color="9"] { border-color: #00bcd4; }  /* cyan       – Denver II 2017 */
+    .weekend-card[data-color="10"] { border-color: #f1c40f; } /* yellow     – Denver I 2016 */
 
     .weekend-header {
       background: var(--surface2);
@@ -115,7 +128,7 @@
       font-size: 1rem;
       letter-spacing: 0.06em;
       text-transform: uppercase;
-      color: var(--muted);
+      color: #bbb;
     }
 
     /* ── Memories list ── */
@@ -168,7 +181,7 @@
     .memory-text {
       font-size: 0.92rem;
       line-height: 1.55;
-      color: #ccc;
+      color: #e8e8e8;
     }
     .memory-delete {
       display: none;
@@ -426,10 +439,11 @@
       const wrap = document.getElementById('weekendsWrap');
       wrap.innerHTML = '';
 
-      WEEKENDS.forEach(weekend => {
+      WEEKENDS.forEach((weekend, index) => {
         const card = document.createElement('div');
         card.className = 'weekend-card';
         card.id = `card-${weekend.id}`;
+        card.dataset.color = index;
         card.innerHTML = `
           <div class="weekend-header">
             <span class="weekend-year">${weekend.year}</span>
