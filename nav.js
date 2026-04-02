@@ -28,7 +28,7 @@
         { label: 'Career Records',               href: 'rb-career-records.html' },
         { label: 'Career Playoff Records',       href: 'rb-career-playoff-records.html' },
         { label: 'Season Summaries',             href: 'rb-season-summaries.html' },
-        { label: 'Prestige Rankings',            href: 'rb-prestige-rankings.html' },
+        { label: 'Prestige Rankings',            href: 'annals-prestige-rankings.html' },
         { label: 'Head-To-Head',                 href: 'rb-head-to-head.html' },
         { label: 'Playoff Odds',                 href: 'rb-playoff-odds.html' },
         { label: 'Draft Position Success',       href: 'rb-draft-position-success.html' },
