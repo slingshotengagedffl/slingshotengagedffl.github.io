@@ -37,6 +37,7 @@
         { label: 'Boom Or Bust',                 href: 'rb-boom-or-bust.html' },
         { label: 'The Streak And The Drought',   href: 'rb-streak-and-drought.html' },
         { label: 'The Intercontinental Championship', href: 'rb-intercontinental-championship.html' },
+        { label: 'League Weekends',                  href: 'annals-league-weekends.html' },
       ]
     },
     { emoji: '📋', label: 'Constitution',            href: 'https://drive.google.com/file/d/1u5CjjgncTrwKSedc5rtYRhpPllhlc3w7/view?usp=drivesdk', external: true },
