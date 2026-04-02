@@ -8,7 +8,7 @@
     "career-records": null,
     "career-playoff-records": null,
     "season-summaries": null,
-    "prestige-rankings": null,
+    "prestige-rankings": "April 2, 2026",
     "head-to-head": null,
     "playoff-odds": null,
     "draft-position-success": null,
@@ -40,7 +40,7 @@
       "photo": "../images/jack.jpg",
       "lastUpdated": "April 2, 2026",
       "location": "California",
-      "locationEmoji": "🌴",
+      "locationEmoji": "\ud83c\udf34",
       "broughtInBy": "League Founder",
       "statusLines": [
         "Commissioner",
@@ -54,19 +54,19 @@
       },
       "traits": [
         {
-          "emoji": "🔁",
+          "emoji": "\ud83d\udd01",
           "label": "Serial Trader"
         },
         {
-          "emoji": "🦒",
+          "emoji": "\ud83e\udd92",
           "label": "Elite Length"
         },
         {
-          "emoji": "👑",
+          "emoji": "\ud83d\udc51",
           "label": "Dictator Tendencies"
         },
         {
-          "emoji": "😤",
+          "emoji": "\ud83d\ude24",
           "label": "Plays Desperate"
         }
       ],
@@ -399,7 +399,7 @@
         },
         {
           "year": 2025,
-          "teamName": "Proper Feck'n Eejits ☘️",
+          "teamName": "Proper Feck'n Eejits \u2618\ufe0f",
           "record": "10-4",
           "finish": 1,
           "ptsPerGame": 104.98,
@@ -412,7 +412,7 @@
         },
         {
           "year": 2024,
-          "teamName": "Bayou Bears Be Howlin' 🌊🐻",
+          "teamName": "Bayou Bears Be Howlin' \ud83c\udf0a\ud83d\udc3b",
           "record": "6-8",
           "finish": 11,
           "ptsPerGame": 90.82,
@@ -438,7 +438,7 @@
         },
         {
           "year": 2022,
-          "teamName": "The 100 Point Exceeders 💯",
+          "teamName": "The 100 Point Exceeders \ud83d\udcaf",
           "record": "7-7",
           "finish": 8,
           "ptsPerGame": 87.02,
@@ -451,7 +451,7 @@
         },
         {
           "year": 2021,
-          "teamName": "Beef Spritz Boys 🐮💦",
+          "teamName": "Beef Spritz Boys \ud83d\udc2e\ud83d\udca6",
           "record": "7-7",
           "finish": 8,
           "ptsPerGame": 97.18,
@@ -464,7 +464,7 @@
         },
         {
           "year": 2020,
-          "teamName": "Tangy 👅🍞Sourdough",
+          "teamName": "Tangy \ud83d\udc45\ud83c\udf5eSourdough",
           "record": "6-7",
           "finish": 9,
           "ptsPerGame": 96.8,

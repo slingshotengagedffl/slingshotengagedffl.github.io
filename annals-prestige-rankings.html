@@ -55,6 +55,18 @@
       line-height: 1;
     }
 
+    /* ── Updated date ── */
+    .page-updated {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: 0.72rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--muted);
+      text-align: center;
+      margin: 8px auto 0;
+      min-height: 1em;
+    }
+
     /* ── Explainer ── */
     .explainer {
       max-width: 640px;
@@ -347,6 +359,8 @@
 
   <p class="explainer">A formula-based score across 24 factors that objectively measures historical success. Think Patriots vs Browns. Tap any owner to see their breakdown.</p>
 
+  <p class="page-updated" id="pageUpdated"></p>
+
   <div class="legend">
     <div class="legend-item"><div class="legend-dot active"></div> Active Owner</div>
     <div class="legend-item"><div class="legend-dot inactive"></div> Retired Owner</div>
@@ -354,6 +368,17 @@
 
   <div class="rankings-wrap" id="rankingsWrap"></div>
 
+  <script>
+    fetch('profiles-data.json')
+      .then(r => r.json())
+      .then(data => {
+        const date = data.pageUpdates && data.pageUpdates['prestige-rankings'];
+        if (date) {
+          document.getElementById('pageUpdated').textContent = 'Updated · ' + date;
+        }
+      })
+      .catch(() => {});
+  </script>
   <script>
   const OWNERS = [
     {
