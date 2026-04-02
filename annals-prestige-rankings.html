@@ -1,0 +1,754 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Prestige Rankings – The Annals – Slingshot Engaged</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Barlow+Condensed:wght@400;600;700&family=Barlow:wght@400;500;600&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --red: #c0392b;
+      --red-bright: #e74c3c;
+      --bg: #0a0a0a;
+      --surface: #141414;
+      --surface2: #1c1c1c;
+      --surface3: #242424;
+      --text: #f0f0f0;
+      --muted: #555;
+      --border: #2a2a2a;
+      --gold: #c9a84c;
+      --gold-dim: rgba(201,168,76,0.15);
+      --playoff-color: #3498db;
+      --regseason-color: #27ae60;
+      --consolation-color: #8e44ad;
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: 'Barlow', sans-serif;
+      min-height: 100vh;
+    }
+
+    /* ── Page Header ── */
+    .page-header {
+      padding: 40px 20px 0;
+      text-align: center;
+    }
+    .page-supertitle {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: 0.8rem;
+      letter-spacing: 0.25em;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin-bottom: 6px;
+    }
+    .page-header h1 {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: clamp(2.4rem, 7vw, 4.2rem);
+      color: var(--red-bright);
+      letter-spacing: 0.06em;
+      line-height: 1;
+    }
+
+    /* ── Explainer ── */
+    .explainer {
+      max-width: 640px;
+      margin: 16px auto 0;
+      padding: 0 16px;
+      font-size: 0.85rem;
+      color: var(--muted);
+      text-align: center;
+      line-height: 1.55;
+    }
+
+    /* ── Legend ── */
+    .legend {
+      max-width: 640px;
+      margin: 12px auto 0;
+      padding: 0 16px;
+      display: flex;
+      gap: 18px;
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+    .legend-item {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: 0.75rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--muted);
+    }
+    .legend-dot {
+      width: 10px; height: 10px;
+      border-radius: 2px;
+      flex-shrink: 0;
+    }
+    .legend-dot.active   { background: var(--gold); }
+    .legend-dot.inactive { background: var(--muted); opacity: 0.5; }
+
+    /* ── Rankings list ── */
+    .rankings-wrap {
+      max-width: 640px;
+      margin: 24px auto 60px;
+      padding: 0 16px;
+    }
+
+    /* ── Owner row ── */
+    .owner-row {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      margin-bottom: 6px;
+      overflow: hidden;
+      transition: border-color 0.15s;
+    }
+    .owner-row.active-owner { border-color: var(--gold); }
+    .owner-row.inactive-owner { border-color: var(--border); }
+    .owner-row.open { border-color: var(--gold); box-shadow: 0 0 0 1px var(--gold); }
+
+    .owner-row-main {
+      display: grid;
+      grid-template-columns: 44px 1fr auto auto;
+      align-items: center;
+      gap: 10px;
+      padding: 13px 16px;
+      cursor: pointer;
+      transition: background 0.12s;
+    }
+    .owner-row-main:hover { background: var(--surface2); }
+
+    /* ── Rank number ── */
+    .rank-num {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 1.3rem;
+      letter-spacing: 0.06em;
+      text-align: center;
+      line-height: 1;
+    }
+    .rank-1, .rank-2, .rank-3, .rank-other { color: #888; }
+
+    /* ── Owner name + bar ── */
+    .owner-info { min-width: 0; }
+    .owner-name {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: 1.05rem;
+      font-weight: 700;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+      color: var(--text);
+      margin-bottom: 5px;
+    }
+    .active-owner .owner-name { color: var(--text); }
+    .inactive-label {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: 0.65rem;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin-left: 6px;
+      vertical-align: middle;
+    }
+    .prestige-bar-wrap {
+      height: 4px;
+      background: var(--surface3);
+      border-radius: 2px;
+      overflow: hidden;
+    }
+    .prestige-bar-fill {
+      height: 100%;
+      border-radius: 2px;
+      background: var(--gold);
+      transition: width 0.6s ease;
+    }
+    .inactive-owner .prestige-bar-fill { background: var(--muted); }
+
+    /* ── Points ── */
+    .owner-pts {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 1.2rem;
+      letter-spacing: 0.06em;
+      color: var(--gold);
+      text-align: right;
+      white-space: nowrap;
+    }
+    .inactive-owner .owner-pts { color: var(--muted); }
+
+    /* ── Chevron ── */
+    .chevron {
+      font-size: 0.7rem;
+      color: var(--muted);
+      transition: transform 0.25s;
+      margin-left: 4px;
+    }
+    .owner-row.open .chevron { transform: rotate(180deg); }
+
+    /* ── Dashboard ── */
+    .owner-dashboard {
+      display: none;
+      border-top: 1px solid var(--border);
+      padding: 16px;
+      background: var(--surface2);
+      flex-direction: column;
+      gap: 16px;
+    }
+    .owner-row.open .owner-dashboard { display: flex; }
+
+    /* ── Dashboard sections ── */
+    .dash-section-title {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 0.85rem;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin-bottom: 10px;
+    }
+
+    /* Points breakdown bar */
+    .breakdown-bar {
+      height: 12px;
+      border-radius: 6px;
+      overflow: hidden;
+      display: flex;
+      margin-bottom: 10px;
+    }
+    .breakdown-segment { height: 100%; transition: width 0.5s ease; }
+    .seg-playoff     { background: var(--playoff-color); }
+    .seg-regseason   { background: var(--regseason-color); }
+    .seg-consolation { background: var(--consolation-color); }
+
+    .breakdown-legend {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+    }
+    .breakdown-legend-item {
+      display: flex;
+      align-items: center;
+      gap: 5px;
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: 0.78rem;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      color: #aaa;
+    }
+    .breakdown-legend-dot {
+      width: 8px; height: 8px;
+      border-radius: 2px;
+      flex-shrink: 0;
+    }
+
+    /* Top seasons */
+    .top-seasons {
+      display: flex;
+      gap: 8px;
+    }
+    .season-card {
+      flex: 1;
+      background: var(--surface3);
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      padding: 10px 12px;
+      text-align: center;
+    }
+    .season-year {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 1.1rem;
+      letter-spacing: 0.06em;
+      color: var(--gold);
+    }
+    .season-pts {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: 0.85rem;
+      color: #aaa;
+      margin-top: 2px;
+    }
+    .season-note {
+      font-size: 0.7rem;
+      color: var(--muted);
+      margin-top: 4px;
+      line-height: 1.3;
+      font-style: italic;
+    }
+
+    /* ── Top factor ── */
+    .top-factor-box {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      background: var(--surface3);
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      padding: 10px 14px;
+      margin-top: 12px;
+    }
+    .top-factor-label {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: 0.68rem;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--muted);
+      white-space: nowrap;
+    }
+    .top-factor-name {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: 1rem;
+      font-weight: 700;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+      color: var(--gold);
+      flex: 1;
+    }
+    .top-factor-pts {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 1.1rem;
+      letter-spacing: 0.06em;
+      color: var(--text);
+      white-space: nowrap;
+    }
+
+    /* Move up scenario */
+    .move-up-box {
+      background: var(--surface3);
+      border: 1px solid var(--border);
+      border-left: 3px solid var(--red-bright);
+      border-radius: 6px;
+      padding: 12px 14px;
+    }
+    .move-up-text {
+      font-family: 'Barlow', sans-serif;
+      font-size: 0.83rem;
+      color: #bbb;
+      line-height: 1.5;
+    }
+    .move-up-text strong { color: var(--red-bright); }
+    .move-up-na {
+      font-family: 'Barlow', sans-serif;
+      font-size: 0.83rem;
+      color: var(--muted);
+      font-style: italic;
+    }
+  </style>
+</head>
+<body>
+  <script src="../nav.js"></script>
+
+  <div class="page-header">
+    <div class="page-supertitle">The Annals of History</div>
+    <h1>Prestige Rankings</h1>
+  </div>
+
+  <p class="explainer">A formula-based score across 24 factors that objectively measures historical success. Think Cowboys vs Browns. Tap any owner to see their breakdown.</p>
+
+  <div class="legend">
+    <div class="legend-item"><div class="legend-dot active"></div> Active Owner</div>
+    <div class="legend-item"><div class="legend-dot inactive"></div> Retired Owner</div>
+  </div>
+
+  <div class="rankings-wrap" id="rankingsWrap"></div>
+
+  <script>
+  // ── DATA ─────────────────────────────────────────────────────────────────
+  // Computed from 24-factor formula sheet. Updated after 2025 season.
+  // breakdown %s: approximate share of total pts from each category
+  // moveUp: fill in manually each offseason
+  const OWNERS = [
+    {
+      name: 'Dylan', active: true, pts: 2201,
+      breakdown: { playoff: 65, regseason: 35, consolation: 0 },
+      topFactor: { name: 'Championships', pts: 750 },
+      topSeasons: [
+        { year: 2017, pts: 539, note: 'League Champion · Reg Season Champ' },
+        { year: 2021, pts: 511, note: 'League Champion · Reg Season Champ' },
+        { year: 2025, pts: 510, note: 'League Champion · Reg Season Champ' },
+      ],
+      moveUp: null,
+    },
+    {
+      name: 'Jack', active: true, pts: 2155,
+      breakdown: { playoff: 53, regseason: 44, consolation: 2 },
+      topFactor: { name: 'Championships', pts: 500 },
+      topSeasons: [
+        { year: 2018, pts: 571, note: 'League Champion · Reg Season Champ' },
+        { year: 2019, pts: 480, note: 'League Champion · Reg Season Champ' },
+        { year: 2014, pts: 251, note: 'Runner-Up · Reg Season Champ' },
+      ],
+      moveUp: 'Just 46 pts behind Dylan. A <strong>strong playoff run</strong> next season could flip the top spot.',
+    },
+    {
+      name: 'Kyle', active: true, pts: 2018,
+      breakdown: { playoff: 65, regseason: 35, consolation: 0 },
+      topFactor: { name: 'Championships', pts: 500 },
+      topSeasons: [
+        { year: 2024, pts: 580, note: 'League Champion · Reg Season Champ' },
+        { year: 2022, pts: 531, note: 'League Champion · Reg Season Champ' },
+        { year: 2018, pts: 258, note: 'Runner-Up · Reg Season Champ' },
+      ],
+      moveUp: '137 pts behind Jack. Another <strong>Championship</strong> (+250 pts) would vault Kyle to #1 all-time.',
+    },
+    {
+      name: 'Mike', active: true, pts: 1547,
+      breakdown: { playoff: 54, regseason: 45, consolation: 0 },
+      topFactor: { name: 'Regular Season Wins', pts: 288 },
+      topSeasons: [
+        { year: 2020, pts: 562, note: 'League Champion · Reg Season Champ' },
+        { year: 2022, pts: 251, note: 'Runner-Up · Reg Season Champ' },
+        { year: 2025, pts: 192, note: 'Runner-Up' },
+      ],
+      moveUp: '471 pts behind Kyle. A <strong>Championship</strong> + strong regular season would start closing the gap.',
+    },
+    {
+      name: 'Alex', active: true, pts: 1431,
+      breakdown: { playoff: 52, regseason: 48, consolation: 0 },
+      topFactor: { name: 'Championships', pts: 250 },
+      topSeasons: [
+        { year: 2023, pts: 587, note: 'League Champion · Reg Season Champ' },
+        { year: 2019, pts: 297, note: 'Runner-Up · Reg Season Champ' },
+        { year: 2020, pts: 148, note: 'Final Four' },
+      ],
+      moveUp: '116 pts behind Mike. A <strong>Championship</strong> (+250 pts) would push Alex into 4th.',
+    },
+    {
+      name: 'Daniel', active: true, pts: 1057,
+      breakdown: { playoff: 37, regseason: 62, consolation: 0 },
+      topFactor: { name: 'Regular Season Wins', pts: 234 },
+      topSeasons: [
+        { year: 2016, pts: 284, note: 'Runner-Up · Reg Season Champ' },
+        { year: 2024, pts: 231, note: 'Runner-Up · Reg Season Champ' },
+        { year: 2022, pts: 150, note: 'Final Four · Reg Season Champ' },
+      ],
+      moveUp: '374 pts behind Alex. A <strong>Championship run</strong> plus a reg season title could start making a dent.',
+    },
+    {
+      name: 'Brian', active: true, pts: 1009,
+      breakdown: { playoff: 43, regseason: 53, consolation: 4 },
+      topFactor: { name: 'Championships', pts: 250 },
+      topSeasons: [
+        { year: 2016, pts: 474, note: 'League Champion · Reg Season Champ' },
+        { year: 2025, pts: 99, note: 'Reg Season Champ' },
+        { year: 2022, pts: 80, note: 'Regular Season Wins' },
+      ],
+      moveUp: 'Just 48 pts behind Daniel. A <strong>playoff run</strong> next season moves Brian past him.',
+    },
+    {
+      name: 'Jon', active: false, pts: 931,
+      breakdown: { playoff: 40, regseason: 58, consolation: 2 },
+      topFactor: { name: 'Regular Season Wins', pts: 225 },
+      topSeasons: [
+        { year: 2021, pts: 306, note: 'Runner-Up · Reg Season Champ' },
+        { year: 2019, pts: 125, note: 'Final Four' },
+        { year: 2025, pts: 123, note: 'Final Four' },
+      ],
+      moveUp: null,
+    },
+    {
+      name: 'Michelle T', active: false, pts: 704,
+      breakdown: { playoff: 76, regseason: 24, consolation: 0 },
+      topFactor: { name: 'Championships', pts: 250 },
+      topSeasons: [
+        { year: 2014, pts: 496, note: 'League Champion · Reg Season Champ' },
+        { year: 2017, pts: 202, note: 'Runner-Up · Reg Season Champ' },
+        { year: 2015, pts: 6, note: 'Regular Season Wins' },
+      ],
+      moveUp: null,
+    },
+    {
+      name: 'Matt', active: true, pts: 570,
+      breakdown: { playoff: 17, regseason: 82, consolation: 1 },
+      topFactor: { name: 'Regular Season Wins', pts: 195 },
+      topSeasons: [
+        { year: 2025, pts: 134, note: 'Reg Season Champ' },
+        { year: 2021, pts: 127, note: 'Final Four' },
+        { year: 2019, pts: 96, note: 'Regular Season Wins' },
+      ],
+      moveUp: '135 pts behind Michelle T (retired, rank 9). A <strong>playoff run</strong> + strong regular season gets there.',
+    },
+    {
+      name: 'Scott', active: true, pts: 538,
+      breakdown: { playoff: 26, regseason: 68, consolation: 6 },
+      topFactor: { name: 'Regular Season Wins', pts: 210 },
+      topSeasons: [
+        { year: 2016, pts: 145, note: 'Final Four · Reg Season Champ' },
+        { year: 2023, pts: 115, note: 'Final Four' },
+        { year: 2020, pts: 49, note: 'Regular Season Wins' },
+      ],
+      moveUp: 'Just 33 pts behind Matt at 10th. A <strong>Reg Season Championship</strong> alone would flip them.',
+    },
+    {
+      name: 'Alex M', active: false, pts: 510,
+      breakdown: { playoff: 80, regseason: 20, consolation: 0 },
+      topFactor: { name: 'Championships', pts: 250 },
+      topSeasons: [
+        { year: 2015, pts: 510, note: 'League Champion · Reg Season Champ' },
+      ],
+      moveUp: null,
+    },
+    {
+      name: 'Tim C', active: false, pts: 414,
+      breakdown: { playoff: 33, regseason: 67, consolation: 0 },
+      topFactor: { name: 'Regular Season Wins', pts: 108 },
+      topSeasons: [
+        { year: 2020, pts: 149, note: 'Final Four · Reg Season Champ' },
+        { year: 2015, pts: 142, note: 'Final Four' },
+        { year: 2016, pts: 70, note: 'Regular Season Wins' },
+      ],
+      moveUp: null,
+    },
+    {
+      name: 'Wade', active: true, pts: 311,
+      breakdown: { playoff: 10, regseason: 86, consolation: 5 },
+      topFactor: { name: 'Regular Season Wins', pts: 123 },
+      topSeasons: [
+        { year: 2024, pts: 125, note: 'Reg Season Champ' },
+        { year: 2020, pts: 65, note: 'Regular Season Wins' },
+        { year: 2025, pts: 37, note: 'Consolation Champ' },
+      ],
+      moveUp: '104 pts behind Tim C (retired, rank 13). A <strong>playoff appearance</strong> + reg season wins bridges much of that gap.',
+    },
+    {
+      name: 'Tim', active: true, pts: 303,
+      breakdown: { playoff: 26, regseason: 74, consolation: 0 },
+      topFactor: { name: 'Regular Season Wins', pts: 93 },
+      topSeasons: [
+        { year: 2021, pts: 114, note: 'Final Four' },
+        { year: 2024, pts: 109, note: 'Reg Season Champ' },
+        { year: 2025, pts: 29, note: 'Regular Season Wins' },
+      ],
+      moveUp: 'Just 9 pts behind Wade at 14th — almost any contribution next season closes it.',
+    },
+    {
+      name: 'Andy', active: true, pts: 300,
+      breakdown: { playoff: 17, regseason: 83, consolation: 0 },
+      topFactor: { name: 'Regular Season Wins', pts: 87 },
+      topSeasons: [
+        { year: 2022, pts: 198, note: 'Final Four · Reg Season Champ' },
+        { year: 2023, pts: 43, note: 'Regular Season Wins' },
+        { year: 2024, pts: 35, note: 'Regular Season Wins' },
+      ],
+      moveUp: 'Just 4 pts behind Tim at 15th. Any win next season flips it.',
+    },
+    {
+      name: 'Jordan', active: true, pts: 297,
+      breakdown: { playoff: 3, regseason: 88, consolation: 9 },
+      topFactor: { name: 'Regular Season Wins', pts: 126 },
+      topSeasons: [
+        { year: 2021, pts: 86, note: 'Consolation Champ' },
+        { year: 2020, pts: 69, note: 'Regular Season Wins' },
+        { year: 2019, pts: 35, note: 'Regular Season Wins' },
+      ],
+      moveUp: 'Just 4 pts behind Andy at 16th — effectively tied. Any win off the board moves him up.',
+    },
+    {
+      name: 'Taylor', active: false, pts: 297,
+      breakdown: { playoff: 44, regseason: 56, consolation: 0 },
+      topFactor: { name: 'Regular Season Wins', pts: 66 },
+      topSeasons: [
+        { year: 2015, pts: 223, note: 'Runner-Up · Reg Season Champ' },
+        { year: 2014, pts: 39, note: 'Regular Season Wins' },
+        { year: 2016, pts: 35, note: 'Regular Season Wins' },
+      ],
+      moveUp: null,
+    },
+    {
+      name: 'Michelle C', active: false, pts: 266,
+      breakdown: { playoff: 4, regseason: 93, consolation: 3 },
+      topFactor: { name: 'Regular Season Wins', pts: 117 },
+      topSeasons: [
+        { year: 2017, pts: 65, note: 'Regular Season Wins' },
+        { year: 2019, pts: 58, note: 'Regular Season Wins' },
+        { year: 2018, pts: 52, note: 'Regular Season Wins' },
+      ],
+      moveUp: null,
+    },
+    {
+      name: 'Christine', active: false, pts: 181,
+      breakdown: { playoff: 39, regseason: 61, consolation: 0 },
+      topFactor: { name: 'Regular Season Wins', pts: 60 },
+      topSeasons: [
+        { year: 2018, pts: 125, note: 'Final Four' },
+        { year: 2017, pts: 38, note: 'Regular Season Wins' },
+        { year: 2016, pts: 18, note: 'Regular Season Wins' },
+      ],
+      moveUp: null,
+    },
+    {
+      name: 'Anthony M', active: false, pts: 89,
+      breakdown: { playoff: 0, regseason: 89, consolation: 11 },
+      topFactor: { name: 'Regular Season Wins', pts: 69 },
+      topSeasons: [
+        { year: 2018, pts: 28, note: 'Consolation Champ' },
+        { year: 2016, pts: 28, note: 'Regular Season Wins' },
+        { year: 2017, pts: 18, note: 'Regular Season Wins' },
+      ],
+      moveUp: null,
+    },
+    {
+      name: 'Pauly', active: false, pts: 25,
+      breakdown: { playoff: 0, regseason: 100, consolation: 0 },
+      topFactor: { name: 'Regular Season Wins', pts: 21 },
+      topSeasons: [
+        { year: 2015, pts: 25, note: 'Regular Season Wins' },
+      ],
+      moveUp: null,
+    },
+    {
+      name: 'Tyler', active: false, pts: 25,
+      breakdown: { playoff: 0, regseason: 92, consolation: 8 },
+      topFactor: { name: 'Regular Season Wins', pts: 15 },
+      topSeasons: [
+        { year: 2014, pts: 25, note: 'Regular Season Wins' },
+      ],
+      moveUp: null,
+    },
+    {
+      name: 'Anthony B', active: false, pts: 18,
+      breakdown: { playoff: 0, regseason: 100, consolation: 0 },
+      topFactor: { name: 'Regular Season Wins', pts: 18 },
+      topSeasons: [
+        { year: 2014, pts: 18, note: 'Regular Season Wins' },
+      ],
+      moveUp: null,
+    },
+    {
+      name: 'James', active: false, pts: 3,
+      breakdown: { playoff: 0, regseason: 100, consolation: 0 },
+      topFactor: { name: 'Regular Season Wins', pts: 3 },
+      topSeasons: [
+        { year: 2014, pts: 3, note: 'Regular Season Wins' },
+      ],
+      moveUp: null,
+    },
+    {
+      name: 'Luke', active: true, pts: 0,
+      breakdown: { playoff: 0, regseason: 0, consolation: 0 },
+      topFactor: { name: '—', pts: 0 },
+      topSeasons: [],
+      moveUp: 'Any <strong>regular season win</strong> next year gets him off zero.',
+    },
+  ];
+
+  const maxPts = Math.max(...OWNERS.map(o => o.pts), 1);
+
+  // ── RENDER ────────────────────────────────────────────────────────────────
+  function rankSuffix(n) {
+    if (n === 1) return '1st';
+    if (n === 2) return '2nd';
+    if (n === 3) return '3rd';
+    return `${n}th`;
+  }
+
+  function rankClass(n) {
+    if (n === 1) return 'rank-1';
+    if (n === 2) return 'rank-2';
+    if (n === 3) return 'rank-3';
+    return 'rank-other';
+  }
+
+  function buildBreakdownBar(b) {
+    return `
+      <div class="breakdown-bar">
+        <div class="breakdown-segment seg-playoff"     style="width:${b.playoff}%"></div>
+        <div class="breakdown-segment seg-regseason"   style="width:${b.regseason}%"></div>
+        <div class="breakdown-segment seg-consolation" style="width:${b.consolation}%"></div>
+      </div>
+      <div class="breakdown-legend">
+        <div class="breakdown-legend-item"><div class="breakdown-legend-dot" style="background:var(--playoff-color)"></div> Playoffs ${b.playoff}%</div>
+        <div class="breakdown-legend-item"><div class="breakdown-legend-dot" style="background:var(--regseason-color)"></div> Reg Season ${b.regseason}%</div>
+        <div class="breakdown-legend-item"><div class="breakdown-legend-dot" style="background:var(--consolation-color)"></div> Consolation ${b.consolation}%</div>
+      </div>
+    `;
+  }
+
+  function buildTopFactor(tf) {
+    if (!tf || tf.pts === 0) return `
+      <div class="top-factor-box">
+        <span class="top-factor-label">Top Factor</span>
+        <span class="top-factor-name" style="color:var(--muted)">No points yet</span>
+      </div>`;
+    return `
+      <div class="top-factor-box">
+        <span class="top-factor-label">Top Factor</span>
+        <span class="top-factor-name">${tf.name}</span>
+        <span class="top-factor-pts">${tf.pts} pts</span>
+      </div>`;
+  }
+
+  function buildTopSeasons(seasons) {
+    if (!seasons.length) return '<div style="color:var(--muted);font-size:0.82rem;font-style:italic">No seasons yet</div>';
+    return `<div class="top-seasons">
+      ${seasons.map(s => `
+        <div class="season-card">
+          <div class="season-year">${s.year}</div>
+          <div class="season-pts">${s.pts} pts</div>
+          <div class="season-note">${s.note}</div>
+        </div>
+      `).join('')}
+    </div>`;
+  }
+
+  function buildMoveUp(text, rank) {
+    if (rank === 1) return `<div class="move-up-na">Sitting at #1. No one to chase.</div>`;
+    if (!text) return `<div class="move-up-na">No longer active — ranking is locked in history.</div>`;
+    return `<div class="move-up-text">${text}</div>`;
+  }
+
+  function toggleRow(idx) {
+    const row = document.getElementById(`row-${idx}`);
+    row.classList.toggle('open');
+  }
+
+  const wrap = document.getElementById('rankingsWrap');
+
+  OWNERS.forEach((owner, idx) => {
+    const rank = idx + 1;
+    const barWidth = maxPts > 0 ? (owner.pts / maxPts * 100).toFixed(1) : 0;
+    const activeClass = owner.active ? 'active-owner' : 'inactive-owner';
+    const inactiveLabel = owner.active ? '' : '<span class="inactive-label">Retired</span>';
+
+    const row = document.createElement('div');
+    row.className = `owner-row ${activeClass}`;
+    row.id = `row-${idx}`;
+
+    row.innerHTML = `
+      <div class="owner-row-main" onclick="toggleRow(${idx})">
+        <div class="rank-num ${rankClass(rank)}">${rank}</div>
+        <div class="owner-info">
+          <div class="owner-name">${owner.name}${inactiveLabel}</div>
+          <div class="prestige-bar-wrap">
+            <div class="prestige-bar-fill" style="width:${barWidth}%"></div>
+          </div>
+        </div>
+        <div class="owner-pts">${owner.pts.toLocaleString()}</div>
+        <div class="chevron">▼</div>
+      </div>
+      <div class="owner-dashboard">
+        <div>
+          <div class="dash-section-title">Points Breakdown</div>
+          ${buildBreakdownBar(owner.breakdown)}
+          ${buildTopFactor(owner.topFactor)}
+        </div>
+        <div>
+          <div class="dash-section-title">Top Seasons</div>
+          ${buildTopSeasons(owner.topSeasons)}
+        </div>
+        <div>
+          <div class="dash-section-title">📈 Path to Moving Up</div>
+          <div class="move-up-box">
+            ${buildMoveUp(owner.moveUp, rank)}
+          </div>
+        </div>
+      </div>
+    `;
+
+    wrap.appendChild(row);
+  });
+  </script>
+</body>
+</html>
