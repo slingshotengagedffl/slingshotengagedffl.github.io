@@ -891,7 +891,7 @@
 
   .compare-bar-label {
     font-family: 'Bebas Neue', sans-serif;
-    font-size: 1.8rem;
+    font-size: 1.3rem;
     letter-spacing: 2px;
     color: var(--red);
   }
@@ -903,10 +903,10 @@
     border-radius: 6px;
     color: var(--white);
     font-family: 'Barlow Condensed', sans-serif;
-    font-size: 1.3rem;
+    font-size: 1rem;
     font-weight: 600;
     letter-spacing: 1px;
-    padding: 10px 12px;
+    padding: 8px 12px;
     cursor: pointer;
     appearance: none;
     background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%23888' stroke-width='2' fill='none' stroke-linecap='round'/%3E%3C/svg%3E");
@@ -924,9 +924,9 @@
     color: var(--white);
     border: none;
     border-radius: 6px;
-    padding: 12px 20px;
+    padding: 10px 20px;
     font-family: 'Barlow Condensed', sans-serif;
-    font-size: 1.4rem;
+    font-size: 1rem;
     font-weight: 700;
     letter-spacing: 2px;
     text-transform: uppercase;
@@ -1272,26 +1272,27 @@ function renderProfile(p) {
 
   function d(v) { return (v == null || v === 'null') ? '—' : v; }
 
-  const ownsVal = (p.rivalries.owns && p.rivalries.owns.length)
-    ? p.rivalries.owns.map(o => `${o.name} (${o.record})`).join('<br>')
-    : (p.rivalries.owns && p.rivalries.owns.name)
-    ? `${p.rivalries.owns.name} (${d(p.rivalries.owns.record)})`
-    : '—';
-  const ownsCard = `<div class="fact-card"><div class="fact-card-label">Owns</div><div class="fact-card-value">${ownsVal}</div></div>`;
+  const ownsCard = (p.rivalries.owns && p.rivalries.owns.length)
+    ? `<div class="fact-card"><div class="fact-card-label">Owns</div><div class="fact-card-value">${p.rivalries.owns.map(o => `${o.name} (${o.record})`).join('<br>')}</div></div>`
+    : p.rivalries.owns && p.rivalries.owns.name
+    ? `<div class="fact-card"><div class="fact-card-label">Owns</div><div class="fact-card-value">${p.rivalries.owns.name} (${d(p.rivalries.owns.record)})</div></div>`
+    : '';
 
-  const ownedByVal = Array.isArray(p.rivalries.ownedBy)
+  const ownedByVal = (Array.isArray(p.rivalries.ownedBy) && p.rivalries.ownedBy.length)
     ? p.rivalries.ownedBy.map(o => `${o.name} (${o.record})`).join('<br>')
-    : (p.rivalries.ownedBy ? `${p.rivalries.ownedBy}${p.rivalries.ownedByRecord ? ' (' + p.rivalries.ownedByRecord + ')' : ''}` : 'No one');
+    : (p.rivalries.ownedBy && !Array.isArray(p.rivalries.ownedBy))
+    ? `${p.rivalries.ownedBy}${p.rivalries.ownedByRecord ? ' (' + p.rivalries.ownedByRecord + ')' : ''}`
+    : '—';
   const ownedByCard = `<div class="fact-card"><div class="fact-card-label">Owned By</div><div class="fact-card-value">${ownedByVal}</div></div>`;
 
-  const nextGameHTML = `
+  const nextGameHTML = nextGame && nextGame.opponent ? `
       <div class="live-last-game" style="margin-top:10px; padding-top:10px; border-top:1px solid #222;">
         <span class="last-game-label">Next Game</span>
         <div class="last-game-result">
-          <div class="last-game-detail">${nextGame && nextGame.opponent ? 'vs. ' + nextGame.opponent : '—'}</div>
+          <div class="last-game-detail">vs. ${d(nextGame.opponent)}</div>
         </div>
-        ${nextGame && nextGame.lifetimeVsOpponent ? `<div class="last-game-record">Lifetime ${nextGame.lifetimeVsOpponent}</div>` : ''}
-      </div>`;
+        <div class="last-game-record">Lifetime ${d(nextGame.lifetimeVsOpponent)}</div>
+      </div>` : '';
 
   const explainerOverrides = {
     'Net Earnings': 'Total winnings minus entry fees',
@@ -1330,15 +1331,6 @@ function renderProfile(p) {
     }).join('');
   }
 
-  const prestigeStatRow = `
-    <div class="stats-row">
-      <div class="stats-left"><span class="stats-name">Prestige Points</span></div>
-      <div class="stats-right">
-        <span class="stats-val">${p.prestige.points != null ? p.prestige.points.toLocaleString() : '—'}</span>
-        ${p.prestige.rank14 ? `<span class="stats-rank">(#${p.prestige.rank14})</span>` : ''}
-      </div>
-    </div>`;
-
   const statsHTML = `
     <div class="stats-bucket">
       <div class="stats-bucket-label" style="display:flex;justify-content:space-between;align-items:center;">
@@ -1346,7 +1338,6 @@ function renderProfile(p) {
         <span style="font-size:0.7rem;color:var(--gold);font-weight:400;letter-spacing:1px;text-transform:uppercase;">(#) = rank out of 14 active owners</span>
       </div>
       ${renderStatBucket(p.careerStats.general)}
-      ${prestigeStatRow}
     </div>
     <div class="stats-bucket">
       <div class="stats-bucket-label">Regular Season</div>
@@ -1401,7 +1392,7 @@ function renderProfile(p) {
         </div>
         <div class="acc-bucket">
           <div class="acc-bucket-label">Season Summary</div>
-          <div class="acc-row"><span class="acc-label">Winnings</span><span class="acc-val earnings">${s.winnings != null ? '$' + (Number.isInteger(s.winnings) ? s.winnings.toLocaleString() : parseFloat(s.winnings).toLocaleString('en-US', {minimumFractionDigits:2, maximumFractionDigits:2})) : '—'}</span></div>
+          <div class="acc-row"><span class="acc-label">Winnings</span><span class="acc-val earnings">${s.netEarnings != null ? "$" + parseFloat(s.netEarnings).toFixed(2) : "—"}</span></div>
           <div class="acc-row"><span class="acc-label">Prestige Earned</span><span class="acc-val">${d(s.prestigeEarned)}</span></div>
           <div class="acc-row"><span class="acc-label">Playoff Result</span><span class="acc-val ${s.result === 'champion' ? '' : s.result === 'missed' ? 'loss' : s.result === 'bronze' ? 'bronze' : ''}">${d(s.playoffResult)}</span></div>
         </div>
@@ -1953,18 +1944,13 @@ document.addEventListener('click', function(e) {
 // ── CHARTS ──
 function initCharts(p) {
   const c = p.charts;
-  const labels = c.winsAndFinish.years.map(y => "'" + String(y).slice(2));
-  const wfWins = c.winsAndFinish.wins;
-  const wfFinish = c.winsAndFinish.finish;
-  const psRaw = c.pointShare.values;
-  const psData = psRaw.map(v => {
-    if (v == null) return null;
-    const num = parseFloat(v);
-    // If value looks like a raw decimal (< 1), multiply by 100; otherwise use as-is
-    return parseFloat((num < 1 ? num * 100 : num).toFixed(2));
-  });
-  const wData = c.winnings.values;
-  const prData = c.prestigePerSeason.values;
+  const labels = [...c.winsAndFinish.years].reverse().map(y => "'" + String(y).slice(2));
+  const wfWins = [...c.winsAndFinish.wins].reverse();
+  const wfFinish = [...c.winsAndFinish.finish].reverse();
+  const psRaw = [...c.pointShare.values].reverse();
+  const psData = psRaw.map(v => v == null ? null : parseFloat((v * 100).toFixed(2)));
+  const wData = [...c.winnings.values].reverse();
+  const prData = [...c.prestigePerSeason.values].reverse();
   const prAvg = (() => {
     const valid = prData.filter(v => v != null && v > 0);
     return valid.length ? parseFloat((valid.reduce((a,b) => a+b, 0) / valid.length).toFixed(1)) : 0;
@@ -2062,7 +2048,7 @@ function initCharts(p) {
     },
     options: {
       animation: animOpts, interaction: interactionOpts, responsive: true, layout: { padding: { top: 12 } },
-      plugins: { legend: { display: false }, tooltip: { ...tooltipDefaults, filter: i => i.datasetIndex === 0, callbacks: { title: i => i[0].label, label: i => i.parsed.y.toFixed(1) + '%' } } },
+      plugins: { legend: { display: false }, tooltip: { ...tooltipDefaults, filter: i => i.datasetIndex === 0, callbacks: { title: i => i[0].label, label: i => i.parsed.y.toFixed(2) + '%' } } },
       scales: { x: scaleX, y: { ...scaleY, min: 5, max: 10, ticks: { ...scaleY.ticks, callback: v => v + '%' } } },
       elements: { point: { radius: 4, hoverRadius: 6, backgroundColor: '#22c55e', borderColor: '#22c55e' }, line: { tension: 0.3 } }
     }
@@ -2079,7 +2065,7 @@ function initCharts(p) {
     },
     options: {
       animation: animOpts, interaction: interactionOpts, responsive: true, layout: { padding: { top: 12 } },
-      plugins: { legend: { display: false }, tooltip: { ...tooltipDefaults, callbacks: { title: i => i[0].label, label: i => { const v = i.parsed.y; return '$' + (Number.isInteger(v) ? v.toLocaleString() : v.toLocaleString('en-US', {minimumFractionDigits:2, maximumFractionDigits:2})); } } } },
+      plugins: { legend: { display: false }, tooltip: { ...tooltipDefaults, callbacks: { title: i => i[0].label, label: i => '$' + i.parsed.y.toLocaleString() } } },
       scales: { x: scaleX, y: { ...scaleY, ticks: { ...scaleY.ticks, stepSize: 50, callback: v => '$' + v } } }
     }
   }));
