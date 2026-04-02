@@ -355,282 +355,377 @@
   <div class="rankings-wrap" id="rankingsWrap"></div>
 
   <script>
-  // ── DATA ─────────────────────────────────────────────────────────────────
-  // Computed from 24-factor formula sheet. Updated after 2025 season.
-  // breakdown %s: approximate share of total pts from each category
-  // moveUp: fill in manually each offseason
   const OWNERS = [
     {
       name: 'Dylan', active: true, pts: 2201,
       breakdown: { playoff: 65, regseason: 35, consolation: 0 },
-      topFactor: { name: '3× League Champion', pts: 750 },
+      topFactors: [
+        { name: 'Championships', pts: 750 },
+        { name: 'Regular Season Wins', pts: 252 },
+        { name: 'Final Fours', pts: 240 },
+      ],
       topSeasons: [
         { year: 2017, pts: 539, note: 'League Champion · Reg Season Champ' },
-        { year: 2021, pts: 511, note: 'League Champion · Reg Season Champ' },
-        { year: 2025, pts: 510, note: 'League Champion · Reg Season Champ' },
+        { year: 2021, pts: 511, note: 'League Champion' },
+        { year: 2025, pts: 510, note: 'League Champion' },
       ],
-      moveUp: null,
+      race: '46 pts ahead of Jack (#2)',
     },
     {
       name: 'Jack', active: true, pts: 2155,
       breakdown: { playoff: 53, regseason: 44, consolation: 2 },
-      topFactor: { name: '6× Final Four', pts: 240 },
-        { year: 2019, pts: 480, note: 'League Champion · Reg Season Champ' },
+      topFactors: [
+        { name: 'Championships', pts: 500 },
+        { name: 'Regular Season Wins', pts: 297 },
+        { name: 'Final Fours', pts: 240 },
+      ],
+      topSeasons: [
+        { year: 2018, pts: 571, note: 'League Champion · Reg Season Champ' },
+        { year: 2019, pts: 480, note: 'League Champion' },
         { year: 2014, pts: 251, note: 'Runner-Up · Reg Season Champ' },
       ],
-      moveUp: 'Just 46 pts behind Dylan. A <strong>strong playoff run</strong> next season could flip the top spot.',
+      race: '46 pts behind Dylan (#1) · 137 ahead of Kyle (#3)',
     },
     {
       name: 'Kyle', active: true, pts: 2018,
       breakdown: { playoff: 65, regseason: 35, consolation: 0 },
-      topFactor: { name: '5× Championship Finalist', pts: 300 },
-        { year: 2022, pts: 531, note: 'League Champion · Reg Season Champ' },
-        { year: 2018, pts: 258, note: 'Runner-Up · Reg Season Champ' },
+      topFactors: [
+        { name: 'Championships', pts: 500 },
+        { name: 'Finals Appearances', pts: 300 },
+        { name: 'Playoff Wins', pts: 200 },
       ],
-      moveUp: '137 pts behind Jack. Another <strong>Championship</strong> (+250 pts) would vault Kyle to #1 all-time.',
+      topSeasons: [
+        { year: 2024, pts: 580, note: 'League Champion · Reg Season Champ' },
+        { year: 2022, pts: 531, note: 'League Champion' },
+        { year: 2018, pts: 258, note: 'Runner-Up' },
+      ],
+      race: '137 pts behind Jack (#2) · 538 ahead of Mike (#4)',
     },
     {
-      name: 'Mike', active: true, pts: 1547,
-      breakdown: { playoff: 54, regseason: 45, consolation: 0 },
-      topFactor: { name: '5× Final Four', pts: 200 },
+      name: 'Mike', active: true, pts: 1480,
+      breakdown: { playoff: 56, regseason: 44, consolation: 0 },
+      topFactors: [
+        { name: 'Regular Season Wins', pts: 264 },
+        { name: 'Championships', pts: 250 },
+        { name: 'Final Fours', pts: 200 },
+      ],
       topSeasons: [
         { year: 2020, pts: 562, note: 'League Champion · Reg Season Champ' },
-        { year: 2022, pts: 251, note: 'Runner-Up · Reg Season Champ' },
+        { year: 2022, pts: 251, note: 'Runner-Up' },
         { year: 2025, pts: 192, note: 'Runner-Up' },
       ],
-      moveUp: '471 pts behind Kyle. A <strong>Championship</strong> + strong regular season would start closing the gap.',
+      race: '538 pts behind Kyle (#3) · 49 ahead of Alex (#5)',
     },
     {
       name: 'Alex', active: true, pts: 1431,
       breakdown: { playoff: 52, regseason: 48, consolation: 0 },
-      topFactor: { name: '5× Final Four', pts: 200 },
+      topFactors: [
+        { name: 'Championships', pts: 250 },
+        { name: 'Regular Season Wins', pts: 213 },
+        { name: 'Final Fours', pts: 200 },
+      ],
+      topSeasons: [
+        { year: 2023, pts: 587, note: 'League Champion · Reg Season Champ' },
         { year: 2019, pts: 297, note: 'Runner-Up · Reg Season Champ' },
         { year: 2020, pts: 148, note: 'Final Four' },
       ],
-      moveUp: '116 pts behind Mike. A <strong>Championship</strong> (+250 pts) would push Alex into 4th.',
+      race: '49 pts behind Mike (#4) · 374 ahead of Daniel (#6)',
     },
     {
       name: 'Daniel', active: true, pts: 1057,
       breakdown: { playoff: 37, regseason: 62, consolation: 0 },
-      topFactor: { name: '4× Final Four', pts: 160 },
+      topFactors: [
+        { name: 'Regular Season Wins', pts: 234 },
+        { name: 'Final Fours', pts: 160 },
+        { name: 'Finals Appearances', pts: 120 },
+      ],
       topSeasons: [
         { year: 2016, pts: 284, note: 'Runner-Up · Reg Season Champ' },
-        { year: 2024, pts: 231, note: 'Runner-Up · Reg Season Champ' },
-        { year: 2022, pts: 150, note: 'Final Four · Reg Season Champ' },
+        { year: 2024, pts: 231, note: 'Runner-Up' },
+        { year: 2022, pts: 150, note: 'Final Four' },
       ],
-      moveUp: '374 pts behind Alex. A <strong>Championship run</strong> plus a reg season title could start making a dent.',
+      race: '374 pts behind Alex (#5) · 48 ahead of Brian (#7)',
     },
     {
       name: 'Brian', active: true, pts: 1009,
       breakdown: { playoff: 43, regseason: 53, consolation: 4 },
-      topFactor: { name: '1× League Champion', pts: 250 },
-        { year: 2025, pts: 99, note: 'Reg Season Champ' },
+      topFactors: [
+        { name: 'Championships', pts: 250 },
+        { name: 'Regular Season Wins', pts: 243 },
+        { name: '120+ Power Score Seasons', pts: 75 },
+      ],
+      topSeasons: [
+        { year: 2016, pts: 474, note: 'League Champion' },
+        { year: 2025, pts: 99, note: 'Regular Season Wins' },
         { year: 2022, pts: 80, note: 'Regular Season Wins' },
       ],
-      moveUp: 'Just 48 pts behind Daniel. A <strong>playoff run</strong> next season moves Brian past him.',
+      race: '48 pts behind Daniel (#6) · 78 ahead of Jon (#8)',
     },
     {
       name: 'Jon', active: false, pts: 931,
       breakdown: { playoff: 40, regseason: 58, consolation: 2 },
-      topFactor: { name: '4× Final Four', pts: 160 },
+      topFactors: [
+        { name: 'Regular Season Wins', pts: 225 },
+        { name: 'Final Fours', pts: 160 },
+        { name: 'Playoff Wins', pts: 80 },
+      ],
       topSeasons: [
         { year: 2021, pts: 306, note: 'Runner-Up · Reg Season Champ' },
         { year: 2019, pts: 125, note: 'Final Four' },
         { year: 2025, pts: 123, note: 'Final Four' },
       ],
-      moveUp: null,
     },
     {
       name: 'Michelle T', active: false, pts: 704,
       breakdown: { playoff: 76, regseason: 24, consolation: 0 },
-      topFactor: { name: '1× League Champion', pts: 250 },
-        { year: 2017, pts: 202, note: 'Runner-Up · Reg Season Champ' },
+      topFactors: [
+        { name: 'Championships', pts: 250 },
+        { name: 'Finals Appearances', pts: 120 },
+        { name: 'Final Fours', pts: 80 },
+      ],
+      topSeasons: [
+        { year: 2014, pts: 496, note: 'League Champion' },
+        { year: 2017, pts: 202, note: 'Runner-Up' },
         { year: 2015, pts: 6, note: 'Regular Season Wins' },
       ],
-      moveUp: null,
     },
     {
       name: 'Matt', active: true, pts: 570,
       breakdown: { playoff: 17, regseason: 82, consolation: 1 },
-      topFactor: { name: 'Weeks at #1 Power Score', pts: 36 },
+      topFactors: [
+        { name: 'Regular Season Wins', pts: 195 },
+        { name: '120–149 Pt Games', pts: 72 },
+        { name: '120+ Power Score Seasons', pts: 60 },
+      ],
       topSeasons: [
-        { year: 2025, pts: 134, note: 'Reg Season Champ' },
+        { year: 2025, pts: 134, note: 'Regular Season Wins' },
         { year: 2021, pts: 127, note: 'Final Four' },
         { year: 2019, pts: 96, note: 'Regular Season Wins' },
       ],
-      moveUp: '135 pts behind Michelle T (retired, rank 9). A <strong>playoff run</strong> + strong regular season gets there.',
+      race: '134 pts behind Michelle T (#9) · 32 ahead of Scott (#11)',
     },
     {
       name: 'Scott', active: true, pts: 538,
       breakdown: { playoff: 26, regseason: 68, consolation: 6 },
-      topFactor: { name: '2× Final Four', pts: 80 },
+      topFactors: [
+        { name: 'Regular Season Wins', pts: 210 },
+        { name: 'Final Fours', pts: 80 },
+        { name: '120–149 Pt Games', pts: 48 },
+      ],
       topSeasons: [
-        { year: 2016, pts: 145, note: 'Final Four · Reg Season Champ' },
+        { year: 2016, pts: 145, note: 'Final Four' },
         { year: 2023, pts: 115, note: 'Final Four' },
         { year: 2020, pts: 49, note: 'Regular Season Wins' },
       ],
-      moveUp: 'Just 33 pts behind Matt at 10th. A <strong>Reg Season Championship</strong> alone would flip them.',
+      race: '32 pts behind Matt (#10) · 28 ahead of Alex M (#12)',
     },
     {
       name: 'Alex M', active: false, pts: 510,
       breakdown: { playoff: 80, regseason: 20, consolation: 0 },
-      topFactor: { name: '1× League Champion', pts: 250 },
+      topFactors: [
+        { name: 'Championships', pts: 250 },
+        { name: 'Finals Appearances', pts: 60 },
+        { name: 'Playoff Wins', pts: 40 },
       ],
-      moveUp: null,
+      topSeasons: [
+        { year: 2015, pts: 510, note: 'League Champion' },
+      ],
     },
     {
       name: 'Tim C', active: false, pts: 414,
       breakdown: { playoff: 33, regseason: 67, consolation: 0 },
-      topFactor: { name: '2× Final Four', pts: 80 },
+      topFactors: [
+        { name: 'Regular Season Wins', pts: 108 },
+        { name: 'Final Fours', pts: 80 },
+        { name: '120+ Power Score Seasons', pts: 45 },
+      ],
       topSeasons: [
-        { year: 2020, pts: 149, note: 'Final Four · Reg Season Champ' },
+        { year: 2020, pts: 149, note: 'Final Four' },
         { year: 2015, pts: 142, note: 'Final Four' },
         { year: 2016, pts: 70, note: 'Regular Season Wins' },
       ],
-      moveUp: null,
     },
     {
       name: 'Wade', active: true, pts: 311,
       breakdown: { playoff: 10, regseason: 86, consolation: 5 },
-      topFactor: { name: '9+ Win Regular Season', pts: 20 },
+      topFactors: [
+        { name: 'Regular Season Wins', pts: 123 },
+        { name: '120+ Power Score Seasons', pts: 30 },
+        { name: 'Playoff Appearances', pts: 30 },
+      ],
       topSeasons: [
-        { year: 2024, pts: 125, note: 'Reg Season Champ' },
+        { year: 2024, pts: 125, note: 'Regular Season Wins' },
         { year: 2020, pts: 65, note: 'Regular Season Wins' },
         { year: 2025, pts: 37, note: 'Consolation Champ' },
       ],
-      moveUp: '104 pts behind Tim C (retired, rank 13). A <strong>playoff appearance</strong> + reg season wins bridges much of that gap.',
+      race: '103 pts behind Tim C (#13) · 8 ahead of Tim (#15)',
     },
     {
       name: 'Tim', active: true, pts: 303,
       breakdown: { playoff: 26, regseason: 74, consolation: 0 },
-      topFactor: { name: 'Rivalry Week Champion', pts: 8 },
+      topFactors: [
+        { name: 'Regular Season Wins', pts: 93 },
+        { name: 'Final Fours', pts: 40 },
+        { name: '9+ Win Seasons', pts: 20 },
+      ],
       topSeasons: [
         { year: 2021, pts: 114, note: 'Final Four' },
-        { year: 2024, pts: 109, note: 'Reg Season Champ' },
+        { year: 2024, pts: 109, note: 'Regular Season Wins' },
         { year: 2025, pts: 29, note: 'Regular Season Wins' },
       ],
-      moveUp: 'Just 9 pts behind Wade at 14th — almost any contribution next season closes it.',
+      race: '8 pts behind Wade (#14) · 3 ahead of Andy (#16)',
     },
     {
       name: 'Andy', active: true, pts: 300,
       breakdown: { playoff: 17, regseason: 83, consolation: 0 },
-      topFactor: { name: 'Regular Season Champion', pts: 25 },
+      topFactors: [
+        { name: 'Regular Season Wins', pts: 87 },
+        { name: 'Final Fours', pts: 40 },
+        { name: 'Reg Season Titles', pts: 25 },
+      ],
       topSeasons: [
         { year: 2022, pts: 198, note: 'Final Four · Reg Season Champ' },
         { year: 2023, pts: 43, note: 'Regular Season Wins' },
         { year: 2024, pts: 35, note: 'Regular Season Wins' },
       ],
-      moveUp: 'Just 4 pts behind Tim at 15th. Any win next season flips it.',
+      race: '3 pts behind Tim (#15) · 3 ahead of Jordan (#17)',
     },
     {
       name: 'Jordan', active: true, pts: 297,
       breakdown: { playoff: 3, regseason: 88, consolation: 9 },
-      topFactor: { name: '10× Rivalry Week Wins', pts: 30 },
+      topFactors: [
+        { name: 'Regular Season Wins', pts: 126 },
+        { name: 'Rivalry Week Wins', pts: 30 },
+        { name: '120+ Power Score Seasons', pts: 30 },
+      ],
       topSeasons: [
         { year: 2021, pts: 86, note: 'Consolation Champ' },
         { year: 2020, pts: 69, note: 'Regular Season Wins' },
         { year: 2019, pts: 35, note: 'Regular Season Wins' },
       ],
-      moveUp: 'Just 4 pts behind Andy at 16th — effectively tied. Any win off the board moves him up.',
+      race: '3 pts behind Andy (#16) · tied with Taylor (#18)',
     },
     {
       name: 'Taylor', active: false, pts: 297,
       breakdown: { playoff: 44, regseason: 56, consolation: 0 },
-      topFactor: { name: '1× Championship Finalist', pts: 60 },
+      topFactors: [
+        { name: 'Regular Season Wins', pts: 66 },
+        { name: 'Finals Appearances', pts: 60 },
+        { name: 'Final Fours', pts: 40 },
+      ],
       topSeasons: [
         { year: 2015, pts: 223, note: 'Runner-Up · Reg Season Champ' },
         { year: 2014, pts: 39, note: 'Regular Season Wins' },
         { year: 2016, pts: 35, note: 'Regular Season Wins' },
       ],
-      moveUp: null,
     },
     {
       name: 'Michelle C', active: false, pts: 266,
       breakdown: { playoff: 4, regseason: 93, consolation: 3 },
-      topFactor: { name: '4 Seasons over 120 Power Score', pts: 60 },
+      topFactors: [
+        { name: 'Regular Season Wins', pts: 117 },
+        { name: '120+ Power Score Seasons', pts: 60 },
+        { name: '120–149 Pt Games', pts: 28 },
+      ],
       topSeasons: [
         { year: 2017, pts: 65, note: 'Regular Season Wins' },
         { year: 2019, pts: 58, note: 'Regular Season Wins' },
         { year: 2018, pts: 52, note: 'Regular Season Wins' },
       ],
-      moveUp: null,
     },
     {
       name: 'Christine', active: false, pts: 181,
       breakdown: { playoff: 39, regseason: 61, consolation: 0 },
-      topFactor: { name: '1× Final Four', pts: 40 },
+      topFactors: [
+        { name: 'Regular Season Wins', pts: 60 },
+        { name: 'Final Fours', pts: 40 },
+        { name: 'Playoff Wins', pts: 20 },
+      ],
       topSeasons: [
         { year: 2018, pts: 125, note: 'Final Four' },
         { year: 2017, pts: 38, note: 'Regular Season Wins' },
         { year: 2016, pts: 18, note: 'Regular Season Wins' },
       ],
-      moveUp: null,
     },
     {
       name: 'Anthony M', active: false, pts: 89,
       breakdown: { playoff: 0, regseason: 89, consolation: 11 },
-      topFactor: { name: 'Consolation Champion', pts: 10 },
+      topFactors: [
+        { name: 'Regular Season Wins', pts: 69 },
+        { name: 'Consolation Titles', pts: 10 },
+        { name: 'Rivalry Week Wins', pts: 6 },
+      ],
       topSeasons: [
         { year: 2018, pts: 28, note: 'Consolation Champ' },
         { year: 2016, pts: 28, note: 'Regular Season Wins' },
         { year: 2017, pts: 18, note: 'Regular Season Wins' },
       ],
-      moveUp: null,
+    },
+    {
+      name: 'Mike V', active: false, pts: 67,
+      breakdown: { playoff: 15, regseason: 85, consolation: 0 },
+      topFactors: [
+        { name: 'Regular Season Wins', pts: 24 },
+        { name: '120+ Power Score Seasons', pts: 15 },
+        { name: 'Playoff Appearances', pts: 10 },
+      ],
+      topSeasons: [
+        { year: 2021, pts: 67, note: 'Playoff appearance' },
+      ],
     },
     {
       name: 'Pauly', active: false, pts: 25,
       breakdown: { playoff: 0, regseason: 100, consolation: 0 },
-      topFactor: { name: 'Regular Season Wins', pts: 21 },
+      topFactors: [
+        { name: 'Regular Season Wins', pts: 21 },
+        { name: '120–149 Pt Games', pts: 4 },
+      ],
       topSeasons: [
         { year: 2015, pts: 25, note: 'Regular Season Wins' },
       ],
-      moveUp: null,
     },
     {
       name: 'Tyler', active: false, pts: 25,
       breakdown: { playoff: 0, regseason: 92, consolation: 8 },
-      topFactor: { name: 'Regular Season Wins', pts: 15 },
+      topFactors: [
+        { name: 'Regular Season Wins', pts: 15 },
+        { name: '120–149 Pt Games', pts: 8 },
+        { name: '120–149 Pt Games (Consolation)', pts: 2 },
+      ],
       topSeasons: [
         { year: 2014, pts: 25, note: 'Regular Season Wins' },
       ],
-      moveUp: null,
     },
     {
       name: 'Anthony B', active: false, pts: 18,
       breakdown: { playoff: 0, regseason: 100, consolation: 0 },
-      topFactor: { name: 'Regular Season Wins', pts: 18 },
+      topFactors: [
+        { name: 'Regular Season Wins', pts: 18 },
+      ],
       topSeasons: [
         { year: 2014, pts: 18, note: 'Regular Season Wins' },
       ],
-      moveUp: null,
     },
     {
       name: 'James', active: false, pts: 3,
       breakdown: { playoff: 0, regseason: 100, consolation: 0 },
-      topFactor: { name: 'Regular Season Wins', pts: 3 },
+      topFactors: [
+        { name: 'Regular Season Wins', pts: 3 },
+      ],
       topSeasons: [
         { year: 2014, pts: 3, note: 'Regular Season Wins' },
       ],
-      moveUp: null,
     },
     {
       name: 'Luke', active: true, pts: 0,
       breakdown: { playoff: 0, regseason: 0, consolation: 0 },
-      topFactor: { name: '—', pts: 0 },
+      topFactors: [],
       topSeasons: [],
-      moveUp: 'Any <strong>regular season win</strong> next year gets him off zero.',
+      race: '3 pts behind James (#26)',
     },
   ];
 
   const maxPts = Math.max(...OWNERS.map(o => o.pts), 1);
-
-  // ── RENDER ────────────────────────────────────────────────────────────────
-  function rankSuffix(n) {
-    if (n === 1) return '1st';
-    if (n === 2) return '2nd';
-    if (n === 3) return '3rd';
-    return `${n}th`;
-  }
 
   function rankClass(n) {
     if (n === 1) return 'rank-1';
@@ -654,22 +749,18 @@
     `;
   }
 
-  function buildTopFactor(tf) {
-    if (!tf || tf.pts === 0) return `
-      <div class="top-factor-box">
-        <span class="top-factor-label">Top Factor</span>
-        <span class="top-factor-name" style="color:var(--muted)">No points yet</span>
-      </div>`;
-    return `
-      <div class="top-factor-box">
-        <span class="top-factor-label">Top Factor</span>
+  function buildTopFactors(factors) {
+    if (!factors || !factors.length) return `<div style="color:var(--muted);font-size:0.82rem;font-style:italic">No points yet</div>`;
+    return factors.map((tf, i) => `
+      <div class="top-factor-box" style="${i > 0 ? 'margin-top:6px' : ''}">
+        <span class="top-factor-label">#${i+1}</span>
         <span class="top-factor-name">${tf.name}</span>
         <span class="top-factor-pts">${tf.pts} pts</span>
-      </div>`;
+      </div>`).join('');
   }
 
   function buildTopSeasons(seasons) {
-    if (!seasons.length) return '<div style="color:var(--muted);font-size:0.82rem;font-style:italic">No seasons yet</div>';
+    if (!seasons || !seasons.length) return '<div style="color:var(--muted);font-size:0.82rem;font-style:italic">No seasons yet</div>';
     return `<div class="top-seasons">
       ${seasons.map(s => `
         <div class="season-card">
@@ -681,15 +772,8 @@
     </div>`;
   }
 
-  function buildMoveUp(text, rank) {
-    if (rank === 1) return `<div class="move-up-na">Sitting at #1. No one to chase.</div>`;
-    if (!text) return `<div class="move-up-na">No longer active — ranking is locked in history.</div>`;
-    return `<div class="move-up-text">${text}</div>`;
-  }
-
   function toggleRow(idx) {
-    const row = document.getElementById(`row-${idx}`);
-    row.classList.toggle('open');
+    document.getElementById(`row-${idx}`).classList.toggle('open');
   }
 
   const wrap = document.getElementById('rankingsWrap');
@@ -699,6 +783,14 @@
     const barWidth = maxPts > 0 ? (owner.pts / maxPts * 100).toFixed(1) : 0;
     const activeClass = owner.active ? 'active-owner' : 'inactive-owner';
     const inactiveLabel = owner.active ? '' : '<span class="inactive-label">Retired</span>';
+
+    const standingsSection = owner.active ? `
+        <div>
+          <div class="dash-section-title">📊 The Standings</div>
+          <div class="move-up-box">
+            <div class="move-up-text">${owner.race || '—'}</div>
+          </div>
+        </div>` : '';
 
     const row = document.createElement('div');
     row.className = `owner-row ${activeClass}`;
@@ -720,23 +812,22 @@
         <div>
           <div class="dash-section-title">Points Breakdown</div>
           ${buildBreakdownBar(owner.breakdown)}
-          ${buildTopFactor(owner.topFactor)}
+        </div>
+        <div>
+          <div class="dash-section-title">Top Factors</div>
+          ${buildTopFactors(owner.topFactors)}
         </div>
         <div>
           <div class="dash-section-title">Top Seasons</div>
           ${buildTopSeasons(owner.topSeasons)}
         </div>
-        <div>
-          <div class="dash-section-title">📈 Path to Moving Up</div>
-          <div class="move-up-box">
-            ${buildMoveUp(owner.moveUp, rank)}
-          </div>
-        </div>
+        ${standingsSection}
       </div>
     `;
 
     wrap.appendChild(row);
   });
   </script>
+
 </body>
 </html>
