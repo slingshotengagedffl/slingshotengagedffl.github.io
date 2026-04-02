@@ -79,6 +79,13 @@
             "rank": "#1",
             "explainer": "Total winnings minus entry fees",
             "isEarnings": true
+          },
+          {
+            "stat": "Prestige Points",
+            "value": 2155,
+            "rank": "#1",
+            "explainer": null,
+            "isEarnings": false
           }
         ],
         "regularSeason": [
