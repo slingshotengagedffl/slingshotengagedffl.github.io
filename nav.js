@@ -1,6 +1,6 @@
 (function () {
   const NAV_ITEMS = [
-    { emoji: '🏠', label: 'Home',                    href: 'index.html',        external: false },
+    { emoji: '🌭', label: 'Home',                    href: 'index.html',        external: false },
     { emoji: '💪', label: 'Beefcakes',               href: 'beefcakes.html',    external: false,
       submenu: [
         { label: 'Alex',   href: 'profiles/alex.html' },
@@ -19,7 +19,7 @@
         { label: 'Wade',   href: 'profiles/wade.html' },
       ]
     },
-    { emoji: '📊', label: 'The Annals',              href: 'annals.html',       external: false,
+    { emoji: '🏛️', label: 'The Annals',              href: 'annals.html',       external: false,
       submenu: [
         { label: 'Single Season Stats',          href: 'rb-single-season-stats.html' },
         { label: 'Single Game Records',          href: 'rb-single-game-records.html' },
@@ -40,7 +40,7 @@
         { label: 'League Weekends',                  href: 'annals-league-weekends.html' },
       ]
     },
-    { emoji: '📋', label: 'Constitution',            href: 'https://drive.google.com/file/d/1u5CjjgncTrwKSedc5rtYRhpPllhlc3w7/view?usp=drivesdk', external: true },
+    { emoji: '📜', label: 'Constitution',            href: 'https://drive.google.com/file/d/1u5CjjgncTrwKSedc5rtYRhpPllhlc3w7/view?usp=drivesdk', external: true },
     { emoji: '📸', label: 'Album',                   href: 'https://photos.app.goo.gl/B97a54JNwhCwhof39', external: true },
     { emoji: '🌍', label: "Franks 'Round the World", href: 'https://maps.app.goo.gl/jM1vFzPdmUkwxZN57?g_st=ac', external: true },
   ];
@@ -63,7 +63,7 @@
     .nav-logo {
       font-family: 'Bebas Neue', sans-serif; font-weight: 400;
       font-size: 1.35rem; letter-spacing: 0.1em;
-      color: var(--red-bright); text-transform: uppercase;
+      color: #e74c3c; text-transform: uppercase;
     }
     .hotdog-btn {
       background: none; border: none; cursor: pointer;
