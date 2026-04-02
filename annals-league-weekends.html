@@ -56,6 +56,14 @@
       color: var(--muted);
       margin-top: 8px;
     }
+    .last-updated {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: 0.72rem;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: #555;
+      margin-top: 6px;
+    }
 
     /* ── Commissioner mode button ── */
     .commish-wrap {
@@ -349,6 +357,7 @@
     <div class="page-supertitle">The Annals of History</div>
     <h1>League Weekends</h1>
     <p class="page-subtitle">Drop a memory. Relive the chaos.</p>
+    <p class="last-updated" id="lastUpdated"></p>
   </div>
 
   <div class="commish-wrap">
@@ -566,6 +575,17 @@
       if (!confirm('Delete this memory?')) return;
       await remove(ref(db, `memories/${weekendId}/${key}`));
     };
+
+    // ── LAST UPDATED ───────────────────────────────────────────────────────
+    fetch('../profiles-data.json')
+      .then(r => r.json())
+      .then(data => {
+        const date = data.pageUpdates?.['league-weekends'];
+        if (date) {
+          document.getElementById('lastUpdated').textContent = 'Updated · ' + date;
+        }
+      })
+      .catch(() => {});
 
     // ── INIT ───────────────────────────────────────────────────────────────
     buildPage();
