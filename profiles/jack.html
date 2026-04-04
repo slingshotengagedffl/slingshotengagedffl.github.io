@@ -1037,7 +1037,7 @@
     border-radius: 4px;
     color: var(--muted);
     font-family: 'Barlow Condensed', sans-serif;
-    font-size: 0.8rem;
+    font-size: 1.6rem;
     font-weight: 600;
     letter-spacing: 1px;
     padding: 4px 6px;
@@ -1096,11 +1096,11 @@
 
   .cmp-stat-row {
     display: grid;
-    grid-template-columns: 1fr 110px 1fr;
+    grid-template-columns: 1fr 28px 110px 28px 1fr;
     align-items: center;
     padding: 9px 0;
     border-bottom: 1px solid #151515;
-    gap: 4px;
+    gap: 0;
   }
 
   .cmp-val-a {
@@ -1108,6 +1108,7 @@
     font-size: 1.9rem;
     letter-spacing: 1px;
     text-align: left;
+    color: #22c55e;
   }
 
   .cmp-val-b {
@@ -1115,11 +1116,22 @@
     font-size: 1.9rem;
     letter-spacing: 1px;
     text-align: right;
+    color: #60a5fa;
   }
 
-  .cmp-val-a { color: #22c55e; }
-  .cmp-val-b { color: #60a5fa; }
-  .cmp-arrow { font-size: 0.9rem; margin: 0 4px; opacity: 0.9; }
+  .cmp-arrow-col-a {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+  }
+
+  .cmp-arrow-col-b {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+  }
+
+  .cmp-arrow { font-size: 0.9rem; opacity: 0.9; }
   .cmp-arrow-a { color: #22c55e; }
   .cmp-arrow-b { color: #60a5fa; }
 
@@ -1196,8 +1208,8 @@
     gap: 4px;
   }
 
-  .cmp-trophy-imgs-a { display: flex; justify-content: flex-start; align-items: center; gap: 2px; flex-wrap: wrap; }
-  .cmp-trophy-imgs-b { display: flex; justify-content: flex-end;   align-items: center; gap: 2px; flex-wrap: wrap; }
+  .cmp-trophy-imgs-a { display: flex; justify-content: center; align-items: center; gap: 2px; flex-wrap: wrap; }
+  .cmp-trophy-imgs-b { display: flex; justify-content: center; align-items: center; gap: 2px; flex-wrap: wrap; }
 
   .cmp-trophy-img {
     height: 52px;
@@ -1772,12 +1784,14 @@ function renderCompare(ownerAId, ownerBId) {
     const dA = fmtVal(aVal, label);
     const dB = fmtVal(bVal, label);
     const winner = cmpResult(aVal, bVal, lowerBetter);
-    const arrowA = winner === 'a' ? '<span class="cmp-arrow cmp-arrow-a">▶▶</span>' : '';
+    const arrowA = winner === 'a' ? '<span class="cmp-arrow cmp-arrow-a">◀◀</span>' : '';
     const arrowB = winner === 'b' ? '<span class="cmp-arrow cmp-arrow-b">▶▶</span>' : '';
     return `<div class="cmp-stat-row">
-      <div class="cmp-val-a">${dA}${arrowA}</div>
+      <div class="cmp-val-a">${dA}</div>
+      <div class="cmp-arrow-col-a">${arrowA}</div>
       <div class="cmp-stat-name">${label}${sub ? '<span class="cmp-stat-sub">' + sub + '</span>' : ''}</div>
-      <div class="cmp-val-b">${arrowB}${dB}</div>
+      <div class="cmp-arrow-col-b">${arrowB}</div>
+      <div class="cmp-val-b">${dB}</div>
     </div>`;
   }
 
@@ -1805,12 +1819,14 @@ function renderCompare(ownerAId, ownerBId) {
       const dA = vA != null ? vA : '—';
       const dB = vB != null ? vB : '—';
       const a = parseFloat(vA), b = parseFloat(vB);
-      const arrowA = (!isNaN(a) && !isNaN(b) && a > b) ? '<span class="cmp-arrow cmp-arrow-a">▶▶</span>' : '';
+      const arrowA = (!isNaN(a) && !isNaN(b) && a > b) ? '<span class="cmp-arrow cmp-arrow-a">◀◀</span>' : '';
       const arrowB = (!isNaN(a) && !isNaN(b) && b > a) ? '<span class="cmp-arrow cmp-arrow-b">▶▶</span>' : '';
       return `<div class="cmp-stat-row">
-        <div class="cmp-val-a">${dA}${arrowA}</div>
+        <div class="cmp-val-a">${dA}</div>
+        <div class="cmp-arrow-col-a">${arrowA}</div>
         <div class="cmp-stat-name">${label}</div>
-        <div class="cmp-val-b">${arrowB}${dB}</div>
+        <div class="cmp-arrow-col-b">${arrowB}</div>
+        <div class="cmp-val-b">${dB}</div>
       </div>`;
     }
     return h2hArrowRow('Wins', h2hWinsA, h2hWinsB) + h2hArrowRow('Win %', h2hPctA, h2hPctB);
