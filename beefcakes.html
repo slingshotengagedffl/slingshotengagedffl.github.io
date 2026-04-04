@@ -17,6 +17,7 @@
     --text: #ffffff;
     --text-muted: #666666;
     --text-dim: #999999;
+    --gold: #c9a84c;
   }
 
   * { margin: 0; padding: 0; box-sizing: border-box; }
@@ -352,7 +353,7 @@
 
   .modal-name {
     font-family: 'Bebas Neue', sans-serif;
-    font-size: 2rem;
+    font-size: 2.6rem;
     letter-spacing: 0.06em;
     color: #fff;
     line-height: 1;
@@ -361,9 +362,9 @@
   .modal-location {
     font-family: 'Barlow Condensed', sans-serif;
     font-weight: 600;
-    font-size: 1rem;
+    font-size: 1.1rem;
     letter-spacing: 0.1em;
-    color: var(--text-dim);
+    color: #ccc;
     text-transform: uppercase;
     display: flex;
     align-items: center;
@@ -374,7 +375,7 @@
   .modal-nickname {
     font-family: 'Barlow Condensed', sans-serif;
     font-weight: 700;
-    font-size: 1rem;
+    font-size: 1.15rem;
     letter-spacing: 0.12em;
     color: var(--red-bright);
     text-transform: uppercase;
@@ -397,20 +398,24 @@
 
   .stat-value {
     font-family: 'Bebas Neue', sans-serif;
-    font-size: 1.3rem;
+    font-size: 1.7rem;
     letter-spacing: 0.06em;
     color: var(--red-bright);
     display: block;
     line-height: 1;
   }
 
+  .stat-value.gold {
+    color: var(--gold);
+  }
+
   .stat-label {
     font-family: 'Barlow Condensed', sans-serif;
     font-weight: 700;
-    font-size: 0.75rem;
+    font-size: 0.8rem;
     letter-spacing: 0.14em;
     text-transform: uppercase;
-    color: var(--text-muted);
+    color: #bbb;
     display: block;
     margin-top: 4px;
     line-height: 1.2;
@@ -421,12 +426,12 @@
     flex-wrap: wrap;
     justify-content: center;
     align-items: center;
-    gap: 3px;
-    min-height: 24px;
+    gap: 4px;
+    min-height: 48px;
   }
 
   .trophy-icon {
-    height: 24px;
+    height: 48px;
     width: auto;
     object-fit: contain;
   }
@@ -634,7 +639,7 @@
           <span class="stat-label">Member Since</span>
         </div>
         <div class="stat-box">
-          <span class="stat-value" id="statRank"></span>
+          <span class="stat-value gold" id="statRank"></span>
           <span class="stat-label">Prestige Rank<br>(out of 27)</span>
         </div>
         <div class="stat-box">
@@ -679,7 +684,7 @@
     jack:   { name: 'Jack',   nickname: '"The Commish"',    location: '🌴 California',     rank: '#2',  since: '2014', trophies: 2, img: 'images/jack.jpg',   profile: 'profiles/jack.html' },
     jordan: { name: 'Jordan', nickname: '"JopO"',           location: '🌲 North Carolina', rank: '#17', since: '2019', trophies: 0, img: 'images/jordan.jpg', profile: 'profiles/jordan.html' },
     kyle:   { name: 'Kyle',   nickname: '"The Snoot"',      location: '🏔️ Colorado',       rank: '#3',  since: '2018', trophies: 2, img: 'images/kyle.png',   profile: 'profiles/kyle.html' },
-    luke:   { name: 'Luke',   nickname: '"The Rook"',       location: '❄️ Minnesota',      rank: '#27', since: '2026', trophies: 0, img: 'images/luke.jpg',   profile: 'profiles/luke.html' },
+    luke:   { name: 'Luke',   nickname: '"The Kid"',       location: '❄️ Minnesota',      rank: '#27', since: '2026', trophies: 0, img: 'images/luke.jpg',   profile: 'profiles/luke.html' },
     matt:   { name: 'Matt',   nickname: '"Dad Bod"',        location: '🏔️ Colorado',       rank: '#10', since: '2015', trophies: 0, img: 'images/matt.jpg',   profile: 'profiles/matt.html' },
     mike:   { name: 'Mike',   nickname: '"The Contrarian"', location: '🔔 Pennsylvania',   rank: '#4',  since: '2014', trophies: 1, img: 'images/mike.jpg',   profile: 'profiles/mike.html' },
     scott:  { name: 'Scott',  nickname: '"Murph"',          location: '🌴 California',     rank: '#11', since: '2014', trophies: 0, img: 'images/scott.jpg',  profile: 'profiles/scott.html' },
