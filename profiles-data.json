@@ -1158,6 +1158,6298 @@
           "winPct": 0.462
         }
       }
+    },
+    "alex": {
+      "name": "Alex",
+      "nickname": "AVL",
+      "memberSince": 2016,
+      "photo": "../images/alex.jpg",
+      "lastUpdated": null,
+      "location": null,
+      "locationEmoji": "",
+      "broughtInBy": null,
+      "statusLines": [],
+      "prestige": {
+        "rank": 5,
+        "points": null,
+        "outOf": 27
+      },
+      "traits": [],
+      "currentSeason": {
+        "year": 2026,
+        "record": null,
+        "standing": null,
+        "ptsPerGame": null,
+        "lastGame": {
+          "result": "W",
+          "opponent": null,
+          "score": null,
+          "lifetimeVsOpponent": null
+        },
+        "nextGame": {
+          "opponent": null,
+          "lifetimeVsOpponent": null
+        }
+      },
+      "rivalries": {
+        "owns": [],
+        "ownedBy": [],
+        "rivals": null,
+        "ryderCup": null
+      },
+      "narrative": {
+        "sectionLabel": "The Narrative",
+        "pullQuote": null,
+        "body": null
+      },
+      "careerStats": {
+        "general": [
+          {
+            "stat": "Seasons Played",
+            "value": null,
+            "rank": null,
+            "explainer": null,
+            "isEarnings": false
+          },
+          {
+            "stat": "Net Earnings",
+            "value": null,
+            "rank": null,
+            "explainer": "Total winnings minus entry fees",
+            "isEarnings": true
+          },
+          {
+            "stat": "Prestige Points",
+            "value": null,
+            "rank": null,
+            "explainer": null,
+            "isEarnings": false
+          }
+        ],
+        "regularSeason": [
+          {
+            "stat": "Wins",
+            "value": null,
+            "rank": null,
+            "explainer": null,
+            "isEarnings": false
+          },
+          {
+            "stat": "Win %",
+            "value": null,
+            "rank": null,
+            "explainer": null,
+            "isEarnings": false
+          },
+          {
+            "stat": "Avg Finish",
+            "value": null,
+            "rank": null,
+            "explainer": null,
+            "isEarnings": false
+          },
+          {
+            "stat": "Pts Per Game",
+            "value": null,
+            "rank": null,
+            "explainer": null,
+            "isEarnings": false
+          },
+          {
+            "stat": "Point Share",
+            "value": null,
+            "rank": null,
+            "explainer": "% of total league points scored",
+            "isEarnings": false
+          },
+          {
+            "stat": "Career High Score",
+            "value": null,
+            "rank": null,
+            "explainer": null,
+            "isEarnings": false
+          },
+          {
+            "stat": "Weekly High Scores",
+            "value": null,
+            "rank": null,
+            "explainer": null,
+            "isEarnings": false
+          },
+          {
+            "stat": "Power Score",
+            "value": null,
+            "rank": null,
+            "explainer": null,
+            "isEarnings": false
+          },
+          {
+            "stat": "Weeks at #1",
+            "value": null,
+            "rank": null,
+            "explainer": null,
+            "isEarnings": false
+          },
+          {
+            "stat": "Boom Rate",
+            "value": null,
+            "rank": null,
+            "explainer": "% of games scoring 120% or more of league average",
+            "isEarnings": false
+          },
+          {
+            "stat": "Start Rate",
+            "value": null,
+            "rank": null,
+            "explainer": "% of games scoring at or above league average",
+            "isEarnings": false
+          },
+          {
+            "stat": "Luck Rate",
+            "value": null,
+            "rank": null,
+            "explainer": "Win % above/below expected",
+            "isEarnings": false
+          }
+        ],
+        "playoffs": [
+          {
+            "stat": "Appearances",
+            "value": null,
+            "rank": null,
+            "explainer": null,
+            "isEarnings": false
+          },
+          {
+            "stat": "Wins",
+            "value": null,
+            "rank": null,
+            "explainer": null,
+            "isEarnings": false
+          },
+          {
+            "stat": "Win %",
+            "value": null,
+            "rank": null,
+            "explainer": null,
+            "isEarnings": false
+          },
+          {
+            "stat": "Championships",
+            "value": null,
+            "rank": null,
+            "explainer": null,
+            "isEarnings": false
+          }
+        ]
+      },
+      "charts": {
+        "winsAndFinish": {
+          "years": [
+            2014,
+            2015,
+            2016,
+            2017,
+            2018,
+            2019,
+            2020,
+            2021,
+            2022,
+            2023,
+            2024,
+            2025,
+            2026
+          ],
+          "wins": [
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null
+          ],
+          "finish": [
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null
+          ]
+        },
+        "pointShare": {
+          "years": [
+            2014,
+            2015,
+            2016,
+            2017,
+            2018,
+            2019,
+            2020,
+            2021,
+            2022,
+            2023,
+            2024,
+            2025,
+            2026
+          ],
+          "values": [
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null
+          ]
+        },
+        "winnings": {
+          "years": [
+            2014,
+            2015,
+            2016,
+            2017,
+            2018,
+            2019,
+            2020,
+            2021,
+            2022,
+            2023,
+            2024,
+            2025,
+            2026
+          ],
+          "values": [
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null
+          ]
+        },
+        "prestigePerSeason": {
+          "years": [
+            2014,
+            2015,
+            2016,
+            2017,
+            2018,
+            2019,
+            2020,
+            2021,
+            2022,
+            2023,
+            2024,
+            2025,
+            2026
+          ],
+          "values": [
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null
+          ]
+        }
+      },
+      "seasons": [
+        {
+          "year": 2026,
+          "teamName": null,
+          "record": null,
+          "finish": null,
+          "ptsPerGame": null,
+          "pointShare": null,
+          "powerScore": null,
+          "winnings": null,
+          "prestigeEarned": null,
+          "playoffResult": null,
+          "result": null
+        },
+        {
+          "year": 2025,
+          "teamName": null,
+          "record": null,
+          "finish": null,
+          "ptsPerGame": null,
+          "pointShare": null,
+          "powerScore": null,
+          "winnings": null,
+          "prestigeEarned": null,
+          "playoffResult": null,
+          "result": null
+        },
+        {
+          "year": 2024,
+          "teamName": null,
+          "record": null,
+          "finish": null,
+          "ptsPerGame": null,
+          "pointShare": null,
+          "powerScore": null,
+          "winnings": null,
+          "prestigeEarned": null,
+          "playoffResult": null,
+          "result": null
+        },
+        {
+          "year": 2023,
+          "teamName": null,
+          "record": null,
+          "finish": null,
+          "ptsPerGame": null,
+          "pointShare": null,
+          "powerScore": null,
+          "winnings": null,
+          "prestigeEarned": null,
+          "playoffResult": null,
+          "result": null
+        },
+        {
+          "year": 2022,
+          "teamName": null,
+          "record": null,
+          "finish": null,
+          "ptsPerGame": null,
+          "pointShare": null,
+          "powerScore": null,
+          "winnings": null,
+          "prestigeEarned": null,
+          "playoffResult": null,
+          "result": null
+        },
+        {
+          "year": 2021,
+          "teamName": null,
+          "record": null,
+          "finish": null,
+          "ptsPerGame": null,
+          "pointShare": null,
+          "powerScore": null,
+          "winnings": null,
+          "prestigeEarned": null,
+          "playoffResult": null,
+          "result": null
+        },
+        {
+          "year": 2020,
+          "teamName": null,
+          "record": null,
+          "finish": null,
+          "ptsPerGame": null,
+          "pointShare": null,
+          "powerScore": null,
+          "winnings": null,
+          "prestigeEarned": null,
+          "playoffResult": null,
+          "result": null
+        },
+        {
+          "year": 2019,
+          "teamName": null,
+          "record": null,
+          "finish": null,
+          "ptsPerGame": null,
+          "pointShare": null,
+          "powerScore": null,
+          "winnings": null,
+          "prestigeEarned": null,
+          "playoffResult": null,
+          "result": null
+        },
+        {
+          "year": 2018,
+          "teamName": null,
+          "record": null,
+          "finish": null,
+          "ptsPerGame": null,
+          "pointShare": null,
+          "powerScore": null,
+          "winnings": null,
+          "prestigeEarned": null,
+          "playoffResult": null,
+          "result": null
+        },
+        {
+          "year": 2017,
+          "teamName": null,
+          "record": null,
+          "finish": null,
+          "ptsPerGame": null,
+          "pointShare": null,
+          "powerScore": null,
+          "winnings": null,
+          "prestigeEarned": null,
+          "playoffResult": null,
+          "result": null
+        },
+        {
+          "year": 2016,
+          "teamName": null,
+          "record": null,
+          "finish": null,
+          "ptsPerGame": null,
+          "pointShare": null,
+          "powerScore": null,
+          "winnings": null,
+          "prestigeEarned": null,
+          "playoffResult": null,
+          "result": null
+        }
+      ],
+      "trophies": [
+        {
+          "name": "League Champion",
+          "count": 0
+        },
+        {
+          "name": "2nd Place",
+          "count": 0
+        },
+        {
+          "name": "3rd Place",
+          "count": 0
+        },
+        {
+          "name": "Regular Season Champion",
+          "count": 0
+        },
+        {
+          "name": "Owner of the Year",
+          "count": 0
+        },
+        {
+          "name": "AVL Memorial Cup",
+          "count": 0
+        },
+        {
+          "name": "Rivalry Week",
+          "count": 0
+        },
+        {
+          "name": "Hottest Team in Sports Bowl",
+          "count": 0
+        },
+        {
+          "name": "Hung the * Chain",
+          "count": 0
+        },
+        {
+          "name": "Intercontinental Champ",
+          "count": 0
+        },
+        {
+          "name": "Somehow the Champion",
+          "count": 0
+        },
+        {
+          "name": "Survivor King",
+          "count": 0
+        },
+        {
+          "name": "Degen Bowl",
+          "count": 0
+        },
+        {
+          "name": "Dad Bod's Preseason Rankings",
+          "count": 0
+        },
+        {
+          "name": "JopO or KG Pick 'Em",
+          "count": 0
+        },
+        {
+          "name": "Da Choppaaa Champ",
+          "count": 0
+        },
+        {
+          "name": "Bronze Franz",
+          "count": 0
+        }
+      ],
+      "headToHead": {}
+    },
+    "andy": {
+      "name": "Andy",
+      "nickname": "Bronco Superfan",
+      "memberSince": 2022,
+      "photo": "../images/andy.jpg",
+      "lastUpdated": null,
+      "location": null,
+      "locationEmoji": "",
+      "broughtInBy": null,
+      "statusLines": [],
+      "prestige": {
+        "rank": 16,
+        "points": null,
+        "outOf": 27
+      },
+      "traits": [],
+      "currentSeason": {
+        "year": 2026,
+        "record": null,
+        "standing": null,
+        "ptsPerGame": null,
+        "lastGame": {
+          "result": "W",
+          "opponent": null,
+          "score": null,
+          "lifetimeVsOpponent": null
+        },
+        "nextGame": {
+          "opponent": null,
+          "lifetimeVsOpponent": null
+        }
+      },
+      "rivalries": {
+        "owns": [],
+        "ownedBy": [],
+        "rivals": null,
+        "ryderCup": null
+      },
+      "narrative": {
+        "sectionLabel": "The Narrative",
+        "pullQuote": null,
+        "body": null
+      },
+      "careerStats": {
+        "general": [
+          {
+            "stat": "Seasons Played",
+            "value": null,
+            "rank": null,
+            "explainer": null,
+            "isEarnings": false
+          },
+          {
+            "stat": "Net Earnings",
+            "value": null,
+            "rank": null,
+            "explainer": "Total winnings minus entry fees",
+            "isEarnings": true
+          },
+          {
+            "stat": "Prestige Points",
+            "value": null,
+            "rank": null,
+            "explainer": null,
+            "isEarnings": false
+          }
+        ],
+        "regularSeason": [
+          {
+            "stat": "Wins",
+            "value": null,
+            "rank": null,
+            "explainer": null,
+            "isEarnings": false
+          },
+          {
+            "stat": "Win %",
+            "value": null,
+            "rank": null,
+            "explainer": null,
+            "isEarnings": false
+          },
+          {
+            "stat": "Avg Finish",
+            "value": null,
+            "rank": null,
+            "explainer": null,
+            "isEarnings": false
+          },
+          {
+            "stat": "Pts Per Game",
+            "value": null,
+            "rank": null,
+            "explainer": null,
+            "isEarnings": false
+          },
+          {
+            "stat": "Point Share",
+            "value": null,
+            "rank": null,
+            "explainer": "% of total league points scored",
+            "isEarnings": false
+          },
+          {
+            "stat": "Career High Score",
+            "value": null,
+            "rank": null,
+            "explainer": null,
+            "isEarnings": false
+          },
+          {
+            "stat": "Weekly High Scores",
+            "value": null,
+            "rank": null,
+            "explainer": null,
+            "isEarnings": false
+          },
+          {
+            "stat": "Power Score",
+            "value": null,
+            "rank": null,
+            "explainer": null,
+            "isEarnings": false
+          },
+          {
+            "stat": "Weeks at #1",
+            "value": null,
+            "rank": null,
+            "explainer": null,
+            "isEarnings": false
+          },
+          {
+            "stat": "Boom Rate",
+            "value": null,
+            "rank": null,
+            "explainer": "% of games scoring 120% or more of league average",
+            "isEarnings": false
+          },
+          {
+            "stat": "Start Rate",
+            "value": null,
+            "rank": null,
+            "explainer": "% of games scoring at or above league average",
+            "isEarnings": false
+          },
+          {
+            "stat": "Luck Rate",
+            "value": null,
+            "rank": null,
+            "explainer": "Win % above/below expected",
+            "isEarnings": false
+          }
+        ],
+        "playoffs": [
+          {
+            "stat": "Appearances",
+            "value": null,
+            "rank": null,
+            "explainer": null,
+            "isEarnings": false
+          },
+          {
+            "stat": "Wins",
+            "value": null,
+            "rank": null,
+            "explainer": null,
+            "isEarnings": false
+          },
+          {
+            "stat": "Win %",
+            "value": null,
+            "rank": null,
+            "explainer": null,
+            "isEarnings": false
+          },
+          {
+            "stat": "Championships",
+            "value": null,
+            "rank": null,
+            "explainer": null,
+            "isEarnings": false
+          }
+        ]
+      },
+      "charts": {
+        "winsAndFinish": {
+          "years": [
+            2014,
+            2015,
+            2016,
+            2017,
+            2018,
+            2019,
+            2020,
+            2021,
+            2022,
+            2023,
+            2024,
+            2025,
+            2026
+          ],
+          "wins": [
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null
+          ],
+          "finish": [
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null
+          ]
+        },
+        "pointShare": {
+          "years": [
+            2014,
+            2015,
+            2016,
+            2017,
+            2018,
+            2019,
+            2020,
+            2021,
+            2022,
+            2023,
+            2024,
+            2025,
+            2026
+          ],
+          "values": [
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null
+          ]
+        },
+        "winnings": {
+          "years": [
+            2014,
+            2015,
+            2016,
+            2017,
+            2018,
+            2019,
+            2020,
+            2021,
+            2022,
+            2023,
+            2024,
+            2025,
+            2026
+          ],
+          "values": [
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null
+          ]
+        },
+        "prestigePerSeason": {
+          "years": [
+            2014,
+            2015,
+            2016,
+            2017,
+            2018,
+            2019,
+            2020,
+            2021,
+            2022,
+            2023,
+            2024,
+            2025,
+            2026
+          ],
+          "values": [
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null
+          ]
+        }
+      },
+      "seasons": [
+        {
+          "year": 2026,
+          "teamName": null,
+          "record": null,
+          "finish": null,
+          "ptsPerGame": null,
+          "pointShare": null,
+          "powerScore": null,
+          "winnings": null,
+          "prestigeEarned": null,
+          "playoffResult": null,
+          "result": null
+        },
+        {
+          "year": 2025,
+          "teamName": null,
+          "record": null,
+          "finish": null,
+          "ptsPerGame": null,
+          "pointShare": null,
+          "powerScore": null,
+          "winnings": null,
+          "prestigeEarned": null,
+          "playoffResult": null,
+          "result": null
+        },
+        {
+          "year": 2024,
+          "teamName": null,
+          "record": null,
+          "finish": null,
+          "ptsPerGame": null,
+          "pointShare": null,
+          "powerScore": null,
+          "winnings": null,
+          "prestigeEarned": null,
+          "playoffResult": null,
+          "result": null
+        },
+        {
+          "year": 2023,
+          "teamName": null,
+          "record": null,
+          "finish": null,
+          "ptsPerGame": null,
+          "pointShare": null,
+          "powerScore": null,
+          "winnings": null,
+          "prestigeEarned": null,
+          "playoffResult": null,
+          "result": null
+        },
+        {
+          "year": 2022,
+          "teamName": null,
+          "record": null,
+          "finish": null,
+          "ptsPerGame": null,
+          "pointShare": null,
+          "powerScore": null,
+          "winnings": null,
+          "prestigeEarned": null,
+          "playoffResult": null,
+          "result": null
+        }
+      ],
+      "trophies": [
+        {
+          "name": "League Champion",
+          "count": 0
+        },
+        {
+          "name": "2nd Place",
+          "count": 0
+        },
+        {
+          "name": "3rd Place",
+          "count": 0
+        },
+        {
+          "name": "Regular Season Champion",
+          "count": 0
+        },
+        {
+          "name": "Owner of the Year",
+          "count": 0
+        },
+        {
+          "name": "AVL Memorial Cup",
+          "count": 0
+        },
+        {
+          "name": "Rivalry Week",
+          "count": 0
+        },
+        {
+          "name": "Hottest Team in Sports Bowl",
+          "count": 0
+        },
+        {
+          "name": "Hung the * Chain",
+          "count": 0
+        },
+        {
+          "name": "Intercontinental Champ",
+          "count": 0
+        },
+        {
+          "name": "Somehow the Champion",
+          "count": 0
+        },
+        {
+          "name": "Survivor King",
+          "count": 0
+        },
+        {
+          "name": "Degen Bowl",
+          "count": 0
+        },
+        {
+          "name": "Dad Bod's Preseason Rankings",
+          "count": 0
+        },
+        {
+          "name": "JopO or KG Pick 'Em",
+          "count": 0
+        },
+        {
+          "name": "Da Choppaaa Champ",
+          "count": 0
+        },
+        {
+          "name": "Bronze Franz",
+          "count": 0
+        }
+      ],
+      "headToHead": {}
+    },
+    "brian": {
+      "name": "Brian",
+      "nickname": "BThax",
+      "memberSince": 2014,
+      "photo": "../images/brian.png",
+      "lastUpdated": null,
+      "location": null,
+      "locationEmoji": "",
+      "broughtInBy": null,
+      "statusLines": [],
+      "prestige": {
+        "rank": 7,
+        "points": null,
+        "outOf": 27
+      },
+      "traits": [],
+      "currentSeason": {
+        "year": 2026,
+        "record": null,
+        "standing": null,
+        "ptsPerGame": null,
+        "lastGame": {
+          "result": "W",
+          "opponent": null,
+          "score": null,
+          "lifetimeVsOpponent": null
+        },
+        "nextGame": {
+          "opponent": null,
+          "lifetimeVsOpponent": null
+        }
+      },
+      "rivalries": {
+        "owns": [],
+        "ownedBy": [],
+        "rivals": null,
+        "ryderCup": null
+      },
+      "narrative": {
+        "sectionLabel": "The Narrative",
+        "pullQuote": null,
+        "body": null
+      },
+      "careerStats": {
+        "general": [
+          {
+            "stat": "Seasons Played",
+            "value": null,
+            "rank": null,
+            "explainer": null,
+            "isEarnings": false
+          },
+          {
+            "stat": "Net Earnings",
+            "value": null,
+            "rank": null,
+            "explainer": "Total winnings minus entry fees",
+            "isEarnings": true
+          },
+          {
+            "stat": "Prestige Points",
+            "value": null,
+            "rank": null,
+            "explainer": null,
+            "isEarnings": false
+          }
+        ],
+        "regularSeason": [
+          {
+            "stat": "Wins",
+            "value": null,
+            "rank": null,
+            "explainer": null,
+            "isEarnings": false
+          },
+          {
+            "stat": "Win %",
+            "value": null,
+            "rank": null,
+            "explainer": null,
+            "isEarnings": false
+          },
+          {
+            "stat": "Avg Finish",
+            "value": null,
+            "rank": null,
+            "explainer": null,
+            "isEarnings": false
+          },
+          {
+            "stat": "Pts Per Game",
+            "value": null,
+            "rank": null,
+            "explainer": null,
+            "isEarnings": false
+          },
+          {
+            "stat": "Point Share",
+            "value": null,
+            "rank": null,
+            "explainer": "% of total league points scored",
+            "isEarnings": false
+          },
+          {
+            "stat": "Career High Score",
+            "value": null,
+            "rank": null,
+            "explainer": null,
+            "isEarnings": false
+          },
+          {
+            "stat": "Weekly High Scores",
+            "value": null,
+            "rank": null,
+            "explainer": null,
+            "isEarnings": false
+          },
+          {
+            "stat": "Power Score",
+            "value": null,
+            "rank": null,
+            "explainer": null,
+            "isEarnings": false
+          },
+          {
+            "stat": "Weeks at #1",
+            "value": null,
+            "rank": null,
+            "explainer": null,
+            "isEarnings": false
+          },
+          {
+            "stat": "Boom Rate",
+            "value": null,
+            "rank": null,
+            "explainer": "% of games scoring 120% or more of league average",
+            "isEarnings": false
+          },
+          {
+            "stat": "Start Rate",
+            "value": null,
+            "rank": null,
+            "explainer": "% of games scoring at or above league average",
+            "isEarnings": false
+          },
+          {
+            "stat": "Luck Rate",
+            "value": null,
+            "rank": null,
+            "explainer": "Win % above/below expected",
+            "isEarnings": false
+          }
+        ],
+        "playoffs": [
+          {
+            "stat": "Appearances",
+            "value": null,
+            "rank": null,
+            "explainer": null,
+            "isEarnings": false
+          },
+          {
+            "stat": "Wins",
+            "value": null,
+            "rank": null,
+            "explainer": null,
+            "isEarnings": false
+          },
+          {
+            "stat": "Win %",
+            "value": null,
+            "rank": null,
+            "explainer": null,
+            "isEarnings": false
+          },
+          {
+            "stat": "Championships",
+            "value": null,
+            "rank": null,
+            "explainer": null,
+            "isEarnings": false
+          }
+        ]
+      },
+      "charts": {
+        "winsAndFinish": {
+          "years": [
+            2014,
+            2015,
+            2016,
+            2017,
+            2018,
+            2019,
+            2020,
+            2021,
+            2022,
+            2023,
+            2024,
+            2025,
+            2026
+          ],
+          "wins": [
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null
+          ],
+          "finish": [
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null
+          ]
+        },
+        "pointShare": {
+          "years": [
+            2014,
+            2015,
+            2016,
+            2017,
+            2018,
+            2019,
+            2020,
+            2021,
+            2022,
+            2023,
+            2024,
+            2025,
+            2026
+          ],
+          "values": [
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null
+          ]
+        },
+        "winnings": {
+          "years": [
+            2014,
+            2015,
+            2016,
+            2017,
+            2018,
+            2019,
+            2020,
+            2021,
+            2022,
+            2023,
+            2024,
+            2025,
+            2026
+          ],
+          "values": [
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null
+          ]
+        },
+        "prestigePerSeason": {
+          "years": [
+            2014,
+            2015,
+            2016,
+            2017,
+            2018,
+            2019,
+            2020,
+            2021,
+            2022,
+            2023,
+            2024,
+            2025,
+            2026
+          ],
+          "values": [
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null
+          ]
+        }
+      },
+      "seasons": [
+        {
+          "year": 2026,
+          "teamName": null,
+          "record": null,
+          "finish": null,
+          "ptsPerGame": null,
+          "pointShare": null,
+          "powerScore": null,
+          "winnings": null,
+          "prestigeEarned": null,
+          "playoffResult": null,
+          "result": null
+        },
+        {
+          "year": 2025,
+          "teamName": null,
+          "record": null,
+          "finish": null,
+          "ptsPerGame": null,
+          "pointShare": null,
+          "powerScore": null,
+          "winnings": null,
+          "prestigeEarned": null,
+          "playoffResult": null,
+          "result": null
+        },
+        {
+          "year": 2024,
+          "teamName": null,
+          "record": null,
+          "finish": null,
+          "ptsPerGame": null,
+          "pointShare": null,
+          "powerScore": null,
+          "winnings": null,
+          "prestigeEarned": null,
+          "playoffResult": null,
+          "result": null
+        },
+        {
+          "year": 2023,
+          "teamName": null,
+          "record": null,
+          "finish": null,
+          "ptsPerGame": null,
+          "pointShare": null,
+          "powerScore": null,
+          "winnings": null,
+          "prestigeEarned": null,
+          "playoffResult": null,
+          "result": null
+        },
+        {
+          "year": 2022,
+          "teamName": null,
+          "record": null,
+          "finish": null,
+          "ptsPerGame": null,
+          "pointShare": null,
+          "powerScore": null,
+          "winnings": null,
+          "prestigeEarned": null,
+          "playoffResult": null,
+          "result": null
+        },
+        {
+          "year": 2021,
+          "teamName": null,
+          "record": null,
+          "finish": null,
+          "ptsPerGame": null,
+          "pointShare": null,
+          "powerScore": null,
+          "winnings": null,
+          "prestigeEarned": null,
+          "playoffResult": null,
+          "result": null
+        },
+        {
+          "year": 2020,
+          "teamName": null,
+          "record": null,
+          "finish": null,
+          "ptsPerGame": null,
+          "pointShare": null,
+          "powerScore": null,
+          "winnings": null,
+          "prestigeEarned": null,
+          "playoffResult": null,
+          "result": null
+        },
+        {
+          "year": 2019,
+          "teamName": null,
+          "record": null,
+          "finish": null,
+          "ptsPerGame": null,
+          "pointShare": null,
+          "powerScore": null,
+          "winnings": null,
+          "prestigeEarned": null,
+          "playoffResult": null,
+          "result": null
+        },
+        {
+          "year": 2018,
+          "teamName": null,
+          "record": null,
+          "finish": null,
+          "ptsPerGame": null,
+          "pointShare": null,
+          "powerScore": null,
+          "winnings": null,
+          "prestigeEarned": null,
+          "playoffResult": null,
+          "result": null
+        },
+        {
+          "year": 2017,
+          "teamName": null,
+          "record": null,
+          "finish": null,
+          "ptsPerGame": null,
+          "pointShare": null,
+          "powerScore": null,
+          "winnings": null,
+          "prestigeEarned": null,
+          "playoffResult": null,
+          "result": null
+        },
+        {
+          "year": 2016,
+          "teamName": null,
+          "record": null,
+          "finish": null,
+          "ptsPerGame": null,
+          "pointShare": null,
+          "powerScore": null,
+          "winnings": null,
+          "prestigeEarned": null,
+          "playoffResult": null,
+          "result": null
+        },
+        {
+          "year": 2015,
+          "teamName": null,
+          "record": null,
+          "finish": null,
+          "ptsPerGame": null,
+          "pointShare": null,
+          "powerScore": null,
+          "winnings": null,
+          "prestigeEarned": null,
+          "playoffResult": null,
+          "result": null
+        },
+        {
+          "year": 2014,
+          "teamName": null,
+          "record": null,
+          "finish": null,
+          "ptsPerGame": null,
+          "pointShare": null,
+          "powerScore": null,
+          "winnings": null,
+          "prestigeEarned": null,
+          "playoffResult": null,
+          "result": null
+        }
+      ],
+      "trophies": [
+        {
+          "name": "League Champion",
+          "count": 0
+        },
+        {
+          "name": "2nd Place",
+          "count": 0
+        },
+        {
+          "name": "3rd Place",
+          "count": 0
+        },
+        {
+          "name": "Regular Season Champion",
+          "count": 0
+        },
+        {
+          "name": "Owner of the Year",
+          "count": 0
+        },
+        {
+          "name": "AVL Memorial Cup",
+          "count": 0
+        },
+        {
+          "name": "Rivalry Week",
+          "count": 0
+        },
+        {
+          "name": "Hottest Team in Sports Bowl",
+          "count": 0
+        },
+        {
+          "name": "Hung the * Chain",
+          "count": 0
+        },
+        {
+          "name": "Intercontinental Champ",
+          "count": 0
+        },
+        {
+          "name": "Somehow the Champion",
+          "count": 0
+        },
+        {
+          "name": "Survivor King",
+          "count": 0
+        },
+        {
+          "name": "Degen Bowl",
+          "count": 0
+        },
+        {
+          "name": "Dad Bod's Preseason Rankings",
+          "count": 0
+        },
+        {
+          "name": "JopO or KG Pick 'Em",
+          "count": 0
+        },
+        {
+          "name": "Da Choppaaa Champ",
+          "count": 0
+        },
+        {
+          "name": "Bronze Franz",
+          "count": 0
+        }
+      ],
+      "headToHead": {}
+    },
+    "daniel": {
+      "name": "Daniel",
+      "nickname": "Naughty Man",
+      "memberSince": 2014,
+      "photo": "../images/daniel.jpg",
+      "lastUpdated": null,
+      "location": null,
+      "locationEmoji": "",
+      "broughtInBy": null,
+      "statusLines": [],
+      "prestige": {
+        "rank": 6,
+        "points": null,
+        "outOf": 27
+      },
+      "traits": [],
+      "currentSeason": {
+        "year": 2026,
+        "record": null,
+        "standing": null,
+        "ptsPerGame": null,
+        "lastGame": {
+          "result": "W",
+          "opponent": null,
+          "score": null,
+          "lifetimeVsOpponent": null
+        },
+        "nextGame": {
+          "opponent": null,
+          "lifetimeVsOpponent": null
+        }
+      },
+      "rivalries": {
+        "owns": [],
+        "ownedBy": [],
+        "rivals": null,
+        "ryderCup": null
+      },
+      "narrative": {
+        "sectionLabel": "The Narrative",
+        "pullQuote": null,
+        "body": null
+      },
+      "careerStats": {
+        "general": [
+          {
+            "stat": "Seasons Played",
+            "value": null,
+            "rank": null,
+            "explainer": null,
+            "isEarnings": false
+          },
+          {
+            "stat": "Net Earnings",
+            "value": null,
+            "rank": null,
+            "explainer": "Total winnings minus entry fees",
+            "isEarnings": true
+          },
+          {
+            "stat": "Prestige Points",
+            "value": null,
+            "rank": null,
+            "explainer": null,
+            "isEarnings": false
+          }
+        ],
+        "regularSeason": [
+          {
+            "stat": "Wins",
+            "value": null,
+            "rank": null,
+            "explainer": null,
+            "isEarnings": false
+          },
+          {
+            "stat": "Win %",
+            "value": null,
+            "rank": null,
+            "explainer": null,
+            "isEarnings": false
+          },
+          {
+            "stat": "Avg Finish",
+            "value": null,
+            "rank": null,
+            "explainer": null,
+            "isEarnings": false
+          },
+          {
+            "stat": "Pts Per Game",
+            "value": null,
+            "rank": null,
+            "explainer": null,
+            "isEarnings": false
+          },
+          {
+            "stat": "Point Share",
+            "value": null,
+            "rank": null,
+            "explainer": "% of total league points scored",
+            "isEarnings": false
+          },
+          {
+            "stat": "Career High Score",
+            "value": null,
+            "rank": null,
+            "explainer": null,
+            "isEarnings": false
+          },
+          {
+            "stat": "Weekly High Scores",
+            "value": null,
+            "rank": null,
+            "explainer": null,
+            "isEarnings": false
+          },
+          {
+            "stat": "Power Score",
+            "value": null,
+            "rank": null,
+            "explainer": null,
+            "isEarnings": false
+          },
+          {
+            "stat": "Weeks at #1",
+            "value": null,
+            "rank": null,
+            "explainer": null,
+            "isEarnings": false
+          },
+          {
+            "stat": "Boom Rate",
+            "value": null,
+            "rank": null,
+            "explainer": "% of games scoring 120% or more of league average",
+            "isEarnings": false
+          },
+          {
+            "stat": "Start Rate",
+            "value": null,
+            "rank": null,
+            "explainer": "% of games scoring at or above league average",
+            "isEarnings": false
+          },
+          {
+            "stat": "Luck Rate",
+            "value": null,
+            "rank": null,
+            "explainer": "Win % above/below expected",
+            "isEarnings": false
+          }
+        ],
+        "playoffs": [
+          {
+            "stat": "Appearances",
+            "value": null,
+            "rank": null,
+            "explainer": null,
+            "isEarnings": false
+          },
+          {
+            "stat": "Wins",
+            "value": null,
+            "rank": null,
+            "explainer": null,
+            "isEarnings": false
+          },
+          {
+            "stat": "Win %",
+            "value": null,
+            "rank": null,
+            "explainer": null,
+            "isEarnings": false
+          },
+          {
+            "stat": "Championships",
+            "value": null,
+            "rank": null,
+            "explainer": null,
+            "isEarnings": false
+          }
+        ]
+      },
+      "charts": {
+        "winsAndFinish": {
+          "years": [
+            2014,
+            2015,
+            2016,
+            2017,
+            2018,
+            2019,
+            2020,
+            2021,
+            2022,
+            2023,
+            2024,
+            2025,
+            2026
+          ],
+          "wins": [
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null
+          ],
+          "finish": [
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null
+          ]
+        },
+        "pointShare": {
+          "years": [
+            2014,
+            2015,
+            2016,
+            2017,
+            2018,
+            2019,
+            2020,
+            2021,
+            2022,
+            2023,
+            2024,
+            2025,
+            2026
+          ],
+          "values": [
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null
+          ]
+        },
+        "winnings": {
+          "years": [
+            2014,
+            2015,
+            2016,
+            2017,
+            2018,
+            2019,
+            2020,
+            2021,
+            2022,
+            2023,
+            2024,
+            2025,
+            2026
+          ],
+          "values": [
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null
+          ]
+        },
+        "prestigePerSeason": {
+          "years": [
+            2014,
+            2015,
+            2016,
+            2017,
+            2018,
+            2019,
+            2020,
+            2021,
+            2022,
+            2023,
+            2024,
+            2025,
+            2026
+          ],
+          "values": [
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null
+          ]
+        }
+      },
+      "seasons": [
+        {
+          "year": 2026,
+          "teamName": null,
+          "record": null,
+          "finish": null,
+          "ptsPerGame": null,
+          "pointShare": null,
+          "powerScore": null,
+          "winnings": null,
+          "prestigeEarned": null,
+          "playoffResult": null,
+          "result": null
+        },
+        {
+          "year": 2025,
+          "teamName": null,
+          "record": null,
+          "finish": null,
+          "ptsPerGame": null,
+          "pointShare": null,
+          "powerScore": null,
+          "winnings": null,
+          "prestigeEarned": null,
+          "playoffResult": null,
+          "result": null
+        },
+        {
+          "year": 2024,
+          "teamName": null,
+          "record": null,
+          "finish": null,
+          "ptsPerGame": null,
+          "pointShare": null,
+          "powerScore": null,
+          "winnings": null,
+          "prestigeEarned": null,
+          "playoffResult": null,
+          "result": null
+        },
+        {
+          "year": 2023,
+          "teamName": null,
+          "record": null,
+          "finish": null,
+          "ptsPerGame": null,
+          "pointShare": null,
+          "powerScore": null,
+          "winnings": null,
+          "prestigeEarned": null,
+          "playoffResult": null,
+          "result": null
+        },
+        {
+          "year": 2022,
+          "teamName": null,
+          "record": null,
+          "finish": null,
+          "ptsPerGame": null,
+          "pointShare": null,
+          "powerScore": null,
+          "winnings": null,
+          "prestigeEarned": null,
+          "playoffResult": null,
+          "result": null
+        },
+        {
+          "year": 2021,
+          "teamName": null,
+          "record": null,
+          "finish": null,
+          "ptsPerGame": null,
+          "pointShare": null,
+          "powerScore": null,
+          "winnings": null,
+          "prestigeEarned": null,
+          "playoffResult": null,
+          "result": null
+        },
+        {
+          "year": 2020,
+          "teamName": null,
+          "record": null,
+          "finish": null,
+          "ptsPerGame": null,
+          "pointShare": null,
+          "powerScore": null,
+          "winnings": null,
+          "prestigeEarned": null,
+          "playoffResult": null,
+          "result": null
+        },
+        {
+          "year": 2019,
+          "teamName": null,
+          "record": null,
+          "finish": null,
+          "ptsPerGame": null,
+          "pointShare": null,
+          "powerScore": null,
+          "winnings": null,
+          "prestigeEarned": null,
+          "playoffResult": null,
+          "result": null
+        },
+        {
+          "year": 2018,
+          "teamName": null,
+          "record": null,
+          "finish": null,
+          "ptsPerGame": null,
+          "pointShare": null,
+          "powerScore": null,
+          "winnings": null,
+          "prestigeEarned": null,
+          "playoffResult": null,
+          "result": null
+        },
+        {
+          "year": 2017,
+          "teamName": null,
+          "record": null,
+          "finish": null,
+          "ptsPerGame": null,
+          "pointShare": null,
+          "powerScore": null,
+          "winnings": null,
+          "prestigeEarned": null,
+          "playoffResult": null,
+          "result": null
+        },
+        {
+          "year": 2016,
+          "teamName": null,
+          "record": null,
+          "finish": null,
+          "ptsPerGame": null,
+          "pointShare": null,
+          "powerScore": null,
+          "winnings": null,
+          "prestigeEarned": null,
+          "playoffResult": null,
+          "result": null
+        },
+        {
+          "year": 2015,
+          "teamName": null,
+          "record": null,
+          "finish": null,
+          "ptsPerGame": null,
+          "pointShare": null,
+          "powerScore": null,
+          "winnings": null,
+          "prestigeEarned": null,
+          "playoffResult": null,
+          "result": null
+        },
+        {
+          "year": 2014,
+          "teamName": null,
+          "record": null,
+          "finish": null,
+          "ptsPerGame": null,
+          "pointShare": null,
+          "powerScore": null,
+          "winnings": null,
+          "prestigeEarned": null,
+          "playoffResult": null,
+          "result": null
+        }
+      ],
+      "trophies": [
+        {
+          "name": "League Champion",
+          "count": 0
+        },
+        {
+          "name": "2nd Place",
+          "count": 0
+        },
+        {
+          "name": "3rd Place",
+          "count": 0
+        },
+        {
+          "name": "Regular Season Champion",
+          "count": 0
+        },
+        {
+          "name": "Owner of the Year",
+          "count": 0
+        },
+        {
+          "name": "AVL Memorial Cup",
+          "count": 0
+        },
+        {
+          "name": "Rivalry Week",
+          "count": 0
+        },
+        {
+          "name": "Hottest Team in Sports Bowl",
+          "count": 0
+        },
+        {
+          "name": "Hung the * Chain",
+          "count": 0
+        },
+        {
+          "name": "Intercontinental Champ",
+          "count": 0
+        },
+        {
+          "name": "Somehow the Champion",
+          "count": 0
+        },
+        {
+          "name": "Survivor King",
+          "count": 0
+        },
+        {
+          "name": "Degen Bowl",
+          "count": 0
+        },
+        {
+          "name": "Dad Bod's Preseason Rankings",
+          "count": 0
+        },
+        {
+          "name": "JopO or KG Pick 'Em",
+          "count": 0
+        },
+        {
+          "name": "Da Choppaaa Champ",
+          "count": 0
+        },
+        {
+          "name": "Bronze Franz",
+          "count": 0
+        }
+      ],
+      "headToHead": {}
+    },
+    "jordan": {
+      "name": "Jordan",
+      "nickname": "JopO",
+      "memberSince": 2019,
+      "photo": "../images/jordan.jpg",
+      "lastUpdated": null,
+      "location": null,
+      "locationEmoji": "",
+      "broughtInBy": null,
+      "statusLines": [],
+      "prestige": {
+        "rank": 17,
+        "points": null,
+        "outOf": 27
+      },
+      "traits": [],
+      "currentSeason": {
+        "year": 2026,
+        "record": null,
+        "standing": null,
+        "ptsPerGame": null,
+        "lastGame": {
+          "result": "W",
+          "opponent": null,
+          "score": null,
+          "lifetimeVsOpponent": null
+        },
+        "nextGame": {
+          "opponent": null,
+          "lifetimeVsOpponent": null
+        }
+      },
+      "rivalries": {
+        "owns": [],
+        "ownedBy": [],
+        "rivals": null,
+        "ryderCup": null
+      },
+      "narrative": {
+        "sectionLabel": "The Narrative",
+        "pullQuote": null,
+        "body": null
+      },
+      "careerStats": {
+        "general": [
+          {
+            "stat": "Seasons Played",
+            "value": null,
+            "rank": null,
+            "explainer": null,
+            "isEarnings": false
+          },
+          {
+            "stat": "Net Earnings",
+            "value": null,
+            "rank": null,
+            "explainer": "Total winnings minus entry fees",
+            "isEarnings": true
+          },
+          {
+            "stat": "Prestige Points",
+            "value": null,
+            "rank": null,
+            "explainer": null,
+            "isEarnings": false
+          }
+        ],
+        "regularSeason": [
+          {
+            "stat": "Wins",
+            "value": null,
+            "rank": null,
+            "explainer": null,
+            "isEarnings": false
+          },
+          {
+            "stat": "Win %",
+            "value": null,
+            "rank": null,
+            "explainer": null,
+            "isEarnings": false
+          },
+          {
+            "stat": "Avg Finish",
+            "value": null,
+            "rank": null,
+            "explainer": null,
+            "isEarnings": false
+          },
+          {
+            "stat": "Pts Per Game",
+            "value": null,
+            "rank": null,
+            "explainer": null,
+            "isEarnings": false
+          },
+          {
+            "stat": "Point Share",
+            "value": null,
+            "rank": null,
+            "explainer": "% of total league points scored",
+            "isEarnings": false
+          },
+          {
+            "stat": "Career High Score",
+            "value": null,
+            "rank": null,
+            "explainer": null,
+            "isEarnings": false
+          },
+          {
+            "stat": "Weekly High Scores",
+            "value": null,
+            "rank": null,
+            "explainer": null,
+            "isEarnings": false
+          },
+          {
+            "stat": "Power Score",
+            "value": null,
+            "rank": null,
+            "explainer": null,
+            "isEarnings": false
+          },
+          {
+            "stat": "Weeks at #1",
+            "value": null,
+            "rank": null,
+            "explainer": null,
+            "isEarnings": false
+          },
+          {
+            "stat": "Boom Rate",
+            "value": null,
+            "rank": null,
+            "explainer": "% of games scoring 120% or more of league average",
+            "isEarnings": false
+          },
+          {
+            "stat": "Start Rate",
+            "value": null,
+            "rank": null,
+            "explainer": "% of games scoring at or above league average",
+            "isEarnings": false
+          },
+          {
+            "stat": "Luck Rate",
+            "value": null,
+            "rank": null,
+            "explainer": "Win % above/below expected",
+            "isEarnings": false
+          }
+        ],
+        "playoffs": [
+          {
+            "stat": "Appearances",
+            "value": null,
+            "rank": null,
+            "explainer": null,
+            "isEarnings": false
+          },
+          {
+            "stat": "Wins",
+            "value": null,
+            "rank": null,
+            "explainer": null,
+            "isEarnings": false
+          },
+          {
+            "stat": "Win %",
+            "value": null,
+            "rank": null,
+            "explainer": null,
+            "isEarnings": false
+          },
+          {
+            "stat": "Championships",
+            "value": null,
+            "rank": null,
+            "explainer": null,
+            "isEarnings": false
+          }
+        ]
+      },
+      "charts": {
+        "winsAndFinish": {
+          "years": [
+            2014,
+            2015,
+            2016,
+            2017,
+            2018,
+            2019,
+            2020,
+            2021,
+            2022,
+            2023,
+            2024,
+            2025,
+            2026
+          ],
+          "wins": [
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null
+          ],
+          "finish": [
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null
+          ]
+        },
+        "pointShare": {
+          "years": [
+            2014,
+            2015,
+            2016,
+            2017,
+            2018,
+            2019,
+            2020,
+            2021,
+            2022,
+            2023,
+            2024,
+            2025,
+            2026
+          ],
+          "values": [
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null
+          ]
+        },
+        "winnings": {
+          "years": [
+            2014,
+            2015,
+            2016,
+            2017,
+            2018,
+            2019,
+            2020,
+            2021,
+            2022,
+            2023,
+            2024,
+            2025,
+            2026
+          ],
+          "values": [
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null
+          ]
+        },
+        "prestigePerSeason": {
+          "years": [
+            2014,
+            2015,
+            2016,
+            2017,
+            2018,
+            2019,
+            2020,
+            2021,
+            2022,
+            2023,
+            2024,
+            2025,
+            2026
+          ],
+          "values": [
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null
+          ]
+        }
+      },
+      "seasons": [
+        {
+          "year": 2026,
+          "teamName": null,
+          "record": null,
+          "finish": null,
+          "ptsPerGame": null,
+          "pointShare": null,
+          "powerScore": null,
+          "winnings": null,
+          "prestigeEarned": null,
+          "playoffResult": null,
+          "result": null
+        },
+        {
+          "year": 2025,
+          "teamName": null,
+          "record": null,
+          "finish": null,
+          "ptsPerGame": null,
+          "pointShare": null,
+          "powerScore": null,
+          "winnings": null,
+          "prestigeEarned": null,
+          "playoffResult": null,
+          "result": null
+        },
+        {
+          "year": 2024,
+          "teamName": null,
+          "record": null,
+          "finish": null,
+          "ptsPerGame": null,
+          "pointShare": null,
+          "powerScore": null,
+          "winnings": null,
+          "prestigeEarned": null,
+          "playoffResult": null,
+          "result": null
+        },
+        {
+          "year": 2023,
+          "teamName": null,
+          "record": null,
+          "finish": null,
+          "ptsPerGame": null,
+          "pointShare": null,
+          "powerScore": null,
+          "winnings": null,
+          "prestigeEarned": null,
+          "playoffResult": null,
+          "result": null
+        },
+        {
+          "year": 2022,
+          "teamName": null,
+          "record": null,
+          "finish": null,
+          "ptsPerGame": null,
+          "pointShare": null,
+          "powerScore": null,
+          "winnings": null,
+          "prestigeEarned": null,
+          "playoffResult": null,
+          "result": null
+        },
+        {
+          "year": 2021,
+          "teamName": null,
+          "record": null,
+          "finish": null,
+          "ptsPerGame": null,
+          "pointShare": null,
+          "powerScore": null,
+          "winnings": null,
+          "prestigeEarned": null,
+          "playoffResult": null,
+          "result": null
+        },
+        {
+          "year": 2020,
+          "teamName": null,
+          "record": null,
+          "finish": null,
+          "ptsPerGame": null,
+          "pointShare": null,
+          "powerScore": null,
+          "winnings": null,
+          "prestigeEarned": null,
+          "playoffResult": null,
+          "result": null
+        },
+        {
+          "year": 2019,
+          "teamName": null,
+          "record": null,
+          "finish": null,
+          "ptsPerGame": null,
+          "pointShare": null,
+          "powerScore": null,
+          "winnings": null,
+          "prestigeEarned": null,
+          "playoffResult": null,
+          "result": null
+        }
+      ],
+      "trophies": [
+        {
+          "name": "League Champion",
+          "count": 0
+        },
+        {
+          "name": "2nd Place",
+          "count": 0
+        },
+        {
+          "name": "3rd Place",
+          "count": 0
+        },
+        {
+          "name": "Regular Season Champion",
+          "count": 0
+        },
+        {
+          "name": "Owner of the Year",
+          "count": 0
+        },
+        {
+          "name": "AVL Memorial Cup",
+          "count": 0
+        },
+        {
+          "name": "Rivalry Week",
+          "count": 0
+        },
+        {
+          "name": "Hottest Team in Sports Bowl",
+          "count": 0
+        },
+        {
+          "name": "Hung the * Chain",
+          "count": 0
+        },
+        {
+          "name": "Intercontinental Champ",
+          "count": 0
+        },
+        {
+          "name": "Somehow the Champion",
+          "count": 0
+        },
+        {
+          "name": "Survivor King",
+          "count": 0
+        },
+        {
+          "name": "Degen Bowl",
+          "count": 0
+        },
+        {
+          "name": "Dad Bod's Preseason Rankings",
+          "count": 0
+        },
+        {
+          "name": "JopO or KG Pick 'Em",
+          "count": 0
+        },
+        {
+          "name": "Da Choppaaa Champ",
+          "count": 0
+        },
+        {
+          "name": "Bronze Franz",
+          "count": 0
+        }
+      ],
+      "headToHead": {}
+    },
+    "kyle": {
+      "name": "Kyle",
+      "nickname": "The Snoot",
+      "memberSince": 2018,
+      "photo": "../images/kyle.png",
+      "lastUpdated": null,
+      "location": null,
+      "locationEmoji": "",
+      "broughtInBy": null,
+      "statusLines": [],
+      "prestige": {
+        "rank": 3,
+        "points": null,
+        "outOf": 27
+      },
+      "traits": [],
+      "currentSeason": {
+        "year": 2026,
+        "record": null,
+        "standing": null,
+        "ptsPerGame": null,
+        "lastGame": {
+          "result": "W",
+          "opponent": null,
+          "score": null,
+          "lifetimeVsOpponent": null
+        },
+        "nextGame": {
+          "opponent": null,
+          "lifetimeVsOpponent": null
+        }
+      },
+      "rivalries": {
+        "owns": [],
+        "ownedBy": [],
+        "rivals": null,
+        "ryderCup": null
+      },
+      "narrative": {
+        "sectionLabel": "The Narrative",
+        "pullQuote": null,
+        "body": null
+      },
+      "careerStats": {
+        "general": [
+          {
+            "stat": "Seasons Played",
+            "value": null,
+            "rank": null,
+            "explainer": null,
+            "isEarnings": false
+          },
+          {
+            "stat": "Net Earnings",
+            "value": null,
+            "rank": null,
+            "explainer": "Total winnings minus entry fees",
+            "isEarnings": true
+          },
+          {
+            "stat": "Prestige Points",
+            "value": null,
+            "rank": null,
+            "explainer": null,
+            "isEarnings": false
+          }
+        ],
+        "regularSeason": [
+          {
+            "stat": "Wins",
+            "value": null,
+            "rank": null,
+            "explainer": null,
+            "isEarnings": false
+          },
+          {
+            "stat": "Win %",
+            "value": null,
+            "rank": null,
+            "explainer": null,
+            "isEarnings": false
+          },
+          {
+            "stat": "Avg Finish",
+            "value": null,
+            "rank": null,
+            "explainer": null,
+            "isEarnings": false
+          },
+          {
+            "stat": "Pts Per Game",
+            "value": null,
+            "rank": null,
+            "explainer": null,
+            "isEarnings": false
+          },
+          {
+            "stat": "Point Share",
+            "value": null,
+            "rank": null,
+            "explainer": "% of total league points scored",
+            "isEarnings": false
+          },
+          {
+            "stat": "Career High Score",
+            "value": null,
+            "rank": null,
+            "explainer": null,
+            "isEarnings": false
+          },
+          {
+            "stat": "Weekly High Scores",
+            "value": null,
+            "rank": null,
+            "explainer": null,
+            "isEarnings": false
+          },
+          {
+            "stat": "Power Score",
+            "value": null,
+            "rank": null,
+            "explainer": null,
+            "isEarnings": false
+          },
+          {
+            "stat": "Weeks at #1",
+            "value": null,
+            "rank": null,
+            "explainer": null,
+            "isEarnings": false
+          },
+          {
+            "stat": "Boom Rate",
+            "value": null,
+            "rank": null,
+            "explainer": "% of games scoring 120% or more of league average",
+            "isEarnings": false
+          },
+          {
+            "stat": "Start Rate",
+            "value": null,
+            "rank": null,
+            "explainer": "% of games scoring at or above league average",
+            "isEarnings": false
+          },
+          {
+            "stat": "Luck Rate",
+            "value": null,
+            "rank": null,
+            "explainer": "Win % above/below expected",
+            "isEarnings": false
+          }
+        ],
+        "playoffs": [
+          {
+            "stat": "Appearances",
+            "value": null,
+            "rank": null,
+            "explainer": null,
+            "isEarnings": false
+          },
+          {
+            "stat": "Wins",
+            "value": null,
+            "rank": null,
+            "explainer": null,
+            "isEarnings": false
+          },
+          {
+            "stat": "Win %",
+            "value": null,
+            "rank": null,
+            "explainer": null,
+            "isEarnings": false
+          },
+          {
+            "stat": "Championships",
+            "value": null,
+            "rank": null,
+            "explainer": null,
+            "isEarnings": false
+          }
+        ]
+      },
+      "charts": {
+        "winsAndFinish": {
+          "years": [
+            2014,
+            2015,
+            2016,
+            2017,
+            2018,
+            2019,
+            2020,
+            2021,
+            2022,
+            2023,
+            2024,
+            2025,
+            2026
+          ],
+          "wins": [
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null
+          ],
+          "finish": [
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null
+          ]
+        },
+        "pointShare": {
+          "years": [
+            2014,
+            2015,
+            2016,
+            2017,
+            2018,
+            2019,
+            2020,
+            2021,
+            2022,
+            2023,
+            2024,
+            2025,
+            2026
+          ],
+          "values": [
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null
+          ]
+        },
+        "winnings": {
+          "years": [
+            2014,
+            2015,
+            2016,
+            2017,
+            2018,
+            2019,
+            2020,
+            2021,
+            2022,
+            2023,
+            2024,
+            2025,
+            2026
+          ],
+          "values": [
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null
+          ]
+        },
+        "prestigePerSeason": {
+          "years": [
+            2014,
+            2015,
+            2016,
+            2017,
+            2018,
+            2019,
+            2020,
+            2021,
+            2022,
+            2023,
+            2024,
+            2025,
+            2026
+          ],
+          "values": [
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null
+          ]
+        }
+      },
+      "seasons": [
+        {
+          "year": 2026,
+          "teamName": null,
+          "record": null,
+          "finish": null,
+          "ptsPerGame": null,
+          "pointShare": null,
+          "powerScore": null,
+          "winnings": null,
+          "prestigeEarned": null,
+          "playoffResult": null,
+          "result": null
+        },
+        {
+          "year": 2025,
+          "teamName": null,
+          "record": null,
+          "finish": null,
+          "ptsPerGame": null,
+          "pointShare": null,
+          "powerScore": null,
+          "winnings": null,
+          "prestigeEarned": null,
+          "playoffResult": null,
+          "result": null
+        },
+        {
+          "year": 2024,
+          "teamName": null,
+          "record": null,
+          "finish": null,
+          "ptsPerGame": null,
+          "pointShare": null,
+          "powerScore": null,
+          "winnings": null,
+          "prestigeEarned": null,
+          "playoffResult": null,
+          "result": null
+        },
+        {
+          "year": 2023,
+          "teamName": null,
+          "record": null,
+          "finish": null,
+          "ptsPerGame": null,
+          "pointShare": null,
+          "powerScore": null,
+          "winnings": null,
+          "prestigeEarned": null,
+          "playoffResult": null,
+          "result": null
+        },
+        {
+          "year": 2022,
+          "teamName": null,
+          "record": null,
+          "finish": null,
+          "ptsPerGame": null,
+          "pointShare": null,
+          "powerScore": null,
+          "winnings": null,
+          "prestigeEarned": null,
+          "playoffResult": null,
+          "result": null
+        },
+        {
+          "year": 2021,
+          "teamName": null,
+          "record": null,
+          "finish": null,
+          "ptsPerGame": null,
+          "pointShare": null,
+          "powerScore": null,
+          "winnings": null,
+          "prestigeEarned": null,
+          "playoffResult": null,
+          "result": null
+        },
+        {
+          "year": 2020,
+          "teamName": null,
+          "record": null,
+          "finish": null,
+          "ptsPerGame": null,
+          "pointShare": null,
+          "powerScore": null,
+          "winnings": null,
+          "prestigeEarned": null,
+          "playoffResult": null,
+          "result": null
+        },
+        {
+          "year": 2019,
+          "teamName": null,
+          "record": null,
+          "finish": null,
+          "ptsPerGame": null,
+          "pointShare": null,
+          "powerScore": null,
+          "winnings": null,
+          "prestigeEarned": null,
+          "playoffResult": null,
+          "result": null
+        },
+        {
+          "year": 2018,
+          "teamName": null,
+          "record": null,
+          "finish": null,
+          "ptsPerGame": null,
+          "pointShare": null,
+          "powerScore": null,
+          "winnings": null,
+          "prestigeEarned": null,
+          "playoffResult": null,
+          "result": null
+        }
+      ],
+      "trophies": [
+        {
+          "name": "League Champion",
+          "count": 0
+        },
+        {
+          "name": "2nd Place",
+          "count": 0
+        },
+        {
+          "name": "3rd Place",
+          "count": 0
+        },
+        {
+          "name": "Regular Season Champion",
+          "count": 0
+        },
+        {
+          "name": "Owner of the Year",
+          "count": 0
+        },
+        {
+          "name": "AVL Memorial Cup",
+          "count": 0
+        },
+        {
+          "name": "Rivalry Week",
+          "count": 0
+        },
+        {
+          "name": "Hottest Team in Sports Bowl",
+          "count": 0
+        },
+        {
+          "name": "Hung the * Chain",
+          "count": 0
+        },
+        {
+          "name": "Intercontinental Champ",
+          "count": 0
+        },
+        {
+          "name": "Somehow the Champion",
+          "count": 0
+        },
+        {
+          "name": "Survivor King",
+          "count": 0
+        },
+        {
+          "name": "Degen Bowl",
+          "count": 0
+        },
+        {
+          "name": "Dad Bod's Preseason Rankings",
+          "count": 0
+        },
+        {
+          "name": "JopO or KG Pick 'Em",
+          "count": 0
+        },
+        {
+          "name": "Da Choppaaa Champ",
+          "count": 0
+        },
+        {
+          "name": "Bronze Franz",
+          "count": 0
+        }
+      ],
+      "headToHead": {}
+    },
+    "luke": {
+      "name": "Luke",
+      "nickname": "The Rook",
+      "memberSince": 2026,
+      "photo": "../images/luke.jpg",
+      "lastUpdated": null,
+      "location": null,
+      "locationEmoji": "",
+      "broughtInBy": null,
+      "statusLines": [],
+      "prestige": {
+        "rank": 27,
+        "points": null,
+        "outOf": 27
+      },
+      "traits": [],
+      "currentSeason": {
+        "year": 2026,
+        "record": null,
+        "standing": null,
+        "ptsPerGame": null,
+        "lastGame": {
+          "result": "W",
+          "opponent": null,
+          "score": null,
+          "lifetimeVsOpponent": null
+        },
+        "nextGame": {
+          "opponent": null,
+          "lifetimeVsOpponent": null
+        }
+      },
+      "rivalries": {
+        "owns": [],
+        "ownedBy": [],
+        "rivals": null,
+        "ryderCup": null
+      },
+      "narrative": {
+        "sectionLabel": "The Narrative",
+        "pullQuote": null,
+        "body": null
+      },
+      "careerStats": {
+        "general": [
+          {
+            "stat": "Seasons Played",
+            "value": null,
+            "rank": null,
+            "explainer": null,
+            "isEarnings": false
+          },
+          {
+            "stat": "Net Earnings",
+            "value": null,
+            "rank": null,
+            "explainer": "Total winnings minus entry fees",
+            "isEarnings": true
+          },
+          {
+            "stat": "Prestige Points",
+            "value": null,
+            "rank": null,
+            "explainer": null,
+            "isEarnings": false
+          }
+        ],
+        "regularSeason": [
+          {
+            "stat": "Wins",
+            "value": null,
+            "rank": null,
+            "explainer": null,
+            "isEarnings": false
+          },
+          {
+            "stat": "Win %",
+            "value": null,
+            "rank": null,
+            "explainer": null,
+            "isEarnings": false
+          },
+          {
+            "stat": "Avg Finish",
+            "value": null,
+            "rank": null,
+            "explainer": null,
+            "isEarnings": false
+          },
+          {
+            "stat": "Pts Per Game",
+            "value": null,
+            "rank": null,
+            "explainer": null,
+            "isEarnings": false
+          },
+          {
+            "stat": "Point Share",
+            "value": null,
+            "rank": null,
+            "explainer": "% of total league points scored",
+            "isEarnings": false
+          },
+          {
+            "stat": "Career High Score",
+            "value": null,
+            "rank": null,
+            "explainer": null,
+            "isEarnings": false
+          },
+          {
+            "stat": "Weekly High Scores",
+            "value": null,
+            "rank": null,
+            "explainer": null,
+            "isEarnings": false
+          },
+          {
+            "stat": "Power Score",
+            "value": null,
+            "rank": null,
+            "explainer": null,
+            "isEarnings": false
+          },
+          {
+            "stat": "Weeks at #1",
+            "value": null,
+            "rank": null,
+            "explainer": null,
+            "isEarnings": false
+          },
+          {
+            "stat": "Boom Rate",
+            "value": null,
+            "rank": null,
+            "explainer": "% of games scoring 120% or more of league average",
+            "isEarnings": false
+          },
+          {
+            "stat": "Start Rate",
+            "value": null,
+            "rank": null,
+            "explainer": "% of games scoring at or above league average",
+            "isEarnings": false
+          },
+          {
+            "stat": "Luck Rate",
+            "value": null,
+            "rank": null,
+            "explainer": "Win % above/below expected",
+            "isEarnings": false
+          }
+        ],
+        "playoffs": [
+          {
+            "stat": "Appearances",
+            "value": null,
+            "rank": null,
+            "explainer": null,
+            "isEarnings": false
+          },
+          {
+            "stat": "Wins",
+            "value": null,
+            "rank": null,
+            "explainer": null,
+            "isEarnings": false
+          },
+          {
+            "stat": "Win %",
+            "value": null,
+            "rank": null,
+            "explainer": null,
+            "isEarnings": false
+          },
+          {
+            "stat": "Championships",
+            "value": null,
+            "rank": null,
+            "explainer": null,
+            "isEarnings": false
+          }
+        ]
+      },
+      "charts": {
+        "winsAndFinish": {
+          "years": [
+            2014,
+            2015,
+            2016,
+            2017,
+            2018,
+            2019,
+            2020,
+            2021,
+            2022,
+            2023,
+            2024,
+            2025,
+            2026
+          ],
+          "wins": [
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null
+          ],
+          "finish": [
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null
+          ]
+        },
+        "pointShare": {
+          "years": [
+            2014,
+            2015,
+            2016,
+            2017,
+            2018,
+            2019,
+            2020,
+            2021,
+            2022,
+            2023,
+            2024,
+            2025,
+            2026
+          ],
+          "values": [
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null
+          ]
+        },
+        "winnings": {
+          "years": [
+            2014,
+            2015,
+            2016,
+            2017,
+            2018,
+            2019,
+            2020,
+            2021,
+            2022,
+            2023,
+            2024,
+            2025,
+            2026
+          ],
+          "values": [
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null
+          ]
+        },
+        "prestigePerSeason": {
+          "years": [
+            2014,
+            2015,
+            2016,
+            2017,
+            2018,
+            2019,
+            2020,
+            2021,
+            2022,
+            2023,
+            2024,
+            2025,
+            2026
+          ],
+          "values": [
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null
+          ]
+        }
+      },
+      "seasons": [
+        {
+          "year": 2026,
+          "teamName": null,
+          "record": null,
+          "finish": null,
+          "ptsPerGame": null,
+          "pointShare": null,
+          "powerScore": null,
+          "winnings": null,
+          "prestigeEarned": null,
+          "playoffResult": null,
+          "result": null
+        }
+      ],
+      "trophies": [
+        {
+          "name": "League Champion",
+          "count": 0
+        },
+        {
+          "name": "2nd Place",
+          "count": 0
+        },
+        {
+          "name": "3rd Place",
+          "count": 0
+        },
+        {
+          "name": "Regular Season Champion",
+          "count": 0
+        },
+        {
+          "name": "Owner of the Year",
+          "count": 0
+        },
+        {
+          "name": "AVL Memorial Cup",
+          "count": 0
+        },
+        {
+          "name": "Rivalry Week",
+          "count": 0
+        },
+        {
+          "name": "Hottest Team in Sports Bowl",
+          "count": 0
+        },
+        {
+          "name": "Hung the * Chain",
+          "count": 0
+        },
+        {
+          "name": "Intercontinental Champ",
+          "count": 0
+        },
+        {
+          "name": "Somehow the Champion",
+          "count": 0
+        },
+        {
+          "name": "Survivor King",
+          "count": 0
+        },
+        {
+          "name": "Degen Bowl",
+          "count": 0
+        },
+        {
+          "name": "Dad Bod's Preseason Rankings",
+          "count": 0
+        },
+        {
+          "name": "JopO or KG Pick 'Em",
+          "count": 0
+        },
+        {
+          "name": "Da Choppaaa Champ",
+          "count": 0
+        },
+        {
+          "name": "Bronze Franz",
+          "count": 0
+        }
+      ],
+      "headToHead": {}
+    },
+    "matt": {
+      "name": "Matt",
+      "nickname": "Dad Bod",
+      "memberSince": 2015,
+      "photo": "../images/matt.jpg",
+      "lastUpdated": null,
+      "location": null,
+      "locationEmoji": "",
+      "broughtInBy": null,
+      "statusLines": [],
+      "prestige": {
+        "rank": 10,
+        "points": null,
+        "outOf": 27
+      },
+      "traits": [],
+      "currentSeason": {
+        "year": 2026,
+        "record": null,
+        "standing": null,
+        "ptsPerGame": null,
+        "lastGame": {
+          "result": "W",
+          "opponent": null,
+          "score": null,
+          "lifetimeVsOpponent": null
+        },
+        "nextGame": {
+          "opponent": null,
+          "lifetimeVsOpponent": null
+        }
+      },
+      "rivalries": {
+        "owns": [],
+        "ownedBy": [],
+        "rivals": null,
+        "ryderCup": null
+      },
+      "narrative": {
+        "sectionLabel": "The Narrative",
+        "pullQuote": null,
+        "body": null
+      },
+      "careerStats": {
+        "general": [
+          {
+            "stat": "Seasons Played",
+            "value": null,
+            "rank": null,
+            "explainer": null,
+            "isEarnings": false
+          },
+          {
+            "stat": "Net Earnings",
+            "value": null,
+            "rank": null,
+            "explainer": "Total winnings minus entry fees",
+            "isEarnings": true
+          },
+          {
+            "stat": "Prestige Points",
+            "value": null,
+            "rank": null,
+            "explainer": null,
+            "isEarnings": false
+          }
+        ],
+        "regularSeason": [
+          {
+            "stat": "Wins",
+            "value": null,
+            "rank": null,
+            "explainer": null,
+            "isEarnings": false
+          },
+          {
+            "stat": "Win %",
+            "value": null,
+            "rank": null,
+            "explainer": null,
+            "isEarnings": false
+          },
+          {
+            "stat": "Avg Finish",
+            "value": null,
+            "rank": null,
+            "explainer": null,
+            "isEarnings": false
+          },
+          {
+            "stat": "Pts Per Game",
+            "value": null,
+            "rank": null,
+            "explainer": null,
+            "isEarnings": false
+          },
+          {
+            "stat": "Point Share",
+            "value": null,
+            "rank": null,
+            "explainer": "% of total league points scored",
+            "isEarnings": false
+          },
+          {
+            "stat": "Career High Score",
+            "value": null,
+            "rank": null,
+            "explainer": null,
+            "isEarnings": false
+          },
+          {
+            "stat": "Weekly High Scores",
+            "value": null,
+            "rank": null,
+            "explainer": null,
+            "isEarnings": false
+          },
+          {
+            "stat": "Power Score",
+            "value": null,
+            "rank": null,
+            "explainer": null,
+            "isEarnings": false
+          },
+          {
+            "stat": "Weeks at #1",
+            "value": null,
+            "rank": null,
+            "explainer": null,
+            "isEarnings": false
+          },
+          {
+            "stat": "Boom Rate",
+            "value": null,
+            "rank": null,
+            "explainer": "% of games scoring 120% or more of league average",
+            "isEarnings": false
+          },
+          {
+            "stat": "Start Rate",
+            "value": null,
+            "rank": null,
+            "explainer": "% of games scoring at or above league average",
+            "isEarnings": false
+          },
+          {
+            "stat": "Luck Rate",
+            "value": null,
+            "rank": null,
+            "explainer": "Win % above/below expected",
+            "isEarnings": false
+          }
+        ],
+        "playoffs": [
+          {
+            "stat": "Appearances",
+            "value": null,
+            "rank": null,
+            "explainer": null,
+            "isEarnings": false
+          },
+          {
+            "stat": "Wins",
+            "value": null,
+            "rank": null,
+            "explainer": null,
+            "isEarnings": false
+          },
+          {
+            "stat": "Win %",
+            "value": null,
+            "rank": null,
+            "explainer": null,
+            "isEarnings": false
+          },
+          {
+            "stat": "Championships",
+            "value": null,
+            "rank": null,
+            "explainer": null,
+            "isEarnings": false
+          }
+        ]
+      },
+      "charts": {
+        "winsAndFinish": {
+          "years": [
+            2014,
+            2015,
+            2016,
+            2017,
+            2018,
+            2019,
+            2020,
+            2021,
+            2022,
+            2023,
+            2024,
+            2025,
+            2026
+          ],
+          "wins": [
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null
+          ],
+          "finish": [
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null
+          ]
+        },
+        "pointShare": {
+          "years": [
+            2014,
+            2015,
+            2016,
+            2017,
+            2018,
+            2019,
+            2020,
+            2021,
+            2022,
+            2023,
+            2024,
+            2025,
+            2026
+          ],
+          "values": [
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null
+          ]
+        },
+        "winnings": {
+          "years": [
+            2014,
+            2015,
+            2016,
+            2017,
+            2018,
+            2019,
+            2020,
+            2021,
+            2022,
+            2023,
+            2024,
+            2025,
+            2026
+          ],
+          "values": [
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null
+          ]
+        },
+        "prestigePerSeason": {
+          "years": [
+            2014,
+            2015,
+            2016,
+            2017,
+            2018,
+            2019,
+            2020,
+            2021,
+            2022,
+            2023,
+            2024,
+            2025,
+            2026
+          ],
+          "values": [
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null
+          ]
+        }
+      },
+      "seasons": [
+        {
+          "year": 2026,
+          "teamName": null,
+          "record": null,
+          "finish": null,
+          "ptsPerGame": null,
+          "pointShare": null,
+          "powerScore": null,
+          "winnings": null,
+          "prestigeEarned": null,
+          "playoffResult": null,
+          "result": null
+        },
+        {
+          "year": 2025,
+          "teamName": null,
+          "record": null,
+          "finish": null,
+          "ptsPerGame": null,
+          "pointShare": null,
+          "powerScore": null,
+          "winnings": null,
+          "prestigeEarned": null,
+          "playoffResult": null,
+          "result": null
+        },
+        {
+          "year": 2024,
+          "teamName": null,
+          "record": null,
+          "finish": null,
+          "ptsPerGame": null,
+          "pointShare": null,
+          "powerScore": null,
+          "winnings": null,
+          "prestigeEarned": null,
+          "playoffResult": null,
+          "result": null
+        },
+        {
+          "year": 2023,
+          "teamName": null,
+          "record": null,
+          "finish": null,
+          "ptsPerGame": null,
+          "pointShare": null,
+          "powerScore": null,
+          "winnings": null,
+          "prestigeEarned": null,
+          "playoffResult": null,
+          "result": null
+        },
+        {
+          "year": 2022,
+          "teamName": null,
+          "record": null,
+          "finish": null,
+          "ptsPerGame": null,
+          "pointShare": null,
+          "powerScore": null,
+          "winnings": null,
+          "prestigeEarned": null,
+          "playoffResult": null,
+          "result": null
+        },
+        {
+          "year": 2021,
+          "teamName": null,
+          "record": null,
+          "finish": null,
+          "ptsPerGame": null,
+          "pointShare": null,
+          "powerScore": null,
+          "winnings": null,
+          "prestigeEarned": null,
+          "playoffResult": null,
+          "result": null
+        },
+        {
+          "year": 2020,
+          "teamName": null,
+          "record": null,
+          "finish": null,
+          "ptsPerGame": null,
+          "pointShare": null,
+          "powerScore": null,
+          "winnings": null,
+          "prestigeEarned": null,
+          "playoffResult": null,
+          "result": null
+        },
+        {
+          "year": 2019,
+          "teamName": null,
+          "record": null,
+          "finish": null,
+          "ptsPerGame": null,
+          "pointShare": null,
+          "powerScore": null,
+          "winnings": null,
+          "prestigeEarned": null,
+          "playoffResult": null,
+          "result": null
+        },
+        {
+          "year": 2018,
+          "teamName": null,
+          "record": null,
+          "finish": null,
+          "ptsPerGame": null,
+          "pointShare": null,
+          "powerScore": null,
+          "winnings": null,
+          "prestigeEarned": null,
+          "playoffResult": null,
+          "result": null
+        },
+        {
+          "year": 2017,
+          "teamName": null,
+          "record": null,
+          "finish": null,
+          "ptsPerGame": null,
+          "pointShare": null,
+          "powerScore": null,
+          "winnings": null,
+          "prestigeEarned": null,
+          "playoffResult": null,
+          "result": null
+        },
+        {
+          "year": 2016,
+          "teamName": null,
+          "record": null,
+          "finish": null,
+          "ptsPerGame": null,
+          "pointShare": null,
+          "powerScore": null,
+          "winnings": null,
+          "prestigeEarned": null,
+          "playoffResult": null,
+          "result": null
+        },
+        {
+          "year": 2015,
+          "teamName": null,
+          "record": null,
+          "finish": null,
+          "ptsPerGame": null,
+          "pointShare": null,
+          "powerScore": null,
+          "winnings": null,
+          "prestigeEarned": null,
+          "playoffResult": null,
+          "result": null
+        }
+      ],
+      "trophies": [
+        {
+          "name": "League Champion",
+          "count": 0
+        },
+        {
+          "name": "2nd Place",
+          "count": 0
+        },
+        {
+          "name": "3rd Place",
+          "count": 0
+        },
+        {
+          "name": "Regular Season Champion",
+          "count": 0
+        },
+        {
+          "name": "Owner of the Year",
+          "count": 0
+        },
+        {
+          "name": "AVL Memorial Cup",
+          "count": 0
+        },
+        {
+          "name": "Rivalry Week",
+          "count": 0
+        },
+        {
+          "name": "Hottest Team in Sports Bowl",
+          "count": 0
+        },
+        {
+          "name": "Hung the * Chain",
+          "count": 0
+        },
+        {
+          "name": "Intercontinental Champ",
+          "count": 0
+        },
+        {
+          "name": "Somehow the Champion",
+          "count": 0
+        },
+        {
+          "name": "Survivor King",
+          "count": 0
+        },
+        {
+          "name": "Degen Bowl",
+          "count": 0
+        },
+        {
+          "name": "Dad Bod's Preseason Rankings",
+          "count": 0
+        },
+        {
+          "name": "JopO or KG Pick 'Em",
+          "count": 0
+        },
+        {
+          "name": "Da Choppaaa Champ",
+          "count": 0
+        },
+        {
+          "name": "Bronze Franz",
+          "count": 0
+        }
+      ],
+      "headToHead": {}
+    },
+    "mike": {
+      "name": "Mike",
+      "nickname": "The Contrarian",
+      "memberSince": 2014,
+      "photo": "../images/mike.jpg",
+      "lastUpdated": null,
+      "location": null,
+      "locationEmoji": "",
+      "broughtInBy": null,
+      "statusLines": [],
+      "prestige": {
+        "rank": 4,
+        "points": null,
+        "outOf": 27
+      },
+      "traits": [],
+      "currentSeason": {
+        "year": 2026,
+        "record": null,
+        "standing": null,
+        "ptsPerGame": null,
+        "lastGame": {
+          "result": "W",
+          "opponent": null,
+          "score": null,
+          "lifetimeVsOpponent": null
+        },
+        "nextGame": {
+          "opponent": null,
+          "lifetimeVsOpponent": null
+        }
+      },
+      "rivalries": {
+        "owns": [],
+        "ownedBy": [],
+        "rivals": null,
+        "ryderCup": null
+      },
+      "narrative": {
+        "sectionLabel": "The Narrative",
+        "pullQuote": null,
+        "body": null
+      },
+      "careerStats": {
+        "general": [
+          {
+            "stat": "Seasons Played",
+            "value": null,
+            "rank": null,
+            "explainer": null,
+            "isEarnings": false
+          },
+          {
+            "stat": "Net Earnings",
+            "value": null,
+            "rank": null,
+            "explainer": "Total winnings minus entry fees",
+            "isEarnings": true
+          },
+          {
+            "stat": "Prestige Points",
+            "value": null,
+            "rank": null,
+            "explainer": null,
+            "isEarnings": false
+          }
+        ],
+        "regularSeason": [
+          {
+            "stat": "Wins",
+            "value": null,
+            "rank": null,
+            "explainer": null,
+            "isEarnings": false
+          },
+          {
+            "stat": "Win %",
+            "value": null,
+            "rank": null,
+            "explainer": null,
+            "isEarnings": false
+          },
+          {
+            "stat": "Avg Finish",
+            "value": null,
+            "rank": null,
+            "explainer": null,
+            "isEarnings": false
+          },
+          {
+            "stat": "Pts Per Game",
+            "value": null,
+            "rank": null,
+            "explainer": null,
+            "isEarnings": false
+          },
+          {
+            "stat": "Point Share",
+            "value": null,
+            "rank": null,
+            "explainer": "% of total league points scored",
+            "isEarnings": false
+          },
+          {
+            "stat": "Career High Score",
+            "value": null,
+            "rank": null,
+            "explainer": null,
+            "isEarnings": false
+          },
+          {
+            "stat": "Weekly High Scores",
+            "value": null,
+            "rank": null,
+            "explainer": null,
+            "isEarnings": false
+          },
+          {
+            "stat": "Power Score",
+            "value": null,
+            "rank": null,
+            "explainer": null,
+            "isEarnings": false
+          },
+          {
+            "stat": "Weeks at #1",
+            "value": null,
+            "rank": null,
+            "explainer": null,
+            "isEarnings": false
+          },
+          {
+            "stat": "Boom Rate",
+            "value": null,
+            "rank": null,
+            "explainer": "% of games scoring 120% or more of league average",
+            "isEarnings": false
+          },
+          {
+            "stat": "Start Rate",
+            "value": null,
+            "rank": null,
+            "explainer": "% of games scoring at or above league average",
+            "isEarnings": false
+          },
+          {
+            "stat": "Luck Rate",
+            "value": null,
+            "rank": null,
+            "explainer": "Win % above/below expected",
+            "isEarnings": false
+          }
+        ],
+        "playoffs": [
+          {
+            "stat": "Appearances",
+            "value": null,
+            "rank": null,
+            "explainer": null,
+            "isEarnings": false
+          },
+          {
+            "stat": "Wins",
+            "value": null,
+            "rank": null,
+            "explainer": null,
+            "isEarnings": false
+          },
+          {
+            "stat": "Win %",
+            "value": null,
+            "rank": null,
+            "explainer": null,
+            "isEarnings": false
+          },
+          {
+            "stat": "Championships",
+            "value": null,
+            "rank": null,
+            "explainer": null,
+            "isEarnings": false
+          }
+        ]
+      },
+      "charts": {
+        "winsAndFinish": {
+          "years": [
+            2014,
+            2015,
+            2016,
+            2017,
+            2018,
+            2019,
+            2020,
+            2021,
+            2022,
+            2023,
+            2024,
+            2025,
+            2026
+          ],
+          "wins": [
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null
+          ],
+          "finish": [
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null
+          ]
+        },
+        "pointShare": {
+          "years": [
+            2014,
+            2015,
+            2016,
+            2017,
+            2018,
+            2019,
+            2020,
+            2021,
+            2022,
+            2023,
+            2024,
+            2025,
+            2026
+          ],
+          "values": [
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null
+          ]
+        },
+        "winnings": {
+          "years": [
+            2014,
+            2015,
+            2016,
+            2017,
+            2018,
+            2019,
+            2020,
+            2021,
+            2022,
+            2023,
+            2024,
+            2025,
+            2026
+          ],
+          "values": [
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null
+          ]
+        },
+        "prestigePerSeason": {
+          "years": [
+            2014,
+            2015,
+            2016,
+            2017,
+            2018,
+            2019,
+            2020,
+            2021,
+            2022,
+            2023,
+            2024,
+            2025,
+            2026
+          ],
+          "values": [
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null
+          ]
+        }
+      },
+      "seasons": [
+        {
+          "year": 2026,
+          "teamName": null,
+          "record": null,
+          "finish": null,
+          "ptsPerGame": null,
+          "pointShare": null,
+          "powerScore": null,
+          "winnings": null,
+          "prestigeEarned": null,
+          "playoffResult": null,
+          "result": null
+        },
+        {
+          "year": 2025,
+          "teamName": null,
+          "record": null,
+          "finish": null,
+          "ptsPerGame": null,
+          "pointShare": null,
+          "powerScore": null,
+          "winnings": null,
+          "prestigeEarned": null,
+          "playoffResult": null,
+          "result": null
+        },
+        {
+          "year": 2024,
+          "teamName": null,
+          "record": null,
+          "finish": null,
+          "ptsPerGame": null,
+          "pointShare": null,
+          "powerScore": null,
+          "winnings": null,
+          "prestigeEarned": null,
+          "playoffResult": null,
+          "result": null
+        },
+        {
+          "year": 2023,
+          "teamName": null,
+          "record": null,
+          "finish": null,
+          "ptsPerGame": null,
+          "pointShare": null,
+          "powerScore": null,
+          "winnings": null,
+          "prestigeEarned": null,
+          "playoffResult": null,
+          "result": null
+        },
+        {
+          "year": 2022,
+          "teamName": null,
+          "record": null,
+          "finish": null,
+          "ptsPerGame": null,
+          "pointShare": null,
+          "powerScore": null,
+          "winnings": null,
+          "prestigeEarned": null,
+          "playoffResult": null,
+          "result": null
+        },
+        {
+          "year": 2021,
+          "teamName": null,
+          "record": null,
+          "finish": null,
+          "ptsPerGame": null,
+          "pointShare": null,
+          "powerScore": null,
+          "winnings": null,
+          "prestigeEarned": null,
+          "playoffResult": null,
+          "result": null
+        },
+        {
+          "year": 2020,
+          "teamName": null,
+          "record": null,
+          "finish": null,
+          "ptsPerGame": null,
+          "pointShare": null,
+          "powerScore": null,
+          "winnings": null,
+          "prestigeEarned": null,
+          "playoffResult": null,
+          "result": null
+        },
+        {
+          "year": 2019,
+          "teamName": null,
+          "record": null,
+          "finish": null,
+          "ptsPerGame": null,
+          "pointShare": null,
+          "powerScore": null,
+          "winnings": null,
+          "prestigeEarned": null,
+          "playoffResult": null,
+          "result": null
+        },
+        {
+          "year": 2018,
+          "teamName": null,
+          "record": null,
+          "finish": null,
+          "ptsPerGame": null,
+          "pointShare": null,
+          "powerScore": null,
+          "winnings": null,
+          "prestigeEarned": null,
+          "playoffResult": null,
+          "result": null
+        },
+        {
+          "year": 2017,
+          "teamName": null,
+          "record": null,
+          "finish": null,
+          "ptsPerGame": null,
+          "pointShare": null,
+          "powerScore": null,
+          "winnings": null,
+          "prestigeEarned": null,
+          "playoffResult": null,
+          "result": null
+        },
+        {
+          "year": 2016,
+          "teamName": null,
+          "record": null,
+          "finish": null,
+          "ptsPerGame": null,
+          "pointShare": null,
+          "powerScore": null,
+          "winnings": null,
+          "prestigeEarned": null,
+          "playoffResult": null,
+          "result": null
+        },
+        {
+          "year": 2015,
+          "teamName": null,
+          "record": null,
+          "finish": null,
+          "ptsPerGame": null,
+          "pointShare": null,
+          "powerScore": null,
+          "winnings": null,
+          "prestigeEarned": null,
+          "playoffResult": null,
+          "result": null
+        },
+        {
+          "year": 2014,
+          "teamName": null,
+          "record": null,
+          "finish": null,
+          "ptsPerGame": null,
+          "pointShare": null,
+          "powerScore": null,
+          "winnings": null,
+          "prestigeEarned": null,
+          "playoffResult": null,
+          "result": null
+        }
+      ],
+      "trophies": [
+        {
+          "name": "League Champion",
+          "count": 0
+        },
+        {
+          "name": "2nd Place",
+          "count": 0
+        },
+        {
+          "name": "3rd Place",
+          "count": 0
+        },
+        {
+          "name": "Regular Season Champion",
+          "count": 0
+        },
+        {
+          "name": "Owner of the Year",
+          "count": 0
+        },
+        {
+          "name": "AVL Memorial Cup",
+          "count": 0
+        },
+        {
+          "name": "Rivalry Week",
+          "count": 0
+        },
+        {
+          "name": "Hottest Team in Sports Bowl",
+          "count": 0
+        },
+        {
+          "name": "Hung the * Chain",
+          "count": 0
+        },
+        {
+          "name": "Intercontinental Champ",
+          "count": 0
+        },
+        {
+          "name": "Somehow the Champion",
+          "count": 0
+        },
+        {
+          "name": "Survivor King",
+          "count": 0
+        },
+        {
+          "name": "Degen Bowl",
+          "count": 0
+        },
+        {
+          "name": "Dad Bod's Preseason Rankings",
+          "count": 0
+        },
+        {
+          "name": "JopO or KG Pick 'Em",
+          "count": 0
+        },
+        {
+          "name": "Da Choppaaa Champ",
+          "count": 0
+        },
+        {
+          "name": "Bronze Franz",
+          "count": 0
+        }
+      ],
+      "headToHead": {}
+    },
+    "scott": {
+      "name": "Scott",
+      "nickname": "Murph",
+      "memberSince": 2014,
+      "photo": "../images/scott.jpg",
+      "lastUpdated": null,
+      "location": null,
+      "locationEmoji": "",
+      "broughtInBy": null,
+      "statusLines": [],
+      "prestige": {
+        "rank": 11,
+        "points": null,
+        "outOf": 27
+      },
+      "traits": [],
+      "currentSeason": {
+        "year": 2026,
+        "record": null,
+        "standing": null,
+        "ptsPerGame": null,
+        "lastGame": {
+          "result": "W",
+          "opponent": null,
+          "score": null,
+          "lifetimeVsOpponent": null
+        },
+        "nextGame": {
+          "opponent": null,
+          "lifetimeVsOpponent": null
+        }
+      },
+      "rivalries": {
+        "owns": [],
+        "ownedBy": [],
+        "rivals": null,
+        "ryderCup": null
+      },
+      "narrative": {
+        "sectionLabel": "The Narrative",
+        "pullQuote": null,
+        "body": null
+      },
+      "careerStats": {
+        "general": [
+          {
+            "stat": "Seasons Played",
+            "value": null,
+            "rank": null,
+            "explainer": null,
+            "isEarnings": false
+          },
+          {
+            "stat": "Net Earnings",
+            "value": null,
+            "rank": null,
+            "explainer": "Total winnings minus entry fees",
+            "isEarnings": true
+          },
+          {
+            "stat": "Prestige Points",
+            "value": null,
+            "rank": null,
+            "explainer": null,
+            "isEarnings": false
+          }
+        ],
+        "regularSeason": [
+          {
+            "stat": "Wins",
+            "value": null,
+            "rank": null,
+            "explainer": null,
+            "isEarnings": false
+          },
+          {
+            "stat": "Win %",
+            "value": null,
+            "rank": null,
+            "explainer": null,
+            "isEarnings": false
+          },
+          {
+            "stat": "Avg Finish",
+            "value": null,
+            "rank": null,
+            "explainer": null,
+            "isEarnings": false
+          },
+          {
+            "stat": "Pts Per Game",
+            "value": null,
+            "rank": null,
+            "explainer": null,
+            "isEarnings": false
+          },
+          {
+            "stat": "Point Share",
+            "value": null,
+            "rank": null,
+            "explainer": "% of total league points scored",
+            "isEarnings": false
+          },
+          {
+            "stat": "Career High Score",
+            "value": null,
+            "rank": null,
+            "explainer": null,
+            "isEarnings": false
+          },
+          {
+            "stat": "Weekly High Scores",
+            "value": null,
+            "rank": null,
+            "explainer": null,
+            "isEarnings": false
+          },
+          {
+            "stat": "Power Score",
+            "value": null,
+            "rank": null,
+            "explainer": null,
+            "isEarnings": false
+          },
+          {
+            "stat": "Weeks at #1",
+            "value": null,
+            "rank": null,
+            "explainer": null,
+            "isEarnings": false
+          },
+          {
+            "stat": "Boom Rate",
+            "value": null,
+            "rank": null,
+            "explainer": "% of games scoring 120% or more of league average",
+            "isEarnings": false
+          },
+          {
+            "stat": "Start Rate",
+            "value": null,
+            "rank": null,
+            "explainer": "% of games scoring at or above league average",
+            "isEarnings": false
+          },
+          {
+            "stat": "Luck Rate",
+            "value": null,
+            "rank": null,
+            "explainer": "Win % above/below expected",
+            "isEarnings": false
+          }
+        ],
+        "playoffs": [
+          {
+            "stat": "Appearances",
+            "value": null,
+            "rank": null,
+            "explainer": null,
+            "isEarnings": false
+          },
+          {
+            "stat": "Wins",
+            "value": null,
+            "rank": null,
+            "explainer": null,
+            "isEarnings": false
+          },
+          {
+            "stat": "Win %",
+            "value": null,
+            "rank": null,
+            "explainer": null,
+            "isEarnings": false
+          },
+          {
+            "stat": "Championships",
+            "value": null,
+            "rank": null,
+            "explainer": null,
+            "isEarnings": false
+          }
+        ]
+      },
+      "charts": {
+        "winsAndFinish": {
+          "years": [
+            2014,
+            2015,
+            2016,
+            2017,
+            2018,
+            2019,
+            2020,
+            2021,
+            2022,
+            2023,
+            2024,
+            2025,
+            2026
+          ],
+          "wins": [
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null
+          ],
+          "finish": [
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null
+          ]
+        },
+        "pointShare": {
+          "years": [
+            2014,
+            2015,
+            2016,
+            2017,
+            2018,
+            2019,
+            2020,
+            2021,
+            2022,
+            2023,
+            2024,
+            2025,
+            2026
+          ],
+          "values": [
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null
+          ]
+        },
+        "winnings": {
+          "years": [
+            2014,
+            2015,
+            2016,
+            2017,
+            2018,
+            2019,
+            2020,
+            2021,
+            2022,
+            2023,
+            2024,
+            2025,
+            2026
+          ],
+          "values": [
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null
+          ]
+        },
+        "prestigePerSeason": {
+          "years": [
+            2014,
+            2015,
+            2016,
+            2017,
+            2018,
+            2019,
+            2020,
+            2021,
+            2022,
+            2023,
+            2024,
+            2025,
+            2026
+          ],
+          "values": [
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null
+          ]
+        }
+      },
+      "seasons": [
+        {
+          "year": 2026,
+          "teamName": null,
+          "record": null,
+          "finish": null,
+          "ptsPerGame": null,
+          "pointShare": null,
+          "powerScore": null,
+          "winnings": null,
+          "prestigeEarned": null,
+          "playoffResult": null,
+          "result": null
+        },
+        {
+          "year": 2025,
+          "teamName": null,
+          "record": null,
+          "finish": null,
+          "ptsPerGame": null,
+          "pointShare": null,
+          "powerScore": null,
+          "winnings": null,
+          "prestigeEarned": null,
+          "playoffResult": null,
+          "result": null
+        },
+        {
+          "year": 2024,
+          "teamName": null,
+          "record": null,
+          "finish": null,
+          "ptsPerGame": null,
+          "pointShare": null,
+          "powerScore": null,
+          "winnings": null,
+          "prestigeEarned": null,
+          "playoffResult": null,
+          "result": null
+        },
+        {
+          "year": 2023,
+          "teamName": null,
+          "record": null,
+          "finish": null,
+          "ptsPerGame": null,
+          "pointShare": null,
+          "powerScore": null,
+          "winnings": null,
+          "prestigeEarned": null,
+          "playoffResult": null,
+          "result": null
+        },
+        {
+          "year": 2022,
+          "teamName": null,
+          "record": null,
+          "finish": null,
+          "ptsPerGame": null,
+          "pointShare": null,
+          "powerScore": null,
+          "winnings": null,
+          "prestigeEarned": null,
+          "playoffResult": null,
+          "result": null
+        },
+        {
+          "year": 2021,
+          "teamName": null,
+          "record": null,
+          "finish": null,
+          "ptsPerGame": null,
+          "pointShare": null,
+          "powerScore": null,
+          "winnings": null,
+          "prestigeEarned": null,
+          "playoffResult": null,
+          "result": null
+        },
+        {
+          "year": 2020,
+          "teamName": null,
+          "record": null,
+          "finish": null,
+          "ptsPerGame": null,
+          "pointShare": null,
+          "powerScore": null,
+          "winnings": null,
+          "prestigeEarned": null,
+          "playoffResult": null,
+          "result": null
+        },
+        {
+          "year": 2019,
+          "teamName": null,
+          "record": null,
+          "finish": null,
+          "ptsPerGame": null,
+          "pointShare": null,
+          "powerScore": null,
+          "winnings": null,
+          "prestigeEarned": null,
+          "playoffResult": null,
+          "result": null
+        },
+        {
+          "year": 2018,
+          "teamName": null,
+          "record": null,
+          "finish": null,
+          "ptsPerGame": null,
+          "pointShare": null,
+          "powerScore": null,
+          "winnings": null,
+          "prestigeEarned": null,
+          "playoffResult": null,
+          "result": null
+        },
+        {
+          "year": 2017,
+          "teamName": null,
+          "record": null,
+          "finish": null,
+          "ptsPerGame": null,
+          "pointShare": null,
+          "powerScore": null,
+          "winnings": null,
+          "prestigeEarned": null,
+          "playoffResult": null,
+          "result": null
+        },
+        {
+          "year": 2016,
+          "teamName": null,
+          "record": null,
+          "finish": null,
+          "ptsPerGame": null,
+          "pointShare": null,
+          "powerScore": null,
+          "winnings": null,
+          "prestigeEarned": null,
+          "playoffResult": null,
+          "result": null
+        },
+        {
+          "year": 2015,
+          "teamName": null,
+          "record": null,
+          "finish": null,
+          "ptsPerGame": null,
+          "pointShare": null,
+          "powerScore": null,
+          "winnings": null,
+          "prestigeEarned": null,
+          "playoffResult": null,
+          "result": null
+        },
+        {
+          "year": 2014,
+          "teamName": null,
+          "record": null,
+          "finish": null,
+          "ptsPerGame": null,
+          "pointShare": null,
+          "powerScore": null,
+          "winnings": null,
+          "prestigeEarned": null,
+          "playoffResult": null,
+          "result": null
+        }
+      ],
+      "trophies": [
+        {
+          "name": "League Champion",
+          "count": 0
+        },
+        {
+          "name": "2nd Place",
+          "count": 0
+        },
+        {
+          "name": "3rd Place",
+          "count": 0
+        },
+        {
+          "name": "Regular Season Champion",
+          "count": 0
+        },
+        {
+          "name": "Owner of the Year",
+          "count": 0
+        },
+        {
+          "name": "AVL Memorial Cup",
+          "count": 0
+        },
+        {
+          "name": "Rivalry Week",
+          "count": 0
+        },
+        {
+          "name": "Hottest Team in Sports Bowl",
+          "count": 0
+        },
+        {
+          "name": "Hung the * Chain",
+          "count": 0
+        },
+        {
+          "name": "Intercontinental Champ",
+          "count": 0
+        },
+        {
+          "name": "Somehow the Champion",
+          "count": 0
+        },
+        {
+          "name": "Survivor King",
+          "count": 0
+        },
+        {
+          "name": "Degen Bowl",
+          "count": 0
+        },
+        {
+          "name": "Dad Bod's Preseason Rankings",
+          "count": 0
+        },
+        {
+          "name": "JopO or KG Pick 'Em",
+          "count": 0
+        },
+        {
+          "name": "Da Choppaaa Champ",
+          "count": 0
+        },
+        {
+          "name": "Bronze Franz",
+          "count": 0
+        }
+      ],
+      "headToHead": {}
+    },
+    "tim": {
+      "name": "Tim",
+      "nickname": "Hot Tim",
+      "memberSince": 2020,
+      "photo": "../images/tim.jpg",
+      "lastUpdated": null,
+      "location": null,
+      "locationEmoji": "",
+      "broughtInBy": null,
+      "statusLines": [],
+      "prestige": {
+        "rank": 15,
+        "points": null,
+        "outOf": 27
+      },
+      "traits": [],
+      "currentSeason": {
+        "year": 2026,
+        "record": null,
+        "standing": null,
+        "ptsPerGame": null,
+        "lastGame": {
+          "result": "W",
+          "opponent": null,
+          "score": null,
+          "lifetimeVsOpponent": null
+        },
+        "nextGame": {
+          "opponent": null,
+          "lifetimeVsOpponent": null
+        }
+      },
+      "rivalries": {
+        "owns": [],
+        "ownedBy": [],
+        "rivals": null,
+        "ryderCup": null
+      },
+      "narrative": {
+        "sectionLabel": "The Narrative",
+        "pullQuote": null,
+        "body": null
+      },
+      "careerStats": {
+        "general": [
+          {
+            "stat": "Seasons Played",
+            "value": null,
+            "rank": null,
+            "explainer": null,
+            "isEarnings": false
+          },
+          {
+            "stat": "Net Earnings",
+            "value": null,
+            "rank": null,
+            "explainer": "Total winnings minus entry fees",
+            "isEarnings": true
+          },
+          {
+            "stat": "Prestige Points",
+            "value": null,
+            "rank": null,
+            "explainer": null,
+            "isEarnings": false
+          }
+        ],
+        "regularSeason": [
+          {
+            "stat": "Wins",
+            "value": null,
+            "rank": null,
+            "explainer": null,
+            "isEarnings": false
+          },
+          {
+            "stat": "Win %",
+            "value": null,
+            "rank": null,
+            "explainer": null,
+            "isEarnings": false
+          },
+          {
+            "stat": "Avg Finish",
+            "value": null,
+            "rank": null,
+            "explainer": null,
+            "isEarnings": false
+          },
+          {
+            "stat": "Pts Per Game",
+            "value": null,
+            "rank": null,
+            "explainer": null,
+            "isEarnings": false
+          },
+          {
+            "stat": "Point Share",
+            "value": null,
+            "rank": null,
+            "explainer": "% of total league points scored",
+            "isEarnings": false
+          },
+          {
+            "stat": "Career High Score",
+            "value": null,
+            "rank": null,
+            "explainer": null,
+            "isEarnings": false
+          },
+          {
+            "stat": "Weekly High Scores",
+            "value": null,
+            "rank": null,
+            "explainer": null,
+            "isEarnings": false
+          },
+          {
+            "stat": "Power Score",
+            "value": null,
+            "rank": null,
+            "explainer": null,
+            "isEarnings": false
+          },
+          {
+            "stat": "Weeks at #1",
+            "value": null,
+            "rank": null,
+            "explainer": null,
+            "isEarnings": false
+          },
+          {
+            "stat": "Boom Rate",
+            "value": null,
+            "rank": null,
+            "explainer": "% of games scoring 120% or more of league average",
+            "isEarnings": false
+          },
+          {
+            "stat": "Start Rate",
+            "value": null,
+            "rank": null,
+            "explainer": "% of games scoring at or above league average",
+            "isEarnings": false
+          },
+          {
+            "stat": "Luck Rate",
+            "value": null,
+            "rank": null,
+            "explainer": "Win % above/below expected",
+            "isEarnings": false
+          }
+        ],
+        "playoffs": [
+          {
+            "stat": "Appearances",
+            "value": null,
+            "rank": null,
+            "explainer": null,
+            "isEarnings": false
+          },
+          {
+            "stat": "Wins",
+            "value": null,
+            "rank": null,
+            "explainer": null,
+            "isEarnings": false
+          },
+          {
+            "stat": "Win %",
+            "value": null,
+            "rank": null,
+            "explainer": null,
+            "isEarnings": false
+          },
+          {
+            "stat": "Championships",
+            "value": null,
+            "rank": null,
+            "explainer": null,
+            "isEarnings": false
+          }
+        ]
+      },
+      "charts": {
+        "winsAndFinish": {
+          "years": [
+            2014,
+            2015,
+            2016,
+            2017,
+            2018,
+            2019,
+            2020,
+            2021,
+            2022,
+            2023,
+            2024,
+            2025,
+            2026
+          ],
+          "wins": [
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null
+          ],
+          "finish": [
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null
+          ]
+        },
+        "pointShare": {
+          "years": [
+            2014,
+            2015,
+            2016,
+            2017,
+            2018,
+            2019,
+            2020,
+            2021,
+            2022,
+            2023,
+            2024,
+            2025,
+            2026
+          ],
+          "values": [
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null
+          ]
+        },
+        "winnings": {
+          "years": [
+            2014,
+            2015,
+            2016,
+            2017,
+            2018,
+            2019,
+            2020,
+            2021,
+            2022,
+            2023,
+            2024,
+            2025,
+            2026
+          ],
+          "values": [
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null
+          ]
+        },
+        "prestigePerSeason": {
+          "years": [
+            2014,
+            2015,
+            2016,
+            2017,
+            2018,
+            2019,
+            2020,
+            2021,
+            2022,
+            2023,
+            2024,
+            2025,
+            2026
+          ],
+          "values": [
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null
+          ]
+        }
+      },
+      "seasons": [
+        {
+          "year": 2026,
+          "teamName": null,
+          "record": null,
+          "finish": null,
+          "ptsPerGame": null,
+          "pointShare": null,
+          "powerScore": null,
+          "winnings": null,
+          "prestigeEarned": null,
+          "playoffResult": null,
+          "result": null
+        },
+        {
+          "year": 2025,
+          "teamName": null,
+          "record": null,
+          "finish": null,
+          "ptsPerGame": null,
+          "pointShare": null,
+          "powerScore": null,
+          "winnings": null,
+          "prestigeEarned": null,
+          "playoffResult": null,
+          "result": null
+        },
+        {
+          "year": 2024,
+          "teamName": null,
+          "record": null,
+          "finish": null,
+          "ptsPerGame": null,
+          "pointShare": null,
+          "powerScore": null,
+          "winnings": null,
+          "prestigeEarned": null,
+          "playoffResult": null,
+          "result": null
+        },
+        {
+          "year": 2023,
+          "teamName": null,
+          "record": null,
+          "finish": null,
+          "ptsPerGame": null,
+          "pointShare": null,
+          "powerScore": null,
+          "winnings": null,
+          "prestigeEarned": null,
+          "playoffResult": null,
+          "result": null
+        },
+        {
+          "year": 2022,
+          "teamName": null,
+          "record": null,
+          "finish": null,
+          "ptsPerGame": null,
+          "pointShare": null,
+          "powerScore": null,
+          "winnings": null,
+          "prestigeEarned": null,
+          "playoffResult": null,
+          "result": null
+        },
+        {
+          "year": 2021,
+          "teamName": null,
+          "record": null,
+          "finish": null,
+          "ptsPerGame": null,
+          "pointShare": null,
+          "powerScore": null,
+          "winnings": null,
+          "prestigeEarned": null,
+          "playoffResult": null,
+          "result": null
+        },
+        {
+          "year": 2020,
+          "teamName": null,
+          "record": null,
+          "finish": null,
+          "ptsPerGame": null,
+          "pointShare": null,
+          "powerScore": null,
+          "winnings": null,
+          "prestigeEarned": null,
+          "playoffResult": null,
+          "result": null
+        }
+      ],
+      "trophies": [
+        {
+          "name": "League Champion",
+          "count": 0
+        },
+        {
+          "name": "2nd Place",
+          "count": 0
+        },
+        {
+          "name": "3rd Place",
+          "count": 0
+        },
+        {
+          "name": "Regular Season Champion",
+          "count": 0
+        },
+        {
+          "name": "Owner of the Year",
+          "count": 0
+        },
+        {
+          "name": "AVL Memorial Cup",
+          "count": 0
+        },
+        {
+          "name": "Rivalry Week",
+          "count": 0
+        },
+        {
+          "name": "Hottest Team in Sports Bowl",
+          "count": 0
+        },
+        {
+          "name": "Hung the * Chain",
+          "count": 0
+        },
+        {
+          "name": "Intercontinental Champ",
+          "count": 0
+        },
+        {
+          "name": "Somehow the Champion",
+          "count": 0
+        },
+        {
+          "name": "Survivor King",
+          "count": 0
+        },
+        {
+          "name": "Degen Bowl",
+          "count": 0
+        },
+        {
+          "name": "Dad Bod's Preseason Rankings",
+          "count": 0
+        },
+        {
+          "name": "JopO or KG Pick 'Em",
+          "count": 0
+        },
+        {
+          "name": "Da Choppaaa Champ",
+          "count": 0
+        },
+        {
+          "name": "Bronze Franz",
+          "count": 0
+        }
+      ],
+      "headToHead": {}
+    },
+    "wade": {
+      "name": "Wade",
+      "nickname": "Bathhouse",
+      "memberSince": 2020,
+      "photo": "../images/wade.jpg",
+      "lastUpdated": null,
+      "location": null,
+      "locationEmoji": "",
+      "broughtInBy": null,
+      "statusLines": [],
+      "prestige": {
+        "rank": 14,
+        "points": null,
+        "outOf": 27
+      },
+      "traits": [],
+      "currentSeason": {
+        "year": 2026,
+        "record": null,
+        "standing": null,
+        "ptsPerGame": null,
+        "lastGame": {
+          "result": "W",
+          "opponent": null,
+          "score": null,
+          "lifetimeVsOpponent": null
+        },
+        "nextGame": {
+          "opponent": null,
+          "lifetimeVsOpponent": null
+        }
+      },
+      "rivalries": {
+        "owns": [],
+        "ownedBy": [],
+        "rivals": null,
+        "ryderCup": null
+      },
+      "narrative": {
+        "sectionLabel": "The Narrative",
+        "pullQuote": null,
+        "body": null
+      },
+      "careerStats": {
+        "general": [
+          {
+            "stat": "Seasons Played",
+            "value": null,
+            "rank": null,
+            "explainer": null,
+            "isEarnings": false
+          },
+          {
+            "stat": "Net Earnings",
+            "value": null,
+            "rank": null,
+            "explainer": "Total winnings minus entry fees",
+            "isEarnings": true
+          },
+          {
+            "stat": "Prestige Points",
+            "value": null,
+            "rank": null,
+            "explainer": null,
+            "isEarnings": false
+          }
+        ],
+        "regularSeason": [
+          {
+            "stat": "Wins",
+            "value": null,
+            "rank": null,
+            "explainer": null,
+            "isEarnings": false
+          },
+          {
+            "stat": "Win %",
+            "value": null,
+            "rank": null,
+            "explainer": null,
+            "isEarnings": false
+          },
+          {
+            "stat": "Avg Finish",
+            "value": null,
+            "rank": null,
+            "explainer": null,
+            "isEarnings": false
+          },
+          {
+            "stat": "Pts Per Game",
+            "value": null,
+            "rank": null,
+            "explainer": null,
+            "isEarnings": false
+          },
+          {
+            "stat": "Point Share",
+            "value": null,
+            "rank": null,
+            "explainer": "% of total league points scored",
+            "isEarnings": false
+          },
+          {
+            "stat": "Career High Score",
+            "value": null,
+            "rank": null,
+            "explainer": null,
+            "isEarnings": false
+          },
+          {
+            "stat": "Weekly High Scores",
+            "value": null,
+            "rank": null,
+            "explainer": null,
+            "isEarnings": false
+          },
+          {
+            "stat": "Power Score",
+            "value": null,
+            "rank": null,
+            "explainer": null,
+            "isEarnings": false
+          },
+          {
+            "stat": "Weeks at #1",
+            "value": null,
+            "rank": null,
+            "explainer": null,
+            "isEarnings": false
+          },
+          {
+            "stat": "Boom Rate",
+            "value": null,
+            "rank": null,
+            "explainer": "% of games scoring 120% or more of league average",
+            "isEarnings": false
+          },
+          {
+            "stat": "Start Rate",
+            "value": null,
+            "rank": null,
+            "explainer": "% of games scoring at or above league average",
+            "isEarnings": false
+          },
+          {
+            "stat": "Luck Rate",
+            "value": null,
+            "rank": null,
+            "explainer": "Win % above/below expected",
+            "isEarnings": false
+          }
+        ],
+        "playoffs": [
+          {
+            "stat": "Appearances",
+            "value": null,
+            "rank": null,
+            "explainer": null,
+            "isEarnings": false
+          },
+          {
+            "stat": "Wins",
+            "value": null,
+            "rank": null,
+            "explainer": null,
+            "isEarnings": false
+          },
+          {
+            "stat": "Win %",
+            "value": null,
+            "rank": null,
+            "explainer": null,
+            "isEarnings": false
+          },
+          {
+            "stat": "Championships",
+            "value": null,
+            "rank": null,
+            "explainer": null,
+            "isEarnings": false
+          }
+        ]
+      },
+      "charts": {
+        "winsAndFinish": {
+          "years": [
+            2014,
+            2015,
+            2016,
+            2017,
+            2018,
+            2019,
+            2020,
+            2021,
+            2022,
+            2023,
+            2024,
+            2025,
+            2026
+          ],
+          "wins": [
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null
+          ],
+          "finish": [
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null
+          ]
+        },
+        "pointShare": {
+          "years": [
+            2014,
+            2015,
+            2016,
+            2017,
+            2018,
+            2019,
+            2020,
+            2021,
+            2022,
+            2023,
+            2024,
+            2025,
+            2026
+          ],
+          "values": [
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null
+          ]
+        },
+        "winnings": {
+          "years": [
+            2014,
+            2015,
+            2016,
+            2017,
+            2018,
+            2019,
+            2020,
+            2021,
+            2022,
+            2023,
+            2024,
+            2025,
+            2026
+          ],
+          "values": [
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null
+          ]
+        },
+        "prestigePerSeason": {
+          "years": [
+            2014,
+            2015,
+            2016,
+            2017,
+            2018,
+            2019,
+            2020,
+            2021,
+            2022,
+            2023,
+            2024,
+            2025,
+            2026
+          ],
+          "values": [
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null
+          ]
+        }
+      },
+      "seasons": [
+        {
+          "year": 2026,
+          "teamName": null,
+          "record": null,
+          "finish": null,
+          "ptsPerGame": null,
+          "pointShare": null,
+          "powerScore": null,
+          "winnings": null,
+          "prestigeEarned": null,
+          "playoffResult": null,
+          "result": null
+        },
+        {
+          "year": 2025,
+          "teamName": null,
+          "record": null,
+          "finish": null,
+          "ptsPerGame": null,
+          "pointShare": null,
+          "powerScore": null,
+          "winnings": null,
+          "prestigeEarned": null,
+          "playoffResult": null,
+          "result": null
+        },
+        {
+          "year": 2024,
+          "teamName": null,
+          "record": null,
+          "finish": null,
+          "ptsPerGame": null,
+          "pointShare": null,
+          "powerScore": null,
+          "winnings": null,
+          "prestigeEarned": null,
+          "playoffResult": null,
+          "result": null
+        },
+        {
+          "year": 2023,
+          "teamName": null,
+          "record": null,
+          "finish": null,
+          "ptsPerGame": null,
+          "pointShare": null,
+          "powerScore": null,
+          "winnings": null,
+          "prestigeEarned": null,
+          "playoffResult": null,
+          "result": null
+        },
+        {
+          "year": 2022,
+          "teamName": null,
+          "record": null,
+          "finish": null,
+          "ptsPerGame": null,
+          "pointShare": null,
+          "powerScore": null,
+          "winnings": null,
+          "prestigeEarned": null,
+          "playoffResult": null,
+          "result": null
+        },
+        {
+          "year": 2021,
+          "teamName": null,
+          "record": null,
+          "finish": null,
+          "ptsPerGame": null,
+          "pointShare": null,
+          "powerScore": null,
+          "winnings": null,
+          "prestigeEarned": null,
+          "playoffResult": null,
+          "result": null
+        },
+        {
+          "year": 2020,
+          "teamName": null,
+          "record": null,
+          "finish": null,
+          "ptsPerGame": null,
+          "pointShare": null,
+          "powerScore": null,
+          "winnings": null,
+          "prestigeEarned": null,
+          "playoffResult": null,
+          "result": null
+        }
+      ],
+      "trophies": [
+        {
+          "name": "League Champion",
+          "count": 0
+        },
+        {
+          "name": "2nd Place",
+          "count": 0
+        },
+        {
+          "name": "3rd Place",
+          "count": 0
+        },
+        {
+          "name": "Regular Season Champion",
+          "count": 0
+        },
+        {
+          "name": "Owner of the Year",
+          "count": 0
+        },
+        {
+          "name": "AVL Memorial Cup",
+          "count": 0
+        },
+        {
+          "name": "Rivalry Week",
+          "count": 0
+        },
+        {
+          "name": "Hottest Team in Sports Bowl",
+          "count": 0
+        },
+        {
+          "name": "Hung the * Chain",
+          "count": 0
+        },
+        {
+          "name": "Intercontinental Champ",
+          "count": 0
+        },
+        {
+          "name": "Somehow the Champion",
+          "count": 0
+        },
+        {
+          "name": "Survivor King",
+          "count": 0
+        },
+        {
+          "name": "Degen Bowl",
+          "count": 0
+        },
+        {
+          "name": "Dad Bod's Preseason Rankings",
+          "count": 0
+        },
+        {
+          "name": "JopO or KG Pick 'Em",
+          "count": 0
+        },
+        {
+          "name": "Da Choppaaa Champ",
+          "count": 0
+        },
+        {
+          "name": "Bronze Franz",
+          "count": 0
+        }
+      ],
+      "headToHead": {}
     }
   }
 }
