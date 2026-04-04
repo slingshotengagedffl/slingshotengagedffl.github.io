@@ -184,7 +184,7 @@
           },
           {
             "stat": "Win %",
-            "value": 0.55,
+            "value": 0.647,
             "rank": "#2",
             "explainer": null,
             "isEarnings": false
@@ -367,8 +367,8 @@
           "powerScore": 146.38,
           "winnings": 220.0,
           "prestigeEarned": 191,
-          "playoffResult": "Lost in Round 2",
-          "result": "playoff"
+          "playoffResult": "Lost in Semifinals",
+          "result": "playoffs"
         },
         {
           "year": 2024,
@@ -393,8 +393,8 @@
           "powerScore": 137.93,
           "winnings": 317.0,
           "prestigeEarned": 139,
-          "playoffResult": "Lost in Round 3",
-          "result": "playoff"
+          "playoffResult": "Lost in First Round",
+          "result": "playoffs"
         },
         {
           "year": 2022,
@@ -471,8 +471,8 @@
           "powerScore": 130.0,
           "winnings": 10.0,
           "prestigeEarned": 125,
-          "playoffResult": "Lost in Round 2",
-          "result": "playoff"
+          "playoffResult": "Lost in Semifinals",
+          "result": "playoffs"
         },
         {
           "year": 2016,
@@ -484,8 +484,8 @@
           "powerScore": 121.61,
           "winnings": 0.0,
           "prestigeEarned": 61,
-          "playoffResult": "Lost in Round 2",
-          "result": "playoff"
+          "playoffResult": "Lost in First Round",
+          "result": "playoffs"
         },
         {
           "year": 2015,
@@ -497,8 +497,8 @@
           "powerScore": 118.2,
           "winnings": 0.0,
           "prestigeEarned": 108,
-          "playoffResult": "Lost in Round 2",
-          "result": "playoff"
+          "playoffResult": "Lost in Semifinals",
+          "result": "playoffs"
         },
         {
           "year": 2014,
@@ -510,8 +510,8 @@
           "powerScore": 151.22,
           "winnings": 75.0,
           "prestigeEarned": 251,
-          "playoffResult": "Lost in Round 2",
-          "result": "playoff"
+          "playoffResult": "Lost in Slingshot Bowl",
+          "result": "finalist"
         }
       ],
       "trophies": [
@@ -648,7 +648,7 @@
           },
           {
             "stat": "Net Earnings",
-            "value": 670.5,
+            "value": 710.5,
             "rank": "#2",
             "explainer": "Total winnings minus entry fees",
             "isEarnings": true
@@ -757,14 +757,14 @@
           },
           {
             "stat": "Wins",
-            "value": 10,
+            "value": 12,
             "rank": "#1",
             "explainer": null,
             "isEarnings": false
           },
           {
             "stat": "Win %",
-            "value": 0.556,
+            "value": 0.75,
             "rank": "#1",
             "explainer": null,
             "isEarnings": false
@@ -973,8 +973,8 @@
           "powerScore": 136.56,
           "winnings": 155.0,
           "prestigeEarned": 156,
-          "playoffResult": "Lost in Round 2",
-          "result": "playoff"
+          "playoffResult": "Lost in Semifinals",
+          "result": "playoffs"
         },
         {
           "year": 2022,
@@ -1025,8 +1025,8 @@
           "powerScore": 136.83,
           "winnings": 10.0,
           "prestigeEarned": 125,
-          "playoffResult": "Lost in Round 2",
-          "result": "playoff"
+          "playoffResult": "Lost in Semifinals",
+          "result": "playoffs"
         },
         {
           "year": 2018,
@@ -1038,8 +1038,8 @@
           "powerScore": 134.47,
           "winnings": 20.0,
           "prestigeEarned": 144,
-          "playoffResult": "Lost in Round 2",
-          "result": "playoff"
+          "playoffResult": "Lost in Semifinals",
+          "result": "playoffs"
         },
         {
           "year": 2017,
@@ -1078,7 +1078,7 @@
           "winnings": 0.0,
           "prestigeEarned": 53,
           "playoffResult": "Lost in First Round",
-          "result": "playoff"
+          "result": "playoffs"
         }
       ],
       "trophies": [
@@ -1329,7 +1329,7 @@
           },
           {
             "stat": "Win %",
-            "value": 0.615,
+            "value": 0.667,
             "rank": null,
             "explainer": null,
             "isEarnings": false
@@ -1577,8 +1577,8 @@
           "powerScore": 135.45,
           "winnings": 100.0,
           "prestigeEarned": 148,
-          "playoffResult": "Lost in Round 3",
-          "result": "playoff"
+          "playoffResult": "Lost in Semifinals",
+          "result": "playoffs"
         },
         {
           "year": 2019,
@@ -1590,8 +1590,8 @@
           "powerScore": 151.61,
           "winnings": 215.0,
           "prestigeEarned": 297,
-          "playoffResult": "Lost in Round 2",
-          "result": "playoff"
+          "playoffResult": "Lost in Slingshot Bowl",
+          "result": "finalist"
         },
         {
           "year": 2018,
@@ -1604,7 +1604,7 @@
           "winnings": 0.0,
           "prestigeEarned": 22,
           "playoffResult": "Missed Playoffs",
-          "result": "missed"
+          "result": "bronze"
         },
         {
           "year": 2017,
@@ -1616,8 +1616,8 @@
           "powerScore": 115.06,
           "winnings": 50.0,
           "prestigeEarned": 107,
-          "playoffResult": "Lost in Round 3",
-          "result": "playoff"
+          "playoffResult": "Lost in Semifinals",
+          "result": "playoffs"
         },
         {
           "year": 2016,
@@ -1629,8 +1629,8 @@
           "powerScore": 126.64,
           "winnings": 10.0,
           "prestigeEarned": 145,
-          "playoffResult": "Lost in Round 2",
-          "result": "playoff"
+          "playoffResult": "Lost in Semifinals",
+          "result": "playoffs"
         }
       ],
       "trophies": [
@@ -1868,14 +1868,14 @@
           },
           {
             "stat": "Wins",
-            "value": 0,
+            "value": 1,
             "rank": null,
             "explainer": null,
             "isEarnings": false
           },
           {
             "stat": "Win %",
-            "value": 0.0,
+            "value": 0.5,
             "rank": null,
             "explainer": null,
             "isEarnings": false
@@ -2097,8 +2097,8 @@
           "powerScore": 156.9,
           "winnings": 130.0,
           "prestigeEarned": 198,
-          "playoffResult": "Lost in First Round",
-          "result": "playoff"
+          "playoffResult": "Lost in Semifinals",
+          "result": "playoffs"
         }
       ],
       "trophies": [
@@ -2227,7 +2227,7 @@
           },
           {
             "stat": "Net Earnings",
-            "value": -319.0,
+            "value": -335.0,
             "rank": null,
             "explainer": "Total winnings minus entry fees",
             "isEarnings": true
@@ -2336,14 +2336,14 @@
           },
           {
             "stat": "Wins",
-            "value": 5,
+            "value": 3,
             "rank": null,
             "explainer": null,
             "isEarnings": false
           },
           {
             "stat": "Win %",
-            "value": 0.455,
+            "value": 0.5,
             "rank": null,
             "explainer": null,
             "isEarnings": false
@@ -2526,8 +2526,8 @@
           "powerScore": 133.92,
           "winnings": 145.0,
           "prestigeEarned": 99,
-          "playoffResult": "Lost in Round 3",
-          "result": "playoff"
+          "playoffResult": "Lost in First Round",
+          "result": "playoffs"
         },
         {
           "year": 2024,
@@ -2565,8 +2565,8 @@
           "powerScore": 124.91,
           "winnings": 20.0,
           "prestigeEarned": 80,
-          "playoffResult": "Lost in Round 2",
-          "result": "playoff"
+          "playoffResult": "Lost in First Round",
+          "result": "playoffs"
         },
         {
           "year": 2021,
@@ -2579,7 +2579,7 @@
           "winnings": 10.0,
           "prestigeEarned": 29,
           "playoffResult": "Missed Playoffs",
-          "result": "missed"
+          "result": "bronze"
         },
         {
           "year": 2020,
@@ -2618,7 +2618,7 @@
           "winnings": 0.0,
           "prestigeEarned": 60,
           "playoffResult": "Lost in First Round",
-          "result": "playoff"
+          "result": "playoffs"
         },
         {
           "year": 2017,
@@ -2915,7 +2915,7 @@
           },
           {
             "stat": "Win %",
-            "value": 0.5,
+            "value": 0.545,
             "rank": null,
             "explainer": null,
             "isEarnings": false
@@ -3099,7 +3099,7 @@
           "winnings": 35.0,
           "prestigeEarned": 53,
           "playoffResult": "Missed Playoffs",
-          "result": "missed"
+          "result": "bronze"
         },
         {
           "year": 2024,
@@ -3111,8 +3111,8 @@
           "powerScore": 138.62,
           "winnings": 135.0,
           "prestigeEarned": 231,
-          "playoffResult": "Lost in Round 2",
-          "result": "playoff"
+          "playoffResult": "Lost in Slingshot Bowl",
+          "result": "finalist"
         },
         {
           "year": 2023,
@@ -3137,8 +3137,8 @@
           "powerScore": 129.16,
           "winnings": 316.51,
           "prestigeEarned": 150,
-          "playoffResult": "Lost in Round 3",
-          "result": "playoff"
+          "playoffResult": "Lost in Semifinals",
+          "result": "playoffs"
         },
         {
           "year": 2021,
@@ -3177,7 +3177,7 @@
           "winnings": 0.0,
           "prestigeEarned": 3,
           "playoffResult": "Missed Playoffs",
-          "result": "missed"
+          "result": "bronze"
         },
         {
           "year": 2018,
@@ -3189,8 +3189,8 @@
           "powerScore": 134.79,
           "winnings": 20.0,
           "prestigeEarned": 73,
-          "playoffResult": "Lost in Round 2",
-          "result": "playoff"
+          "playoffResult": "Lost in First Round",
+          "result": "playoffs"
         },
         {
           "year": 2017,
@@ -3215,8 +3215,8 @@
           "powerScore": 152.88,
           "winnings": 200.0,
           "prestigeEarned": 284,
-          "playoffResult": "Lost in Round 2",
-          "result": "playoff"
+          "playoffResult": "Lost in Slingshot Bowl",
+          "result": "finalist"
         },
         {
           "year": 2015,
@@ -3241,8 +3241,8 @@
           "powerScore": 138.26,
           "winnings": 40.0,
           "prestigeEarned": 113,
-          "playoffResult": "Lost in Round 2",
-          "result": "playoff"
+          "playoffResult": "Lost in Semifinals",
+          "result": "playoffs"
         }
       ],
       "trophies": [
@@ -3371,7 +3371,7 @@
           },
           {
             "stat": "Net Earnings",
-            "value": -251.0,
+            "value": -281.0,
             "rank": null,
             "explainer": "Total winnings minus entry fees",
             "isEarnings": true
@@ -3480,14 +3480,14 @@
           },
           {
             "stat": "Wins",
-            "value": 1,
+            "value": 0,
             "rank": null,
             "explainer": null,
             "isEarnings": false
           },
           {
             "stat": "Win %",
-            "value": 0.333,
+            "value": 0.0,
             "rank": null,
             "explainer": null,
             "isEarnings": false
@@ -3735,8 +3735,8 @@
           "powerScore": 129.58,
           "winnings": 10.0,
           "prestigeEarned": 69,
-          "playoffResult": "Lost in Round 2",
-          "result": "playoff"
+          "playoffResult": "Lost in First Round",
+          "result": "playoffs"
         },
         {
           "year": 2019,
@@ -3987,14 +3987,14 @@
           },
           {
             "stat": "Wins",
-            "value": 13,
+            "value": 12,
             "rank": null,
             "explainer": null,
             "isEarnings": false
           },
           {
             "stat": "Win %",
-            "value": 0.591,
+            "value": 0.667,
             "rank": null,
             "explainer": null,
             "isEarnings": false
@@ -4178,7 +4178,7 @@
           "winnings": 35.0,
           "prestigeEarned": 87,
           "playoffResult": "Lost in First Round",
-          "result": "playoff"
+          "result": "playoffs"
         },
         {
           "year": 2024,
@@ -4203,8 +4203,8 @@
           "powerScore": 125.7,
           "winnings": 140.0,
           "prestigeEarned": 205,
-          "playoffResult": "Lost in Round 3",
-          "result": "playoff"
+          "playoffResult": "Lost in Slingshot Bowl",
+          "result": "finalist"
         },
         {
           "year": 2022,
@@ -4229,8 +4229,8 @@
           "powerScore": 125.62,
           "winnings": 107.5,
           "prestigeEarned": 76,
-          "playoffResult": "Lost in Round 3",
-          "result": "playoff"
+          "playoffResult": "Lost in First Round",
+          "result": "playoffs"
         },
         {
           "year": 2020,
@@ -4242,8 +4242,8 @@
           "powerScore": 133.22,
           "winnings": 140.0,
           "prestigeEarned": 216,
-          "playoffResult": "Lost in Round 3",
-          "result": "playoff"
+          "playoffResult": "Lost in Slingshot Bowl",
+          "result": "finalist"
         },
         {
           "year": 2019,
@@ -4255,8 +4255,8 @@
           "powerScore": 138.29,
           "winnings": 20.0,
           "prestigeEarned": 65,
-          "playoffResult": "Lost in Round 2",
-          "result": "playoff"
+          "playoffResult": "Lost in First Round",
+          "result": "playoffs"
         },
         {
           "year": 2018,
@@ -4268,8 +4268,8 @@
           "powerScore": 167.02,
           "winnings": 215.0,
           "prestigeEarned": 258,
-          "playoffResult": "Lost in Round 2",
-          "result": "playoff"
+          "playoffResult": "Lost in Slingshot Bowl",
+          "result": "finalist"
         }
       ],
       "trophies": [
@@ -4814,7 +4814,7 @@
           },
           {
             "stat": "Net Earnings",
-            "value": -445.0,
+            "value": -391.0,
             "rank": null,
             "explainer": "Total winnings minus entry fees",
             "isEarnings": true
@@ -4923,14 +4923,14 @@
           },
           {
             "stat": "Wins",
-            "value": 3,
+            "value": 1,
             "rank": null,
             "explainer": null,
             "isEarnings": false
           },
           {
             "stat": "Win %",
-            "value": 0.333,
+            "value": 0.25,
             "rank": null,
             "explainer": null,
             "isEarnings": false
@@ -5114,7 +5114,7 @@
           "winnings": 164.0,
           "prestigeEarned": 134,
           "playoffResult": "Lost in First Round",
-          "result": "playoff"
+          "result": "playoffs"
         },
         {
           "year": 2024,
@@ -5127,7 +5127,7 @@
           "winnings": 0.0,
           "prestigeEarned": 12,
           "playoffResult": "Missed Playoffs",
-          "result": "missed"
+          "result": "bronze"
         },
         {
           "year": 2023,
@@ -5165,8 +5165,8 @@
           "powerScore": 128.03,
           "winnings": 65.0,
           "prestigeEarned": 127,
-          "playoffResult": "Lost in Round 3",
-          "result": "playoff"
+          "playoffResult": "Lost in Semifinals",
+          "result": "playoffs"
         },
         {
           "year": 2020,
@@ -5191,8 +5191,8 @@
           "powerScore": 131.2,
           "winnings": 40.0,
           "prestigeEarned": 96,
-          "playoffResult": "Lost in Round 2",
-          "result": "playoff"
+          "playoffResult": "Lost in First Round",
+          "result": "playoffs"
         },
         {
           "year": 2018,
@@ -5373,7 +5373,7 @@
           },
           {
             "stat": "Net Earnings",
-            "value": 345.0,
+            "value": 399.0,
             "rank": null,
             "explainer": "Total winnings minus entry fees",
             "isEarnings": true
@@ -5489,7 +5489,7 @@
           },
           {
             "stat": "Win %",
-            "value": 0.5,
+            "value": 0.6,
             "rank": null,
             "explainer": null,
             "isEarnings": false
@@ -5672,8 +5672,8 @@
           "powerScore": 115.85,
           "winnings": 209.0,
           "prestigeEarned": 192,
-          "playoffResult": "Lost in Round 3",
-          "result": "playoff"
+          "playoffResult": "Lost in Slingshot Bowl",
+          "result": "finalist"
         },
         {
           "year": 2024,
@@ -5685,8 +5685,8 @@
           "powerScore": 122.41,
           "winnings": 187.5,
           "prestigeEarned": 126,
-          "playoffResult": "Lost in Round 3",
-          "result": "playoff"
+          "playoffResult": "Lost in Semifinals",
+          "result": "playoffs"
         },
         {
           "year": 2023,
@@ -5699,7 +5699,7 @@
           "winnings": 0.0,
           "prestigeEarned": 25,
           "playoffResult": "Missed Playoffs",
-          "result": "missed"
+          "result": "bronze"
         },
         {
           "year": 2022,
@@ -5711,8 +5711,8 @@
           "powerScore": 147.24,
           "winnings": 165.0,
           "prestigeEarned": 251,
-          "playoffResult": "Lost in Round 2",
-          "result": "playoff"
+          "playoffResult": "Lost in Slingshot Bowl",
+          "result": "finalist"
         },
         {
           "year": 2021,
@@ -5777,7 +5777,7 @@
           "winnings": 10.0,
           "prestigeEarned": 68,
           "playoffResult": "Lost in First Round",
-          "result": "playoff"
+          "result": "playoffs"
         },
         {
           "year": 2016,
@@ -5802,8 +5802,8 @@
           "powerScore": 123.66,
           "winnings": 0.0,
           "prestigeEarned": 52,
-          "playoffResult": "Lost in Round 3",
-          "result": "playoff"
+          "playoffResult": "Lost in First Round",
+          "result": "playoffs"
         },
         {
           "year": 2014,
@@ -5815,8 +5815,8 @@
           "powerScore": 122.62,
           "winnings": 0.0,
           "prestigeEarned": 119,
-          "playoffResult": "Lost in First Round",
-          "result": "playoff"
+          "playoffResult": "Lost in Semifinals",
+          "result": "playoffs"
         }
       ],
       "trophies": [
@@ -5945,7 +5945,7 @@
           },
           {
             "stat": "Net Earnings",
-            "value": -530.0,
+            "value": -496.0,
             "rank": null,
             "explainer": "Total winnings minus entry fees",
             "isEarnings": true
@@ -6054,7 +6054,7 @@
           },
           {
             "stat": "Wins",
-            "value": 3,
+            "value": 2,
             "rank": null,
             "explainer": null,
             "isEarnings": false
@@ -6270,8 +6270,8 @@
           "powerScore": 116.93,
           "winnings": 104.0,
           "prestigeEarned": 115,
-          "playoffResult": "Lost in Round 2",
-          "result": "playoff"
+          "playoffResult": "Lost in Semifinals",
+          "result": "playoffs"
         },
         {
           "year": 2022,
@@ -6310,7 +6310,7 @@
           "winnings": 55.0,
           "prestigeEarned": 49,
           "playoffResult": "Missed Playoffs",
-          "result": "missed"
+          "result": "bronze"
         },
         {
           "year": 2019,
@@ -6361,8 +6361,8 @@
           "powerScore": 128.99,
           "winnings": 40.0,
           "prestigeEarned": 145,
-          "playoffResult": "Lost in Round 3",
-          "result": "playoff"
+          "playoffResult": "Lost in Semifinals",
+          "result": "playoffs"
         },
         {
           "year": 2015,
@@ -6517,7 +6517,7 @@
           },
           {
             "stat": "Net Earnings",
-            "value": -358.5,
+            "value": -304.5,
             "rank": null,
             "explainer": "Total winnings minus entry fees",
             "isEarnings": true
@@ -6633,7 +6633,7 @@
           },
           {
             "stat": "Win %",
-            "value": 0.167,
+            "value": 0.333,
             "rank": null,
             "explainer": null,
             "isEarnings": false
@@ -6830,7 +6830,7 @@
           "winnings": 75.0,
           "prestigeEarned": 109,
           "playoffResult": "Lost in First Round",
-          "result": "playoff"
+          "result": "playoffs"
         },
         {
           "year": 2023,
@@ -6856,7 +6856,7 @@
           "winnings": 117.5,
           "prestigeEarned": 9,
           "playoffResult": "Missed Playoffs",
-          "result": "missed"
+          "result": "bronze"
         },
         {
           "year": 2021,
@@ -6868,8 +6868,8 @@
           "powerScore": 118.26,
           "winnings": 25.0,
           "prestigeEarned": 114,
-          "playoffResult": "Lost in Round 2",
-          "result": "playoff"
+          "playoffResult": "Lost in Semifinals",
+          "result": "playoffs"
         },
         {
           "year": 2020,
@@ -7120,14 +7120,14 @@
           },
           {
             "stat": "Wins",
-            "value": 1,
+            "value": 0,
             "rank": null,
             "explainer": null,
             "isEarnings": false
           },
           {
             "stat": "Win %",
-            "value": 0.111,
+            "value": 0.0,
             "rank": null,
             "explainer": null,
             "isEarnings": false
@@ -7324,7 +7324,7 @@
           "winnings": 55.0,
           "prestigeEarned": 125,
           "playoffResult": "Lost in First Round",
-          "result": "playoff"
+          "result": "playoffs"
         },
         {
           "year": 2023,
@@ -7337,7 +7337,7 @@
           "winnings": 10.0,
           "prestigeEarned": 36,
           "playoffResult": "Lost in First Round",
-          "result": "playoff"
+          "result": "playoffs"
         },
         {
           "year": 2022,
@@ -7375,8 +7375,8 @@
           "powerScore": 132.23,
           "winnings": 0.0,
           "prestigeEarned": 65,
-          "playoffResult": "Lost in Round 2",
-          "result": "playoff"
+          "playoffResult": "Lost in First Round",
+          "result": "playoffs"
         }
       ],
       "trophies": [
