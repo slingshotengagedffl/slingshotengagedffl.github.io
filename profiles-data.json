@@ -76,14 +76,14 @@
           {
             "stat": "Net Earnings",
             "value": 729.5,
-            "rank": "#1",
+            "rank": "#2",
             "explainer": "Total winnings minus entry fees",
             "isEarnings": true
           },
           {
             "stat": "Prestige Points",
             "value": 2155,
-            "rank": null,
+            "rank": "#2",
             "explainer": null,
             "isEarnings": false
           }
@@ -106,28 +106,28 @@
           {
             "stat": "Avg Finish",
             "value": 4.9,
-            "rank": "#1",
+            "rank": "#2",
             "explainer": null,
             "isEarnings": false
           },
           {
             "stat": "Pts Per Game",
             "value": 99.38,
-            "rank": "#1",
+            "rank": "#2",
             "explainer": null,
             "isEarnings": false
           },
           {
             "stat": "Point Share",
-            "value": "8.0%",
-            "rank": "#1",
+            "value": "7.77%",
+            "rank": "#2",
             "explainer": "% of total league points scored",
             "isEarnings": false
           },
           {
             "stat": "Career High Score",
             "value": 168.8,
-            "rank": "#1",
+            "rank": "#4",
             "explainer": null,
             "isEarnings": false
           },
@@ -141,7 +141,7 @@
           {
             "stat": "Power Score",
             "value": 132.42,
-            "rank": "#1",
+            "rank": "#2",
             "explainer": null,
             "isEarnings": false
           },
@@ -154,22 +154,22 @@
           },
           {
             "stat": "Boom Rate",
-            "value": "31.0%",
-            "rank": "#1",
+            "value": "31.06%",
+            "rank": "#2",
             "explainer": "% of games scoring 120% or more of league average",
             "isEarnings": false
           },
           {
             "stat": "Start Rate",
-            "value": "61.0%",
-            "rank": "#1",
+            "value": "60.87%",
+            "rank": "#2",
             "explainer": "% of games scoring at or above league average",
             "isEarnings": false
           },
           {
             "stat": "Luck Rate",
-            "value": "3.0%",
-            "rank": "#1",
+            "value": "3.41%",
+            "rank": "#2",
             "explainer": "Win % above/below expected",
             "isEarnings": false
           }
@@ -185,14 +185,14 @@
           {
             "stat": "Wins",
             "value": 7,
-            "rank": "#2",
+            "rank": "#3",
             "explainer": null,
             "isEarnings": false
           },
           {
             "stat": "Win %",
             "value": 0.538,
-            "rank": "#2",
+            "rank": "#5",
             "explainer": null,
             "isEarnings": false
           },
@@ -656,7 +656,7 @@
           {
             "stat": "Net Earnings",
             "value": 320.5,
-            "rank": "#2",
+            "rank": "#3",
             "explainer": "Total winnings minus entry fees",
             "isEarnings": true
           },
@@ -672,84 +672,84 @@
           {
             "stat": "Wins",
             "value": 84,
-            "rank": "#2",
+            "rank": "#3",
             "explainer": null,
             "isEarnings": false
           },
           {
             "stat": "Win %",
             "value": 0.568,
-            "rank": "#2",
+            "rank": "#3",
             "explainer": null,
             "isEarnings": false
           },
           {
             "stat": "Avg Finish",
             "value": 5.4,
-            "rank": "#2",
+            "rank": "#3",
             "explainer": null,
             "isEarnings": false
           },
           {
             "stat": "Pts Per Game",
             "value": 96.41,
-            "rank": "#2",
+            "rank": "#3",
             "explainer": null,
             "isEarnings": false
           },
           {
             "stat": "Point Share",
-            "value": "7.0%",
-            "rank": "#2",
+            "value": "7.45%",
+            "rank": "#3",
             "explainer": "% of total league points scored",
             "isEarnings": false
           },
           {
             "stat": "Career High Score",
             "value": 163.3,
-            "rank": "#2",
+            "rank": "#6",
             "explainer": null,
             "isEarnings": false
           },
           {
             "stat": "Weekly High Scores",
             "value": 13,
-            "rank": "#2",
+            "rank": "#4",
             "explainer": null,
             "isEarnings": false
           },
           {
             "stat": "Power Score",
             "value": 126.87,
-            "rank": "#2",
+            "rank": "#3",
             "explainer": null,
             "isEarnings": false
           },
           {
             "stat": "Weeks at #1",
             "value": 9,
-            "rank": "#2",
+            "rank": "#7",
             "explainer": null,
             "isEarnings": false
           },
           {
             "stat": "Boom Rate",
             "value": "25.0%",
-            "rank": "#2",
+            "rank": "#3",
             "explainer": "% of games scoring 120% or more of league average",
             "isEarnings": false
           },
           {
             "stat": "Start Rate",
-            "value": "53.0%",
-            "rank": "#2",
+            "value": "53.38%",
+            "rank": "#4",
             "explainer": "% of games scoring at or above league average",
             "isEarnings": false
           },
           {
             "stat": "Luck Rate",
-            "value": "2.0%",
-            "rank": "#2",
+            "value": "2.18%",
+            "rank": "#4",
             "explainer": "Win % above/below expected",
             "isEarnings": false
           }
@@ -758,14 +758,14 @@
           {
             "stat": "Appearances",
             "value": 7,
-            "rank": "#2",
+            "rank": "#3",
             "explainer": null,
             "isEarnings": false
           },
           {
             "stat": "Wins",
             "value": 8,
-            "rank": "#1",
+            "rank": "#2",
             "explainer": null,
             "isEarnings": false
           },
@@ -1221,14 +1221,14 @@
           {
             "stat": "Net Earnings",
             "value": 133.0,
-            "rank": null,
+            "rank": "#5",
             "explainer": "Total winnings minus entry fees",
             "isEarnings": true
           },
           {
             "stat": "Prestige Points",
             "value": 1431,
-            "rank": null,
+            "rank": "#5",
             "explainer": null,
             "isEarnings": false
           }
@@ -1237,84 +1237,84 @@
           {
             "stat": "Wins",
             "value": 71,
-            "rank": null,
+            "rank": "#6",
             "explainer": null,
             "isEarnings": false
           },
           {
             "stat": "Win %",
             "value": 0.526,
-            "rank": null,
+            "rank": "#5",
             "explainer": null,
             "isEarnings": false
           },
           {
             "stat": "Avg Finish",
             "value": 7.0,
-            "rank": null,
+            "rank": "#5",
             "explainer": null,
             "isEarnings": false
           },
           {
             "stat": "Pts Per Game",
             "value": 92.58,
-            "rank": null,
+            "rank": "#6",
             "explainer": null,
             "isEarnings": false
           },
           {
             "stat": "Point Share",
-            "value": "7.0%",
-            "rank": null,
+            "value": "7.13%",
+            "rank": "#7",
             "explainer": "% of total league points scored",
             "isEarnings": false
           },
           {
             "stat": "Career High Score",
             "value": 159.24,
-            "rank": null,
+            "rank": "#7",
             "explainer": null,
             "isEarnings": false
           },
           {
             "stat": "Weekly High Scores",
             "value": 11,
-            "rank": null,
+            "rank": "#5",
             "explainer": null,
             "isEarnings": false
           },
           {
             "stat": "Power Score",
             "value": 120.4,
-            "rank": null,
+            "rank": "#6",
             "explainer": null,
             "isEarnings": false
           },
           {
             "stat": "Weeks at #1",
             "value": 14,
-            "rank": null,
+            "rank": "#4",
             "explainer": null,
             "isEarnings": false
           },
           {
             "stat": "Boom Rate",
-            "value": "21.0%",
-            "rank": null,
+            "value": "21.48%",
+            "rank": "#6",
             "explainer": "% of games scoring 120% or more of league average",
             "isEarnings": false
           },
           {
             "stat": "Start Rate",
-            "value": "49.0%",
-            "rank": null,
+            "value": "48.89%",
+            "rank": "#6",
             "explainer": "% of games scoring at or above league average",
             "isEarnings": false
           },
           {
             "stat": "Luck Rate",
-            "value": "3.0%",
-            "rank": null,
+            "value": "2.94%",
+            "rank": "#3",
             "explainer": "Win % above/below expected",
             "isEarnings": false
           }
@@ -1323,28 +1323,28 @@
           {
             "stat": "Appearances",
             "value": 5,
-            "rank": null,
+            "rank": "#5",
             "explainer": null,
             "isEarnings": false
           },
           {
             "stat": "Wins",
             "value": 6,
-            "rank": null,
+            "rank": "#4",
             "explainer": null,
             "isEarnings": false
           },
           {
             "stat": "Win %",
             "value": 0.6,
-            "rank": null,
+            "rank": "#3",
             "explainer": null,
             "isEarnings": false
           },
           {
             "stat": "Championships",
             "value": 1,
-            "rank": null,
+            "rank": "#4",
             "explainer": null,
             "isEarnings": false
           }
@@ -1767,14 +1767,14 @@
           {
             "stat": "Net Earnings",
             "value": -257.0,
-            "rank": null,
+            "rank": "#8",
             "explainer": "Total winnings minus entry fees",
             "isEarnings": true
           },
           {
             "stat": "Prestige Points",
             "value": 300,
-            "rank": null,
+            "rank": "#12",
             "explainer": null,
             "isEarnings": false
           }
@@ -1783,84 +1783,84 @@
           {
             "stat": "Wins",
             "value": 29,
-            "rank": null,
+            "rank": "#13",
             "explainer": null,
             "isEarnings": false
           },
           {
             "stat": "Win %",
             "value": 0.518,
-            "rank": null,
+            "rank": "#6",
             "explainer": null,
             "isEarnings": false
           },
           {
             "stat": "Avg Finish",
             "value": 8.0,
-            "rank": null,
+            "rank": "#9",
             "explainer": null,
             "isEarnings": false
           },
           {
             "stat": "Pts Per Game",
             "value": 92.59,
-            "rank": null,
+            "rank": "#5",
             "explainer": null,
             "isEarnings": false
           },
           {
             "stat": "Point Share",
-            "value": "7.0%",
-            "rank": null,
+            "value": "7.18%",
+            "rank": "#5",
             "explainer": "% of total league points scored",
             "isEarnings": false
           },
           {
             "stat": "Career High Score",
             "value": 134.08,
-            "rank": null,
+            "rank": "#13",
             "explainer": null,
             "isEarnings": false
           },
           {
             "stat": "Weekly High Scores",
             "value": 3,
-            "rank": null,
+            "rank": "#13",
             "explainer": null,
             "isEarnings": false
           },
           {
             "stat": "Power Score",
             "value": 117.82,
-            "rank": null,
+            "rank": "#8",
             "explainer": null,
             "isEarnings": false
           },
           {
             "stat": "Weeks at #1",
             "value": 6,
-            "rank": null,
+            "rank": "#9",
             "explainer": null,
             "isEarnings": false
           },
           {
             "stat": "Boom Rate",
-            "value": "23.0%",
-            "rank": null,
+            "value": "23.21%",
+            "rank": "#5",
             "explainer": "% of games scoring 120% or more of league average",
             "isEarnings": false
           },
           {
             "stat": "Start Rate",
-            "value": "54.0%",
-            "rank": null,
+            "value": "53.57%",
+            "rank": "#3",
             "explainer": "% of games scoring at or above league average",
             "isEarnings": false
           },
           {
             "stat": "Luck Rate",
-            "value": "-1.0%",
-            "rank": null,
+            "value": "-0.55%",
+            "rank": "#8",
             "explainer": "Win % above/below expected",
             "isEarnings": false
           }
@@ -1869,28 +1869,28 @@
           {
             "stat": "Appearances",
             "value": 1,
-            "rank": null,
+            "rank": "#12",
             "explainer": null,
             "isEarnings": false
           },
           {
             "stat": "Wins",
             "value": 0,
-            "rank": null,
+            "rank": "#11",
             "explainer": null,
             "isEarnings": false
           },
           {
             "stat": "Win %",
             "value": 0.0,
-            "rank": null,
+            "rank": "#11",
             "explainer": null,
             "isEarnings": false
           },
           {
             "stat": "Championships",
             "value": 0,
-            "rank": null,
+            "rank": "#7",
             "explainer": null,
             "isEarnings": false
           }
@@ -2235,14 +2235,14 @@
           {
             "stat": "Net Earnings",
             "value": -319.0,
-            "rank": null,
+            "rank": "#9",
             "explainer": "Total winnings minus entry fees",
             "isEarnings": true
           },
           {
             "stat": "Prestige Points",
             "value": 1009,
-            "rank": null,
+            "rank": "#7",
             "explainer": null,
             "isEarnings": false
           }
@@ -2251,84 +2251,84 @@
           {
             "stat": "Wins",
             "value": 81,
-            "rank": null,
+            "rank": "#4",
             "explainer": null,
             "isEarnings": false
           },
           {
             "stat": "Win %",
             "value": 0.503,
-            "rank": null,
+            "rank": "#7",
             "explainer": null,
             "isEarnings": false
           },
           {
             "stat": "Avg Finish",
             "value": 7.6,
-            "rank": null,
+            "rank": "#7",
             "explainer": null,
             "isEarnings": false
           },
           {
             "stat": "Pts Per Game",
             "value": 91.03,
-            "rank": null,
+            "rank": "#9",
             "explainer": null,
             "isEarnings": false
           },
           {
             "stat": "Point Share",
-            "value": "7.0%",
-            "rank": null,
+            "value": "7.12%",
+            "rank": "#8",
             "explainer": "% of total league points scored",
             "isEarnings": false
           },
           {
             "stat": "Career High Score",
             "value": 151.32,
-            "rank": null,
+            "rank": "#8",
             "explainer": null,
             "isEarnings": false
           },
           {
             "stat": "Weekly High Scores",
             "value": 9,
-            "rank": null,
+            "rank": "#7",
             "explainer": null,
             "isEarnings": false
           },
           {
             "stat": "Power Score",
             "value": 114.82,
-            "rank": null,
+            "rank": "#9",
             "explainer": null,
             "isEarnings": false
           },
           {
             "stat": "Weeks at #1",
             "value": 8,
-            "rank": null,
+            "rank": "#8",
             "explainer": null,
             "isEarnings": false
           },
           {
             "stat": "Boom Rate",
-            "value": "20.0%",
-            "rank": null,
+            "value": "19.88%",
+            "rank": "#8",
             "explainer": "% of games scoring 120% or more of league average",
             "isEarnings": false
           },
           {
             "stat": "Start Rate",
-            "value": "48.0%",
-            "rank": null,
+            "value": "47.83%",
+            "rank": "#7",
             "explainer": "% of games scoring at or above league average",
             "isEarnings": false
           },
           {
             "stat": "Luck Rate",
-            "value": "2.0%",
-            "rank": null,
+            "value": "1.55%",
+            "rank": "#5",
             "explainer": "Win % above/below expected",
             "isEarnings": false
           }
@@ -2337,28 +2337,28 @@
           {
             "stat": "Appearances",
             "value": 4,
-            "rank": null,
+            "rank": "#7",
             "explainer": null,
             "isEarnings": false
           },
           {
             "stat": "Wins",
             "value": 2,
-            "rank": null,
+            "rank": "#7",
             "explainer": null,
             "isEarnings": false
           },
           {
             "stat": "Win %",
             "value": 0.4,
-            "rank": null,
+            "rank": "#7",
             "explainer": null,
             "isEarnings": false
           },
           {
             "stat": "Championships",
             "value": 1,
-            "rank": null,
+            "rank": "#4",
             "explainer": null,
             "isEarnings": false
           }
@@ -2807,14 +2807,14 @@
           {
             "stat": "Net Earnings",
             "value": -3.49,
-            "rank": null,
+            "rank": "#6",
             "explainer": "Total winnings minus entry fees",
             "isEarnings": true
           },
           {
             "stat": "Prestige Points",
             "value": 1057,
-            "rank": null,
+            "rank": "#6",
             "explainer": null,
             "isEarnings": false
           }
@@ -2823,84 +2823,84 @@
           {
             "stat": "Wins",
             "value": 78,
-            "rank": null,
+            "rank": "#5",
             "explainer": null,
             "isEarnings": false
           },
           {
             "stat": "Win %",
             "value": 0.484,
-            "rank": null,
+            "rank": "#9",
             "explainer": null,
             "isEarnings": false
           },
           {
             "stat": "Avg Finish",
             "value": 7.5,
-            "rank": null,
+            "rank": "#6",
             "explainer": null,
             "isEarnings": false
           },
           {
             "stat": "Pts Per Game",
             "value": 93.76,
-            "rank": null,
+            "rank": "#4",
             "explainer": null,
             "isEarnings": false
           },
           {
             "stat": "Point Share",
-            "value": "7.0%",
-            "rank": null,
+            "value": "7.33%",
+            "rank": "#4",
             "explainer": "% of total league points scored",
             "isEarnings": false
           },
           {
             "stat": "Career High Score",
             "value": 213.3,
-            "rank": null,
+            "rank": "#1",
             "explainer": null,
             "isEarnings": false
           },
           {
             "stat": "Weekly High Scores",
             "value": 18,
-            "rank": null,
+            "rank": "#2",
             "explainer": null,
             "isEarnings": false
           },
           {
             "stat": "Power Score",
             "value": 124.98,
-            "rank": null,
+            "rank": "#4",
             "explainer": null,
             "isEarnings": false
           },
           {
             "stat": "Weeks at #1",
             "value": 15,
-            "rank": null,
+            "rank": "#3",
             "explainer": null,
             "isEarnings": false
           },
           {
             "stat": "Boom Rate",
-            "value": "24.0%",
-            "rank": null,
+            "value": "23.6%",
+            "rank": "#4",
             "explainer": "% of games scoring 120% or more of league average",
             "isEarnings": false
           },
           {
             "stat": "Start Rate",
-            "value": "49.0%",
-            "rank": null,
+            "value": "49.07%",
+            "rank": "#5",
             "explainer": "% of games scoring at or above league average",
             "isEarnings": false
           },
           {
             "stat": "Luck Rate",
-            "value": "-1.0%",
-            "rank": null,
+            "value": "-0.97%",
+            "rank": "#9",
             "explainer": "Win % above/below expected",
             "isEarnings": false
           }
@@ -2909,28 +2909,28 @@
           {
             "stat": "Appearances",
             "value": 5,
-            "rank": null,
+            "rank": "#5",
             "explainer": null,
             "isEarnings": false
           },
           {
             "stat": "Wins",
             "value": 3,
-            "rank": null,
+            "rank": "#6",
             "explainer": null,
             "isEarnings": false
           },
           {
             "stat": "Win %",
             "value": 0.375,
-            "rank": null,
+            "rank": "#8",
             "explainer": null,
             "isEarnings": false
           },
           {
             "stat": "Championships",
             "value": 0,
-            "rank": null,
+            "rank": "#7",
             "explainer": null,
             "isEarnings": false
           }
@@ -3379,14 +3379,14 @@
           {
             "stat": "Net Earnings",
             "value": -251.0,
-            "rank": null,
+            "rank": "#7",
             "explainer": "Total winnings minus entry fees",
             "isEarnings": true
           },
           {
             "stat": "Prestige Points",
             "value": 297,
-            "rank": null,
+            "rank": "#13",
             "explainer": null,
             "isEarnings": false
           }
@@ -3395,84 +3395,84 @@
           {
             "stat": "Wins",
             "value": 42,
-            "rank": null,
+            "rank": "#10",
             "explainer": null,
             "isEarnings": false
           },
           {
             "stat": "Win %",
             "value": 0.438,
-            "rank": null,
+            "rank": "#11",
             "explainer": null,
             "isEarnings": false
           },
           {
             "stat": "Avg Finish",
             "value": 9.9,
-            "rank": null,
+            "rank": "#12",
             "explainer": null,
             "isEarnings": false
           },
           {
             "stat": "Pts Per Game",
             "value": 90.82,
-            "rank": null,
+            "rank": "#10",
             "explainer": null,
             "isEarnings": false
           },
           {
             "stat": "Point Share",
-            "value": "7.0%",
-            "rank": null,
+            "value": "6.98%",
+            "rank": "#10",
             "explainer": "% of total league points scored",
             "isEarnings": false
           },
           {
             "stat": "Career High Score",
             "value": 165.52,
-            "rank": null,
+            "rank": "#5",
             "explainer": null,
             "isEarnings": false
           },
           {
             "stat": "Weekly High Scores",
             "value": 4,
-            "rank": null,
+            "rank": "#12",
             "explainer": null,
             "isEarnings": false
           },
           {
             "stat": "Power Score",
             "value": 114.62,
-            "rank": null,
+            "rank": "#10",
             "explainer": null,
             "isEarnings": false
           },
           {
             "stat": "Weeks at #1",
             "value": 2,
-            "rank": null,
+            "rank": "#11",
             "explainer": null,
             "isEarnings": false
           },
           {
             "stat": "Boom Rate",
-            "value": "17.0%",
-            "rank": null,
+            "value": "16.67%",
+            "rank": "#10",
             "explainer": "% of games scoring 120% or more of league average",
             "isEarnings": false
           },
           {
             "stat": "Start Rate",
-            "value": "45.0%",
-            "rank": null,
+            "value": "44.79%",
+            "rank": "#9",
             "explainer": "% of games scoring at or above league average",
             "isEarnings": false
           },
           {
             "stat": "Luck Rate",
-            "value": "-3.0%",
-            "rank": null,
+            "value": "-3.04%",
+            "rank": "#10",
             "explainer": "Win % above/below expected",
             "isEarnings": false
           }
@@ -3481,28 +3481,28 @@
           {
             "stat": "Appearances",
             "value": 1,
-            "rank": null,
+            "rank": "#12",
             "explainer": null,
             "isEarnings": false
           },
           {
             "stat": "Wins",
             "value": 0,
-            "rank": null,
+            "rank": "#11",
             "explainer": null,
             "isEarnings": false
           },
           {
             "stat": "Win %",
             "value": 0.0,
-            "rank": null,
+            "rank": "#11",
             "explainer": null,
             "isEarnings": false
           },
           {
             "stat": "Championships",
             "value": 0,
-            "rank": null,
+            "rank": "#7",
             "explainer": null,
             "isEarnings": false
           }
@@ -3886,14 +3886,14 @@
           {
             "stat": "Net Earnings",
             "value": 1035.0,
-            "rank": null,
+            "rank": "#1",
             "explainer": "Total winnings minus entry fees",
             "isEarnings": true
           },
           {
             "stat": "Prestige Points",
             "value": 2018,
-            "rank": null,
+            "rank": "#3",
             "explainer": null,
             "isEarnings": false
           }
@@ -3902,84 +3902,84 @@
           {
             "stat": "Wins",
             "value": 64,
-            "rank": null,
+            "rank": "#9",
             "explainer": null,
             "isEarnings": false
           },
           {
             "stat": "Win %",
             "value": 0.587,
-            "rank": null,
+            "rank": "#2",
             "explainer": null,
             "isEarnings": false
           },
           {
             "stat": "Avg Finish",
             "value": 4.0,
-            "rank": null,
+            "rank": "#1",
             "explainer": null,
             "isEarnings": false
           },
           {
             "stat": "Pts Per Game",
             "value": 105.4,
-            "rank": null,
+            "rank": "#1",
             "explainer": null,
             "isEarnings": false
           },
           {
             "stat": "Point Share",
-            "value": "8.0%",
-            "rank": null,
+            "value": "8.05%",
+            "rank": "#1",
             "explainer": "% of total league points scored",
             "isEarnings": false
           },
           {
             "stat": "Career High Score",
             "value": 175.3,
-            "rank": null,
+            "rank": "#2",
             "explainer": null,
             "isEarnings": false
           },
           {
             "stat": "Weekly High Scores",
             "value": 14,
-            "rank": null,
+            "rank": "#3",
             "explainer": null,
             "isEarnings": false
           },
           {
             "stat": "Power Score",
             "value": 140.37,
-            "rank": null,
+            "rank": "#1",
             "explainer": null,
             "isEarnings": false
           },
           {
             "stat": "Weeks at #1",
             "value": 12,
-            "rank": null,
+            "rank": "#5",
             "explainer": null,
             "isEarnings": false
           },
           {
             "stat": "Boom Rate",
-            "value": "32.0%",
-            "rank": null,
+            "value": "32.11%",
+            "rank": "#1",
             "explainer": "% of games scoring 120% or more of league average",
             "isEarnings": false
           },
           {
             "stat": "Start Rate",
-            "value": "71.0%",
-            "rank": null,
+            "value": "70.64%",
+            "rank": "#1",
             "explainer": "% of games scoring at or above league average",
             "isEarnings": false
           },
           {
             "stat": "Luck Rate",
-            "value": "-6.0%",
-            "rank": null,
+            "value": "-5.93%",
+            "rank": "#13",
             "explainer": "Win % above/below expected",
             "isEarnings": false
           }
@@ -3988,28 +3988,28 @@
           {
             "stat": "Appearances",
             "value": 8,
-            "rank": null,
+            "rank": "#1",
             "explainer": null,
             "isEarnings": false
           },
           {
             "stat": "Wins",
             "value": 10,
-            "rank": null,
+            "rank": "#1",
             "explainer": null,
             "isEarnings": false
           },
           {
             "stat": "Win %",
             "value": 0.625,
-            "rank": null,
+            "rank": "#2",
             "explainer": null,
             "isEarnings": false
           },
           {
             "stat": "Championships",
             "value": 2,
-            "rank": null,
+            "rank": "#2",
             "explainer": null,
             "isEarnings": false
           }
@@ -4413,7 +4413,7 @@
           {
             "stat": "Prestige Points",
             "value": 0,
-            "rank": null,
+            "rank": "#14",
             "explainer": null,
             "isEarnings": false
           }
@@ -4529,7 +4529,7 @@
           {
             "stat": "Championships",
             "value": 0,
-            "rank": null,
+            "rank": "#7",
             "explainer": null,
             "isEarnings": false
           }
@@ -4822,14 +4822,14 @@
           {
             "stat": "Net Earnings",
             "value": -445.0,
-            "rank": null,
+            "rank": "#12",
             "explainer": "Total winnings minus entry fees",
             "isEarnings": true
           },
           {
             "stat": "Prestige Points",
             "value": 570,
-            "rank": null,
+            "rank": "#8",
             "explainer": null,
             "isEarnings": false
           }
@@ -4838,84 +4838,84 @@
           {
             "stat": "Wins",
             "value": 65,
-            "rank": null,
+            "rank": "#8",
             "explainer": null,
             "isEarnings": false
           },
           {
             "stat": "Win %",
             "value": 0.439,
-            "rank": null,
+            "rank": "#10",
             "explainer": null,
             "isEarnings": false
           },
           {
             "stat": "Avg Finish",
             "value": 9.0,
-            "rank": null,
+            "rank": "#10",
             "explainer": null,
             "isEarnings": false
           },
           {
             "stat": "Pts Per Game",
             "value": 89.66,
-            "rank": null,
+            "rank": "#11",
             "explainer": null,
             "isEarnings": false
           },
           {
             "stat": "Point Share",
-            "value": "7.0%",
-            "rank": null,
+            "value": "6.93%",
+            "rank": "#11",
             "explainer": "% of total league points scored",
             "isEarnings": false
           },
           {
             "stat": "Career High Score",
             "value": 141.8,
-            "rank": null,
+            "rank": "#12",
             "explainer": null,
             "isEarnings": false
           },
           {
             "stat": "Weekly High Scores",
             "value": 10,
-            "rank": null,
+            "rank": "#6",
             "explainer": null,
             "isEarnings": false
           },
           {
             "stat": "Power Score",
             "value": 108.86,
-            "rank": null,
+            "rank": "#11",
             "explainer": null,
             "isEarnings": false
           },
           {
             "stat": "Weeks at #1",
             "value": 12,
-            "rank": null,
+            "rank": "#5",
             "explainer": null,
             "isEarnings": false
           },
           {
             "stat": "Boom Rate",
-            "value": "18.0%",
-            "rank": null,
+            "value": "17.57%",
+            "rank": "#9",
             "explainer": "% of games scoring 120% or more of league average",
             "isEarnings": false
           },
           {
             "stat": "Start Rate",
-            "value": "45.0%",
-            "rank": null,
+            "value": "44.59%",
+            "rank": "#10",
             "explainer": "% of games scoring at or above league average",
             "isEarnings": false
           },
           {
             "stat": "Luck Rate",
-            "value": "-3.0%",
-            "rank": null,
+            "value": "-3.3%",
+            "rank": "#11",
             "explainer": "Win % above/below expected",
             "isEarnings": false
           }
@@ -4924,28 +4924,28 @@
           {
             "stat": "Appearances",
             "value": 3,
-            "rank": null,
+            "rank": "#8",
             "explainer": null,
             "isEarnings": false
           },
           {
             "stat": "Wins",
             "value": 1,
-            "rank": null,
+            "rank": "#9",
             "explainer": null,
             "isEarnings": false
           },
           {
             "stat": "Win %",
             "value": 0.25,
-            "rank": null,
+            "rank": "#10",
             "explainer": null,
             "isEarnings": false
           },
           {
             "stat": "Championships",
             "value": 0,
-            "rank": null,
+            "rank": "#7",
             "explainer": null,
             "isEarnings": false
           }
@@ -5381,14 +5381,14 @@
           {
             "stat": "Net Earnings",
             "value": 225.0,
-            "rank": null,
+            "rank": "#4",
             "explainer": "Total winnings minus entry fees",
             "isEarnings": true
           },
           {
             "stat": "Prestige Points",
             "value": 1480,
-            "rank": null,
+            "rank": "#4",
             "explainer": null,
             "isEarnings": false
           }
@@ -5397,84 +5397,84 @@
           {
             "stat": "Wins",
             "value": 88,
-            "rank": null,
+            "rank": "#2",
             "explainer": null,
             "isEarnings": false
           },
           {
             "stat": "Win %",
             "value": 0.547,
-            "rank": null,
+            "rank": "#4",
             "explainer": null,
             "isEarnings": false
           },
           {
             "stat": "Avg Finish",
             "value": 6.5,
-            "rank": null,
+            "rank": "#4",
             "explainer": null,
             "isEarnings": false
           },
           {
             "stat": "Pts Per Game",
             "value": 91.7,
-            "rank": null,
+            "rank": "#7",
             "explainer": null,
             "isEarnings": false
           },
           {
             "stat": "Point Share",
-            "value": "7.0%",
-            "rank": null,
+            "value": "7.17%",
+            "rank": "#6",
             "explainer": "% of total league points scored",
             "isEarnings": false
           },
           {
             "stat": "Career High Score",
             "value": 150.3,
-            "rank": null,
+            "rank": "#10",
             "explainer": null,
             "isEarnings": false
           },
           {
             "stat": "Weekly High Scores",
             "value": 7,
-            "rank": null,
+            "rank": "#9",
             "explainer": null,
             "isEarnings": false
           },
           {
             "stat": "Power Score",
             "value": 119.13,
-            "rank": null,
+            "rank": "#7",
             "explainer": null,
             "isEarnings": false
           },
           {
             "stat": "Weeks at #1",
             "value": 19,
-            "rank": null,
+            "rank": "#2",
             "explainer": null,
             "isEarnings": false
           },
           {
             "stat": "Boom Rate",
-            "value": "20.0%",
-            "rank": null,
+            "value": "20.5%",
+            "rank": "#7",
             "explainer": "% of games scoring 120% or more of league average",
             "isEarnings": false
           },
           {
             "stat": "Start Rate",
-            "value": "47.0%",
-            "rank": null,
+            "value": "46.58%",
+            "rank": "#8",
             "explainer": "% of games scoring at or above league average",
             "isEarnings": false
           },
           {
             "stat": "Luck Rate",
-            "value": "5.0%",
-            "rank": null,
+            "value": "4.66%",
+            "rank": "#1",
             "explainer": "Win % above/below expected",
             "isEarnings": false
           }
@@ -5483,28 +5483,28 @@
           {
             "stat": "Appearances",
             "value": 7,
-            "rank": null,
+            "rank": "#3",
             "explainer": null,
             "isEarnings": false
           },
           {
             "stat": "Wins",
             "value": 6,
-            "rank": null,
+            "rank": "#4",
             "explainer": null,
             "isEarnings": false
           },
           {
             "stat": "Win %",
             "value": 0.545,
-            "rank": null,
+            "rank": "#4",
             "explainer": null,
             "isEarnings": false
           },
           {
             "stat": "Championships",
             "value": 1,
-            "rank": null,
+            "rank": "#4",
             "explainer": null,
             "isEarnings": false
           }
@@ -5953,14 +5953,14 @@
           {
             "stat": "Net Earnings",
             "value": -530.0,
-            "rank": null,
+            "rank": "#13",
             "explainer": "Total winnings minus entry fees",
             "isEarnings": true
           },
           {
             "stat": "Prestige Points",
             "value": 538,
-            "rank": null,
+            "rank": "#9",
             "explainer": null,
             "isEarnings": false
           }
@@ -5969,84 +5969,84 @@
           {
             "stat": "Wins",
             "value": 70,
-            "rank": null,
+            "rank": "#7",
             "explainer": null,
             "isEarnings": false
           },
           {
             "stat": "Win %",
             "value": 0.435,
-            "rank": null,
+            "rank": "#12",
             "explainer": null,
             "isEarnings": false
           },
           {
             "stat": "Avg Finish",
             "value": 9.1,
-            "rank": null,
+            "rank": "#11",
             "explainer": null,
             "isEarnings": false
           },
           {
             "stat": "Pts Per Game",
             "value": 87.52,
-            "rank": null,
+            "rank": "#12",
             "explainer": null,
             "isEarnings": false
           },
           {
             "stat": "Point Share",
-            "value": "7.0%",
-            "rank": null,
+            "value": "6.84%",
+            "rank": "#12",
             "explainer": "% of total league points scored",
             "isEarnings": false
           },
           {
             "stat": "Career High Score",
             "value": 144.24,
-            "rank": null,
+            "rank": "#11",
             "explainer": null,
             "isEarnings": false
           },
           {
             "stat": "Weekly High Scores",
             "value": 9,
-            "rank": null,
+            "rank": "#7",
             "explainer": null,
             "isEarnings": false
           },
           {
             "stat": "Power Score",
             "value": 108.44,
-            "rank": null,
+            "rank": "#12",
             "explainer": null,
             "isEarnings": false
           },
           {
             "stat": "Weeks at #1",
             "value": 4,
-            "rank": null,
+            "rank": "#10",
             "explainer": null,
             "isEarnings": false
           },
           {
             "stat": "Boom Rate",
-            "value": "15.0%",
-            "rank": null,
+            "value": "14.91%",
+            "rank": "#11",
             "explainer": "% of games scoring 120% or more of league average",
             "isEarnings": false
           },
           {
             "stat": "Start Rate",
-            "value": "38.0%",
-            "rank": null,
+            "value": "37.89%",
+            "rank": "#13",
             "explainer": "% of games scoring at or above league average",
             "isEarnings": false
           },
           {
             "stat": "Luck Rate",
-            "value": "-0.0%",
-            "rank": null,
+            "value": "-0.2%",
+            "rank": "#7",
             "explainer": "Win % above/below expected",
             "isEarnings": false
           }
@@ -6055,28 +6055,28 @@
           {
             "stat": "Appearances",
             "value": 2,
-            "rank": null,
+            "rank": "#10",
             "explainer": null,
             "isEarnings": false
           },
           {
             "stat": "Wins",
             "value": 2,
-            "rank": null,
+            "rank": "#7",
             "explainer": null,
             "isEarnings": false
           },
           {
             "stat": "Win %",
             "value": 0.5,
-            "rank": null,
+            "rank": "#6",
             "explainer": null,
             "isEarnings": false
           },
           {
             "stat": "Championships",
             "value": 0,
-            "rank": null,
+            "rank": "#7",
             "explainer": null,
             "isEarnings": false
           }
@@ -6525,14 +6525,14 @@
           {
             "stat": "Net Earnings",
             "value": -358.5,
-            "rank": null,
+            "rank": "#10",
             "explainer": "Total winnings minus entry fees",
             "isEarnings": true
           },
           {
             "stat": "Prestige Points",
             "value": 303,
-            "rank": null,
+            "rank": "#11",
             "explainer": null,
             "isEarnings": false
           }
@@ -6541,84 +6541,84 @@
           {
             "stat": "Wins",
             "value": 31,
-            "rank": null,
+            "rank": "#12",
             "explainer": null,
             "isEarnings": false
           },
           {
             "stat": "Win %",
             "value": 0.373,
-            "rank": null,
+            "rank": "#13",
             "explainer": null,
             "isEarnings": false
           },
           {
             "stat": "Avg Finish",
             "value": 10.0,
-            "rank": null,
+            "rank": "#13",
             "explainer": null,
             "isEarnings": false
           },
           {
             "stat": "Pts Per Game",
             "value": 87.15,
-            "rank": null,
+            "rank": "#13",
             "explainer": null,
             "isEarnings": false
           },
           {
             "stat": "Point Share",
-            "value": "7.0%",
-            "rank": null,
+            "value": "6.7%",
+            "rank": "#13",
             "explainer": "% of total league points scored",
             "isEarnings": false
           },
           {
             "stat": "Career High Score",
             "value": 150.66,
-            "rank": null,
+            "rank": "#9",
             "explainer": null,
             "isEarnings": false
           },
           {
             "stat": "Weekly High Scores",
             "value": 5,
-            "rank": null,
+            "rank": "#10",
             "explainer": null,
             "isEarnings": false
           },
           {
             "stat": "Power Score",
             "value": 104.4,
-            "rank": null,
+            "rank": "#13",
             "explainer": null,
             "isEarnings": false
           },
           {
             "stat": "Weeks at #1",
             "value": 1,
-            "rank": null,
+            "rank": "#13",
             "explainer": null,
             "isEarnings": false
           },
           {
             "stat": "Boom Rate",
-            "value": "14.0%",
-            "rank": null,
+            "value": "14.46%",
+            "rank": "#12",
             "explainer": "% of games scoring 120% or more of league average",
             "isEarnings": false
           },
           {
             "stat": "Start Rate",
-            "value": "39.0%",
-            "rank": null,
+            "value": "38.55%",
+            "rank": "#12",
             "explainer": "% of games scoring at or above league average",
             "isEarnings": false
           },
           {
             "stat": "Luck Rate",
-            "value": "-4.0%",
-            "rank": null,
+            "value": "-3.89%",
+            "rank": "#12",
             "explainer": "Win % above/below expected",
             "isEarnings": false
           }
@@ -6627,28 +6627,28 @@
           {
             "stat": "Appearances",
             "value": 2,
-            "rank": null,
+            "rank": "#10",
             "explainer": null,
             "isEarnings": false
           },
           {
             "stat": "Wins",
             "value": 1,
-            "rank": null,
+            "rank": "#9",
             "explainer": null,
             "isEarnings": false
           },
           {
             "stat": "Win %",
             "value": 0.333,
-            "rank": null,
+            "rank": "#9",
             "explainer": null,
             "isEarnings": false
           },
           {
             "stat": "Championships",
             "value": 0,
-            "rank": null,
+            "rank": "#7",
             "explainer": null,
             "isEarnings": false
           }
@@ -7019,14 +7019,14 @@
           {
             "stat": "Net Earnings",
             "value": -407.5,
-            "rank": null,
+            "rank": "#11",
             "explainer": "Total winnings minus entry fees",
             "isEarnings": true
           },
           {
             "stat": "Prestige Points",
             "value": 311,
-            "rank": null,
+            "rank": "#10",
             "explainer": null,
             "isEarnings": false
           }
@@ -7035,84 +7035,84 @@
           {
             "stat": "Wins",
             "value": 41,
-            "rank": null,
+            "rank": "#11",
             "explainer": null,
             "isEarnings": false
           },
           {
             "stat": "Win %",
             "value": 0.494,
-            "rank": null,
+            "rank": "#8",
             "explainer": null,
             "isEarnings": false
           },
           {
             "stat": "Avg Finish",
             "value": 7.8,
-            "rank": null,
+            "rank": "#8",
             "explainer": null,
             "isEarnings": false
           },
           {
             "stat": "Pts Per Game",
             "value": 91.46,
-            "rank": null,
+            "rank": "#8",
             "explainer": null,
             "isEarnings": false
           },
           {
             "stat": "Point Share",
-            "value": "7.0%",
-            "rank": null,
+            "value": "7.03%",
+            "rank": "#9",
             "explainer": "% of total league points scored",
             "isEarnings": false
           },
           {
             "stat": "Career High Score",
             "value": 173.96,
-            "rank": null,
+            "rank": "#3",
             "explainer": null,
             "isEarnings": false
           },
           {
             "stat": "Weekly High Scores",
             "value": 5,
-            "rank": null,
+            "rank": "#10",
             "explainer": null,
             "isEarnings": false
           },
           {
             "stat": "Power Score",
             "value": 120.69,
-            "rank": null,
+            "rank": "#5",
             "explainer": null,
             "isEarnings": false
           },
           {
             "stat": "Weeks at #1",
             "value": 2,
-            "rank": null,
+            "rank": "#11",
             "explainer": null,
             "isEarnings": false
           },
           {
             "stat": "Boom Rate",
-            "value": "13.0%",
-            "rank": null,
+            "value": "13.25%",
+            "rank": "#13",
             "explainer": "% of games scoring 120% or more of league average",
             "isEarnings": false
           },
           {
             "stat": "Start Rate",
-            "value": "40.0%",
-            "rank": null,
+            "value": "39.76%",
+            "rank": "#11",
             "explainer": "% of games scoring at or above league average",
             "isEarnings": false
           },
           {
             "stat": "Luck Rate",
-            "value": "0.0%",
-            "rank": null,
+            "value": "0.37%",
+            "rank": "#6",
             "explainer": "Win % above/below expected",
             "isEarnings": false
           }
@@ -7121,28 +7121,28 @@
           {
             "stat": "Appearances",
             "value": 3,
-            "rank": null,
+            "rank": "#8",
             "explainer": null,
             "isEarnings": false
           },
           {
             "stat": "Wins",
             "value": 0,
-            "rank": null,
+            "rank": "#11",
             "explainer": null,
             "isEarnings": false
           },
           {
             "stat": "Win %",
             "value": 0.0,
-            "rank": null,
+            "rank": "#11",
             "explainer": null,
             "isEarnings": false
           },
           {
             "stat": "Championships",
             "value": 0,
-            "rank": null,
+            "rank": "#7",
             "explainer": null,
             "isEarnings": false
           }
