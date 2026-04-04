@@ -2055,14 +2055,12 @@ function renderCompare(ownerAId, ownerBId) {
     </div>
 
     <div class="cmp-section">
-      <div class="cmp-section-title">Prestige by Season</div>
+      <div class="cmp-section-title">Prestige Points — Cumulative</div>
       <div class="cmp-chart-block">
         <canvas id="cmpPrestigeChart" height="180"></canvas>
         <div class="cmp-chart-legend">
           <div class="cmp-legend-item"><div class="cmp-legend-dot" style="background:#22c55e;"></div>${me.name}</div>
           <div class="cmp-legend-item"><div class="cmp-legend-dot" style="background:#60a5fa;"></div>${opp.name}</div>
-          <div class="cmp-legend-item"><div class="cmp-legend-dot" style="background:#22c55e; height:0; border-top:2px dashed #22c55e;"></div>${me.name} Avg</div>
-          <div class="cmp-legend-item"><div class="cmp-legend-dot" style="background:#60a5fa; height:0; border-top:2px dashed #60a5fa;"></div>${opp.name} Avg</div>
         </div>
       </div>
     </div>
@@ -2106,21 +2104,31 @@ function renderCompare(ownerAId, ownerBId) {
       { label: opp.name, data: earB, color: '#60a5fa' }
     ], v => '$' + v);
 
-    // Prestige with dual avg lines
+    // Prestige cumulative
     const prA = getChartArr(me, 'prestigePerSeason', 'values');
     const prB = getChartArr(opp, 'prestigePerSeason', 'values');
-    const validA = prA.filter(v => v != null && v > 0);
-    const validB = prB.filter(v => v != null && v > 0);
-    const avgA = validA.length ? parseFloat((validA.reduce((a,b)=>a+b,0)/validA.length).toFixed(1)) : null;
-    const avgB = validB.length ? parseFloat((validB.reduce((a,b)=>a+b,0)/validB.length).toFixed(1)) : null;
-    const avgLineA = prA.map(v => v != null && v > 0 ? avgA : null);
-    const avgLineB = prB.map(v => v != null && v > 0 ? avgB : null);
-    buildBarChart('cmpPrestigeChart', [
-      { label: me.name, data: prA, color: '#22c55e' },
-      { label: opp.name, data: prB, color: '#60a5fa' },
-      { label: me.name + ' Avg', data: avgLineA, color: '#22c55e', line: true, dash: true },
-      { label: opp.name + ' Avg', data: avgLineB, color: '#60a5fa', line: true, dash: true }
-    ], v => v + ' pts');
+    function cumulative(arr) {
+      let total = 0;
+      return arr.map(v => {
+        if (v != null && v > 0) total += v;
+        return total > 0 ? total : null;
+      });
+    }
+    const prCumA = cumulative(prA);
+    const prCumB = cumulative(prB);
+    function holdFlat(arr) {
+      let last = null;
+      return arr.map(v => {
+        if (v != null) { last = v; return v; }
+        return last;
+      });
+    }
+    const prFlatA = holdFlat(prCumA);
+    const prFlatB = holdFlat(prCumB);
+    buildLineChart('cmpPrestigeChart', [
+      { label: me.name,  data: prFlatA, color: '#22c55e' },
+      { label: opp.name, data: prFlatB, color: '#60a5fa' }
+    ], { min: 0, ticks: { ...cmpScaleY.ticks, color: '#999' } }, v => v.toLocaleString() + ' pts');
   }, 50);
 
 }
