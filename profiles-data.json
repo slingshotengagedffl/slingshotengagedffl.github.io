@@ -105,7 +105,7 @@
           },
           {
             "stat": "Pts Per Game",
-            "value": 96.41,
+            "value": 99.38,
             "rank": "#1",
             "explainer": null,
             "isEarnings": false
@@ -583,7 +583,14 @@
           "name": "Bronze Franz",
           "count": 0
         }
-      ]
+      ],
+      "headToHead": {
+        "dylan": {
+          "wins": 7,
+          "losses": 6,
+          "winPct": 0.538
+        }
+      }
     },
     "dylan": {
       "name": "Dylan",
@@ -1143,7 +1150,14 @@
           "name": "Bronze Franz",
           "count": 0
         }
-      ]
+      ],
+      "headToHead": {
+        "jack": {
+          "wins": 6,
+          "losses": 7,
+          "winPct": 0.462
+        }
+      }
     }
   }
 }
