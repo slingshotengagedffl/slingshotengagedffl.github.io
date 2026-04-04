@@ -11,8 +11,8 @@
       "broughtInBy": "League Founder",
       "statusLines": [
         "Commissioner",
-        "2x League Champion",
-        "Hall Of Greatness Inductee"
+        "2X LEAGUE CHAMPION",
+        "HALL OF GREATNESS INDUCTEE"
       ],
       "prestige": {
         "rank": 2,
@@ -22,19 +22,19 @@
       "traits": [
         {
           "emoji": "🔁",
-          "label": "Serial Trader"
+          "label": "SERIAL TRADER"
         },
         {
           "emoji": "🦒",
-          "label": "Elite Length"
+          "label": "ELITE LENGTH"
         },
         {
           "emoji": "👑",
-          "label": "Dictator Tendencies"
+          "label": "DICTATOR TENDENCIES"
         },
         {
           "emoji": "😤",
-          "label": "Plays Desperate"
+          "label": "PLAYS DESPERATE"
         }
       ],
       "currentSeason": {
@@ -44,7 +44,7 @@
         "ptsPerGame": null,
         "lastGame": {
           "result": "W",
-          "opponent": "Matt",
+          "opponent": "MATT",
           "score": "153.64-101.20",
           "lifetimeVsOpponent": "9-3"
         },
@@ -56,12 +56,12 @@
       "rivalries": {
         "owns": [],
         "ownedBy": [],
-        "rivals": "Dylan & Daniel",
-        "ryderCup": "The Muscular"
+        "rivals": "DYLAN & DANIEL",
+        "ryderCup": "THE MUSCULAR"
       },
       "narrative": {
         "sectionLabel": "The Narrative",
-        "pullQuote": "That'S Showbiz Baby",
+        "pullQuote": "THAT'S SHOWBIZ BABY",
         "body": "OH YEAH THIS IS SICK AS HELL. COMMISH GONNA GO WILD IN 2026 CAUSE IT'S HIS YEAR. #MYNINERS"
       },
       "careerStats": {
@@ -75,10 +75,17 @@
           },
           {
             "stat": "Net Earnings",
-            "value": 789.5,
+            "value": 729.5,
             "rank": "#1",
             "explainer": "Total winnings minus entry fees",
             "isEarnings": true
+          },
+          {
+            "stat": "Prestige Points",
+            "value": 2155,
+            "rank": null,
+            "explainer": null,
+            "isEarnings": false
           }
         ],
         "regularSeason": [
@@ -105,14 +112,14 @@
           },
           {
             "stat": "Pts Per Game",
-            "value": 99.45,
+            "value": 99.38,
             "rank": "#1",
             "explainer": null,
             "isEarnings": false
           },
           {
             "stat": "Point Share",
-            "value": "7.67%",
+            "value": "8.0%",
             "rank": "#1",
             "explainer": "% of total league points scored",
             "isEarnings": false
@@ -133,7 +140,7 @@
           },
           {
             "stat": "Power Score",
-            "value": 132.16,
+            "value": 132.42,
             "rank": "#1",
             "explainer": null,
             "isEarnings": false
@@ -147,21 +154,21 @@
           },
           {
             "stat": "Boom Rate",
-            "value": "31.1%",
+            "value": "31.0%",
             "rank": "#1",
             "explainer": "% of games scoring 120% or more of league average",
             "isEarnings": false
           },
           {
             "stat": "Start Rate",
-            "value": "60.2%",
+            "value": "61.0%",
             "rank": "#1",
             "explainer": "% of games scoring at or above league average",
             "isEarnings": false
           },
           {
             "stat": "Luck Rate",
-            "value": "3.3%",
+            "value": "3.0%",
             "rank": "#1",
             "explainer": "Win % above/below expected",
             "isEarnings": false
@@ -177,14 +184,14 @@
           },
           {
             "stat": "Wins",
-            "value": 11,
+            "value": 7,
             "rank": "#2",
             "explainer": null,
             "isEarnings": false
           },
           {
             "stat": "Win %",
-            "value": 0.647,
+            "value": 0.538,
             "rank": "#2",
             "explainer": null,
             "isEarnings": false
@@ -368,7 +375,7 @@
           "winnings": 220.0,
           "prestigeEarned": 191,
           "playoffResult": "Lost in Semifinals",
-          "result": "playoffs"
+          "result": "playoff"
         },
         {
           "year": 2024,
@@ -394,7 +401,7 @@
           "winnings": 317.0,
           "prestigeEarned": 139,
           "playoffResult": "Lost in First Round",
-          "result": "playoffs"
+          "result": "playoff"
         },
         {
           "year": 2022,
@@ -472,7 +479,7 @@
           "winnings": 10.0,
           "prestigeEarned": 125,
           "playoffResult": "Lost in Semifinals",
-          "result": "playoffs"
+          "result": "playoff"
         },
         {
           "year": 2016,
@@ -485,7 +492,7 @@
           "winnings": 0.0,
           "prestigeEarned": 61,
           "playoffResult": "Lost in First Round",
-          "result": "playoffs"
+          "result": "playoff"
         },
         {
           "year": 2015,
@@ -498,7 +505,7 @@
           "winnings": 0.0,
           "prestigeEarned": 108,
           "playoffResult": "Lost in Semifinals",
-          "result": "playoffs"
+          "result": "playoff"
         },
         {
           "year": 2014,
@@ -648,7 +655,7 @@
           },
           {
             "stat": "Net Earnings",
-            "value": 710.5,
+            "value": 320.5,
             "rank": "#2",
             "explainer": "Total winnings minus entry fees",
             "isEarnings": true
@@ -685,14 +692,14 @@
           },
           {
             "stat": "Pts Per Game",
-            "value": 96.46,
+            "value": 96.41,
             "rank": "#2",
             "explainer": null,
             "isEarnings": false
           },
           {
             "stat": "Point Share",
-            "value": "7.45%",
+            "value": "7.0%",
             "rank": "#2",
             "explainer": "% of total league points scored",
             "isEarnings": false
@@ -706,14 +713,14 @@
           },
           {
             "stat": "Weekly High Scores",
-            "value": 12,
+            "value": 13,
             "rank": "#2",
             "explainer": null,
             "isEarnings": false
           },
           {
             "stat": "Power Score",
-            "value": 126.16,
+            "value": 126.87,
             "rank": "#2",
             "explainer": null,
             "isEarnings": false
@@ -734,14 +741,14 @@
           },
           {
             "stat": "Start Rate",
-            "value": "53.4%",
+            "value": "53.0%",
             "rank": "#2",
             "explainer": "% of games scoring at or above league average",
             "isEarnings": false
           },
           {
             "stat": "Luck Rate",
-            "value": "1.9%",
+            "value": "2.0%",
             "rank": "#2",
             "explainer": "Win % above/below expected",
             "isEarnings": false
@@ -757,14 +764,14 @@
           },
           {
             "stat": "Wins",
-            "value": 12,
+            "value": 8,
             "rank": "#1",
             "explainer": null,
             "isEarnings": false
           },
           {
             "stat": "Win %",
-            "value": 0.75,
+            "value": 0.667,
             "rank": "#1",
             "explainer": null,
             "isEarnings": false
@@ -974,7 +981,7 @@
           "winnings": 155.0,
           "prestigeEarned": 156,
           "playoffResult": "Lost in Semifinals",
-          "result": "playoffs"
+          "result": "playoff"
         },
         {
           "year": 2022,
@@ -1026,7 +1033,7 @@
           "winnings": 10.0,
           "prestigeEarned": 125,
           "playoffResult": "Lost in Semifinals",
-          "result": "playoffs"
+          "result": "playoff"
         },
         {
           "year": 2018,
@@ -1039,7 +1046,7 @@
           "winnings": 20.0,
           "prestigeEarned": 144,
           "playoffResult": "Lost in Semifinals",
-          "result": "playoffs"
+          "result": "playoff"
         },
         {
           "year": 2017,
@@ -1078,7 +1085,7 @@
           "winnings": 0.0,
           "prestigeEarned": 53,
           "playoffResult": "Lost in First Round",
-          "result": "playoffs"
+          "result": "playoff"
         }
       ],
       "trophies": [
@@ -1165,9 +1172,9 @@
       "memberSince": 2016,
       "photo": "../images/alex.jpg",
       "lastUpdated": null,
-      "location": null,
-      "locationEmoji": "",
-      "broughtInBy": null,
+      "location": "Minnesota",
+      "locationEmoji": "❄️",
+      "broughtInBy": "Recruited by Timbe (ret)",
       "statusLines": [],
       "prestige": {
         "rank": 5,
@@ -1181,7 +1188,7 @@
         "standing": null,
         "ptsPerGame": null,
         "lastGame": {
-          "result": "W",
+          "result": null,
           "opponent": null,
           "score": null,
           "lifetimeVsOpponent": null
@@ -1250,14 +1257,14 @@
           },
           {
             "stat": "Pts Per Game",
-            "value": 92.63,
+            "value": 92.58,
             "rank": null,
             "explainer": null,
             "isEarnings": false
           },
           {
             "stat": "Point Share",
-            "value": "7.2%",
+            "value": "7.0%",
             "rank": null,
             "explainer": "% of total league points scored",
             "isEarnings": false
@@ -1278,7 +1285,7 @@
           },
           {
             "stat": "Power Score",
-            "value": 119.28,
+            "value": 120.4,
             "rank": null,
             "explainer": null,
             "isEarnings": false
@@ -1292,21 +1299,21 @@
           },
           {
             "stat": "Boom Rate",
-            "value": null,
+            "value": "21.0%",
             "rank": null,
             "explainer": "% of games scoring 120% or more of league average",
             "isEarnings": false
           },
           {
             "stat": "Start Rate",
-            "value": null,
+            "value": "49.0%",
             "rank": null,
             "explainer": "% of games scoring at or above league average",
             "isEarnings": false
           },
           {
             "stat": "Luck Rate",
-            "value": "3.2%",
+            "value": "3.0%",
             "rank": null,
             "explainer": "Win % above/below expected",
             "isEarnings": false
@@ -1322,14 +1329,14 @@
           },
           {
             "stat": "Wins",
-            "value": 8,
+            "value": 6,
             "rank": null,
             "explainer": null,
             "isEarnings": false
           },
           {
             "stat": "Win %",
-            "value": 0.667,
+            "value": 0.6,
             "rank": null,
             "explainer": null,
             "isEarnings": false
@@ -1578,7 +1585,7 @@
           "winnings": 100.0,
           "prestigeEarned": 148,
           "playoffResult": "Lost in Semifinals",
-          "result": "playoffs"
+          "result": "playoff"
         },
         {
           "year": 2019,
@@ -1617,7 +1624,7 @@
           "winnings": 50.0,
           "prestigeEarned": 107,
           "playoffResult": "Lost in Semifinals",
-          "result": "playoffs"
+          "result": "playoff"
         },
         {
           "year": 2016,
@@ -1630,7 +1637,7 @@
           "winnings": 10.0,
           "prestigeEarned": 145,
           "playoffResult": "Lost in Semifinals",
-          "result": "playoffs"
+          "result": "playoff"
         }
       ],
       "trophies": [
@@ -1711,9 +1718,9 @@
       "memberSince": 2022,
       "photo": "../images/andy.jpg",
       "lastUpdated": null,
-      "location": null,
-      "locationEmoji": "",
-      "broughtInBy": null,
+      "location": "Colorado",
+      "locationEmoji": "🏔️",
+      "broughtInBy": "Recruited by Scott",
       "statusLines": [],
       "prestige": {
         "rank": 16,
@@ -1727,7 +1734,7 @@
         "standing": null,
         "ptsPerGame": null,
         "lastGame": {
-          "result": "W",
+          "result": null,
           "opponent": null,
           "score": null,
           "lifetimeVsOpponent": null
@@ -1803,7 +1810,7 @@
           },
           {
             "stat": "Point Share",
-            "value": "7.25%",
+            "value": "7.0%",
             "rank": null,
             "explainer": "% of total league points scored",
             "isEarnings": false
@@ -1824,7 +1831,7 @@
           },
           {
             "stat": "Power Score",
-            "value": 118.83,
+            "value": 117.82,
             "rank": null,
             "explainer": null,
             "isEarnings": false
@@ -1838,21 +1845,21 @@
           },
           {
             "stat": "Boom Rate",
-            "value": null,
+            "value": "23.0%",
             "rank": null,
             "explainer": "% of games scoring 120% or more of league average",
             "isEarnings": false
           },
           {
             "stat": "Start Rate",
-            "value": null,
+            "value": "54.0%",
             "rank": null,
             "explainer": "% of games scoring at or above league average",
             "isEarnings": false
           },
           {
             "stat": "Luck Rate",
-            "value": "-0.5%",
+            "value": "-1.0%",
             "rank": null,
             "explainer": "Win % above/below expected",
             "isEarnings": false
@@ -1868,14 +1875,14 @@
           },
           {
             "stat": "Wins",
-            "value": 1,
+            "value": 0,
             "rank": null,
             "explainer": null,
             "isEarnings": false
           },
           {
             "stat": "Win %",
-            "value": 0.5,
+            "value": 0.0,
             "rank": null,
             "explainer": null,
             "isEarnings": false
@@ -2098,7 +2105,7 @@
           "winnings": 130.0,
           "prestigeEarned": 198,
           "playoffResult": "Lost in Semifinals",
-          "result": "playoffs"
+          "result": "playoff"
         }
       ],
       "trophies": [
@@ -2179,9 +2186,9 @@
       "memberSince": 2014,
       "photo": "../images/brian.png",
       "lastUpdated": null,
-      "location": null,
-      "locationEmoji": "",
-      "broughtInBy": null,
+      "location": "Maryland",
+      "locationEmoji": "🦀",
+      "broughtInBy": "Recruited by Jack",
       "statusLines": [],
       "prestige": {
         "rank": 7,
@@ -2195,7 +2202,7 @@
         "standing": null,
         "ptsPerGame": null,
         "lastGame": {
-          "result": "W",
+          "result": null,
           "opponent": null,
           "score": null,
           "lifetimeVsOpponent": null
@@ -2227,7 +2234,7 @@
           },
           {
             "stat": "Net Earnings",
-            "value": -335.0,
+            "value": -319.0,
             "rank": null,
             "explainer": "Total winnings minus entry fees",
             "isEarnings": true
@@ -2264,7 +2271,7 @@
           },
           {
             "stat": "Pts Per Game",
-            "value": 91.08,
+            "value": 91.03,
             "rank": null,
             "explainer": null,
             "isEarnings": false
@@ -2292,7 +2299,7 @@
           },
           {
             "stat": "Power Score",
-            "value": 115.31,
+            "value": 114.82,
             "rank": null,
             "explainer": null,
             "isEarnings": false
@@ -2306,21 +2313,21 @@
           },
           {
             "stat": "Boom Rate",
-            "value": null,
+            "value": "20.0%",
             "rank": null,
             "explainer": "% of games scoring 120% or more of league average",
             "isEarnings": false
           },
           {
             "stat": "Start Rate",
-            "value": null,
+            "value": "48.0%",
             "rank": null,
             "explainer": "% of games scoring at or above league average",
             "isEarnings": false
           },
           {
             "stat": "Luck Rate",
-            "value": "1.5%",
+            "value": "2.0%",
             "rank": null,
             "explainer": "Win % above/below expected",
             "isEarnings": false
@@ -2336,14 +2343,14 @@
           },
           {
             "stat": "Wins",
-            "value": 3,
+            "value": 2,
             "rank": null,
             "explainer": null,
             "isEarnings": false
           },
           {
             "stat": "Win %",
-            "value": 0.5,
+            "value": 0.4,
             "rank": null,
             "explainer": null,
             "isEarnings": false
@@ -2527,7 +2534,7 @@
           "winnings": 145.0,
           "prestigeEarned": 99,
           "playoffResult": "Lost in First Round",
-          "result": "playoffs"
+          "result": "playoff"
         },
         {
           "year": 2024,
@@ -2566,7 +2573,7 @@
           "winnings": 20.0,
           "prestigeEarned": 80,
           "playoffResult": "Lost in First Round",
-          "result": "playoffs"
+          "result": "playoff"
         },
         {
           "year": 2021,
@@ -2618,7 +2625,7 @@
           "winnings": 0.0,
           "prestigeEarned": 60,
           "playoffResult": "Lost in First Round",
-          "result": "playoffs"
+          "result": "playoff"
         },
         {
           "year": 2017,
@@ -2751,9 +2758,9 @@
       "memberSince": 2014,
       "photo": "../images/daniel.jpg",
       "lastUpdated": null,
-      "location": null,
-      "locationEmoji": "",
-      "broughtInBy": null,
+      "location": "Colorado",
+      "locationEmoji": "🏔️",
+      "broughtInBy": "Recruited by Jack",
       "statusLines": [],
       "prestige": {
         "rank": 6,
@@ -2767,7 +2774,7 @@
         "standing": null,
         "ptsPerGame": null,
         "lastGame": {
-          "result": "W",
+          "result": null,
           "opponent": null,
           "score": null,
           "lifetimeVsOpponent": null
@@ -2836,14 +2843,14 @@
           },
           {
             "stat": "Pts Per Game",
-            "value": 93.71,
+            "value": 93.76,
             "rank": null,
             "explainer": null,
             "isEarnings": false
           },
           {
             "stat": "Point Share",
-            "value": "7.25%",
+            "value": "7.0%",
             "rank": null,
             "explainer": "% of total league points scored",
             "isEarnings": false
@@ -2864,7 +2871,7 @@
           },
           {
             "stat": "Power Score",
-            "value": 118.06,
+            "value": 124.98,
             "rank": null,
             "explainer": null,
             "isEarnings": false
@@ -2878,14 +2885,14 @@
           },
           {
             "stat": "Boom Rate",
-            "value": null,
+            "value": "24.0%",
             "rank": null,
             "explainer": "% of games scoring 120% or more of league average",
             "isEarnings": false
           },
           {
             "stat": "Start Rate",
-            "value": null,
+            "value": "49.0%",
             "rank": null,
             "explainer": "% of games scoring at or above league average",
             "isEarnings": false
@@ -2908,14 +2915,14 @@
           },
           {
             "stat": "Wins",
-            "value": 6,
+            "value": 3,
             "rank": null,
             "explainer": null,
             "isEarnings": false
           },
           {
             "stat": "Win %",
-            "value": 0.545,
+            "value": 0.375,
             "rank": null,
             "explainer": null,
             "isEarnings": false
@@ -3138,7 +3145,7 @@
           "winnings": 316.51,
           "prestigeEarned": 150,
           "playoffResult": "Lost in Semifinals",
-          "result": "playoffs"
+          "result": "playoff"
         },
         {
           "year": 2021,
@@ -3190,7 +3197,7 @@
           "winnings": 20.0,
           "prestigeEarned": 73,
           "playoffResult": "Lost in First Round",
-          "result": "playoffs"
+          "result": "playoff"
         },
         {
           "year": 2017,
@@ -3242,7 +3249,7 @@
           "winnings": 40.0,
           "prestigeEarned": 113,
           "playoffResult": "Lost in Semifinals",
-          "result": "playoffs"
+          "result": "playoff"
         }
       ],
       "trophies": [
@@ -3323,9 +3330,9 @@
       "memberSince": 2019,
       "photo": "../images/jordan.jpg",
       "lastUpdated": null,
-      "location": null,
-      "locationEmoji": "",
-      "broughtInBy": null,
+      "location": "North Carolina",
+      "locationEmoji": "🌲",
+      "broughtInBy": "Recruited by Scott",
       "statusLines": [],
       "prestige": {
         "rank": 17,
@@ -3339,7 +3346,7 @@
         "standing": null,
         "ptsPerGame": null,
         "lastGame": {
-          "result": "W",
+          "result": null,
           "opponent": null,
           "score": null,
           "lifetimeVsOpponent": null
@@ -3371,7 +3378,7 @@
           },
           {
             "stat": "Net Earnings",
-            "value": -281.0,
+            "value": -251.0,
             "rank": null,
             "explainer": "Total winnings minus entry fees",
             "isEarnings": true
@@ -3408,14 +3415,14 @@
           },
           {
             "stat": "Pts Per Game",
-            "value": 90.85,
+            "value": 90.82,
             "rank": null,
             "explainer": null,
             "isEarnings": false
           },
           {
             "stat": "Point Share",
-            "value": "6.86%",
+            "value": "7.0%",
             "rank": null,
             "explainer": "% of total league points scored",
             "isEarnings": false
@@ -3436,7 +3443,7 @@
           },
           {
             "stat": "Power Score",
-            "value": 112.33,
+            "value": 114.62,
             "rank": null,
             "explainer": null,
             "isEarnings": false
@@ -3450,21 +3457,21 @@
           },
           {
             "stat": "Boom Rate",
-            "value": null,
+            "value": "17.0%",
             "rank": null,
             "explainer": "% of games scoring 120% or more of league average",
             "isEarnings": false
           },
           {
             "stat": "Start Rate",
-            "value": null,
+            "value": "45.0%",
             "rank": null,
             "explainer": "% of games scoring at or above league average",
             "isEarnings": false
           },
           {
             "stat": "Luck Rate",
-            "value": "-2.9%",
+            "value": "-3.0%",
             "rank": null,
             "explainer": "Win % above/below expected",
             "isEarnings": false
@@ -3736,7 +3743,7 @@
           "winnings": 10.0,
           "prestigeEarned": 69,
           "playoffResult": "Lost in First Round",
-          "result": "playoffs"
+          "result": "playoff"
         },
         {
           "year": 2019,
@@ -3830,9 +3837,9 @@
       "memberSince": 2018,
       "photo": "../images/kyle.png",
       "lastUpdated": null,
-      "location": null,
-      "locationEmoji": "",
-      "broughtInBy": null,
+      "location": "Colorado",
+      "locationEmoji": "🏔️",
+      "broughtInBy": "Recruited by Jack",
       "statusLines": [],
       "prestige": {
         "rank": 3,
@@ -3846,7 +3853,7 @@
         "standing": null,
         "ptsPerGame": null,
         "lastGame": {
-          "result": "W",
+          "result": null,
           "opponent": null,
           "score": null,
           "lifetimeVsOpponent": null
@@ -3915,7 +3922,7 @@
           },
           {
             "stat": "Pts Per Game",
-            "value": 105.58,
+            "value": 105.4,
             "rank": null,
             "explainer": null,
             "isEarnings": false
@@ -3943,7 +3950,7 @@
           },
           {
             "stat": "Power Score",
-            "value": 138.8,
+            "value": 140.37,
             "rank": null,
             "explainer": null,
             "isEarnings": false
@@ -3957,21 +3964,21 @@
           },
           {
             "stat": "Boom Rate",
-            "value": null,
+            "value": "32.0%",
             "rank": null,
             "explainer": "% of games scoring 120% or more of league average",
             "isEarnings": false
           },
           {
             "stat": "Start Rate",
-            "value": null,
+            "value": "71.0%",
             "rank": null,
             "explainer": "% of games scoring at or above league average",
             "isEarnings": false
           },
           {
             "stat": "Luck Rate",
-            "value": "-6.1%",
+            "value": "-6.0%",
             "rank": null,
             "explainer": "Win % above/below expected",
             "isEarnings": false
@@ -3987,14 +3994,14 @@
           },
           {
             "stat": "Wins",
-            "value": 12,
+            "value": 10,
             "rank": null,
             "explainer": null,
             "isEarnings": false
           },
           {
             "stat": "Win %",
-            "value": 0.667,
+            "value": 0.625,
             "rank": null,
             "explainer": null,
             "isEarnings": false
@@ -4178,7 +4185,7 @@
           "winnings": 35.0,
           "prestigeEarned": 87,
           "playoffResult": "Lost in First Round",
-          "result": "playoffs"
+          "result": "playoff"
         },
         {
           "year": 2024,
@@ -4230,7 +4237,7 @@
           "winnings": 107.5,
           "prestigeEarned": 76,
           "playoffResult": "Lost in First Round",
-          "result": "playoffs"
+          "result": "playoff"
         },
         {
           "year": 2020,
@@ -4256,7 +4263,7 @@
           "winnings": 20.0,
           "prestigeEarned": 65,
           "playoffResult": "Lost in First Round",
-          "result": "playoffs"
+          "result": "playoff"
         },
         {
           "year": 2018,
@@ -4346,13 +4353,13 @@
     },
     "luke": {
       "name": "Luke",
-      "nickname": "The Rook",
+      "nickname": "The Kid",
       "memberSince": 2026,
       "photo": "../images/luke.jpg",
       "lastUpdated": null,
-      "location": null,
-      "locationEmoji": "",
-      "broughtInBy": null,
+      "location": "Minnesota",
+      "locationEmoji": "❄️",
+      "broughtInBy": "Recruited by Alex",
       "statusLines": [],
       "prestige": {
         "rank": 27,
@@ -4366,7 +4373,7 @@
         "standing": null,
         "ptsPerGame": null,
         "lastGame": {
-          "result": "W",
+          "result": null,
           "opponent": null,
           "score": null,
           "lifetimeVsOpponent": null
@@ -4405,7 +4412,7 @@
           },
           {
             "stat": "Prestige Points",
-            "value": null,
+            "value": 0,
             "rank": null,
             "explainer": null,
             "isEarnings": false
@@ -4521,7 +4528,7 @@
           },
           {
             "stat": "Championships",
-            "value": null,
+            "value": 0,
             "rank": null,
             "explainer": null,
             "isEarnings": false
@@ -4766,9 +4773,9 @@
       "memberSince": 2015,
       "photo": "../images/matt.jpg",
       "lastUpdated": null,
-      "location": null,
-      "locationEmoji": "",
-      "broughtInBy": null,
+      "location": "Colorado",
+      "locationEmoji": "🏔️",
+      "broughtInBy": "Recruited by Jack",
       "statusLines": [],
       "prestige": {
         "rank": 10,
@@ -4782,7 +4789,7 @@
         "standing": null,
         "ptsPerGame": null,
         "lastGame": {
-          "result": "W",
+          "result": null,
           "opponent": null,
           "score": null,
           "lifetimeVsOpponent": null
@@ -4814,7 +4821,7 @@
           },
           {
             "stat": "Net Earnings",
-            "value": -391.0,
+            "value": -445.0,
             "rank": null,
             "explainer": "Total winnings minus entry fees",
             "isEarnings": true
@@ -4851,14 +4858,14 @@
           },
           {
             "stat": "Pts Per Game",
-            "value": 89.67,
+            "value": 89.66,
             "rank": null,
             "explainer": null,
             "isEarnings": false
           },
           {
             "stat": "Point Share",
-            "value": "6.73%",
+            "value": "7.0%",
             "rank": null,
             "explainer": "% of total league points scored",
             "isEarnings": false
@@ -4879,7 +4886,7 @@
           },
           {
             "stat": "Power Score",
-            "value": 109.99,
+            "value": 108.86,
             "rank": null,
             "explainer": null,
             "isEarnings": false
@@ -4893,21 +4900,21 @@
           },
           {
             "stat": "Boom Rate",
-            "value": null,
+            "value": "18.0%",
             "rank": null,
             "explainer": "% of games scoring 120% or more of league average",
             "isEarnings": false
           },
           {
             "stat": "Start Rate",
-            "value": null,
+            "value": "45.0%",
             "rank": null,
             "explainer": "% of games scoring at or above league average",
             "isEarnings": false
           },
           {
             "stat": "Luck Rate",
-            "value": "-3.5%",
+            "value": "-3.0%",
             "rank": null,
             "explainer": "Win % above/below expected",
             "isEarnings": false
@@ -5114,7 +5121,7 @@
           "winnings": 164.0,
           "prestigeEarned": 134,
           "playoffResult": "Lost in First Round",
-          "result": "playoffs"
+          "result": "playoff"
         },
         {
           "year": 2024,
@@ -5166,7 +5173,7 @@
           "winnings": 65.0,
           "prestigeEarned": 127,
           "playoffResult": "Lost in Semifinals",
-          "result": "playoffs"
+          "result": "playoff"
         },
         {
           "year": 2020,
@@ -5192,7 +5199,7 @@
           "winnings": 40.0,
           "prestigeEarned": 96,
           "playoffResult": "Lost in First Round",
-          "result": "playoffs"
+          "result": "playoff"
         },
         {
           "year": 2018,
@@ -5325,9 +5332,9 @@
       "memberSince": 2014,
       "photo": "../images/mike.jpg",
       "lastUpdated": null,
-      "location": null,
-      "locationEmoji": "",
-      "broughtInBy": null,
+      "location": "Pennsylvania",
+      "locationEmoji": "🔔",
+      "broughtInBy": "Recruited by Jack",
       "statusLines": [],
       "prestige": {
         "rank": 4,
@@ -5341,7 +5348,7 @@
         "standing": null,
         "ptsPerGame": null,
         "lastGame": {
-          "result": "W",
+          "result": null,
           "opponent": null,
           "score": null,
           "lifetimeVsOpponent": null
@@ -5373,7 +5380,7 @@
           },
           {
             "stat": "Net Earnings",
-            "value": 399.0,
+            "value": 225.0,
             "rank": null,
             "explainer": "Total winnings minus entry fees",
             "isEarnings": true
@@ -5410,14 +5417,14 @@
           },
           {
             "stat": "Pts Per Game",
-            "value": 91.65,
+            "value": 91.7,
             "rank": null,
             "explainer": null,
             "isEarnings": false
           },
           {
             "stat": "Point Share",
-            "value": "7.25%",
+            "value": "7.0%",
             "rank": null,
             "explainer": "% of total league points scored",
             "isEarnings": false
@@ -5438,7 +5445,7 @@
           },
           {
             "stat": "Power Score",
-            "value": 119.84,
+            "value": 119.13,
             "rank": null,
             "explainer": null,
             "isEarnings": false
@@ -5452,21 +5459,21 @@
           },
           {
             "stat": "Boom Rate",
-            "value": null,
+            "value": "20.0%",
             "rank": null,
             "explainer": "% of games scoring 120% or more of league average",
             "isEarnings": false
           },
           {
             "stat": "Start Rate",
-            "value": null,
+            "value": "47.0%",
             "rank": null,
             "explainer": "% of games scoring at or above league average",
             "isEarnings": false
           },
           {
             "stat": "Luck Rate",
-            "value": "4.7%",
+            "value": "5.0%",
             "rank": null,
             "explainer": "Win % above/below expected",
             "isEarnings": false
@@ -5482,14 +5489,14 @@
           },
           {
             "stat": "Wins",
-            "value": 9,
+            "value": 6,
             "rank": null,
             "explainer": null,
             "isEarnings": false
           },
           {
             "stat": "Win %",
-            "value": 0.6,
+            "value": 0.545,
             "rank": null,
             "explainer": null,
             "isEarnings": false
@@ -5686,7 +5693,7 @@
           "winnings": 187.5,
           "prestigeEarned": 126,
           "playoffResult": "Lost in Semifinals",
-          "result": "playoffs"
+          "result": "playoff"
         },
         {
           "year": 2023,
@@ -5777,7 +5784,7 @@
           "winnings": 10.0,
           "prestigeEarned": 68,
           "playoffResult": "Lost in First Round",
-          "result": "playoffs"
+          "result": "playoff"
         },
         {
           "year": 2016,
@@ -5803,7 +5810,7 @@
           "winnings": 0.0,
           "prestigeEarned": 52,
           "playoffResult": "Lost in First Round",
-          "result": "playoffs"
+          "result": "playoff"
         },
         {
           "year": 2014,
@@ -5816,7 +5823,7 @@
           "winnings": 0.0,
           "prestigeEarned": 119,
           "playoffResult": "Lost in Semifinals",
-          "result": "playoffs"
+          "result": "playoff"
         }
       ],
       "trophies": [
@@ -5897,9 +5904,9 @@
       "memberSince": 2014,
       "photo": "../images/scott.jpg",
       "lastUpdated": null,
-      "location": null,
-      "locationEmoji": "",
-      "broughtInBy": null,
+      "location": "California",
+      "locationEmoji": "🌴",
+      "broughtInBy": "Recruited by Jack",
       "statusLines": [],
       "prestige": {
         "rank": 11,
@@ -5913,7 +5920,7 @@
         "standing": null,
         "ptsPerGame": null,
         "lastGame": {
-          "result": "W",
+          "result": null,
           "opponent": null,
           "score": null,
           "lifetimeVsOpponent": null
@@ -5945,7 +5952,7 @@
           },
           {
             "stat": "Net Earnings",
-            "value": -496.0,
+            "value": -530.0,
             "rank": null,
             "explainer": "Total winnings minus entry fees",
             "isEarnings": true
@@ -5982,14 +5989,14 @@
           },
           {
             "stat": "Pts Per Game",
-            "value": 87.62,
+            "value": 87.52,
             "rank": null,
             "explainer": null,
             "isEarnings": false
           },
           {
             "stat": "Point Share",
-            "value": "6.83%",
+            "value": "7.0%",
             "rank": null,
             "explainer": "% of total league points scored",
             "isEarnings": false
@@ -6010,35 +6017,35 @@
           },
           {
             "stat": "Power Score",
-            "value": 108.61,
+            "value": 108.44,
             "rank": null,
             "explainer": null,
             "isEarnings": false
           },
           {
             "stat": "Weeks at #1",
-            "value": 2,
+            "value": 4,
             "rank": null,
             "explainer": null,
             "isEarnings": false
           },
           {
             "stat": "Boom Rate",
-            "value": null,
+            "value": "15.0%",
             "rank": null,
             "explainer": "% of games scoring 120% or more of league average",
             "isEarnings": false
           },
           {
             "stat": "Start Rate",
-            "value": null,
+            "value": "38.0%",
             "rank": null,
             "explainer": "% of games scoring at or above league average",
             "isEarnings": false
           },
           {
             "stat": "Luck Rate",
-            "value": "-0.3%",
+            "value": "-0.0%",
             "rank": null,
             "explainer": "Win % above/below expected",
             "isEarnings": false
@@ -6271,7 +6278,7 @@
           "winnings": 104.0,
           "prestigeEarned": 115,
           "playoffResult": "Lost in Semifinals",
-          "result": "playoffs"
+          "result": "playoff"
         },
         {
           "year": 2022,
@@ -6362,7 +6369,7 @@
           "winnings": 40.0,
           "prestigeEarned": 145,
           "playoffResult": "Lost in Semifinals",
-          "result": "playoffs"
+          "result": "playoff"
         },
         {
           "year": 2015,
@@ -6469,9 +6476,9 @@
       "memberSince": 2020,
       "photo": "../images/tim.jpg",
       "lastUpdated": null,
-      "location": null,
-      "locationEmoji": "",
-      "broughtInBy": null,
+      "location": "Colorado",
+      "locationEmoji": "🏔️",
+      "broughtInBy": "Recruited by Matt",
       "statusLines": [],
       "prestige": {
         "rank": 15,
@@ -6485,7 +6492,7 @@
         "standing": null,
         "ptsPerGame": null,
         "lastGame": {
-          "result": "W",
+          "result": null,
           "opponent": null,
           "score": null,
           "lifetimeVsOpponent": null
@@ -6517,7 +6524,7 @@
           },
           {
             "stat": "Net Earnings",
-            "value": -304.5,
+            "value": -358.5,
             "rank": null,
             "explainer": "Total winnings minus entry fees",
             "isEarnings": true
@@ -6554,14 +6561,14 @@
           },
           {
             "stat": "Pts Per Game",
-            "value": 87.16,
+            "value": 87.15,
             "rank": null,
             "explainer": null,
             "isEarnings": false
           },
           {
             "stat": "Point Share",
-            "value": "6.67%",
+            "value": "7.0%",
             "rank": null,
             "explainer": "% of total league points scored",
             "isEarnings": false
@@ -6582,7 +6589,7 @@
           },
           {
             "stat": "Power Score",
-            "value": 103.95,
+            "value": 104.4,
             "rank": null,
             "explainer": null,
             "isEarnings": false
@@ -6596,14 +6603,14 @@
           },
           {
             "stat": "Boom Rate",
-            "value": null,
+            "value": "14.0%",
             "rank": null,
             "explainer": "% of games scoring 120% or more of league average",
             "isEarnings": false
           },
           {
             "stat": "Start Rate",
-            "value": null,
+            "value": "39.0%",
             "rank": null,
             "explainer": "% of games scoring at or above league average",
             "isEarnings": false
@@ -6830,7 +6837,7 @@
           "winnings": 75.0,
           "prestigeEarned": 109,
           "playoffResult": "Lost in First Round",
-          "result": "playoffs"
+          "result": "playoff"
         },
         {
           "year": 2023,
@@ -6869,7 +6876,7 @@
           "winnings": 25.0,
           "prestigeEarned": 114,
           "playoffResult": "Lost in Semifinals",
-          "result": "playoffs"
+          "result": "playoff"
         },
         {
           "year": 2020,
@@ -6963,9 +6970,9 @@
       "memberSince": 2020,
       "photo": "../images/wade.jpg",
       "lastUpdated": null,
-      "location": null,
-      "locationEmoji": "",
-      "broughtInBy": null,
+      "location": "Pennsylvania",
+      "locationEmoji": "🔔",
+      "broughtInBy": "Recruited by Kyle",
       "statusLines": [],
       "prestige": {
         "rank": 14,
@@ -6979,7 +6986,7 @@
         "standing": null,
         "ptsPerGame": null,
         "lastGame": {
-          "result": "W",
+          "result": null,
           "opponent": null,
           "score": null,
           "lifetimeVsOpponent": null
@@ -7011,7 +7018,7 @@
           },
           {
             "stat": "Net Earnings",
-            "value": -352.5,
+            "value": -407.5,
             "rank": null,
             "explainer": "Total winnings minus entry fees",
             "isEarnings": true
@@ -7048,14 +7055,14 @@
           },
           {
             "stat": "Pts Per Game",
-            "value": 91.54,
+            "value": 91.46,
             "rank": null,
             "explainer": null,
             "isEarnings": false
           },
           {
             "stat": "Point Share",
-            "value": "6.83%",
+            "value": "7.0%",
             "rank": null,
             "explainer": "% of total league points scored",
             "isEarnings": false
@@ -7076,7 +7083,7 @@
           },
           {
             "stat": "Power Score",
-            "value": 117.06,
+            "value": 120.69,
             "rank": null,
             "explainer": null,
             "isEarnings": false
@@ -7090,21 +7097,21 @@
           },
           {
             "stat": "Boom Rate",
-            "value": null,
+            "value": "13.0%",
             "rank": null,
             "explainer": "% of games scoring 120% or more of league average",
             "isEarnings": false
           },
           {
             "stat": "Start Rate",
-            "value": null,
+            "value": "40.0%",
             "rank": null,
             "explainer": "% of games scoring at or above league average",
             "isEarnings": false
           },
           {
             "stat": "Luck Rate",
-            "value": "0.5%",
+            "value": "0.0%",
             "rank": null,
             "explainer": "Win % above/below expected",
             "isEarnings": false
@@ -7324,7 +7331,7 @@
           "winnings": 55.0,
           "prestigeEarned": 125,
           "playoffResult": "Lost in First Round",
-          "result": "playoffs"
+          "result": "playoff"
         },
         {
           "year": 2023,
@@ -7337,7 +7344,7 @@
           "winnings": 10.0,
           "prestigeEarned": 36,
           "playoffResult": "Lost in First Round",
-          "result": "playoffs"
+          "result": "playoff"
         },
         {
           "year": 2022,
@@ -7376,7 +7383,7 @@
           "winnings": 0.0,
           "prestigeEarned": 65,
           "playoffResult": "Lost in First Round",
-          "result": "playoffs"
+          "result": "playoff"
         }
       ],
       "trophies": [
