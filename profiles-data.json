@@ -178,7 +178,7 @@
           {
             "stat": "Appearances",
             "value": 8,
-            "rank": "#1",
+            "rank": "T-1",
             "explainer": null,
             "isEarnings": false
           },
@@ -199,7 +199,7 @@
           {
             "stat": "Championships",
             "value": 2,
-            "rank": "#2",
+            "rank": "T-2",
             "explainer": null,
             "isEarnings": false
           }
@@ -758,7 +758,7 @@
           {
             "stat": "Appearances",
             "value": 7,
-            "rank": "#3",
+            "rank": "T-3",
             "explainer": null,
             "isEarnings": false
           },
@@ -1323,14 +1323,14 @@
           {
             "stat": "Appearances",
             "value": 5,
-            "rank": "#5",
+            "rank": "T-5",
             "explainer": null,
             "isEarnings": false
           },
           {
             "stat": "Wins",
             "value": 6,
-            "rank": "#4",
+            "rank": "T-4",
             "explainer": null,
             "isEarnings": false
           },
@@ -1344,7 +1344,7 @@
           {
             "stat": "Championships",
             "value": 1,
-            "rank": "#4",
+            "rank": "T-4",
             "explainer": null,
             "isEarnings": false
           }
@@ -1869,28 +1869,28 @@
           {
             "stat": "Appearances",
             "value": 1,
-            "rank": "#12",
+            "rank": "T-12",
             "explainer": null,
             "isEarnings": false
           },
           {
             "stat": "Wins",
             "value": 0,
-            "rank": "#11",
+            "rank": "T-11",
             "explainer": null,
             "isEarnings": false
           },
           {
             "stat": "Win %",
             "value": 0.0,
-            "rank": "#11",
+            "rank": "T-11",
             "explainer": null,
             "isEarnings": false
           },
           {
             "stat": "Championships",
             "value": 0,
-            "rank": "#7",
+            "rank": "T-7",
             "explainer": null,
             "isEarnings": false
           }
@@ -2293,7 +2293,7 @@
           {
             "stat": "Weekly High Scores",
             "value": 9,
-            "rank": "#7",
+            "rank": "T-7",
             "explainer": null,
             "isEarnings": false
           },
@@ -2344,7 +2344,7 @@
           {
             "stat": "Wins",
             "value": 2,
-            "rank": "#7",
+            "rank": "T-7",
             "explainer": null,
             "isEarnings": false
           },
@@ -2358,7 +2358,7 @@
           {
             "stat": "Championships",
             "value": 1,
-            "rank": "#4",
+            "rank": "T-4",
             "explainer": null,
             "isEarnings": false
           }
@@ -2909,7 +2909,7 @@
           {
             "stat": "Appearances",
             "value": 5,
-            "rank": "#5",
+            "rank": "T-5",
             "explainer": null,
             "isEarnings": false
           },
@@ -2930,7 +2930,7 @@
           {
             "stat": "Championships",
             "value": 0,
-            "rank": "#7",
+            "rank": "T-7",
             "explainer": null,
             "isEarnings": false
           }
@@ -3451,7 +3451,7 @@
           {
             "stat": "Weeks at #1",
             "value": 2,
-            "rank": "#11",
+            "rank": "T-11",
             "explainer": null,
             "isEarnings": false
           },
@@ -3481,28 +3481,28 @@
           {
             "stat": "Appearances",
             "value": 1,
-            "rank": "#12",
+            "rank": "T-12",
             "explainer": null,
             "isEarnings": false
           },
           {
             "stat": "Wins",
             "value": 0,
-            "rank": "#11",
+            "rank": "T-11",
             "explainer": null,
             "isEarnings": false
           },
           {
             "stat": "Win %",
             "value": 0.0,
-            "rank": "#11",
+            "rank": "T-11",
             "explainer": null,
             "isEarnings": false
           },
           {
             "stat": "Championships",
             "value": 0,
-            "rank": "#7",
+            "rank": "T-7",
             "explainer": null,
             "isEarnings": false
           }
@@ -3958,7 +3958,7 @@
           {
             "stat": "Weeks at #1",
             "value": 12,
-            "rank": "#5",
+            "rank": "T-5",
             "explainer": null,
             "isEarnings": false
           },
@@ -3988,7 +3988,7 @@
           {
             "stat": "Appearances",
             "value": 8,
-            "rank": "#1",
+            "rank": "T-1",
             "explainer": null,
             "isEarnings": false
           },
@@ -4009,7 +4009,7 @@
           {
             "stat": "Championships",
             "value": 2,
-            "rank": "#2",
+            "rank": "T-2",
             "explainer": null,
             "isEarnings": false
           }
@@ -4529,7 +4529,7 @@
           {
             "stat": "Championships",
             "value": 0,
-            "rank": "#7",
+            "rank": "T-7",
             "explainer": null,
             "isEarnings": false
           }
@@ -4894,7 +4894,7 @@
           {
             "stat": "Weeks at #1",
             "value": 12,
-            "rank": "#5",
+            "rank": "T-5",
             "explainer": null,
             "isEarnings": false
           },
@@ -4924,14 +4924,14 @@
           {
             "stat": "Appearances",
             "value": 3,
-            "rank": "#8",
+            "rank": "T-8",
             "explainer": null,
             "isEarnings": false
           },
           {
             "stat": "Wins",
             "value": 1,
-            "rank": "#9",
+            "rank": "T-9",
             "explainer": null,
             "isEarnings": false
           },
@@ -4945,7 +4945,7 @@
           {
             "stat": "Championships",
             "value": 0,
-            "rank": "#7",
+            "rank": "T-7",
             "explainer": null,
             "isEarnings": false
           }
@@ -5483,14 +5483,14 @@
           {
             "stat": "Appearances",
             "value": 7,
-            "rank": "#3",
+            "rank": "T-3",
             "explainer": null,
             "isEarnings": false
           },
           {
             "stat": "Wins",
             "value": 6,
-            "rank": "#4",
+            "rank": "T-4",
             "explainer": null,
             "isEarnings": false
           },
@@ -5504,7 +5504,7 @@
           {
             "stat": "Championships",
             "value": 1,
-            "rank": "#4",
+            "rank": "T-4",
             "explainer": null,
             "isEarnings": false
           }
@@ -6011,7 +6011,7 @@
           {
             "stat": "Weekly High Scores",
             "value": 9,
-            "rank": "#7",
+            "rank": "T-7",
             "explainer": null,
             "isEarnings": false
           },
@@ -6055,14 +6055,14 @@
           {
             "stat": "Appearances",
             "value": 2,
-            "rank": "#10",
+            "rank": "T-10",
             "explainer": null,
             "isEarnings": false
           },
           {
             "stat": "Wins",
             "value": 2,
-            "rank": "#7",
+            "rank": "T-7",
             "explainer": null,
             "isEarnings": false
           },
@@ -6076,7 +6076,7 @@
           {
             "stat": "Championships",
             "value": 0,
-            "rank": "#7",
+            "rank": "T-7",
             "explainer": null,
             "isEarnings": false
           }
@@ -6583,7 +6583,7 @@
           {
             "stat": "Weekly High Scores",
             "value": 5,
-            "rank": "#10",
+            "rank": "T-10",
             "explainer": null,
             "isEarnings": false
           },
@@ -6627,14 +6627,14 @@
           {
             "stat": "Appearances",
             "value": 2,
-            "rank": "#10",
+            "rank": "T-10",
             "explainer": null,
             "isEarnings": false
           },
           {
             "stat": "Wins",
             "value": 1,
-            "rank": "#9",
+            "rank": "T-9",
             "explainer": null,
             "isEarnings": false
           },
@@ -6648,7 +6648,7 @@
           {
             "stat": "Championships",
             "value": 0,
-            "rank": "#7",
+            "rank": "T-7",
             "explainer": null,
             "isEarnings": false
           }
@@ -7077,7 +7077,7 @@
           {
             "stat": "Weekly High Scores",
             "value": 5,
-            "rank": "#10",
+            "rank": "T-10",
             "explainer": null,
             "isEarnings": false
           },
@@ -7091,7 +7091,7 @@
           {
             "stat": "Weeks at #1",
             "value": 2,
-            "rank": "#11",
+            "rank": "T-11",
             "explainer": null,
             "isEarnings": false
           },
@@ -7121,28 +7121,28 @@
           {
             "stat": "Appearances",
             "value": 3,
-            "rank": "#8",
+            "rank": "T-8",
             "explainer": null,
             "isEarnings": false
           },
           {
             "stat": "Wins",
             "value": 0,
-            "rank": "#11",
+            "rank": "T-11",
             "explainer": null,
             "isEarnings": false
           },
           {
             "stat": "Win %",
             "value": 0.0,
-            "rank": "#11",
+            "rank": "T-11",
             "explainer": null,
             "isEarnings": false
           },
           {
             "stat": "Championships",
             "value": 0,
-            "rank": "#7",
+            "rank": "T-7",
             "explainer": null,
             "isEarnings": false
           }
