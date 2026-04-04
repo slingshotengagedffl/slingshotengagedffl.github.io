@@ -1171,7 +1171,7 @@
       "statusLines": [],
       "prestige": {
         "rank": 5,
-        "points": null,
+        "points": 1431,
         "outOf": 27
       },
       "traits": [],
@@ -1220,7 +1220,7 @@
           },
           {
             "stat": "Prestige Points",
-            "value": null,
+            "value": 1431,
             "rank": null,
             "explainer": null,
             "isEarnings": false
@@ -1474,16 +1474,16 @@
           "values": [
             null,
             null,
-            null,
-            null,
-            null,
-            null,
-            null,
-            null,
-            null,
-            null,
-            null,
-            null,
+            145,
+            107,
+            22,
+            297,
+            148,
+            35,
+            33,
+            587,
+            21,
+            36,
             null
           ]
         }
@@ -1511,7 +1511,7 @@
           "pointShare": null,
           "powerScore": null,
           "winnings": null,
-          "prestigeEarned": null,
+          "prestigeEarned": 36,
           "playoffResult": null,
           "result": null
         },
@@ -1524,7 +1524,7 @@
           "pointShare": null,
           "powerScore": null,
           "winnings": null,
-          "prestigeEarned": null,
+          "prestigeEarned": 21,
           "playoffResult": null,
           "result": null
         },
@@ -1537,7 +1537,7 @@
           "pointShare": null,
           "powerScore": null,
           "winnings": null,
-          "prestigeEarned": null,
+          "prestigeEarned": 587,
           "playoffResult": null,
           "result": null
         },
@@ -1550,7 +1550,7 @@
           "pointShare": null,
           "powerScore": null,
           "winnings": null,
-          "prestigeEarned": null,
+          "prestigeEarned": 33,
           "playoffResult": null,
           "result": null
         },
@@ -1563,7 +1563,7 @@
           "pointShare": null,
           "powerScore": null,
           "winnings": null,
-          "prestigeEarned": null,
+          "prestigeEarned": 35,
           "playoffResult": null,
           "result": null
         },
@@ -1576,7 +1576,7 @@
           "pointShare": null,
           "powerScore": null,
           "winnings": null,
-          "prestigeEarned": null,
+          "prestigeEarned": 148,
           "playoffResult": null,
           "result": null
         },
@@ -1589,7 +1589,7 @@
           "pointShare": null,
           "powerScore": null,
           "winnings": null,
-          "prestigeEarned": null,
+          "prestigeEarned": 297,
           "playoffResult": null,
           "result": null
         },
@@ -1602,7 +1602,7 @@
           "pointShare": null,
           "powerScore": null,
           "winnings": null,
-          "prestigeEarned": null,
+          "prestigeEarned": 22,
           "playoffResult": null,
           "result": null
         },
@@ -1615,7 +1615,7 @@
           "pointShare": null,
           "powerScore": null,
           "winnings": null,
-          "prestigeEarned": null,
+          "prestigeEarned": 107,
           "playoffResult": null,
           "result": null
         },
@@ -1628,7 +1628,7 @@
           "pointShare": null,
           "powerScore": null,
           "winnings": null,
-          "prestigeEarned": null,
+          "prestigeEarned": 145,
           "playoffResult": null,
           "result": null
         }
@@ -1717,7 +1717,7 @@
       "statusLines": [],
       "prestige": {
         "rank": 16,
-        "points": null,
+        "points": 300,
         "outOf": 27
       },
       "traits": [],
@@ -1766,7 +1766,7 @@
           },
           {
             "stat": "Prestige Points",
-            "value": null,
+            "value": 300,
             "rank": null,
             "explainer": null,
             "isEarnings": false
@@ -2026,10 +2026,10 @@
             null,
             null,
             null,
-            null,
-            null,
-            null,
-            null,
+            198,
+            43,
+            35,
+            24,
             null
           ]
         }
@@ -2057,7 +2057,7 @@
           "pointShare": null,
           "powerScore": null,
           "winnings": null,
-          "prestigeEarned": null,
+          "prestigeEarned": 24,
           "playoffResult": null,
           "result": null
         },
@@ -2070,7 +2070,7 @@
           "pointShare": null,
           "powerScore": null,
           "winnings": null,
-          "prestigeEarned": null,
+          "prestigeEarned": 35,
           "playoffResult": null,
           "result": null
         },
@@ -2083,7 +2083,7 @@
           "pointShare": null,
           "powerScore": null,
           "winnings": null,
-          "prestigeEarned": null,
+          "prestigeEarned": 43,
           "playoffResult": null,
           "result": null
         },
@@ -2096,7 +2096,7 @@
           "pointShare": null,
           "powerScore": null,
           "winnings": null,
-          "prestigeEarned": null,
+          "prestigeEarned": 198,
           "playoffResult": null,
           "result": null
         }
@@ -2185,7 +2185,7 @@
       "statusLines": [],
       "prestige": {
         "rank": 7,
-        "points": null,
+        "points": 1009,
         "outOf": 27
       },
       "traits": [],
@@ -2234,7 +2234,7 @@
           },
           {
             "stat": "Prestige Points",
-            "value": null,
+            "value": 1009,
             "rank": null,
             "explainer": null,
             "isEarnings": false
@@ -2486,18 +2486,18 @@
             2026
           ],
           "values": [
-            null,
-            null,
-            null,
-            null,
-            null,
-            null,
-            null,
-            null,
-            null,
-            null,
-            null,
-            null,
+            60,
+            34,
+            474,
+            37,
+            60,
+            42,
+            23,
+            29,
+            80,
+            25,
+            46,
+            99,
             null
           ]
         }
@@ -2525,7 +2525,7 @@
           "pointShare": null,
           "powerScore": null,
           "winnings": null,
-          "prestigeEarned": null,
+          "prestigeEarned": 99,
           "playoffResult": null,
           "result": null
         },
@@ -2538,7 +2538,7 @@
           "pointShare": null,
           "powerScore": null,
           "winnings": null,
-          "prestigeEarned": null,
+          "prestigeEarned": 46,
           "playoffResult": null,
           "result": null
         },
@@ -2551,7 +2551,7 @@
           "pointShare": null,
           "powerScore": null,
           "winnings": null,
-          "prestigeEarned": null,
+          "prestigeEarned": 25,
           "playoffResult": null,
           "result": null
         },
@@ -2564,7 +2564,7 @@
           "pointShare": null,
           "powerScore": null,
           "winnings": null,
-          "prestigeEarned": null,
+          "prestigeEarned": 80,
           "playoffResult": null,
           "result": null
         },
@@ -2577,7 +2577,7 @@
           "pointShare": null,
           "powerScore": null,
           "winnings": null,
-          "prestigeEarned": null,
+          "prestigeEarned": 29,
           "playoffResult": null,
           "result": null
         },
@@ -2590,7 +2590,7 @@
           "pointShare": null,
           "powerScore": null,
           "winnings": null,
-          "prestigeEarned": null,
+          "prestigeEarned": 23,
           "playoffResult": null,
           "result": null
         },
@@ -2603,7 +2603,7 @@
           "pointShare": null,
           "powerScore": null,
           "winnings": null,
-          "prestigeEarned": null,
+          "prestigeEarned": 42,
           "playoffResult": null,
           "result": null
         },
@@ -2616,7 +2616,7 @@
           "pointShare": null,
           "powerScore": null,
           "winnings": null,
-          "prestigeEarned": null,
+          "prestigeEarned": 60,
           "playoffResult": null,
           "result": null
         },
@@ -2629,7 +2629,7 @@
           "pointShare": null,
           "powerScore": null,
           "winnings": null,
-          "prestigeEarned": null,
+          "prestigeEarned": 37,
           "playoffResult": null,
           "result": null
         },
@@ -2642,7 +2642,7 @@
           "pointShare": null,
           "powerScore": null,
           "winnings": null,
-          "prestigeEarned": null,
+          "prestigeEarned": 474,
           "playoffResult": null,
           "result": null
         },
@@ -2655,7 +2655,7 @@
           "pointShare": null,
           "powerScore": null,
           "winnings": null,
-          "prestigeEarned": null,
+          "prestigeEarned": 34,
           "playoffResult": null,
           "result": null
         },
@@ -2668,7 +2668,7 @@
           "pointShare": null,
           "powerScore": null,
           "winnings": null,
-          "prestigeEarned": null,
+          "prestigeEarned": 60,
           "playoffResult": null,
           "result": null
         }
@@ -2757,7 +2757,7 @@
       "statusLines": [],
       "prestige": {
         "rank": 6,
-        "points": null,
+        "points": 1057,
         "outOf": 27
       },
       "traits": [],
@@ -2806,7 +2806,7 @@
           },
           {
             "stat": "Prestige Points",
-            "value": null,
+            "value": 1057,
             "rank": null,
             "explainer": null,
             "isEarnings": false
@@ -3058,18 +3058,18 @@
             2026
           ],
           "values": [
-            null,
-            null,
-            null,
-            null,
-            null,
-            null,
-            null,
-            null,
-            null,
-            null,
-            null,
-            null,
+            113,
+            31,
+            284,
+            22,
+            73,
+            3,
+            25,
+            27,
+            150,
+            45,
+            231,
+            53,
             null
           ]
         }
@@ -3097,7 +3097,7 @@
           "pointShare": null,
           "powerScore": null,
           "winnings": null,
-          "prestigeEarned": null,
+          "prestigeEarned": 53,
           "playoffResult": null,
           "result": null
         },
@@ -3110,7 +3110,7 @@
           "pointShare": null,
           "powerScore": null,
           "winnings": null,
-          "prestigeEarned": null,
+          "prestigeEarned": 231,
           "playoffResult": null,
           "result": null
         },
@@ -3123,7 +3123,7 @@
           "pointShare": null,
           "powerScore": null,
           "winnings": null,
-          "prestigeEarned": null,
+          "prestigeEarned": 45,
           "playoffResult": null,
           "result": null
         },
@@ -3136,7 +3136,7 @@
           "pointShare": null,
           "powerScore": null,
           "winnings": null,
-          "prestigeEarned": null,
+          "prestigeEarned": 150,
           "playoffResult": null,
           "result": null
         },
@@ -3149,7 +3149,7 @@
           "pointShare": null,
           "powerScore": null,
           "winnings": null,
-          "prestigeEarned": null,
+          "prestigeEarned": 27,
           "playoffResult": null,
           "result": null
         },
@@ -3162,7 +3162,7 @@
           "pointShare": null,
           "powerScore": null,
           "winnings": null,
-          "prestigeEarned": null,
+          "prestigeEarned": 25,
           "playoffResult": null,
           "result": null
         },
@@ -3175,7 +3175,7 @@
           "pointShare": null,
           "powerScore": null,
           "winnings": null,
-          "prestigeEarned": null,
+          "prestigeEarned": 3,
           "playoffResult": null,
           "result": null
         },
@@ -3188,7 +3188,7 @@
           "pointShare": null,
           "powerScore": null,
           "winnings": null,
-          "prestigeEarned": null,
+          "prestigeEarned": 73,
           "playoffResult": null,
           "result": null
         },
@@ -3201,7 +3201,7 @@
           "pointShare": null,
           "powerScore": null,
           "winnings": null,
-          "prestigeEarned": null,
+          "prestigeEarned": 22,
           "playoffResult": null,
           "result": null
         },
@@ -3214,7 +3214,7 @@
           "pointShare": null,
           "powerScore": null,
           "winnings": null,
-          "prestigeEarned": null,
+          "prestigeEarned": 284,
           "playoffResult": null,
           "result": null
         },
@@ -3227,7 +3227,7 @@
           "pointShare": null,
           "powerScore": null,
           "winnings": null,
-          "prestigeEarned": null,
+          "prestigeEarned": 31,
           "playoffResult": null,
           "result": null
         },
@@ -3240,7 +3240,7 @@
           "pointShare": null,
           "powerScore": null,
           "winnings": null,
-          "prestigeEarned": null,
+          "prestigeEarned": 113,
           "playoffResult": null,
           "result": null
         }
@@ -3329,7 +3329,7 @@
       "statusLines": [],
       "prestige": {
         "rank": 17,
-        "points": null,
+        "points": 297,
         "outOf": 27
       },
       "traits": [],
@@ -3378,7 +3378,7 @@
           },
           {
             "stat": "Prestige Points",
-            "value": null,
+            "value": 297,
             "rank": null,
             "explainer": null,
             "isEarnings": false
@@ -3635,13 +3635,13 @@
             null,
             null,
             null,
-            null,
-            null,
-            null,
-            null,
-            null,
-            null,
-            null,
+            35,
+            69,
+            86,
+            34,
+            25,
+            16,
+            32,
             null
           ]
         }
@@ -3669,7 +3669,7 @@
           "pointShare": null,
           "powerScore": null,
           "winnings": null,
-          "prestigeEarned": null,
+          "prestigeEarned": 32,
           "playoffResult": null,
           "result": null
         },
@@ -3682,7 +3682,7 @@
           "pointShare": null,
           "powerScore": null,
           "winnings": null,
-          "prestigeEarned": null,
+          "prestigeEarned": 16,
           "playoffResult": null,
           "result": null
         },
@@ -3695,7 +3695,7 @@
           "pointShare": null,
           "powerScore": null,
           "winnings": null,
-          "prestigeEarned": null,
+          "prestigeEarned": 25,
           "playoffResult": null,
           "result": null
         },
@@ -3708,7 +3708,7 @@
           "pointShare": null,
           "powerScore": null,
           "winnings": null,
-          "prestigeEarned": null,
+          "prestigeEarned": 34,
           "playoffResult": null,
           "result": null
         },
@@ -3721,7 +3721,7 @@
           "pointShare": null,
           "powerScore": null,
           "winnings": null,
-          "prestigeEarned": null,
+          "prestigeEarned": 86,
           "playoffResult": null,
           "result": null
         },
@@ -3734,7 +3734,7 @@
           "pointShare": null,
           "powerScore": null,
           "winnings": null,
-          "prestigeEarned": null,
+          "prestigeEarned": 69,
           "playoffResult": null,
           "result": null
         },
@@ -3747,7 +3747,7 @@
           "pointShare": null,
           "powerScore": null,
           "winnings": null,
-          "prestigeEarned": null,
+          "prestigeEarned": 35,
           "playoffResult": null,
           "result": null
         }
@@ -3836,7 +3836,7 @@
       "statusLines": [],
       "prestige": {
         "rank": 3,
-        "points": null,
+        "points": 2018,
         "outOf": 27
       },
       "traits": [],
@@ -3885,7 +3885,7 @@
           },
           {
             "stat": "Prestige Points",
-            "value": null,
+            "value": 2018,
             "rank": null,
             "explainer": null,
             "isEarnings": false
@@ -4141,14 +4141,14 @@
             null,
             null,
             null,
-            null,
-            null,
-            null,
-            null,
-            null,
-            null,
-            null,
-            null,
+            258,
+            65,
+            216,
+            76,
+            531,
+            205,
+            580,
+            87,
             null
           ]
         }
@@ -4176,7 +4176,7 @@
           "pointShare": null,
           "powerScore": null,
           "winnings": null,
-          "prestigeEarned": null,
+          "prestigeEarned": 87,
           "playoffResult": null,
           "result": null
         },
@@ -4189,7 +4189,7 @@
           "pointShare": null,
           "powerScore": null,
           "winnings": null,
-          "prestigeEarned": null,
+          "prestigeEarned": 580,
           "playoffResult": null,
           "result": null
         },
@@ -4202,7 +4202,7 @@
           "pointShare": null,
           "powerScore": null,
           "winnings": null,
-          "prestigeEarned": null,
+          "prestigeEarned": 205,
           "playoffResult": null,
           "result": null
         },
@@ -4215,7 +4215,7 @@
           "pointShare": null,
           "powerScore": null,
           "winnings": null,
-          "prestigeEarned": null,
+          "prestigeEarned": 531,
           "playoffResult": null,
           "result": null
         },
@@ -4228,7 +4228,7 @@
           "pointShare": null,
           "powerScore": null,
           "winnings": null,
-          "prestigeEarned": null,
+          "prestigeEarned": 76,
           "playoffResult": null,
           "result": null
         },
@@ -4241,7 +4241,7 @@
           "pointShare": null,
           "powerScore": null,
           "winnings": null,
-          "prestigeEarned": null,
+          "prestigeEarned": 216,
           "playoffResult": null,
           "result": null
         },
@@ -4254,7 +4254,7 @@
           "pointShare": null,
           "powerScore": null,
           "winnings": null,
-          "prestigeEarned": null,
+          "prestigeEarned": 65,
           "playoffResult": null,
           "result": null
         },
@@ -4267,7 +4267,7 @@
           "pointShare": null,
           "powerScore": null,
           "winnings": null,
-          "prestigeEarned": null,
+          "prestigeEarned": 258,
           "playoffResult": null,
           "result": null
         }
@@ -4772,7 +4772,7 @@
       "statusLines": [],
       "prestige": {
         "rank": 10,
-        "points": null,
+        "points": 570,
         "outOf": 27
       },
       "traits": [],
@@ -4821,7 +4821,7 @@
           },
           {
             "stat": "Prestige Points",
-            "value": null,
+            "value": 570,
             "rank": null,
             "explainer": null,
             "isEarnings": false
@@ -5074,17 +5074,17 @@
           ],
           "values": [
             null,
-            null,
-            null,
-            null,
-            null,
-            null,
-            null,
-            null,
-            null,
-            null,
-            null,
-            null,
+            50,
+            29,
+            17,
+            12,
+            96,
+            37,
+            127,
+            22,
+            34,
+            12,
+            134,
             null
           ]
         }
@@ -5112,7 +5112,7 @@
           "pointShare": null,
           "powerScore": null,
           "winnings": null,
-          "prestigeEarned": null,
+          "prestigeEarned": 134,
           "playoffResult": null,
           "result": null
         },
@@ -5125,7 +5125,7 @@
           "pointShare": null,
           "powerScore": null,
           "winnings": null,
-          "prestigeEarned": null,
+          "prestigeEarned": 12,
           "playoffResult": null,
           "result": null
         },
@@ -5138,7 +5138,7 @@
           "pointShare": null,
           "powerScore": null,
           "winnings": null,
-          "prestigeEarned": null,
+          "prestigeEarned": 34,
           "playoffResult": null,
           "result": null
         },
@@ -5151,7 +5151,7 @@
           "pointShare": null,
           "powerScore": null,
           "winnings": null,
-          "prestigeEarned": null,
+          "prestigeEarned": 22,
           "playoffResult": null,
           "result": null
         },
@@ -5164,7 +5164,7 @@
           "pointShare": null,
           "powerScore": null,
           "winnings": null,
-          "prestigeEarned": null,
+          "prestigeEarned": 127,
           "playoffResult": null,
           "result": null
         },
@@ -5177,7 +5177,7 @@
           "pointShare": null,
           "powerScore": null,
           "winnings": null,
-          "prestigeEarned": null,
+          "prestigeEarned": 37,
           "playoffResult": null,
           "result": null
         },
@@ -5190,7 +5190,7 @@
           "pointShare": null,
           "powerScore": null,
           "winnings": null,
-          "prestigeEarned": null,
+          "prestigeEarned": 96,
           "playoffResult": null,
           "result": null
         },
@@ -5203,7 +5203,7 @@
           "pointShare": null,
           "powerScore": null,
           "winnings": null,
-          "prestigeEarned": null,
+          "prestigeEarned": 12,
           "playoffResult": null,
           "result": null
         },
@@ -5216,7 +5216,7 @@
           "pointShare": null,
           "powerScore": null,
           "winnings": null,
-          "prestigeEarned": null,
+          "prestigeEarned": 17,
           "playoffResult": null,
           "result": null
         },
@@ -5229,7 +5229,7 @@
           "pointShare": null,
           "powerScore": null,
           "winnings": null,
-          "prestigeEarned": null,
+          "prestigeEarned": 29,
           "playoffResult": null,
           "result": null
         },
@@ -5242,7 +5242,7 @@
           "pointShare": null,
           "powerScore": null,
           "winnings": null,
-          "prestigeEarned": null,
+          "prestigeEarned": 50,
           "playoffResult": null,
           "result": null
         }
@@ -5331,7 +5331,7 @@
       "statusLines": [],
       "prestige": {
         "rank": 4,
-        "points": null,
+        "points": 1480,
         "outOf": 27
       },
       "traits": [],
@@ -5380,7 +5380,7 @@
           },
           {
             "stat": "Prestige Points",
-            "value": null,
+            "value": 1480,
             "rank": null,
             "explainer": null,
             "isEarnings": false
@@ -5632,18 +5632,18 @@
             2026
           ],
           "values": [
-            null,
-            null,
-            null,
-            null,
-            null,
-            null,
-            null,
-            null,
-            null,
-            null,
-            null,
-            null,
+            119,
+            52,
+            9,
+            68,
+            22,
+            25,
+            562,
+            29,
+            251,
+            25,
+            126,
+            192,
             null
           ]
         }
@@ -5671,7 +5671,7 @@
           "pointShare": null,
           "powerScore": null,
           "winnings": null,
-          "prestigeEarned": null,
+          "prestigeEarned": 192,
           "playoffResult": null,
           "result": null
         },
@@ -5684,7 +5684,7 @@
           "pointShare": null,
           "powerScore": null,
           "winnings": null,
-          "prestigeEarned": null,
+          "prestigeEarned": 126,
           "playoffResult": null,
           "result": null
         },
@@ -5697,7 +5697,7 @@
           "pointShare": null,
           "powerScore": null,
           "winnings": null,
-          "prestigeEarned": null,
+          "prestigeEarned": 25,
           "playoffResult": null,
           "result": null
         },
@@ -5710,7 +5710,7 @@
           "pointShare": null,
           "powerScore": null,
           "winnings": null,
-          "prestigeEarned": null,
+          "prestigeEarned": 251,
           "playoffResult": null,
           "result": null
         },
@@ -5723,7 +5723,7 @@
           "pointShare": null,
           "powerScore": null,
           "winnings": null,
-          "prestigeEarned": null,
+          "prestigeEarned": 29,
           "playoffResult": null,
           "result": null
         },
@@ -5736,7 +5736,7 @@
           "pointShare": null,
           "powerScore": null,
           "winnings": null,
-          "prestigeEarned": null,
+          "prestigeEarned": 562,
           "playoffResult": null,
           "result": null
         },
@@ -5749,7 +5749,7 @@
           "pointShare": null,
           "powerScore": null,
           "winnings": null,
-          "prestigeEarned": null,
+          "prestigeEarned": 25,
           "playoffResult": null,
           "result": null
         },
@@ -5762,7 +5762,7 @@
           "pointShare": null,
           "powerScore": null,
           "winnings": null,
-          "prestigeEarned": null,
+          "prestigeEarned": 22,
           "playoffResult": null,
           "result": null
         },
@@ -5775,7 +5775,7 @@
           "pointShare": null,
           "powerScore": null,
           "winnings": null,
-          "prestigeEarned": null,
+          "prestigeEarned": 68,
           "playoffResult": null,
           "result": null
         },
@@ -5788,7 +5788,7 @@
           "pointShare": null,
           "powerScore": null,
           "winnings": null,
-          "prestigeEarned": null,
+          "prestigeEarned": 9,
           "playoffResult": null,
           "result": null
         },
@@ -5801,7 +5801,7 @@
           "pointShare": null,
           "powerScore": null,
           "winnings": null,
-          "prestigeEarned": null,
+          "prestigeEarned": 52,
           "playoffResult": null,
           "result": null
         },
@@ -5814,7 +5814,7 @@
           "pointShare": null,
           "powerScore": null,
           "winnings": null,
-          "prestigeEarned": null,
+          "prestigeEarned": 119,
           "playoffResult": null,
           "result": null
         }
@@ -5903,7 +5903,7 @@
       "statusLines": [],
       "prestige": {
         "rank": 11,
-        "points": null,
+        "points": 538,
         "outOf": 27
       },
       "traits": [],
@@ -5952,7 +5952,7 @@
           },
           {
             "stat": "Prestige Points",
-            "value": null,
+            "value": 538,
             "rank": null,
             "explainer": null,
             "isEarnings": false
@@ -6204,18 +6204,18 @@
             2026
           ],
           "values": [
-            null,
-            null,
-            null,
-            null,
-            null,
-            null,
-            null,
-            null,
-            null,
-            null,
-            null,
-            null,
+            30,
+            28,
+            145,
+            15,
+            32,
+            17,
+            49,
+            15,
+            31,
+            115,
+            27,
+            34,
             null
           ]
         }
@@ -6243,7 +6243,7 @@
           "pointShare": null,
           "powerScore": null,
           "winnings": null,
-          "prestigeEarned": null,
+          "prestigeEarned": 34,
           "playoffResult": null,
           "result": null
         },
@@ -6256,7 +6256,7 @@
           "pointShare": null,
           "powerScore": null,
           "winnings": null,
-          "prestigeEarned": null,
+          "prestigeEarned": 27,
           "playoffResult": null,
           "result": null
         },
@@ -6269,7 +6269,7 @@
           "pointShare": null,
           "powerScore": null,
           "winnings": null,
-          "prestigeEarned": null,
+          "prestigeEarned": 115,
           "playoffResult": null,
           "result": null
         },
@@ -6282,7 +6282,7 @@
           "pointShare": null,
           "powerScore": null,
           "winnings": null,
-          "prestigeEarned": null,
+          "prestigeEarned": 31,
           "playoffResult": null,
           "result": null
         },
@@ -6295,7 +6295,7 @@
           "pointShare": null,
           "powerScore": null,
           "winnings": null,
-          "prestigeEarned": null,
+          "prestigeEarned": 15,
           "playoffResult": null,
           "result": null
         },
@@ -6308,7 +6308,7 @@
           "pointShare": null,
           "powerScore": null,
           "winnings": null,
-          "prestigeEarned": null,
+          "prestigeEarned": 49,
           "playoffResult": null,
           "result": null
         },
@@ -6321,7 +6321,7 @@
           "pointShare": null,
           "powerScore": null,
           "winnings": null,
-          "prestigeEarned": null,
+          "prestigeEarned": 17,
           "playoffResult": null,
           "result": null
         },
@@ -6334,7 +6334,7 @@
           "pointShare": null,
           "powerScore": null,
           "winnings": null,
-          "prestigeEarned": null,
+          "prestigeEarned": 32,
           "playoffResult": null,
           "result": null
         },
@@ -6347,7 +6347,7 @@
           "pointShare": null,
           "powerScore": null,
           "winnings": null,
-          "prestigeEarned": null,
+          "prestigeEarned": 15,
           "playoffResult": null,
           "result": null
         },
@@ -6360,7 +6360,7 @@
           "pointShare": null,
           "powerScore": null,
           "winnings": null,
-          "prestigeEarned": null,
+          "prestigeEarned": 145,
           "playoffResult": null,
           "result": null
         },
@@ -6373,7 +6373,7 @@
           "pointShare": null,
           "powerScore": null,
           "winnings": null,
-          "prestigeEarned": null,
+          "prestigeEarned": 28,
           "playoffResult": null,
           "result": null
         },
@@ -6386,7 +6386,7 @@
           "pointShare": null,
           "powerScore": null,
           "winnings": null,
-          "prestigeEarned": null,
+          "prestigeEarned": 30,
           "playoffResult": null,
           "result": null
         }
@@ -6475,7 +6475,7 @@
       "statusLines": [],
       "prestige": {
         "rank": 15,
-        "points": null,
+        "points": 303,
         "outOf": 27
       },
       "traits": [],
@@ -6524,7 +6524,7 @@
           },
           {
             "stat": "Prestige Points",
-            "value": null,
+            "value": 303,
             "rank": null,
             "explainer": null,
             "isEarnings": false
@@ -6782,12 +6782,12 @@
             null,
             null,
             null,
-            null,
-            null,
-            null,
-            null,
-            null,
-            null,
+            19,
+            114,
+            9,
+            23,
+            109,
+            29,
             null
           ]
         }
@@ -6815,7 +6815,7 @@
           "pointShare": null,
           "powerScore": null,
           "winnings": null,
-          "prestigeEarned": null,
+          "prestigeEarned": 29,
           "playoffResult": null,
           "result": null
         },
@@ -6828,7 +6828,7 @@
           "pointShare": null,
           "powerScore": null,
           "winnings": null,
-          "prestigeEarned": null,
+          "prestigeEarned": 109,
           "playoffResult": null,
           "result": null
         },
@@ -6841,7 +6841,7 @@
           "pointShare": null,
           "powerScore": null,
           "winnings": null,
-          "prestigeEarned": null,
+          "prestigeEarned": 23,
           "playoffResult": null,
           "result": null
         },
@@ -6854,7 +6854,7 @@
           "pointShare": null,
           "powerScore": null,
           "winnings": null,
-          "prestigeEarned": null,
+          "prestigeEarned": 9,
           "playoffResult": null,
           "result": null
         },
@@ -6867,7 +6867,7 @@
           "pointShare": null,
           "powerScore": null,
           "winnings": null,
-          "prestigeEarned": null,
+          "prestigeEarned": 114,
           "playoffResult": null,
           "result": null
         },
@@ -6880,7 +6880,7 @@
           "pointShare": null,
           "powerScore": null,
           "winnings": null,
-          "prestigeEarned": null,
+          "prestigeEarned": 19,
           "playoffResult": null,
           "result": null
         }
@@ -6969,7 +6969,7 @@
       "statusLines": [],
       "prestige": {
         "rank": 14,
-        "points": null,
+        "points": 311,
         "outOf": 27
       },
       "traits": [],
@@ -7018,7 +7018,7 @@
           },
           {
             "stat": "Prestige Points",
-            "value": null,
+            "value": 311,
             "rank": null,
             "explainer": null,
             "isEarnings": false
@@ -7276,12 +7276,12 @@
             null,
             null,
             null,
-            null,
-            null,
-            null,
-            null,
-            null,
-            null,
+            65,
+            29,
+            19,
+            36,
+            125,
+            37,
             null
           ]
         }
@@ -7309,7 +7309,7 @@
           "pointShare": null,
           "powerScore": null,
           "winnings": null,
-          "prestigeEarned": null,
+          "prestigeEarned": 37,
           "playoffResult": null,
           "result": null
         },
@@ -7322,7 +7322,7 @@
           "pointShare": null,
           "powerScore": null,
           "winnings": null,
-          "prestigeEarned": null,
+          "prestigeEarned": 125,
           "playoffResult": null,
           "result": null
         },
@@ -7335,7 +7335,7 @@
           "pointShare": null,
           "powerScore": null,
           "winnings": null,
-          "prestigeEarned": null,
+          "prestigeEarned": 36,
           "playoffResult": null,
           "result": null
         },
@@ -7348,7 +7348,7 @@
           "pointShare": null,
           "powerScore": null,
           "winnings": null,
-          "prestigeEarned": null,
+          "prestigeEarned": 19,
           "playoffResult": null,
           "result": null
         },
@@ -7361,7 +7361,7 @@
           "pointShare": null,
           "powerScore": null,
           "winnings": null,
-          "prestigeEarned": null,
+          "prestigeEarned": 29,
           "playoffResult": null,
           "result": null
         },
@@ -7374,7 +7374,7 @@
           "pointShare": null,
           "powerScore": null,
           "winnings": null,
-          "prestigeEarned": null,
+          "prestigeEarned": 65,
           "playoffResult": null,
           "result": null
         }
