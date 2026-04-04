@@ -1212,7 +1212,7 @@
   .cmp-trophy-name {
     text-align: center;
     font-family: 'Barlow Condensed', sans-serif;
-    font-size: 0.7rem;
+    font-size: 1rem;
     font-weight: 600;
     letter-spacing: 1px;
     text-transform: uppercase;
@@ -1253,7 +1253,7 @@
 <div class="compare-overlay" id="compareOverlay">
   <div class="compare-modal">
     <div class="cmp-header">
-      <div class="cmp-header-title">Head to Head</div>
+      <div class="cmp-header-title">Compare Slabs of Beef</div>
       <button class="cmp-close" onclick="closeCompare()">✕ Close</button>
     </div>
     <div class="cmp-player-row" id="cmpPlayerRow">
@@ -1314,11 +1314,12 @@ function renderProfile(p) {
 
   function d(v) { return (v == null || v === 'null') ? '—' : v; }
 
-  const ownsCard = (p.rivalries.owns && p.rivalries.owns.length)
-    ? `<div class="fact-card"><div class="fact-card-label">Owns</div><div class="fact-card-value">${p.rivalries.owns.map(o => `${o.name} (${o.record})`).join('<br>')}</div></div>`
-    : p.rivalries.owns && p.rivalries.owns.name
-    ? `<div class="fact-card"><div class="fact-card-label">Owns</div><div class="fact-card-value">${p.rivalries.owns.name} (${d(p.rivalries.owns.record)})</div></div>`
-    : '';
+  const ownsVal = (p.rivalries.owns && p.rivalries.owns.length)
+    ? p.rivalries.owns.map(o => `${o.name} (${o.record})`).join('<br>')
+    : (p.rivalries.owns && p.rivalries.owns.name)
+    ? `${p.rivalries.owns.name} (${d(p.rivalries.owns.record)})`
+    : '—';
+  const ownsCard = `<div class="fact-card"><div class="fact-card-label">Owns</div><div class="fact-card-value">${ownsVal}</div></div>`;
 
   const ownedByVal = (Array.isArray(p.rivalries.ownedBy) && p.rivalries.ownedBy.length)
     ? p.rivalries.ownedBy.map(o => `${o.name} (${o.record})`).join('<br>')
@@ -1434,7 +1435,7 @@ function renderProfile(p) {
         </div>
         <div class="acc-bucket">
           <div class="acc-bucket-label">Season Summary</div>
-          <div class="acc-row"><span class="acc-label">Winnings</span><span class="acc-val earnings">${s.netEarnings != null ? "$" + parseFloat(s.netEarnings).toFixed(2) : "—"}</span></div>
+          <div class="acc-row"><span class="acc-label">Winnings</span><span class="acc-val earnings">${s.winnings != null ? '$' + (Number.isInteger(s.winnings) ? s.winnings.toLocaleString() : parseFloat(s.winnings).toLocaleString('en-US', {minimumFractionDigits:2, maximumFractionDigits:2})) : '—'}</span></div>
           <div class="acc-row"><span class="acc-label">Prestige Earned</span><span class="acc-val">${d(s.prestigeEarned)}</span></div>
           <div class="acc-row"><span class="acc-label">Playoff Result</span><span class="acc-val ${s.result === 'champion' ? '' : s.result === 'missed' ? 'loss' : s.result === 'bronze' ? 'bronze' : ''}">${d(s.playoffResult)}</span></div>
         </div>
@@ -1748,8 +1749,8 @@ function renderCompare(ownerAId, ownerBId) {
     const dA = aVal != null ? aVal : '—';
     const dB = bVal != null ? bVal : '—';
     const winner = cmpResult(aVal, bVal, lowerBetter);
-    const arrowA = winner === 'a' ? '<span class="cmp-arrow cmp-arrow-a">◀</span>' : '';
-    const arrowB = winner === 'b' ? '<span class="cmp-arrow cmp-arrow-b">▶</span>' : '';
+    const arrowA = winner === 'a' ? '<span class="cmp-arrow cmp-arrow-a">🥩</span>' : '';
+    const arrowB = winner === 'b' ? '<span class="cmp-arrow cmp-arrow-b">🥩</span>' : '';
     return `<div class="cmp-stat-row">
       <div class="cmp-val-a">${dA}${arrowA}</div>
       <div class="cmp-stat-name">${label}${sub ? '<span class="cmp-stat-sub">' + sub + '</span>' : ''}</div>
@@ -1781,8 +1782,8 @@ function renderCompare(ownerAId, ownerBId) {
       const dA = vA != null ? vA : '—';
       const dB = vB != null ? vB : '—';
       const a = parseFloat(vA), b = parseFloat(vB);
-      const arrowA = (!isNaN(a) && !isNaN(b) && a > b) ? '<span class="cmp-arrow cmp-arrow-a">◀</span>' : '';
-      const arrowB = (!isNaN(a) && !isNaN(b) && b > a) ? '<span class="cmp-arrow cmp-arrow-b">▶</span>' : '';
+      const arrowA = (!isNaN(a) && !isNaN(b) && a > b) ? '<span class="cmp-arrow cmp-arrow-a">🥩</span>' : '';
+      const arrowB = (!isNaN(a) && !isNaN(b) && b > a) ? '<span class="cmp-arrow cmp-arrow-b">🥩</span>' : '';
       return `<div class="cmp-stat-row">
         <div class="cmp-val-a">${dA}${arrowA}</div>
         <div class="cmp-stat-name">${label}</div>
@@ -1792,10 +1793,16 @@ function renderCompare(ownerAId, ownerBId) {
     return h2hArrowRow('Wins', h2hWinsA, h2hWinsB) + h2hArrowRow('Win %', h2hPctA, h2hPctB);
   })();
 
+  function getPrestige(owner) {
+    const s = getStat(owner, 'general', 'Prestige Points');
+    if (s != null) return s;
+    return owner.prestige && owner.prestige.points != null ? owner.prestige.points : null;
+  }
+
   const generalRows = [
     statRow('Seasons Played', getStat(me,'general','Seasons Played'), getStat(opp,'general','Seasons Played')),
     statRow('Net Earnings', getStat(me,'general','Net Earnings'), getStat(opp,'general','Net Earnings')),
-    statRow('Prestige Points', getStat(me,'general','Prestige Points'), getStat(opp,'general','Prestige Points')),
+    statRow('Prestige Points', getPrestige(me), getPrestige(opp)),
   ];
 
   const rsRows = [
@@ -1838,43 +1845,71 @@ function renderCompare(ownerAId, ownerBId) {
   const cmpScaleX = { grid:{color:'rgba(255,255,255,0.04)'}, ticks:{color:'#555',font:{family:'Barlow Condensed',size:11}}, border:{color:'#222'} };
   const cmpScaleY = { grid:{color:'rgba(255,255,255,0.06)',borderDash:[4,4]}, ticks:{color:'#555',font:{family:'Barlow Condensed',size:11}}, border:{color:'#222'} };
 
-  function lineChart(canvasId, dataA, dataB, nameA, nameB, yOpts, tooltipFmt) {
+  function buildLineChart(canvasId, datasets, yOpts, tooltipFmt) {
     const ctx = document.getElementById(canvasId);
     if (!ctx) return;
     const chart = new Chart(ctx, {
       type: 'line',
       data: {
         labels: chartLabels,
-        datasets: [
-          { label: nameA, data: dataA, borderColor: '#22c55e', backgroundColor: 'rgba(34,197,94,0.06)', fill: false, pointBackgroundColor: '#22c55e', borderWidth: 2, tension: 0.3, pointRadius: 3 },
-          { label: nameB, data: dataB, borderColor: '#60a5fa', backgroundColor: 'rgba(96,165,250,0.06)', fill: false, pointBackgroundColor: '#60a5fa', borderWidth: 2, tension: 0.3, pointRadius: 3 }
-        ]
+        datasets: datasets.map(d => ({
+          label: d.label, data: d.data,
+          borderColor: d.color,
+          backgroundColor: d.dash ? 'transparent' : d.color.replace(')', ',0.06)').replace('rgb','rgba'),
+          fill: false,
+          pointBackgroundColor: d.color,
+          pointRadius: d.noPoint ? 0 : 3,
+          borderWidth: d.dash ? 2 : 2,
+          borderDash: d.dash ? [6,4] : [],
+          tension: 0.3
+        }))
       },
       options: {
         responsive: true, layout:{padding:{top:12}},
-        plugins:{ legend:{display:false}, tooltip:{...cmpTooltipDefaults, callbacks:{title:i=>i[0].label, label:i=>i.dataset.label+': '+(tooltipFmt ? tooltipFmt(i.parsed.y) : i.parsed.y)}} },
-        scales:{ x: cmpScaleX, y: {...cmpScaleY, ...yOpts} }
+        interaction: { mode: 'index', intersect: false },
+        plugins:{ legend:{display:false}, tooltip:{...cmpTooltipDefaults, callbacks:{
+          title: i => i[0].label,
+          label: i => {
+            if (i.dataset.borderDash && i.dataset.borderDash.length) return null;
+            const v = i.parsed.y;
+            return i.dataset.label + ': ' + (tooltipFmt && v != null ? tooltipFmt(v) : v);
+          }
+        }}},
+        scales:{ x: {...cmpScaleX, ticks:{...cmpScaleX.ticks, color:'#999'}}, y: {...cmpScaleY, ...yOpts} }
       }
     });
     cmpCharts.push(chart);
   }
 
-  function barChart(canvasId, dataA, dataB, nameA, nameB, tooltipFmt) {
+  function buildBarChart(canvasId, datasets, tooltipFmt) {
     const ctx = document.getElementById(canvasId);
     if (!ctx) return;
     const chart = new Chart(ctx, {
       type: 'bar',
       data: {
         labels: chartLabels,
-        datasets: [
-          { label: nameA, data: dataA, backgroundColor: 'rgba(34,197,94,0.7)', borderColor: '#22c55e', borderWidth: 1, borderRadius: 2 },
-          { label: nameB, data: dataB, backgroundColor: 'rgba(96,165,250,0.5)', borderColor: '#60a5fa', borderWidth: 1, borderRadius: 2 }
-        ]
+        datasets: datasets.map(d => d.line ? {
+          type: 'line', label: d.label, data: d.data,
+          borderColor: d.color, borderDash: d.dash ? [6,4] : [],
+          borderWidth: 2, pointRadius: 0, fill: false, order: 0
+        } : {
+          label: d.label, data: d.data,
+          backgroundColor: d.color === '#22c55e' ? 'rgba(34,197,94,0.7)' : 'rgba(96,165,250,0.5)',
+          borderColor: d.color, borderWidth: 1, borderRadius: 2, order: 1
+        })
       },
       options: {
         responsive: true, layout:{padding:{top:12}},
-        plugins:{ legend:{display:false}, tooltip:{...cmpTooltipDefaults, callbacks:{title:i=>i[0].label, label:i=>i.dataset.label+': '+(tooltipFmt ? tooltipFmt(i.parsed.y) : i.parsed.y)}} },
-        scales:{ x: cmpScaleX, y: {...cmpScaleY, min:0} }
+        interaction: { mode: 'index', intersect: false },
+        plugins:{ legend:{display:false}, tooltip:{...cmpTooltipDefaults, callbacks:{
+          title: i => i[0].label,
+          label: i => {
+            if (i.dataset.borderDash && i.dataset.borderDash.length) return null;
+            const v = i.parsed.y;
+            return i.dataset.label + ': ' + (tooltipFmt && v != null ? tooltipFmt(v) : v);
+          }
+        }}},
+        scales:{ x: {...cmpScaleX, ticks:{...cmpScaleX.ticks, color:'#999'}}, y: {...cmpScaleY, min:0, ticks:{...cmpScaleY.ticks, color:'#999'}} }
       }
     });
     cmpCharts.push(chart);
@@ -1941,9 +1976,9 @@ function renderCompare(ownerAId, ownerBId) {
     ${buildStatSection('Career — Playoffs', poRows)}
 
     <div class="cmp-section">
-      <div class="cmp-section-title">Point Share by Season</div>
+      <div class="cmp-section-title">Wins by Season</div>
       <div class="cmp-chart-block">
-        <canvas id="cmpPsChart" height="180"></canvas>
+        <canvas id="cmpWinsChart" height="180"></canvas>
         <div class="cmp-chart-legend">
           <div class="cmp-legend-item"><div class="cmp-legend-dot" style="background:#22c55e;"></div>${me.name}</div>
           <div class="cmp-legend-item"><div class="cmp-legend-dot" style="background:#60a5fa;"></div>${opp.name}</div>
@@ -1952,12 +1987,13 @@ function renderCompare(ownerAId, ownerBId) {
     </div>
 
     <div class="cmp-section">
-      <div class="cmp-section-title">Wins by Season</div>
+      <div class="cmp-section-title">Point Share by Season</div>
       <div class="cmp-chart-block">
-        <canvas id="cmpWinsChart" height="180"></canvas>
+        <canvas id="cmpPsChart" height="180"></canvas>
         <div class="cmp-chart-legend">
           <div class="cmp-legend-item"><div class="cmp-legend-dot" style="background:#22c55e;"></div>${me.name}</div>
           <div class="cmp-legend-item"><div class="cmp-legend-dot" style="background:#60a5fa;"></div>${opp.name}</div>
+          <div class="cmp-legend-item"><div class="cmp-legend-dot" style="background:#e0e0e0; height:0; border-top:2px dashed #e0e0e0;"></div>League Avg (7.14%)</div>
         </div>
       </div>
     </div>
@@ -1980,6 +2016,8 @@ function renderCompare(ownerAId, ownerBId) {
         <div class="cmp-chart-legend">
           <div class="cmp-legend-item"><div class="cmp-legend-dot" style="background:#22c55e;"></div>${me.name}</div>
           <div class="cmp-legend-item"><div class="cmp-legend-dot" style="background:#60a5fa;"></div>${opp.name}</div>
+          <div class="cmp-legend-item"><div class="cmp-legend-dot" style="background:#22c55e; height:0; border-top:2px dashed #22c55e;"></div>${me.name} Avg</div>
+          <div class="cmp-legend-item"><div class="cmp-legend-dot" style="background:#60a5fa; height:0; border-top:2px dashed #60a5fa;"></div>${opp.name} Avg</div>
         </div>
       </div>
     </div>
@@ -1992,21 +2030,49 @@ function renderCompare(ownerAId, ownerBId) {
 
   // Build charts after DOM inserted
   setTimeout(() => {
-    const psA = getChartArr(me, 'pointShare', 'values');
-    const psB = getChartArr(opp, 'pointShare', 'values');
-    lineChart('cmpPsChart', psA, psB, me.name, opp.name, {min:5, max:10, ticks:{...cmpScaleY.ticks, callback:v=>v+'%'}}, v => v != null ? v.toFixed(2)+'%' : '');
+    const PS_LEAGUE_AVG = 7.14;
 
+    // Wins
     const winsA = getChartArr(me, 'winsAndFinish', 'wins');
     const winsB = getChartArr(opp, 'winsAndFinish', 'wins');
-    lineChart('cmpWinsChart', winsA, winsB, me.name, opp.name, {min:0, max:14, ticks:{...cmpScaleY.ticks, stepSize:2}}, v => v+' wins');
+    buildLineChart('cmpWinsChart', [
+      { label: me.name, data: winsA, color: '#22c55e' },
+      { label: opp.name, data: winsB, color: '#60a5fa' }
+    ], {min:0, max:14, ticks:{...cmpScaleY.ticks, stepSize:2, color:'#999'}}, v => v + ' wins');
 
+    // Point Share with league avg line
+    const psA = getChartArr(me, 'pointShare', 'values');
+    const psB = getChartArr(opp, 'pointShare', 'values');
+    const allPsYears = chartLabels.map((_, i) => psA[i] != null || psB[i] != null ? PS_LEAGUE_AVG : null);
+    buildLineChart('cmpPsChart', [
+      { label: me.name, data: psA, color: '#22c55e' },
+      { label: opp.name, data: psB, color: '#60a5fa' },
+      { label: 'League Avg', data: allPsYears, color: '#e0e0e0', dash: true, noPoint: true }
+    ], {min:5, max:10, ticks:{...cmpScaleY.ticks, callback:v=>v+'%', color:'#999'}}, v => v != null ? v.toFixed(2)+'%' : '');
+
+    // Winnings
     const earA = getChartArr(me, 'winnings', 'values');
     const earB = getChartArr(opp, 'winnings', 'values');
-    barChart('cmpWinningsChart', earA, earB, me.name, opp.name, v => '$'+v);
+    buildBarChart('cmpWinningsChart', [
+      { label: me.name, data: earA, color: '#22c55e' },
+      { label: opp.name, data: earB, color: '#60a5fa' }
+    ], v => '$' + v);
 
+    // Prestige with dual avg lines
     const prA = getChartArr(me, 'prestigePerSeason', 'values');
     const prB = getChartArr(opp, 'prestigePerSeason', 'values');
-    barChart('cmpPrestigeChart', prA, prB, me.name, opp.name, v => v+' pts');
+    const validA = prA.filter(v => v != null && v > 0);
+    const validB = prB.filter(v => v != null && v > 0);
+    const avgA = validA.length ? parseFloat((validA.reduce((a,b)=>a+b,0)/validA.length).toFixed(1)) : null;
+    const avgB = validB.length ? parseFloat((validB.reduce((a,b)=>a+b,0)/validB.length).toFixed(1)) : null;
+    const avgLineA = prA.map(v => v != null && v > 0 ? avgA : null);
+    const avgLineB = prB.map(v => v != null && v > 0 ? avgB : null);
+    buildBarChart('cmpPrestigeChart', [
+      { label: me.name, data: prA, color: '#22c55e' },
+      { label: opp.name, data: prB, color: '#60a5fa' },
+      { label: me.name + ' Avg', data: avgLineA, color: '#22c55e', line: true, dash: true },
+      { label: opp.name + ' Avg', data: avgLineB, color: '#60a5fa', line: true, dash: true }
+    ], v => v + ' pts');
   }, 50);
 
 }
