@@ -1123,12 +1123,14 @@
     display: flex;
     align-items: center;
     justify-content: flex-end;
+    padding-right: 8px;
   }
 
   .cmp-arrow-col-b {
     display: flex;
     align-items: center;
     justify-content: flex-start;
+    padding-left: 8px;
   }
 
   .cmp-arrow { font-size: 0.9rem; opacity: 0.9; }
@@ -1776,6 +1778,9 @@ function renderCompare(ownerAId, ownerBId) {
     }
     if (label === 'Power Score' || label === 'Career High') {
       return parseFloat(v).toFixed(2);
+    }
+    if (typeof v === 'number' && v >= 1000) {
+      return v.toLocaleString('en-US');
     }
     return v;
   }
