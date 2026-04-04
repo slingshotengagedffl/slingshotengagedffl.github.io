@@ -787,7 +787,7 @@
     object-fit: contain;
     flex-shrink: 0;
     display: block;
-    filter: drop-shadow(0 0 6px rgba(201,168,76,0.85));
+    filter: drop-shadow(0 0 8px rgba(201,168,76,1)) drop-shadow(0 0 20px rgba(201,168,76,0.7));
   }
 
   .trophy-lock {
@@ -1218,7 +1218,7 @@
     height: 52px;
     width: auto;
     object-fit: contain;
-    filter: drop-shadow(0 0 5px rgba(201,168,76,0.85));
+    filter: drop-shadow(0 0 8px rgba(201,168,76,1)) drop-shadow(0 0 20px rgba(201,168,76,0.7));
   }
 
   .cmp-trophy-img.cmp-locked {
@@ -1383,7 +1383,7 @@ function renderProfile(p) {
         </div>
         <div class="stats-right">
           <span class="stats-val${s.isEarnings && displayVal !== '—' ? (parseFloat(String(displayVal).replace(/[^\d.-]/g,'')) >= 0 ? ' earnings' : ' luck-neg') : s.stat === 'Luck Rate' && displayVal !== '—' ? (parseFloat(displayVal) >= 0 ? ' luck-pos' : ' luck-neg') : ''}">${s.stat === 'Luck Rate' && displayVal !== '—' ? (parseFloat(displayVal) >= 0 ? '+' : '') + displayVal : displayVal}</span>
-          ${s.rank ? `<span class="stats-rank">(${s.rank.replace(' of 14', '')})</span>` : ''}
+          ${s.rank ? `<span class="stats-rank">(${s.rank})</span>` : ''}
         </div>
       </div>`;
     }).join('');
@@ -1702,7 +1702,9 @@ async function loadAll() {
     const sel = document.getElementById('compareSelect');
     if (sel) {
       sel.innerHTML = '<option value="">— Pick an Owner —</option>' +
-        Object.keys(allOwners).filter(k => k !== OWNER_ID).map(k => `<option value="${k}">${allOwners[k].name}</option>`).join('');
+        Object.keys(allOwners).filter(k => k !== OWNER_ID)
+          .sort((a, b) => allOwners[a].name.localeCompare(allOwners[b].name))
+          .map(k => `<option value="${k}">${allOwners[k].name}</option>`).join('');
     }
   } catch(e) {
     document.getElementById('loadingState').textContent = 'Failed to load profile.';
@@ -1715,7 +1717,7 @@ let cmpOwnerA = OWNER_ID;
 let cmpOwnerB = null;
 
 function populateCmpDropdowns(selAId, selBId, ownerAId, ownerBId) {
-  const owners = Object.keys(allOwners);
+  const owners = Object.keys(allOwners).sort((a, b) => allOwners[a].name.localeCompare(allOwners[b].name));
   [selAId, selBId].forEach((selId, idx) => {
     const sel = document.getElementById(selId);
     if (!sel) return;
