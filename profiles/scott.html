@@ -1782,7 +1782,10 @@ function renderCompare(ownerAId, ownerBId) {
     if (v == null) return '—';
     if (label === 'Net Earnings') {
       const n = parseFloat(v);
-      return '$' + (Number.isInteger(n) ? n.toLocaleString() : n.toLocaleString('en-US', {minimumFractionDigits:2, maximumFractionDigits:2}));
+      if (isNaN(n)) return '—';
+      const abs = Math.abs(n);
+      const formatted = Number.isInteger(n) ? abs.toLocaleString() : abs.toLocaleString('en-US', {minimumFractionDigits:2, maximumFractionDigits:2});
+      return (n < 0 ? '-$' : '$') + formatted;
     }
     if (label === 'Power Score' || label === 'Career High') {
       return parseFloat(v).toFixed(2);
