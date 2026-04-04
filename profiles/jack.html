@@ -903,10 +903,10 @@
     border-radius: 6px;
     color: var(--white);
     font-family: 'Barlow Condensed', sans-serif;
-    font-size: 1rem;
+    font-size: 1.6rem;
     font-weight: 600;
     letter-spacing: 1px;
-    padding: 8px 12px;
+    padding: 10px 12px;
     cursor: pointer;
     appearance: none;
     background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%23888' stroke-width='2' fill='none' stroke-linecap='round'/%3E%3C/svg%3E");
@@ -1073,7 +1073,7 @@
     text-align: center;
     font-family: 'Bebas Neue', sans-serif;
     font-size: 1.2rem;
-    color: #333;
+    color: #888;
     letter-spacing: 2px;
   }
 
@@ -1130,14 +1130,15 @@
     font-weight: 700;
     letter-spacing: 1px;
     text-transform: uppercase;
-    color: var(--muted);
+    color: #ddd;
     line-height: 1.2;
     padding: 0 4px;
   }
 
   .cmp-stat-sub {
     font-size: 0.8rem;
-    color: #555;
+    color: #aaa;
+    font-style: italic;
     display: block;
     margin-top: 1px;
     font-weight: 400;
@@ -1199,7 +1200,7 @@
   .cmp-trophy-imgs-b { display: flex; justify-content: flex-end;   align-items: center; gap: 2px; flex-wrap: wrap; }
 
   .cmp-trophy-img {
-    height: 26px;
+    height: 52px;
     width: auto;
     object-fit: contain;
   }
@@ -1584,7 +1585,6 @@ function renderProfile(p) {
       <span class="compare-bar-label">Compare Slabs of Beef</span>
       <select class="compare-select" id="compareSelect">
         <option value="">— Pick an Owner —</option>
-        ${Object.keys(allOwners).filter(k => k !== OWNER_ID).map(k => `<option value="${k}">${allOwners[k].name}</option>`).join('')}
       </select>
       <button class="compare-go-btn" onclick="openCompare()">GO</button>
     </div>
@@ -1672,14 +1672,24 @@ loadProfile();
 let allOwners = {};
 let cmpCharts = [];
 
+let allOwnersReady = false;
+let allOwnersPromise = null;
+
 async function loadAllOwners() {
   try {
     const res = await fetch('../profiles-data.json?v=' + Date.now());
     const data = await res.json();
     allOwners = data.owners;
+    allOwnersReady = true;
+    // Populate main page dropdown now that owners are loaded
+    const sel = document.getElementById('compareSelect');
+    if (sel) {
+      sel.innerHTML = '<option value="">— Pick an Owner —</option>' +
+        Object.keys(allOwners).filter(k => k !== OWNER_ID).map(k => `<option value="${k}">${allOwners[k].name}</option>`).join('');
+    }
   } catch(e) { console.error('Could not load owners for compare', e); }
 }
-loadAllOwners();
+allOwnersPromise = loadAllOwners();
 
 let cmpOwnerA = OWNER_ID;
 let cmpOwnerB = null;
@@ -1700,9 +1710,10 @@ function swapOwner(side, newId) {
   renderCompare(cmpOwnerA, cmpOwnerB);
 }
 
-function openCompare() {
+async function openCompare() {
   const sel = document.getElementById('compareSelect');
   if (!sel || !sel.value) return;
+  if (!allOwnersReady) await allOwnersPromise;
   cmpOwnerA = OWNER_ID;
   cmpOwnerB = sel.value;
   renderCompare(cmpOwnerA, cmpOwnerB);
@@ -1745,12 +1756,24 @@ function renderCompare(ownerAId, ownerBId) {
     return aWins ? 'a' : 'b';
   }
 
+  function fmtVal(v, label) {
+    if (v == null) return '—';
+    if (label === 'Net Earnings') {
+      const n = parseFloat(v);
+      return '$' + (Number.isInteger(n) ? n.toLocaleString() : n.toLocaleString('en-US', {minimumFractionDigits:2, maximumFractionDigits:2}));
+    }
+    if (label === 'Power Score' || label === 'Career High') {
+      return parseFloat(v).toFixed(2);
+    }
+    return v;
+  }
+
   function statRow(label, aVal, bVal, lowerBetter, sub) {
-    const dA = aVal != null ? aVal : '—';
-    const dB = bVal != null ? bVal : '—';
+    const dA = fmtVal(aVal, label);
+    const dB = fmtVal(bVal, label);
     const winner = cmpResult(aVal, bVal, lowerBetter);
-    const arrowA = winner === 'a' ? '<span class="cmp-arrow cmp-arrow-a">🥩</span>' : '';
-    const arrowB = winner === 'b' ? '<span class="cmp-arrow cmp-arrow-b">🥩</span>' : '';
+    const arrowA = winner === 'a' ? '<span class="cmp-arrow cmp-arrow-a">▶▶</span>' : '';
+    const arrowB = winner === 'b' ? '<span class="cmp-arrow cmp-arrow-b">▶▶</span>' : '';
     return `<div class="cmp-stat-row">
       <div class="cmp-val-a">${dA}${arrowA}</div>
       <div class="cmp-stat-name">${label}${sub ? '<span class="cmp-stat-sub">' + sub + '</span>' : ''}</div>
@@ -1782,8 +1805,8 @@ function renderCompare(ownerAId, ownerBId) {
       const dA = vA != null ? vA : '—';
       const dB = vB != null ? vB : '—';
       const a = parseFloat(vA), b = parseFloat(vB);
-      const arrowA = (!isNaN(a) && !isNaN(b) && a > b) ? '<span class="cmp-arrow cmp-arrow-a">🥩</span>' : '';
-      const arrowB = (!isNaN(a) && !isNaN(b) && b > a) ? '<span class="cmp-arrow cmp-arrow-b">🥩</span>' : '';
+      const arrowA = (!isNaN(a) && !isNaN(b) && a > b) ? '<span class="cmp-arrow cmp-arrow-a">▶▶</span>' : '';
+      const arrowB = (!isNaN(a) && !isNaN(b) && b > a) ? '<span class="cmp-arrow cmp-arrow-b">▶▶</span>' : '';
       return `<div class="cmp-stat-row">
         <div class="cmp-val-a">${dA}${arrowA}</div>
         <div class="cmp-stat-name">${label}</div>
@@ -1810,7 +1833,7 @@ function renderCompare(ownerAId, ownerBId) {
     statRow('Win %', getStat(me,'regularSeason','Win %'), getStat(opp,'regularSeason','Win %')),
     statRow('Avg Finish', getStat(me,'regularSeason','Avg Finish'), getStat(opp,'regularSeason','Avg Finish'), true, 'lower is better'),
     statRow('Pts / Game', getStat(me,'regularSeason','Pts Per Game'), getStat(opp,'regularSeason','Pts Per Game')),
-    statRow('Point Share', getStat(me,'regularSeason','Point Share'), getStat(opp,'regularSeason','Point Share')),
+    statRow('Point Share', getStat(me,'regularSeason','Point Share'), getStat(opp,'regularSeason','Point Share'), false, '% of total league points scored'),
     statRow('Career High', getStat(me,'regularSeason','Career High Score'), getStat(opp,'regularSeason','Career High Score')),
     statRow('Weekly High Scores', getStat(me,'regularSeason','Weekly High Scores'), getStat(opp,'regularSeason','Weekly High Scores')),
     statRow('Power Score', getStat(me,'regularSeason','Power Score'), getStat(opp,'regularSeason','Power Score')),
@@ -1971,9 +1994,9 @@ function renderCompare(ownerAId, ownerBId) {
       <div class="cmp-section-title">Head to Head</div>
       ${h2hRow}
     </div>
-    ${buildStatSection('Career — General', generalRows)}
-    ${buildStatSection('Career — Regular Season', rsRows)}
-    ${buildStatSection('Career — Playoffs', poRows)}
+    ${buildStatSection('General', generalRows)}
+    ${buildStatSection('Regular Season', rsRows)}
+    ${buildStatSection('Playoffs', poRows)}
 
     <div class="cmp-section">
       <div class="cmp-section-title">Wins by Season</div>
@@ -1982,6 +2005,7 @@ function renderCompare(ownerAId, ownerBId) {
         <div class="cmp-chart-legend">
           <div class="cmp-legend-item"><div class="cmp-legend-dot" style="background:#22c55e;"></div>${me.name}</div>
           <div class="cmp-legend-item"><div class="cmp-legend-dot" style="background:#60a5fa;"></div>${opp.name}</div>
+          <div class="cmp-legend-item"><div class="cmp-legend-dot" style="background:#e0e0e0; height:0; border-top:2px dashed #e0e0e0;"></div>.500 (7 wins)</div>
         </div>
       </div>
     </div>
@@ -2035,9 +2059,12 @@ function renderCompare(ownerAId, ownerBId) {
     // Wins
     const winsA = getChartArr(me, 'winsAndFinish', 'wins');
     const winsB = getChartArr(opp, 'winsAndFinish', 'wins');
+    const winsYears = chartLabels.length;
+    const halfLine = Array(winsYears).fill(7);
     buildLineChart('cmpWinsChart', [
       { label: me.name, data: winsA, color: '#22c55e' },
-      { label: opp.name, data: winsB, color: '#60a5fa' }
+      { label: opp.name, data: winsB, color: '#60a5fa' },
+      { label: '.500', data: halfLine, color: '#e0e0e0', dash: true, noPoint: true }
     ], {min:0, max:14, ticks:{...cmpScaleY.ticks, stepSize:2, color:'#999'}}, v => v + ' wins');
 
     // Point Share with league avg line
