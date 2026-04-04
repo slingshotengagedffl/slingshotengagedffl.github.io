@@ -1770,8 +1770,8 @@ function renderCompare(ownerAId, ownerBId) {
   }
 
   // ── STAT SECTIONS ──
-  const h2h = me.headToHead && me.headToHead[oppId] ? me.headToHead[oppId] : null;
-  const h2hOpp = opp.headToHead && opp.headToHead[OWNER_ID] ? opp.headToHead[OWNER_ID] : null;
+  const h2h = me.headToHead && me.headToHead[ownerBId] ? me.headToHead[ownerBId] : null;
+  const h2hOpp = opp.headToHead && opp.headToHead[ownerAId] ? opp.headToHead[ownerAId] : null;
   const h2hWinsA = h2h ? h2h.wins : null;
   const h2hWinsB = h2hOpp ? h2hOpp.wins : null;
   const h2hPctA = h2h ? h2h.winPct : null;
@@ -2023,13 +2023,17 @@ document.addEventListener('click', function(e) {
 // ── CHARTS ──
 function initCharts(p) {
   const c = p.charts;
-  const labels = [...c.winsAndFinish.years].reverse().map(y => "'" + String(y).slice(2));
-  const wfWins = [...c.winsAndFinish.wins].reverse();
-  const wfFinish = [...c.winsAndFinish.finish].reverse();
-  const psRaw = [...c.pointShare.values].reverse();
-  const psData = psRaw.map(v => v == null ? null : parseFloat((v * 100).toFixed(2)));
-  const wData = [...c.winnings.values].reverse();
-  const prData = [...c.prestigePerSeason.values].reverse();
+  const labels = c.winsAndFinish.years.map(y => "'" + String(y).slice(2));
+  const wfWins = c.winsAndFinish.wins;
+  const wfFinish = c.winsAndFinish.finish;
+  const psRaw = c.pointShare.values;
+  const psData = psRaw.map(v => {
+    if (v == null) return null;
+    const num = parseFloat(v);
+    return parseFloat((num < 1 ? num * 100 : num).toFixed(2));
+  });
+  const wData = c.winnings.values;
+  const prData = c.prestigePerSeason.values;
   const prAvg = (() => {
     const valid = prData.filter(v => v != null && v > 0);
     return valid.length ? parseFloat((valid.reduce((a,b) => a+b, 0) / valid.length).toFixed(1)) : 0;
