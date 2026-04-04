@@ -891,7 +891,7 @@
 
   .compare-bar-label {
     font-family: 'Bebas Neue', sans-serif;
-    font-size: 1.8rem;
+    font-size: 1.3rem;
     letter-spacing: 2px;
     color: var(--red);
   }
@@ -903,10 +903,10 @@
     border-radius: 6px;
     color: var(--white);
     font-family: 'Barlow Condensed', sans-serif;
-    font-size: 1.3rem;
+    font-size: 1rem;
     font-weight: 600;
     letter-spacing: 1px;
-    padding: 10px 12px;
+    padding: 8px 12px;
     cursor: pointer;
     appearance: none;
     background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%23888' stroke-width='2' fill='none' stroke-linecap='round'/%3E%3C/svg%3E");
@@ -924,9 +924,9 @@
     color: var(--white);
     border: none;
     border-radius: 6px;
-    padding: 12px 20px;
+    padding: 10px 20px;
     font-family: 'Barlow Condensed', sans-serif;
-    font-size: 1.4rem;
+    font-size: 1rem;
     font-weight: 700;
     letter-spacing: 2px;
     text-transform: uppercase;
@@ -1003,17 +1003,55 @@
   .cmp-player-row {
     display: grid;
     grid-template-columns: 1fr 48px 1fr;
-    align-items: center;
-    padding: 20px 20px 14px;
-    border-bottom: 1px solid #1a1a1a;
+    align-items: start;
+    padding: 14px 16px;
+    border-bottom: 1px solid #2a2a2a;
     gap: 8px;
+    position: sticky;
+    top: 53px;
+    z-index: 9;
+    background: #111;
   }
 
   .cmp-player { text-align: center; }
 
+  .cmp-player-photo-wrap {
+    margin: 10px auto 6px;
+    width: 72px; height: 72px;
+  }
+
+  .cmp-player-photo {
+    width: 72px; height: 72px;
+    border-radius: 50%;
+    object-fit: cover;
+    object-position: top;
+    display: block;
+  }
+
+  .cmp-player-a .cmp-player-photo { border: 2px solid #22c55e; }
+  .cmp-player-b .cmp-player-photo { border: 2px solid #60a5fa; }
+
+  .cmp-owner-select {
+    background: #1a1a1a;
+    border: 1px solid #333;
+    border-radius: 4px;
+    color: var(--muted);
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 0.8rem;
+    font-weight: 600;
+    letter-spacing: 1px;
+    padding: 4px 6px;
+    cursor: pointer;
+    width: 100%;
+    margin-top: 4px;
+    text-align: center;
+  }
+  .cmp-owner-select:focus { outline: 1px solid var(--red); }
+  .cmp-owner-select option { background: #1a1a1a; }
+
   .cmp-player-name {
     font-family: 'Bebas Neue', sans-serif;
-    font-size: 2rem;
+    font-size: 2.4rem;
     letter-spacing: 3px;
     line-height: 1;
   }
@@ -1023,7 +1061,7 @@
 
   .cmp-player-nick {
     font-family: 'Barlow Condensed', sans-serif;
-    font-size: 0.85rem;
+    font-size: 1.05rem;
     font-weight: 600;
     letter-spacing: 2px;
     text-transform: uppercase;
@@ -1046,7 +1084,7 @@
 
   .cmp-section-title {
     font-family: 'Barlow Condensed', sans-serif;
-    font-size: 0.8rem;
+    font-size: 1rem;
     font-weight: 700;
     letter-spacing: 3px;
     text-transform: uppercase;
@@ -1067,28 +1105,28 @@
 
   .cmp-val-a {
     font-family: 'Bebas Neue', sans-serif;
-    font-size: 1.4rem;
+    font-size: 1.9rem;
     letter-spacing: 1px;
     text-align: left;
   }
 
   .cmp-val-b {
     font-family: 'Bebas Neue', sans-serif;
-    font-size: 1.4rem;
+    font-size: 1.9rem;
     letter-spacing: 1px;
     text-align: right;
   }
 
-  .cmp-val-a.cmp-winner { color: #22c55e; }
-  .cmp-val-b.cmp-winner { color: #60a5fa; }
-  .cmp-val-a.cmp-loser  { color: #333; }
-  .cmp-val-b.cmp-loser  { color: #333; }
-  .cmp-val-a.cmp-tied, .cmp-val-b.cmp-tied { color: var(--gold); }
+  .cmp-val-a { color: #22c55e; }
+  .cmp-val-b { color: #60a5fa; }
+  .cmp-arrow { font-size: 0.9rem; margin: 0 4px; opacity: 0.9; }
+  .cmp-arrow-a { color: #22c55e; }
+  .cmp-arrow-b { color: #60a5fa; }
 
   .cmp-stat-name {
     text-align: center;
     font-family: 'Barlow Condensed', sans-serif;
-    font-size: 0.75rem;
+    font-size: 1rem;
     font-weight: 700;
     letter-spacing: 1px;
     text-transform: uppercase;
@@ -1098,7 +1136,7 @@
   }
 
   .cmp-stat-sub {
-    font-size: 0.62rem;
+    font-size: 0.8rem;
     color: #555;
     display: block;
     margin-top: 1px;
@@ -1218,15 +1256,19 @@
       <div class="cmp-header-title">Head to Head</div>
       <button class="cmp-close" onclick="closeCompare()">✕ Close</button>
     </div>
-    <div class="cmp-player-row">
+    <div class="cmp-player-row" id="cmpPlayerRow">
       <div class="cmp-player cmp-player-a">
         <div class="cmp-player-name" id="cmpNameA">JACK</div>
         <div class="cmp-player-nick" id="cmpNickA">"The Commish"</div>
+        <div class="cmp-player-photo-wrap"><img id="cmpPhotoA" class="cmp-player-photo" src="" alt="" onerror="this.style.display='none'"></div>
+        <select class="cmp-owner-select" id="cmpSelectA" onchange="swapOwner('a', this.value)"></select>
       </div>
       <div class="cmp-vs">VS</div>
       <div class="cmp-player cmp-player-b">
         <div class="cmp-player-name" id="cmpNameB">—</div>
         <div class="cmp-player-nick" id="cmpNickB">—</div>
+        <div class="cmp-player-photo-wrap"><img id="cmpPhotoB" class="cmp-player-photo" src="" alt="" onerror="this.style.display='none'"></div>
+        <select class="cmp-owner-select" id="cmpSelectB" onchange="swapOwner('b', this.value)"></select>
       </div>
     </div>
     <div id="cmpBody"></div>
@@ -1272,12 +1314,11 @@ function renderProfile(p) {
 
   function d(v) { return (v == null || v === 'null') ? '—' : v; }
 
-  const ownsVal = (p.rivalries.owns && p.rivalries.owns.length)
-    ? p.rivalries.owns.map(o => `${o.name} (${o.record})`).join('<br>')
-    : (p.rivalries.owns && p.rivalries.owns.name)
-    ? `${p.rivalries.owns.name} (${d(p.rivalries.owns.record)})`
-    : '—';
-  const ownsCard = `<div class="fact-card"><div class="fact-card-label">Owns</div><div class="fact-card-value">${ownsVal}</div></div>`;
+  const ownsCard = (p.rivalries.owns && p.rivalries.owns.length)
+    ? `<div class="fact-card"><div class="fact-card-label">Owns</div><div class="fact-card-value">${p.rivalries.owns.map(o => `${o.name} (${o.record})`).join('<br>')}</div></div>`
+    : p.rivalries.owns && p.rivalries.owns.name
+    ? `<div class="fact-card"><div class="fact-card-label">Owns</div><div class="fact-card-value">${p.rivalries.owns.name} (${d(p.rivalries.owns.record)})</div></div>`
+    : '';
 
   const ownedByVal = (Array.isArray(p.rivalries.ownedBy) && p.rivalries.ownedBy.length)
     ? p.rivalries.ownedBy.map(o => `${o.name} (${o.record})`).join('<br>')
@@ -1286,14 +1327,14 @@ function renderProfile(p) {
     : '—';
   const ownedByCard = `<div class="fact-card"><div class="fact-card-label">Owned By</div><div class="fact-card-value">${ownedByVal}</div></div>`;
 
-  const nextGameHTML = `
+  const nextGameHTML = nextGame && nextGame.opponent ? `
       <div class="live-last-game" style="margin-top:10px; padding-top:10px; border-top:1px solid #222;">
         <span class="last-game-label">Next Game</span>
         <div class="last-game-result">
-          <div class="last-game-detail">${nextGame && nextGame.opponent ? 'vs. ' + nextGame.opponent : '—'}</div>
+          <div class="last-game-detail">vs. ${d(nextGame.opponent)}</div>
         </div>
-        ${nextGame && nextGame.lifetimeVsOpponent ? `<div class="last-game-record">Lifetime ${nextGame.lifetimeVsOpponent}</div>` : ''}
-      </div>`;
+        <div class="last-game-record">Lifetime ${d(nextGame.lifetimeVsOpponent)}</div>
+      </div>` : '';
 
   const explainerOverrides = {
     'Net Earnings': 'Total winnings minus entry fees',
@@ -1393,7 +1434,7 @@ function renderProfile(p) {
         </div>
         <div class="acc-bucket">
           <div class="acc-bucket-label">Season Summary</div>
-          <div class="acc-row"><span class="acc-label">Winnings</span><span class="acc-val earnings">${s.winnings != null ? '$' + (Number.isInteger(s.winnings) ? s.winnings.toLocaleString() : parseFloat(s.winnings).toLocaleString('en-US', {minimumFractionDigits:2, maximumFractionDigits:2})) : '—'}</span></div>
+          <div class="acc-row"><span class="acc-label">Winnings</span><span class="acc-val earnings">${s.netEarnings != null ? "$" + parseFloat(s.netEarnings).toFixed(2) : "—"}</span></div>
           <div class="acc-row"><span class="acc-label">Prestige Earned</span><span class="acc-val">${d(s.prestigeEarned)}</span></div>
           <div class="acc-row"><span class="acc-label">Playoff Result</span><span class="acc-val ${s.result === 'champion' ? '' : s.result === 'missed' ? 'loss' : s.result === 'bronze' ? 'bronze' : ''}">${d(s.playoffResult)}</span></div>
         </div>
@@ -1639,12 +1680,38 @@ async function loadAllOwners() {
 }
 loadAllOwners();
 
+let cmpOwnerA = OWNER_ID;
+let cmpOwnerB = null;
+
+function populateCmpDropdowns(selAId, selBId, ownerAId, ownerBId) {
+  const owners = Object.keys(allOwners);
+  [selAId, selBId].forEach((selId, idx) => {
+    const sel = document.getElementById(selId);
+    if (!sel) return;
+    const currentId = idx === 0 ? ownerAId : ownerBId;
+    sel.innerHTML = owners.map(k => `<option value="${k}" ${k === currentId ? 'selected' : ''}>${allOwners[k].name}</option>`).join('');
+  });
+}
+
+function swapOwner(side, newId) {
+  if (side === 'a') cmpOwnerA = newId;
+  else cmpOwnerB = newId;
+  renderCompare(cmpOwnerA, cmpOwnerB);
+}
+
 function openCompare() {
   const sel = document.getElementById('compareSelect');
   if (!sel || !sel.value) return;
-  const oppId = sel.value;
-  const me = allOwners[OWNER_ID];
-  const opp = allOwners[oppId];
+  cmpOwnerA = OWNER_ID;
+  cmpOwnerB = sel.value;
+  renderCompare(cmpOwnerA, cmpOwnerB);
+  document.getElementById('compareOverlay').classList.add('open');
+  document.body.style.overflow = 'hidden';
+}
+
+function renderCompare(ownerAId, ownerBId) {
+  const me = allOwners[ownerAId];
+  const opp = allOwners[ownerBId];
   if (!me || !opp) return;
 
   // Destroy old charts
@@ -1657,25 +1724,36 @@ function openCompare() {
   document.getElementById('cmpNameB').textContent = opp.name.toUpperCase();
   document.getElementById('cmpNickB').textContent = '"' + (opp.nickname || '') + '"';
 
+  // Update photos
+  const photoA = document.getElementById('cmpPhotoA');
+  const photoB = document.getElementById('cmpPhotoB');
+  if (photoA) { photoA.src = me.photo || ''; photoA.style.display = me.photo ? 'block' : 'none'; }
+  if (photoB) { photoB.src = opp.photo || ''; photoB.style.display = opp.photo ? 'block' : 'none'; }
+
+  // Populate dropdowns
+  populateCmpDropdowns('cmpSelectA', 'cmpSelectB', ownerAId, ownerBId);
+
   const LOWER_IS_BETTER = ['Avg Finish'];
 
-  function cmpVals(aRaw, bRaw, lowerBetter) {
+  function cmpResult(aRaw, bRaw, lowerBetter) {
     const a = parseFloat(String(aRaw).replace(/[^\d.-]/g, ''));
     const b = parseFloat(String(bRaw).replace(/[^\d.-]/g, ''));
-    if (isNaN(a) || isNaN(b)) return ['', '', ''];
-    if (a === b) return ['cmp-tied', 'cmp-tied', ''];
+    if (isNaN(a) || isNaN(b)) return 'tied';
+    if (a === b) return 'tied';
     const aWins = lowerBetter ? a < b : a > b;
-    return [aWins ? 'cmp-winner' : 'cmp-loser', aWins ? 'cmp-loser' : 'cmp-winner', ''];
+    return aWins ? 'a' : 'b';
   }
 
   function statRow(label, aVal, bVal, lowerBetter, sub) {
     const dA = aVal != null ? aVal : '—';
     const dB = bVal != null ? bVal : '—';
-    const [clsA, clsB] = cmpVals(aVal, bVal, lowerBetter);
+    const winner = cmpResult(aVal, bVal, lowerBetter);
+    const arrowA = winner === 'a' ? '<span class="cmp-arrow cmp-arrow-a">◀</span>' : '';
+    const arrowB = winner === 'b' ? '<span class="cmp-arrow cmp-arrow-b">▶</span>' : '';
     return `<div class="cmp-stat-row">
-      <div class="cmp-val-a ${clsA}">${dA}</div>
+      <div class="cmp-val-a">${dA}${arrowA}</div>
       <div class="cmp-stat-name">${label}${sub ? '<span class="cmp-stat-sub">' + sub + '</span>' : ''}</div>
-      <div class="cmp-val-b ${clsB}">${dB}</div>
+      <div class="cmp-val-b">${arrowB}${dB}</div>
     </div>`;
   }
 
@@ -1698,19 +1776,21 @@ function openCompare() {
   const h2hWinsB = h2hOpp ? h2hOpp.wins : null;
   const h2hPctA = h2h ? h2h.winPct : null;
   const h2hPctB = h2hOpp ? h2hOpp.winPct : null;
-  const [h2hWinClsA, h2hWinClsB] = h2hWinsA != null && h2hWinsB != null ? (h2hWinsA > h2hWinsB ? ['cmp-winner','cmp-loser'] : h2hWinsA < h2hWinsB ? ['cmp-loser','cmp-winner'] : ['cmp-tied','cmp-tied']) : ['',''];
-  const [h2hPctClsA, h2hPctClsB] = h2hPctA != null && h2hPctB != null ? (h2hPctA > h2hPctB ? ['cmp-winner','cmp-loser'] : h2hPctA < h2hPctB ? ['cmp-loser','cmp-winner'] : ['cmp-tied','cmp-tied']) : ['',''];
-  const h2hRow = `
-    <div class="cmp-stat-row">
-      <div class="cmp-val-a ${h2hWinClsA}">${h2hWinsA != null ? h2hWinsA : '—'}</div>
-      <div class="cmp-stat-name">Wins${h2hWinsA == null ? '<span class=\"cmp-stat-sub\">coming soon</span>' : ''}</div>
-      <div class="cmp-val-b ${h2hWinClsB}">${h2hWinsB != null ? h2hWinsB : '—'}</div>
-    </div>
-    <div class="cmp-stat-row">
-      <div class="cmp-val-a ${h2hPctClsA}">${h2hPctA != null ? h2hPctA : '—'}</div>
-      <div class="cmp-stat-name">Win %${h2hPctA == null ? '<span class=\"cmp-stat-sub\">coming soon</span>' : ''}</div>
-      <div class="cmp-val-b ${h2hPctClsB}">${h2hPctB != null ? h2hPctB : '—'}</div>
-    </div>`;
+  const h2hRow = (() => {
+    function h2hArrowRow(label, vA, vB) {
+      const dA = vA != null ? vA : '—';
+      const dB = vB != null ? vB : '—';
+      const a = parseFloat(vA), b = parseFloat(vB);
+      const arrowA = (!isNaN(a) && !isNaN(b) && a > b) ? '<span class="cmp-arrow cmp-arrow-a">◀</span>' : '';
+      const arrowB = (!isNaN(a) && !isNaN(b) && b > a) ? '<span class="cmp-arrow cmp-arrow-b">▶</span>' : '';
+      return `<div class="cmp-stat-row">
+        <div class="cmp-val-a">${dA}${arrowA}</div>
+        <div class="cmp-stat-name">${label}</div>
+        <div class="cmp-val-b">${arrowB}${dB}</div>
+      </div>`;
+    }
+    return h2hArrowRow('Wins', h2hWinsA, h2hWinsB) + h2hArrowRow('Win %', h2hPctA, h2hPctB);
+  })();
 
   const generalRows = [
     statRow('Seasons Played', getStat(me,'general','Seasons Played'), getStat(opp,'general','Seasons Played')),
@@ -1725,12 +1805,12 @@ function openCompare() {
     statRow('Pts / Game', getStat(me,'regularSeason','Pts Per Game'), getStat(opp,'regularSeason','Pts Per Game')),
     statRow('Point Share', getStat(me,'regularSeason','Point Share'), getStat(opp,'regularSeason','Point Share')),
     statRow('Career High', getStat(me,'regularSeason','Career High Score'), getStat(opp,'regularSeason','Career High Score')),
-    statRow('Weekly Highs', getStat(me,'regularSeason','Weekly High Scores'), getStat(opp,'regularSeason','Weekly High Scores')),
+    statRow('Weekly High Scores', getStat(me,'regularSeason','Weekly High Scores'), getStat(opp,'regularSeason','Weekly High Scores')),
     statRow('Power Score', getStat(me,'regularSeason','Power Score'), getStat(opp,'regularSeason','Power Score')),
-    statRow('Weeks at #1', getStat(me,'regularSeason','Weeks at #1'), getStat(opp,'regularSeason','Weeks at #1')),
+    statRow('Weeks at #1 in Power Score', getStat(me,'regularSeason','Weeks at #1'), getStat(opp,'regularSeason','Weeks at #1')),
     statRow('Boom Rate', getStat(me,'regularSeason','Boom Rate'), getStat(opp,'regularSeason','Boom Rate'), false, '120%+ of league avg'),
-    statRow('Start Rate', getStat(me,'regularSeason','Start Rate'), getStat(opp,'regularSeason','Start Rate')),
-    statRow('Luck Rate', getStat(me,'regularSeason','Luck Rate'), getStat(opp,'regularSeason','Luck Rate')),
+    statRow('Start Rate', getStat(me,'regularSeason','Start Rate'), getStat(opp,'regularSeason','Start Rate'), false, 'at or above league avg'),
+    statRow('Luck Rate', getStat(me,'regularSeason','Luck Rate'), getStat(opp,'regularSeason','Luck Rate'), false, 'win % above/below expected'),
   ];
 
   const poRows = [
@@ -1838,10 +1918,10 @@ function openCompare() {
     const aHighlight = cA > cB ? 'color:#22c55e' : cA === cB && cA > 0 ? 'color:var(--gold)' : 'color:#333';
     const bHighlight = cB > cA ? 'color:#60a5fa' : cA === cB && cB > 0 ? 'color:var(--gold)' : 'color:#333';
     const aImgs = cA > 0
-      ? Array(cA).fill(0).map(() => `<img class="cmp-trophy-img" src="../images/${img}" alt="${name}">`).join('') + `<span class="cmp-trophy-count" style="${aHighlight}">${cA}x</span>`
+      ? Array(cA).fill(0).map(() => `<img class="cmp-trophy-img" src="../images/${img}" alt="${name}">`).join('')
       : `<img class="cmp-trophy-img cmp-locked" src="../images/${img}" alt="${name}">`;
     const bImgs = cB > 0
-      ? `<span class="cmp-trophy-count" style="${bHighlight}">${cB}x</span>` + Array(cB).fill(0).map(() => `<img class="cmp-trophy-img" src="../images/${img}" alt="${name}">`).join('')
+      ? Array(cB).fill(0).map(() => `<img class="cmp-trophy-img" src="../images/${img}" alt="${name}">`).join('')
       : `<img class="cmp-trophy-img cmp-locked" src="../images/${img}" alt="${name}">`;
     return `<div class="cmp-trophy-row">
       <div class="cmp-trophy-imgs-a">${aImgs}</div>
@@ -1914,7 +1994,7 @@ function openCompare() {
   setTimeout(() => {
     const psA = getChartArr(me, 'pointShare', 'values');
     const psB = getChartArr(opp, 'pointShare', 'values');
-    lineChart('cmpPsChart', psA, psB, me.name, opp.name, {min:4, max:11, ticks:{...cmpScaleY.ticks, callback:v=>v+'%'}}, v => v != null ? v.toFixed(1)+'%' : '');
+    lineChart('cmpPsChart', psA, psB, me.name, opp.name, {min:5, max:10, ticks:{...cmpScaleY.ticks, callback:v=>v+'%'}}, v => v != null ? v.toFixed(2)+'%' : '');
 
     const winsA = getChartArr(me, 'winsAndFinish', 'wins');
     const winsB = getChartArr(opp, 'winsAndFinish', 'wins');
@@ -1929,8 +2009,6 @@ function openCompare() {
     barChart('cmpPrestigeChart', prA, prB, me.name, opp.name, v => v+' pts');
   }, 50);
 
-  document.getElementById('compareOverlay').classList.add('open');
-  document.body.style.overflow = 'hidden';
 }
 
 function closeCompare() {
@@ -1945,17 +2023,13 @@ document.addEventListener('click', function(e) {
 // ── CHARTS ──
 function initCharts(p) {
   const c = p.charts;
-  const labels = c.winsAndFinish.years.map(y => "'" + String(y).slice(2));
-  const wfWins = c.winsAndFinish.wins;
-  const wfFinish = c.winsAndFinish.finish;
-  const psRaw = c.pointShare.values;
-  const psData = psRaw.map(v => {
-    if (v == null) return null;
-    const num = parseFloat(v);
-    return parseFloat((num < 1 ? num * 100 : num).toFixed(2));
-  });
-  const wData = c.winnings.values;
-  const prData = c.prestigePerSeason.values;
+  const labels = [...c.winsAndFinish.years].reverse().map(y => "'" + String(y).slice(2));
+  const wfWins = [...c.winsAndFinish.wins].reverse();
+  const wfFinish = [...c.winsAndFinish.finish].reverse();
+  const psRaw = [...c.pointShare.values].reverse();
+  const psData = psRaw.map(v => v == null ? null : parseFloat((v * 100).toFixed(2)));
+  const wData = [...c.winnings.values].reverse();
+  const prData = [...c.prestigePerSeason.values].reverse();
   const prAvg = (() => {
     const valid = prData.filter(v => v != null && v > 0);
     return valid.length ? parseFloat((valid.reduce((a,b) => a+b, 0) / valid.length).toFixed(1)) : 0;
@@ -2070,7 +2144,7 @@ function initCharts(p) {
     },
     options: {
       animation: animOpts, interaction: interactionOpts, responsive: true, layout: { padding: { top: 12 } },
-      plugins: { legend: { display: false }, tooltip: { ...tooltipDefaults, callbacks: { title: i => i[0].label, label: i => { const v = i.parsed.y; return '$' + (Number.isInteger(v) ? v.toLocaleString() : v.toLocaleString('en-US', {minimumFractionDigits:2, maximumFractionDigits:2})); } } } },
+      plugins: { legend: { display: false }, tooltip: { ...tooltipDefaults, callbacks: { title: i => i[0].label, label: i => '$' + i.parsed.y.toLocaleString() } } },
       scales: { x: scaleX, y: { ...scaleY, ticks: { ...scaleY.ticks, stepSize: 50, callback: v => '$' + v } } }
     }
   }));
