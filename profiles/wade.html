@@ -787,6 +787,7 @@
     object-fit: contain;
     flex-shrink: 0;
     display: block;
+    filter: drop-shadow(0 0 6px rgba(201,168,76,0.85));
   }
 
   .trophy-lock {
@@ -1217,6 +1218,7 @@
     height: 52px;
     width: auto;
     object-fit: contain;
+    filter: drop-shadow(0 0 5px rgba(201,168,76,0.85));
   }
 
   .cmp-trophy-img.cmp-locked {
@@ -1296,18 +1298,6 @@
 <script>
 const OWNER_ID = 'wade';
 
-async function loadProfile() {
-  try {
-    const res = await fetch('../profiles-data.json?v=' + Date.now());
-    const data = await res.json();
-    const p = data.owners[OWNER_ID];
-    if (!p) throw new Error('Owner not found');
-    renderProfile(p);
-  } catch (e) {
-    document.getElementById('loadingState').textContent = 'Failed to load profile.';
-    console.error(e);
-  }
-}
 
 function renderProfile(p) {
   const photoHTML = p.photo
@@ -1356,17 +1346,27 @@ function renderProfile(p) {
     'Net Earnings': 'Total winnings minus entry fees',
     'Boom Rate': '% of games scoring 120% or more of league average',
     'Start Rate': '% of games scoring at or above league average',
-    'Luck Rate': 'Win % above/below expected'
+    'Luck Rate': 'Win % above/below expected',
+    'Point Share': '% of total league points scored since joining the league'
   };
   const statNameOverrides = {
     'Weeks at #1': 'Weeks at #1 in Power Score'
   };
 
+  const WIN_PCT_STATS = ['Win %'];
+  const AVG_FINISH_STATS = ['Avg Finish'];
+
   function renderStatBucket(stats) {
     return stats.map(s => {
       const explainer = explainerOverrides[s.stat] || s.explainer;
       let displayVal = (s.value == null || s.value === 'null') ? '—' : s.value;
-      if (s.isEarnings && displayVal !== '—') {
+      if (WIN_PCT_STATS.includes(s.stat) && displayVal !== '—') {
+        const num = parseFloat(displayVal);
+        if (!isNaN(num)) displayVal = num.toFixed(3);
+      } else if (AVG_FINISH_STATS.includes(s.stat) && displayVal !== '—') {
+        const num = parseFloat(displayVal);
+        if (!isNaN(num)) displayVal = num.toFixed(1);
+      } else if (s.isEarnings && displayVal !== '—') {
         const num = parseFloat(String(displayVal).replace(/[^\d.-]/g, ''));
         if (!isNaN(num)) {
           const sign = num < 0 ? '-' : '';
@@ -1680,30 +1680,36 @@ function renderProfile(p) {
   initCharts(p);
 }
 
-loadProfile();
-
-// ── COMPARE ──
+// ── SINGLE FETCH FOR BOTH PROFILE AND COMPARE ──
 let allOwners = {};
 let cmpCharts = [];
-
 let allOwnersReady = false;
 let allOwnersPromise = null;
 
-async function loadAllOwners() {
+async function loadAll() {
   try {
     const res = await fetch('../profiles-data.json?v=' + Date.now());
     const data = await res.json();
     allOwners = data.owners;
     allOwnersReady = true;
-    // Populate main page dropdown now that owners are loaded
+
+    // Render profile
+    const p = allOwners[OWNER_ID];
+    if (!p) throw new Error('Owner not found');
+    renderProfile(p);
+
+    // Populate compare dropdown now that data is ready
     const sel = document.getElementById('compareSelect');
     if (sel) {
       sel.innerHTML = '<option value="">— Pick an Owner —</option>' +
         Object.keys(allOwners).filter(k => k !== OWNER_ID).map(k => `<option value="${k}">${allOwners[k].name}</option>`).join('');
     }
-  } catch(e) { console.error('Could not load owners for compare', e); }
+  } catch(e) {
+    document.getElementById('loadingState').textContent = 'Failed to load profile.';
+    console.error(e);
+  }
 }
-allOwnersPromise = loadAllOwners();
+allOwnersPromise = loadAll();
 
 let cmpOwnerA = OWNER_ID;
 let cmpOwnerB = null;
@@ -1778,6 +1784,12 @@ function renderCompare(ownerAId, ownerBId) {
     }
     if (label === 'Power Score' || label === 'Career High') {
       return parseFloat(v).toFixed(2);
+    }
+    if (label === 'Win %' || label === 'Playoff Win %') {
+      return parseFloat(v).toFixed(3);
+    }
+    if (label === 'Avg Finish') {
+      return parseFloat(v).toFixed(1);
     }
     if (typeof v === 'number' && v >= 1000) {
       return v.toLocaleString('en-US');
@@ -1854,7 +1866,7 @@ function renderCompare(ownerAId, ownerBId) {
     statRow('Win %', getStat(me,'regularSeason','Win %'), getStat(opp,'regularSeason','Win %')),
     statRow('Avg Finish', getStat(me,'regularSeason','Avg Finish'), getStat(opp,'regularSeason','Avg Finish'), true, 'lower is better'),
     statRow('Pts / Game', getStat(me,'regularSeason','Pts Per Game'), getStat(opp,'regularSeason','Pts Per Game')),
-    statRow('Point Share', getStat(me,'regularSeason','Point Share'), getStat(opp,'regularSeason','Point Share'), false, '% of total league points scored'),
+    statRow('Point Share', getStat(me,'regularSeason','Point Share'), getStat(opp,'regularSeason','Point Share'), false, '% of total league points scored since joining the league'),
     statRow('Career High', getStat(me,'regularSeason','Career High Score'), getStat(opp,'regularSeason','Career High Score')),
     statRow('Weekly High Scores', getStat(me,'regularSeason','Weekly High Scores'), getStat(opp,'regularSeason','Weekly High Scores')),
     statRow('Power Score', getStat(me,'regularSeason','Power Score'), getStat(opp,'regularSeason','Power Score')),
