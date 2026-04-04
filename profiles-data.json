@@ -75,7 +75,7 @@
           },
           {
             "stat": "Net Earnings",
-            "value": 729.5,
+            "value": "$730",
             "rank": "#2",
             "explainer": "Total winnings minus entry fees",
             "isEarnings": true
@@ -154,14 +154,14 @@
           },
           {
             "stat": "Boom Rate",
-            "value": "31.06%",
+            "value": "31.1%",
             "rank": "#2",
             "explainer": "% of games scoring 120% or more of league average",
             "isEarnings": false
           },
           {
             "stat": "Start Rate",
-            "value": "60.87%",
+            "value": "60.9%",
             "rank": "#2",
             "explainer": "% of games scoring at or above league average",
             "isEarnings": false
@@ -302,18 +302,18 @@
             2026
           ],
           "values": [
-            75.0,
-            0.0,
-            0.0,
-            10.0,
-            330.0,
-            210.0,
-            75.0,
+            75,
+            0,
+            0,
+            10,
+            330,
+            210,
+            75,
             107.5,
-            15.0,
-            317.0,
-            235.0,
-            220.0,
+            15,
+            317,
+            235,
+            220,
             null
           ]
         },
@@ -655,7 +655,7 @@
           },
           {
             "stat": "Net Earnings",
-            "value": 320.5,
+            "value": "$320",
             "rank": "#3",
             "explainer": "Total winnings minus entry fees",
             "isEarnings": true
@@ -741,7 +741,7 @@
           },
           {
             "stat": "Start Rate",
-            "value": "53.38%",
+            "value": "53.4%",
             "rank": "#4",
             "explainer": "% of games scoring at or above league average",
             "isEarnings": false
@@ -883,17 +883,17 @@
           ],
           "values": [
             null,
-            0.0,
-            20.0,
-            370.0,
-            20.0,
-            10.0,
-            0.0,
-            400.0,
+            0,
+            20,
+            370,
+            20,
+            10,
+            0,
+            400,
             117.5,
-            155.0,
-            20.0,
-            383.0,
+            155,
+            20,
+            383,
             null
           ]
         },
@@ -1220,7 +1220,7 @@
           },
           {
             "stat": "Net Earnings",
-            "value": 133.0,
+            "value": "$133",
             "rank": "#5",
             "explainer": "Total winnings minus entry fees",
             "isEarnings": true
@@ -1299,14 +1299,14 @@
           },
           {
             "stat": "Boom Rate",
-            "value": "21.48%",
+            "value": "21.5%",
             "rank": "#6",
             "explainer": "% of games scoring 120% or more of league average",
             "isEarnings": false
           },
           {
             "stat": "Start Rate",
-            "value": "48.89%",
+            "value": "48.9%",
             "rank": "#6",
             "explainer": "% of games scoring at or above league average",
             "isEarnings": false
@@ -1449,16 +1449,16 @@
           "values": [
             null,
             null,
-            10.0,
-            50.0,
-            0.0,
-            215.0,
-            100.0,
-            20.0,
-            10.0,
-            450.0,
-            5.0,
-            33.0,
+            10,
+            50,
+            0,
+            215,
+            100,
+            20,
+            10,
+            450,
+            5,
+            33,
             null
           ]
         },
@@ -1766,7 +1766,7 @@
           },
           {
             "stat": "Net Earnings",
-            "value": -257.0,
+            "value": "-$257",
             "rank": "#8",
             "explainer": "Total winnings minus entry fees",
             "isEarnings": true
@@ -1845,14 +1845,14 @@
           },
           {
             "stat": "Boom Rate",
-            "value": "23.21%",
+            "value": "23.2%",
             "rank": "#5",
             "explainer": "% of games scoring 120% or more of league average",
             "isEarnings": false
           },
           {
             "stat": "Start Rate",
-            "value": "53.57%",
+            "value": "53.6%",
             "rank": "#3",
             "explainer": "% of games scoring at or above league average",
             "isEarnings": false
@@ -2001,10 +2001,10 @@
             null,
             null,
             null,
-            130.0,
-            10.0,
-            10.0,
-            0.0,
+            130,
+            10,
+            10,
+            0,
             null
           ]
         },
@@ -2111,71 +2111,122 @@
       "trophies": [
         {
           "name": "League Champion",
-          "count": 0
+          "emoji": "🏆",
+          "image": "../images/League Champion.png",
+          "count": 0,
+          "won": false
         },
         {
           "name": "2nd Place",
-          "count": 0
+          "emoji": "🥈",
+          "image": "../images/2nd Place.png",
+          "count": 0,
+          "won": false
         },
         {
           "name": "3rd Place",
-          "count": 0
+          "emoji": "🥉",
+          "image": "../images/3rd Place.png",
+          "count": 0,
+          "won": false
         },
         {
           "name": "Regular Season Champion",
-          "count": 1
+          "emoji": "📅",
+          "image": "../images/Regular Season Champion.png",
+          "count": 1,
+          "won": true
         },
         {
           "name": "Owner of the Year",
-          "count": 0
+          "emoji": "👑",
+          "image": "../images/Owner of the Year.png",
+          "count": 0,
+          "won": false
         },
         {
           "name": "AVL Memorial Cup",
-          "count": 0
+          "emoji": "🕯️",
+          "image": "../images/AVL Memorial Cup.png",
+          "count": 0,
+          "won": false
         },
         {
           "name": "Rivalry Week",
-          "count": 0
+          "emoji": "⚔️",
+          "image": "../images/Rivalry Week.png",
+          "count": 0,
+          "won": false
         },
         {
           "name": "Hottest Team in Sports Bowl",
-          "count": 0
+          "emoji": "🔥",
+          "image": "../images/Hottest Team in Sports Bowl.png",
+          "count": 0,
+          "won": false
         },
         {
           "name": "Hung the * Chain",
-          "count": 0
+          "emoji": "⭐",
+          "image": "../images/Hung the Star Chain.png",
+          "count": 0,
+          "won": false
         },
         {
           "name": "Intercontinental Champ",
-          "count": 1
+          "emoji": "🌍",
+          "image": "../images/Intercontinental Champ.png",
+          "count": 1,
+          "won": true
         },
         {
           "name": "Somehow the Champion",
-          "count": 0
+          "emoji": "🎲",
+          "image": "../images/Somehow the Champion.png",
+          "count": 0,
+          "won": false
         },
         {
           "name": "Survivor King",
-          "count": 0
+          "emoji": "🌴",
+          "image": "../images/Survivor King.png",
+          "count": 0,
+          "won": false
         },
         {
           "name": "Degen Bowl",
-          "count": 0
+          "emoji": "🎰",
+          "image": "../images/Degen Bowl.png",
+          "count": 0,
+          "won": false
         },
         {
           "name": "Dad Bod's Preseason Rankings",
-          "count": 0
+          "emoji": "📊",
+          "image": "../images/Dad Bod's Preseason Rankings.png",
+          "count": 0,
+          "won": false
         },
         {
           "name": "JopO or KG Pick 'Em",
-          "count": 0
+          "emoji": "🎯",
+          "image": "../images/JopO or KG Pick Em.png",
+          "count": 0,
+          "won": false
         },
         {
           "name": "Da Choppaaa Champ",
-          "count": 0
+          "emoji": "🚁",
+          "image": "../images/Da Choppaaa Champ.png",
+          "count": 0,
+          "won": false
         },
         {
           "name": "Bronze Franz",
-          "count": 0
+          "emoji": "🥉",
+          "image": "../images/Bronze Franz.png",
+          "count": 0,
+          "won": false
         }
       ],
       "headToHead": {}
@@ -2234,7 +2285,7 @@
           },
           {
             "stat": "Net Earnings",
-            "value": -319.0,
+            "value": "-$319",
             "rank": "#9",
             "explainer": "Total winnings minus entry fees",
             "isEarnings": true
@@ -2313,14 +2364,14 @@
           },
           {
             "stat": "Boom Rate",
-            "value": "19.88%",
+            "value": "19.9%",
             "rank": "#8",
             "explainer": "% of games scoring 120% or more of league average",
             "isEarnings": false
           },
           {
             "stat": "Start Rate",
-            "value": "47.83%",
+            "value": "47.8%",
             "rank": "#7",
             "explainer": "% of games scoring at or above league average",
             "isEarnings": false
@@ -2461,18 +2512,18 @@
             2026
           ],
           "values": [
-            0.0,
-            0.0,
-            200.0,
-            0.0,
-            0.0,
-            40.0,
-            0.0,
-            10.0,
-            20.0,
-            10.0,
-            45.0,
-            145.0,
+            0,
+            0,
+            200,
+            0,
+            0,
+            40,
+            0,
+            10,
+            20,
+            10,
+            45,
+            145,
             null
           ]
         },
@@ -2683,71 +2734,122 @@
       "trophies": [
         {
           "name": "League Champion",
-          "count": 1
+          "emoji": "🏆",
+          "image": "../images/League Champion.png",
+          "count": 1,
+          "won": true
         },
         {
           "name": "2nd Place",
-          "count": 0
+          "emoji": "🥈",
+          "image": "../images/2nd Place.png",
+          "count": 0,
+          "won": false
         },
         {
           "name": "3rd Place",
-          "count": 0
+          "emoji": "🥉",
+          "image": "../images/3rd Place.png",
+          "count": 0,
+          "won": false
         },
         {
           "name": "Regular Season Champion",
-          "count": 0
+          "emoji": "📅",
+          "image": "../images/Regular Season Champion.png",
+          "count": 0,
+          "won": false
         },
         {
           "name": "Owner of the Year",
-          "count": 0
+          "emoji": "👑",
+          "image": "../images/Owner of the Year.png",
+          "count": 0,
+          "won": false
         },
         {
           "name": "AVL Memorial Cup",
-          "count": 0
+          "emoji": "🕯️",
+          "image": "../images/AVL Memorial Cup.png",
+          "count": 0,
+          "won": false
         },
         {
           "name": "Rivalry Week",
-          "count": 0
+          "emoji": "⚔️",
+          "image": "../images/Rivalry Week.png",
+          "count": 0,
+          "won": false
         },
         {
           "name": "Hottest Team in Sports Bowl",
-          "count": 3
+          "emoji": "🔥",
+          "image": "../images/Hottest Team in Sports Bowl.png",
+          "count": 3,
+          "won": true
         },
         {
           "name": "Hung the * Chain",
-          "count": 0
+          "emoji": "⭐",
+          "image": "../images/Hung the Star Chain.png",
+          "count": 0,
+          "won": false
         },
         {
           "name": "Intercontinental Champ",
-          "count": 0
+          "emoji": "🌍",
+          "image": "../images/Intercontinental Champ.png",
+          "count": 0,
+          "won": false
         },
         {
           "name": "Somehow the Champion",
-          "count": 0
+          "emoji": "🎲",
+          "image": "../images/Somehow the Champion.png",
+          "count": 0,
+          "won": false
         },
         {
           "name": "Survivor King",
-          "count": 0
+          "emoji": "🌴",
+          "image": "../images/Survivor King.png",
+          "count": 0,
+          "won": false
         },
         {
           "name": "Degen Bowl",
-          "count": 0
+          "emoji": "🎰",
+          "image": "../images/Degen Bowl.png",
+          "count": 0,
+          "won": false
         },
         {
           "name": "Dad Bod's Preseason Rankings",
-          "count": 0
+          "emoji": "📊",
+          "image": "../images/Dad Bod's Preseason Rankings.png",
+          "count": 0,
+          "won": false
         },
         {
           "name": "JopO or KG Pick 'Em",
-          "count": 0
+          "emoji": "🎯",
+          "image": "../images/JopO or KG Pick Em.png",
+          "count": 0,
+          "won": false
         },
         {
           "name": "Da Choppaaa Champ",
-          "count": 0
+          "emoji": "🚁",
+          "image": "../images/Da Choppaaa Champ.png",
+          "count": 0,
+          "won": false
         },
         {
           "name": "Bronze Franz",
-          "count": 1
+          "emoji": "🥉",
+          "image": "../images/Bronze Franz.png",
+          "count": 1,
+          "won": true
         }
       ],
       "headToHead": {}
@@ -2806,7 +2908,7 @@
           },
           {
             "stat": "Net Earnings",
-            "value": -3.49,
+            "value": "-$3",
             "rank": "#6",
             "explainer": "Total winnings minus entry fees",
             "isEarnings": true
@@ -2892,7 +2994,7 @@
           },
           {
             "stat": "Start Rate",
-            "value": "49.07%",
+            "value": "49.1%",
             "rank": "#5",
             "explainer": "% of games scoring at or above league average",
             "isEarnings": false
@@ -3033,18 +3135,18 @@
             2026
           ],
           "values": [
-            40.0,
-            0.0,
-            200.0,
-            10.0,
-            20.0,
-            0.0,
-            10.0,
-            15.0,
+            40,
+            0,
+            200,
+            10,
+            20,
+            0,
+            10,
+            15,
             316.51,
-            20.0,
-            135.0,
-            35.0,
+            20,
+            135,
+            35,
             null
           ]
         },
@@ -3255,71 +3357,122 @@
       "trophies": [
         {
           "name": "League Champion",
-          "count": 0
+          "emoji": "🏆",
+          "image": "../images/League Champion.png",
+          "count": 0,
+          "won": false
         },
         {
           "name": "2nd Place",
-          "count": 2
+          "emoji": "🥈",
+          "image": "../images/2nd Place.png",
+          "count": 2,
+          "won": true
         },
         {
           "name": "3rd Place",
-          "count": 2
+          "emoji": "🥉",
+          "image": "../images/3rd Place.png",
+          "count": 2,
+          "won": true
         },
         {
           "name": "Regular Season Champion",
-          "count": 1
+          "emoji": "📅",
+          "image": "../images/Regular Season Champion.png",
+          "count": 1,
+          "won": true
         },
         {
           "name": "Owner of the Year",
-          "count": 1
+          "emoji": "👑",
+          "image": "../images/Owner of the Year.png",
+          "count": 1,
+          "won": true
         },
         {
           "name": "AVL Memorial Cup",
-          "count": 0
+          "emoji": "🕯️",
+          "image": "../images/AVL Memorial Cup.png",
+          "count": 0,
+          "won": false
         },
         {
           "name": "Rivalry Week",
-          "count": 0
+          "emoji": "⚔️",
+          "image": "../images/Rivalry Week.png",
+          "count": 0,
+          "won": false
         },
         {
           "name": "Hottest Team in Sports Bowl",
-          "count": 0
+          "emoji": "🔥",
+          "image": "../images/Hottest Team in Sports Bowl.png",
+          "count": 0,
+          "won": false
         },
         {
           "name": "Hung the * Chain",
-          "count": 0
+          "emoji": "⭐",
+          "image": "../images/Hung the Star Chain.png",
+          "count": 0,
+          "won": false
         },
         {
           "name": "Intercontinental Champ",
-          "count": 0
+          "emoji": "🌍",
+          "image": "../images/Intercontinental Champ.png",
+          "count": 0,
+          "won": false
         },
         {
           "name": "Somehow the Champion",
-          "count": 1
+          "emoji": "🎲",
+          "image": "../images/Somehow the Champion.png",
+          "count": 1,
+          "won": true
         },
         {
           "name": "Survivor King",
-          "count": 0
+          "emoji": "🌴",
+          "image": "../images/Survivor King.png",
+          "count": 0,
+          "won": false
         },
         {
           "name": "Degen Bowl",
-          "count": 1
+          "emoji": "🎰",
+          "image": "../images/Degen Bowl.png",
+          "count": 1,
+          "won": true
         },
         {
           "name": "Dad Bod's Preseason Rankings",
-          "count": 0
+          "emoji": "📊",
+          "image": "../images/Dad Bod's Preseason Rankings.png",
+          "count": 0,
+          "won": false
         },
         {
           "name": "JopO or KG Pick 'Em",
-          "count": 0
+          "emoji": "🎯",
+          "image": "../images/JopO or KG Pick Em.png",
+          "count": 0,
+          "won": false
         },
         {
           "name": "Da Choppaaa Champ",
-          "count": 0
+          "emoji": "🚁",
+          "image": "../images/Da Choppaaa Champ.png",
+          "count": 0,
+          "won": false
         },
         {
           "name": "Bronze Franz",
-          "count": 2
+          "emoji": "🥉",
+          "image": "../images/Bronze Franz.png",
+          "count": 2,
+          "won": true
         }
       ],
       "headToHead": {}
@@ -3378,7 +3531,7 @@
           },
           {
             "stat": "Net Earnings",
-            "value": -251.0,
+            "value": "-$251",
             "rank": "#7",
             "explainer": "Total winnings minus entry fees",
             "isEarnings": true
@@ -3457,14 +3610,14 @@
           },
           {
             "stat": "Boom Rate",
-            "value": "16.67%",
+            "value": "16.7%",
             "rank": "#10",
             "explainer": "% of games scoring 120% or more of league average",
             "isEarnings": false
           },
           {
             "stat": "Start Rate",
-            "value": "44.79%",
+            "value": "44.8%",
             "rank": "#9",
             "explainer": "% of games scoring at or above league average",
             "isEarnings": false
@@ -3610,13 +3763,13 @@
             null,
             null,
             null,
-            80.0,
-            10.0,
-            65.0,
-            5.0,
-            84.0,
-            5.0,
-            95.0,
+            80,
+            10,
+            65,
+            5,
+            84,
+            5,
+            95,
             null
           ]
         },
@@ -3885,7 +4038,7 @@
           },
           {
             "stat": "Net Earnings",
-            "value": 1035.0,
+            "value": "$1,035",
             "rank": "#1",
             "explainer": "Total winnings minus entry fees",
             "isEarnings": true
@@ -3964,14 +4117,14 @@
           },
           {
             "stat": "Boom Rate",
-            "value": "32.11%",
+            "value": "32.1%",
             "rank": "#1",
             "explainer": "% of games scoring 120% or more of league average",
             "isEarnings": false
           },
           {
             "stat": "Start Rate",
-            "value": "70.64%",
+            "value": "70.6%",
             "rank": "#1",
             "explainer": "% of games scoring at or above league average",
             "isEarnings": false
@@ -4116,14 +4269,14 @@
             null,
             null,
             null,
-            215.0,
-            20.0,
-            140.0,
+            215,
+            20,
+            140,
             107.5,
-            475.0,
-            140.0,
+            475,
+            140,
             577.5,
-            35.0,
+            35,
             null
           ]
         },
@@ -4821,7 +4974,7 @@
           },
           {
             "stat": "Net Earnings",
-            "value": -445.0,
+            "value": "-$445",
             "rank": "#12",
             "explainer": "Total winnings minus entry fees",
             "isEarnings": true
@@ -4900,14 +5053,14 @@
           },
           {
             "stat": "Boom Rate",
-            "value": "17.57%",
+            "value": "17.6%",
             "rank": "#9",
             "explainer": "% of games scoring 120% or more of league average",
             "isEarnings": false
           },
           {
             "stat": "Start Rate",
-            "value": "44.59%",
+            "value": "44.6%",
             "rank": "#10",
             "explainer": "% of games scoring at or above league average",
             "isEarnings": false
@@ -5049,17 +5202,17 @@
           ],
           "values": [
             null,
-            0.0,
-            20.0,
-            0.0,
-            0.0,
-            40.0,
-            10.0,
-            65.0,
-            5.0,
-            90.0,
-            0.0,
-            164.0,
+            0,
+            20,
+            0,
+            0,
+            40,
+            10,
+            65,
+            5,
+            90,
+            0,
+            164,
             null
           ]
         },
@@ -5380,7 +5533,7 @@
           },
           {
             "stat": "Net Earnings",
-            "value": 225.0,
+            "value": "$225",
             "rank": "#4",
             "explainer": "Total winnings minus entry fees",
             "isEarnings": true
@@ -5466,7 +5619,7 @@
           },
           {
             "stat": "Start Rate",
-            "value": "46.58%",
+            "value": "46.6%",
             "rank": "#8",
             "explainer": "% of games scoring at or above league average",
             "isEarnings": false
@@ -5607,18 +5760,18 @@
             2026
           ],
           "values": [
-            0.0,
-            0.0,
-            0.0,
-            10.0,
-            0.0,
-            0.0,
-            520.0,
+            0,
+            0,
+            0,
+            10,
+            0,
+            0,
+            520,
             112.5,
-            165.0,
-            0.0,
+            165,
+            0,
             187.5,
-            209.0,
+            209,
             null
           ]
         },
@@ -5952,7 +6105,7 @@
           },
           {
             "stat": "Net Earnings",
-            "value": -530.0,
+            "value": "-$530",
             "rank": "#13",
             "explainer": "Total winnings minus entry fees",
             "isEarnings": true
@@ -6031,14 +6184,14 @@
           },
           {
             "stat": "Boom Rate",
-            "value": "14.91%",
+            "value": "14.9%",
             "rank": "#11",
             "explainer": "% of games scoring 120% or more of league average",
             "isEarnings": false
           },
           {
             "stat": "Start Rate",
-            "value": "37.89%",
+            "value": "37.9%",
             "rank": "#13",
             "explainer": "% of games scoring at or above league average",
             "isEarnings": false
@@ -6179,18 +6332,18 @@
             2026
           ],
           "values": [
-            0.0,
-            0.0,
-            40.0,
-            0.0,
-            20.0,
-            0.0,
-            55.0,
-            10.0,
-            55.0,
-            104.0,
-            5.0,
-            20.0,
+            0,
+            0,
+            40,
+            0,
+            20,
+            0,
+            55,
+            10,
+            55,
+            104,
+            5,
+            20,
             null
           ]
         },
@@ -6524,7 +6677,7 @@
           },
           {
             "stat": "Net Earnings",
-            "value": -358.5,
+            "value": "-$358",
             "rank": "#10",
             "explainer": "Total winnings minus entry fees",
             "isEarnings": true
@@ -6603,14 +6756,14 @@
           },
           {
             "stat": "Boom Rate",
-            "value": "14.46%",
+            "value": "14.5%",
             "rank": "#12",
             "explainer": "% of games scoring 120% or more of league average",
             "isEarnings": false
           },
           {
             "stat": "Start Rate",
-            "value": "38.55%",
+            "value": "38.6%",
             "rank": "#12",
             "explainer": "% of games scoring at or above league average",
             "isEarnings": false
@@ -6757,12 +6910,12 @@
             null,
             null,
             null,
-            0.0,
-            25.0,
+            0,
+            25,
             117.5,
-            10.0,
-            75.0,
-            43.0,
+            10,
+            75,
+            43,
             null
           ]
         },
@@ -7018,7 +7171,7 @@
           },
           {
             "stat": "Net Earnings",
-            "value": -407.5,
+            "value": "-$408",
             "rank": "#11",
             "explainer": "Total winnings minus entry fees",
             "isEarnings": true
@@ -7097,14 +7250,14 @@
           },
           {
             "stat": "Boom Rate",
-            "value": "13.25%",
+            "value": "13.3%",
             "rank": "#13",
             "explainer": "% of games scoring 120% or more of league average",
             "isEarnings": false
           },
           {
             "stat": "Start Rate",
-            "value": "39.76%",
+            "value": "39.8%",
             "rank": "#11",
             "explainer": "% of games scoring at or above league average",
             "isEarnings": false
@@ -7251,12 +7404,12 @@
             null,
             null,
             null,
-            0.0,
+            0,
             102.5,
-            0.0,
-            10.0,
-            55.0,
-            55.0,
+            0,
+            10,
+            55,
+            55,
             null
           ]
         },
