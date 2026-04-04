@@ -1333,14 +1333,14 @@ function renderProfile(p) {
     : '—';
   const ownedByCard = `<div class="fact-card"><div class="fact-card-label">Owned By</div><div class="fact-card-value">${ownedByVal}</div></div>`;
 
-  const nextGameHTML = nextGame && nextGame.opponent ? `
+  const nextGameHTML = `
       <div class="live-last-game" style="margin-top:10px; padding-top:10px; border-top:1px solid #222;">
         <span class="last-game-label">Next Game</span>
         <div class="last-game-result">
-          <div class="last-game-detail">vs. ${d(nextGame.opponent)}</div>
+          <div class="last-game-detail">vs. ${d(nextGame && nextGame.opponent ? nextGame.opponent : null)}</div>
         </div>
-        <div class="last-game-record">Lifetime ${d(nextGame.lifetimeVsOpponent)}</div>
-      </div>` : '';
+        <div class="last-game-record">Lifetime ${d(nextGame && nextGame.lifetimeVsOpponent ? nextGame.lifetimeVsOpponent : null)}</div>
+      </div>`;
 
   const explainerOverrides = {
     'Net Earnings': 'Total winnings minus entry fees',
