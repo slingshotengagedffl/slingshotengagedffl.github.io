@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Daniel "Naughty Man" — Slingshot Engaged</title>
+<title>Jack "The Commish" — Slingshot Engaged</title>
 <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Barlow+Condensed:wght@400;600;700&family=Barlow:ital,wght@0,400;0,500;1,400&display=swap" rel="stylesheet">
 <style>
   :root {
@@ -1275,8 +1275,8 @@
     </div>
     <div class="cmp-player-row" id="cmpPlayerRow">
       <div class="cmp-player cmp-player-a">
-        <div class="cmp-player-name" id="cmpNameA">DANIEL</div>
-        <div class="cmp-player-nick" id="cmpNickA">"Naughty Man"</div>
+        <div class="cmp-player-name" id="cmpNameA">JACK</div>
+        <div class="cmp-player-nick" id="cmpNickA">"The Commish"</div>
         <div class="cmp-player-photo-wrap"><img id="cmpPhotoA" class="cmp-player-photo" src="" alt="" onerror="this.style.display='none'"></div>
         <select class="cmp-owner-select" id="cmpSelectA" onchange="swapOwner('a', this.value)"></select>
       </div>
@@ -2101,8 +2101,8 @@ function renderCompare(ownerAId, ownerBId) {
     ], {min:0, max:14, ticks:{...cmpScaleY.ticks, stepSize:2, color:'#999'}}, v => v + ' wins');
 
     // Point Share with league avg line
-    const psA = getChartArr(me, 'pointShare', 'values');
-    const psB = getChartArr(opp, 'pointShare', 'values');
+    const psA = getChartArr(me, 'pointShare', 'values').map(v => v == null ? null : parseFloat((v < 1 ? v * 100 : v).toFixed(2)));
+    const psB = getChartArr(opp, 'pointShare', 'values').map(v => v == null ? null : parseFloat((v < 1 ? v * 100 : v).toFixed(2)));
     const allPsYears = chartLabels.map((_, i) => psA[i] != null || psB[i] != null ? PS_LEAGUE_AVG : null);
     buildLineChart('cmpPsChart', [
       { label: me.name, data: psA, color: '#22c55e' },

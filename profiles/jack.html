@@ -2101,8 +2101,8 @@ function renderCompare(ownerAId, ownerBId) {
     ], {min:0, max:14, ticks:{...cmpScaleY.ticks, stepSize:2, color:'#999'}}, v => v + ' wins');
 
     // Point Share with league avg line
-    const psA = getChartArr(me, 'pointShare', 'values');
-    const psB = getChartArr(opp, 'pointShare', 'values');
+    const psA = getChartArr(me, 'pointShare', 'values').map(v => v == null ? null : parseFloat((v < 1 ? v * 100 : v).toFixed(2)));
+    const psB = getChartArr(opp, 'pointShare', 'values').map(v => v == null ? null : parseFloat((v < 1 ? v * 100 : v).toFixed(2)));
     const allPsYears = chartLabels.map((_, i) => psA[i] != null || psB[i] != null ? PS_LEAGUE_AVG : null);
     buildLineChart('cmpPsChart', [
       { label: me.name, data: psA, color: '#22c55e' },
