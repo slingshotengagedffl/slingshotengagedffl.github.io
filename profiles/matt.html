@@ -1757,11 +1757,11 @@ function renderCompare(ownerAId, ownerBId) {
   // Update names
   const elNameA = document.getElementById('cmpNameA');
   elNameA.textContent = me.name.toUpperCase();
-  elNameA.href = `../${ownerAId}.html`;
+  elNameA.href = `${ownerAId}.html`;
   document.getElementById('cmpNickA').textContent = '"' + (me.nickname || '') + '"';
   const elNameB = document.getElementById('cmpNameB');
   elNameB.textContent = opp.name.toUpperCase();
-  elNameB.href = `../${ownerBId}.html`;
+  elNameB.href = `${ownerBId}.html`;
   document.getElementById('cmpNickB').textContent = '"' + (opp.nickname || '') + '"';
 
   // Update photos
