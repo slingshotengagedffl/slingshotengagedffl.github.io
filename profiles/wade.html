@@ -1029,7 +1029,7 @@
     display: block;
   }
 
-  .cmp-player-a .cmp-player-photo { border: 2px solid #22c55e; }
+  .cmp-player-a .cmp-player-photo { border: 2px solid #f97316; }
   .cmp-player-b .cmp-player-photo { border: 2px solid #60a5fa; }
 
   .cmp-owner-select {
@@ -1057,8 +1057,10 @@
     line-height: 1;
   }
 
-  .cmp-player-a .cmp-player-name { color: #22c55e; }
+  .cmp-player-a .cmp-player-name { color: #f97316; }
   .cmp-player-b .cmp-player-name { color: #60a5fa; }
+  a.cmp-player-name { text-decoration: none; cursor: pointer; }
+  a.cmp-player-name:hover { text-decoration: underline; }
 
   .cmp-player-nick {
     font-family: 'Barlow Condensed', sans-serif;
@@ -1109,7 +1111,7 @@
     font-size: 1.9rem;
     letter-spacing: 1px;
     text-align: left;
-    color: #22c55e;
+    color: #f97316;
   }
 
   .cmp-val-b {
@@ -1135,7 +1137,7 @@
   }
 
   .cmp-arrow { font-size: 0.9rem; opacity: 0.9; }
-  .cmp-arrow-a { color: #22c55e; }
+  .cmp-arrow-a { color: #f97316; }
   .cmp-arrow-b { color: #60a5fa; }
 
   .cmp-stat-name {
@@ -1275,14 +1277,14 @@
     </div>
     <div class="cmp-player-row" id="cmpPlayerRow">
       <div class="cmp-player cmp-player-a">
-        <div class="cmp-player-name" id="cmpNameA">JACK</div>
+        <a class="cmp-player-name" id="cmpNameA" href="#">JACK</a>
         <div class="cmp-player-nick" id="cmpNickA">"The Commish"</div>
         <div class="cmp-player-photo-wrap"><img id="cmpPhotoA" class="cmp-player-photo" src="" alt="" onerror="this.style.display='none'"></div>
         <select class="cmp-owner-select" id="cmpSelectA" onchange="swapOwner('a', this.value)"></select>
       </div>
       <div class="cmp-vs">VS</div>
       <div class="cmp-player cmp-player-b">
-        <div class="cmp-player-name" id="cmpNameB">—</div>
+        <a class="cmp-player-name" id="cmpNameB" href="#">—</a>
         <div class="cmp-player-nick" id="cmpNickB">—</div>
         <div class="cmp-player-photo-wrap"><img id="cmpPhotoB" class="cmp-player-photo" src="" alt="" onerror="this.style.display='none'"></div>
         <select class="cmp-owner-select" id="cmpSelectB" onchange="swapOwner('b', this.value)"></select>
@@ -1617,7 +1619,7 @@ function renderProfile(p) {
         <div class="chart-label">Wins &amp; Finish</div>
         <canvas id="combinedChart" height="200"></canvas>
         <div class="chart-legend">
-          <div class="legend-item"><div class="legend-dot" style="background:#22c55e;"></div> Wins (0–14)</div>
+          <div class="legend-item"><div class="legend-dot" style="background:#f97316;"></div> Wins (0–14)</div>
           <div class="legend-item"><div class="legend-dot" style="background:#60a5fa;"></div> Finish (1–14)</div>
         </div>
       </div>
@@ -1626,7 +1628,7 @@ function renderProfile(p) {
         <div class="chart-label">Point Share</div>
         <canvas id="pointShareChart" height="200"></canvas>
         <div class="chart-legend">
-          <div class="legend-item"><div class="legend-dot" style="background:#22c55e;"></div> Point Share</div>
+          <div class="legend-item"><div class="legend-dot" style="background:#f97316;"></div> Point Share</div>
           <div class="legend-item"><div class="legend-dot" style="background:#e0e0e0; height:0; border-top:2px dashed #e0e0e0;"></div> League Avg (7.14%)</div>
         </div>
       </div>
@@ -1635,7 +1637,7 @@ function renderProfile(p) {
         <div class="chart-label">Season Winnings</div>
         <canvas id="winningsChart" height="200"></canvas>
         <div class="chart-legend">
-          <div class="legend-item"><div class="legend-dot" style="background:#22c55e;"></div> Winnings</div>
+          <div class="legend-item"><div class="legend-dot" style="background:#f97316;"></div> Winnings</div>
         </div>
       </div>
 
@@ -1753,9 +1755,13 @@ function renderCompare(ownerAId, ownerBId) {
   cmpCharts = [];
 
   // Update names
-  document.getElementById('cmpNameA').textContent = me.name.toUpperCase();
+  const elNameA = document.getElementById('cmpNameA');
+  elNameA.textContent = me.name.toUpperCase();
+  elNameA.href = `../${ownerAId}.html`;
   document.getElementById('cmpNickA').textContent = '"' + (me.nickname || '') + '"';
-  document.getElementById('cmpNameB').textContent = opp.name.toUpperCase();
+  const elNameB = document.getElementById('cmpNameB');
+  elNameB.textContent = opp.name.toUpperCase();
+  elNameB.href = `../${ownerBId}.html`;
   document.getElementById('cmpNickB').textContent = '"' + (opp.nickname || '') + '"';
 
   // Update photos
@@ -1955,7 +1961,7 @@ function renderCompare(ownerAId, ownerBId) {
           borderWidth: 2, pointRadius: 0, fill: false, order: 0
         } : {
           label: d.label, data: d.data,
-          backgroundColor: d.color === '#22c55e' ? 'rgba(34,197,94,0.7)' : 'rgba(96,165,250,0.5)',
+          backgroundColor: d.color === '#f97316' ? 'rgba(249,115,22,0.7)' : 'rgba(96,165,250,0.5)',
           borderColor: d.color, borderWidth: 1, borderRadius: 2, order: 1
         })
       },
@@ -2011,7 +2017,7 @@ function renderCompare(ownerAId, ownerBId) {
     const cA = wmA[name] || 0;
     const cB = wmB[name] || 0;
     const img = TROPHY_IMAGES[name] || '';
-    const aHighlight = cA > cB ? 'color:#22c55e' : cA === cB && cA > 0 ? 'color:var(--gold)' : 'color:#333';
+    const aHighlight = cA > cB ? 'color:#f97316' : cA === cB && cA > 0 ? 'color:var(--gold)' : 'color:#333';
     const bHighlight = cB > cA ? 'color:#60a5fa' : cA === cB && cB > 0 ? 'color:var(--gold)' : 'color:#333';
     const aImgs = cA > 0
       ? Array(cA).fill(0).map(() => `<img class="cmp-trophy-img" src="../images/${img}" alt="${name}">`).join('')
@@ -2041,7 +2047,7 @@ function renderCompare(ownerAId, ownerBId) {
       <div class="cmp-chart-block">
         <canvas id="cmpWinsChart" height="180"></canvas>
         <div class="cmp-chart-legend">
-          <div class="cmp-legend-item"><div class="cmp-legend-dot" style="background:#22c55e;"></div>${me.name}</div>
+          <div class="cmp-legend-item"><div class="cmp-legend-dot" style="background:#f97316;"></div>${me.name}</div>
           <div class="cmp-legend-item"><div class="cmp-legend-dot" style="background:#60a5fa;"></div>${opp.name}</div>
           <div class="cmp-legend-item"><div class="cmp-legend-dot" style="background:#e0e0e0; height:0; border-top:2px dashed #e0e0e0;"></div>.500 (7 wins)</div>
         </div>
@@ -2053,7 +2059,7 @@ function renderCompare(ownerAId, ownerBId) {
       <div class="cmp-chart-block">
         <canvas id="cmpPsChart" height="180"></canvas>
         <div class="cmp-chart-legend">
-          <div class="cmp-legend-item"><div class="cmp-legend-dot" style="background:#22c55e;"></div>${me.name}</div>
+          <div class="cmp-legend-item"><div class="cmp-legend-dot" style="background:#f97316;"></div>${me.name}</div>
           <div class="cmp-legend-item"><div class="cmp-legend-dot" style="background:#60a5fa;"></div>${opp.name}</div>
           <div class="cmp-legend-item"><div class="cmp-legend-dot" style="background:#e0e0e0; height:0; border-top:2px dashed #e0e0e0;"></div>League Avg (7.14%)</div>
         </div>
@@ -2065,7 +2071,7 @@ function renderCompare(ownerAId, ownerBId) {
       <div class="cmp-chart-block">
         <canvas id="cmpWinningsChart" height="180"></canvas>
         <div class="cmp-chart-legend">
-          <div class="cmp-legend-item"><div class="cmp-legend-dot" style="background:#22c55e;"></div>${me.name}</div>
+          <div class="cmp-legend-item"><div class="cmp-legend-dot" style="background:#f97316;"></div>${me.name}</div>
           <div class="cmp-legend-item"><div class="cmp-legend-dot" style="background:#60a5fa;"></div>${opp.name}</div>
         </div>
       </div>
@@ -2076,7 +2082,7 @@ function renderCompare(ownerAId, ownerBId) {
       <div class="cmp-chart-block">
         <canvas id="cmpPrestigeChart" height="180"></canvas>
         <div class="cmp-chart-legend">
-          <div class="cmp-legend-item"><div class="cmp-legend-dot" style="background:#22c55e;"></div>${me.name}</div>
+          <div class="cmp-legend-item"><div class="cmp-legend-dot" style="background:#f97316;"></div>${me.name}</div>
           <div class="cmp-legend-item"><div class="cmp-legend-dot" style="background:#60a5fa;"></div>${opp.name}</div>
         </div>
       </div>
@@ -2098,7 +2104,7 @@ function renderCompare(ownerAId, ownerBId) {
     const winsYears = chartLabels.length;
     const halfLine = Array(winsYears).fill(7);
     buildLineChart('cmpWinsChart', [
-      { label: me.name, data: winsA, color: '#22c55e' },
+      { label: me.name, data: winsA, color: '#f97316' },
       { label: opp.name, data: winsB, color: '#60a5fa' },
       { label: '.500', data: halfLine, color: '#e0e0e0', dash: true, noPoint: true }
     ], {min:0, max:14, ticks:{...cmpScaleY.ticks, stepSize:2, color:'#999'}}, v => v + ' wins');
@@ -2108,7 +2114,7 @@ function renderCompare(ownerAId, ownerBId) {
     const psB = getChartArr(opp, 'pointShare', 'values').map(v => v == null ? null : parseFloat((v < 1 ? v * 100 : v).toFixed(2)));
     const allPsYears = chartLabels.map((_, i) => psA[i] != null || psB[i] != null ? PS_LEAGUE_AVG : null);
     buildLineChart('cmpPsChart', [
-      { label: me.name, data: psA, color: '#22c55e' },
+      { label: me.name, data: psA, color: '#f97316' },
       { label: opp.name, data: psB, color: '#60a5fa' },
       { label: 'League Avg', data: allPsYears, color: '#e0e0e0', dash: true, noPoint: true }
     ], {min:5, max:10, ticks:{...cmpScaleY.ticks, callback:v=>v+'%', color:'#999'}}, v => v != null ? v.toFixed(2)+'%' : '');
@@ -2117,7 +2123,7 @@ function renderCompare(ownerAId, ownerBId) {
     const earA = getChartArr(me, 'winnings', 'values');
     const earB = getChartArr(opp, 'winnings', 'values');
     buildBarChart('cmpWinningsChart', [
-      { label: me.name, data: earA, color: '#22c55e' },
+      { label: me.name, data: earA, color: '#f97316' },
       { label: opp.name, data: earB, color: '#60a5fa' }
     ], v => '$' + v);
 
@@ -2143,7 +2149,7 @@ function renderCompare(ownerAId, ownerBId) {
     const prFlatA = holdFlat(prCumA);
     const prFlatB = holdFlat(prCumB);
     buildLineChart('cmpPrestigeChart', [
-      { label: me.name,  data: prFlatA, color: '#22c55e' },
+      { label: me.name,  data: prFlatA, color: '#f97316' },
       { label: opp.name, data: prFlatB, color: '#60a5fa' }
     ], { min: 0, ticks: { ...cmpScaleY.ticks, color: '#999' } }, v => v.toLocaleString() + ' pts');
   }, 50);
@@ -2241,7 +2247,7 @@ function initCharts(p) {
     data: {
       labels,
       datasets: [
-        { label: 'Wins', data: wfWins, borderColor: '#22c55e', backgroundColor: 'rgba(34,197,94,0.06)', fill: true, pointBackgroundColor: '#22c55e', borderWidth: 2, yAxisID: 'yWins', order: 2, tension: 0.3 },
+        { label: 'Wins', data: wfWins, borderColor: '#f97316', backgroundColor: 'rgba(249,115,22,0.06)', fill: true, pointBackgroundColor: '#f97316', borderWidth: 2, yAxisID: 'yWins', order: 2, tension: 0.3 },
         { label: 'Finish', data: wfFinish, borderColor: '#60a5fa', backgroundColor: 'rgba(96,165,250,0.04)', fill: false, pointBackgroundColor: '#60a5fa', borderWidth: 2, yAxisID: 'yFinish', order: 1, tension: 0.3 }
       ]
     },
@@ -2250,7 +2256,7 @@ function initCharts(p) {
       plugins: { legend: { display: false }, tooltip: { ...tooltipDefaults, callbacks: { title: i => i[0].label, label: i => i.dataset.label + ': ' + i.formattedValue } } },
       scales: {
         x: scaleX,
-        yWins: { ...scaleY, type: 'linear', position: 'left', min: -0.5, max: 15, ticks: { ...scaleY.ticks, stepSize: 2, color: '#22c55e', callback: v => (Number.isInteger(v) && v >= 0 && v <= 14) ? v : '' }, title: { display: false } },
+        yWins: { ...scaleY, type: 'linear', position: 'left', min: -0.5, max: 15, ticks: { ...scaleY.ticks, stepSize: 2, color: '#f97316', callback: v => (Number.isInteger(v) && v >= 0 && v <= 14) ? v : '' }, title: { display: false } },
         yFinish: { ...scaleY, type: 'linear', position: 'right', min: 0, max: 15, reverse: true, grid: { drawOnChartArea: false }, ticks: { ...scaleY.ticks, stepSize: 2, color: '#60a5fa', callback: v => (Number.isInteger(v) && v >= 1 && v <= 14) ? v : '' }, title: { display: false } }
       },
       elements: { point: { radius: 4, hoverRadius: 6 }, line: { tension: 0.3 } }
@@ -2264,7 +2270,7 @@ function initCharts(p) {
     data: {
       labels,
       datasets: [
-        { label: 'Point Share', data: psData, borderColor: '#22c55e', backgroundColor: 'rgba(34,197,94,0.08)', fill: true, pointBackgroundColor: '#22c55e', borderWidth: 2, tension: 0.3, order: 2 },
+        { label: 'Point Share', data: psData, borderColor: '#f97316', backgroundColor: 'rgba(249,115,22,0.08)', fill: true, pointBackgroundColor: '#f97316', borderWidth: 2, tension: 0.3, order: 2 },
         { label: 'League Avg', data: psData.map(v => v != null ? PS_LEAGUE_AVG : null), borderColor: '#e0e0e0', borderDash: [6,4], borderWidth: 2.5, pointRadius: 0, fill: false, order: 1 }
       ]
     },
@@ -2272,7 +2278,7 @@ function initCharts(p) {
       animation: animOpts, interaction: interactionOpts, responsive: true, layout: { padding: { top: 12 } },
       plugins: { legend: { display: false }, tooltip: { ...tooltipDefaults, filter: i => i.datasetIndex === 0, callbacks: { title: i => i[0].label, label: i => i.parsed.y.toFixed(2) + '%' } } },
       scales: { x: scaleX, y: { ...scaleY, min: 5, max: 10, ticks: { ...scaleY.ticks, callback: v => v + '%' } } },
-      elements: { point: { radius: 4, hoverRadius: 6, backgroundColor: '#22c55e', borderColor: '#22c55e' }, line: { tension: 0.3 } }
+      elements: { point: { radius: 4, hoverRadius: 6, backgroundColor: '#f97316', borderColor: '#f97316' }, line: { tension: 0.3 } }
     }
   }));
 
@@ -2282,7 +2288,7 @@ function initCharts(p) {
     data: {
       labels,
       datasets: [
-        { label: 'Winnings', data: wData, backgroundColor: wData.map(v => v != null && v > 0 ? 'rgba(34,197,94,0.75)' : 'rgba(170,85,85,0.6)'), borderColor: wData.map(v => v != null && v > 0 ? '#22c55e' : '#aa5555'), borderWidth: 1, borderRadius: 3 }
+        { label: 'Winnings', data: wData, backgroundColor: wData.map(v => v != null && v > 0 ? 'rgba(249,115,22,0.75)' : 'rgba(170,85,85,0.6)'), borderColor: wData.map(v => v != null && v > 0 ? '#f97316' : '#aa5555'), borderWidth: 1, borderRadius: 3 }
       ]
     },
     options: {
