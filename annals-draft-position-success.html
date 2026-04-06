@@ -1,0 +1,701 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Draft Position Success — Slingshot Engaged FFL</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Barlow+Condensed:wght@400;600;700&family=Barlow:wght@400;500;600&display=swap" rel="stylesheet" />
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.min.js"></script>
+<style>
+  :root {
+    --red: #c0392b;
+    --red-bright: #e74c3c;
+    --bg: #0a0a0a;
+    --surface: #141414;
+    --surface2: #1c1c1c;
+    --surface3: #242424;
+    --text: #f0f0f0;
+    --muted: #999;
+    --border: #2a2a2a;
+    --gold: #c9a84c;
+  }
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: 'Barlow', sans-serif;
+    min-height: 100vh;
+  }
+
+  /* PAGE HEADER */
+  .page-header {
+    padding: 40px 20px 0;
+    text-align: center;
+  }
+  .page-supertitle {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 0.8rem;
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+    color: var(--muted);
+    margin-bottom: 6px;
+  }
+  .page-header h1 {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: clamp(2.8rem, 8vw, 5rem);
+    color: var(--red-bright);
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    line-height: 1;
+  }
+  .page-subtitle {
+    font-family: 'Barlow', sans-serif;
+    font-size: 0.88rem;
+    color: var(--muted);
+    margin-top: 8px;
+  }
+  .page-updated {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 0.72rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--muted);
+    margin-top: 6px;
+  }
+
+  /* CONTENT */
+  .content {
+    max-width: 680px;
+    margin: 0 auto;
+    padding: 0 16px 60px;
+  }
+
+  .header-spacer { height: 36px; }
+
+  /* SECTION TITLE */
+  .section-title {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 0.85rem;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--muted);
+    margin-bottom: 10px;
+    text-align: center;
+  }
+
+  /* TOGGLE */
+  .toggle-wrap {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 20px;
+    border: 1px solid var(--border);
+    border-radius: 4px;
+    overflow: hidden;
+    width: fit-content;
+    margin-left: auto;
+    margin-right: auto;
+  }
+  .toggle-btn {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 0.82rem;
+    font-weight: 700;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    padding: 10px 28px;
+    background: transparent;
+    color: var(--muted);
+    border: none;
+    cursor: pointer;
+    transition: background 0.15s, color 0.15s;
+  }
+  .toggle-btn.active { background: var(--red); color: #fff; }
+  .toggle-btn:not(.active):hover { color: var(--text); }
+
+  /* CHART */
+  .chart-section {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 28px 20px 16px;
+    margin-bottom: 48px;
+  }
+  .chart-subtitle {
+    text-align: center;
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 0.68rem;
+    font-weight: 600;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--muted);
+    margin-bottom: 12px;
+  }
+  .chart-legend {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    margin-bottom: 16px;
+    flex-wrap: wrap;
+  }
+  .legend-item {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 0.68rem;
+    font-weight: 700;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--muted);
+  }
+  .legend-pip { width: 16px; height: 3px; border-radius: 2px; }
+  .pip-best  { background: var(--gold); }
+  .pip-worst { background: var(--red-bright); }
+  .pip-rest  { background: #5a2a2a; }
+
+  .chart-wrap { position: relative; height: 240px; }
+
+  /* CARDS SECTION */
+  .cards-heading {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 1.6rem;
+    letter-spacing: 0.08em;
+    color: var(--text);
+    text-align: center;
+    margin-bottom: 4px;
+  }
+  .cards-sub {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 0.72rem;
+    font-weight: 600;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--muted);
+    text-align: center;
+    margin-bottom: 20px;
+  }
+
+  /* TIER KEY */
+  .tier-key {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    margin-bottom: 24px;
+    flex-wrap: wrap;
+  }
+  .tier-key-item {
+    display: flex;
+    align-items: center;
+    gap: 7px;
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 0.72rem;
+    font-weight: 700;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--muted);
+  }
+  .tier-key-pip { width: 20px; height: 3px; border-radius: 2px; }
+  .pip-elite   { background: var(--gold); }
+  .pip-average { background: #5a9a8a; }
+  .pip-avoid   { background: var(--red); }
+
+  /* CARD GRID */
+  .card-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 12px;
+  }
+  @media (min-width: 560px) {
+    .card-grid { grid-template-columns: repeat(4, 1fr); gap: 14px; }
+  }
+
+  /* FLIP CARD */
+  .card-wrapper {
+    perspective: 900px;
+    cursor: pointer;
+    aspect-ratio: 3/4;
+  }
+  .card-inner {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    transition: transform 0.55s cubic-bezier(0.4, 0.2, 0.2, 1);
+    transform-style: preserve-3d;
+  }
+  .card-wrapper.flipped .card-inner { transform: rotateY(180deg); }
+
+  .card-front,
+  .card-back {
+    position: absolute;
+    inset: 0;
+    border-radius: 8px;
+    border: 1px solid var(--border);
+    backface-visibility: hidden;
+    -webkit-backface-visibility: hidden;
+    overflow: hidden;
+  }
+
+  .card-front::after,
+  .card-back::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='1'/%3E%3C/svg%3E");
+    opacity: 0.04;
+    pointer-events: none;
+  }
+
+  .card-front {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 12px 12px 12px;
+    transition: transform 0.18s ease, box-shadow 0.18s ease;
+  }
+  .card-wrapper:hover .card-front {
+    transform: translateY(-2px);
+    box-shadow: 0 10px 28px rgba(0,0,0,0.5);
+  }
+
+  .card-top-bar {
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 3px;
+  }
+  .bar-elite   { background: var(--gold); }
+  .bar-average { background: #5a9a8a; }
+  .bar-avoid   { background: var(--red); }
+
+  .card-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    margin-bottom: 6px;
+  }
+  .card-tier {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 0.58rem;
+    font-weight: 700;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    padding: 3px 7px;
+    border-radius: 4px;
+  }
+  .badge-elite   { background: rgba(201,168,76,0.1);  border: 1px solid rgba(201,168,76,0.35); color: var(--gold); }
+  .badge-average { background: rgba(90,154,138,0.1);  border: 1px solid rgba(90,154,138,0.35); color: #5a9a8a; }
+  .badge-avoid   { background: rgba(192,57,43,0.1);   border: 1px solid rgba(192,57,43,0.35);  color: var(--red); }
+
+  .card-overall-rank {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 0.62rem;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    color: var(--muted);
+  }
+  .card-pick-label {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 0.55rem;
+    font-weight: 700;
+    letter-spacing: 0.26em;
+    text-transform: uppercase;
+    color: var(--muted);
+  }
+  .card-number {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: clamp(3rem, 9vw, 4.2rem);
+    letter-spacing: 0.02em;
+    line-height: 1;
+    flex: 1;
+    display: flex;
+    align-items: center;
+  }
+  .card-divider {
+    width: 100%;
+    height: 1px;
+    background: var(--border);
+    margin-bottom: 10px;
+  }
+  .card-stats {
+    display: flex;
+    width: 100%;
+    justify-content: space-around;
+  }
+  .card-stat {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 3px;
+  }
+  .stat-label {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 0.52rem;
+    font-weight: 700;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: var(--muted);
+  }
+  .stat-value {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 0.9rem;
+    font-weight: 700;
+    color: var(--text);
+  }
+  .stat-divider-v {
+    width: 1px;
+    background: var(--border);
+    align-self: stretch;
+  }
+  .flip-hint {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 0.5rem;
+    font-weight: 600;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--muted);
+    margin-top: 8px;
+  }
+
+  /* BACK */
+  .card-back {
+    transform: rotateY(180deg);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 16px 14px;
+  }
+  .back-title {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 0.6rem;
+    font-weight: 700;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: var(--muted);
+    margin-bottom: 14px;
+    text-align: center;
+  }
+  .back-stat-row {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 9px 0;
+    border-bottom: 1px solid var(--surface2);
+  }
+  .back-stat-row:first-of-type { border-top: 1px solid var(--surface2); }
+  .back-stat-name {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 0.68rem;
+    font-weight: 700;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--muted);
+  }
+  .back-stat-rank {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 1.1rem;
+    letter-spacing: 0.04em;
+  }
+  .back-composite {
+    margin-top: 14px;
+    text-align: center;
+  }
+  .back-comp-label {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 0.58rem;
+    font-weight: 700;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--muted);
+    margin-bottom: 4px;
+  }
+  .back-comp-formula {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 0.78rem;
+    font-weight: 600;
+    color: var(--muted);
+  }
+  .back-comp-result {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 1.6rem;
+    letter-spacing: 0.04em;
+    color: var(--gold);
+    line-height: 1;
+  }
+  .back-flip-hint {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 0.5rem;
+    font-weight: 600;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--muted);
+    margin-top: 12px;
+    text-align: center;
+  }
+
+  .footnote {
+    text-align: center;
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 0.68rem;
+    font-weight: 600;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: var(--muted);
+    margin-top: 40px;
+  }
+</style>
+</head>
+<body>
+
+<script src="nav.js"></script>
+
+<div class="page-header">
+  <div class="page-supertitle">The Annals of History</div>
+  <h1>Draft Position Success</h1>
+  <p class="page-subtitle">Time to select your draft position? See how each pick has performed historically before you choose.</p>
+  <p class="page-updated" id="pageUpdated"></p>
+</div>
+
+<div class="header-spacer"></div>
+
+<div class="content">
+
+  <div class="section-title" style="margin-bottom:14px;">Historical Performance</div>
+  <div class="toggle-wrap">
+    <button class="toggle-btn active" id="btn-win" onclick="setMetric('win')">Win %</button>
+    <button class="toggle-btn" id="btn-ppg" onclick="setMetric('ppg')">Pts Per Game</button>
+  </div>
+
+  <div class="chart-section">
+    <div class="chart-subtitle" id="chart-subtitle">Regular Season Win % by Draft Position (thru 2025)</div>
+    <div class="chart-legend">
+      <div class="legend-item"><div class="legend-pip pip-best"></div>Best</div>
+      <div class="legend-item"><div class="legend-pip pip-rest"></div>Rest</div>
+      <div class="legend-item"><div class="legend-pip pip-worst"></div>Worst</div>
+    </div>
+    <div class="chart-wrap"><canvas id="mainChart"></canvas></div>
+  </div>
+
+  <div class="cards-heading">Pick Rankings</div>
+  <div class="cards-sub">Best to worst &nbsp;·&nbsp; Tap any card to see the math</div>
+
+  <div class="tier-key">
+    <div class="tier-key-item"><div class="tier-key-pip pip-elite"></div>Elite</div>
+    <div class="tier-key-item"><div class="tier-key-pip pip-average"></div>Average</div>
+    <div class="tier-key-item"><div class="tier-key-pip pip-avoid"></div>Avoid</div>
+  </div>
+
+  <div class="card-grid" id="cardGrid"></div>
+  <div class="footnote">Data through 2025 season</div>
+
+</div>
+
+<script>
+  fetch('profiles-data.json')
+    .then(r => r.json())
+    .then(data => {
+      const date = data.pageUpdates && data.pageUpdates['draft-position-success'];
+      if (date) document.getElementById('pageUpdated').textContent = 'Updated · ' + date;
+    })
+    .catch(() => {});
+
+  const WIN = [0.433,0.474,0.598,0.534,0.499,0.552,0.552,0.424,0.477,0.554,0.519,0.502,0.414,0.458];
+  const PPG  = [87.8, 92.1, 93.2, 96.0, 88.6, 94.9, 97.2, 93.5, 93.1, 92.1, 89.8, 94.9, 88.2, 92.0];
+
+  function getRanks(arr) {
+    const sorted = [...arr].map((v,i)=>({v,i})).sort((a,b)=>b.v-a.v);
+    const ranks = new Array(arr.length);
+    let i = 0;
+    while (i < sorted.length) {
+      let j = i;
+      while (j < sorted.length-1 && sorted[j+1].v===sorted[j].v) j++;
+      const avg = (i+j)/2+1;
+      for (let k=i;k<=j;k++) ranks[sorted[k].i]=avg;
+      i=j+1;
+    }
+    return ranks;
+  }
+
+  const winRanks = getRanks(WIN);
+  const ppgRanks = getRanks(PPG);
+  const composite = WIN.map((_,i)=>(winRanks[i]+ppgRanks[i])/2);
+
+  const sorted = composite
+    .map((c,i)=>({ pos:i+1, win:WIN[i], ppg:PPG[i], comp:c, winRank:winRanks[i], ppgRank:ppgRanks[i] }))
+    .sort((a,b)=>a.comp-b.comp);
+
+  function getTier(rank) {
+    if (rank < 4)  return 'elite';
+    if (rank < 10) return 'average';
+    return 'avoid';
+  }
+
+  function lerpColor(t) {
+    const gold=[201,168,76], mid=[20,20,20], red=[192,57,43];
+    let r,g,b;
+    if (t < 0.5) {
+      const s=t*2;
+      r=Math.round(gold[0]+(mid[0]-gold[0])*s);
+      g=Math.round(gold[1]+(mid[1]-gold[1])*s);
+      b=Math.round(gold[2]+(mid[2]-gold[2])*s);
+    } else {
+      const s=(t-0.5)*2;
+      r=Math.round(mid[0]+(red[0]-mid[0])*s);
+      g=Math.round(mid[1]+(red[1]-mid[1])*s);
+      b=Math.round(mid[2]+(red[2]-mid[2])*s);
+    }
+    return `rgba(${r},${g},${b},0.18)`;
+  }
+
+  function numColor(tier) {
+    if (tier==='elite')   return '#c9a84c';
+    if (tier==='average') return '#5a9a8a';
+    return '#c0392b';
+  }
+
+  function ordinal(n) {
+    const s=['th','st','nd','rd'], v=n%100;
+    return n+(s[(v-20)%10]||s[v]||s[0]);
+  }
+
+  function rankColor(rank) {
+    if (rank <= 4)  return '#c9a84c';
+    if (rank <= 10) return '#aaa';
+    return '#e74c3c';
+  }
+
+  const grid = document.getElementById('cardGrid');
+  sorted.forEach((d, overallRank) => {
+    const tier = getTier(overallRank);
+    const t = overallRank / 13;
+    const bg = lerpColor(t);
+    const tierLabel = tier==='elite' ? 'Elite' : tier==='average' ? 'Average' : 'Avoid';
+    const wr = d.winRank % 1 === 0 ? d.winRank : d.winRank.toFixed(1);
+    const pr = d.ppgRank % 1 === 0 ? d.ppgRank : d.ppgRank.toFixed(1);
+    const cr = d.comp % 1 === 0 ? d.comp : d.comp.toFixed(1);
+
+    const wrapper = document.createElement('div');
+    wrapper.className = 'card-wrapper';
+    wrapper.onclick = () => wrapper.classList.toggle('flipped');
+
+    wrapper.innerHTML = `
+      <div class="card-inner">
+        <div class="card-front" style="background: linear-gradient(160deg, ${bg} 0%, #111 70%);">
+          <div class="card-top-bar bar-${tier}"></div>
+          <div class="card-header">
+            <span class="card-tier badge-${tier}">${tierLabel}</span>
+            <span class="card-overall-rank">#${overallRank+1} of 14</span>
+          </div>
+          <div class="card-pick-label">Pick</div>
+          <div class="card-number" style="color:${numColor(tier)}">${d.pos}</div>
+          <div class="card-divider"></div>
+          <div class="card-stats">
+            <div class="card-stat">
+              <span class="stat-label">Win %</span>
+              <span class="stat-value">${(d.win*100).toFixed(1)}%</span>
+            </div>
+            <div class="stat-divider-v"></div>
+            <div class="card-stat">
+              <span class="stat-label">PPG</span>
+              <span class="stat-value">${d.ppg.toFixed(1)}</span>
+            </div>
+          </div>
+          <div class="flip-hint">Tap to see math</div>
+        </div>
+
+        <div class="card-back" style="background: linear-gradient(160deg, ${bg} 0%, #111 70%);">
+          <div class="card-top-bar bar-${tier}"></div>
+          <div class="back-title">Pick #${d.pos} — How It Ranked</div>
+          <div class="back-stat-row">
+            <span class="back-stat-name">Win %</span>
+            <span class="back-stat-rank" style="color:${rankColor(d.winRank)}">${ordinal(Math.round(d.winRank))}</span>
+          </div>
+          <div class="back-stat-row">
+            <span class="back-stat-name">Pts Per Game</span>
+            <span class="back-stat-rank" style="color:${rankColor(d.ppgRank)}">${ordinal(Math.round(d.ppgRank))}</span>
+          </div>
+          <div class="back-composite">
+            <div class="back-comp-label">Composite Score</div>
+            <div class="back-comp-formula">(${wr} + ${pr}) ÷ 2</div>
+            <div class="back-comp-result">${cr}</div>
+          </div>
+          <div class="back-flip-hint">Tap to flip back</div>
+        </div>
+      </div>
+    `;
+    grid.appendChild(wrapper);
+  });
+
+  let currentMetric = 'win';
+  const ctx = document.getElementById('mainChart').getContext('2d');
+
+  function barColors(arr) {
+    const max = Math.max(...arr);
+    const min = Math.min(...arr);
+    return arr.map(v => {
+      if (v === max) return '#c9a84c';
+      if (v === min) return '#e74c3c';
+      return '#5a2a2a';
+    });
+  }
+
+  const chart = new Chart(ctx, {
+    type: 'bar',
+    data: {
+      labels: Array.from({length:14},(_,i)=>i+1),
+      datasets: [{ data: WIN, backgroundColor: barColors(WIN), borderRadius: 3, borderSkipped: false }]
+    },
+    options: {
+      responsive: true, maintainAspectRatio: false,
+      animation: { duration: 450 },
+      plugins: {
+        legend: { display: false },
+        tooltip: {
+          backgroundColor: '#1a1a1a', borderColor: '#2a2a2a', borderWidth: 1,
+          titleFont: { family: 'Barlow Condensed', size: 13, weight: '700' },
+          bodyFont:  { family: 'Barlow', size: 13 },
+          titleColor: '#c9a84c', bodyColor: '#ccc', padding: 12,
+          callbacks: {
+            title: c => `Draft Pick #${c[0].label}`,
+            label: c => currentMetric==='win'
+              ? ` Win %: ${(c.raw*100).toFixed(1)}%`
+              : ` PPG: ${c.raw.toFixed(1)}`
+          }
+        }
+      },
+      scales: {
+        x: {
+          grid: { color: '#1a1a1a' },
+          ticks: { color: '#999', font: { family: 'Barlow Condensed', size: 12, weight: '600' } },
+          title: { display: true, text: 'Draft Pick', color: '#999', font: { family: 'Barlow Condensed', size: 11 } }
+        },
+        y: {
+          min: 0.300,
+          grid: { color: '#1a1a1a' }, border: { display: false },
+          ticks: { color: '#999', font: { family: 'Barlow Condensed', size: 11 }, callback: v => v.toFixed(3) }
+        }
+      }
+    }
+  });
+
+  function setMetric(m) {
+    currentMetric = m;
+    const arr = m==='win' ? WIN : PPG;
+    chart.data.datasets[0].data = arr;
+    chart.data.datasets[0].backgroundColor = barColors(arr);
+    chart.options.scales.y.min = m==='win' ? 0.300 : 85.0;
+    chart.options.scales.y.ticks.callback = v => m==='win' ? v.toFixed(3) : v.toFixed(1);
+    chart.update();
+    document.getElementById('chart-subtitle').textContent = m==='win'
+      ? 'Regular Season Win % by Draft Position (thru 2025)'
+      : 'Points Per Game by Draft Position (thru 2025)';
+    document.getElementById('btn-win').classList.toggle('active', m==='win');
+    document.getElementById('btn-ppg').classList.toggle('active', m==='ppg');
+  }
+</script>
+</body>
+</html>
