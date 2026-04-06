@@ -1,0 +1,815 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Season Summaries – The Annals – Slingshot Engaged</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Barlow+Condensed:wght@400;600;700&family=Barlow:wght@400;500;600&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --red: #c0392b;
+      --red-bright: #e74c3c;
+      --bg: #0a0a0a;
+      --surface: #141414;
+      --surface2: #1c1c1c;
+      --surface3: #242424;
+      --text: #f0f0f0;
+      --muted: #999;
+      --border: #2a2a2a;
+      --gold: #c9a84c;
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: 'Barlow', sans-serif;
+      min-height: 100vh;
+    }
+
+    /* ── Page Header ── */
+    .page-header {
+      padding: 40px 20px 0;
+      text-align: center;
+    }
+    .page-supertitle {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: 0.8rem;
+      letter-spacing: 0.25em;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin-bottom: 6px;
+    }
+    .page-header h1 {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: clamp(2.4rem, 7vw, 4.2rem);
+      color: var(--red-bright);
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      line-height: 1;
+    }
+
+    /* ── Toggle ── */
+    .toggle-wrap {
+      display: flex;
+      justify-content: center;
+      padding: 28px 20px 20px;
+    }
+    .toggle {
+      display: flex;
+      background: var(--surface2);
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      overflow: hidden;
+    }
+    .toggle-btn {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 1.05rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      padding: 10px 28px;
+      background: none;
+      border: none;
+      color: var(--muted);
+      cursor: pointer;
+      transition: background 0.2s, color 0.2s;
+    }
+    .toggle-btn.active {
+      background: var(--red);
+      color: #fff;
+    }
+    .toggle-divider {
+      width: 1px;
+      background: var(--border);
+    }
+
+    /* ── Year Selector (Year view) ── */
+    .year-selector {
+      display: flex;
+      overflow-x: auto;
+      gap: 8px;
+      padding: 0 16px 16px;
+      scrollbar-width: none;
+      -ms-overflow-style: none;
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+    .year-selector::-webkit-scrollbar { display: none; }
+    .year-pill {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 1rem;
+      letter-spacing: 0.1em;
+      padding: 6px 16px;
+      border-radius: 4px;
+      border: 1px solid var(--border);
+      background: var(--surface2);
+      color: var(--muted);
+      cursor: pointer;
+      transition: all 0.15s;
+      white-space: nowrap;
+      flex-shrink: 0;
+    }
+    .year-pill:hover { border-color: var(--red); color: var(--text); }
+    .year-pill.active {
+      background: var(--red);
+      border-color: var(--red);
+      color: #fff;
+    }
+
+    /* ── Contest Selector (Contest view) ── */
+    .contest-selector {
+      padding: 0 16px 16px;
+      max-width: 680px;
+      margin: 0 auto;
+    }
+    .contest-select {
+      width: 100%;
+      background: var(--surface2);
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      color: var(--text);
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: 1rem;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+      padding: 12px 16px;
+      cursor: pointer;
+      appearance: none;
+      -webkit-appearance: none;
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%23777' stroke-width='2' fill='none' stroke-linecap='round'/%3E%3C/svg%3E");
+      background-repeat: no-repeat;
+      background-position: right 16px center;
+    }
+    .contest-select:focus { outline: 1px solid var(--red); }
+    .contest-select option { background: #1c1c1c; }
+
+    /* ── Content Area ── */
+    .content-area {
+      max-width: 680px;
+      margin: 0 auto;
+      padding: 0 16px 60px;
+    }
+
+    /* ── Year View Card ── */
+    .year-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      overflow: hidden;
+    }
+    .year-card-header {
+      background: var(--red);
+      padding: 14px 20px;
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 1.8rem;
+      letter-spacing: 0.1em;
+      color: #fff;
+      text-align: center;
+    }
+    .contest-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 13px 20px;
+      border-bottom: 1px solid var(--border);
+      gap: 12px;
+    }
+    .contest-row:last-child { border-bottom: none; }
+    .contest-row:nth-child(even) { background: var(--surface2); }
+    .contest-name {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: 0.95rem;
+      letter-spacing: 0.04em;
+      color: var(--muted);
+      text-transform: uppercase;
+      flex: 1;
+    }
+    .contest-winner {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: 1rem;
+      font-weight: 600;
+      letter-spacing: 0.04em;
+      text-align: right;
+      flex-shrink: 0;
+    }
+    .contest-winner a {
+      color: var(--text);
+      text-decoration: none;
+      transition: color 0.15s;
+    }
+    .contest-winner a:hover { color: var(--red-bright); }
+    .contest-winner.no-link { color: var(--muted); }
+
+    /* ── Contest View List ── */
+    .contest-results-header {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 1.5rem;
+      letter-spacing: 0.1em;
+      color: var(--red-bright);
+      text-align: center;
+      padding: 8px 0 16px;
+      text-transform: uppercase;
+    }
+    .contest-result-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 13px 20px;
+      border-bottom: 1px solid var(--border);
+      background: var(--surface);
+      gap: 12px;
+    }
+    .contest-result-row:first-child { border-radius: 8px 8px 0 0; }
+    .contest-result-row:last-child { border-bottom: none; border-radius: 0 0 8px 8px; }
+    .contest-result-row:nth-child(even) { background: var(--surface2); }
+    .result-year {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 1.2rem;
+      letter-spacing: 0.08em;
+      color: var(--gold);
+      flex-shrink: 0;
+      width: 52px;
+    }
+    .result-winner {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: 1rem;
+      font-weight: 600;
+      letter-spacing: 0.04em;
+      flex: 1;
+      text-align: right;
+    }
+    .result-winner a {
+      color: var(--text);
+      text-decoration: none;
+      transition: color 0.15s;
+    }
+    .result-winner a:hover { color: var(--red-bright); }
+
+    /* ── View panels ── */
+    .view-panel { display: none; }
+    .view-panel.active { display: block; }
+
+    /* ── No data state ── */
+    .no-data {
+      text-align: center;
+      color: var(--muted);
+      font-family: 'Barlow Condensed', sans-serif;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      padding: 40px 20px;
+      font-size: 0.95rem;
+    }
+    /* ── Last Updated ── */
+    .page-updated {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: 0.72rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: #999;
+      text-align: center;
+      margin: 0 0 4px;
+    }
+    /* ── Contest Info Panel ── */
+    .contest-info {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 24px 20px 20px;
+      margin-bottom: 12px;
+      text-align: center;
+    }
+    .contest-info-img {
+      width: 100px;
+      height: 100px;
+      object-fit: contain;
+      margin-bottom: 14px;
+      filter: drop-shadow(0 2px 8px rgba(0,0,0,0.5));
+    }
+    .contest-info-name {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 1.5rem;
+      letter-spacing: 0.1em;
+      color: var(--red-bright);
+      text-transform: uppercase;
+      margin-bottom: 10px;
+    }
+    .contest-info-desc {
+      font-family: 'Barlow', sans-serif;
+      font-size: 0.9rem;
+      color: #999;
+      line-height: 1.6;
+    }
+  </style>
+</head>
+<body>
+  <script src="nav.js"></script>
+
+  <div class="page-header">
+    <div class="page-supertitle">The Annals of History</div>
+    <h1>Season Summaries</h1>
+    <p class="page-updated" id="pageUpdated"></p>
+  </div>
+
+  <script>
+  fetch('profiles-data.json')
+    .then(r => r.json())
+    .then(data => {
+      const date = data.pageUpdates && data.pageUpdates['season-summaries'];
+      if (date) {
+        document.getElementById('pageUpdated').textContent = 'Updated · ' + date;
+      }
+    })
+    .catch(() => {});
+  </script>
+
+  <!-- Toggle -->
+  <div class="toggle-wrap">
+    <div class="toggle">
+      <button class="toggle-btn active" id="btnContest" onclick="setView('contest')">By Contest</button>
+      <div class="toggle-divider"></div>
+      <button class="toggle-btn" id="btnYear" onclick="setView('year')">By Year</button>
+    </div>
+  </div>
+
+  <!-- Year View -->
+  <div class="view-panel" id="viewYear">
+    <div class="year-selector" id="yearSelector"></div>
+    <div class="content-area">
+      <div id="yearContent"></div>
+    </div>
+  </div>
+
+  <!-- Contest View -->
+  <div class="view-panel active" id="viewContest">
+    <div class="contest-selector">
+      <select class="contest-select" id="contestSelect" onchange="renderContest()">
+        <option value="">— Select a contest —</option>
+      </select>
+    </div>
+    <div class="content-area">
+      <div id="contestContent"></div>
+    </div>
+  </div>
+
+  <script>
+  // ── PROFILE LINKS ─────────────────────────────────────────────────────────
+  // Maps first name (lowercase) to profile href. Non-current owners get null.
+  const PROFILES = {
+    alex:   '../profiles/alex.html',
+    andy:   '../profiles/andy.html',
+    brian:  '../profiles/brian.html',
+    daniel: '../profiles/daniel.html',
+    dylan:  '../profiles/dylan.html',
+    jack:   '../profiles/jack.html',
+    jordan: '../profiles/jordan.html',
+    kyle:   '../profiles/kyle.html',
+    luke:   '../profiles/luke.html',
+    matt:   '../profiles/matt.html',
+    mike:   '../profiles/mike.html',
+    scott:  '../profiles/scott.html',
+    tim:    '../profiles/tim.html',
+    wade:   '../profiles/wade.html',
+  };
+
+  // Resolve a winner name to a profile link (or null if not a current owner)
+  function profileFor(name) {
+    if (!name) return null;
+    const first = name.split(' ')[0].toLowerCase();
+    return PROFILES[first] || null;
+  }
+
+  function winnerLink(name) {
+    if (!name || name === '—' || name === 'None' || name === 'No one') {
+      return `<span class="no-link">${name || '—'}</span>`;
+    }
+    const href = profileFor(name);
+    if (href) return `<a href="${href}">${name}</a>`;
+    return `<span>${name}</span>`;
+  }
+
+  // ── CONTEST INFO ─────────────────────────────────────────────────────────
+  const CONTEST_INFO = {
+    'League Champion': {
+      image: 'images/Daddy Graphic.png',
+      desc: "The whole reason you're here. Win the Slingshot Bowl and your name goes on The D***y. Defend it until someone takes it from you.",
+    },
+    '2nd Place': {
+      image: 'images/2nd.png',
+      desc: "You were this close. Runner-up in the Slingshot Bowl — close enough to taste it, far enough to hurt.",
+    },
+    '3rd Place': {
+      image: 'images/3rd.png',
+      desc: "Won the third-place game. Nobody remembers. Nobody cares. But it's something.",
+    },
+    'Regular Season Champion': {
+      image: 'images/regular season.png',
+      desc: "Best record after 14 weeks. Earns the #1 seed and the cash that comes with it.",
+    },
+    'Owner of the Year': {
+      image: 'images/OOTY.png',
+      desc: "The league's most prestigious award — and it doesn't come with a single Prestige Point. Voted by the league, it honors the owner who made Slingshot more fun and more alive over the past year. Fantasy success is completely irrelevant.",
+    },
+    'AVL Memorial Cup': {
+      image: 'images/avl memorial.png',
+      desc: "Named in memory of AVL. A six-week in-season tournament running early in the season. Earn points in the group stage, then battle head-to-head in the bracket. A serious prize for a serious mini-season.",
+    },
+    'Rivalry Week': {
+      image: 'images/rivalry week.png',
+      desc: "Two weeks of heightened matchups between heated rivals, with side bets raising the stakes even further. The Rivalry Week Champion has the best combined record across both weeks.",
+    },
+    'Ryder Cup': {
+      image: null,
+      desc: "A team competition where owners are split into two squads and battle head-to-head over two weeks. The winning team earns extra FAAB. The themes are chosen fresh each year — and they are always extremely petty.",
+    },
+    'Hottest Team in Sports Bowl': {
+      image: 'images/Hottest Team in Sports Bowl.png',
+      desc: "The consolation tournament champion gets a full-on championship belt — and a lot of people will tell you it looks better than The D***y.",
+    },
+    'Hung the * Chain': {
+      image: 'images/asterisk.png',
+      desc: "If the Hottest Team in Sports Bowl winner outscores the League Champion in Week 17, the Asterisk Chain is awarded — and a modified chain gets hung from The D***y itself. A rare but devastating symbolic blow to the champion.",
+    },
+    'Intercontinental Champion': {
+      image: 'images/intercontinental.png',
+      desc: "A rolling title up for grabs every week of the regular season. Beat the champion in your head-to-head matchup and you take the belt. Lose it and it's gone. Whoever holds it at the end of the regular season is the champion.",
+    },
+    'Somehow the Champion': {
+      image: 'images/somehow.png',
+      desc: "After each season, the league votes on which non-champion had the best claim to the title. The winner is officially crowned Somehow the Champion — a consolation for the robbed.",
+    },
+    'Survivor King': {
+      image: 'images/survivor.png',
+      desc: "A double-elimination NFL survivor pool. Pick a team to win each week — pick wrong twice and you're out. Can't use the same team twice. Last owner standing takes it.",
+    },
+    'Degen Bowl': {
+      image: 'images/Gambler.png',
+      desc: "A season-long gambling contest — on our own fantasy games. Kyle runs it. Biggest bankroll at year's end takes the coin.",
+    },
+    "Dad Bod's Preseason Rankings": {
+      image: 'images/Preseason.png',
+      desc: "Matt's contest. Before the season, owners predict the final regular season standings. Closest to reality wins. No one fully understands the scoring system, but it's provocative — it gets the people going.",
+    },
+    "KG's Playoff Pick Em": {
+      image: 'images/pick em.png',
+      desc: "Pick the winners of every NFL Playoff game, Super Bowl included. Points scale up each round. Run by KG.",
+    },
+    'Da Choppaaa Champ': {
+      image: 'images/da choppaaa.png',
+      desc: "Winner of Da Choppaaa — a parallel guillotine league where the lowest scorer each week gets chopped and their players hit waivers. Last team standing wins.",
+    },
+    'Bronze Franz': {
+      image: 'images/bronze franz.png',
+      desc: "The D***y's ugly cousin. Last place in the consolation tournament means you're holding the Bronze Franz — and showing up to the draft in a hot dog costume.",
+    },
+    'Regular Season Last Place': {
+      image: null,
+      desc: "The bottom of the barrel after 14 weeks. No prize. Just the shame.",
+    },
+    'Partner of the Year': {
+      image: null,
+      desc: "Honors the significant other who contributes most to making the season and League Weekend great. Voting may or may not happen. Nobody knows why.",
+    },
+    'Swag Champion': {
+      image: null,
+      desc: "An early-era contest from 2015–2017. Details lost to history.",
+    },
+    'Consolation Last Place': {
+      image: null,
+      desc: "The predecessor to the Bronze Franz.",
+    },
+  };
+
+  // ── DATA ──────────────────────────────────────────────────────────────────
+  // Each entry: { contest, winner }
+  // Contests are listed in rough importance order within each year.
+  const SEASONS = {
+    2025: [
+      { contest: 'League Champion',                   winner: 'Dylan' },
+      { contest: '2nd Place',                         winner: 'Mike' },
+      { contest: '3rd Place',                         winner: 'Jack' },
+      { contest: 'Regular Season Champion',           winner: 'Jack' },
+      { contest: 'Owner of the Year',                 winner: 'Alex' },
+      { contest: 'AVL Memorial Cup',                  winner: 'Matt' },
+      { contest: 'Rivalry Week',                      winner: 'Jordan' },
+      { contest: 'Ryder Cup',                         winner: 'MAGA defeated Snowflakes' },
+      { contest: 'Hottest Team in Sports Bowl',       winner: 'Wade' },
+      { contest: 'Hung the * Chain',                  winner: 'No one' },
+      { contest: 'Intercontinental Champion',         winner: 'Dylan' },
+      { contest: 'Somehow the Champion',              winner: 'Jack' },
+      { contest: 'Survivor King',                     winner: 'Alex' },
+      { contest: 'Degen Bowl',                        winner: 'Mike' },
+      { contest: "Dad Bod's Preseason Rankings",      winner: 'Dylan/Alex/Tim' },
+      { contest: "KG's Playoff Pick Em",              winner: 'Tim' },
+      { contest: 'Da Choppaaa Champ',                 winner: 'Matt' },
+      { contest: 'Bronze Franz',                      winner: 'Daniel' },
+      { contest: 'Regular Season Last Place',         winner: 'Jordan' },
+      { contest: 'Partner of the Year',               winner: 'Mrs. 9.5' },
+    ],
+    2024: [
+      { contest: 'League Champion',                   winner: 'Kyle' },
+      { contest: '2nd Place',                         winner: 'Daniel' },
+      { contest: '3rd Place',                         winner: 'Mike' },
+      { contest: 'Regular Season Champion',           winner: 'Kyle' },
+      { contest: 'Owner of the Year',                 winner: 'Matt' },
+      { contest: 'AVL Memorial Cup',                  winner: 'Kyle' },
+      { contest: 'Rivalry Week',                      winner: 'Tim' },
+      { contest: 'Ryder Cup',                         winner: 'Team Tim defeated Team Matt' },
+      { contest: 'Hottest Team in Sports Bowl',       winner: 'Brian' },
+      { contest: 'Hung the * Chain',                  winner: 'None' },
+      { contest: 'Intercontinental Champion',         winner: 'Tim' },
+      { contest: 'Somehow the Champion',              winner: 'Jon' },
+      { contest: 'Survivor King',                     winner: 'Jack' },
+      { contest: 'Degen Bowl',                        winner: 'Kyle' },
+      { contest: "Dad Bod's Preseason Rankings",      winner: 'Jack' },
+      { contest: "KG's Playoff Pick Em",              winner: 'Mike' },
+      { contest: 'Bronze Franz',                      winner: 'Matt' },
+      { contest: 'Regular Season Last Place',         winner: 'Alex' },
+      { contest: 'Partner of the Year',               winner: 'Mrs 9.5' },
+    ],
+    2023: [
+      { contest: 'League Champion',                   winner: 'Alex V' },
+      { contest: '2nd Place',                         winner: 'Kyle' },
+      { contest: '3rd Place',                         winner: 'Dylan' },
+      { contest: 'Regular Season Champion',           winner: 'Alex V' },
+      { contest: 'Owner of the Year',                 winner: 'Daniel' },
+      { contest: 'AVL Memorial Cup',                  winner: 'Alex V' },
+      { contest: 'Rivalry Week',                      winner: 'Dylan' },
+      { contest: 'Ryder Cup',                         winner: 'Team Dylan defeated Team Alex' },
+      { contest: 'Hottest Team in Sports Bowl',       winner: 'Jack' },
+      { contest: 'Hung the * Chain',                  winner: 'Jack' },
+      { contest: 'Intercontinental Champion',         winner: 'Alex V' },
+      { contest: 'Somehow the Champion',              winner: 'Jack' },
+      { contest: 'Survivor King',                     winner: 'Scott' },
+      { contest: 'Degen Bowl',                        winner: 'Jack' },
+      { contest: "Dad Bod's Preseason Rankings",      winner: 'Jack' },
+      { contest: "KG's Playoff Pick Em",              winner: 'Jack' },
+      { contest: 'Bronze Franz',                      winner: 'Mike M' },
+      { contest: 'Regular Season Last Place',         winner: 'Tim H' },
+      { contest: 'Partner of the Year',               winner: 'Mrs. 9.5' },
+    ],
+    2022: [
+      { contest: 'League Champion',                   winner: 'Kyle' },
+      { contest: '2nd Place',                         winner: 'Mike' },
+      { contest: '3rd Place',                         winner: 'Daniel' },
+      { contest: 'Regular Season Champion',           winner: 'Andy' },
+      { contest: 'Owner of the Year',                 winner: 'Murph & Wade' },
+      { contest: 'Rivalry Week',                      winner: 'Kyle' },
+      { contest: 'Ryder Cup',                         winner: 'Degenerates defeated Do-gooders' },
+      { contest: 'Ryder Cup',                         winner: 'Shy defeated Chatty' },
+      { contest: 'Hottest Team in Sports Bowl',       winner: 'Scott' },
+      { contest: 'Hung the * Chain',                  winner: 'Scott' },
+      { contest: 'Intercontinental Champion',         winner: 'Andy' },
+      { contest: 'Somehow the Champion',              winner: 'Daniel' },
+      { contest: 'Survivor King',                     winner: 'Tim' },
+      { contest: 'Degen Bowl',                        winner: 'Daniel' },
+      { contest: "Dad Bod's Preseason Rankings",      winner: 'Dylan' },
+      { contest: "KG's Playoff Pick Em",              winner: 'Jon' },
+      { contest: 'Bronze Franz',                      winner: 'Tim' },
+      { contest: 'Regular Season Last Place',         winner: 'Scott' },
+      { contest: 'Partner of the Year',               winner: 'Mrs 9.5' },
+    ],
+    2021: [
+      { contest: 'League Champion',                   winner: 'Dylan' },
+      { contest: '2nd Place',                         winner: 'Jon' },
+      { contest: '3rd Place',                         winner: 'Matt' },
+      { contest: 'Regular Season Champion',           winner: 'Jon' },
+      { contest: 'Owner of the Year',                 winner: 'Kyle' },
+      { contest: 'Rivalry Week',                      winner: 'Dylan' },
+      { contest: 'Ryder Cup',                         winner: 'Prestigious defeated Unproven' },
+      { contest: 'Ryder Cup',                         winner: 'East defeated West' },
+      { contest: 'Hottest Team in Sports Bowl',       winner: 'Jordan' },
+      { contest: 'Hung the * Chain',                  winner: 'Jordan' },
+      { contest: 'Intercontinental Champion',         winner: 'Kyle' },
+      { contest: 'Somehow the Champion',              winner: 'Jon' },
+      { contest: 'Survivor King',                     winner: 'Jack' },
+      { contest: 'Degen Bowl',                        winner: 'Wade' },
+      { contest: "Dad Bod's Preseason Rankings",      winner: 'Mike M' },
+      { contest: "KG's Playoff Pick Em",              winner: 'Kyle' },
+      { contest: 'Bronze Franz',                      winner: 'Brian' },
+      { contest: 'Regular Season Last Place',         winner: 'Daniel' },
+    ],
+    2020: [
+      { contest: 'League Champion',                   winner: 'Mike' },
+      { contest: '2nd Place',                         winner: 'Kyle' },
+      { contest: '3rd Place',                         winner: 'Alex' },
+      { contest: 'Regular Season Champion',           winner: 'Mike' },
+      { contest: 'Owner of the Year',                 winner: 'Matt' },
+      { contest: 'Rivalry Week',                      winner: 'Mike' },
+      { contest: 'Ryder Cup',                         winner: 'Youths defeated Ageds' },
+      { contest: 'Ryder Cup',                         winner: 'Childless defeated Dads' },
+      { contest: 'Hottest Team in Sports Bowl',       winner: 'Jack' },
+      { contest: 'Hung the * Chain',                  winner: 'No one' },
+      { contest: 'Intercontinental Champion',         winner: 'Alex' },
+      { contest: 'Somehow the Champion',              winner: 'Tim C' },
+      { contest: 'Survivor King',                     winner: 'Tim C' },
+      { contest: 'Bronze Franz',                      winner: 'Scott' },
+      { contest: 'Regular Season Last Place',         winner: 'Dylan' },
+    ],
+    2019: [
+      { contest: 'League Champion',                   winner: 'Jack' },
+      { contest: '2nd Place',                         winner: 'Alex V' },
+      { contest: '3rd Place',                         winner: 'Jon' },
+      { contest: 'Regular Season Champion',           winner: 'Alex V' },
+      { contest: 'Owner of the Year',                 winner: 'Kyle' },
+      { contest: 'Rivalry Week',                      winner: 'Jordan' },
+      { contest: 'Hottest Team in Sports Bowl',       winner: 'Brian' },
+      { contest: 'Hung the * Chain',                  winner: 'No one' },
+      { contest: 'Intercontinental Champion',         winner: 'Alex V' },
+      { contest: 'Somehow the Champion',              winner: 'Alex V' },
+      { contest: 'Survivor King',                     winner: 'Michelle C' },
+      { contest: 'Bronze Franz',                      winner: 'Daniel' },
+      { contest: 'Regular Season Last Place',         winner: 'Daniel' },
+    ],
+    2018: [
+      { contest: 'League Champion',                   winner: 'Jack' },
+      { contest: '2nd Place',                         winner: 'Kyle' },
+      { contest: '3rd Place',                         winner: 'Christine' },
+      { contest: 'Regular Season Champion',           winner: 'Jack' },
+      { contest: 'Owner of the Year',                 winner: 'Kyle' },
+      { contest: 'Rivalry Week',                      winner: 'Kyle' },
+      { contest: 'Hottest Team in Sports Bowl',       winner: 'Anthony' },
+      { contest: 'Survivor King',                     winner: 'Tim' },
+      { contest: 'Bronze Franz',                      winner: 'Alex V' },
+      { contest: 'Regular Season Last Place',         winner: 'Tim' },
+    ],
+    2017: [
+      { contest: 'League Champion',                   winner: 'Dylan' },
+      { contest: '2nd Place',                         winner: 'Michelle T' },
+      { contest: '3rd Place',                         winner: 'Alex V' },
+      { contest: 'Regular Season Champion',           winner: 'Dylan' },
+      { contest: 'Rivalry Week',                      winner: 'Dylan' },
+      { contest: 'Hottest Team in Sports Bowl',       winner: 'Jon' },
+      { contest: 'Swag Champion',                     winner: 'Mike' },
+      { contest: 'Regular Season Last Place',         winner: 'Jon' },
+      { contest: 'Consolation Last Place',            winner: 'Scott' },
+    ],
+    2016: [
+      { contest: 'League Champion',                   winner: 'Brian' },
+      { contest: '2nd Place',                         winner: 'Daniel' },
+      { contest: '3rd Place',                         winner: 'Scott' },
+      { contest: 'Regular Season Champion',           winner: 'Daniel' },
+      { contest: 'Rivalry Week',                      winner: 'Jon' },
+      { contest: 'Hottest Team in Sports Bowl',       winner: 'Jon' },
+      { contest: 'Swag Champion',                     winner: 'Brian' },
+      { contest: 'Regular Season Last Place',         winner: 'Mike' },
+    ],
+    2015: [
+      { contest: 'League Champion',                   winner: 'Alex M' },
+      { contest: '2nd Place',                         winner: 'Taylor' },
+      { contest: '3rd Place',                         winner: 'Tim' },
+      { contest: 'Regular Season Champion',           winner: 'Taylor' },
+      { contest: 'Hottest Team in Sports Bowl',       winner: 'Scott' },
+      { contest: 'Swag Champion',                     winner: 'Mike' },
+      { contest: 'Regular Season Last Place',         winner: 'Michelle T' },
+    ],
+    2014: [
+      { contest: 'League Champion',                   winner: 'Michelle T' },
+      { contest: '2nd Place',                         winner: 'Jack' },
+      { contest: '3rd Place',                         winner: 'Daniel' },
+      { contest: 'Regular Season Champion',           winner: 'Jack' },
+      { contest: 'Hottest Team in Sports Bowl',       winner: 'Brian' },
+      { contest: 'Regular Season Last Place',         winner: 'James' },
+    ],
+  };
+
+  const YEARS = Object.keys(SEASONS).map(Number).sort((a,b) => b - a);
+
+  // Build all unique contest names in consistent order
+  function getAllContests() {
+    // Priority order for known official contests, then everything else alphabetically
+    const official = [
+      'League Champion', '2nd Place', '3rd Place', 'Regular Season Champion',
+      'Owner of the Year', 'AVL Memorial Cup', 'Rivalry Week', 'Ryder Cup',
+      'Hottest Team in Sports Bowl', 'Hung the * Chain', 'Intercontinental Champion',
+      'Somehow the Champion', 'Survivor King', 'Degen Bowl',
+      "Dad Bod's Preseason Rankings", "KG's Playoff Pick Em",
+      'Da Choppaaa Champ', 'Bronze Franz', 'Regular Season Last Place',
+      'Partner of the Year', 'Swag Champion', 'Consolation Last Place',
+    ];
+    const seen = new Set();
+    const result = [];
+    // Add official first (if they appear in data)
+    const allInData = new Set(YEARS.flatMap(y => SEASONS[y].map(r => r.contest)));
+    for (const c of official) {
+      if (allInData.has(c)) { result.push(c); seen.add(c); }
+    }
+    // Add remaining in the order they first appear (most recent year first)
+    for (const year of YEARS) {
+      for (const { contest } of SEASONS[year]) {
+        if (!seen.has(contest)) { result.push(contest); seen.add(contest); }
+      }
+    }
+    return result;
+  }
+
+  // ── STATE ─────────────────────────────────────────────────────────────────
+  let activeView = 'contest';
+  let activeYear = YEARS[0];
+  let activeContest = 'League Champion';
+
+  // ── RENDER ────────────────────────────────────────────────────────────────
+  function setView(v) {
+    activeView = v;
+    document.getElementById('viewYear').classList.toggle('active', v === 'year');
+    document.getElementById('viewContest').classList.toggle('active', v === 'contest');
+    document.getElementById('btnYear').classList.toggle('active', v === 'year');
+    document.getElementById('btnContest').classList.toggle('active', v === 'contest');
+  }
+
+  function renderYearSelector() {
+    const el = document.getElementById('yearSelector');
+    el.innerHTML = YEARS.map(y =>
+      `<button class="year-pill${y === activeYear ? ' active' : ''}" onclick="selectYear(${y})">${y}</button>`
+    ).join('');
+  }
+
+  function selectYear(y) {
+    activeYear = y;
+    document.querySelectorAll('.year-pill').forEach(p => {
+      p.classList.toggle('active', parseInt(p.textContent) === y);
+    });
+    renderYearContent();
+  }
+
+  function renderYearContent() {
+    const data = SEASONS[activeYear] || [];
+    const rows = data
+      .filter(r => r.winner && r.winner !== 'None' && r.winner !== 'No one')
+      .map((r, i) => `
+        <div class="contest-row">
+          <span class="contest-name">${r.contest}</span>
+          <span class="contest-winner">${winnerLink(r.winner)}</span>
+        </div>
+      `).join('');
+
+    document.getElementById('yearContent').innerHTML = `
+      <div class="year-card">
+        <div class="year-card-header">${activeYear} Season</div>
+        ${rows || '<div class="no-data">No data available</div>'}
+      </div>
+    `;
+  }
+
+  function renderContestSelector() {
+    const contests = getAllContests();
+    const sel = document.getElementById('contestSelect');
+    sel.innerHTML = '<option value="">— Select a contest —</option>' +
+      contests.map(c => `<option value="${c}">${c}</option>`).join('');
+  }
+
+  function renderContest() {
+    const contest = document.getElementById('contestSelect').value;
+    activeContest = contest;
+    const el = document.getElementById('contestContent');
+    if (!contest) { el.innerHTML = ''; return; }
+
+    const results = YEARS
+      .map(y => {
+        const entries = SEASONS[y]?.filter(r => r.contest === contest);
+        return entries && entries.length ? entries.map(e => ({ year: y, winner: e.winner })) : null;
+      })
+      .filter(Boolean)
+      .flat();
+
+    if (!results.length) {
+      el.innerHTML = `<div class="no-data">No results found for this contest</div>`;
+      return;
+    }
+
+    const info = CONTEST_INFO[contest] || {};
+    const imgHtml = info.image
+      ? `<img class="contest-info-img" src="${info.image}" alt="${contest}" />`
+      : '';
+    const descHtml = info.desc
+      ? `<p class="contest-info-desc">${info.desc}</p>`
+      : '';
+
+    el.innerHTML = `
+      <div class="contest-info">
+        ${imgHtml}
+        <div class="contest-info-name">${contest}</div>
+        ${descHtml}
+      </div>
+      <div>
+        ${results.map(r => `
+          <div class="contest-result-row">
+            <span class="result-year">${r.year}</span>
+            <span class="result-winner">${winnerLink(r.winner)}</span>
+          </div>
+        `).join('')}
+      </div>
+    `;
+  }
+
+  // ── INIT ─────────────────────────────────────────────────────────────────
+  renderYearSelector();
+  renderYearContent();
+  renderContestSelector();
+  document.getElementById('contestSelect').value = 'League Champion';
+  renderContest();
+  </script>
+</body>
+</html>
