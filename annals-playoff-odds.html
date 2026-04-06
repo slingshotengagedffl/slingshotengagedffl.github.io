@@ -345,10 +345,10 @@
     .matrix-table td.highlight-cell {
       animation: none !important;
       opacity: 1 !important;
-      border: 2px solid #fff !important;
-      transform: scale(1.12);
+      border: 2px solid var(--gold) !important;
+      transform: scale(1.15);
       z-index: 10;
-      box-shadow: 0 0 12px rgba(255,255,255,0.3);
+      box-shadow: 0 0 14px rgba(201,168,76,0.6), 0 0 4px rgba(201,168,76,0.9);
     }
 
   </style>
@@ -605,8 +605,7 @@
     resultPct.style.color = text;
     resultFlavor.textContent = flavorText(pct, 'valid');
 
-    // Scroll cell into view on mobile
-    td.scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'center' });
+
   }
 
   function clamp(v, lo, hi) { return Math.max(lo, Math.min(hi, v)); }

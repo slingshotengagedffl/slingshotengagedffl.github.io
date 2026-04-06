@@ -30,7 +30,7 @@
         { label: 'Season Summaries',             href: 'annals-season-summaries.html' },
         { label: 'Prestige Rankings',            href: 'annals-prestige-rankings.html' },
         { label: 'Head-To-Head',                 href: 'annals-head-to-head.html' },
-        { label: 'Playoff Odds',                 href: 'annals-playoff-odds.html' },
+        { label: 'Playoff Odds Oracle (POO) 💩', href: 'annals-playoff-odds.html' },
         { label: 'Draft Position Success',       href: 'annals-draft-position-success.html' },
         { label: 'Correlation To Wins',          href: 'annals-correlation-to-wins.html' },
         { label: 'Lucky / Unlucky',              href: 'annals-lucky-unlucky.html' },
