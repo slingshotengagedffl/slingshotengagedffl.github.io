@@ -199,7 +199,7 @@
       border-top: 1px solid var(--border);
       padding-top: 20px;
       text-align: center;
-      height: 130px;
+      height: 155px;
       display: flex;
       flex-direction: column;
       align-items: center;
@@ -236,6 +236,33 @@
       text-transform: uppercase;
       color: var(--muted);
       font-style: italic;
+    }
+
+    .result-count {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: 0.9rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--gold);
+      min-height: 1.2em;
+    }
+
+    .clear-btn {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: 0.75rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--muted);
+      background: none;
+      border: 1px solid var(--border);
+      border-radius: 3px;
+      padding: 6px 16px;
+      cursor: pointer;
+      transition: color 0.15s, border-color 0.15s;
+    }
+    .clear-btn:hover {
+      color: var(--text);
+      border-color: var(--muted);
     }
 
     /* MATRIX SECTION */
@@ -362,10 +389,10 @@
     .matrix-table td.highlight-cell {
       animation: none !important;
       opacity: 1 !important;
-      border: 2px solid var(--gold) !important;
-      transform: scale(1.15);
+      border: 3px solid var(--gold) !important;
+      transform: scale(1.35);
       z-index: 10;
-      box-shadow: 0 0 14px rgba(201,168,76,0.6), 0 0 4px rgba(201,168,76,0.9);
+      box-shadow: 0 0 20px rgba(201,168,76,0.8), 0 0 6px rgba(201,168,76,1), inset 0 0 6px rgba(201,168,76,0.2);
     }
 
   </style>
@@ -396,7 +423,7 @@
         <div class="sim-field-label">Wins</div>
         <div class="counter">
           <button class="counter-btn" id="wDec">−</button>
-          <div class="counter-val" id="wVal">6</div>
+          <div class="counter-val" id="wVal">0</div>
           <button class="counter-btn" id="wInc">+</button>
         </div>
       </div>
@@ -405,7 +432,7 @@
         <div class="sim-field-label">Losses</div>
         <div class="counter">
           <button class="counter-btn" id="lDec">−</button>
-          <div class="counter-val" id="lVal">7</div>
+          <div class="counter-val" id="lVal">0</div>
           <button class="counter-btn" id="lInc">+</button>
         </div>
       </div>
@@ -413,6 +440,10 @@
     <div class="sim-result" id="simResult">
       <div class="result-pct" id="resultPct" style="color: var(--muted)">—</div>
       <div class="result-flavor" id="resultFlavor"></div>
+      <div class="result-count" id="resultCount"></div>
+    </div>
+    <div style="text-align:center; margin-top: 14px;">
+      <button class="clear-btn" id="clearBtn">Clear Selection</button>
     </div>
   </div>
 
@@ -561,8 +592,24 @@
     });
   }
 
+  // ─── COUNTS (placeholder — replace with real data) ─────────────────────────
+  // Format: 'wins-losses': { made: X, total: Y }
+  const counts = {
+    '12-0': { made: 2, total: 2 }, '12-1': { made: 2, total: 2 }, '12-2': { made: 2, total: 2 },
+    '11-0': { made: 2, total: 2 }, '11-1': { made: 2, total: 2 }, '11-2': { made: 2, total: 2 },
+    '10-0': { made: 2, total: 2 }, '10-1': { made: 2, total: 2 }, '10-2': { made: 2, total: 2 },
+    '9-0':  { made: 2, total: 2 }, '9-1':  { made: 2, total: 2 }, '9-2':  { made: 2, total: 2 },
+    '8-0':  { made: 2, total: 2 }, '8-1':  { made: 2, total: 2 }, '8-2':  { made: 2, total: 2 },
+    '8-3':  { made: 2, total: 2 }, '8-4':  { made: 2, total: 2 }, '8-5':  { made: 2, total: 2 },
+    '8-6':  { made: 4, total: 5 },
+    '7-7':  { made: 3, total: 9 },
+    '6-7':  { made: 0, total: 4 }, '6-8':  { made: 0, total: 3 },
+    '5-8':  { made: 0, total: 5 }, '5-9':  { made: 0, total: 3 },
+    '0-0':  { made: 9, total: 10 },
+  };
+
   // ─── SIMULATOR ──────────────────────────────────────────────────────────────
-  let wins = 6, losses = 7;
+  let wins = 0, losses = 0;
 
   const wVal = document.getElementById('wVal');
   const lVal = document.getElementById('lVal');
@@ -585,14 +632,25 @@
     return "Pack it up. History has never seen this record make it.";
   }
 
+  const resultCount = document.getElementById('resultCount');
+
+  function clearSim() {
+    document.querySelectorAll('.highlight-cell').forEach(el => el.classList.remove('highlight-cell'));
+    resultPct.textContent = '—';
+    resultPct.style.color = 'var(--muted)';
+    resultFlavor.textContent = '';
+    resultCount.textContent = '';
+    wins = 0; losses = 0;
+    wVal.textContent = 0;
+    lVal.textContent = 0;
+  }
+
   function updateSim() {
     wVal.textContent = wins;
     lVal.textContent = losses;
 
     // Clear previous highlight
-    document.querySelectorAll('.highlight-cell').forEach(el => {
-      el.classList.remove('highlight-cell');
-    });
+    document.querySelectorAll('.highlight-cell').forEach(el => el.classList.remove('highlight-cell'));
 
     const key = `${wins}-${losses}`;
     const td = cellMap[key];
@@ -601,6 +659,7 @@
       resultPct.textContent = '—';
       resultPct.style.color = 'var(--muted)';
       resultFlavor.textContent = '';
+      resultCount.textContent = '';
       return;
     }
 
@@ -609,6 +668,7 @@
       resultPct.textContent = '—';
       resultPct.style.color = 'var(--muted)';
       resultFlavor.textContent = flavorText(null, 'impossible');
+      resultCount.textContent = '';
       return;
     }
 
@@ -617,6 +677,7 @@
       resultPct.textContent = '—';
       resultPct.style.color = 'var(--muted)';
       resultFlavor.textContent = "No one in league history has ever held this record.";
+      resultCount.textContent = '';
       return;
     }
 
@@ -628,7 +689,13 @@
     resultPct.style.color = text;
     resultFlavor.textContent = flavorText(pct, 'valid');
 
-
+    // Placeholder count — will be replaced with real data
+    const countData = counts[key];
+    if (countData) {
+      resultCount.textContent = `${countData.made} of ${countData.total} teams made it`;
+    } else {
+      resultCount.textContent = '';
+    }
   }
 
   function clamp(v, lo, hi) { return Math.max(lo, Math.min(hi, v)); }
@@ -637,6 +704,7 @@
   document.getElementById('wDec').addEventListener('click', () => { wins = clamp(wins - 1, 0, 14); updateSim(); });
   document.getElementById('lInc').addEventListener('click', () => { losses = clamp(losses + 1, 0, 14); updateSim(); });
   document.getElementById('lDec').addEventListener('click', () => { losses = clamp(losses - 1, 0, 14); updateSim(); });
+  document.getElementById('clearBtn').addEventListener('click', clearSim);
 
   // ─── PAGE UPDATED ────────────────────────────────────────────────────────────
   fetch('profiles-data.json')
