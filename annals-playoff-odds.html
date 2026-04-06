@@ -1,0 +1,636 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Playoff Odds Oracle – Slingshot Engaged FFL</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Barlow+Condensed:wght@400;600;700&family=Barlow:wght@400;500;600&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --bg: #0a0a0a;
+      --surface: #141414;
+      --surface2: #1c1c1c;
+      --surface3: #242424;
+      --text: #f0f0f0;
+      --muted: #999;
+      --border: #2a2a2a;
+      --red: #c0392b;
+      --red-bright: #e74c3c;
+      --gold: #c9a84c;
+
+      --green-high: #1a7a3a;
+      --green-mid: #2d9e52;
+      --yellow: #c9a84c;
+      --orange: #c0612b;
+      --red-low: #8b1a1a;
+      --red-zero: #3a0a0a;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: 'Barlow', sans-serif;
+      min-height: 100vh;
+    }
+
+    /* PAGE HEADER */
+    .page-header {
+      padding: 40px 20px 0;
+      text-align: center;
+    }
+    .page-supertitle {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: 0.8rem;
+      letter-spacing: 0.25em;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin-bottom: 6px;
+    }
+    .page-header h1 {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: clamp(2.8rem, 8vw, 5rem);
+      color: var(--red-bright);
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      line-height: 1;
+    }
+    .page-subtitle {
+      font-family: 'Barlow', sans-serif;
+      font-size: 0.88rem;
+      color: var(--muted);
+      margin-top: 8px;
+    }
+    .page-updated {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: 0.72rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin-top: 6px;
+    }
+
+    /* CONTENT WRAPPER */
+    .content {
+      max-width: 680px;
+      margin: 0 auto;
+      padding: 0 16px 60px;
+    }
+
+    /* INTRO */
+    .intro {
+      margin: 28px 0 12px;
+      font-family: 'Barlow', sans-serif;
+      font-size: 1.05rem;
+      color: var(--muted);
+      line-height: 1.65;
+      text-align: center;
+    }
+
+    .intro strong {
+      color: var(--text);
+    }
+
+    .data-notice {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: 0.78rem;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--muted);
+      text-align: center;
+      margin-bottom: 36px;
+    }
+
+    /* SIMULATOR */
+    .simulator {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 4px;
+      padding: 24px 20px;
+      margin-bottom: 36px;
+    }
+
+    .sim-label {
+      font-family: 'Barlow', sans-serif;
+      font-size: 1rem;
+      color: var(--muted);
+      margin-bottom: 16px;
+      text-align: center;
+    }
+
+    .sim-inputs {
+      display: flex;
+      gap: 16px;
+      justify-content: center;
+      align-items: center;
+      flex-wrap: wrap;
+      margin-bottom: 20px;
+    }
+
+    .sim-field {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .sim-field-label {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: 0.85rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--muted);
+    }
+
+    .counter {
+      display: flex;
+      align-items: center;
+      gap: 0;
+      border: 1px solid var(--border);
+      border-radius: 3px;
+      overflow: hidden;
+    }
+
+    .counter-btn {
+      background: var(--surface2);
+      border: none;
+      color: var(--text);
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 1.2rem;
+      width: 36px;
+      height: 44px;
+      cursor: pointer;
+      transition: background 0.15s;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .counter-btn:hover { background: var(--surface3); }
+    .counter-btn:active { background: var(--red); }
+
+    .counter-val {
+      background: var(--surface3);
+      color: var(--text);
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 1.6rem;
+      width: 48px;
+      height: 44px;
+      text-align: center;
+      border: none;
+      outline: none;
+      line-height: 44px;
+    }
+
+    .sim-dash {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 2rem;
+      color: var(--muted);
+      padding-top: 20px;
+    }
+
+    /* RESULT CALLOUT */
+    .sim-result {
+      border-top: 1px solid var(--border);
+      padding-top: 20px;
+      text-align: center;
+      height: 130px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      overflow: hidden;
+    }
+
+    .result-pct {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: clamp(2.8rem, 10vw, 4.5rem);
+      line-height: 1;
+      transition: color 0.4s;
+    }
+
+    .result-flavor {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: 1rem;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--muted);
+      max-width: 400px;
+      height: 2.2em;
+      line-height: 1.1;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .result-impossible {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: 0.8rem;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--muted);
+      font-style: italic;
+    }
+
+    /* MATRIX SECTION */
+    .matrix-section {
+      margin-top: 8px;
+    }
+
+    .matrix-label {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: 0.82rem;
+      letter-spacing: 0.25em;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin-bottom: 14px;
+      text-align: center;
+    }
+
+    .matrix-scroll {
+      overflow-x: auto;
+      -webkit-overflow-scrolling: touch;
+    }
+
+    .matrix-table {
+      border-collapse: collapse;
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: 0.72rem;
+      min-width: 560px;
+      width: 100%;
+    }
+
+    .matrix-table th {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: 0.6rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--muted);
+      padding: 4px 2px;
+      text-align: center;
+      font-weight: 600;
+      background: var(--bg);
+    }
+
+    .matrix-table th.row-header {
+      text-align: right;
+      padding-right: 8px;
+      white-space: nowrap;
+    }
+
+    .axis-label {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: 0.65rem;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--muted);
+      text-align: center;
+      padding: 6px 0 2px;
+    }
+
+    .matrix-table td {
+      width: 36px;
+      height: 28px;
+      text-align: center;
+      font-size: 0.62rem;
+      font-weight: 600;
+      letter-spacing: 0.02em;
+      border: 1px solid transparent;
+      transition: border-color 0.2s, transform 0.15s;
+      cursor: default;
+      opacity: 0;
+      position: relative;
+    }
+
+    .matrix-table td.filled {
+      opacity: 1;
+    }
+
+    .matrix-table td.impossible {
+      background: #111 !important;
+      color: transparent !important;
+      opacity: 1;
+    }
+
+    .matrix-table td.no-data {
+      background: #161616;
+      color: #444;
+      font-size: 0.6rem;
+      opacity: 1;
+    }
+
+    .wins-header {
+      text-align: right !important;
+      padding-right: 10px !important;
+      font-size: 0.62rem !important;
+      color: var(--muted) !important;
+      background: var(--bg) !important;
+    }
+
+    @keyframes cellReveal {
+      from { opacity: 0; transform: scale(0.7); }
+      to   { opacity: 1; transform: scale(1); }
+    }
+
+    .matrix-table td.animate-in {
+      animation: cellReveal 0.3s ease forwards;
+    }
+
+    .matrix-table td.highlight-cell {
+      animation: none !important;
+      opacity: 1 !important;
+      border: 2px solid #fff !important;
+      transform: scale(1.12);
+      z-index: 10;
+      box-shadow: 0 0 12px rgba(255,255,255,0.3);
+    }
+
+  </style>
+</head>
+<body>
+
+<div class="page-header">
+  <div class="page-supertitle">The Annals of History</div>
+  <h1>The POO</h1>
+  <p class="page-subtitle">The Playoff Odds Oracle</p>
+  <p class="page-updated" id="pageUpdated"></p>
+</div>
+
+<div class="content">
+
+  <p class="intro">
+    Ancient oracles spoke in riddles. The POO speaks in percentages.
+    Enter your record below and let history render its verdict — <strong>how often has a team standing exactly where you stand made the playoffs?</strong>
+    Consult The POO. It has seen things.
+  </p>
+  <p class="data-notice">⚠ 2025 data not yet included.</p>
+
+  <!-- SIMULATOR -->
+  <div class="simulator">
+    <div class="sim-label">Where do you stand?</div>
+    <div class="sim-inputs">
+      <div class="sim-field">
+        <div class="sim-field-label">Wins</div>
+        <div class="counter">
+          <button class="counter-btn" id="wDec">−</button>
+          <div class="counter-val" id="wVal">6</div>
+          <button class="counter-btn" id="wInc">+</button>
+        </div>
+      </div>
+      <div class="sim-dash">–</div>
+      <div class="sim-field">
+        <div class="sim-field-label">Losses</div>
+        <div class="counter">
+          <button class="counter-btn" id="lDec">−</button>
+          <div class="counter-val" id="lVal">7</div>
+          <button class="counter-btn" id="lInc">+</button>
+        </div>
+      </div>
+    </div>
+    <div class="sim-result" id="simResult">
+      <div class="result-pct" id="resultPct" style="color: var(--muted)">—</div>
+      <div class="result-flavor" id="resultFlavor"></div>
+    </div>
+  </div>
+
+  <!-- MATRIX -->
+  <div class="matrix-section">
+    <div class="matrix-label">Historical Playoff Odds Matrix — Updated After 2024 Regular Season</div>
+    <div class="matrix-scroll">
+      <table class="matrix-table" id="matrixTable">
+        <thead>
+          <tr>
+            <th class="row-header">Wins ↓ / Losses →</th>
+            <th>0</th><th>1</th><th>2</th><th>3</th><th>4</th>
+            <th>5</th><th>6</th><th>7</th><th>8</th><th>9</th>
+            <th>10</th><th>11</th><th>12</th><th>13</th><th>14</th>
+          </tr>
+        </thead>
+        <tbody id="matrixBody">
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+</div>
+
+<script src="nav.js"></script>
+<script>
+  // ─── DATA ───────────────────────────────────────────────────────────────────
+  // odds[wins][losses] = percentage (null = impossible record)
+  // Records not listed = W+L > 14 (genuinely impossible)
+  // Records in data but missing a loss key = never achieved, show —
+  const odds = {
+    14: {},
+    13: {},
+    12: { 0: 100, 1: 100, 2: 100 },
+    11: { 0: 100, 1: 100, 2: 100 },
+    10: { 0: 100, 1: 100, 2: 100, 3: 100, 4: 100 },
+     9: { 0: 100, 1: 100, 2: 100, 3: 100, 4: 100, 5: 100 },
+     8: { 0: 100, 1: 100, 2: 100, 3: 100, 4: 100, 5: 100, 6: 80 },
+     7: { 0: 100, 1: 100, 2: 100, 3: 100, 4: 89,  5: 80,  6: 54, 7: 33 },
+     6: { 0: 100, 1: 90,  2: 92,  3: 85,  4: 68,  5: 56,  6: 26, 7: 0,  8: 0 },
+     5: { 0: 89,  1: 88,  2: 83,  3: 68,  4: 52,  5: 31,  6: 11, 7: 0,  8: 0,  9: 0 },
+     4: { 0: 82,  1: 81,  2: 66,  3: 47,  4: 33,  5: 15,  6: 9,  7: 0,  8: 0,  9: 0, 10: 0 },
+     3: { 0: 68,  1: 70,  2: 55,  3: 41,  4: 31,  5: 18,  6: 9,  7: 0,  8: 0,  9: 0, 10: 0, 11: 0 },
+     2: { 0: 66,  1: 64,  2: 39,  3: 24,  4: 17,  5: 4,   6: 0,  7: 0,  8: 0,  9: 0, 10: 0, 11: 0 },
+     1: { 0: 54,  1: 43,  2: 26,  3: 20,  4: 11,  5: 0,   6: 0,  7: 0,  8: 0,  9: 0, 10: 0, 11: 0, 12: 0 },
+     0: { 0: 42,  1: 30,  2: 16,  3: 0,   4: 0,   5: 0,   6: 0,  7: 0,  8: 0,  9: 0, 10: 0, 11: 0, 12: 0 },
+  };
+
+  const winRows = [14,13,12,11,10,9,8,7,6,5,4,3,2,1,0];
+  const lossCols = [0,1,2,3,4,5,6,7,8,9,10,11,12,13,14];
+
+  // ─── COLOR HELPERS ──────────────────────────────────────────────────────────
+  function pctToColor(pct) {
+    if (pct === 100) return { bg: '#0d5c2a', text: '#6ee89b' };
+    if (pct >= 75)   return { bg: '#1a7a3a', text: '#8ef5ad' };
+    if (pct >= 50)   return { bg: '#4a7a1a', text: '#b8e87a' };
+    if (pct >= 25)   return { bg: '#7a5a10', text: '#e8c87a' };
+    if (pct > 0)     return { bg: '#7a2010', text: '#e8907a' };
+    return               { bg: '#3a0808', text: '#cc4444' };
+  }
+
+  // ─── BUILD MATRIX ───────────────────────────────────────────────────────────
+  const tbody = document.getElementById('matrixBody');
+  const cellMap = {}; // key: "w-l" -> td element
+
+  winRows.forEach(w => {
+    const tr = document.createElement('tr');
+
+    // wins header
+    const th = document.createElement('th');
+    th.className = 'wins-header';
+    th.textContent = w;
+    tr.appendChild(th);
+
+    lossCols.forEach(l => {
+      const td = document.createElement('td');
+      const key = `${w}-${l}`;
+      cellMap[key] = td;
+
+      if (w + l > 14) {
+        // truly impossible — more games than the season allows
+        td.classList.add('impossible');
+        td.dataset.state = 'impossible';
+        tr.appendChild(td);
+        return;
+      }
+
+      const rowData = odds[w];
+      const pct = rowData !== undefined ? rowData[l] : undefined;
+
+      if (pct === undefined) {
+        // record is possible but never achieved in league history
+        td.classList.add('no-data');
+        td.dataset.state = 'nodata';
+        td.textContent = '—';
+        tr.appendChild(td);
+        return;
+      }
+
+      const { bg, text } = pctToColor(pct);
+      td.style.background = bg;
+      td.style.color = text;
+      td.textContent = pct + '%';
+      td.dataset.pct = pct;
+      td.dataset.state = 'valid';
+      tr.appendChild(td);
+    });
+
+    tbody.appendChild(tr);
+  });
+
+  // ─── STAGGERED ANIMATION ────────────────────────────────────────────────────
+  function animateMatrix() {
+    // Reveal diagonally — by (wins + losses) sum, descending wins
+    const cells = [];
+    winRows.forEach(w => {
+      lossCols.forEach(l => {
+        const key = `${w}-${l}`;
+        const td = cellMap[key];
+        if (td && td.dataset.state === 'valid') {
+          cells.push({ td, w, l, diag: 14 - w + l });
+        }
+      });
+    });
+
+    // Sort by diagonal (smallest sum first = top-left first)
+    cells.sort((a, b) => a.diag - b.diag || b.w - a.w);
+
+    cells.forEach((c, i) => {
+      setTimeout(() => {
+        c.td.classList.add('animate-in');
+      }, i * 22);
+    });
+
+    // Also reveal impossible cells (subtly)
+    document.querySelectorAll('td.impossible').forEach((td, i) => {
+      setTimeout(() => {
+        td.style.opacity = '1';
+      }, i * 8 + 200);
+    });
+  }
+
+  // ─── SIMULATOR ──────────────────────────────────────────────────────────────
+  let wins = 6, losses = 7;
+
+  const wVal = document.getElementById('wVal');
+  const lVal = document.getElementById('lVal');
+  const resultPct = document.getElementById('resultPct');
+  const resultFlavor = document.getElementById('resultFlavor');
+
+  function flavorText(pct, state) {
+    if (state === 'impossible') return "That record isn't possible in a 14-week season.";
+    if (pct === 100) return "Inevitable. History has never seen this record miss.";
+    if (pct >= 91)   return "As close to a lock as this league allows. Sleep easy.";
+    if (pct >= 81)   return "You're in the driver's seat. The D***y is within reach.";
+    if (pct >= 71)   return "Odds are firmly in your favor. Finish the job.";
+    if (pct >= 61)   return "More likely in than out. Don't get comfortable.";
+    if (pct >= 51)   return "Coin flip territory — but the coin is tilted your way.";
+    if (pct >= 41)   return "It's a toss-up. You'll need a strong finish.";
+    if (pct >= 31)   return "Uphill battle. It's been done, but not often.";
+    if (pct >= 21)   return "Longshot. The Hottest Team in Sports Bowl might be your season now.";
+    if (pct >= 11)   return "It's not zero. That's literally all we've got.";
+    if (pct > 0)     return "Start mentally preparing for the Bronze Franz.";
+    return "Pack it up. History has never seen this record make it.";
+  }
+
+  function updateSim() {
+    wVal.textContent = wins;
+    lVal.textContent = losses;
+
+    // Clear previous highlight
+    document.querySelectorAll('.highlight-cell').forEach(el => {
+      el.classList.remove('highlight-cell');
+    });
+
+    const key = `${wins}-${losses}`;
+    const td = cellMap[key];
+
+    if (!td) {
+      resultPct.textContent = '—';
+      resultPct.style.color = 'var(--muted)';
+      resultFlavor.textContent = '';
+      return;
+    }
+
+    if (td.dataset.state === 'impossible') {
+      td.classList.add('highlight-cell');
+      resultPct.textContent = '—';
+      resultPct.style.color = 'var(--muted)';
+      resultFlavor.textContent = flavorText(null, 'impossible');
+      return;
+    }
+
+    if (td.dataset.state === 'nodata') {
+      td.classList.add('highlight-cell');
+      resultPct.textContent = '—';
+      resultPct.style.color = 'var(--muted)';
+      resultFlavor.textContent = "No one in league history has ever held this record.";
+      return;
+    }
+
+    const pct = parseInt(td.dataset.pct);
+    const { bg, text } = pctToColor(pct);
+    td.classList.add('highlight-cell');
+
+    resultPct.textContent = pct + '%';
+    resultPct.style.color = text;
+    resultFlavor.textContent = flavorText(pct, 'valid');
+
+    // Scroll cell into view on mobile
+    td.scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'center' });
+  }
+
+  function clamp(v, lo, hi) { return Math.max(lo, Math.min(hi, v)); }
+
+  document.getElementById('wInc').addEventListener('click', () => { wins = clamp(wins + 1, 0, 14); updateSim(); });
+  document.getElementById('wDec').addEventListener('click', () => { wins = clamp(wins - 1, 0, 14); updateSim(); });
+  document.getElementById('lInc').addEventListener('click', () => { losses = clamp(losses + 1, 0, 14); updateSim(); });
+  document.getElementById('lDec').addEventListener('click', () => { losses = clamp(losses - 1, 0, 14); updateSim(); });
+
+  // ─── PAGE UPDATED ────────────────────────────────────────────────────────────
+  fetch('profiles-data.json')
+    .then(r => r.json())
+    .then(data => {
+      const val = data.pageUpdates && data.pageUpdates['playoff-odds'];
+      if (val) {
+        document.getElementById('pageUpdated').textContent = 'Updated · ' + val;
+      }
+    })
+    .catch(() => {});
+
+  // ─── INIT ────────────────────────────────────────────────────────────────────
+  animateMatrix();
+  updateSim();
+</script>
+
+</body>
+</html>
