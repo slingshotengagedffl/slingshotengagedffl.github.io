@@ -126,7 +126,7 @@
   .chart-subtitle {
     text-align: center;
     font-family: 'Barlow Condensed', sans-serif;
-    font-size: 0.68rem;
+    font-size: 0.75rem;
     font-weight: 600;
     letter-spacing: 0.18em;
     text-transform: uppercase;
@@ -145,13 +145,13 @@
     align-items: center;
     gap: 6px;
     font-family: 'Barlow Condensed', sans-serif;
-    font-size: 0.68rem;
+    font-size: 0.75rem;
     font-weight: 700;
     letter-spacing: 0.14em;
     text-transform: uppercase;
     color: var(--muted);
   }
-  .legend-pip { width: 16px; height: 3px; border-radius: 2px; }
+  .legend-pip { width: 18px; height: 3px; border-radius: 2px; }
   .pip-best  { background: var(--gold); }
   .pip-worst { background: var(--red-bright); }
   .pip-rest  { background: #5a2a2a; }
@@ -191,7 +191,7 @@
     align-items: center;
     gap: 7px;
     font-family: 'Barlow Condensed', sans-serif;
-    font-size: 0.72rem;
+    font-size: 0.75rem;
     font-weight: 700;
     letter-spacing: 0.14em;
     text-transform: uppercase;
@@ -216,8 +216,13 @@
   .card-wrapper {
     perspective: 900px;
     cursor: pointer;
-    aspect-ratio: 3/4;
+    /* taller on desktop to avoid back clipping */
+    aspect-ratio: 3/5;
   }
+  @media (min-width: 560px) {
+    .card-wrapper { aspect-ratio: 2/3; }
+  }
+
   .card-inner {
     position: relative;
     width: 100%;
@@ -252,7 +257,7 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    padding: 12px 12px 12px;
+    padding: 14px 14px 14px;
     transition: transform 0.18s ease, box-shadow 0.18s ease;
   }
   .card-wrapper:hover .card-front {
@@ -274,15 +279,15 @@
     justify-content: space-between;
     align-items: center;
     width: 100%;
-    margin-bottom: 6px;
+    margin-bottom: 8px;
   }
   .card-tier {
     font-family: 'Barlow Condensed', sans-serif;
-    font-size: 0.58rem;
+    font-size: 0.72rem;
     font-weight: 700;
-    letter-spacing: 0.18em;
+    letter-spacing: 0.16em;
     text-transform: uppercase;
-    padding: 3px 7px;
+    padding: 4px 9px;
     border-radius: 4px;
   }
   .badge-elite   { background: rgba(201,168,76,0.1);  border: 1px solid rgba(201,168,76,0.35); color: var(--gold); }
@@ -291,22 +296,23 @@
 
   .card-overall-rank {
     font-family: 'Barlow Condensed', sans-serif;
-    font-size: 0.62rem;
+    font-size: 0.72rem;
     font-weight: 700;
     letter-spacing: 0.1em;
     color: var(--muted);
   }
   .card-pick-label {
     font-family: 'Barlow Condensed', sans-serif;
-    font-size: 0.55rem;
+    font-size: 0.78rem;
     font-weight: 700;
     letter-spacing: 0.26em;
     text-transform: uppercase;
     color: var(--muted);
+    margin-bottom: 2px;
   }
   .card-number {
     font-family: 'Bebas Neue', sans-serif;
-    font-size: clamp(3rem, 9vw, 4.2rem);
+    font-size: clamp(4rem, 12vw, 5.5rem);
     letter-spacing: 0.02em;
     line-height: 1;
     flex: 1;
@@ -317,7 +323,7 @@
     width: 100%;
     height: 1px;
     background: var(--border);
-    margin-bottom: 10px;
+    margin-bottom: 12px;
   }
   .card-stats {
     display: flex;
@@ -328,11 +334,11 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    gap: 3px;
+    gap: 4px;
   }
   .stat-label {
     font-family: 'Barlow Condensed', sans-serif;
-    font-size: 0.52rem;
+    font-size: 0.68rem;
     font-weight: 700;
     letter-spacing: 0.16em;
     text-transform: uppercase;
@@ -340,7 +346,7 @@
   }
   .stat-value {
     font-family: 'Barlow Condensed', sans-serif;
-    font-size: 0.9rem;
+    font-size: 1.1rem;
     font-weight: 700;
     color: var(--text);
   }
@@ -351,12 +357,12 @@
   }
   .flip-hint {
     font-family: 'Barlow Condensed', sans-serif;
-    font-size: 0.5rem;
+    font-size: 0.62rem;
     font-weight: 600;
-    letter-spacing: 0.14em;
+    letter-spacing: 0.16em;
     text-transform: uppercase;
     color: var(--muted);
-    margin-top: 8px;
+    margin-top: 10px;
   }
 
   /* BACK */
@@ -366,16 +372,17 @@
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    padding: 16px 14px;
+    padding: 20px 16px;
+    gap: 0;
   }
   .back-title {
     font-family: 'Barlow Condensed', sans-serif;
-    font-size: 0.6rem;
+    font-size: 0.72rem;
     font-weight: 700;
     letter-spacing: 0.22em;
     text-transform: uppercase;
     color: var(--muted);
-    margin-bottom: 14px;
+    margin-bottom: 18px;
     text-align: center;
   }
   .back-stat-row {
@@ -383,13 +390,13 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 9px 0;
+    padding: 12px 0;
     border-bottom: 1px solid var(--surface2);
   }
   .back-stat-row:first-of-type { border-top: 1px solid var(--surface2); }
   .back-stat-name {
     font-family: 'Barlow Condensed', sans-serif;
-    font-size: 0.68rem;
+    font-size: 0.78rem;
     font-weight: 700;
     letter-spacing: 0.12em;
     text-transform: uppercase;
@@ -397,43 +404,17 @@
   }
   .back-stat-rank {
     font-family: 'Bebas Neue', sans-serif;
-    font-size: 1.1rem;
-    letter-spacing: 0.04em;
-  }
-  .back-composite {
-    margin-top: 14px;
-    text-align: center;
-  }
-  .back-comp-label {
-    font-family: 'Barlow Condensed', sans-serif;
-    font-size: 0.58rem;
-    font-weight: 700;
-    letter-spacing: 0.18em;
-    text-transform: uppercase;
-    color: var(--muted);
-    margin-bottom: 4px;
-  }
-  .back-comp-formula {
-    font-family: 'Barlow Condensed', sans-serif;
-    font-size: 0.78rem;
-    font-weight: 600;
-    color: var(--muted);
-  }
-  .back-comp-result {
-    font-family: 'Bebas Neue', sans-serif;
     font-size: 1.6rem;
     letter-spacing: 0.04em;
-    color: var(--gold);
-    line-height: 1;
   }
   .back-flip-hint {
     font-family: 'Barlow Condensed', sans-serif;
-    font-size: 0.5rem;
+    font-size: 0.62rem;
     font-weight: 600;
-    letter-spacing: 0.14em;
+    letter-spacing: 0.16em;
     text-transform: uppercase;
     color: var(--muted);
-    margin-top: 12px;
+    margin-top: 18px;
     text-align: center;
   }
 
@@ -456,7 +437,7 @@
 <div class="page-header">
   <div class="page-supertitle">The Annals of History</div>
   <h1>Draft Position Success</h1>
-  <p class="page-subtitle">Time to select your draft position? See how each pick has performed historically before you choose.</p>
+  <p class="page-subtitle">Think your draft slot doesn't matter? Think again. Thirteen years of history say otherwise — some positions are straight-up cursed and others print wins. Choose wisely.</p>
   <p class="page-updated" id="pageUpdated"></p>
 </div>
 
@@ -471,7 +452,7 @@
   </div>
 
   <div class="chart-section">
-    <div class="chart-subtitle" id="chart-subtitle">Regular Season Win % by Draft Position (thru 2025)</div>
+    <div class="chart-subtitle" id="chart-subtitle">Regular Season Win % by Draft Position</div>
     <div class="chart-legend">
       <div class="legend-item"><div class="legend-pip pip-best"></div>Best</div>
       <div class="legend-item"><div class="legend-pip pip-rest"></div>Rest</div>
@@ -481,7 +462,7 @@
   </div>
 
   <div class="cards-heading">Pick Rankings</div>
-  <div class="cards-sub">Best to worst &nbsp;·&nbsp; Tap any card to see the math</div>
+  <div class="cards-sub">Best to worst &nbsp;·&nbsp; Tap any card for more</div>
 
   <div class="tier-key">
     <div class="tier-key-item"><div class="tier-key-pip pip-elite"></div>Elite</div>
@@ -574,9 +555,6 @@
     const t = overallRank / 13;
     const bg = lerpColor(t);
     const tierLabel = tier==='elite' ? 'Elite' : tier==='average' ? 'Average' : 'Avoid';
-    const wr = d.winRank % 1 === 0 ? d.winRank : d.winRank.toFixed(1);
-    const pr = d.ppgRank % 1 === 0 ? d.ppgRank : d.ppgRank.toFixed(1);
-    const cr = d.comp % 1 === 0 ? d.comp : d.comp.toFixed(1);
 
     const wrapper = document.createElement('div');
     wrapper.className = 'card-wrapper';
@@ -604,12 +582,12 @@
               <span class="stat-value">${d.ppg.toFixed(1)}</span>
             </div>
           </div>
-          <div class="flip-hint">Tap to see math</div>
+          <div class="flip-hint">Tap for more</div>
         </div>
 
         <div class="card-back" style="background: linear-gradient(160deg, ${bg} 0%, #111 70%);">
           <div class="card-top-bar bar-${tier}"></div>
-          <div class="back-title">Pick #${d.pos} — How It Ranked</div>
+          <div class="back-title">Pick #${d.pos} — Ranked</div>
           <div class="back-stat-row">
             <span class="back-stat-name">Win %</span>
             <span class="back-stat-rank" style="color:${rankColor(d.winRank)}">${ordinal(Math.round(d.winRank))}</span>
@@ -617,11 +595,6 @@
           <div class="back-stat-row">
             <span class="back-stat-name">Pts Per Game</span>
             <span class="back-stat-rank" style="color:${rankColor(d.ppgRank)}">${ordinal(Math.round(d.ppgRank))}</span>
-          </div>
-          <div class="back-composite">
-            <div class="back-comp-label">Composite Score</div>
-            <div class="back-comp-formula">(${wr} + ${pr}) ÷ 2</div>
-            <div class="back-comp-result">${cr}</div>
           </div>
           <div class="back-flip-hint">Tap to flip back</div>
         </div>
@@ -656,7 +629,7 @@
         legend: { display: false },
         tooltip: {
           backgroundColor: '#1a1a1a', borderColor: '#2a2a2a', borderWidth: 1,
-          titleFont: { family: 'Barlow Condensed', size: 13, weight: '700' },
+          titleFont: { family: 'Barlow Condensed', size: 14, weight: '700' },
           bodyFont:  { family: 'Barlow', size: 13 },
           titleColor: '#c9a84c', bodyColor: '#ccc', padding: 12,
           callbacks: {
@@ -670,13 +643,13 @@
       scales: {
         x: {
           grid: { color: '#1a1a1a' },
-          ticks: { color: '#999', font: { family: 'Barlow Condensed', size: 12, weight: '600' } },
-          title: { display: true, text: 'Draft Pick', color: '#999', font: { family: 'Barlow Condensed', size: 11 } }
+          ticks: { color: '#999', font: { family: 'Barlow Condensed', size: 14, weight: '600' } },
+          title: { display: true, text: 'Draft Pick', color: '#999', font: { family: 'Barlow Condensed', size: 13, weight: '600' } }
         },
         y: {
           min: 0.300,
           grid: { color: '#1a1a1a' }, border: { display: false },
-          ticks: { color: '#999', font: { family: 'Barlow Condensed', size: 11 }, callback: v => v.toFixed(3) }
+          ticks: { color: '#999', font: { family: 'Barlow Condensed', size: 13 }, callback: v => v.toFixed(3) }
         }
       }
     }
@@ -691,8 +664,8 @@
     chart.options.scales.y.ticks.callback = v => m==='win' ? v.toFixed(3) : v.toFixed(1);
     chart.update();
     document.getElementById('chart-subtitle').textContent = m==='win'
-      ? 'Regular Season Win % by Draft Position (thru 2025)'
-      : 'Points Per Game by Draft Position (thru 2025)';
+      ? 'Regular Season Win % by Draft Position'
+      : 'Points Per Game by Draft Position';
     document.getElementById('btn-win').classList.toggle('active', m==='win');
     document.getElementById('btn-ppg').classList.toggle('active', m==='ppg');
   }
