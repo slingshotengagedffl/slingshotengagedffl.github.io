@@ -553,7 +553,7 @@
 </head>
 <body>
 
-<!-- nav.js goes here on live site -->
+<script src="nav.js"></script>
 
 <div class="page-header">
   <div class="page-supertitle">The Annals of History</div>
@@ -568,7 +568,7 @@
   <!-- ── HERO ── -->
   <div class="hero">
     <div class="hero-belt">
-      <div class="hero-belt-placeholder">🏆</div>
+      <img src="images/intercontinental.png" alt="IC Belt" />
     </div>
     <div class="hero-body">
       <div class="hero-label">2025 Season Champion</div>
@@ -848,17 +848,28 @@ function makeWeekCell(week, data) {
   const photo = document.createElement('div');
   photo.className = 'wk-photo';
 
-  const img = document.createElement('img');
-  img.src = PHOTOS[data.champ] || '';
-  img.alt = data.champ;
   const displayName = data.champ === 'Michelle' ? 'Meesh' :
                       data.champ === 'Tim C' ? 'Timbē' :
                       data.champ;
-  const init = document.createElement('div');
-  init.className = 'wk-init';
-  init.textContent = displayName;
-  img.onerror = () => { img.style.display='none'; if(!photo.querySelector('.wk-init')) photo.appendChild(init); };
-  photo.appendChild(init); // shown until image loads; on live site img will hide this
+  const photoSrc = PHOTOS[data.champ];
+  if (photoSrc) {
+    const img = document.createElement('img');
+    img.src = photoSrc;
+    img.alt = displayName;
+    img.onerror = () => {
+      img.remove();
+      const init = document.createElement('div');
+      init.className = 'wk-init';
+      init.textContent = displayName;
+      photo.appendChild(init);
+    };
+    photo.appendChild(img);
+  } else {
+    const init = document.createElement('div');
+    init.className = 'wk-init';
+    init.textContent = displayName;
+    photo.appendChild(init);
+  }
 
   inner.appendChild(photo);
 
