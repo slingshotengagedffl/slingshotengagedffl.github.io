@@ -1,0 +1,631 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Hall of Greatness – Slingshot Engaged FFL</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Barlow+Condensed:wght@400;600;700&family=Barlow:wght@400;500;600&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --red: #c0392b;
+      --red-bright: #e74c3c;
+      --bg: #0a0a0a;
+      --surface: #141414;
+      --surface2: #1c1c1c;
+      --surface3: #242424;
+      --text: #f0f0f0;
+      --muted: #999;
+      --border: #2a2a2a;
+      --gold: #c9a84c;
+    }
+
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: 'Barlow', sans-serif;
+      min-height: 100vh;
+    }
+
+    /* ── PAGE HEADER ── */
+    .page-header {
+      padding: 40px 20px 0;
+      text-align: center;
+    }
+    .page-supertitle {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: 0.8rem;
+      letter-spacing: 0.25em;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin-bottom: 6px;
+    }
+    .page-header h1 {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: clamp(2.8rem, 8vw, 5rem);
+      color: var(--red-bright);
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      line-height: 1;
+    }
+    .page-subtitle {
+      font-family: 'Barlow', sans-serif;
+      font-size: 0.88rem;
+      color: var(--muted);
+      margin-top: 8px;
+    }
+    .page-updated {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: 0.72rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin-top: 6px;
+    }
+
+    .header-spacer { height: 36px; }
+
+    /* ── CONTENT ── */
+    .content {
+      max-width: 680px;
+      margin: 0 auto;
+      padding: 0 16px 60px;
+    }
+
+    .intro-text {
+      font-family: 'Barlow', sans-serif;
+      font-size: 0.95rem;
+      color: #bbb;
+      text-align: center;
+      line-height: 1.75;
+      margin-bottom: 52px;
+    }
+
+    /* ── SECTION TITLE ── */
+    .section-title {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 0.85rem;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin-bottom: 10px;
+    }
+
+    /* ── HOG ENTRY WRAPPER ── */
+    .hog-entry {
+      position: relative;
+      margin-bottom: 48px;
+      border-radius: 8px;
+      overflow: hidden;
+    }
+
+    /* ── CONTENT CARD ── */
+    .hog-card {
+      display: flex;
+      align-items: stretch;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-top: 3px solid var(--gold);
+      border-radius: 8px;
+      overflow: hidden;
+      opacity: 0;
+      transition: opacity 0.35s ease 0.55s;
+    }
+    .hog-entry.revealed .hog-card {
+      opacity: 1;
+    }
+
+    /* ── BUST COLUMN ── */
+    .bust-col {
+      width: 210px;
+      min-width: 210px;
+      background: var(--surface2);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: flex-start;
+      padding: 28px 16px 24px;
+      border-right: 1px solid var(--border);
+      gap: 14px;
+    }
+
+    .bust-img {
+      width: 150px;
+      height: 170px;
+      border-radius: 6px;
+      border: 1px solid var(--border);
+      overflow: hidden;
+      background: var(--surface3);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .bust-img img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: top center;
+      display: block;
+    }
+
+    .bust-name {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 1.9rem;
+      color: var(--gold);
+      letter-spacing: 0.1em;
+      text-align: center;
+      line-height: 1;
+    }
+    .bust-name a {
+      color: inherit;
+      text-decoration: none;
+    }
+    .bust-name a:hover {
+      color: #e8c96a;
+    }
+
+    .hog-badge {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 3px;
+    }
+    .hog-badge-top {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: 0.62rem;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: var(--muted);
+    }
+    .hog-badge-year {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 1.1rem;
+      color: var(--gold);
+      letter-spacing: 0.1em;
+      line-height: 1;
+      opacity: 0.75;
+    }
+
+    .prestige-pill {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: 0.65rem;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--gold);
+      background: rgba(201,168,76,0.1);
+      border: 1px solid rgba(201,168,76,0.3);
+      border-radius: 20px;
+      padding: 4px 10px;
+    }
+
+    /* ── TEXT COLUMN ── */
+    .text-col {
+      flex: 1;
+      padding: 28px 24px 24px;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-start;
+      gap: 18px;
+    }
+
+    .enshrinee-label {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: 0.7rem;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: var(--muted);
+    }
+
+    .hog-bio {
+      font-family: 'Barlow', sans-serif;
+      font-size: 0.9rem;
+      color: #ccc;
+      line-height: 1.78;
+    }
+
+    /* ── STATS ROW ── */
+    .hog-stats {
+      display: flex;
+      gap: 0;
+      flex-wrap: wrap;
+      border-top: 1px solid var(--border);
+      padding-top: 16px;
+      margin-top: 2px;
+    }
+    .hog-stat {
+      display: flex;
+      flex-direction: column;
+      gap: 3px;
+      padding-right: 20px;
+      margin-right: 20px;
+      border-right: 1px solid var(--border);
+    }
+    .hog-stat:last-child {
+      border-right: none;
+      margin-right: 0;
+    }
+    .hog-stat-val {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 1.6rem;
+      color: var(--text);
+      line-height: 1;
+    }
+    .hog-stat-label {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: 0.62rem;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--muted);
+    }
+    .hog-stat-rank {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: 0.6rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--gold);
+    }
+
+    /* ── CURTAINS ── */
+    .curtains {
+      position: absolute;
+      inset: 0;
+      display: flex;
+      pointer-events: none;
+      z-index: 10;
+      border-radius: 8px;
+      overflow: hidden;
+    }
+
+    .curtain {
+      width: 50%;
+      height: 100%;
+      background: #160808;
+      position: relative;
+      overflow: hidden;
+      transition: transform 0.8s cubic-bezier(0.77, 0, 0.175, 1);
+    }
+
+    /* Velvet fold lines */
+    .curtain::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: repeating-linear-gradient(
+        to right,
+        rgba(255,255,255,0.018) 0px,
+        rgba(255,255,255,0.018) 1px,
+        transparent 1px,
+        transparent 30px
+      );
+      pointer-events: none;
+    }
+
+    /* Inner shadow edge */
+    .curtain-left::after {
+      content: '';
+      position: absolute;
+      top: 0; right: 0; bottom: 0;
+      width: 18px;
+      background: linear-gradient(to left, rgba(0,0,0,0.5), transparent);
+      pointer-events: none;
+    }
+    .curtain-right::after {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; bottom: 0;
+      width: 18px;
+      background: linear-gradient(to right, rgba(0,0,0,0.5), transparent);
+      pointer-events: none;
+    }
+
+    .curtain-left  { transform-origin: left center; }
+    .curtain-right { transform-origin: right center; }
+
+    .hog-entry.revealed .curtain-left  { transform: translateX(-100%); }
+    .hog-entry.revealed .curtain-right { transform: translateX(100%); }
+
+    /* Gold rod */
+    .curtain-rod {
+      position: absolute;
+      top: 0;
+      left: 0; right: 0;
+      height: 5px;
+      background: linear-gradient(to right, #6b5218, #c9a84c, #f0d888, #c9a84c, #6b5218);
+      z-index: 11;
+      border-radius: 2px 2px 0 0;
+    }
+
+    /* Curtain text watermark */
+    .curtain-watermark {
+      position: absolute;
+      inset: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      pointer-events: none;
+    }
+    .curtain-watermark span {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 3rem;
+      letter-spacing: 0.35em;
+      color: rgba(201,168,76,0.1);
+      text-transform: uppercase;
+      user-select: none;
+    }
+
+    /* ── DIVIDER ── */
+    .hog-divider {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      margin: 0 auto 48px;
+      max-width: 320px;
+    }
+    .hog-divider::before,
+    .hog-divider::after {
+      content: '';
+      flex: 1;
+      height: 1px;
+      background: var(--border);
+    }
+    .hog-divider-star {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: 0.7rem;
+      letter-spacing: 0.3em;
+      text-transform: uppercase;
+      color: var(--gold);
+    }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 540px) {
+      .hog-card { flex-direction: column; }
+      .bust-col {
+        width: 100%;
+        min-width: unset;
+        flex-direction: row;
+        align-items: center;
+        padding: 20px 20px 16px;
+        border-right: none;
+        border-bottom: 1px solid var(--border);
+        gap: 16px;
+      }
+      .bust-img { width: 90px; height: 105px; flex-shrink: 0; }
+      .bust-name { font-size: 1.6rem; text-align: left; }
+      .hog-badge { align-items: flex-start; }
+      .text-col { padding: 20px 16px; }
+      .hog-stats { gap: 0; }
+      .hog-stat { padding-right: 14px; margin-right: 14px; }
+    }
+  </style>
+</head>
+<body>
+
+<script src="nav.js"></script>
+
+<div class="page-header">
+  <div class="page-supertitle">The Annals of History</div>
+  <h1>Hall of Greatness</h1>
+  <p class="page-subtitle">The immortals of Slingshot Engaged FFL</p>
+  <p class="page-updated" id="pageUpdated"></p>
+</div>
+
+<div class="header-spacer"></div>
+
+<div class="content">
+
+  <p class="intro-text">
+    To be enshrined in the Hall of Greatness is the highest honor this league bestows.
+    These are the owners whose dominance, consistency, and sheer will to win transcended
+    a single season — legends who defined what it means to compete in Slingshot Engaged FFL.
+  </p>
+
+  <!-- ── JACK ── -->
+  <div class="hog-entry" id="entry-jack">
+    <div class="hog-card">
+      <div class="bust-col">
+        <div class="bust-img">
+          <img src="images/jack.jpg" alt="Jack bust" />
+        </div>
+        <div class="bust-name">
+          <a href="profiles/jack.html">Jack</a>
+        </div>
+        <div class="hog-badge">
+          <span class="hog-badge-top">Enshrined</span>
+          <span class="hog-badge-year">2025</span>
+        </div>
+        <div class="prestige-pill">Prestige Rank #2</div>
+      </div>
+      <div class="text-col">
+        <div class="enshrinee-label">Class of 2025 · Enshrinee I</div>
+        <p class="hog-bio">
+          The Commissioner. The Founder. The man who built this league and then proceeded to dominate it for over a decade. Jack's résumé is the gold standard — most all-time wins, most weeks at the top spot, most playoff appearances tied for the league lead. He claimed back-to-back championships in 2018 and 2019 and added a third ring in 2025, proving his excellence was no fluke. A serial trader and elite competitor, Jack's fingerprints are on every era of this league's history.
+        </p>
+        <div class="hog-stats">
+          <div class="hog-stat">
+            <span class="hog-stat-val">3</span>
+            <span class="hog-stat-label">Championships</span>
+            <span class="hog-stat-rank">T-#1</span>
+          </div>
+          <div class="hog-stat">
+            <span class="hog-stat-val">61.5%</span>
+            <span class="hog-stat-label">Win Rate</span>
+            <span class="hog-stat-rank">#1 All-Time</span>
+          </div>
+          <div class="hog-stat">
+            <span class="hog-stat-val">99</span>
+            <span class="hog-stat-label">Career Wins</span>
+            <span class="hog-stat-rank">#1 All-Time</span>
+          </div>
+          <div class="hog-stat">
+            <span class="hog-stat-val">12</span>
+            <span class="hog-stat-label">Seasons</span>
+            <span class="hog-stat-rank">#1 All-Time</span>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="curtains">
+      <div class="curtain curtain-left">
+        <div class="curtain-watermark"><span>HOG</span></div>
+      </div>
+      <div class="curtain curtain-right">
+        <div class="curtain-watermark"><span>HOG</span></div>
+      </div>
+    </div>
+    <div class="curtain-rod"></div>
+  </div>
+
+  <div class="hog-divider">
+    <span class="hog-divider-star">★</span>
+  </div>
+
+  <!-- ── DYLAN ── -->
+  <div class="hog-entry" id="entry-dylan">
+    <div class="hog-card">
+      <div class="bust-col">
+        <div class="bust-img">
+          <img src="images/dylan.jpg" alt="Dylan bust" />
+        </div>
+        <div class="bust-name">
+          <a href="profiles/dylan.html">Dylan</a>
+        </div>
+        <div class="hog-badge">
+          <span class="hog-badge-top">Enshrined</span>
+          <span class="hog-badge-year">2025</span>
+        </div>
+        <div class="prestige-pill">Prestige Rank #1</div>
+      </div>
+      <div class="text-col">
+        <div class="enshrinee-label">Class of 2025 · Enshrinee II</div>
+        <p class="hog-bio">
+          The greatest champion this league has ever produced. Dylan owns the all-time record with three titles, the best playoff win percentage in history at 66.7%, and the #1 prestige ranking across all 27 owners to ever play. He joined in 2015 and immediately established himself as an elite competitor — cerebral, dangerous in the postseason, and impossible to rattle when the stakes are highest. In eleven seasons, he has never truly faded. He simply wins.
+        </p>
+        <div class="hog-stats">
+          <div class="hog-stat">
+            <span class="hog-stat-val">3</span>
+            <span class="hog-stat-label">Championships</span>
+            <span class="hog-stat-rank">#1 All-Time</span>
+          </div>
+          <div class="hog-stat">
+            <span class="hog-stat-val">66.7%</span>
+            <span class="hog-stat-label">Playoff Win%</span>
+            <span class="hog-stat-rank">#1 All-Time</span>
+          </div>
+          <div class="hog-stat">
+            <span class="hog-stat-val">2201</span>
+            <span class="hog-stat-label">Prestige Pts</span>
+            <span class="hog-stat-rank">#1 All-Time</span>
+          </div>
+          <div class="hog-stat">
+            <span class="hog-stat-val">11</span>
+            <span class="hog-stat-label">Seasons</span>
+            <span class="hog-stat-rank">#2 All-Time</span>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="curtains">
+      <div class="curtain curtain-left">
+        <div class="curtain-watermark"><span>HOG</span></div>
+      </div>
+      <div class="curtain curtain-right">
+        <div class="curtain-watermark"><span>HOG</span></div>
+      </div>
+    </div>
+    <div class="curtain-rod"></div>
+  </div>
+
+  <div class="hog-divider">
+    <span class="hog-divider-star">★</span>
+  </div>
+
+  <!-- ── KYLE ── -->
+  <div class="hog-entry" id="entry-kyle">
+    <div class="hog-card">
+      <div class="bust-col">
+        <div class="bust-img">
+          <img src="images/kyle.png" alt="Kyle bust" />
+        </div>
+        <div class="bust-name">
+          <a href="profiles/kyle.html">Kyle</a>
+        </div>
+        <div class="hog-badge">
+          <span class="hog-badge-top">Enshrined</span>
+          <span class="hog-badge-year">2025</span>
+        </div>
+        <div class="prestige-pill">Prestige Rank #3</div>
+      </div>
+      <div class="text-col">
+        <div class="enshrinee-label">Class of 2025 · Enshrinee III</div>
+        <p class="hog-bio">
+          Kyle arrived in 2018 and wasted no time making his mark. In just eight seasons he has claimed two championships, made the playoffs eight times — tied for the most in league history — and earned the third-highest prestige ranking of all 27 owners ever. He's a relentless competitor who shows up when it matters, with a 58.7% career win rate that ranks second all-time. The Snoot doesn't just contend — he converts.
+        </p>
+        <div class="hog-stats">
+          <div class="hog-stat">
+            <span class="hog-stat-val">2</span>
+            <span class="hog-stat-label">Championships</span>
+            <span class="hog-stat-rank">T-#2 All-Time</span>
+          </div>
+          <div class="hog-stat">
+            <span class="hog-stat-val">58.7%</span>
+            <span class="hog-stat-label">Win Rate</span>
+            <span class="hog-stat-rank">#2 All-Time</span>
+          </div>
+          <div class="hog-stat">
+            <span class="hog-stat-val">8</span>
+            <span class="hog-stat-label">Playoff Apps</span>
+            <span class="hog-stat-rank">T-#1 All-Time</span>
+          </div>
+          <div class="hog-stat">
+            <span class="hog-stat-val">8</span>
+            <span class="hog-stat-label">Seasons</span>
+            <span class="hog-stat-rank">Since 2018</span>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="curtains">
+      <div class="curtain curtain-left">
+        <div class="curtain-watermark"><span>HOG</span></div>
+      </div>
+      <div class="curtain curtain-right">
+        <div class="curtain-watermark"><span>HOG</span></div>
+      </div>
+    </div>
+    <div class="curtain-rod"></div>
+  </div>
+
+</div>
+
+<script>
+  fetch('profiles-data.json')
+    .then(r => r.json())
+    .then(data => {
+      const date = data.pageUpdates && data.pageUpdates['hall-of-greatness'];
+      if (date) {
+        document.getElementById('pageUpdated').textContent = 'Updated · ' + date;
+      }
+    })
+    .catch(() => {});
+
+  const entries = document.querySelectorAll('.hog-entry');
+
+  const observer = new IntersectionObserver((obs) => {
+    obs.forEach(entry => {
+      if (entry.isIntersecting) {
+        setTimeout(() => {
+          entry.target.classList.add('revealed');
+        }, 120);
+        observer.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.2 });
+
+  entries.forEach(e => observer.observe(e));
+</script>
+
+</body>
+</html>

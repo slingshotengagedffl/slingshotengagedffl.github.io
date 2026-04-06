@@ -21,6 +21,7 @@
     },
     { emoji: '🏛️', label: 'The Annals',              href: 'annals.html',       external: false,
       submenu: [
+        { label: 'Hall of Greatness 🐗',          href: 'annals-hog.html' },
         { label: 'Single Season Stats',          href: 'annals-single-season-stats.html' },
         { label: 'Single Game Records',          href: 'annals-single-game-records.html' },
         { label: 'Single Season Records',        href: 'annals-single-season-records.html' },
