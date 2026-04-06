@@ -36,7 +36,7 @@
         { label: 'Lucky / Unlucky',              href: 'annals-lucky-unlucky.html' },
         { label: 'Boom Or Bust',                 href: 'annals-boom-or-bust.html' },
         { label: 'The Streak And The Drought',   href: 'annals-streak-and-drought.html' },
-        { label: 'The Intercontinental Championship', href: 'annals-intercontinental-championship.html' },
+        { label: 'The Intercontinental Championship', href: 'annals-intercontinental.html' },
         { label: 'League Weekends',                  href: 'annals-league-weekends.html' },
       ]
     },
