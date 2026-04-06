@@ -7,7 +7,7 @@
       "photo": "../images/jack.jpg",
       "lastUpdated": "April 2, 2026",
       "location": "California",
-      "locationEmoji": "🌴",
+      "locationEmoji": "\ud83c\udf34",
       "broughtInBy": "League Founder",
       "statusLines": [
         "Commissioner",
@@ -21,19 +21,19 @@
       },
       "traits": [
         {
-          "emoji": "🔁",
+          "emoji": "\ud83d\udd01",
           "label": "SERIAL TRADER"
         },
         {
-          "emoji": "🦒",
+          "emoji": "\ud83e\udd92",
           "label": "ELITE LENGTH"
         },
         {
-          "emoji": "👑",
+          "emoji": "\ud83d\udc51",
           "label": "DICTATOR TENDENCIES"
         },
         {
-          "emoji": "😤",
+          "emoji": "\ud83d\ude24",
           "label": "PLAYS DESPERATE"
         }
       ],
@@ -366,7 +366,7 @@
         },
         {
           "year": 2025,
-          "teamName": "Proper Feck'n Eejits ☘️",
+          "teamName": "Proper Feck'n Eejits \u2618\ufe0f",
           "record": "10-4",
           "finish": 1,
           "ptsPerGame": 104.98,
@@ -379,7 +379,7 @@
         },
         {
           "year": 2024,
-          "teamName": "Bayou Bears Be Howlin' 🌊🐻",
+          "teamName": "Bayou Bears Be Howlin' \ud83c\udf0a\ud83d\udc3b",
           "record": "6-8",
           "finish": 11,
           "ptsPerGame": 90.82,
@@ -405,7 +405,7 @@
         },
         {
           "year": 2022,
-          "teamName": "The 100 Point Exceeders 💯",
+          "teamName": "The 100 Point Exceeders \ud83d\udcaf",
           "record": "7-7",
           "finish": 8,
           "ptsPerGame": 87.02,
@@ -418,7 +418,7 @@
         },
         {
           "year": 2021,
-          "teamName": "Beef Spritz Boys 🐮💦",
+          "teamName": "Beef Spritz Boys \ud83d\udc2e\ud83d\udca6",
           "record": "7-7",
           "finish": 8,
           "ptsPerGame": 97.18,
@@ -431,7 +431,7 @@
         },
         {
           "year": 2020,
-          "teamName": "Tangy 👅🍞Sourdough ",
+          "teamName": "Tangy \ud83d\udc45\ud83c\udf5eSourdough ",
           "record": "6-7",
           "finish": 9,
           "ptsPerGame": 96.8,
@@ -606,7 +606,7 @@
       "photo": "../images/dylan.jpg",
       "lastUpdated": "April 3, 2026",
       "location": "Maryland",
-      "locationEmoji": "🦀",
+      "locationEmoji": "\ud83e\udd80",
       "broughtInBy": "Recruited by Brian",
       "statusLines": [
         "3x League Champion"
@@ -946,7 +946,7 @@
         },
         {
           "year": 2025,
-          "teamName": "🥷 RageCage 🥷",
+          "teamName": "\ud83e\udd77 RageCage \ud83e\udd77",
           "record": "9-5",
           "finish": 4,
           "ptsPerGame": 92.63,
@@ -1173,7 +1173,7 @@
       "photo": "../images/alex.jpg",
       "lastUpdated": null,
       "location": "Minnesota",
-      "locationEmoji": "❄️",
+      "locationEmoji": "\u2744\ufe0f",
       "broughtInBy": "Recruited by Timbe (ret)",
       "statusLines": [],
       "prestige": {
@@ -1719,7 +1719,7 @@
       "photo": "../images/andy.jpg",
       "lastUpdated": null,
       "location": "Colorado",
-      "locationEmoji": "🏔️",
+      "locationEmoji": "\ud83c\udfd4\ufe0f",
       "broughtInBy": "Recruited by Scott",
       "statusLines": [],
       "prestige": {
@@ -2111,119 +2111,119 @@
       "trophies": [
         {
           "name": "League Champion",
-          "emoji": "🏆",
+          "emoji": "\ud83c\udfc6",
           "image": "../images/League Champion.png",
           "count": 0,
           "won": false
         },
         {
           "name": "2nd Place",
-          "emoji": "🥈",
+          "emoji": "\ud83e\udd48",
           "image": "../images/2nd Place.png",
           "count": 0,
           "won": false
         },
         {
           "name": "3rd Place",
-          "emoji": "🥉",
+          "emoji": "\ud83e\udd49",
           "image": "../images/3rd Place.png",
           "count": 0,
           "won": false
         },
         {
           "name": "Regular Season Champion",
-          "emoji": "📅",
+          "emoji": "\ud83d\udcc5",
           "image": "../images/Regular Season Champion.png",
           "count": 1,
           "won": true
         },
         {
           "name": "Owner of the Year",
-          "emoji": "👑",
+          "emoji": "\ud83d\udc51",
           "image": "../images/Owner of the Year.png",
           "count": 0,
           "won": false
         },
         {
           "name": "AVL Memorial Cup",
-          "emoji": "🕯️",
+          "emoji": "\ud83d\udd6f\ufe0f",
           "image": "../images/AVL Memorial Cup.png",
           "count": 0,
           "won": false
         },
         {
           "name": "Rivalry Week",
-          "emoji": "⚔️",
+          "emoji": "\u2694\ufe0f",
           "image": "../images/Rivalry Week.png",
           "count": 0,
           "won": false
         },
         {
           "name": "Hottest Team in Sports Bowl",
-          "emoji": "🔥",
+          "emoji": "\ud83d\udd25",
           "image": "../images/Hottest Team in Sports Bowl.png",
           "count": 0,
           "won": false
         },
         {
           "name": "Hung the * Chain",
-          "emoji": "⭐",
+          "emoji": "\u2b50",
           "image": "../images/Hung the Star Chain.png",
           "count": 0,
           "won": false
         },
         {
           "name": "Intercontinental Champ",
-          "emoji": "🌍",
+          "emoji": "\ud83c\udf0d",
           "image": "../images/Intercontinental Champ.png",
           "count": 1,
           "won": true
         },
         {
           "name": "Somehow the Champion",
-          "emoji": "🎲",
+          "emoji": "\ud83c\udfb2",
           "image": "../images/Somehow the Champion.png",
           "count": 0,
           "won": false
         },
         {
           "name": "Survivor King",
-          "emoji": "🌴",
+          "emoji": "\ud83c\udf34",
           "image": "../images/Survivor King.png",
           "count": 0,
           "won": false
         },
         {
           "name": "Degen Bowl",
-          "emoji": "🎰",
+          "emoji": "\ud83c\udfb0",
           "image": "../images/Degen Bowl.png",
           "count": 0,
           "won": false
         },
         {
           "name": "Dad Bod's Preseason Rankings",
-          "emoji": "📊",
+          "emoji": "\ud83d\udcca",
           "image": "../images/Dad Bod's Preseason Rankings.png",
           "count": 0,
           "won": false
         },
         {
           "name": "JopO or KG Pick 'Em",
-          "emoji": "🎯",
+          "emoji": "\ud83c\udfaf",
           "image": "../images/JopO or KG Pick Em.png",
           "count": 0,
           "won": false
         },
         {
           "name": "Da Choppaaa Champ",
-          "emoji": "🚁",
+          "emoji": "\ud83d\ude81",
           "image": "../images/Da Choppaaa Champ.png",
           "count": 0,
           "won": false
         },
         {
           "name": "Bronze Franz",
-          "emoji": "🥉",
+          "emoji": "\ud83e\udd49",
           "image": "../images/Bronze Franz.png",
           "count": 0,
           "won": false
@@ -2238,7 +2238,7 @@
       "photo": "../images/brian.png",
       "lastUpdated": null,
       "location": "Maryland",
-      "locationEmoji": "🦀",
+      "locationEmoji": "\ud83e\udd80",
       "broughtInBy": "Recruited by Jack",
       "statusLines": [],
       "prestige": {
@@ -2734,119 +2734,119 @@
       "trophies": [
         {
           "name": "League Champion",
-          "emoji": "🏆",
+          "emoji": "\ud83c\udfc6",
           "image": "../images/League Champion.png",
           "count": 1,
           "won": true
         },
         {
           "name": "2nd Place",
-          "emoji": "🥈",
+          "emoji": "\ud83e\udd48",
           "image": "../images/2nd Place.png",
           "count": 0,
           "won": false
         },
         {
           "name": "3rd Place",
-          "emoji": "🥉",
+          "emoji": "\ud83e\udd49",
           "image": "../images/3rd Place.png",
           "count": 0,
           "won": false
         },
         {
           "name": "Regular Season Champion",
-          "emoji": "📅",
+          "emoji": "\ud83d\udcc5",
           "image": "../images/Regular Season Champion.png",
           "count": 0,
           "won": false
         },
         {
           "name": "Owner of the Year",
-          "emoji": "👑",
+          "emoji": "\ud83d\udc51",
           "image": "../images/Owner of the Year.png",
           "count": 0,
           "won": false
         },
         {
           "name": "AVL Memorial Cup",
-          "emoji": "🕯️",
+          "emoji": "\ud83d\udd6f\ufe0f",
           "image": "../images/AVL Memorial Cup.png",
           "count": 0,
           "won": false
         },
         {
           "name": "Rivalry Week",
-          "emoji": "⚔️",
+          "emoji": "\u2694\ufe0f",
           "image": "../images/Rivalry Week.png",
           "count": 0,
           "won": false
         },
         {
           "name": "Hottest Team in Sports Bowl",
-          "emoji": "🔥",
+          "emoji": "\ud83d\udd25",
           "image": "../images/Hottest Team in Sports Bowl.png",
           "count": 3,
           "won": true
         },
         {
           "name": "Hung the * Chain",
-          "emoji": "⭐",
+          "emoji": "\u2b50",
           "image": "../images/Hung the Star Chain.png",
           "count": 0,
           "won": false
         },
         {
           "name": "Intercontinental Champ",
-          "emoji": "🌍",
+          "emoji": "\ud83c\udf0d",
           "image": "../images/Intercontinental Champ.png",
           "count": 0,
           "won": false
         },
         {
           "name": "Somehow the Champion",
-          "emoji": "🎲",
+          "emoji": "\ud83c\udfb2",
           "image": "../images/Somehow the Champion.png",
           "count": 0,
           "won": false
         },
         {
           "name": "Survivor King",
-          "emoji": "🌴",
+          "emoji": "\ud83c\udf34",
           "image": "../images/Survivor King.png",
           "count": 0,
           "won": false
         },
         {
           "name": "Degen Bowl",
-          "emoji": "🎰",
+          "emoji": "\ud83c\udfb0",
           "image": "../images/Degen Bowl.png",
           "count": 0,
           "won": false
         },
         {
           "name": "Dad Bod's Preseason Rankings",
-          "emoji": "📊",
+          "emoji": "\ud83d\udcca",
           "image": "../images/Dad Bod's Preseason Rankings.png",
           "count": 0,
           "won": false
         },
         {
           "name": "JopO or KG Pick 'Em",
-          "emoji": "🎯",
+          "emoji": "\ud83c\udfaf",
           "image": "../images/JopO or KG Pick Em.png",
           "count": 0,
           "won": false
         },
         {
           "name": "Da Choppaaa Champ",
-          "emoji": "🚁",
+          "emoji": "\ud83d\ude81",
           "image": "../images/Da Choppaaa Champ.png",
           "count": 0,
           "won": false
         },
         {
           "name": "Bronze Franz",
-          "emoji": "🥉",
+          "emoji": "\ud83e\udd49",
           "image": "../images/Bronze Franz.png",
           "count": 1,
           "won": true
@@ -2861,7 +2861,7 @@
       "photo": "../images/daniel.jpg",
       "lastUpdated": null,
       "location": "Colorado",
-      "locationEmoji": "🏔️",
+      "locationEmoji": "\ud83c\udfd4\ufe0f",
       "broughtInBy": "Recruited by Jack",
       "statusLines": [],
       "prestige": {
@@ -3357,119 +3357,119 @@
       "trophies": [
         {
           "name": "League Champion",
-          "emoji": "🏆",
+          "emoji": "\ud83c\udfc6",
           "image": "../images/League Champion.png",
           "count": 0,
           "won": false
         },
         {
           "name": "2nd Place",
-          "emoji": "🥈",
+          "emoji": "\ud83e\udd48",
           "image": "../images/2nd Place.png",
           "count": 2,
           "won": true
         },
         {
           "name": "3rd Place",
-          "emoji": "🥉",
+          "emoji": "\ud83e\udd49",
           "image": "../images/3rd Place.png",
           "count": 2,
           "won": true
         },
         {
           "name": "Regular Season Champion",
-          "emoji": "📅",
+          "emoji": "\ud83d\udcc5",
           "image": "../images/Regular Season Champion.png",
           "count": 1,
           "won": true
         },
         {
           "name": "Owner of the Year",
-          "emoji": "👑",
+          "emoji": "\ud83d\udc51",
           "image": "../images/Owner of the Year.png",
           "count": 1,
           "won": true
         },
         {
           "name": "AVL Memorial Cup",
-          "emoji": "🕯️",
+          "emoji": "\ud83d\udd6f\ufe0f",
           "image": "../images/AVL Memorial Cup.png",
           "count": 0,
           "won": false
         },
         {
           "name": "Rivalry Week",
-          "emoji": "⚔️",
+          "emoji": "\u2694\ufe0f",
           "image": "../images/Rivalry Week.png",
           "count": 0,
           "won": false
         },
         {
           "name": "Hottest Team in Sports Bowl",
-          "emoji": "🔥",
+          "emoji": "\ud83d\udd25",
           "image": "../images/Hottest Team in Sports Bowl.png",
           "count": 0,
           "won": false
         },
         {
           "name": "Hung the * Chain",
-          "emoji": "⭐",
+          "emoji": "\u2b50",
           "image": "../images/Hung the Star Chain.png",
           "count": 0,
           "won": false
         },
         {
           "name": "Intercontinental Champ",
-          "emoji": "🌍",
+          "emoji": "\ud83c\udf0d",
           "image": "../images/Intercontinental Champ.png",
           "count": 0,
           "won": false
         },
         {
           "name": "Somehow the Champion",
-          "emoji": "🎲",
+          "emoji": "\ud83c\udfb2",
           "image": "../images/Somehow the Champion.png",
           "count": 1,
           "won": true
         },
         {
           "name": "Survivor King",
-          "emoji": "🌴",
+          "emoji": "\ud83c\udf34",
           "image": "../images/Survivor King.png",
           "count": 0,
           "won": false
         },
         {
           "name": "Degen Bowl",
-          "emoji": "🎰",
+          "emoji": "\ud83c\udfb0",
           "image": "../images/Degen Bowl.png",
           "count": 1,
           "won": true
         },
         {
           "name": "Dad Bod's Preseason Rankings",
-          "emoji": "📊",
+          "emoji": "\ud83d\udcca",
           "image": "../images/Dad Bod's Preseason Rankings.png",
           "count": 0,
           "won": false
         },
         {
           "name": "JopO or KG Pick 'Em",
-          "emoji": "🎯",
+          "emoji": "\ud83c\udfaf",
           "image": "../images/JopO or KG Pick Em.png",
           "count": 0,
           "won": false
         },
         {
           "name": "Da Choppaaa Champ",
-          "emoji": "🚁",
+          "emoji": "\ud83d\ude81",
           "image": "../images/Da Choppaaa Champ.png",
           "count": 0,
           "won": false
         },
         {
           "name": "Bronze Franz",
-          "emoji": "🥉",
+          "emoji": "\ud83e\udd49",
           "image": "../images/Bronze Franz.png",
           "count": 2,
           "won": true
@@ -3484,7 +3484,7 @@
       "photo": "../images/jordan.jpg",
       "lastUpdated": null,
       "location": "North Carolina",
-      "locationEmoji": "🌲",
+      "locationEmoji": "\ud83c\udf32",
       "broughtInBy": "Recruited by Scott",
       "statusLines": [],
       "prestige": {
@@ -3900,7 +3900,7 @@
         },
         {
           "year": 2019,
-          "teamName": "Turns Out I’m 100% That Minsh ",
+          "teamName": "Turns Out I\u2019m 100% That Minsh ",
           "record": "4-9",
           "finish": 13,
           "ptsPerGame": 87.56,
@@ -3991,7 +3991,7 @@
       "photo": "../images/kyle.png",
       "lastUpdated": null,
       "location": "Colorado",
-      "locationEmoji": "🏔️",
+      "locationEmoji": "\ud83c\udfd4\ufe0f",
       "broughtInBy": "Recruited by Jack",
       "statusLines": [],
       "prestige": {
@@ -4407,7 +4407,7 @@
         },
         {
           "year": 2019,
-          "teamName": "❄️ Ice Cold Boy ",
+          "teamName": "\u2744\ufe0f Ice Cold Boy ",
           "record": "7-6",
           "finish": 5,
           "ptsPerGame": 106.88,
@@ -4511,7 +4511,7 @@
       "photo": "../images/luke.jpg",
       "lastUpdated": null,
       "location": "Minnesota",
-      "locationEmoji": "❄️",
+      "locationEmoji": "\u2744\ufe0f",
       "broughtInBy": "Recruited by Alex",
       "statusLines": [],
       "prestige": {
@@ -4927,7 +4927,7 @@
       "photo": "../images/matt.jpg",
       "lastUpdated": null,
       "location": "Colorado",
-      "locationEmoji": "🏔️",
+      "locationEmoji": "\ud83c\udfd4\ufe0f",
       "broughtInBy": "Recruited by Jack",
       "statusLines": [],
       "prestige": {
@@ -5278,7 +5278,7 @@
         },
         {
           "year": 2024,
-          "teamName": "Osos de Agua por Vida 🐻🌊🏈 ",
+          "teamName": "Osos de Agua por Vida \ud83d\udc3b\ud83c\udf0a\ud83c\udfc8 ",
           "record": "4-10",
           "finish": 12,
           "ptsPerGame": 85.08,
@@ -5486,7 +5486,7 @@
       "photo": "../images/mike.jpg",
       "lastUpdated": null,
       "location": "Pennsylvania",
-      "locationEmoji": "🔔",
+      "locationEmoji": "\ud83d\udd14",
       "broughtInBy": "Recruited by Jack",
       "statusLines": [],
       "prestige": {
@@ -5837,7 +5837,7 @@
         },
         {
           "year": 2024,
-          "teamName": "Jop-O Isn’t Real ",
+          "teamName": "Jop-O Isn\u2019t Real ",
           "record": "8-6",
           "finish": 5,
           "ptsPerGame": 93.74,
@@ -6058,7 +6058,7 @@
       "photo": "../images/scott.jpg",
       "lastUpdated": null,
       "location": "California",
-      "locationEmoji": "🌴",
+      "locationEmoji": "\ud83c\udf34",
       "broughtInBy": "Recruited by Jack",
       "statusLines": [],
       "prestige": {
@@ -6630,7 +6630,7 @@
       "photo": "../images/tim.jpg",
       "lastUpdated": null,
       "location": "Colorado",
-      "locationEmoji": "🏔️",
+      "locationEmoji": "\ud83c\udfd4\ufe0f",
       "broughtInBy": "Recruited by Matt",
       "statusLines": [],
       "prestige": {
@@ -6968,7 +6968,7 @@
         },
         {
           "year": 2025,
-          "teamName": "Mike 💩's standing up",
+          "teamName": "Mike \ud83d\udca9's standing up",
           "record": "5-9",
           "finish": 12,
           "ptsPerGame": 85.69,
@@ -7124,7 +7124,7 @@
       "photo": "../images/wade.jpg",
       "lastUpdated": null,
       "location": "Pennsylvania",
-      "locationEmoji": "🔔",
+      "locationEmoji": "\ud83d\udd14",
       "broughtInBy": "Recruited by Kyle",
       "statusLines": [],
       "prestige": {
@@ -7619,6 +7619,7 @@
     "head-to-head": null,
     "streak-and-drought": null,
     "league-weekends": null,
-    "all-time-records": null
+    "all-time-records": null,
+    "annals-intercontinental": null
   }
 }
