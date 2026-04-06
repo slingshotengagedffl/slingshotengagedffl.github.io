@@ -49,9 +49,10 @@
     }
     .page-header h1 {
       font-family: 'Bebas Neue', sans-serif;
-      font-size: clamp(2.4rem, 7vw, 4.2rem);
+      font-size: clamp(2.8rem, 8vw, 5rem);
       color: var(--red-bright);
       letter-spacing: 0.06em;
+      text-transform: uppercase;
       line-height: 1;
     }
 
@@ -62,9 +63,7 @@
       letter-spacing: 0.2em;
       text-transform: uppercase;
       color: var(--muted);
-      text-align: center;
-      margin: 8px auto 0;
-      min-height: 1em;
+      margin-top: 6px;
     }
 
     /* ── Explainer ── */
@@ -355,11 +354,10 @@
   <div class="page-header">
     <div class="page-supertitle">The Annals of History</div>
     <h1>Prestige Rankings</h1>
+    <p class="page-updated" id="pageUpdated"></p>
   </div>
 
   <p class="explainer">A formula-based score across 24 factors that objectively measures historical success. Think Patriots vs Browns. Tap any owner to see their breakdown.</p>
-
-  <p class="page-updated" id="pageUpdated"></p>
 
   <div class="legend">
     <div class="legend-item"><div class="legend-dot active"></div> Active Owner</div>

@@ -45,9 +45,10 @@
     }
     .page-header h1 {
       font-family: 'Bebas Neue', sans-serif;
-      font-size: clamp(2.4rem, 7vw, 4.2rem);
+      font-size: clamp(2.8rem, 8vw, 5rem);
       color: var(--red-bright);
       letter-spacing: 0.06em;
+      text-transform: uppercase;
       line-height: 1;
     }
     .page-subtitle {
@@ -56,12 +57,12 @@
       color: var(--muted);
       margin-top: 8px;
     }
-    .last-updated {
+    .page-updated {
       font-family: 'Barlow Condensed', sans-serif;
       font-size: 0.72rem;
-      letter-spacing: 0.18em;
+      letter-spacing: 0.2em;
       text-transform: uppercase;
-      color: #555;
+      color: var(--muted);
       margin-top: 6px;
     }
 
@@ -357,7 +358,7 @@
     <div class="page-supertitle">The Annals of History</div>
     <h1>League Weekends</h1>
     <p class="page-subtitle">Drop a memory. Relive the chaos.</p>
-    <p class="last-updated" id="lastUpdated"></p>
+    <p class="page-updated" id="lastUpdated"></p>
   </div>
 
   <div class="commish-wrap">
