@@ -114,7 +114,7 @@
     .bust-col {
       width: 44%;
       flex-shrink: 0;
-      background: var(--surface2);
+      background: #0a0a0a;
       border-right: 1px solid var(--border);
       overflow: hidden;
     }
@@ -340,20 +340,20 @@
 
     /* ══ MOBILE ══ */
     @media (max-width: 520px) {
-      .card-top { flex-direction: column; min-height: unset; }
-      .bust-col {
-        width: 100%;
-        border-right: none;
-        border-bottom: 1px solid var(--border);
-      }
-      .bust-col img { min-height: unset; height: 260px; }
-      .info-col { padding: 20px 16px; }
-      .owner-name { font-size: 2rem; }
+      .card-top { min-height: 220px; }
+      .bust-col { width: 42%; }
+      .info-col { padding: 16px 14px; gap: 10px; }
+      .owner-name { font-size: 1.8rem; }
+      .hog-bio { font-size: 0.8rem; line-height: 1.65; }
+      .enshrined-line { flex-wrap: wrap; gap: 6px; }
       .card-stats { flex-wrap: wrap; }
       .hog-stat { flex: 0 0 33.333%; }
       .hog-stat:nth-child(3) { border-right: none; }
       .hog-stat:nth-child(n+4) { border-top: 1px solid var(--border); }
       .hog-stat:nth-child(6) { border-right: none; }
+      .stat-val { font-size: 1.4rem; }
+      .stat-label { font-size: 0.58rem; }
+      .stat-rank { font-size: 0.55rem; }
     }
   </style>
 </head>
