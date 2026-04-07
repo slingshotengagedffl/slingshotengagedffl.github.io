@@ -521,7 +521,7 @@
   <!-- ══ KYLE ══ -->
   <div class="hog-entry" id="entry-kyle">
     <div class="bust-zone">
-      <img src="images/bust kyle.png" alt="Kyle" />
+      <img src="images/bust kyle.png" alt="Kyle" style="object-fit: cover; object-position: center 15%; padding: 0;" />
       <div class="pedestal">
         <div class="pedestal-neck"></div>
         <div class="pedestal-base"></div>
@@ -601,7 +601,7 @@
         observer.unobserve(entry.target);
       }
     });
-  }, { threshold: 0.3 });
+  }, { threshold: 0.6 });
 
   document.querySelectorAll('.hog-entry').forEach(e => observer.observe(e));
 </script>
