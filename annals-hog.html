@@ -30,7 +30,6 @@
       min-height: 100vh;
     }
 
-    /* ── PAGE HEADER ── */
     .page-header {
       padding: 40px 20px 0;
       text-align: center;
@@ -68,7 +67,6 @@
 
     .header-spacer { height: 36px; }
 
-    /* ── CONTENT ── */
     .content {
       max-width: 680px;
       margin: 0 auto;
@@ -84,28 +82,15 @@
       margin-bottom: 52px;
     }
 
-    /* ── SECTION TITLE ── */
-    .section-title {
-      font-family: 'Bebas Neue', sans-serif;
-      font-size: 0.85rem;
-      letter-spacing: 0.18em;
-      text-transform: uppercase;
-      color: var(--muted);
-      margin-bottom: 10px;
-    }
-
-    /* ── HOG ENTRY WRAPPER ── */
+    /* ══ HOG ENTRY ══ */
     .hog-entry {
       position: relative;
-      margin-bottom: 48px;
+      margin-bottom: 56px;
       border-radius: 8px;
       overflow: hidden;
     }
 
-    /* ── CONTENT CARD ── */
     .hog-card {
-      display: flex;
-      align-items: stretch;
       background: var(--surface);
       border: 1px solid var(--border);
       border-top: 3px solid var(--gold);
@@ -118,157 +103,126 @@
       opacity: 1;
     }
 
-    /* ── BUST COLUMN ── */
-    .bust-col {
-      width: 250px;
-      min-width: 250px;
-      background: var(--surface2);
+    /* ── TOP ZONE ── */
+    .card-top {
       display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: flex-start;
-      padding: 28px 16px 24px;
-      border-right: 1px solid var(--border);
-      gap: 14px;
+      align-items: stretch;
+      min-height: 340px;
     }
 
-    .bust-img {
-      width: 190px;
-      height: 220px;
-      border-radius: 6px;
-      border: 1px solid var(--border);
+    /* ── BUST ── */
+    .bust-col {
+      width: 44%;
+      flex-shrink: 0;
+      background: var(--surface2);
+      border-right: 1px solid var(--border);
       overflow: hidden;
-      background: var(--surface3);
-      display: flex;
-      align-items: center;
-      justify-content: center;
     }
-    .bust-img img {
+    .bust-col img {
       width: 100%;
       height: 100%;
       object-fit: cover;
       object-position: top center;
       display: block;
+      min-height: 340px;
     }
 
-    .bust-name {
+    /* ── INFO ── */
+    .info-col {
+      flex: 1;
+      padding: 28px 22px 24px;
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+    }
+
+    .owner-name {
       font-family: 'Bebas Neue', sans-serif;
-      font-size: 1.9rem;
+      font-size: 2.6rem;
       color: var(--gold);
-      letter-spacing: 0.1em;
-      text-align: center;
+      letter-spacing: 0.08em;
       line-height: 1;
     }
-    .bust-name a {
+    .owner-name a {
       color: inherit;
       text-decoration: none;
     }
-    .bust-name a:hover {
-      color: #e8c96a;
-    }
+    .owner-name a:hover { color: #e8c96a; }
 
-    .hog-badge {
+    .enshrined-line {
       display: flex;
-      flex-direction: column;
       align-items: center;
-      gap: 3px;
+      gap: 10px;
+      margin-top: -6px;
+      flex-wrap: wrap;
     }
-    .hog-badge-top {
+    .enshrined-year {
       font-family: 'Barlow Condensed', sans-serif;
-      font-size: 0.62rem;
+      font-size: 0.85rem;
       letter-spacing: 0.22em;
       text-transform: uppercase;
       color: var(--muted);
     }
-    .hog-badge-year {
-      font-family: 'Bebas Neue', sans-serif;
-      font-size: 1.1rem;
-      color: var(--gold);
-      letter-spacing: 0.1em;
-      line-height: 1;
-      opacity: 0.75;
-    }
-
     .prestige-pill {
       font-family: 'Barlow Condensed', sans-serif;
-      font-size: 0.65rem;
-      letter-spacing: 0.18em;
+      font-size: 0.8rem;
+      letter-spacing: 0.16em;
       text-transform: uppercase;
       color: var(--gold);
       background: rgba(201,168,76,0.1);
       border: 1px solid rgba(201,168,76,0.3);
       border-radius: 20px;
-      padding: 4px 10px;
-    }
-
-    /* ── TEXT COLUMN ── */
-    .text-col {
-      flex: 1;
-      padding: 28px 24px 24px;
-      display: flex;
-      flex-direction: column;
-      justify-content: flex-start;
-      gap: 18px;
-    }
-
-    .enshrinee-label {
-      font-family: 'Barlow Condensed', sans-serif;
-      font-size: 0.7rem;
-      letter-spacing: 0.22em;
-      text-transform: uppercase;
-      color: var(--muted);
+      padding: 4px 12px;
     }
 
     .hog-bio {
       font-family: 'Barlow', sans-serif;
-      font-size: 0.9rem;
+      font-size: 1rem;
       color: #ccc;
-      line-height: 1.78;
+      line-height: 1.8;
+      flex: 1;
     }
 
-    /* ── STATS ROW ── */
-    .hog-stats {
-      display: flex;
-      gap: 0;
-      flex-wrap: wrap;
+    /* ── STATS BAR ── */
+    .card-stats {
       border-top: 1px solid var(--border);
-      padding-top: 16px;
-      margin-top: 2px;
+      display: flex;
     }
+
     .hog-stat {
+      flex: 1;
+      min-width: 0;
+      padding: 20px 16px 22px;
+      border-right: 1px solid var(--border);
       display: flex;
       flex-direction: column;
-      gap: 3px;
-      padding-right: 20px;
-      margin-right: 20px;
-      border-right: 1px solid var(--border);
+      gap: 4px;
     }
-    .hog-stat:last-child {
-      border-right: none;
-      margin-right: 0;
-    }
-    .hog-stat-val {
+    .hog-stat:last-child { border-right: none; }
+
+    .stat-val {
       font-family: 'Bebas Neue', sans-serif;
-      font-size: 1.6rem;
+      font-size: 2rem;
       color: var(--text);
       line-height: 1;
     }
-    .hog-stat-label {
+    .stat-label {
       font-family: 'Barlow Condensed', sans-serif;
-      font-size: 0.62rem;
-      letter-spacing: 0.18em;
+      font-size: 0.75rem;
+      letter-spacing: 0.16em;
       text-transform: uppercase;
       color: var(--muted);
+      line-height: 1.3;
     }
-    .hog-stat-rank {
+    .stat-rank {
       font-family: 'Barlow Condensed', sans-serif;
-      font-size: 0.6rem;
-      letter-spacing: 0.12em;
+      font-size: 0.72rem;
+      letter-spacing: 0.1em;
       text-transform: uppercase;
       color: var(--gold);
     }
 
-    /* ── CURTAINS ── */
+    /* ══ CURTAINS ══ */
     .curtains {
       position: absolute;
       inset: 0;
@@ -282,13 +236,12 @@
     .curtain {
       width: 50%;
       height: 100%;
-      background: #e74c3c;
+      background: var(--red-bright);
       position: relative;
       overflow: hidden;
       transition: transform 2.4s cubic-bezier(0.77, 0, 0.175, 1);
     }
 
-    /* Velvet fold lines */
     .curtain::before {
       content: '';
       position: absolute;
@@ -303,21 +256,20 @@
       pointer-events: none;
     }
 
-    /* Inner shadow edge */
     .curtain-left::after {
       content: '';
       position: absolute;
       top: 0; right: 0; bottom: 0;
-      width: 18px;
-      background: linear-gradient(to left, rgba(0,0,0,0.5), transparent);
+      width: 24px;
+      background: linear-gradient(to left, rgba(0,0,0,0.35), transparent);
       pointer-events: none;
     }
     .curtain-right::after {
       content: '';
       position: absolute;
       top: 0; left: 0; bottom: 0;
-      width: 18px;
-      background: linear-gradient(to right, rgba(0,0,0,0.5), transparent);
+      width: 24px;
+      background: linear-gradient(to right, rgba(0,0,0,0.35), transparent);
       pointer-events: none;
     }
 
@@ -327,7 +279,35 @@
     .hog-entry.revealed .curtain-left  { transform: translateX(-100%); }
     .hog-entry.revealed .curtain-right { transform: translateX(100%); }
 
-    /* Gold rod */
+    .curtain-text {
+      position: absolute;
+      inset: 0;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 6px;
+      pointer-events: none;
+    }
+    .ct-line1 {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: clamp(1rem, 3.2vw, 1.6rem);
+      letter-spacing: 0.18em;
+      color: rgba(0,0,0,0.2);
+      text-transform: uppercase;
+      user-select: none;
+      line-height: 1;
+    }
+    .ct-line2 {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: clamp(0.75rem, 2.2vw, 1.1rem);
+      letter-spacing: 0.18em;
+      color: rgba(0,0,0,0.16);
+      text-transform: uppercase;
+      user-select: none;
+      line-height: 1;
+    }
+
     .curtain-rod {
       position: absolute;
       top: 0;
@@ -338,42 +318,12 @@
       border-radius: 2px 2px 0 0;
     }
 
-    /* Curtain text watermark */
-    .curtain-watermark {
-      position: absolute;
-      inset: 0;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      pointer-events: none;
-      gap: 2px;
-    }
-    .curtain-watermark .wm-line1 {
-      font-family: 'Bebas Neue', sans-serif;
-      font-size: 1.4rem;
-      letter-spacing: 0.3em;
-      color: rgba(0,0,0,0.25);
-      text-transform: uppercase;
-      user-select: none;
-      line-height: 1;
-    }
-    .curtain-watermark .wm-line2 {
-      font-family: 'Bebas Neue', sans-serif;
-      font-size: 1.1rem;
-      letter-spacing: 0.25em;
-      color: rgba(0,0,0,0.2);
-      text-transform: uppercase;
-      user-select: none;
-      line-height: 1;
-    }
-
     /* ── DIVIDER ── */
     .hog-divider {
       display: flex;
       align-items: center;
       gap: 14px;
-      margin: 0 auto 48px;
+      margin: 0 auto 56px;
       max-width: 320px;
     }
     .hog-divider::before,
@@ -383,33 +333,27 @@
       height: 1px;
       background: var(--border);
     }
-    .hog-divider-star {
-      font-family: 'Barlow Condensed', sans-serif;
-      font-size: 0.7rem;
-      letter-spacing: 0.3em;
-      text-transform: uppercase;
-      color: var(--gold);
+    .hog-divider-pig {
+      font-size: 1.6rem;
+      line-height: 1;
     }
 
-    /* ── RESPONSIVE ── */
-    @media (max-width: 540px) {
-      .hog-card { flex-direction: column; }
+    /* ══ MOBILE ══ */
+    @media (max-width: 520px) {
+      .card-top { flex-direction: column; min-height: unset; }
       .bust-col {
         width: 100%;
-        min-width: unset;
-        flex-direction: row;
-        align-items: center;
-        padding: 20px 20px 16px;
         border-right: none;
         border-bottom: 1px solid var(--border);
-        gap: 16px;
       }
-      .bust-img { width: 90px; height: 105px; flex-shrink: 0; }
-      .bust-name { font-size: 1.6rem; text-align: left; }
-      .hog-badge { align-items: flex-start; }
-      .text-col { padding: 20px 16px; }
-      .hog-stats { gap: 0; }
-      .hog-stat { padding-right: 14px; margin-right: 14px; }
+      .bust-col img { min-height: unset; height: 260px; }
+      .info-col { padding: 20px 16px; }
+      .owner-name { font-size: 2rem; }
+      .card-stats { flex-wrap: wrap; }
+      .hog-stat { flex: 0 0 33.333%; }
+      .hog-stat:nth-child(3) { border-right: none; }
+      .hog-stat:nth-child(n+4) { border-top: 1px solid var(--border); }
+      .hog-stat:nth-child(6) { border-right: none; }
     }
   </style>
 </head>
@@ -434,210 +378,213 @@
     legends who redefined what it means to compete.
   </p>
 
-  <!-- ── DYLAN ── -->
+  <!-- ══ DYLAN ══ -->
   <div class="hog-entry" id="entry-dylan">
     <div class="hog-card">
-      <div class="bust-col">
-        <div class="bust-img">
-          <img src="images/dylan.jpg" alt="Dylan bust" />
+      <div class="card-top">
+        <div class="bust-col">
+          <img src="images/bust dylan.png" alt="Dylan" />
         </div>
-        <div class="bust-name">
-          <a href="profiles/dylan.html">Dylan</a>
+        <div class="info-col">
+          <div class="owner-name"><a href="profiles/dylan.html">Dylan</a></div>
+          <div class="enshrined-line">
+            <span class="enshrined-year">Enshrined · 2025</span>
+            <span class="prestige-pill">Prestige Rank #1</span>
+          </div>
+          <p class="hog-bio">
+            The greatest champion this league has ever produced. Dylan owns the all-time record with three titles, the best playoff win percentage in history at 66.7%, and the #1 prestige ranking across all 27 owners to ever play. He joined in 2015 and immediately established himself as an elite competitor — cerebral, dangerous in the postseason, and impossible to rattle when the stakes are highest. In eleven seasons, he has never truly faded. He simply wins.
+          </p>
         </div>
-        <div class="hog-badge">
-          <span class="hog-badge-top">Enshrined</span>
-          <span class="hog-badge-year">2025</span>
-        </div>
-        <div class="prestige-pill">Prestige Rank #1</div>
       </div>
-      <div class="text-col">
-        <p class="hog-bio">
-          The greatest champion this league has ever produced. Dylan owns the all-time record with three titles, the best playoff win percentage in history at 66.7%, and the #1 prestige ranking across all 27 owners to ever play. He joined in 2015 and immediately established himself as an elite competitor — cerebral, dangerous in the postseason, and impossible to rattle when the stakes are highest. In eleven seasons, he has never truly faded. He simply wins.
-        </p>
-        <div class="hog-stats">
-          <div class="hog-stat">
-            <span class="hog-stat-val">3</span>
-            <span class="hog-stat-label">Championships</span>
-            <span class="hog-stat-rank">#1 All-Time</span>
-          </div>
-          <div class="hog-stat">
-            <span class="hog-stat-val">2,201</span>
-            <span class="hog-stat-label">Prestige Pts</span>
-            <span class="hog-stat-rank">#1 All-Time</span>
-          </div>
-          <div class="hog-stat">
-            <span class="hog-stat-val">$321</span>
-            <span class="hog-stat-label">Net Earnings</span>
-            <span class="hog-stat-rank">#3 All-Time</span>
-          </div>
-          <div class="hog-stat">
-            <span class="hog-stat-val">66.7%</span>
-            <span class="hog-stat-label">Playoff Win%</span>
-            <span class="hog-stat-rank">#1 All-Time</span>
-          </div>
-          <div class="hog-stat">
-            <span class="hog-stat-val">8</span>
-            <span class="hog-stat-label">Playoff Wins</span>
-            <span class="hog-stat-rank">#2 All-Time</span>
-          </div>
-          <div class="hog-stat">
-            <span class="hog-stat-val">84</span>
-            <span class="hog-stat-label">Career Wins</span>
-            <span class="hog-stat-rank">#3 All-Time</span>
-          </div>
+      <div class="card-stats">
+        <div class="hog-stat">
+          <span class="stat-val">3</span>
+          <span class="stat-label">Championships</span>
+          <span class="stat-rank">#1 All-Time</span>
+        </div>
+        <div class="hog-stat">
+          <span class="stat-val">2,201</span>
+          <span class="stat-label">Prestige Pts</span>
+          <span class="stat-rank">#1 All-Time</span>
+        </div>
+        <div class="hog-stat">
+          <span class="stat-val">$321</span>
+          <span class="stat-label">Net Earnings</span>
+          <span class="stat-rank">#3 All-Time</span>
+        </div>
+        <div class="hog-stat">
+          <span class="stat-val">66.7%</span>
+          <span class="stat-label">Playoff Win%</span>
+          <span class="stat-rank">#1 All-Time</span>
+        </div>
+        <div class="hog-stat">
+          <span class="stat-val">8</span>
+          <span class="stat-label">Playoff Wins</span>
+          <span class="stat-rank">#2 All-Time</span>
+        </div>
+        <div class="hog-stat">
+          <span class="stat-val">84</span>
+          <span class="stat-label">Career Wins</span>
+          <span class="stat-rank">#3 All-Time</span>
         </div>
       </div>
     </div>
     <div class="curtains">
       <div class="curtain curtain-left">
-        <div class="curtain-watermark"><span class="wm-line1">Slingshot Engaged</span><span class="wm-line2">Hall of Greatness</span></div>
+        <div class="curtain-text">
+          <span class="ct-line1">Slingshot Engaged</span>
+          <span class="ct-line2">Hall of Greatness</span>
+        </div>
       </div>
       <div class="curtain curtain-right">
-        <div class="curtain-watermark"><span class="wm-line1">Slingshot Engaged</span><span class="wm-line2">Hall of Greatness</span></div>
+        <div class="curtain-text">
+          <span class="ct-line1">Slingshot Engaged</span>
+          <span class="ct-line2">Hall of Greatness</span>
+        </div>
       </div>
     </div>
     <div class="curtain-rod"></div>
   </div>
 
-  <div class="hog-divider">
-    <span class="hog-divider-star">★</span>
-  </div>
+  <div class="hog-divider"><span class="hog-divider-pig">🐷</span></div>
 
-  <!-- ── JACK ── -->
+  <!-- ══ JACK ══ -->
   <div class="hog-entry" id="entry-jack">
     <div class="hog-card">
-      <div class="bust-col">
-        <div class="bust-img">
-          <img src="images/jack.jpg" alt="Jack bust" />
+      <div class="card-top">
+        <div class="bust-col">
+          <img src="images/bust jack.png" alt="Jack" />
         </div>
-        <div class="bust-name">
-          <a href="profiles/jack.html">Jack</a>
+        <div class="info-col">
+          <div class="owner-name"><a href="profiles/jack.html">Jack</a></div>
+          <div class="enshrined-line">
+            <span class="enshrined-year">Enshrined · 2025</span>
+            <span class="prestige-pill">Prestige Rank #2</span>
+          </div>
+          <p class="hog-bio">
+            The Commissioner. The Founder. The man who built this league and then proceeded to dominate it for over a decade. Jack's résumé is the gold standard — most all-time wins, most weeks at the top spot, most playoff appearances tied for the league lead. He claimed back-to-back championships in 2018 and 2019, proving his excellence was no fluke. A serial trader and elite competitor, Jack's fingerprints are on every era of this league's history.
+          </p>
         </div>
-        <div class="hog-badge">
-          <span class="hog-badge-top">Enshrined</span>
-          <span class="hog-badge-year">2025</span>
-        </div>
-        <div class="prestige-pill">Prestige Rank #2</div>
       </div>
-      <div class="text-col">
-        <p class="hog-bio">
-          The Commissioner. The Founder. The man who built this league and then proceeded to dominate it for over a decade. Jack's résumé is the gold standard — most all-time wins, most weeks at the top spot, most playoff appearances tied for the league lead. He claimed back-to-back championships in 2018 and 2019, proving his excellence was no fluke. A serial trader and elite competitor, Jack's fingerprints are on every era of this league's history.
-        </p>
-        <div class="hog-stats">
-          <div class="hog-stat">
-            <span class="hog-stat-val">2</span>
-            <span class="hog-stat-label">Championships</span>
-            <span class="hog-stat-rank">T-#2 All-Time</span>
-          </div>
-          <div class="hog-stat">
-            <span class="hog-stat-val">2,155</span>
-            <span class="hog-stat-label">Prestige Pts</span>
-            <span class="hog-stat-rank">#2 All-Time</span>
-          </div>
-          <div class="hog-stat">
-            <span class="hog-stat-val">$730</span>
-            <span class="hog-stat-label">Net Earnings</span>
-            <span class="hog-stat-rank">#2 All-Time</span>
-          </div>
-          <div class="hog-stat">
-            <span class="hog-stat-val">99</span>
-            <span class="hog-stat-label">Career Wins</span>
-            <span class="hog-stat-rank">#1 All-Time</span>
-          </div>
-          <div class="hog-stat">
-            <span class="hog-stat-val">27</span>
-            <span class="hog-stat-label">Weeks at #1</span>
-            <span class="hog-stat-rank">#1 All-Time</span>
-          </div>
-          <div class="hog-stat">
-            <span class="hog-stat-val">19</span>
-            <span class="hog-stat-label">Weekly High Scores</span>
-            <span class="hog-stat-rank">#1 All-Time</span>
-          </div>
+      <div class="card-stats">
+        <div class="hog-stat">
+          <span class="stat-val">2</span>
+          <span class="stat-label">Championships</span>
+          <span class="stat-rank">T-#2 All-Time</span>
+        </div>
+        <div class="hog-stat">
+          <span class="stat-val">2,155</span>
+          <span class="stat-label">Prestige Pts</span>
+          <span class="stat-rank">#2 All-Time</span>
+        </div>
+        <div class="hog-stat">
+          <span class="stat-val">$730</span>
+          <span class="stat-label">Net Earnings</span>
+          <span class="stat-rank">#2 All-Time</span>
+        </div>
+        <div class="hog-stat">
+          <span class="stat-val">99</span>
+          <span class="stat-label">Career Wins</span>
+          <span class="stat-rank">#1 All-Time</span>
+        </div>
+        <div class="hog-stat">
+          <span class="stat-val">27</span>
+          <span class="stat-label">Weeks at #1</span>
+          <span class="stat-rank">#1 All-Time</span>
+        </div>
+        <div class="hog-stat">
+          <span class="stat-val">19</span>
+          <span class="stat-label">Weekly High Scores</span>
+          <span class="stat-rank">#1 All-Time</span>
         </div>
       </div>
     </div>
     <div class="curtains">
       <div class="curtain curtain-left">
-        <div class="curtain-watermark"><span class="wm-line1">Slingshot Engaged</span><span class="wm-line2">Hall of Greatness</span></div>
+        <div class="curtain-text">
+          <span class="ct-line1">Slingshot Engaged</span>
+          <span class="ct-line2">Hall of Greatness</span>
+        </div>
       </div>
       <div class="curtain curtain-right">
-        <div class="curtain-watermark"><span class="wm-line1">Slingshot Engaged</span><span class="wm-line2">Hall of Greatness</span></div>
+        <div class="curtain-text">
+          <span class="ct-line1">Slingshot Engaged</span>
+          <span class="ct-line2">Hall of Greatness</span>
+        </div>
       </div>
     </div>
     <div class="curtain-rod"></div>
   </div>
 
-  <div class="hog-divider">
-    <span class="hog-divider-star">★</span>
-  </div>
+  <div class="hog-divider"><span class="hog-divider-pig">🐷</span></div>
 
-  <!-- ── KYLE ── -->
+  <!-- ══ KYLE ══ -->
   <div class="hog-entry" id="entry-kyle">
     <div class="hog-card">
-      <div class="bust-col">
-        <div class="bust-img">
-          <img src="images/kyle.png" alt="Kyle bust" />
+      <div class="card-top">
+        <div class="bust-col">
+          <img src="images/bust kyle.png" alt="Kyle" />
         </div>
-        <div class="bust-name">
-          <a href="profiles/kyle.html">Kyle</a>
+        <div class="info-col">
+          <div class="owner-name"><a href="profiles/kyle.html">Kyle</a></div>
+          <div class="enshrined-line">
+            <span class="enshrined-year">Enshrined · 2025</span>
+            <span class="prestige-pill">Prestige Rank #3</span>
+          </div>
+          <p class="hog-bio">
+            Kyle arrived in 2018 and wasted no time making his mark. In just eight seasons he has claimed two championships, made the playoffs eight times — tied for the most in league history — and earned the third-highest prestige ranking of all 27 owners ever. He leads all-time in points per game, boom rate, and start rate, making him statistically the most dominant scorer this league has ever seen. The Snoot doesn't just contend — he converts.
+          </p>
         </div>
-        <div class="hog-badge">
-          <span class="hog-badge-top">Enshrined</span>
-          <span class="hog-badge-year">2025</span>
-        </div>
-        <div class="prestige-pill">Prestige Rank #3</div>
       </div>
-      <div class="text-col">
-        <p class="hog-bio">
-          Kyle arrived in 2018 and wasted no time making his mark. In just eight seasons he has claimed two championships, made the playoffs eight times — tied for the most in league history — and earned the third-highest prestige ranking of all 27 owners ever. He leads all-time in points per game, boom rate, and start rate, making him statistically the most dominant scorer this league has ever seen. The Snoot doesn't just contend — he converts.
-        </p>
-        <div class="hog-stats">
-          <div class="hog-stat">
-            <span class="hog-stat-val">2</span>
-            <span class="hog-stat-label">Championships</span>
-            <span class="hog-stat-rank">T-#2 All-Time</span>
-          </div>
-          <div class="hog-stat">
-            <span class="hog-stat-val">2,018</span>
-            <span class="hog-stat-label">Prestige Pts</span>
-            <span class="hog-stat-rank">#3 All-Time</span>
-          </div>
-          <div class="hog-stat">
-            <span class="hog-stat-val">$1,035</span>
-            <span class="hog-stat-label">Net Earnings</span>
-            <span class="hog-stat-rank">#1 All-Time</span>
-          </div>
-          <div class="hog-stat">
-            <span class="hog-stat-val">105.4</span>
-            <span class="hog-stat-label">Pts Per Game</span>
-            <span class="hog-stat-rank">#1 All-Time</span>
-          </div>
-          <div class="hog-stat">
-            <span class="hog-stat-val">32.1%</span>
-            <span class="hog-stat-label">Boom Rate</span>
-            <span class="hog-stat-rank">#1 All-Time</span>
-          </div>
-          <div class="hog-stat">
-            <span class="hog-stat-val">70.6%</span>
-            <span class="hog-stat-label">Start Rate</span>
-            <span class="hog-stat-rank">#1 All-Time</span>
-          </div>
+      <div class="card-stats">
+        <div class="hog-stat">
+          <span class="stat-val">2</span>
+          <span class="stat-label">Championships</span>
+          <span class="stat-rank">T-#2 All-Time</span>
+        </div>
+        <div class="hog-stat">
+          <span class="stat-val">2,018</span>
+          <span class="stat-label">Prestige Pts</span>
+          <span class="stat-rank">#3 All-Time</span>
+        </div>
+        <div class="hog-stat">
+          <span class="stat-val">$1,035</span>
+          <span class="stat-label">Net Earnings</span>
+          <span class="stat-rank">#1 All-Time</span>
+        </div>
+        <div class="hog-stat">
+          <span class="stat-val">105.4</span>
+          <span class="stat-label">Pts Per Game</span>
+          <span class="stat-rank">#1 All-Time</span>
+        </div>
+        <div class="hog-stat">
+          <span class="stat-val">32.1%</span>
+          <span class="stat-label">Boom Rate</span>
+          <span class="stat-rank">#1 All-Time</span>
+        </div>
+        <div class="hog-stat">
+          <span class="stat-val">70.6%</span>
+          <span class="stat-label">Start Rate</span>
+          <span class="stat-rank">#1 All-Time</span>
         </div>
       </div>
     </div>
     <div class="curtains">
       <div class="curtain curtain-left">
-        <div class="curtain-watermark"><span class="wm-line1">Slingshot Engaged</span><span class="wm-line2">Hall of Greatness</span></div>
+        <div class="curtain-text">
+          <span class="ct-line1">Slingshot Engaged</span>
+          <span class="ct-line2">Hall of Greatness</span>
+        </div>
       </div>
       <div class="curtain curtain-right">
-        <div class="curtain-watermark"><span class="wm-line1">Slingshot Engaged</span><span class="wm-line2">Hall of Greatness</span></div>
+        <div class="curtain-text">
+          <span class="ct-line1">Slingshot Engaged</span>
+          <span class="ct-line2">Hall of Greatness</span>
+        </div>
       </div>
     </div>
     <div class="curtain-rod"></div>
   </div>
-
-
 
 </div>
 
@@ -652,20 +599,16 @@
     })
     .catch(() => {});
 
-  const entries = document.querySelectorAll('.hog-entry');
-
   const observer = new IntersectionObserver((obs) => {
     obs.forEach(entry => {
       if (entry.isIntersecting) {
-        setTimeout(() => {
-          entry.target.classList.add('revealed');
-        }, 120);
+        setTimeout(() => entry.target.classList.add('revealed'), 120);
         observer.unobserve(entry.target);
       }
     });
   }, { threshold: 0.8 });
 
-  entries.forEach(e => observer.observe(e));
+  document.querySelectorAll('.hog-entry').forEach(e => observer.observe(e));
 </script>
 
 </body>
