@@ -944,6 +944,13 @@ const PROFILE_IDS = {
 // Owners with photos (active + Jon)
 const HAS_PHOTO = new Set(['Jack','Dylan','Brian','Mike M.','Daniel','Matt','Kyle','Jordan','Tim H.','Wade','Alex V.','Andy','Scott','Luke','Jon']);
 
+// Photo filenames (separate from profile page IDs)
+const PHOTO_IDS = {
+  'Jack':'jack','Dylan':'dylan','Brian':'brian','Mike M.':'mike','Daniel':'daniel',
+  'Matt':'matt','Kyle':'kyle','Jordan':'jordan','Tim H.':'tim','Wade':'wade',
+  'Alex V.':'alex','Andy':'andy','Scott':'scott','Luke':'luke','Jon':'jon'
+};
+
 function ownerLink(name) {
   if (ACTIVE.has(name) && PROFILE_IDS[name]) {
     return `<a href="profiles/${PROFILE_IDS[name]}.html">${name}</a>`;
@@ -953,25 +960,14 @@ function ownerLink(name) {
 
 function ownerPhoto(name, size, borderColor) {
   if (!HAS_PHOTO.has(name)) return '';
-  const id = PROFILE_IDS[name] || name.toLowerCase().replace(/[^a-z]/g,'');
+  const id = PHOTO_IDS[name] || name.toLowerCase().replace(/[^a-z]/g,'');
   const s = size || 36;
   const border = borderColor || 'var(--border)';
-  const img = new Image();
-  const div = `<span class="owner-photo-wrap" data-id="${id}" data-size="${s}" data-border="${border}" data-name="${name}"></span>`;
-  return div;
+  const style = `width:${s}px;height:${s}px;border-radius:50%;object-fit:cover;object-position:top;border:2px solid ${border};flex-shrink:0;display:block;`;
+  return `<img src="images/${id}.png" onerror="this.onerror=null;this.src='images/${id}.jpg'" style="${style}" alt="${name}">`;
 }
 
-function resolvePhotos() {
-  document.querySelectorAll('.owner-photo-wrap').forEach(span => {
-    const id = span.dataset.id, s = span.dataset.size, border = span.dataset.border, name = span.dataset.name;
-    const el = document.createElement('img');
-    el.alt = name;
-    el.style.cssText = `width:${s}px;height:${s}px;border-radius:50%;object-fit:cover;object-position:top;border:2px solid ${border};flex-shrink:0;`;
-    el.src = `images/${id}.png`;
-    el.onerror = function() { this.onerror = null; this.src = `images/${id}.jpg`; };
-    span.replaceWith(el);
-  });
-}
+function resolvePhotos() { /* no-op — inline img used instead */ }
 
 // ── DATA (embedded from spreadsheet) ──
 const H2H = JSON.parse(document.getElementById('h2hDataScript').textContent);
