@@ -491,7 +491,7 @@
       </table>
     </div>
 
-    <p class="data-notice">⚠ Jordan's drought record is pending final confirmation.</p>
+
 
   </div>
 
@@ -511,13 +511,15 @@
       count: 8,
       unit: 'Consecutive Seasons',
       years: '2018 – Present',
-      holders: ['Kyle']  // add more names here if tied
+      active: true,
+      holders: ['Kyle']
     };
     const recordDrought = {
-      count: 5,
+      count: 6,
       unit: 'Consecutive Misses',
-      years: '2021 – Present',
-      holders: ['Jordan']  // add more names here if tied
+      years: '2017 – 2022',
+      active: false,
+      holders: ['Scott']
     };
 
     function buildRecordCard(cfg, type) {
@@ -528,8 +530,10 @@
       const emoji = type === 'streak' ? '🔥' : '💀';
       const title = type === 'streak' ? 'All-Time Longest Streak #TheStreak' : 'All-Time Longest Drought';
 
-      const activeBadge = `<div style="text-align:center;margin-bottom:2px;">
+      const activeBadge = cfg.active ? `<div style="text-align:center;margin-bottom:2px;">
         <span class="active-badge"><span class="active-badge-dot"></span>Active</span>
+      </div>` : `<div style="text-align:center;margin-bottom:2px;">
+        <span class="active-badge" style="background:rgba(255,255,255,0.04);border-color:rgba(255,255,255,0.1);color:var(--muted);">Record Closed</span>
       </div>`;
 
       let holdersHTML;
