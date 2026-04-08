@@ -939,7 +939,7 @@
         <option value="">All Owners</option>
       </select>
     </div>
-    <p style="font-family:'Barlow Condensed',sans-serif;font-size:0.82rem;color:var(--muted);letter-spacing:0.05em;margin:0 0 16px;">All series with a minimum of 6 games. Ranked by a proprietary formula factoring balance, game closeness, volume, and playoff meetings.</p>
+    <p style="font-family:'Barlow Condensed',sans-serif;font-size:0.82rem;color:var(--muted);letter-spacing:0.05em;margin:0 0 16px;">All series with a minimum of 6 games. Ranked by a proprietary formula factoring balance, game closeness, volume, playoff meetings, and Slingshot Bowl appearances.</p>
     <div id="rivalryRankingsList"></div>
   </div>
 </div>
@@ -1110,6 +1110,21 @@ let diveOwnerA = null, diveOwnerB = null;
 let currentPairData = null;
 
 // ── RIVALRY RATING ──
+// Slingshot Bowl matchups — pair key → number of championship appearances together
+const SLINGSHOT_BOWL = (() => {
+  const bowls = [
+    ['Dylan','Mike M.'],['Kyle','Daniel'],['Alex V.','Kyle'],['Kyle','Mike M.'],
+    ['Dylan','Jon'],['Mike M.','Kyle'],['Jack','Alex V.'],['Jack','Kyle'],
+    ['Dylan','Michelle T.'],['Brian','Daniel'],['Alex M.','Taylor'],['Jack','Michelle T.']
+  ];
+  const map = {};
+  for (const [a,b] of bowls) {
+    const k = [a,b].sort().join('||');
+    map[k] = (map[k] || 0) + 1;
+  }
+  return map;
+})();
+
 function computeRivalryScore(pairData) {
   const games = pairData.games;
   if (!games || games.length < 6) return null;
@@ -1121,8 +1136,11 @@ function computeRivalryScore(pairData) {
   const volume = Math.min(1, games.length / 17);
   const playoffGames = pairData.playoff.w0 + pairData.playoff.w1;
   const playoff = Math.min(playoffGames / 3, 1.0);
-  const score = balance * 0.345 + closeness * 0.345 + volume * 0.16 + playoff * 0.15;
-  return { score, balance, closeness, volume, playoff, playoffGames, avgMargin };
+  const bowlKey = [pairData.p0, pairData.p1].sort().join('||');
+  const bowlCount = SLINGSHOT_BOWL[bowlKey] || 0;
+  const bowl = Math.min(bowlCount / 2, 1.0); // max 2 meetings (Kyle vs Mike M.)
+  const score = balance * 0.325 + closeness * 0.325 + volume * 0.15 + playoff * 0.13 + bowl * 0.07;
+  return { score, balance, closeness, volume, playoff, playoffGames, bowlCount, avgMargin };
 }
 
 function getPairKey(a, b) {
@@ -1353,9 +1371,13 @@ function renderDive(a, b) {
       : avgMargin < 33 ? ['Comfortable margins', 'tag-bad']
       : ['Wide margins', 'tag-bad'];
 
-    const volLabel = gCount >= 14 ? `${gCount} games` : gCount >= 9 ? `${gCount} games` : `${gCount} games`;
-    const poLabel = po === 0 ? 'No playoffs' : po === 1 ? '1 playoff meeting' : po === 2 ? '2 playoff meetings' : '3 playoff meetings';
-    const volTag = [`${volLabel} · ${poLabel}`, po >= 2 ? 'tag-good' : ''];
+    const volLabel = `${gCount} games`;
+    const poLabel = po === 0 ? 'No playoffs' : po === 1 ? '1 playoff' : po === 2 ? '2 playoffs' : '3 playoffs';
+    const bc = rv.bowlCount || 0;
+    const bowlLabel = bc === 0 ? '' : bc === 1 ? ' · 1 Slingshot Bowl' : ` · ${bc} Slingshot Bowls`;
+    const volTag = [`${volLabel} · ${poLabel}${bowlLabel}`, (po >= 2 || bc >= 1) ? 'tag-good' : ''];
+
+    const bowlStr = bc === 0 ? '' : bc === 1 ? ' They have met in the Slingshot Bowl.' : ` They have met in the Slingshot Bowl ${bc} times.`;
 
     rivalryEl.style.display = 'block';
     rivalryEl.innerHTML = `
@@ -1372,7 +1394,7 @@ function renderDive(a, b) {
               <span class="rivalry-tag ${closeTag[1]}">${closeTag[0]}</span>
               <span class="rivalry-tag ${volTag[1]}">${volTag[0]}</span>
             </div>
-            <div class="rivalry-summary">${summary}</div>
+            <div class="rivalry-summary">${summary}${bowlStr}</div>
             <div class="rivalry-formula-note">Ranked by a proprietary formula across all 98 qualifying series in league history. <span onclick="openRivalryModal()" style="color:var(--gold);cursor:pointer;text-decoration:underline;text-underline-offset:2px;">View all rankings</span></div>
           </div>
         </div>
@@ -1389,7 +1411,7 @@ const ALL_RIVALRY_RANKINGS = (() => {
     const rv = computeRivalryScore(pair);
     if (!rv) continue;
     const [p0, p1] = key.split('||');
-    pairs.push({ p0, p1, score: rv.score, balance: rv.balance, avgMargin: pair.games.reduce((s,g)=>s+g.margin,0)/pair.games.length, games: pair.games.length, playoffGames: rv.playoffGames });
+    pairs.push({ p0, p1, score: rv.score, balance: rv.balance, avgMargin: pair.games.reduce((s,g)=>s+g.margin,0)/pair.games.length, games: pair.games.length, playoffGames: rv.playoffGames, bowlCount: rv.bowlCount || 0 });
   }
   pairs.sort((a,b) => b.score - a.score);
   const maxScore = pairs[0].score;
@@ -1435,7 +1457,7 @@ function renderRivalryList() {
         <div style="font-family:'Bebas Neue',sans-serif;font-size:1.1rem;color:var(--gold);min-width:36px;">#${r.rank}</div>
         <div style="flex:1;">
           <div style="font-family:'Barlow Condensed',sans-serif;font-size:1rem;color:var(--text);letter-spacing:0.04em;">${r.p0} vs ${r.p1}</div>
-          <div style="font-family:'Barlow Condensed',sans-serif;font-size:0.72rem;color:var(--muted);letter-spacing:0.06em;margin-top:1px;">${r.games} games · ${r.playoffGames} playoff</div>
+          <div style="font-family:'Barlow Condensed',sans-serif;font-size:0.72rem;color:var(--muted);letter-spacing:0.06em;margin-top:1px;">${r.games} games · ${r.playoffGames} playoff${r.bowlCount > 0 ? ` · <span style="color:var(--gold);">${r.bowlCount === 2 ? '2× ' : ''}Slingshot Bowl</span>` : ''}</div>
         </div>
         <div style="font-family:'Bebas Neue',sans-serif;font-size:1.1rem;color:var(--muted);">${r.normalized}</div>
       </div>`;
