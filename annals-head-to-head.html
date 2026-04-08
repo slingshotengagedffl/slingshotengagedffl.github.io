@@ -1358,10 +1358,12 @@ function renderDive(a, b) {
     // "and" when both factors agree (both good or both bad), "but" when they contrast
     const conjunction = (balanceGood === closenessGood) ? `and` : `but`;
 
+    const bc = rv.bowlCount || 0;
     let playoffStr;
-    if (po === 0) playoffStr = `They have never met in the playoffs.`;
-    else if (po === 1) playoffStr = `They have met once in the playoffs.`;
-    else if (po === 2) playoffStr = `They have also met twice in the playoffs.`;
+    const nonBowlPO = po - bc;
+    if (nonBowlPO <= 0) playoffStr = '';
+    else if (nonBowlPO === 1) playoffStr = `They have met once in the playoffs.`;
+    else if (nonBowlPO === 2) playoffStr = `They have also met twice in the playoffs.`;
     else playoffStr = `They have met three times in the playoffs — as much as any series in league history.`;
 
     const summary = `Across ${gCount} games, ${balanceStr}, ${conjunction} ${closenessStr}. ${playoffStr}`;
@@ -1377,7 +1379,6 @@ function renderDive(a, b) {
       : avgMargin < 33 ? ['Comfortable margins', 'tag-bad']
       : ['Wide margins', 'tag-bad'];
 
-    const bc = rv.bowlCount || 0;
     const volLabel = `${gCount} games`;
     const nonBowlPlayoffs = po - bc; // bowl games are already counted in po
     const poLabel = nonBowlPlayoffs <= 0 ? '' : nonBowlPlayoffs === 1 ? '1 playoff' : `${nonBowlPlayoffs} playoffs`;
