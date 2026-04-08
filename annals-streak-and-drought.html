@@ -1,0 +1,676 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>The Streak and the Drought – Slingshot Engaged FFL</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Barlow+Condensed:wght@400;600;700&family=Barlow:wght@400;500;600&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --red: #c0392b;
+      --red-bright: #e74c3c;
+      --bg: #0a0a0a;
+      --surface: #141414;
+      --surface2: #1c1c1c;
+      --surface3: #242424;
+      --text: #f0f0f0;
+      --muted: #999;
+      --border: #2a2a2a;
+      --gold: #c9a84c;
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: 'Barlow', sans-serif;
+      min-height: 100vh;
+    }
+
+    /* PAGE HEADER */
+    .page-header {
+      padding: 40px 20px 0;
+      text-align: center;
+    }
+    .page-supertitle {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: 0.8rem;
+      letter-spacing: 0.25em;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin-bottom: 6px;
+    }
+    .page-header h1 {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: clamp(2.8rem, 8vw, 5rem);
+      color: var(--red-bright);
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      line-height: 1;
+    }
+    .page-subtitle {
+      font-family: 'Barlow', sans-serif;
+      font-size: 0.88rem;
+      color: var(--muted);
+      margin-top: 8px;
+    }
+    .page-updated {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: 0.72rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin-top: 6px;
+    }
+
+    .header-spacer { height: 36px; }
+
+    /* CONTENT */
+    .content {
+      max-width: 680px;
+      margin: 0 auto;
+      padding: 0 16px 60px;
+    }
+
+    /* INTRO */
+    .intro {
+      font-family: 'Barlow', sans-serif;
+      font-size: 0.95rem;
+      color: var(--muted);
+      line-height: 1.7;
+      text-align: center;
+      margin-bottom: 36px;
+    }
+
+    /* RECORD CARDS */
+    .record-cards {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 14px;
+      margin-bottom: 40px;
+    }
+
+    .record-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 20px 16px;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .record-card.streak-card {
+      border-top: 3px solid var(--gold);
+      animation: streakGlow 2.8s ease-in-out infinite;
+    }
+    .record-card.drought-card {
+      border-top: 3px solid var(--red);
+      animation: droughtPulse 3s ease-in-out infinite;
+    }
+
+    @keyframes streakGlow {
+      0%, 100% { box-shadow: 0 0 0px rgba(201,168,76,0); }
+      50%       { box-shadow: 0 0 18px rgba(201,168,76,0.35), 0 0 36px rgba(201,168,76,0.12); }
+    }
+    @keyframes droughtPulse {
+      0%, 100% { box-shadow: 0 0 0px rgba(192,57,43,0); }
+      50%       { box-shadow: 0 0 16px rgba(192,57,43,0.4), 0 0 32px rgba(192,57,43,0.14); }
+    }
+
+    /* ACTIVE BADGE */
+    .active-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: 0.62rem;
+      font-weight: 700;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      padding: 3px 9px;
+      border-radius: 20px;
+      margin-bottom: 10px;
+    }
+    .active-badge-dot {
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      animation: blink 1.4s ease-in-out infinite;
+      flex-shrink: 0;
+    }
+    @keyframes blink {
+      0%, 100% { opacity: 1; }
+      50%       { opacity: 0.25; }
+    }
+    .streak-card .active-badge {
+      background: rgba(201,168,76,0.1);
+      border: 1px solid rgba(201,168,76,0.3);
+      color: var(--gold);
+    }
+    .streak-card .active-badge-dot { background: var(--gold); }
+    .drought-card .active-badge {
+      background: rgba(192,57,43,0.1);
+      border: 1px solid rgba(192,57,43,0.3);
+      color: var(--red-bright);
+    }
+    .drought-card .active-badge-dot { background: var(--red-bright); }
+
+    /* HASHTAG */
+    .record-hashtag {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: 0.7rem;
+      font-weight: 700;
+      letter-spacing: 0.12em;
+      color: var(--gold);
+      opacity: 0.7;
+      margin-bottom: 6px;
+      display: block;
+    }
+
+    /* CROWN on Kyle's pip row */
+    .pip-crown {
+      font-size: 0.75rem;
+      margin-left: 4px;
+      vertical-align: middle;
+      line-height: 1;
+    }
+
+    .record-label {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: 0.65rem;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin-bottom: 12px;
+      min-height: 3.2em;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .record-photo-wrap {
+      width: 72px;
+      height: 72px;
+      border-radius: 50%;
+      overflow: hidden;
+      margin: 0 auto 12px;
+      border: 2px solid var(--border);
+    }
+    .streak-card .record-photo-wrap { border-color: var(--gold); }
+    .drought-card .record-photo-wrap { border-color: var(--red); }
+
+    .record-photo-wrap img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: top;
+    }
+
+    .record-name {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 1.4rem;
+      letter-spacing: 0.06em;
+      color: var(--text);
+      margin-bottom: 4px;
+    }
+
+    .record-number {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 2.8rem;
+      line-height: 1;
+      margin-bottom: 2px;
+    }
+    .streak-card .record-number { color: var(--gold); }
+    .drought-card .record-number { color: var(--red-bright); }
+
+    .record-unit {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: 0.7rem;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin-bottom: 8px;
+    }
+
+    .record-years {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: 0.72rem;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      padding: 3px 10px;
+      border-radius: 20px;
+      display: inline-block;
+    }
+    .streak-card .record-years {
+      background: rgba(201,168,76,0.1);
+      border: 1px solid rgba(201,168,76,0.3);
+      color: var(--gold);
+    }
+    .drought-card .record-years {
+      background: rgba(192,57,43,0.12);
+      border: 1px solid rgba(192,57,43,0.3);
+      color: var(--red-bright);
+    }
+
+    /* Tied holders — multiple photos/names in one card */
+    .tied-holders {
+      display: flex;
+      justify-content: center;
+      gap: 16px;
+      margin-bottom: 4px;
+      flex-wrap: wrap;
+    }
+    .tied-holder {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 6px;
+    }
+    .tied-label {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: 0.6rem;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin-top: 6px;
+      margin-bottom: 10px;
+    }
+
+    /* SECTION TITLE */
+    .section-title {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 0.85rem;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin-bottom: 12px;
+    }
+
+    /* TABLE */
+    .table-wrap {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      overflow: hidden;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+    }
+
+    thead th {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: 0.68rem;
+      font-weight: 700;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--muted);
+      background: var(--surface2);
+      padding: 10px 12px;
+      text-align: left;
+      border-bottom: 1px solid var(--border);
+      white-space: nowrap;
+    }
+
+    thead th:not(:first-child) { text-align: center; }
+
+    tbody tr {
+      border-bottom: 1px solid var(--border);
+      transition: background 0.15s;
+    }
+    tbody tr:last-child { border-bottom: none; }
+    tbody tr:hover { background: var(--surface2); }
+
+    td {
+      padding: 12px 12px;
+      vertical-align: middle;
+    }
+
+    /* OWNER CELL */
+    .owner-cell {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: 0.95rem;
+      font-weight: 700;
+      letter-spacing: 0.06em;
+    }
+    .owner-cell a {
+      color: var(--gold);
+      text-decoration: none;
+    }
+    .owner-cell a:hover { text-decoration: underline; }
+
+    /* STATUS CELL */
+    .status-cell { text-align: center; }
+
+    .pips {
+      display: flex;
+      gap: 3px;
+      justify-content: center;
+      margin-bottom: 4px;
+      flex-wrap: wrap;
+    }
+
+    .pip {
+      width: 10px;
+      height: 10px;
+      border-radius: 2px;
+      flex-shrink: 0;
+    }
+    .pip.streak { background: #2ecc71; }
+    .pip.drought { background: var(--red-bright); }
+    .pip.empty {
+      background: var(--surface3);
+      border: 1px solid var(--border);
+    }
+
+    .status-label {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: 0.62rem;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+    }
+    .status-label.is-streak { color: #2ecc71; }
+    .status-label.is-drought { color: var(--red-bright); }
+    .status-label.is-pending { color: var(--muted); }
+
+    /* NUMBER CELLS */
+    .num-cell {
+      text-align: center;
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: 0.95rem;
+      font-weight: 600;
+      color: var(--text);
+    }
+    .num-cell.muted { color: var(--muted); }
+
+    /* PLAYOFF % PILL */
+    .pct-cell { text-align: center; }
+
+    .pct-pill {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: 0.78rem;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      padding: 3px 10px;
+      border-radius: 20px;
+      display: inline-block;
+    }
+    .pct-high {
+      background: rgba(201,168,76,0.12);
+      border: 1px solid rgba(201,168,76,0.35);
+      color: var(--gold);
+    }
+    .pct-mid {
+      background: var(--surface3);
+      border: 1px solid var(--border);
+      color: var(--muted);
+    }
+    .pct-low {
+      background: rgba(192,57,43,0.1);
+      border: 1px solid rgba(192,57,43,0.3);
+      color: var(--red-bright);
+    }
+    .pct-none {
+      color: var(--muted);
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: 0.85rem;
+    }
+
+    /* PENDING ROW */
+    tr.pending-row td {
+      opacity: 0.45;
+    }
+
+    .data-notice {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: 0.78rem;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--muted);
+      text-align: center;
+      margin-top: 16px;
+    }
+
+    @media (max-width: 480px) {
+      .record-number { font-size: 2.2rem; }
+      .record-name { font-size: 1.2rem; }
+      thead th { font-size: 0.6rem; padding: 8px 8px; }
+      td { padding: 10px 8px; }
+      .pip { width: 8px; height: 8px; }
+    }
+  </style>
+</head>
+<body>
+
+  <script src="nav.js"></script>
+
+  <div class="page-header">
+    <div class="page-supertitle">The Annals of History</div>
+    <h1>The Streak &amp; the Drought</h1>
+    <p class="page-subtitle">Who's riding high. Who's been left out in the cold.</p>
+    <p class="page-updated" id="pageUpdated"></p>
+  </div>
+
+  <div class="header-spacer"></div>
+
+  <div class="content">
+
+    <p class="intro">
+      Every season resets the scoreboard, but the streak doesn't lie. Neither does the drought.
+      Here's where every owner stands heading into the next campaign — the ones on a run,
+      the ones still waiting for their number to get called, and one guy who hasn't even suited up yet.
+      And somewhere, a drought grows longer.
+    </p>
+
+    <!-- RECORD CARDS -->
+    <div class="record-cards" id="recordCards"></div>
+
+    <!-- TABLE -->
+    <div class="section-title">Current Standing</div>
+    <div class="table-wrap">
+      <table>
+        <thead>
+          <tr>
+            <th>Owner</th>
+            <th>Status</th>
+            <th>Seasons</th>
+            <th>Playoff Apps</th>
+            <th>Playoff %</th>
+          </tr>
+        </thead>
+        <tbody id="tableBody"></tbody>
+      </table>
+    </div>
+
+    <p class="data-notice">⚠ Jordan's drought record is pending final confirmation.</p>
+
+  </div>
+
+  <script>
+    // Photo fallback loader
+    function loadPhoto(img, name) {
+      const lower = name.toLowerCase();
+      img.src = `images/${lower}.png`;
+      img.onerror = function() {
+        this.onerror = null;
+        this.src = `images/${lower}.jpg`;
+      };
+    }
+
+    // Record card data — update these each season
+    const recordStreak = {
+      count: 8,
+      unit: 'Consecutive Seasons',
+      years: '2018 – Present',
+      holders: ['Kyle']  // add more names here if tied
+    };
+    const recordDrought = {
+      count: 5,
+      unit: 'Consecutive Misses',
+      years: '2021 – Present',
+      holders: ['Jordan']  // add more names here if tied
+    };
+
+    function buildRecordCard(cfg, type) {
+      const isTied = cfg.holders.length > 1;
+      const card = document.createElement('div');
+      card.className = `record-card ${type}-card`;
+
+      const emoji = type === 'streak' ? '🔥' : '💀';
+      const title = type === 'streak' ? 'All-Time Longest Streak #TheStreak' : 'All-Time Longest Drought';
+
+      const activeBadge = `<div style="text-align:center;margin-bottom:2px;">
+        <span class="active-badge"><span class="active-badge-dot"></span>Active</span>
+      </div>`;
+
+      let holdersHTML;
+      if (isTied) {
+        const photoSize = cfg.holders.length > 2 ? 52 : 64;
+        holdersHTML = `
+          <div class="tied-label">Tied Record</div>
+          <div class="tied-holders">
+            ${cfg.holders.map(name => `
+              <div class="tied-holder">
+                <div class="record-photo-wrap" style="width:${photoSize}px;height:${photoSize}px;">
+                  <img alt="${name}" />
+                </div>
+                <div class="record-name" style="font-size:1.1rem;">${name}</div>
+              </div>
+            `).join('')}
+          </div>`;
+      } else {
+        holdersHTML = `
+          <div class="record-photo-wrap">
+            <img alt="${cfg.holders[0]}" />
+          </div>
+          <div class="record-name">${cfg.holders[0]}</div>`;
+      }
+
+      card.innerHTML = `
+        <div class="record-label">${emoji} ${title}</div>
+        ${activeBadge}
+        ${holdersHTML}
+        <div class="record-number">${cfg.count}</div>
+        <div class="record-unit">${cfg.unit}</div>
+        <span class="record-years">${cfg.years}</span>
+      `;
+
+      // Load photos with fallback
+      card.querySelectorAll('img').forEach((img, i) => {
+        loadPhoto(img, cfg.holders[i]);
+      });
+
+      return card;
+    }
+
+    document.getElementById('recordCards').appendChild(buildRecordCard(recordStreak, 'streak'));
+    document.getElementById('recordCards').appendChild(buildRecordCard(recordDrought, 'drought'));
+
+    // Owner data — sorted: streak desc, then drought asc
+    const owners = [
+      { name: 'Kyle',   streak: 8, drought: 0, seasons: 8,  apps: 8, active: true },
+      { name: 'Mike',   streak: 2, drought: 0, seasons: 12, apps: 7, active: true },
+      { name: 'Jack',   streak: 1, drought: 0, seasons: 12, apps: 8, active: true },
+      { name: 'Dylan',  streak: 1, drought: 0, seasons: 11, apps: 7, active: true },
+      { name: 'Brian',  streak: 1, drought: 0, seasons: 12, apps: 4, active: true },
+      { name: 'Matt',   streak: 1, drought: 0, seasons: 11, apps: 3, active: true },
+      { name: 'Wade',   streak: 0, drought: 1, seasons: 6,  apps: 3, active: true },
+      { name: 'Daniel', streak: 0, drought: 1, seasons: 12, apps: 5, active: true },
+      { name: 'Tim',    streak: 0, drought: 1, seasons: 6,  apps: 2, active: true },
+      { name: 'Scott',  streak: 0, drought: 2, seasons: 12, apps: 2, active: true },
+      { name: 'Andy',   streak: 0, drought: 3, seasons: 4,  apps: 1, active: true },
+      { name: 'Jordan', streak: 0, drought: 5, seasons: 7,  apps: 1, active: true },
+      { name: 'Luke',   streak: 0, drought: 0, seasons: 0,  apps: 0, active: true, pending: true },
+    ];
+
+    const MAX_PIPS = 8;
+
+    function pctClass(pct) {
+      if (pct >= 50) return 'pct-high';
+      if (pct < 30)  return 'pct-low';
+      return 'pct-mid';
+    }
+
+    function buildPips(streak, drought) {
+      const pips = [];
+      const count = streak > 0 ? streak : drought;
+      const type  = streak > 0 ? 'streak' : 'drought';
+      for (let i = 0; i < Math.min(count, MAX_PIPS); i++) {
+        pips.push(`<div class="pip ${type}"></div>`);
+      }
+      return pips.join('');
+    }
+
+    const tbody = document.getElementById('tableBody');
+
+    owners.forEach(o => {
+      const tr = document.createElement('tr');
+      if (o.pending) tr.classList.add('pending-row');
+
+      // Owner name cell
+      const nameCell = `<td class="owner-cell"><a href="profiles/${o.name.toLowerCase()}.html">${o.name}</a></td>`;
+
+      // Status cell
+      let statusCell;
+      if (o.pending) {
+        statusCell = `<td class="status-cell">
+          <div class="status-label is-pending">First Season TBD</div>
+        </td>`;
+      } else if (o.streak > 0) {
+        const label = o.streak === 1 ? '1-Year Streak' : `${o.streak}-Year Streak`;
+        const crown = o.streak === 8 ? '<span class="pip-crown">👑</span>' : '';
+        statusCell = `<td class="status-cell">
+          <div class="pips">${buildPips(o.streak, 0)}${crown}</div>
+          <div class="status-label is-streak">${label}</div>
+        </td>`;
+      } else {
+        const label = o.drought === 1 ? '1-Year Drought' : `${o.drought}-Year Drought`;
+        statusCell = `<td class="status-cell">
+          <div class="pips">${buildPips(0, o.drought)}</div>
+          <div class="status-label is-drought">${label}</div>
+        </td>`;
+      }
+
+      // Seasons
+      const seasonsCell = `<td class="num-cell${o.seasons === 0 ? ' muted' : ''}">${o.seasons || '—'}</td>`;
+
+      // Apps
+      const appsCell = `<td class="num-cell${o.apps === 0 ? ' muted' : ''}">${o.apps || '—'}</td>`;
+
+      // Playoff %
+      let pctCell;
+      if (o.pending || o.seasons === 0) {
+        pctCell = `<td class="pct-cell"><span class="pct-none">—</span></td>`;
+      } else {
+        const pct = Math.round((o.apps / o.seasons) * 100);
+        const cls = pctClass(pct);
+        pctCell = `<td class="pct-cell"><span class="pct-pill ${cls}">${pct}%</span></td>`;
+      }
+
+      tr.innerHTML = nameCell + statusCell + seasonsCell + appsCell + pctCell;
+      tbody.appendChild(tr);
+    });
+
+    // Last updated fetch
+    fetch('profiles-data.json')
+      .then(r => r.json())
+      .then(data => {
+        const date = data.pageUpdates && data.pageUpdates['streak-and-drought'];
+        if (date) {
+          document.getElementById('pageUpdated').textContent = 'Updated · ' + date;
+        }
+      })
+      .catch(() => {});
+  </script>
+
+</body>
+</html>
