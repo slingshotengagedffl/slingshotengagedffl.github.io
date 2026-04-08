@@ -77,11 +77,11 @@
     /* ── SECTION TITLES ── */
     .section-title {
       font-family: 'Bebas Neue', sans-serif;
-      font-size: 0.96rem;
+      font-size: 1.4rem;
       letter-spacing: 0.18em;
       text-transform: uppercase;
-      color: var(--muted);
-      margin-bottom: 10px;
+      color: var(--text);
+      margin-bottom: 12px;
     }
 
     /* ── INTRO ── */
@@ -447,7 +447,7 @@
       margin-bottom: 8px;
     }
     @media (min-width: 480px) {
-      .stat-row-grid { grid-template-columns: repeat(3, 1fr); }
+      .stat-row-grid { grid-template-columns: repeat(4, 1fr); }
     }
     .stat-box {
       background: var(--surface3);
@@ -503,6 +503,101 @@
       color: var(--muted);
       margin-top: 4px;
       letter-spacing: 0.1em;
+    }
+
+    /* Rivalry Rating */
+    .rivalry-card {
+      background: var(--surface2);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 20px 16px 16px;
+      margin-top: 12px;
+      margin-bottom: 16px;
+    }
+    .rivalry-header {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 0.85rem;
+      letter-spacing: 0.2em;
+      color: var(--muted);
+      text-transform: uppercase;
+      margin-bottom: 12px;
+      text-align: center;
+    }
+    .rivalry-body {
+      display: flex;
+      align-items: center;
+      gap: 20px;
+    }
+    .rivalry-score-block {
+      text-align: center;
+      flex-shrink: 0;
+    }
+    .rivalry-score-num {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 3.2rem;
+      color: var(--gold);
+      line-height: 1;
+    }
+    .rivalry-score-denom {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: 0.8rem;
+      color: var(--muted);
+      letter-spacing: 0.1em;
+    }
+    .rivalry-bar-wrap {
+      background: var(--surface3);
+      border-radius: 3px;
+      height: 5px;
+      margin: 6px 0 10px;
+      width: 80px;
+    }
+    .rivalry-bar-fill {
+      height: 100%;
+      border-radius: 3px;
+      background: var(--gold);
+    }
+    .rivalry-right {
+      flex: 1;
+    }
+    .rivalry-rank {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 1.3rem;
+      color: var(--text);
+      letter-spacing: 0.05em;
+      line-height: 1.2;
+    }
+    .rivalry-rank-sub {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: 0.78rem;
+      color: var(--muted);
+      margin-top: 4px;
+      letter-spacing: 0.05em;
+      line-height: 1.4;
+    }
+    .rivalry-components {
+      display: flex;
+      gap: 8px;
+      margin-top: 10px;
+    }
+    .rivalry-comp {
+      flex: 1;
+      background: var(--surface3);
+      border-radius: 4px;
+      padding: 6px 4px;
+      text-align: center;
+    }
+    .rivalry-comp-label {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: 0.65rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--muted);
+    }
+    .rivalry-comp-val {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 1rem;
+      color: var(--text);
+      margin-top: 2px;
     }
 
     /* Game log table */
@@ -764,6 +859,7 @@
 
       <div class="stat-row-grid" id="diveStats"></div>
       <div class="notable-games" id="diveNotable"></div>
+      <div id="diveRivalry" style="display:none;"></div>
     </div>
 
     <div class="log-card">
@@ -775,7 +871,9 @@
   <!-- ══════════════════════════════════════════
        SECTION 3: LEAGUE-WIDE CALLOUTS
   ══════════════════════════════════════════ -->
-  <div class="section-title" style="margin-top:48px;">Series Records</div>
+  <div style="border-top:1px solid var(--border);margin-top:56px;padding-top:40px;">
+    <div class="section-title">Series Records</div>
+    <p style="font-family:'Barlow Condensed',sans-serif;font-size:0.85rem;letter-spacing:0.1em;text-transform:uppercase;color:var(--muted);margin:0 0 16px;">League-Wide All-Time Stats · Min. 6 Games</p>
   <div class="callout-grid">
     <div class="callout-card">
       <div class="callout-label">Most Played Series</div>
@@ -817,7 +915,7 @@
       <div class="callout-value">157.9</div>
       <div class="callout-sub">Brian vs Jordan · 9 games</div>
     </div>
-  </div>
+  </div><!-- /series-records -->
 
 </div><!-- /content -->
 
@@ -856,8 +954,21 @@ function ownerPhoto(name, size, borderColor) {
   const id = PROFILE_IDS[name] || name.toLowerCase().replace(/[^a-z]/g,'');
   const s = size || 36;
   const border = borderColor || 'var(--border)';
-  return `<img src="images/${id}.png" onerror="this.onerror=null;this.src='images/${id}.jpg'" 
-    style="width:${s}px;height:${s}px;border-radius:50%;object-fit:cover;object-position:top;border:2px solid ${border};flex-shrink:0;" alt="${name}">`;
+  const img = new Image();
+  const div = `<span class="owner-photo-wrap" data-id="${id}" data-size="${s}" data-border="${border}" data-name="${name}"></span>`;
+  return div;
+}
+
+function resolvePhotos() {
+  document.querySelectorAll('.owner-photo-wrap').forEach(span => {
+    const id = span.dataset.id, s = span.dataset.size, border = span.dataset.border, name = span.dataset.name;
+    const el = document.createElement('img');
+    el.alt = name;
+    el.style.cssText = `width:${s}px;height:${s}px;border-radius:50%;object-fit:cover;object-position:top;border:2px solid ${border};flex-shrink:0;`;
+    el.src = `images/${id}.png`;
+    el.onerror = function() { this.onerror = null; this.src = `images/${id}.jpg`; };
+    span.replaceWith(el);
+  });
 }
 
 // ── DATA (embedded from spreadsheet) ──
@@ -947,6 +1058,7 @@ function renderExplorer(owner) {
     html += buildRows(retiredRows);
   }
   list.innerHTML = html;
+  resolvePhotos();
 }
 
 function quickDive(ownerA, ownerB) {
@@ -960,6 +1072,19 @@ function quickDive(ownerA, ownerB) {
 let diveTab = 'all';
 let diveOwnerA = null, diveOwnerB = null;
 let currentPairData = null;
+
+// ── RIVALRY RATING ──
+function computeRivalryScore(pairData) {
+  const games = pairData.games;
+  if (!games || games.length < 6) return null;
+  const total = pairData.all.w0 + pairData.all.w1;
+  const pct = pairData.all.w0 / total;
+  const balance = 1 - Math.abs(pct - 0.5) * 2; // 1.0 = dead even, 0 = one-sided
+  const avgMargin = games.reduce((s,g) => s + g.margin, 0) / games.length;
+  const closeness = Math.max(0, 1 - avgMargin / 50); // 0 margin = 1.0, 50+ pts avg = 0
+  const volume = Math.min(1, games.length / 17); // 17 = max games (Daniel vs Scott)
+  return { score: balance * 0.4 + closeness * 0.4 + volume * 0.2, balance, closeness, volume };
+}
 
 function getPairKey(a, b) {
   const sorted = [a,b].sort();
@@ -1033,6 +1158,7 @@ function renderDive(a, b) {
         ${ownerLinkColored(nameB,'#e8834a')}
       </div>
     </div>`;
+  resolvePhotos();
 
   // Records by tab
   const f = diveTab;
@@ -1075,6 +1201,7 @@ function renderDive(a, b) {
   const avgA = (scoresA.reduce((s,v)=>s+v,0)/games.length).toFixed(1);
   const avgB = (scoresB.reduce((s,v)=>s+v,0)/games.length).toFixed(1);
   const avgMargin = (games.reduce((s,g)=>s+g.margin,0)/games.length).toFixed(1);
+  const combinedPPG = (games.reduce((s,g)=>s+g.total,0)/games.length).toFixed(1);
 
   document.getElementById('diveStats').innerHTML = `
     <div class="stat-box">
@@ -1088,6 +1215,10 @@ function renderDive(a, b) {
     <div class="stat-box">
       <div class="stat-box-label">Avg Margin</div>
       <div class="stat-box-val">${avgMargin}</div>
+    </div>
+    <div class="stat-box">
+      <div class="stat-box-label">Combined PPG</div>
+      <div class="stat-box-val">${combinedPPG}</div>
     </div>`;
 
   const closest = games.reduce((best,g) => g.margin < best.margin ? g : best);
@@ -1102,16 +1233,16 @@ function renderDive(a, b) {
 
   document.getElementById('diveNotable').innerHTML = `
     <div class="notable-game-box">
-      <div class="notable-game-label">Closest Game</div>
-      <div class="notable-game-score">${gameScoreStr(closest)}</div>
-      <div class="notable-game-year">${closest.year} · Wk ${closest.week} · ${closest.margin.toFixed(2)} pts</div>
-      <div class="notable-game-year" style="margin-top:3px;">${closest.winner} wins</div>
-    </div>
-    <div class="notable-game-box">
       <div class="notable-game-label">Highest Scoring</div>
       <div class="notable-game-score">${gameScoreStr(highest)}</div>
       <div class="notable-game-year">${highest.year} · Wk ${highest.week} · ${highest.total.toFixed(1)} total</div>
       <div class="notable-game-year" style="margin-top:3px;">${highest.winner} wins</div>
+    </div>
+    <div class="notable-game-box">
+      <div class="notable-game-label">Closest Game</div>
+      <div class="notable-game-score">${gameScoreStr(closest)}</div>
+      <div class="notable-game-year">${closest.year} · Wk ${closest.week} · ${closest.margin.toFixed(2)} pts</div>
+      <div class="notable-game-year" style="margin-top:3px;">${closest.winner} wins</div>
     </div>
     <div class="notable-game-box">
       <div class="notable-game-label">Biggest Blowout</div>
@@ -1123,6 +1254,56 @@ function renderDive(a, b) {
   // Game log
   document.getElementById('logHeader').textContent = `Game Log · ${games.length} Game${games.length !== 1?'s':''}`;
   renderLogTable(games, nameA, nameB, aIsP0);
+
+  // Rivalry Rating
+  const rivalryEl = document.getElementById('diveRivalry');
+  const rv = computeRivalryScore(pair);
+  if (rv) {
+    const allScores = Object.values(H2H)
+      .map(p => computeRivalryScore(p))
+      .filter(r => r !== null)
+      .map(r => r.score)
+      .sort((a,b) => b - a);
+    const rank = allScores.filter(s => s > rv.score).length + 1;
+    const totalRivalries = allScores.length;
+    const scoreDisplay = Math.round(rv.score * 100);
+    const balanceDisplay = Math.round(rv.balance * 100);
+    const closenessDisplay = Math.round(rv.closeness * 100);
+    const volumeDisplay = Math.round(rv.volume * 100);
+
+    rivalryEl.style.display = 'block';
+    rivalryEl.innerHTML = `
+      <div class="rivalry-card">
+        <div class="rivalry-header">Rivalry Rating</div>
+        <div class="rivalry-body">
+          <div class="rivalry-score-block">
+            <div class="rivalry-score-num">${scoreDisplay}</div>
+            <div class="rivalry-score-denom">OUT OF 100</div>
+            <div class="rivalry-bar-wrap"><div class="rivalry-bar-fill" style="width:${scoreDisplay}%"></div></div>
+          </div>
+          <div class="rivalry-right">
+            <div class="rivalry-rank">#${rank} of ${totalRivalries} rivalries</div>
+            <div class="rivalry-rank-sub">All-time series with min. 6 games ranked on balance, margin closeness, and game volume.</div>
+          </div>
+        </div>
+        <div class="rivalry-components">
+          <div class="rivalry-comp">
+            <div class="rivalry-comp-label">Balance</div>
+            <div class="rivalry-comp-val">${balanceDisplay}</div>
+          </div>
+          <div class="rivalry-comp">
+            <div class="rivalry-comp-label">Closeness</div>
+            <div class="rivalry-comp-val">${closenessDisplay}</div>
+          </div>
+          <div class="rivalry-comp">
+            <div class="rivalry-comp-label">Volume</div>
+            <div class="rivalry-comp-val">${volumeDisplay}</div>
+          </div>
+        </div>
+      </div>`;
+  } else {
+    rivalryEl.style.display = 'none';
+  }
 }
 
 let logSortCol = 'year';
