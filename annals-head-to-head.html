@@ -398,22 +398,25 @@
       border: 1px solid var(--border);
       border-radius: 4px;
       overflow: hidden;
-      width: fit-content;
+      width: 100%;
+      max-width: fit-content;
       margin-left: auto;
       margin-right: auto;
     }
     .type-tab {
       font-family: 'Barlow Condensed', sans-serif;
-      font-size: 0.78rem;
+      font-size: 0.75rem;
       font-weight: 700;
-      letter-spacing: 0.14em;
+      letter-spacing: 0.10em;
       text-transform: uppercase;
-      padding: 9px 18px;
+      padding: 9px 12px;
       background: transparent;
       color: var(--muted);
       border: none;
       cursor: pointer;
       transition: background 0.15s, color 0.15s;
+      flex: 1;
+      white-space: nowrap;
     }
     .type-tab.active { background: var(--red); color: #fff; }
     .type-tab:not(.active):hover { color: var(--text); }
@@ -707,6 +710,7 @@
           <option value="Jack">Jack</option>
           <option value="Jordan">Jordan</option>
           <option value="Kyle">Kyle</option>
+          <option value="Luke">Luke</option>
           <option value="Matt">Matt</option>
           <option value="Mike M.">Mike M.</option>
           <option value="Scott">Scott</option>
@@ -761,6 +765,7 @@
             <option value="Jack">Jack</option>
             <option value="Jordan">Jordan</option>
             <option value="Kyle">Kyle</option>
+            <option value="Luke">Luke</option>
             <option value="Matt">Matt</option>
             <option value="Mike M.">Mike M.</option>
             <option value="Scott">Scott</option>
@@ -797,6 +802,7 @@
             <option value="Jack">Jack</option>
             <option value="Jordan">Jordan</option>
             <option value="Kyle">Kyle</option>
+            <option value="Luke">Luke</option>
             <option value="Matt">Matt</option>
             <option value="Mike M.">Mike M.</option>
             <option value="Scott">Scott</option>
@@ -935,7 +941,7 @@ fetch('profiles-data.json')
   .catch(() => {});
 
 // ── PROFILE LINKS ──
-const ACTIVE = new Set(['Jack','Dylan','Brian','Mike M.','Daniel','Matt','Kyle','Jordan','Tim H.','Wade','Alex V.','Andy','Scott']);
+const ACTIVE = new Set(['Jack','Dylan','Brian','Mike M.','Daniel','Matt','Kyle','Jordan','Tim H.','Wade','Alex V.','Andy','Scott','Luke']);
 const PROFILE_IDS = {
   'Jack':'jack','Dylan':'dylan','Brian':'brian','Mike M.':'mikem','Daniel':'daniel',
   'Matt':'matt','Kyle':'kyle','Jordan':'jordan','Tim H.':'timh','Wade':'wade',
@@ -1019,6 +1025,9 @@ function renderExplorer(owner) {
   if (rows.length === 0) {
     list.classList.remove('visible');
     empty.style.display = 'block';
+    empty.textContent = owner === 'Luke'
+      ? 'Luke has not played in a game yet.'
+      : 'No games found for this filter.';
     return;
   }
   empty.style.display = 'none';
@@ -1095,7 +1104,7 @@ function computeRivalryScore(pairData) {
   const volume = Math.min(1, games.length / 17);
   const playoffGames = pairData.playoff.w0 + pairData.playoff.w1;
   const playoff = Math.min(playoffGames / 3, 1.0);
-  const score = balance * 0.37 + closeness * 0.37 + volume * 0.16 + playoff * 0.10;
+  const score = balance * 0.345 + closeness * 0.345 + volume * 0.16 + playoff * 0.15;
   return { score, balance, closeness, volume, playoff, playoffGames, avgMargin };
 }
 
@@ -1133,7 +1142,9 @@ function renderDive(a, b) {
   const empty = document.getElementById('diveEmpty');
 
   if (!pair) {
-    empty.textContent = 'No games found between these two owners.';
+    empty.textContent = (a === 'Luke' || b === 'Luke')
+      ? 'Luke has not played in a game yet. Check back next season.'
+      : 'No games found between these two owners.';
     empty.style.display = 'block';
     result.classList.remove('visible');
     return;
@@ -1443,15 +1454,13 @@ let logSortCol = 'year';
 let logSortDir = 'asc';
 
 function renderLogTable(games, nameA, nameB, aIsP0) {
-  // Sort
   const sorted = [...games].sort((x,y) => {
     let av = x[logSortCol], bv = y[logSortCol];
+    if (logSortCol === 'year') { av = x.year * 100 + x.week; bv = y.year * 100 + y.week; }
     if (logSortCol === 'scoreA') { av = aIsP0 ? x.score0 : x.score1; bv = aIsP0 ? y.score0 : y.score1; }
     if (logSortCol === 'scoreB') { av = aIsP0 ? x.score1 : x.score0; bv = aIsP0 ? y.score1 : y.score0; }
-    if (logSortCol === 'winner') { av = x.winner === (aIsP0 ? 'p0' : 'p1') ? 1 : 0; bv = y.winner === (aIsP0 ? 'p0' : 'p1') ? 1 : 0; }
     if (av < bv) return logSortDir === 'asc' ? -1 : 1;
     if (av > bv) return logSortDir === 'asc' ? 1 : -1;
-    // tiebreak by year then week
     if (x.year !== y.year) return x.year - y.year;
     return x.week - y.week;
   });
@@ -1460,53 +1469,56 @@ function renderLogTable(games, nameA, nameB, aIsP0) {
     if (logSortCol !== col) return '';
     return logSortDir === 'asc' ? 'sort-asc' : 'sort-desc';
   }
-  function sortBy(col) {
-    if (logSortCol === col) logSortDir = logSortDir === 'asc' ? 'desc' : 'asc';
-    else { logSortCol = col; logSortDir = col === 'margin' || col === 'scoreA' || col === 'scoreB' ? 'desc' : 'asc'; }
-    const a = document.getElementById('diveA').value;
-    const b = document.getElementById('diveB').value;
-    loadDive();
-  }
-
-  const typeMap = { Regular: 'reg', Playoff: 'playoff', Consolation: 'consolation' };
 
   let rows = sorted.map(g => {
     const sA = aIsP0 ? g.score0 : g.score1;
     const sB = aIsP0 ? g.score1 : g.score0;
-    const winnerName = g.winner;
-    const aWon = (winnerName === nameA);
-    const winClass = aWon ? 'winner-a' : 'winner-b';
-    const typeClass = g.type === 'Playoff' ? 'type-playoff' : g.type === 'Consolation' ? 'type-consolation' : 'type-reg';
-    return `<tr>
-      <td>${g.year}</td>
-      <td>Wk ${g.week}</td>
-      <td class="score-a">${sA.toFixed(2)}</td>
-      <td class="score-b">${sB.toFixed(2)}</td>
-      <td>${g.margin.toFixed(2)}</td>
-      <td class="${winClass}">${winnerName}</td>
-      <td><span class="type-pill ${typeClass}">${g.type}</span></td>
+    const yr = String(g.year).slice(2);
+    const dateStr = `Wk ${g.week} '${yr}`;
+    const isPlayoff = g.type === 'Playoff';
+    const isConsolation = g.type === 'Consolation';
+
+    const rowStyle = isPlayoff
+      ? 'border-left: 3px solid var(--gold);'
+      : isConsolation
+      ? 'border-left: 3px solid #7a9cc0;'
+      : 'border-left: 3px solid transparent;';
+
+    const typeBadge = isPlayoff
+      ? ` <span style="font-size:0.65rem;font-weight:700;letter-spacing:0.06em;color:#000;background:var(--gold);padding:1px 5px;border-radius:3px;vertical-align:middle;font-family:'Barlow Condensed',sans-serif;">PO</span>`
+      : isConsolation
+      ? ` <span style="font-size:0.65rem;font-weight:700;letter-spacing:0.06em;color:#fff;background:#7a9cc0;padding:1px 5px;border-radius:3px;vertical-align:middle;font-family:'Barlow Condensed',sans-serif;">CON</span>`
+      : '';
+
+    const aWon = sA > sB;
+    const winnerAStyle = aWon
+      ? 'color:#4a9eda;font-weight:700;background:rgba(74,158,218,0.12);border-radius:4px;padding:1px 4px;'
+      : 'color:#4a9eda;font-weight:400;opacity:0.6;';
+    const winnerBStyle = !aWon
+      ? 'color:#e8834a;font-weight:700;background:rgba(232,131,74,0.12);border-radius:4px;padding:1px 4px;'
+      : 'color:#e8834a;font-weight:400;opacity:0.6;';
+
+    return `<tr style="${rowStyle}">
+      <td style="white-space:nowrap;">${dateStr}${typeBadge}</td>
+      <td><span style="${winnerAStyle}">${sA.toFixed(2)}</span></td>
+      <td><span style="${winnerBStyle}">${sB.toFixed(2)}</span></td>
+      <td>${g.margin.toFixed(1)}</td>
     </tr>`;
   }).join('');
 
   document.getElementById('logTableWrap').innerHTML = `
-    <div style="overflow-x:auto;">
-    <table class="log-table">
+    <table class="log-table" style="width:100%;">
       <thead>
         <tr>
-          <th class="${thClass('year')}" onclick="sortLogBy('year')">Year</th>
-          <th class="${thClass('week')}" onclick="sortLogBy('week')">Week</th>
+          <th class="${thClass('year')}" onclick="sortLogBy('year')" style="text-align:left;">Game</th>
           <th class="${thClass('scoreA')}" onclick="sortLogBy('scoreA')">${nameA}</th>
           <th class="${thClass('scoreB')}" onclick="sortLogBy('scoreB')">${nameB}</th>
           <th class="${thClass('margin')}" onclick="sortLogBy('margin')">Margin</th>
-          <th>Winner</th>
-          <th>Type</th>
         </tr>
       </thead>
       <tbody>${rows}</tbody>
-    </table>
-    </div>`;
+    </table>`;
 
-  // Attach sort handlers
   window.sortLogBy = function(col) {
     if (logSortCol === col) logSortDir = logSortDir === 'asc' ? 'desc' : 'asc';
     else { logSortCol = col; logSortDir = (col === 'margin' || col === 'scoreA' || col === 'scoreB') ? 'desc' : 'asc'; }
