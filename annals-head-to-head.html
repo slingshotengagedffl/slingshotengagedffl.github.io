@@ -239,16 +239,14 @@
 
     /* Filter toggles */
     .filter-row {
-      display: flex;
-      justify-content: center;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
       gap: 0;
       margin: 16px 0;
       border: 1px solid var(--border);
       border-radius: 4px;
       overflow: hidden;
-      width: fit-content;
-      margin-left: auto;
-      margin-right: auto;
+      width: 100%;
     }
     .filter-btn {
       font-family: 'Barlow Condensed', sans-serif;
@@ -256,13 +254,18 @@
       font-weight: 700;
       letter-spacing: 0.14em;
       text-transform: uppercase;
-      padding: 9px 18px;
+      padding: 10px 8px;
       background: transparent;
       color: var(--muted);
       border: none;
+      border-right: 1px solid var(--border);
+      border-bottom: 1px solid var(--border);
       cursor: pointer;
       transition: background 0.15s, color 0.15s;
     }
+    .filter-btn:nth-child(2) { border-right: none; }
+    .filter-btn:nth-child(3) { border-bottom: none; }
+    .filter-btn:nth-child(4) { border-right: none; border-bottom: none; }
     .filter-btn.active { background: var(--red); color: #fff; }
     .filter-btn:not(.active):hover { color: var(--text); }
 
@@ -698,7 +701,13 @@
 
 <div class="content">
 
-  <p class="intro">Twelve seasons of scores reduced to two numbers. Find your name, find your rival, and see the full history of every game you've ever played against each other.</p>
+  <p class="intro">Every game played between every pair of owners, going back to the beginning. Find your name, find your rival, and see the full history.</p>
+
+  <div style="display:flex;justify-content:center;gap:0;margin:0 0 24px;font-family:'Barlow Condensed',sans-serif;font-size:0.82rem;letter-spacing:0.12em;text-transform:uppercase;color:var(--muted);">
+    <span style="padding:0 14px;border-right:1px solid var(--border);">1,247 games</span>
+    <span style="padding:0 14px;border-right:1px solid var(--border);">12 seasons</span>
+    <span style="padding:0 14px;">26 all-time owners</span>
+  </div>
 
   <!-- ══════════════════════════════════════════
        SECTION 1: PERSONAL EXPLORER
