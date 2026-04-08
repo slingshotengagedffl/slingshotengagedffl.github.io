@@ -102,7 +102,7 @@
       margin-bottom: 48px;
     }
     @media (min-width: 560px) {
-      .callout-grid { grid-template-columns: repeat(3, 1fr); }
+      .callout-grid { grid-template-columns: repeat(4, 1fr); }
     }
     .callout-card {
       background: var(--surface);
@@ -305,6 +305,17 @@
     .matchup-opp a:hover { color: var(--gold); }
     .matchup-opp.retired-owner { color: var(--muted); }
 
+    .retired-divider {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: 0.72rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--muted);
+      padding: 12px 4px 6px;
+      border-bottom: 1px solid var(--border);
+      margin-bottom: 2px;
+    }
+
     .matchup-record {
       font-family: 'Bebas Neue', sans-serif;
       font-size: 1.36rem;
@@ -372,36 +383,40 @@
     }
     .dive-names {
       font-family: 'Bebas Neue', sans-serif;
-      font-size: 2.03rem;
+      font-size: 1.8rem;
       letter-spacing: 0.06em;
       text-align: center;
       margin-bottom: 16px;
       color: var(--text);
     }
-    .dive-names span { color: var(--gold); }
 
     .type-tabs {
       display: flex;
-      gap: 6px;
       justify-content: center;
+      gap: 0;
       margin-bottom: 16px;
-      flex-wrap: wrap;
+      border: 1px solid var(--border);
+      border-radius: 4px;
+      overflow: hidden;
+      width: fit-content;
+      margin-left: auto;
+      margin-right: auto;
     }
     .type-tab {
       font-family: 'Barlow Condensed', sans-serif;
-      font-size: 0.85rem;
+      font-size: 0.78rem;
+      font-weight: 700;
       letter-spacing: 0.14em;
       text-transform: uppercase;
-      padding: 6px 14px;
-      border-radius: 20px;
-      border: 1px solid var(--border);
+      padding: 9px 18px;
       background: transparent;
       color: var(--muted);
+      border: none;
       cursor: pointer;
-      transition: all 0.15s;
+      transition: background 0.15s, color 0.15s;
     }
-    .type-tab.active { background: var(--red); color: #fff; border-color: var(--red); }
-    .type-tab:not(.active):hover { color: var(--text); border-color: var(--muted); }
+    .type-tab.active { background: var(--red); color: #fff; }
+    .type-tab:not(.active):hover { color: var(--text); }
 
     .record-display {
       text-align: center;
@@ -595,92 +610,7 @@
   <p class="intro">Twelve seasons of scores reduced to two numbers. Find your name, find your rival, and see the full history of every game you've ever played against each other.</p>
 
   <!-- ══════════════════════════════════════════
-       SECTION 1: LEAGUE-WIDE CALLOUTS
-  ══════════════════════════════════════════ -->
-  <div class="section-title">League Records</div>
-  <div class="callout-grid">
-    <div class="callout-card">
-      <div class="callout-label">Most Played Series</div>
-      <div class="callout-value">17</div>
-      <div class="callout-sub">Daniel vs Scott · All Time</div>
-    </div>
-    <div class="callout-card">
-      <div class="callout-label">Most Lopsided Series</div>
-      <div class="callout-value">6–0</div>
-      <div class="callout-sub">Wade over Daniel · Active</div>
-    </div>
-    <div class="callout-card">
-      <div class="callout-label">Highest Single Score</div>
-      <div class="callout-value">213.3</div>
-      <div class="callout-sub">Daniel · 2014 Week 13</div>
-    </div>
-    <div class="callout-card">
-      <div class="callout-label">Highest Scoring Game</div>
-      <div class="callout-value">297.3</div>
-      <div class="callout-sub">Daniel vs James · 2014 Wk 13</div>
-    </div>
-    <div class="callout-card">
-      <div class="callout-label">Closest Game Ever</div>
-      <div class="callout-value">0.00</div>
-      <div class="callout-sub">Mike M. vs Scott · 2015 Wk 11</div>
-    </div>
-    <div class="callout-card">
-      <div class="callout-label">Most Playoff Meetings</div>
-      <div class="callout-value">3×</div>
-      <div class="callout-sub">Dylan vs Kyle · All Time</div>
-    </div>
-  </div>
-
-  <!-- ══════════════════════════════════════════
-       SECTION 2: NOTABLE SERIES
-  ══════════════════════════════════════════ -->
-  <div class="section-title">Notable Series</div>
-  <div class="notable-grid section-gap">
-
-    <div class="notable-card">
-      <div class="notable-names">
-        Dylan vs Kyle
-        <span class="record-badge">6–5 · 3 Playoff Meetings</span>
-      </div>
-      <div class="notable-blurb">The most playoff-tested matchup in league history. These two have met three times when it mattered most, and the record stays brutally close. [Narrative blurb to be written by commissioner.]</div>
-    </div>
-
-    <div class="notable-card">
-      <div class="notable-names">
-        Scott vs Daniel
-        <span class="record-badge">9–8 · 17 Games All-Time</span>
-      </div>
-      <div class="notable-blurb">No two owners have faced each other more times. Seventeen games, one game apart, across twelve seasons. [Narrative blurb to be written by commissioner.]</div>
-    </div>
-
-    <div class="notable-card">
-      <div class="notable-names">
-        Wade vs Daniel
-        <span class="record-badge">6–0 · Perfect Record</span>
-      </div>
-      <div class="notable-blurb">Six games, six wins, average margin of 23 points. Daniel has never beaten Wade. Not once. [Narrative blurb to be written by commissioner.]</div>
-    </div>
-
-    <div class="notable-card">
-      <div class="notable-names">
-        Jack vs Dylan
-        <span class="record-badge">7–6 · 13 Games</span>
-      </div>
-      <div class="notable-blurb">Commissioner vs. Commissioner's son-in-law. The most politically loaded matchup in the league. [Narrative blurb to be written by commissioner.]</div>
-    </div>
-
-    <div class="notable-card">
-      <div class="notable-names">
-        Mike M. vs Daniel
-        <span class="record-badge">9–7 · 16 Games</span>
-      </div>
-      <div class="notable-blurb">The longest-running sustained rivalry between two active owners. Sixteen meetings, two playoff showdowns, and Mike M. still holding a slim edge. [Narrative blurb to be written by commissioner.]</div>
-    </div>
-
-  </div>
-
-  <!-- ══════════════════════════════════════════
-       SECTION 3: PERSONAL EXPLORER
+       SECTION 1: PERSONAL EXPLORER
   ══════════════════════════════════════════ -->
   <div class="section-title">Your Record Against Everyone</div>
   <div class="explorer-card section-gap">
@@ -733,7 +663,7 @@
   </div>
 
   <!-- ══════════════════════════════════════════
-       SECTION 4: MATCHUP DEEP DIVE
+       SECTION 2: MATCHUP DEEP DIVE
   ══════════════════════════════════════════ -->
   <div class="section-title">Matchup Deep Dive</div>
 
@@ -842,6 +772,52 @@
     </div>
 
   </div>
+  <!-- ══════════════════════════════════════════
+       SECTION 3: LEAGUE-WIDE CALLOUTS
+  ══════════════════════════════════════════ -->
+  <div class="section-title" style="margin-top:48px;">Series Records</div>
+  <div class="callout-grid">
+    <div class="callout-card">
+      <div class="callout-label">Most Played Series</div>
+      <div class="callout-value">17</div>
+      <div class="callout-sub">Daniel vs Scott · All Time</div>
+    </div>
+    <div class="callout-card">
+      <div class="callout-label">Most Playoff Meetings</div>
+      <div class="callout-value">3×</div>
+      <div class="callout-sub">Dylan vs Kyle · All Time</div>
+    </div>
+    <div class="callout-card">
+      <div class="callout-label">Most Lopsided Series</div>
+      <div class="callout-value">6–0</div>
+      <div class="callout-sub">Wade over Daniel · All Time</div>
+    </div>
+    <div class="callout-card">
+      <div class="callout-label">Most Evenly Matched</div>
+      <div class="callout-value">6–6</div>
+      <div class="callout-sub">Daniel vs Dylan · Combined points across 12 games separated by just 2.54 pts</div>
+    </div>
+    <div class="callout-card">
+      <div class="callout-label">Highest Blowout Rate</div>
+      <div class="callout-value">100%</div>
+      <div class="callout-sub">Dylan vs Wade · Dylan leads 5–1 · All 6 games decided by 20+ pts</div>
+    </div>
+    <div class="callout-card">
+      <div class="callout-label">Most Close Games</div>
+      <div class="callout-value">36%</div>
+      <div class="callout-sub">Dylan vs Matt · 5 of 14 games within a touchdown</div>
+    </div>
+    <div class="callout-card">
+      <div class="callout-label">Highest Combined PPG</div>
+      <div class="callout-value">208.2</div>
+      <div class="callout-sub">Kyle vs Wade · 7 games</div>
+    </div>
+    <div class="callout-card">
+      <div class="callout-label">Lowest Combined PPG</div>
+      <div class="callout-value">157.9</div>
+      <div class="callout-sub">Brian vs Jordan · 9 games</div>
+    </div>
+  </div>
 
 </div><!-- /content -->
 
@@ -863,14 +839,25 @@ const ACTIVE = new Set(['Jack','Dylan','Brian','Mike M.','Daniel','Matt','Kyle',
 const PROFILE_IDS = {
   'Jack':'jack','Dylan':'dylan','Brian':'brian','Mike M.':'mikem','Daniel':'daniel',
   'Matt':'matt','Kyle':'kyle','Jordan':'jordan','Tim H.':'timh','Wade':'wade',
-  'Alex V.':'alexv','Andy':'andy','Scott':'scott'
+  'Alex V.':'alexv','Andy':'andy','Scott':'scott','Luke':'luke'
 };
+// Owners with photos (active + Jon)
+const HAS_PHOTO = new Set(['Jack','Dylan','Brian','Mike M.','Daniel','Matt','Kyle','Jordan','Tim H.','Wade','Alex V.','Andy','Scott','Luke','Jon']);
 
 function ownerLink(name) {
   if (ACTIVE.has(name) && PROFILE_IDS[name]) {
     return `<a href="profiles/${PROFILE_IDS[name]}.html">${name}</a>`;
   }
   return name;
+}
+
+function ownerPhoto(name, size, borderColor) {
+  if (!HAS_PHOTO.has(name)) return '';
+  const id = PROFILE_IDS[name] || name.toLowerCase().replace(/[^a-z]/g,'');
+  const s = size || 36;
+  const border = borderColor || 'var(--border)';
+  return `<img src="images/${id}.png" onerror="this.onerror=null;this.src='images/${id}.jpg'" 
+    style="width:${s}px;height:${s}px;border-radius:50%;object-fit:cover;object-position:top;border:2px solid ${border};flex-shrink:0;" alt="${name}">`;
 }
 
 // ── DATA (embedded from spreadsheet) ──
@@ -916,31 +903,48 @@ function renderExplorer(owner) {
   empty.style.display = 'none';
   list.classList.add('visible');
 
-  rows.sort((a,b) => b.total - a.total);
+  // Primary: games desc. Secondary: win pct desc.
+  rows.sort((a,b) => b.total - a.total || (b.w/b.total) - (a.w/a.total));
 
-  let html = '';
-  for (const m of rows) {
-    const { opp, w, l, total } = m;
-    const pct = total > 0 ? w/total : 0;
-    const isActive = ACTIVE.has(opp);
-    const oppHtml = isActive ? `<a href="profiles/${PROFILE_IDS[opp]}.html">${opp}</a>` : opp;
-    const oppClass = isActive ? '' : 'retired-owner';
+  // Split active vs retired
+  const activeRows = rows.filter(m => ACTIVE.has(m.opp));
+  const retiredRows = rows.filter(m => !ACTIVE.has(m.opp));
 
-    let recClass = 'even', rowClass = '', tagHtml = '';
-    if (total >= 5 && pct >= 0.7) { recClass = 'winning'; rowClass = 'owns'; tagHtml = '<span class="matchup-tag tag-owns">Owns</span>'; }
-    else if (total >= 5 && pct <= 0.3) { recClass = 'losing'; rowClass = 'owned'; tagHtml = '<span class="matchup-tag tag-owned">Owned</span>'; }
-    else if (w > l) recClass = 'winning';
-    else if (l > w) recClass = 'losing';
+  function buildRows(list) {
+    let html = '';
+    for (const m of list) {
+      const { opp, w, l, total } = m;
+      const pct = total > 0 ? w/total : 0;
+      const isActive = ACTIVE.has(opp);
+      const oppHtml = isActive ? `<a href="profiles/${PROFILE_IDS[opp]}.html">${opp}</a>` : opp;
+      const oppClass = isActive ? '' : 'retired-owner';
 
-    const recStr = `${w}–${l}`;
+      let recClass = 'even', rowClass = '', tagHtml = '';
+      if (total >= 5 && pct >= 0.7) { recClass = 'winning'; rowClass = 'owns'; tagHtml = '<span class="matchup-tag tag-owns">Owns</span>'; }
+      else if (total >= 5 && pct <= 0.3) { recClass = 'losing'; rowClass = 'owned'; tagHtml = '<span class="matchup-tag tag-owned">Owned</span>'; }
+      else if (w > l) recClass = 'winning';
+      else if (l > w) recClass = 'losing';
 
-    html += `
-      <div class="matchup-row ${rowClass}" onclick="quickDive('${owner}','${opp}')">
-        <div class="matchup-opp ${oppClass}">${oppHtml}</div>
-        ${tagHtml}
-        <div class="matchup-games">${total}G</div>
-        <div class="matchup-record ${recClass}">${recStr}</div>
-      </div>`;
+      const recStr = `${w}–${l}`;
+
+      const photo = ownerPhoto(opp, 36, isActive ? 'var(--gold)' : 'var(--border)');
+
+      html += `
+        <div class="matchup-row ${rowClass}" onclick="quickDive('${owner}','${opp}')">
+          ${photo}
+          <div class="matchup-opp ${oppClass}">${oppHtml}</div>
+          ${tagHtml}
+          <div class="matchup-games">${total} games</div>
+          <div class="matchup-record ${recClass}">${recStr}</div>
+        </div>`;
+    }
+    return html;
+  }
+
+  let html = buildRows(activeRows);
+  if (retiredRows.length > 0) {
+    html += `<div class="retired-divider">Retired Owners</div>`;
+    html += buildRows(retiredRows);
   }
   list.innerHTML = html;
 }
@@ -1007,8 +1011,28 @@ function renderDive(a, b) {
   // Names
   const nameA = aIsP0 ? p0 : p1;
   const nameB = aIsP0 ? p1 : p0;
-  document.getElementById('diveNames').innerHTML =
-    `${ownerLink(nameA)} <span style="color:var(--muted);font-size:1.2rem;">VS</span> ${ownerLink(nameB)}`;
+  function ownerLinkColored(name, color) {
+    if (ACTIVE.has(name) && PROFILE_IDS[name]) {
+      return `<a href="profiles/${PROFILE_IDS[name]}.html" style="color:${color};text-decoration:none;">${name}</a>`;
+    }
+    return `<span style="color:${color};">${name}</span>`;
+  }
+
+  const photoA = ownerPhoto(nameA, 64, '#4a9eda');
+  const photoB = ownerPhoto(nameB, 64, '#e8834a');
+
+  document.getElementById('diveNames').innerHTML = `
+    <div style="display:flex;align-items:center;justify-content:center;gap:16px;">
+      <div style="display:flex;flex-direction:column;align-items:center;gap:8px;">
+        ${photoA}
+        ${ownerLinkColored(nameA,'#4a9eda')}
+      </div>
+      <span style="color:var(--muted);font-size:1.2rem;font-family:'Bebas Neue',sans-serif;letter-spacing:0.1em;">VS</span>
+      <div style="display:flex;flex-direction:column;align-items:center;gap:8px;">
+        ${photoB}
+        ${ownerLinkColored(nameB,'#e8834a')}
+      </div>
+    </div>`;
 
   // Records by tab
   const f = diveTab;
@@ -1081,16 +1105,19 @@ function renderDive(a, b) {
       <div class="notable-game-label">Closest Game</div>
       <div class="notable-game-score">${gameScoreStr(closest)}</div>
       <div class="notable-game-year">${closest.year} · Wk ${closest.week} · ${closest.margin.toFixed(2)} pts</div>
+      <div class="notable-game-year" style="margin-top:3px;">${closest.winner} wins</div>
     </div>
     <div class="notable-game-box">
       <div class="notable-game-label">Highest Scoring</div>
       <div class="notable-game-score">${gameScoreStr(highest)}</div>
       <div class="notable-game-year">${highest.year} · Wk ${highest.week} · ${highest.total.toFixed(1)} total</div>
+      <div class="notable-game-year" style="margin-top:3px;">${highest.winner} wins</div>
     </div>
     <div class="notable-game-box">
       <div class="notable-game-label">Biggest Blowout</div>
       <div class="notable-game-score">${gameScoreStr(biggest)}</div>
       <div class="notable-game-year">${biggest.year} · Wk ${biggest.week} · ${biggest.margin.toFixed(1)} margin</div>
+      <div class="notable-game-year" style="margin-top:3px;">${biggest.winner} wins</div>
     </div>`;
 
   // Game log
