@@ -1110,7 +1110,13 @@ let diveOwnerA = null, diveOwnerB = null;
 let currentPairData = null;
 
 // ── RIVALRY RATING ──
-// Slingshot Bowl matchups — pair key → number of championship appearances together
+// Slingshot Bowl games by year → sorted pair key
+const BOWL_GAME_KEYS = {
+  2025: 'Dylan||Mike M.', 2024: 'Daniel||Kyle', 2023: 'Alex V.||Kyle',
+  2022: 'Kyle||Mike M.', 2021: 'Dylan||Jon', 2020: 'Kyle||Mike M.',
+  2019: 'Alex V.||Jack', 2018: 'Jack||Kyle', 2017: 'Dylan||Michelle T.',
+  2016: 'Brian||Daniel', 2015: 'Alex M.||Taylor', 2014: 'Jack||Michelle T.'
+};
 const SLINGSHOT_BOWL = (() => {
   const bowls = [
     ['Dylan','Mike M.'],['Kyle','Daniel'],['Alex V.','Kyle'],['Kyle','Mike M.'],
@@ -1371,11 +1377,13 @@ function renderDive(a, b) {
       : avgMargin < 33 ? ['Comfortable margins', 'tag-bad']
       : ['Wide margins', 'tag-bad'];
 
-    const volLabel = `${gCount} games`;
-    const poLabel = po === 0 ? 'No playoffs' : po === 1 ? '1 playoff' : po === 2 ? '2 playoffs' : '3 playoffs';
     const bc = rv.bowlCount || 0;
-    const bowlLabel = bc === 0 ? '' : bc === 1 ? ' · 1 Slingshot Bowl' : ` · ${bc} Slingshot Bowls`;
-    const volTag = [`${volLabel} · ${poLabel}${bowlLabel}`, (po >= 2 || bc >= 1) ? 'tag-good' : ''];
+    const volLabel = `${gCount} games`;
+    const nonBowlPlayoffs = po - bc; // bowl games are already counted in po
+    const poLabel = nonBowlPlayoffs <= 0 ? '' : nonBowlPlayoffs === 1 ? '1 playoff' : `${nonBowlPlayoffs} playoffs`;
+    const bowlLabel = bc === 0 ? '' : bc === 1 ? '1 Slingshot Bowl' : `${bc} Slingshot Bowls`;
+    const volParts = [volLabel, poLabel, bowlLabel].filter(Boolean).join(' · ');
+    const volTag = [volParts, (nonBowlPlayoffs >= 2 || bc >= 1) ? 'tag-good' : ''];
 
     const bowlStr = bc === 0 ? '' : bc === 1 ? ' They have met in the Slingshot Bowl.' : ` They have met in the Slingshot Bowl ${bc} times.`;
 
@@ -1517,13 +1525,19 @@ function renderLogTable(games, nameA, nameB, aIsP0) {
     const isPlayoff = g.type === 'Playoff';
     const isConsolation = g.type === 'Consolation';
 
+    // Check if this playoff game is the Slingshot Bowl
+    const pairKeyForBowl = [diveOwnerA, diveOwnerB].sort().join('||');
+    const isBowl = isPlayoff && BOWL_GAME_KEYS[g.year] === pairKeyForBowl;
+
     const rowStyle = isPlayoff
       ? 'border-left: 3px solid var(--gold);'
       : isConsolation
       ? 'border-left: 3px solid #7a9cc0;'
       : 'border-left: 3px solid transparent;';
 
-    const typeBadge = isPlayoff
+    const typeBadge = isBowl
+      ? ` <span style="font-size:0.65rem;font-weight:700;letter-spacing:0.06em;color:#000;background:var(--gold);padding:1px 5px;border-radius:3px;vertical-align:middle;font-family:'Barlow Condensed',sans-serif;">SB</span>`
+      : isPlayoff
       ? ` <span style="font-size:0.65rem;font-weight:700;letter-spacing:0.06em;color:#000;background:var(--gold);padding:1px 5px;border-radius:3px;vertical-align:middle;font-family:'Barlow Condensed',sans-serif;">PO</span>`
       : isConsolation
       ? ` <span style="font-size:0.65rem;font-weight:700;letter-spacing:0.06em;color:#fff;background:#7a9cc0;padding:1px 5px;border-radius:3px;vertical-align:middle;font-family:'Barlow Condensed',sans-serif;">CON</span>`
