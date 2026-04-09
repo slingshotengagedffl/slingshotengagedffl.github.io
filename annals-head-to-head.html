@@ -94,7 +94,88 @@
       margin-bottom: 36px;
     }
 
-    /* ── CALLOUT CARDS ── */
+    /* ── SPOTLIGHT CARD ── */
+    .spotlight-card {
+      background: var(--surface2);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 20px 16px 16px;
+      margin-bottom: 40px;
+      cursor: pointer;
+      transition: border-color 0.2s;
+    }
+    .spotlight-card:hover { border-color: var(--gold); }
+    .spotlight-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 14px;
+    }
+    .spotlight-label {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 0.82rem;
+      letter-spacing: 0.22em;
+      color: var(--gold);
+      text-transform: uppercase;
+    }
+    .spotlight-shuffle {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: 0.78rem;
+      letter-spacing: 0.1em;
+      color: var(--muted);
+      text-transform: uppercase;
+      cursor: pointer;
+      background: none;
+      border: none;
+      padding: 0;
+    }
+    .spotlight-shuffle:hover { color: var(--text); }
+    .spotlight-names {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 2.1rem;
+      letter-spacing: 0.06em;
+      line-height: 1;
+      margin-bottom: 14px;
+      text-align: center;
+    }
+    .spotlight-names .sn-a { color: #4a9eda; }
+    .spotlight-names .sn-b { color: #e8834a; }
+    .spotlight-names .sn-vs { color: var(--muted); font-size: 1.3rem; margin: 0 8px; }
+    .spotlight-stats {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 8px;
+      margin-bottom: 12px;
+    }
+    .spotlight-stat {
+      background: var(--surface3);
+      border-radius: 6px;
+      padding: 10px 8px;
+      text-align: center;
+    }
+    .spotlight-stat-label {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: 0.75rem;
+      letter-spacing: 0.13em;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin-bottom: 4px;
+    }
+    .spotlight-stat-val {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 1.35rem;
+      color: var(--text);
+      line-height: 1;
+    }
+    .spotlight-cta {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: 0.82rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--muted);
+      text-align: center;
+      margin-top: 4px;
+    }
     .callout-grid {
       display: grid;
       grid-template-columns: 1fr 1fr;
@@ -693,7 +774,6 @@
 <div class="page-header">
   <div class="page-supertitle">The Annals of History</div>
   <h1>Head-to-Head</h1>
-  <p class="page-subtitle">Every matchup. Every season. Every score.</p>
   <p class="page-updated" id="pageUpdated"></p>
 </div>
 
@@ -703,10 +783,10 @@
 
   <p class="intro">Every game played between every pair of owners, going back to the beginning. Find your name, find your rival, and see the full history.</p>
 
-  <div style="display:flex;justify-content:center;gap:0;margin:0 0 24px;font-family:'Barlow Condensed',sans-serif;font-size:0.82rem;letter-spacing:0.12em;text-transform:uppercase;color:var(--muted);">
+  <div style="display:flex;justify-content:center;gap:0;margin:0 0 32px;font-family:'Barlow Condensed',sans-serif;font-size:0.82rem;letter-spacing:0.12em;text-transform:uppercase;color:var(--muted);">
     <span style="padding:0 14px;border-right:1px solid var(--border);">1,247 games</span>
     <span style="padding:0 14px;border-right:1px solid var(--border);">12 seasons</span>
-    <span style="padding:0 14px;">26 all-time owners</span>
+    <span style="padding:0 14px;">27 all-time owners</span>
   </div>
 
   <!-- ══════════════════════════════════════════
@@ -761,6 +841,19 @@
 
     <div class="matchup-list" id="explorerList"></div>
     <div class="explorer-empty" id="explorerEmpty">No games found for this filter.</div>
+  </div>
+
+  <!-- ══════════════════════════════════════════
+       SPOTLIGHT: RANDOM RIVALRY
+  ══════════════════════════════════════════ -->
+  <div class="spotlight-card" id="spotlightCard" onclick="spotlightDive()">
+    <div class="spotlight-header">
+      <span class="spotlight-label">⚡ Rivalry Spotlight</span>
+      <button class="spotlight-shuffle" onclick="event.stopPropagation();loadSpotlight()" title="Shuffle">↻ Shuffle</button>
+    </div>
+    <div class="spotlight-names" id="spotlightNames">—</div>
+    <div class="spotlight-stats" id="spotlightStats"></div>
+    <div class="spotlight-cta">Tap to explore this matchup →</div>
   </div>
 
   <!-- ══════════════════════════════════════════
@@ -1360,13 +1453,25 @@ function renderDive(a, b) {
 
     const bc = rv.bowlCount || 0;
     let playoffStr;
-    const nonBowlPO = po - bc;
-    if (nonBowlPO <= 0) playoffStr = '';
-    else if (nonBowlPO === 1) playoffStr = `They have met once in the playoffs.`;
-    else if (nonBowlPO === 2) playoffStr = `They have also met twice in the playoffs.`;
-    else playoffStr = `They have met three times in the playoffs — as much as any series in league history.`;
+    if (po === 0) playoffStr = '';
+    else if (bc >= po) {
+      // All playoff meetings are the Bowl
+      if (po === 1) playoffStr = ' They have met in the Slingshot Bowl.';
+      else if (po === 2) playoffStr = ' They have met twice in the playoffs, both times in the Slingshot Bowl.';
+      else playoffStr = ` They have met ${po} times in the playoffs, every time in the Slingshot Bowl.`;
+    } else if (bc > 0) {
+      // Mix of bowl + regular playoffs
+      const poWord = po === 2 ? 'twice' : po === 3 ? 'three times' : `${po}×`;
+      const bcWord = bc === 1 ? 'once' : `${bc} times`;
+      playoffStr = ` They have met ${poWord} in the playoffs, including ${bcWord} in the Slingshot Bowl.`;
+    } else {
+      // Regular playoffs only
+      if (po === 1) playoffStr = ' They have met once in the playoffs.';
+      else if (po === 2) playoffStr = ' They have met twice in the playoffs.';
+      else playoffStr = ' They have met three times in the playoffs — as much as any series in league history.';
+    }
 
-    const summary = `Across ${gCount} games, ${balanceStr}, ${conjunction} ${closenessStr}. ${playoffStr}`;
+    const summary = `Across ${gCount} games, ${balanceStr}, ${conjunction} ${closenessStr}.${playoffStr}`;
 
     // Build descriptor tags
     const balanceTag = rv.balance >= 0.97 ? ['Even series', 'tag-good']
@@ -1386,8 +1491,6 @@ function renderDive(a, b) {
     const volParts = [volLabel, poLabel, bowlLabel].filter(Boolean).join(' · ');
     const volTag = [volParts, (nonBowlPlayoffs >= 2 || bc >= 1) ? 'tag-good' : ''];
 
-    const bowlStr = bc === 0 ? '' : bc === 1 ? ' They have met in the Slingshot Bowl.' : ` They have met in the Slingshot Bowl ${bc} times.`;
-
     rivalryEl.style.display = 'block';
     rivalryEl.innerHTML = `
       <div class="rivalry-card">
@@ -1403,7 +1506,7 @@ function renderDive(a, b) {
               <span class="rivalry-tag ${closeTag[1]}">${closeTag[0]}</span>
               <span class="rivalry-tag ${volTag[1]}">${volTag[0]}</span>
             </div>
-            <div class="rivalry-summary">${summary}${bowlStr}</div>
+            <div class="rivalry-summary">${summary}</div>
             <div class="rivalry-formula-note">Ranked by a proprietary formula across all 98 qualifying series in league history. <span onclick="openRivalryModal()" style="color:var(--gold);cursor:pointer;text-decoration:underline;text-underline-offset:2px;">View all rankings</span></div>
           </div>
         </div>
@@ -1497,6 +1600,91 @@ document.getElementById('rivalryModal').addEventListener('click', function(e) {
     document.body.style.overflow = '';
   }
 });
+
+// ── RIVALRY SPOTLIGHT ──
+let spotlightOwnerA, spotlightOwnerB;
+
+function loadSpotlight(forceKey) {
+  // Pick a random qualifying pair (min 6 games, active owners only)
+  const ACTIVE_SET = new Set(['Jack','Dylan','Brian','Mike M.','Daniel','Matt','Kyle','Jordan','Tim H.','Wade','Alex V.','Andy','Scott']);
+  const qualifying = ALL_RIVALRY_RANKINGS.filter(r => ACTIVE_SET.has(r.p0) && ACTIVE_SET.has(r.p1));
+
+  let pick;
+  if (forceKey) {
+    pick = qualifying.find(r => `${r.p0}||${r.p1}` === forceKey);
+  } else {
+    // Weight toward top rivalries — pick from top 40% with higher probability
+    const top = qualifying.slice(0, Math.ceil(qualifying.length * 0.4));
+    const pool = Math.random() < 0.7 ? top : qualifying;
+    pick = pool[Math.floor(Math.random() * pool.length)];
+  }
+  if (!pick) return;
+
+  spotlightOwnerA = pick.p0;
+  spotlightOwnerB = pick.p1;
+
+  const pairKey = getPairKey(pick.p0, pick.p1);
+  const pair = H2H[pairKey];
+  const aIsP0 = pick.p0 === pair.p0;
+  const w0 = aIsP0 ? pair.all.w0 : pair.all.w1;
+  const w1 = aIsP0 ? pair.all.w1 : pair.all.w0;
+  const games = pair.games;
+  const avgMargin = (games.reduce((s,g) => s+g.margin,0)/games.length).toFixed(1);
+  const playoffG = pair.playoff.w0 + pair.playoff.w1;
+  const bc = pick.bowlCount || 0;
+  const nonBowlPO = playoffG - bc;
+
+  const firstYear = Math.min(...games.map(g => g.year));
+  const lastYear = Math.max(...games.map(g => g.year));
+  const spanLabel = firstYear === lastYear ? `${firstYear}` : `${firstYear}–${String(lastYear).slice(2)}`;
+
+  // Build playoff/bowl label
+  let poLabel = '';
+  if (bc > 0 && nonBowlPO > 0) poLabel = `${nonBowlPO} PO · ${bc} SB`;
+  else if (bc > 0) poLabel = bc === 1 ? 'Slingshot Bowl' : `${bc}× Slingshot Bowl`;
+  else if (nonBowlPO > 0) poLabel = `${nonBowlPO} Playoff`;
+  else poLabel = 'No playoffs';
+
+  document.getElementById('spotlightNames').innerHTML =
+    `<span class="sn-a">${pick.p0}</span><span class="sn-vs">vs</span><span class="sn-b">${pick.p1}</span>`;
+
+  document.getElementById('spotlightStats').innerHTML = `
+    <div class="spotlight-stat">
+      <div class="spotlight-stat-label">Series Record</div>
+      <div class="spotlight-stat-val" style="color:#4a9eda;">${w0}–${w1}</div>
+    </div>
+    <div class="spotlight-stat">
+      <div class="spotlight-stat-label">Games Played</div>
+      <div class="spotlight-stat-val">${games.length}</div>
+    </div>
+    <div class="spotlight-stat">
+      <div class="spotlight-stat-label">Avg Margin</div>
+      <div class="spotlight-stat-val">${avgMargin}</div>
+    </div>
+    <div class="spotlight-stat">
+      <div class="spotlight-stat-label">Rivalry Rank</div>
+      <div class="spotlight-stat-val" style="color:var(--gold);">#${pick.rank}</div>
+    </div>
+    <div class="spotlight-stat">
+      <div class="spotlight-stat-label">Playoff History</div>
+      <div class="spotlight-stat-val" style="font-size:1rem;${(bc>0||nonBowlPO>0)?'color:var(--gold);':''}">${poLabel}</div>
+    </div>
+    <div class="spotlight-stat">
+      <div class="spotlight-stat-label">Season Span</div>
+      <div class="spotlight-stat-val" style="font-size:1rem;">${spanLabel}</div>
+    </div>`;
+}
+
+function spotlightDive() {
+  if (!spotlightOwnerA || !spotlightOwnerB) return;
+  document.getElementById('diveA').value = spotlightOwnerA;
+  document.getElementById('diveB').value = spotlightOwnerB;
+  loadDive();
+  document.getElementById('diveResult').scrollIntoView({ behavior: 'smooth', block: 'start' });
+}
+
+// Load on page init (after ALL_RIVALRY_RANKINGS is ready)
+document.addEventListener('DOMContentLoaded', () => loadSpotlight());
 
 let logSortCol = 'year';
 let logSortDir = 'asc';
