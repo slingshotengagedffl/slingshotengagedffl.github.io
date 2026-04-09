@@ -783,10 +783,23 @@
 
   <p class="intro">Every game played between every pair of owners, going back to the beginning. Find your name, find your rival, and see the full history.</p>
 
-  <div style="display:flex;justify-content:center;gap:0;margin:0 0 32px;font-family:'Barlow Condensed',sans-serif;font-size:0.82rem;letter-spacing:0.12em;text-transform:uppercase;color:var(--muted);">
+  <div style="display:flex;justify-content:center;gap:0;margin:0 0 24px;font-family:'Barlow Condensed',sans-serif;font-size:0.82rem;letter-spacing:0.12em;text-transform:uppercase;color:var(--muted);">
     <span style="padding:0 14px;border-right:1px solid var(--border);">1,247 games</span>
     <span style="padding:0 14px;border-right:1px solid var(--border);">12 seasons</span>
     <span style="padding:0 14px;">27 all-time owners</span>
+  </div>
+
+  <!-- ══════════════════════════════════════════
+       SPOTLIGHT: RANDOM RIVALRY
+  ══════════════════════════════════════════ -->
+  <div class="spotlight-card" id="spotlightCard" onclick="spotlightDive()">
+    <div class="spotlight-header">
+      <span class="spotlight-label">⚡ Rivalry Spotlight</span>
+      <button class="spotlight-shuffle" onclick="event.stopPropagation();loadSpotlight()" title="Shuffle">↻ Shuffle</button>
+    </div>
+    <div class="spotlight-names" id="spotlightNames">—</div>
+    <div class="spotlight-stats" id="spotlightStats"></div>
+    <div class="spotlight-cta">Tap to explore this matchup →</div>
   </div>
 
   <!-- ══════════════════════════════════════════
@@ -841,19 +854,6 @@
 
     <div class="matchup-list" id="explorerList"></div>
     <div class="explorer-empty" id="explorerEmpty">No games found for this filter.</div>
-  </div>
-
-  <!-- ══════════════════════════════════════════
-       SPOTLIGHT: RANDOM RIVALRY
-  ══════════════════════════════════════════ -->
-  <div class="spotlight-card" id="spotlightCard" onclick="spotlightDive()">
-    <div class="spotlight-header">
-      <span class="spotlight-label">⚡ Rivalry Spotlight</span>
-      <button class="spotlight-shuffle" onclick="event.stopPropagation();loadSpotlight()" title="Shuffle">↻ Shuffle</button>
-    </div>
-    <div class="spotlight-names" id="spotlightNames">—</div>
-    <div class="spotlight-stats" id="spotlightStats"></div>
-    <div class="spotlight-cta">Tap to explore this matchup →</div>
   </div>
 
   <!-- ══════════════════════════════════════════
@@ -1645,8 +1645,18 @@ function loadSpotlight(forceKey) {
   else if (nonBowlPO > 0) poLabel = `${nonBowlPO} Playoff`;
   else poLabel = 'No playoffs';
 
-  document.getElementById('spotlightNames').innerHTML =
-    `<span class="sn-a">${pick.p0}</span><span class="sn-vs">vs</span><span class="sn-b">${pick.p1}</span>`;
+  document.getElementById('spotlightNames').innerHTML = `
+    <div style="display:flex;align-items:center;justify-content:center;gap:12px;margin-bottom:14px;">
+      <div style="text-align:center;">
+        ${ownerPhoto(pick.p0, 72, '#4a9eda')}
+        <div style="font-family:'Bebas Neue',sans-serif;font-size:1.3rem;letter-spacing:0.08em;color:#4a9eda;margin-top:6px;">${pick.p0}</div>
+      </div>
+      <div style="font-family:'Bebas Neue',sans-serif;font-size:1.4rem;color:var(--muted);letter-spacing:0.1em;">VS</div>
+      <div style="text-align:center;">
+        ${ownerPhoto(pick.p1, 72, '#e8834a')}
+        <div style="font-family:'Bebas Neue',sans-serif;font-size:1.3rem;letter-spacing:0.08em;color:#e8834a;margin-top:6px;">${pick.p1}</div>
+      </div>
+    </div>`;
 
   document.getElementById('spotlightStats').innerHTML = `
     <div class="spotlight-stat">
