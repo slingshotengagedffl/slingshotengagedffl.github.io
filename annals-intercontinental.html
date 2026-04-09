@@ -1034,7 +1034,7 @@ renderStats();
 fetch('profiles-data.json')
   .then(r=>r.json())
   .then(d=>{
-    const date = d.pageUpdates && d.pageUpdates['annals-intercontinental'];
+    const date = d.pageUpdates && d.pageUpdates['intercontinental'];
     if(date) document.getElementById('pageUpdated').textContent='Updated · '+date;
   }).catch(()=>{});
 </script>
