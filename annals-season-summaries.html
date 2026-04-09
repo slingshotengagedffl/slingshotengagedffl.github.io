@@ -52,6 +52,21 @@
       line-height: 1;
     }
 
+    .page-subtitle {
+      font-family: 'Barlow', sans-serif;
+      font-size: 0.88rem;
+      color: var(--muted);
+      margin-top: 8px;
+    }
+    .page-updated {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: 0.72rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin-top: 6px;
+    }
+
     /* ── Toggle ── */
     .toggle-wrap {
       display: flex;
@@ -262,15 +277,6 @@
       padding: 40px 20px;
       font-size: 0.95rem;
     }
-    /* ── Last Updated ── */
-    .page-updated {
-      font-family: 'Barlow Condensed', sans-serif;
-      font-size: 0.72rem;
-      letter-spacing: 0.2em;
-      text-transform: uppercase;
-      color: var(--muted);
-      margin-top: 6px;
-    }
     /* ── Contest Info Panel ── */
     .contest-info {
       background: var(--surface);
@@ -357,20 +363,20 @@
   // ── PROFILE LINKS ─────────────────────────────────────────────────────────
   // Maps first name (lowercase) to profile href. Non-current owners get null.
   const PROFILES = {
-    alex:   '../profiles/alex.html',
-    andy:   '../profiles/andy.html',
-    brian:  '../profiles/brian.html',
-    daniel: '../profiles/daniel.html',
-    dylan:  '../profiles/dylan.html',
-    jack:   '../profiles/jack.html',
-    jordan: '../profiles/jordan.html',
-    kyle:   '../profiles/kyle.html',
-    luke:   '../profiles/luke.html',
-    matt:   '../profiles/matt.html',
-    mike:   '../profiles/mike.html',
-    scott:  '../profiles/scott.html',
-    tim:    '../profiles/tim.html',
-    wade:   '../profiles/wade.html',
+    alex:   'profiles/alex.html',
+    andy:   'profiles/andy.html',
+    brian:  'profiles/brian.html',
+    daniel: 'profiles/daniel.html',
+    dylan:  'profiles/dylan.html',
+    jack:   'profiles/jack.html',
+    jordan: 'profiles/jordan.html',
+    kyle:   'profiles/kyle.html',
+    luke:   'profiles/luke.html',
+    matt:   'profiles/matt.html',
+    mike:   'profiles/mike.html',
+    scott:  'profiles/scott.html',
+    tim:    'profiles/tim.html',
+    wade:   'profiles/wade.html',
   };
 
   // Resolve a winner name to a profile link (or null if not a current owner)
