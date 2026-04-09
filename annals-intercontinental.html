@@ -21,6 +21,7 @@
       --muted: #999;
       --border: #2a2a2a;
       --gold: #c9a84c;
+      --text-body: #d0d0d0;
     }
 
     body {
@@ -70,11 +71,21 @@
 
     .section-title {
       font-family: 'Bebas Neue', sans-serif;
-      font-size: 0.85rem;
-      letter-spacing: 0.18em;
+      font-size: 1.1rem;
+      letter-spacing: 0.12em;
       text-transform: uppercase;
       color: var(--muted);
       margin-bottom: 12px;
+    }
+
+    /* ── INTRO ── */
+    .intro {
+      font-family: 'Barlow', sans-serif;
+      font-size: 1.05rem;
+      color: var(--text-body);
+      line-height: 1.7;
+      text-align: center;
+      margin-bottom: 32px;
     }
 
     /* ── HERO ── */
@@ -158,8 +169,8 @@
     }
     .narrative p {
       font-family: 'Barlow', sans-serif;
-      font-size: 0.92rem;
-      color: #ccc;
+      font-size: 1.05rem;
+      color: var(--text-body);
       line-height: 1.7;
       margin-bottom: 12px;
     }
@@ -232,12 +243,12 @@
     .fact-card.full .fact-body {
       font-family: 'Barlow', sans-serif;
       font-size: 0.88rem;
-      color: #ccc;
+      color: var(--text-body);
       line-height: 1.6;
     }
     .fact-card.full .fact-body strong {
       color: var(--gold);
-      font-weight: 600;
+      font-weight: 700;
     }
 
     /* ── LINEAGE ── */
@@ -503,16 +514,17 @@
       background: var(--surface);
       border: 1px solid var(--border);
       border-radius: 8px;
-      overflow: hidden;
+      overflow-x: auto;
+      -webkit-overflow-scrolling: touch;
     }
     .stats-tbl { width: 100%; border-collapse: collapse; }
     .stats-tbl th {
       font-family: 'Barlow Condensed', sans-serif;
-      font-size: 0.65rem;
+      font-size: 0.82rem;
       letter-spacing: 0.16em;
       text-transform: uppercase;
       color: var(--muted);
-      padding: 9px 12px;
+      padding: 10px 12px;
       text-align: left;
       border-bottom: 1px solid var(--border);
       background: var(--surface2);
@@ -564,6 +576,9 @@
 <div class="header-spacer"></div>
 
 <div class="content">
+
+  <!-- ── INTRO ── -->
+  <p class="intro">Every week of the regular season, the belt is on the line. Beat the champion and you take it. The owner holding it when Week 14 ends is the season champion — and enters the following year as a walking target.</p>
 
   <!-- ── HERO ── -->
   <div class="hero">

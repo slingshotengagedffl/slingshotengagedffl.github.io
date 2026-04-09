@@ -19,6 +19,7 @@
       --muted: #999;
       --border: #2a2a2a;
       --gold: #c9a84c;
+      --text-body: #d0d0d0;
     }
 
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
@@ -78,8 +79,8 @@
     /* INTRO */
     .intro {
       font-family: 'Barlow', sans-serif;
-      font-size: 0.95rem;
-      color: var(--muted);
+      font-size: 1.05rem;
+      color: var(--text-body);
       line-height: 1.7;
       text-align: center;
       margin-bottom: 36px;
@@ -287,8 +288,8 @@
     /* SECTION TITLE */
     .section-title {
       font-family: 'Bebas Neue', sans-serif;
-      font-size: 0.85rem;
-      letter-spacing: 0.18em;
+      font-size: 1.1rem;
+      letter-spacing: 0.12em;
       text-transform: uppercase;
       color: var(--muted);
       margin-bottom: 12px;
@@ -299,7 +300,8 @@
       background: var(--surface);
       border: 1px solid var(--border);
       border-radius: 8px;
-      overflow: hidden;
+      overflow-x: auto;
+      -webkit-overflow-scrolling: touch;
     }
 
     table {
@@ -387,7 +389,7 @@
       text-align: center;
       font-family: 'Barlow Condensed', sans-serif;
       font-size: 1.1rem;
-      font-weight: 600;
+      font-weight: 700;
       color: var(--text);
     }
     .num-cell.muted { color: var(--muted); }
@@ -443,7 +445,7 @@
     @media (max-width: 480px) {
       .record-number { font-size: 2.2rem; }
       .record-name { font-size: 1.2rem; }
-      thead th { font-size: 0.6rem; padding: 8px 8px; }
+      thead th { font-size: 0.75rem; padding: 8px 8px; }
       td { padding: 10px 8px; }
       .pip { width: 8px; height: 8px; }
     }

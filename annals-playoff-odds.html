@@ -21,6 +21,7 @@
       --red: #c0392b;
       --red-bright: #e74c3c;
       --gold: #c9a84c;
+      --text-body: #d0d0d0;
 
       --green-high: #1a7a3a;
       --green-mid: #2d9e52;
@@ -38,6 +39,8 @@
       font-family: 'Barlow', sans-serif;
       min-height: 100vh;
     }
+
+    .header-spacer { height: 36px; }
 
     /* PAGE HEADER */
     .page-header {
@@ -87,8 +90,8 @@
       margin: 28px 0 12px;
       font-family: 'Barlow', sans-serif;
       font-size: 1.05rem;
-      color: var(--muted);
-      line-height: 1.65;
+      color: var(--text-body);
+      line-height: 1.7;
       text-align: center;
     }
 
@@ -376,7 +379,7 @@
 
     .matrix-table td.no-data {
       background: #161616;
-      color: #444;
+      color: var(--border);
       font-size: 0.78rem;
       opacity: 1;
     }
@@ -421,6 +424,8 @@
   <p class="page-subtitle">The Playoff Odds Oracle</p>
   <p class="page-updated" id="pageUpdated"></p>
 </div>
+
+<div class="header-spacer"></div>
 
 <div class="content">
 
@@ -490,7 +495,6 @@
 
 </div>
 
-<script src="nav.js"></script>
 <script>
   // ─── DATA ───────────────────────────────────────────────────────────────────
   // odds[wins][losses] = percentage (null = impossible record)

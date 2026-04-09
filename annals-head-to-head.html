@@ -18,9 +18,10 @@
       --surface2: #1c1c1c;
       --surface3: #242424;
       --text: #f0f0f0;
-      --muted: #b8b8b8;
+      --muted: #999;
       --border: #2a2a2a;
       --gold: #c9a84c;
+      --text-body: #d0d0d0;
     }
 
     body {
@@ -37,7 +38,7 @@
     }
     .page-supertitle {
       font-family: 'Barlow Condensed', sans-serif;
-      font-size: 0.9rem;
+      font-size: 0.8rem;
       letter-spacing: 0.25em;
       text-transform: uppercase;
       color: var(--muted);
@@ -53,13 +54,13 @@
     }
     .page-subtitle {
       font-family: 'Barlow', sans-serif;
-      font-size: 0.99rem;
+      font-size: 0.88rem;
       color: var(--muted);
       margin-top: 8px;
     }
     .page-updated {
       font-family: 'Barlow Condensed', sans-serif;
-      font-size: 0.81rem;
+      font-size: 0.72rem;
       letter-spacing: 0.2em;
       text-transform: uppercase;
       color: var(--muted);
@@ -77,19 +78,19 @@
     /* ── SECTION TITLES ── */
     .section-title {
       font-family: 'Bebas Neue', sans-serif;
-      font-size: 1.4rem;
-      letter-spacing: 0.18em;
+      font-size: 1.1rem;
+      letter-spacing: 0.12em;
       text-transform: uppercase;
-      color: var(--text);
+      color: var(--muted);
       margin-bottom: 12px;
     }
 
     /* ── INTRO ── */
     .intro {
       font-family: 'Barlow', sans-serif;
-      font-size: 1.07rem;
-      color: var(--muted);
-      line-height: 1.6;
+      font-size: 1.05rem;
+      color: var(--text-body);
+      line-height: 1.7;
       text-align: center;
       margin-bottom: 36px;
     }
@@ -284,9 +285,9 @@
       border-radius: 6px;
       color: var(--text);
       font-family: 'Barlow Condensed', sans-serif;
-      font-size: 1.13rem;
+      font-size: 1rem;
       letter-spacing: 0.06em;
-      padding: 12px 14px;
+      padding: 10px 12px;
       appearance: none;
       cursor: pointer;
       transition: border-color 0.15s;
@@ -1167,7 +1168,7 @@ function renderExplorer(owner) {
 
       const recStr = `${w}–${l}`;
 
-      const photo = ownerPhoto(opp, 36, isActive ? 'var(--gold)' : 'var(--border)');
+      const photo = ownerPhoto(opp, 48, isActive ? 'var(--gold)' : 'var(--border)');
 
       html += `
         <div class="matchup-row ${rowClass}" onclick="quickDive('${owner}','${opp}')">
@@ -1301,8 +1302,8 @@ function renderDive(a, b) {
     return `<span style="color:${color};">${name}</span>`;
   }
 
-  const photoA = ownerPhoto(nameA, 64, '#4a9eda');
-  const photoB = ownerPhoto(nameB, 64, '#e8834a');
+  const photoA = ownerPhoto(nameA, 96, '#4a9eda');
+  const photoB = ownerPhoto(nameB, 96, '#e8834a');
 
   document.getElementById('diveNames').innerHTML = `
     <div style="display:flex;align-items:center;justify-content:center;gap:16px;">
@@ -1648,12 +1649,12 @@ function loadSpotlight(forceKey) {
   document.getElementById('spotlightNames').innerHTML = `
     <div style="display:flex;align-items:center;justify-content:center;gap:12px;margin-bottom:14px;">
       <div style="text-align:center;">
-        ${ownerPhoto(pick.p0, 72, '#4a9eda')}
+        ${ownerPhoto(pick.p0, 110, '#4a9eda')}
         <div style="font-family:'Bebas Neue',sans-serif;font-size:1.3rem;letter-spacing:0.08em;color:#4a9eda;margin-top:6px;">${pick.p0}</div>
       </div>
       <div style="font-family:'Bebas Neue',sans-serif;font-size:1.4rem;color:var(--muted);letter-spacing:0.1em;">VS</div>
       <div style="text-align:center;">
-        ${ownerPhoto(pick.p1, 72, '#e8834a')}
+        ${ownerPhoto(pick.p1, 110, '#e8834a')}
         <div style="font-family:'Bebas Neue',sans-serif;font-size:1.3rem;letter-spacing:0.08em;color:#e8834a;margin-top:6px;">${pick.p1}</div>
       </div>
     </div>`;

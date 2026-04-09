@@ -20,6 +20,7 @@
     --muted: #999;
     --border: #2a2a2a;
     --gold: #c9a84c;
+    --text-body: #d0d0d0;
   }
 
   *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
@@ -76,15 +77,24 @@
 
   .header-spacer { height: 36px; }
 
+  /* INTRO */
+  .intro {
+    font-family: 'Barlow', sans-serif;
+    font-size: 1.05rem;
+    color: var(--text-body);
+    line-height: 1.7;
+    text-align: center;
+    margin-bottom: 32px;
+  }
+
   /* SECTION TITLE */
   .section-title {
     font-family: 'Bebas Neue', sans-serif;
-    font-size: 0.85rem;
-    letter-spacing: 0.18em;
+    font-size: 1.1rem;
+    letter-spacing: 0.12em;
     text-transform: uppercase;
     color: var(--muted);
     margin-bottom: 10px;
-    text-align: center;
   }
 
   /* TOGGLE */
@@ -127,7 +137,7 @@
     text-align: center;
     font-family: 'Barlow Condensed', sans-serif;
     font-size: 0.75rem;
-    font-weight: 600;
+    font-weight: 700;
     letter-spacing: 0.18em;
     text-transform: uppercase;
     color: var(--muted);
@@ -170,7 +180,7 @@
   .cards-sub {
     font-family: 'Barlow Condensed', sans-serif;
     font-size: 0.72rem;
-    font-weight: 600;
+    font-weight: 700;
     letter-spacing: 0.18em;
     text-transform: uppercase;
     color: var(--muted);
@@ -358,7 +368,7 @@
   .flip-hint {
     font-family: 'Barlow Condensed', sans-serif;
     font-size: 0.62rem;
-    font-weight: 600;
+    font-weight: 700;
     letter-spacing: 0.16em;
     text-transform: uppercase;
     color: var(--muted);
@@ -410,7 +420,7 @@
   .back-flip-hint {
     font-family: 'Barlow Condensed', sans-serif;
     font-size: 0.62rem;
-    font-weight: 600;
+    font-weight: 700;
     letter-spacing: 0.16em;
     text-transform: uppercase;
     color: var(--muted);
@@ -422,7 +432,7 @@
     text-align: center;
     font-family: 'Barlow Condensed', sans-serif;
     font-size: 0.68rem;
-    font-weight: 600;
+    font-weight: 700;
     letter-spacing: 0.16em;
     text-transform: uppercase;
     color: var(--muted);
@@ -444,6 +454,8 @@
 <div class="header-spacer"></div>
 
 <div class="content">
+
+  <p class="intro">Thirteen years of data reveal a clear story: where you draft matters. Some spots consistently produce playoff teams. Others are a slow drain. Here's how every draft position has performed across league history.</p>
 
   <div class="section-title" style="margin-bottom:14px;">Historical Performance</div>
   <div class="toggle-wrap">

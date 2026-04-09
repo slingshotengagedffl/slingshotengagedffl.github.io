@@ -20,6 +20,7 @@
       --border: #2a2a2a;
       --gold: #c9a84c;
       --gold-dim: rgba(201,168,76,0.15);
+      --text-body: #d0d0d0;
       --playoff-color: #3498db;
       --regseason-color: #27ae60;
       --consolation-color: #8e44ad;
@@ -66,15 +67,18 @@
       margin-top: 6px;
     }
 
-    /* ── Explainer ── */
-    .explainer {
+    .header-spacer { height: 36px; }
+
+    /* ── Intro ── */
+    .intro {
       max-width: 640px;
-      margin: 16px auto 0;
+      margin: 20px auto 0;
       padding: 0 16px;
-      font-size: 0.85rem;
-      color: var(--muted);
+      font-family: 'Barlow', sans-serif;
+      font-size: 1.05rem;
+      color: var(--text-body);
       text-align: center;
-      line-height: 1.55;
+      line-height: 1.7;
     }
 
     /* ── Legend ── */
@@ -144,7 +148,7 @@
       text-align: center;
       line-height: 1;
     }
-    .rank-1, .rank-2, .rank-3, .rank-other { color: #888; }
+    .rank-1, .rank-2, .rank-3, .rank-other { color: var(--muted); }
 
     /* ── Owner name + bar ── */
     .owner-info { min-width: 0; }
@@ -215,8 +219,8 @@
     /* ── Dashboard sections ── */
     .dash-section-title {
       font-family: 'Bebas Neue', sans-serif;
-      font-size: 0.85rem;
-      letter-spacing: 0.18em;
+      font-size: 1.1rem;
+      letter-spacing: 0.12em;
       text-transform: uppercase;
       color: var(--muted);
       margin-bottom: 10px;
@@ -248,7 +252,7 @@
       font-size: 0.78rem;
       letter-spacing: 0.06em;
       text-transform: uppercase;
-      color: #aaa;
+      color: var(--text-body);
     }
     .breakdown-legend-dot {
       width: 8px; height: 8px;
@@ -278,7 +282,7 @@
     .season-pts {
       font-family: 'Barlow Condensed', sans-serif;
       font-size: 0.85rem;
-      color: #aaa;
+      color: var(--text-body);
       margin-top: 2px;
     }
     .season-note {
@@ -336,7 +340,7 @@
     .move-up-text {
       font-family: 'Barlow', sans-serif;
       font-size: 0.83rem;
-      color: #bbb;
+      color: var(--text-body);
       line-height: 1.5;
     }
     .move-up-text strong { color: var(--red-bright); }
@@ -357,7 +361,9 @@
     <p class="page-updated" id="pageUpdated"></p>
   </div>
 
-  <p class="explainer">A formula-based score across 24 factors that objectively measures historical success. Think Patriots vs Browns. Tap any owner to see their breakdown.</p>
+  <div class="header-spacer"></div>
+
+  <p class="intro">A formula-based score across 24 factors that objectively measures historical success. Think Patriots vs Browns. Tap any owner to see their breakdown.</p>
 
   <div class="legend">
     <div class="legend-item"><div class="legend-dot active"></div> Active Owner</div>
