@@ -91,7 +91,7 @@
   /* SECTION TITLE */
   .section-title {
     font-family: 'Bebas Neue', sans-serif;
-    font-size: 1.1rem;
+    font-size: 1.4rem;
     letter-spacing: 0.12em;
     text-transform: uppercase;
     color: var(--label);
@@ -180,7 +180,7 @@
   }
   .cards-sub {
     font-family: 'Barlow Condensed', sans-serif;
-    font-size: 0.72rem;
+    font-size: 0.85rem;
     font-weight: 700;
     letter-spacing: 0.18em;
     text-transform: uppercase;
@@ -240,8 +240,9 @@
     height: 100%;
     transition: transform 0.55s cubic-bezier(0.4, 0.2, 0.2, 1);
     transform-style: preserve-3d;
+    -webkit-transform-style: preserve-3d;
   }
-  .card-wrapper.flipped .card-inner { transform: rotateY(180deg); }
+  .card-wrapper.flipped .card-inner { transform: rotateY(180deg); -webkit-transform: rotateY(180deg); }
 
   .card-front,
   .card-back {
@@ -379,6 +380,7 @@
   /* BACK */
   .card-back {
     transform: rotateY(180deg);
+    -webkit-transform: rotateY(180deg);
     display: flex;
     flex-direction: column;
     align-items: center;
