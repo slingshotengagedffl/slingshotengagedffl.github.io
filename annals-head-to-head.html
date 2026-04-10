@@ -122,7 +122,7 @@
     }
     .spotlight-shuffle {
       font-family: 'Barlow Condensed', sans-serif;
-      font-size: 0.78rem;
+      font-size: 0.88rem;
       letter-spacing: 0.1em;
       color: var(--muted);
       text-transform: uppercase;
@@ -257,7 +257,7 @@
     .notable-blurb {
       font-family: 'Barlow', sans-serif;
       font-size: 0.99rem;
-      color: var(--muted);
+      color: var(--label);
       line-height: 1.55;
     }
 
@@ -477,8 +477,8 @@
     }
 
     .type-tabs {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
+      display: flex;
+      flex-wrap: wrap;
       gap: 0;
       margin-bottom: 16px;
       border: 1px solid var(--border);
@@ -497,14 +497,12 @@
       color: var(--muted);
       border: none;
       border-right: 1px solid var(--border);
-      border-bottom: 1px solid var(--border);
       cursor: pointer;
       transition: background 0.15s, color 0.15s;
       white-space: nowrap;
+      flex: 1 1 auto;
     }
-    .type-tab:nth-child(2) { border-right: none; }
-    .type-tab:nth-child(3) { border-bottom: none; }
-    .type-tab:nth-child(4) { border-right: none; border-bottom: none; }
+    .type-tab:last-child { border-right: none; }
     .type-tab.active { background: var(--red); color: #fff; }
     .type-tab:not(.active):hover { color: var(--text); }
 
@@ -639,7 +637,7 @@
     }
     .rivalry-rank-denom {
       font-family: 'Barlow Condensed', sans-serif;
-      font-size: 0.82rem;
+      font-size: 0.9rem;
       color: var(--label);
       letter-spacing: 0.1em;
       text-transform: uppercase;
@@ -675,8 +673,8 @@
     }
     .rivalry-formula-note {
       font-family: 'Barlow Condensed', sans-serif;
-      font-size: 0.78rem;
-      color: var(--muted);
+      font-size: 0.88rem;
+      color: var(--label);
       margin-top: 8px;
       letter-spacing: 0.04em;
       opacity: 0.8;
@@ -727,7 +725,7 @@
     .log-table tbody tr:hover { background: var(--surface2); }
     .log-table td {
       padding: 10px 12px;
-      font-size: 0.99rem;
+      font-size: 1.04rem;
       color: var(--text);
     }
     .log-table td.score-a { color: #4a9eda; font-weight: 700; }

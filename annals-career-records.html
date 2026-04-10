@@ -128,10 +128,10 @@
     }
     .spotlight-eyebrow {
       font-family: 'Barlow Condensed', sans-serif;
-      font-size: 0.72rem;
+      font-size: 0.82rem;
       letter-spacing: 0.22em;
       text-transform: uppercase;
-      color: var(--gold);
+      color: var(--label);
       margin-bottom: 14px;
       display: flex;
       align-items: center;
@@ -140,7 +140,7 @@
     .spotlight-body {
       display: flex;
       align-items: center;
-      gap: 16px;
+      gap: 12px;
       margin-bottom: 14px;
     }
     .spotlight-photo {
@@ -164,7 +164,7 @@
       font-size: 0.78rem;
       letter-spacing: 0.18em;
       text-transform: uppercase;
-      color: var(--muted);
+      color: var(--label);
       margin-bottom: 2px;
     }
     .spotlight-name {
@@ -254,7 +254,7 @@
       font-weight: 700;
       letter-spacing: 0.18em;
       text-transform: uppercase;
-      color: var(--muted);
+      color: var(--label);
       background: var(--surface2);
       padding: 10px 12px;
       text-align: left;
@@ -274,8 +274,9 @@
     td.num { text-align: right; font-variant-numeric: tabular-nums; }
     td.rank-cell {
       font-family: 'Barlow Condensed', sans-serif;
-      font-size: 0.82rem;
-      color: var(--muted);
+      font-size: 0.88rem;
+      font-weight: 700;
+      color: var(--label);
       width: 36px;
       text-align: center;
     }
@@ -298,7 +299,7 @@
       font-size: 0.72rem;
       letter-spacing: 0.15em;
       text-transform: uppercase;
-      color: var(--muted);
+      color: var(--label);
       margin-top: 8px;
     }
 
@@ -775,15 +776,18 @@ const filterIndex = { all: 1, regular: 2, playoff: 3 };
 function rankRows(rows, valFn, asc = false) {
   const filtered = rows.filter(r => valFn(r) !== null && valFn(r) !== undefined);
   filtered.sort((a, b) => asc ? valFn(a) - valFn(b) : valFn(b) - valFn(a));
+  const result = [];
   let rank = 1;
-  return filtered.map((row, i) => {
+  for (let i = 0; i < filtered.length; i++) {
+    const row = filtered[i];
     if (i > 0 && valFn(row) === valFn(filtered[i - 1])) {
-      return { rank: filtered[i - 1]._rank, row };
+      result.push({ rank: result[i - 1].rank, row });
+    } else {
+      result.push({ rank, row });
     }
-    row._rank = rank;
     rank = i + 2;
-    return { rank: row._rank, row };
-  });
+  }
+  return result;
 }
 
 function renderTable(tableId, headers, rows, renderRow, maxRows = 10) {
