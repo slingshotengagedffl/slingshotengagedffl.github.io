@@ -1,0 +1,1148 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Career Records · Slingshot Engaged FFL</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Barlow+Condensed:wght@400;600;700&family=Barlow:wght@400;500;600&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --red: #c0392b;
+      --red-bright: #e74c3c;
+      --bg: #0a0a0a;
+      --surface: #141414;
+      --surface2: #1c1c1c;
+      --surface3: #242424;
+      --text: #f0f0f0;
+      --text-body: #e8e8e8;
+      --muted: #bbb;
+      --label: #d8d8d8;
+      --border: #2a2a2a;
+      --gold: #c9a84c;
+    }
+
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: 'Barlow', sans-serif;
+      min-height: 100vh;
+    }
+
+    /* PAGE HEADER */
+    .page-header { padding: 40px 20px 0; text-align: center; }
+    .page-supertitle {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: 1rem;
+      letter-spacing: 0.25em;
+      text-transform: uppercase;
+      color: #d0d0d0;
+      margin-bottom: 6px;
+    }
+    .page-header h1 {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: clamp(2.8rem, 8vw, 5rem);
+      color: var(--red-bright);
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      line-height: 1;
+    }
+    .page-updated {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: 0.72rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin-top: 6px;
+    }
+    .header-spacer { height: 20px; }
+
+    /* CONTENT */
+    .content { max-width: 680px; margin: 0 auto; padding: 0 16px 60px; }
+
+    .intro {
+      font-family: 'Barlow', sans-serif;
+      font-size: 1.1rem;
+      color: var(--text-body);
+      line-height: 1.7;
+      margin: 12px 0 24px;
+      text-align: center;
+    }
+
+    /* FILTER TABS — 3 options */
+    .type-tabs {
+      display: flex;
+      border: 1px solid var(--border);
+      border-radius: 4px;
+      overflow: hidden;
+      width: 100%;
+      margin-bottom: 36px;
+    }
+    .type-tab {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: 0.82rem;
+      font-weight: 700;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      padding: 10px 16px;
+      background: transparent;
+      color: var(--muted);
+      border: none;
+      border-right: 1px solid var(--border);
+      cursor: pointer;
+      transition: background 0.15s, color 0.15s;
+      white-space: nowrap;
+      flex: 1;
+    }
+    .type-tab:last-child { border-right: none; }
+    .type-tab.active { background: var(--red); color: #fff; }
+    .type-tab:not(.active):hover { color: var(--text); }
+
+    /* #1 ROW PHOTO */
+    .row-photo {
+      width: 36px; height: 36px;
+      border-radius: 50%;
+      object-fit: cover;
+      object-position: top;
+      border: 2px solid var(--gold);
+      vertical-align: middle;
+      margin-right: 8px;
+      flex-shrink: 0;
+    }
+    .owner-with-photo {
+      display: flex;
+      align-items: center;
+    }
+
+    /* SPOTLIGHT */
+    .spotlight-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 20px;
+      margin-bottom: 36px;
+      position: relative;
+    }
+    .spotlight-eyebrow {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: 0.72rem;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 14px;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+    .spotlight-body {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      margin-bottom: 14px;
+    }
+    .spotlight-photo {
+      width: 64px; height: 64px;
+      border-radius: 50%;
+      object-fit: cover;
+      object-position: top;
+      border: 2px solid var(--gold);
+      flex-shrink: 0;
+    }
+    .spotlight-photo-placeholder {
+      width: 64px; height: 64px;
+      border-radius: 50%;
+      background: var(--surface2);
+      border: 2px solid var(--gold);
+      flex-shrink: 0;
+    }
+    .spotlight-info { flex: 1; min-width: 0; }
+    .spotlight-record-label {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: 0.78rem;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin-bottom: 2px;
+    }
+    .spotlight-name {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 1.6rem;
+      letter-spacing: 0.06em;
+      color: var(--text);
+      line-height: 1;
+      margin-bottom: 2px;
+    }
+    .spotlight-value {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 2.6rem;
+      color: var(--gold);
+      line-height: 1;
+      margin-bottom: 4px;
+    }
+    .spotlight-note {
+      font-family: 'Barlow', sans-serif;
+      font-size: 0.92rem;
+      color: var(--text-body);
+      line-height: 1.5;
+    }
+    .spotlight-nav {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      margin-top: 14px;
+      border-top: 1px solid var(--border);
+      padding-top: 14px;
+    }
+    .spot-btn {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: 0.78rem;
+      font-weight: 700;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      background: var(--surface2);
+      border: 1px solid var(--border);
+      color: var(--muted);
+      padding: 6px 14px;
+      border-radius: 4px;
+      cursor: pointer;
+      transition: color 0.15s, border-color 0.15s;
+    }
+    .spot-btn:hover { color: var(--text); border-color: var(--muted); }
+    .spot-dots { display: flex; gap: 6px; flex: 1; justify-content: center; }
+    .spot-dot {
+      width: 6px; height: 6px;
+      border-radius: 50%;
+      background: var(--border);
+      transition: background 0.15s;
+      cursor: pointer;
+    }
+    .spot-dot.active { background: var(--gold); }
+    .spot-counter {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: 0.78rem;
+      letter-spacing: 0.12em;
+      color: var(--muted);
+      margin-left: auto;
+    }
+
+    /* SECTION HEADERS */
+    .section-block { margin-bottom: 40px; }
+    .section-title {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 1.4rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--label);
+      margin-bottom: 10px;
+    }
+
+    /* TABLES */
+    .table-wrap {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      overflow-x: auto;
+      -webkit-overflow-scrolling: touch;
+    }
+    table { width: 100%; border-collapse: collapse; }
+    thead th {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: 0.82rem;
+      font-weight: 700;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--muted);
+      background: var(--surface2);
+      padding: 10px 12px;
+      text-align: left;
+      border-bottom: 1px solid var(--border);
+      white-space: nowrap;
+    }
+    thead th.num { text-align: right; }
+    tbody td {
+      padding: 10px 12px;
+      vertical-align: middle;
+      border-bottom: 1px solid var(--border);
+      color: var(--text);
+      font-size: 0.9rem;
+    }
+    tbody tr:last-child td { border-bottom: none; }
+    tbody tr:hover { background: var(--surface2); transition: background 0.15s; }
+    td.num { text-align: right; font-variant-numeric: tabular-nums; }
+    td.rank-cell {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: 0.82rem;
+      color: var(--muted);
+      width: 36px;
+      text-align: center;
+    }
+    .owner-cell {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: 1.05rem;
+      font-weight: 700;
+      color: var(--text);
+    }
+    .owner-cell a {
+      color: var(--gold);
+      text-decoration: none;
+    }
+    .owner-cell a:hover { text-decoration: underline; }
+    .owner-retired { color: var(--muted); }
+
+    /* qualifier footnote */
+    .qualifier-note {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: 0.72rem;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin-top: 8px;
+    }
+
+    /* earnings colors */
+    .earn-pos { color: #2ecc71; font-weight: 700; }
+    .earn-neg { color: var(--red-bright); font-weight: 700; }
+    .earn-zero { color: var(--muted); }
+
+    /* hidden sections */
+    .filter-hide { display: none !important; }
+  </style>
+</head>
+<body>
+
+<script src="nav.js"></script>
+
+<div class="page-header">
+  <div class="page-supertitle">The Annals of History</div>
+  <h1>Career Records</h1>
+  <p class="page-updated" id="pageUpdated"></p>
+</div>
+
+<div class="header-spacer"></div>
+
+<div class="content">
+
+  <p class="intro">Every win, every loss, every dollar won and lost — 12 seasons of Slingshot history distilled into the numbers that define a career.</p>
+
+  <!-- SPOTLIGHT -->
+  <div class="spotlight-card" id="spotlight">
+    <div class="spotlight-eyebrow">★ Record Spotlight</div>
+    <div class="spotlight-body">
+      <img class="spotlight-photo" id="spotPhoto" src="" alt="" onerror="this.style.display='none';document.getElementById('spotPhotoPlaceholder').style.display='block'">
+      <div class="spotlight-photo-placeholder" id="spotPhotoPlaceholder" style="display:none"></div>
+      <div class="spotlight-info">
+        <div class="spotlight-record-label" id="spotLabel"></div>
+        <div class="spotlight-name" id="spotName"></div>
+        <div class="spotlight-value" id="spotValue"></div>
+      </div>
+    </div>
+    <div class="spotlight-note" id="spotNote"></div>
+    <div class="spotlight-nav">
+      <button class="spot-btn" id="spotPrev">← Prev</button>
+      <div class="spot-dots" id="spotDots"></div>
+      <button class="spot-btn" id="spotNext">Next →</button>
+      <div class="spot-counter" id="spotCounter"></div>
+    </div>
+  </div>
+
+  <!-- FILTER TABS -->
+  <div class="type-tabs" id="filterTabs">
+    <button class="type-tab active" data-filter="all">All Games</button>
+    <button class="type-tab" data-filter="regular">Regular Season</button>
+    <button class="type-tab" data-filter="playoff">Playoffs</button>
+  </div>
+
+  <!-- ===================== WINS ===================== -->
+  <div class="section-block" id="sec-wins">
+    <div class="section-title">Most Wins</div>
+    <div class="table-wrap">
+      <table id="tbl-wins"></table>
+    </div>
+  </div>
+
+  <!-- ===================== LOSSES ===================== -->
+  <div class="section-block" id="sec-losses">
+    <div class="section-title">Most Losses</div>
+    <div class="table-wrap">
+      <table id="tbl-losses"></table>
+    </div>
+  </div>
+
+  <!-- ===================== WIN PCT ===================== -->
+  <div class="section-block" id="sec-winpct">
+    <div class="section-title">Best Win %</div>
+    <div class="table-wrap">
+      <table id="tbl-winpct"></table>
+    </div>
+    <p class="qualifier-note">* Minimum 4 seasons played to qualify</p>
+  </div>
+
+  <!-- ===================== POINTS FOR ===================== -->
+  <div class="section-block" id="sec-pf">
+    <div class="section-title">Most Points Scored</div>
+    <div class="table-wrap">
+      <table id="tbl-pf"></table>
+    </div>
+  </div>
+
+  <!-- ===================== PPG ===================== -->
+  <div class="section-block" id="sec-ppg">
+    <div class="section-title">Points Per Game</div>
+    <div class="table-wrap">
+      <table id="tbl-ppg"></table>
+    </div>
+    <p class="qualifier-note">* Minimum 4 seasons played to qualify</p>
+  </div>
+
+  <!-- ===================== POINTS AGAINST ===================== -->
+  <div class="section-block" id="sec-pa">
+    <div class="section-title">Most Points Scored Against</div>
+    <div class="table-wrap">
+      <table id="tbl-pa"></table>
+    </div>
+  </div>
+
+  <!-- ===================== PA/G ===================== -->
+  <div class="section-block" id="sec-pag">
+    <div class="section-title">Toughest Schedule</div>
+    <div class="table-wrap">
+      <table id="tbl-pag"></table>
+    </div>
+    <p class="qualifier-note">* Points allowed per game. Minimum 4 seasons played to qualify</p>
+  </div>
+
+  <!-- ===================== POWER SCORE ===================== -->
+  <div class="section-block" id="sec-power">
+    <div class="section-title">Power Score</div>
+    <div class="table-wrap">
+      <table id="tbl-power"></table>
+    </div>
+    <p class="qualifier-note">* Career regular season power score. Minimum 4 seasons played to qualify</p>
+  </div>
+
+  <!-- ===================== NET EARNINGS ===================== -->
+  <div class="section-block" id="sec-earnings">
+    <div class="section-title">Career Net Earnings</div>
+    <div class="table-wrap">
+      <table id="tbl-earnings"></table>
+    </div>
+  </div>
+
+  <!-- ===================== CHAMPIONSHIPS (playoff-only) ===================== -->
+  <div class="section-block playoff-only" id="sec-champs">
+    <div class="section-title">Most Championships</div>
+    <div class="table-wrap">
+      <table id="tbl-champs"></table>
+    </div>
+  </div>
+
+  <!-- ===================== FINALS APPEARANCES (playoff-only) ===================== -->
+  <div class="section-block playoff-only" id="sec-finals">
+    <div class="section-title">Most Finals Appearances</div>
+    <div class="table-wrap">
+      <table id="tbl-finals"></table>
+    </div>
+  </div>
+
+  <!-- ===================== PLAYOFF APPEARANCES (playoff-only) ===================== -->
+  <div class="section-block playoff-only" id="sec-poapps">
+    <div class="section-title">Most Playoff Appearances</div>
+    <div class="table-wrap">
+      <table id="tbl-poapps"></table>
+    </div>
+  </div>
+
+  <!-- ===================== PLAYOFF WINS (playoff-only) ===================== -->
+  <div class="section-block playoff-only" id="sec-powins">
+    <div class="section-title">Most Playoff Wins</div>
+    <div class="table-wrap">
+      <table id="tbl-powins"></table>
+    </div>
+  </div>
+
+</div><!-- /content -->
+
+<script>
+// ─── OWNER DATA ───────────────────────────────────────────────────────────────
+
+const ACTIVE_OWNERS = new Set(['Alex V.','Andy','Brian','Daniel','Dylan','Jack','Jordan','Kyle','Luke','Matt','Mike M.','Scott','Tim H.','Wade']);
+const PROFILE_IDS = {
+  'Alex V.': 'alexv', 'Andy': 'andy', 'Brian': 'brian', 'Daniel': 'daniel',
+  'Dylan': 'dylan', 'Jack': 'jack', 'Jordan': 'jordan', 'Kyle': 'kyle',
+  'Luke': 'luke', 'Matt': 'matt', 'Mike M.': 'mikem', 'Scott': 'scott',
+  'Tim H.': 'timh', 'Wade': 'wade'
+};
+const PHOTO_IDS = { 'Mike M.': 'mike', 'Tim H.': 'tim', 'Alex V.': 'alex' };
+
+// Owners who have photos in the images/ folder
+const HAS_PHOTO = new Set(['Alex V.','Andy','Brian','Daniel','Dylan','Jack','Jordan','Kyle','Matt','Mike M.','Scott','Tim H.','Wade',
+  'Alex M.','Anthony M.','Christine','Jon','Michelle C.','Michelle T.','Taylor','Tim C.']);
+
+function photoId(name) {
+  return PHOTO_IDS[name] || name.toLowerCase().replace(/[^a-z]/g, '');
+}
+
+function rowPhoto(name) {
+  if (!HAS_PHOTO.has(name)) return '';
+  const id = photoId(name);
+  return `<img class="row-photo" src="images/${id}.png" onerror="this.onerror=null;this.src='images/${id}.jpg'" alt="${name}">`;
+}
+
+function ownerCell(name, isFirst = false) {
+  const nameText = ACTIVE_OWNERS.has(name) && PROFILE_IDS[name]
+    ? `<a href="profiles/${PROFILE_IDS[name]}.html">${name}</a>`
+    : name;
+  const photo = isFirst ? rowPhoto(name) : '';
+  return `<span class="owner-cell${ACTIVE_OWNERS.has(name) ? '' : ' owner-retired'} owner-with-photo">${photo}${nameText}</span>`;
+}
+
+// ─── ALL DATA ────────────────────────────────────────────────────────────────
+
+// Format: [owner, all_wins, reg_wins, po_wins, con_wins]
+const WINS_DATA = [
+  ['Jack',108,99,7,2],['Mike M.',98,88,6,4],['Dylan',96,84,9,3],['Jon',90,75,4,11],
+  ['Brian',89,81,2,6],['Daniel',86,78,3,5],['Alex V.',80,71,6,3],['Scott',76,69,2,5],
+  ['Kyle',74,64,10,0],['Matt',73,65,1,7],['Michelle C.',46,39,0,7],['Wade',42,41,0,1],
+  ['Jordan',42,42,0,0],['Taylor',26,22,1,3],['Michelle T.',24,20,3,1],
+  ['Tim C.',41,36,1,4],['Tim H.',34,31,1,2],['Christine',23,20,1,2],
+  ['Andy',30,29,0,1],['Anthony M.',27,23,0,4],['Alex M.',11,9,2,0],
+  ['Michael V.',8,8,0,0],['Tyler',7,5,0,2],['Pauly',7,7,0,0],
+  ['Anthony B.',6,6,0,0],['James',2,1,0,1],['Luke',0,0,0,0]
+];
+
+// Format: [owner, all_losses, reg_losses, po_losses, con_losses]
+const LOSSES_DATA = [
+  ['Scott',101,92,2,7],['Jon',97,86,5,6],['Daniel',94,83,5,6],['Matt',92,83,3,6],
+  ['Brian',87,80,3,4],['Mike M.',85,73,6,6],['Dylan',74,64,4,6],['Jack',71,62,6,3],
+  ['Alex V.',70,64,4,2],['Tim H.',56,52,2,2],['Jordan',55,54,1,0],['Kyle',51,45,6,0],
+  ['Tim C.',49,42,3,4],['Matt',92,83,3,6],['Michelle C.',44,39,1,4],['Wade',45,42,3,0],
+  ['Andy',29,27,1,1],['Christine',25,19,1,5],['Taylor',20,17,1,2],
+  ['Michelle T.',22,19,1,2],['Anthony M.',31,29,0,2],['Jordan',55,54,1,0],
+  ['Alex M.',4,4,0,0],['Michael V.',7,6,1,0],['Tyler',8,8,0,0],
+  ['Anthony B.',9,7,0,2],['Pauly',9,6,0,3],['James',13,12,0,1],['Luke',0,0,0,0]
+];
+
+// Deduplicated losses
+const LOSSES_DEDUPED = [
+  ['Scott',101,92,2,7],['Jon',97,86,5,6],['Daniel',94,83,5,6],['Matt',92,83,3,6],
+  ['Brian',87,80,3,4],['Mike M.',85,73,6,6],['Dylan',74,64,4,6],['Jack',71,62,6,3],
+  ['Alex V.',70,64,4,2],['Tim H.',56,52,2,2],['Jordan',55,54,1,0],['Kyle',51,45,6,0],
+  ['Tim C.',49,42,3,4],['Michelle C.',44,39,1,4],['Wade',45,42,3,0],
+  ['Andy',29,27,1,1],['Christine',25,19,1,5],['Taylor',20,17,1,2],
+  ['Michelle T.',22,19,1,2],['Anthony M.',31,29,0,2],
+  ['Alex M.',4,4,0,0],['Michael V.',7,6,1,0],['Tyler',8,8,0,0],
+  ['Anthony B.',9,7,0,2],['Pauly',9,6,0,3],['James',13,12,0,1],['Luke',0,0,0,0]
+];
+
+// seasons played for rate-stat qualification
+const SEASONS = {
+  'Alex V.':10,'Andy':4,'Brian':12,'Daniel':12,'Dylan':11,'Jack':12,'Jordan':7,
+  'Kyle':8,'Luke':0,'Matt':11,'Mike M.':12,'Scott':12,'Tim H.':6,'Wade':6,
+  'Alex M.':1,'Anthony B.':1,'Anthony M.':4,'Christine':3,'James':1,'Jon':12,
+  'Michelle C.':6,'Michelle T.':3,'Michael V.':1,'Pauly':1,'Taylor':3,'Tim C.':6,'Tyler':1
+};
+
+// Win% [owner, all, reg, po, con] — only owners with 4+ seasons
+const WINPCT_DATA = [
+  ['Jack',0.603,0.615,0.538,0.400],
+  ['Kyle',0.592,0.587,0.625,null],
+  ['Dylan',0.565,0.568,0.692,0.333],
+  ['Mike M.',0.536,0.547,0.500,0.400],
+  ['Alex V.',0.533,0.526,0.600,0.600],
+  ['Michelle C.',0.511,0.500,null,0.636],
+  ['Andy',0.508,0.518,null,0.500],
+  ['Brian',0.506,0.503,0.400,0.600],
+  ['Wade',0.483,0.494,null,null],
+  ['Jon',0.481,0.466,0.444,0.647],
+  ['Daniel',0.478,0.484,0.375,0.455],
+  ['Anthony M.',0.466,0.442,null,0.667],
+  ['Matt',0.442,0.439,0.250,0.538],
+  ['Jordan',0.433,0.438,null,null],
+  ['Scott',0.429,0.429,0.500,0.417],
+  ['Tim C.',0.456,0.462,0.250,0.500],
+  ['Tim H.',0.378,0.373,0.333,0.500],
+];
+
+// Points For [owner, all, reg, po, con]
+const PF_DATA = [
+  ['Jack',17646.12,15999.24,1264.50,382.38],
+  ['Jon',17287.79,14818.90,948.50,1520.39],
+  ['Mike M.',16854.07,14763.52,1217.81,872.74],
+  ['Daniel',16821.74,15095.80,732.22,993.72],
+  ['Dylan',16575.18,14269.14,1365.94,940.10],
+  ['Brian',16020.60,14655.30,444.42,920.88],
+  ['Scott',15583.67,14090.16,353.12,1140.39],
+  ['Matt',14846.00,13270.36,412.40,1163.24],
+  ['Alex V.',13934.04,12497.58,951.34,485.12],
+  ['Kyle',13160.30,11488.70,1671.60,null],
+  ['Jordan',8787.36,8718.04,69.32,null],
+  ['Michelle C.',8370.25,7222.80,92.20,1055.25],
+  ['Tim C.',8369.82,7197.60,388.04,784.18],
+  ['Tim H.',7783.46,7233.46,220.60,329.40],
+  ['Wade',7945.66,7588.36,265.54,91.76],
+  ['Taylor',4185.50,3524.20,189.80,471.50],
+  ['Michelle T.',4119.60,3561.60,405.40,152.60],
+  ['Andy',5425.00,5185.16,75.56,164.28],
+  ['Christine',4418.70,3625.70,193.80,599.20],
+  ['Anthony M.',4783.86,4333.66,null,450.20],
+  ['Alex M.',1443.50,1225.30,218.20,null],
+  ['Michael V.',1367.70,1317.92,49.78,null],
+  ['Tyler',1436.80,1226.30,null,210.50],
+  ['Pauly',1444.60,1182.60,null,262.00],
+  ['Anthony B.',1071.20,953.60,null,117.60],
+  ['Michelle T.',4119.60,3561.60,405.40,152.60],
+  ['James',1038.95,885.70,null,153.25],
+  ['Luke',0,0,0,0],
+];
+
+// Deduplicated PF
+const PF_DEDUPED = [
+  ['Jack',17646.12,15999.24,1264.50,382.38],
+  ['Jon',17287.79,14818.90,948.50,1520.39],
+  ['Mike M.',16854.07,14763.52,1217.81,872.74],
+  ['Daniel',16821.74,15095.80,732.22,993.72],
+  ['Dylan',16575.18,14269.14,1365.94,940.10],
+  ['Brian',16020.60,14655.30,444.42,920.88],
+  ['Scott',15583.67,14090.16,353.12,1140.39],
+  ['Matt',14846.00,13270.36,412.40,1163.24],
+  ['Alex V.',13934.04,12497.58,951.34,485.12],
+  ['Kyle',13160.30,11488.70,1671.60,null],
+  ['Jordan',8787.36,8718.04,69.32,null],
+  ['Michelle C.',8370.25,7222.80,92.20,1055.25],
+  ['Tim C.',8369.82,7197.60,388.04,784.18],
+  ['Wade',7945.66,7588.36,265.54,91.76],
+  ['Tim H.',7783.46,7233.46,220.60,329.40],
+  ['Andy',5425.00,5185.16,75.56,164.28],
+  ['Anthony M.',4783.86,4333.66,null,450.20],
+  ['Christine',4418.70,3625.70,193.80,599.20],
+  ['Michelle T.',4119.60,3561.60,405.40,152.60],
+  ['Taylor',4185.50,3524.20,189.80,471.50],
+  ['Pauly',1444.60,1182.60,null,262.00],
+  ['Alex M.',1443.50,1225.30,218.20,null],
+  ['Tyler',1436.80,1226.30,null,210.50],
+  ['Michael V.',1367.70,1317.92,49.78,null],
+  ['Anthony B.',1071.20,953.60,null,117.60],
+  ['James',1038.95,885.70,null,153.25],
+  ['Luke',0,0,0,0],
+];
+
+// PPG [owner, all, reg, po, con] — 4+ seasons only
+const PPG_DATA = [
+  ['Kyle',105.28,105.40,104.48,null],
+  ['Jack',98.58,99.37,97.27,76.48],
+  ['Dylan',97.50,96.41,105.07,104.46],
+  ['Daniel',93.45,93.76,91.53,90.34],
+  ['Tim C.',93.00,92.28,97.01,98.02],
+  ['Michelle C.',93.00,92.60,92.20,95.93],
+  ['Alex V.',92.89,92.57,95.13,97.02],
+  ['Jon',92.45,92.04,105.39,89.43],
+  ['Mike M.',92.10,91.70,101.48,87.27],
+  ['Andy',91.95,92.59,75.56,82.14],
+  ['Wade',91.33,91.43,88.51,91.76],
+  ['Brian',91.03,91.03,88.88,92.09],
+  ['Jordan',90.59,90.81,69.32,null],
+  ['Matt',89.98,89.66,103.10,89.48],
+  ['Tim H.',86.48,87.15,73.53,82.35],
+  ['Scott',88.04,87.52,88.28,95.03],
+  ['Anthony M.',82.48,83.34,null,75.03],
+];
+
+// Points Against [owner, all, reg, po, con]
+const PA_DATA = [
+  ['Jon',17508.97,15201.04,867.20,1440.73],
+  ['Daniel',17089.35,15315.36,801.67,972.32],
+  ['Mike M.',16867.55,14686.80,1195.17,985.58],
+  ['Scott',16602.88,15012.58,391.92,1198.38],
+  ['Jack',16341.15,14639.76,1264.21,437.18],
+  ['Brian',16201.65,14822.92,488.92,889.81],
+  ['Dylan',15836.72,13677.78,1249.98,908.96],
+  ['Matt',15749.56,14106.32,480.34,1162.90],
+  ['Alex V.',13467.68,12135.82,899.00,432.86],
+  ['Kyle',11737.28,10252.18,1485.10,null],
+  ['Jordan',8960.14,8826.94,133.20,null],
+  ['Tim C.',8371.56,7234.02,406.20,731.34],
+  ['Michelle C.',8369.48,7358.18,104.90,906.40],
+  ['Tim H.',8354.96,7714.98,274.24,365.74],
+  ['Wade',8047.46,7572.96,388.42,86.08],
+  ['Andy',5428.36,5117.96,129.50,180.90],
+  ['Anthony M.',5059.96,4589.46,null,470.50],
+  ['Christine',4318.90,3554.80,146.80,617.30],
+  ['Taylor',4078.05,3450.90,176.70,450.45],
+  ['Michelle T.',4094.50,3518.30,348.20,228.00],
+  ['Pauly',1469.80,1137.90,null,331.90],
+  ['Tyler',1342.30,1184.00,null,158.30],
+  ['Alex M.',1264.00,1067.40,196.60,null],
+  ['Michael V.',1420.56,1318.74,101.82,null],
+  ['Anthony B.',1250.45,1089.00,null,161.45],
+  ['James',1488.20,1344.60,null,143.60],
+  ['Luke',0,0,0,0],
+];
+
+// PA/G [owner, all, reg, po, con] — 4+ seasons only, sorted high-first
+const PAG_DATA = [
+  ['Matt',95.45,95.31,120.09,89.45],
+  ['Daniel',94.94,95.13,100.21,88.39],
+  ['Kyle',93.90,94.06,92.82,null],
+  ['Scott',93.80,93.24,97.98,99.87],
+  ['Jon',93.63,94.41,96.36,84.75],
+  ['Dylan',93.16,92.42,96.15,100.99],
+  ['Tim C.',93.02,92.74,101.55,91.42],
+  ['Michelle C.',92.99,94.34,104.90,82.40],
+  ['Tim H.',92.83,92.95,91.41,91.44],
+  ['Wade',92.50,91.24,129.47,86.08],
+  ['Jordan',92.37,91.95,133.20,null],
+  ['Mike M.',92.17,91.22,99.60,98.56],
+  ['Brian',92.06,92.06,97.78,88.98],
+  ['Andy',91.92,91.39,129.50,90.45],
+  ['Alex V.',89.78,89.90,89.90,86.57],
+  ['Jack',91.29,90.93,97.25,87.44],
+  ['Anthony M.',87.24,88.26,null,78.42],
+];
+
+// Power Score — reg season career, 4+ seasons
+const POWER_DATA = [
+  ['Kyle',140.4],['Jack',132.4],['Dylan',126.9],['Daniel',125.0],
+  ['Wade',120.7],['Taylor',120.7],['Alex V.',120.4],['Michelle C.',120.4],
+  ['Mike M.',119.1],['Andy',117.8],['Jon',116.9],['Brian',114.8],
+  ['Jordan',114.6],['Michelle T.',114.2],['Tim C.',114.1],['Matt',108.9],
+  ['Scott',108.4],['Anthony M.',104.9],['Tim H.',104.4],
+];
+
+// Net Earnings
+const EARNINGS_DATA = [
+  ['Kyle',1035.00],['Jack',729.50],['Dylan',320.50],['Mike M.',225.00],
+  ['Alex M.',175.00],['Alex V.',133.00],['Michelle T.',125.00],['Taylor',25.00],
+  ['Luke',0.00],['Daniel',-3.49],['Anthony B.',-20.00],['James',-20.00],
+  ['Tyler',-20.00],['Pauly',-25.00],['Christine',-55.00],['Michael V.',-89.00],
+  ['Tim C.',-114.00],['Anthony M.',-155.00],['Michelle C.',-165.00],
+  ['Jon',-192.50],['Jordan',-251.00],['Andy',-257.00],['Brian',-319.00],
+  ['Tim H.',-358.50],['Wade',-407.50],['Matt',-445.00],['Scott',-530.00],
+];
+
+// Championships
+const CHAMPS_DATA = [
+  ['Dylan',3,['2017','2021','2025']],
+  ['Jack',2,['2018','2019']],
+  ['Kyle',2,['2020','2022']],
+  ['Alex V.',1,['2023']],
+  ['Brian',1,['2016']],
+  ['Alex M.',1,['2015']],
+  ['Michelle T.',1,['2014']],
+];
+
+// Finals Appearances
+const FINALS_DATA = [
+  ['Kyle',5,['2018','2020','2022','2023','2024']],
+  ['Dylan',3,['2017','2021','2025']],
+  ['Jack',3,['2014','2019','2018']],
+  ['Mike M.',3,['2020','2022','2025']],
+  ['Daniel',2,['2016','2024']],
+  ['Alex V.',2,['2019','2023']],
+  ['Michelle T.',2,['2014','2017']],
+  ['Jon',1,['2021']],
+  ['Brian',1,['2016']],
+  ['Alex M.',1,['2015']],
+  ['Taylor',1,['2015']],
+];
+
+// Playoff Appearances (unique seasons)
+const POAPPS_DATA = [
+  ['Jack',8],['Kyle',8],['Mike M.',7],['Dylan',7],['Jon',5],
+  ['Daniel',5],['Alex V.',5],['Brian',4],['Matt',3],['Wade',3],
+  ['Tim C.',3],['Tim H.',2],['Scott',2],['Alex M.',2],['Michelle T.',2],
+  ['Andy',1],['Jordan',1],['Christine',1],['Michael V.',1],
+];
+
+// Playoff Wins
+const POWINS_DATA = [
+  ['Kyle',10],['Dylan',9],['Jack',7],['Alex V.',6],['Mike M.',6],
+  ['Jon',4],['Daniel',3],['Michelle T.',3],['Brian',2],['Scott',2],
+  ['Alex M.',2],['Matt',1],['Tim H.',1],['Tim C.',1],['Wade',0],
+  ['Andy',0],['Jordan',0],
+];
+
+// ─── FILTER STATE ─────────────────────────────────────────────────────────────
+
+let currentFilter = 'all'; // all | regular | playoff | consolation
+
+const filterIndex = { all: 1, regular: 2, playoff: 3 };
+
+// ─── TABLE RENDERING ──────────────────────────────────────────────────────────
+
+function rankRows(rows, valFn, asc = false) {
+  const filtered = rows.filter(r => valFn(r) !== null && valFn(r) !== undefined);
+  filtered.sort((a, b) => asc ? valFn(a) - valFn(b) : valFn(b) - valFn(a));
+  let rank = 1;
+  return filtered.map((row, i) => {
+    if (i > 0 && valFn(row) === valFn(filtered[i - 1])) {
+      return { rank: filtered[i - 1]._rank, row };
+    }
+    row._rank = rank;
+    rank = i + 2;
+    return { rank: row._rank, row };
+  });
+}
+
+function renderTable(tableId, headers, rows, renderRow, maxRows = 10) {
+  const tbl = document.getElementById(tableId);
+  if (!tbl) return;
+  const top = rows.slice(0, maxRows);
+  tbl.innerHTML = `
+    <thead><tr>${headers.map((h, i) => `<th${i > 0 ? ' class="num"' : ''}>${h}</th>`).join('')}</tr></thead>
+    <tbody>${top.map(renderRow).join('')}</tbody>
+  `;
+}
+
+function winRow({ rank, row }) {
+  const fi = filterIndex[currentFilter];
+  const val = row[fi];
+  if (val === null || val === undefined || (currentFilter !== 'all' && val === 0 && row[1] === 0)) return '';
+  return `<tr>
+    <td class="rank-cell">${rank}</td>
+    <td>${ownerCell(row[0], rank === 1)}</td>
+    <td class="num">${val}</td>
+  </tr>`;
+}
+
+function pctRow({ rank, row }) {
+  const fi = filterIndex[currentFilter];
+  const val = row[fi];
+  if (val === null || val === undefined) return '';
+  return `<tr>
+    <td class="rank-cell">${rank}</td>
+    <td>${ownerCell(row[0], rank === 1)}</td>
+    <td class="num">${val.toFixed(3)}</td>
+  </tr>`;
+}
+
+function pointsRow({ rank, row }) {
+  const fi = filterIndex[currentFilter];
+  const val = row[fi];
+  if (val === null || val === undefined || val === 0) return '';
+  return `<tr>
+    <td class="rank-cell">${rank}</td>
+    <td>${ownerCell(row[0], rank === 1)}</td>
+    <td class="num">${val.toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}</td>
+  </tr>`;
+}
+
+function ppgRow({ rank, row }) {
+  const fi = filterIndex[currentFilter];
+  const val = row[fi];
+  if (val === null || val === undefined) return '';
+  return `<tr>
+    <td class="rank-cell">${rank}</td>
+    <td>${ownerCell(row[0], rank === 1)}</td>
+    <td class="num">${val.toFixed(2)}</td>
+  </tr>`;
+}
+
+function simpleRow({ rank, row }) {
+  return `<tr>
+    <td class="rank-cell">${rank}</td>
+    <td>${ownerCell(row[0], rank === 1)}</td>
+    <td class="num">${row[1]}</td>
+  </tr>`;
+}
+
+function powerRow({ rank, row }) {
+  return `<tr>
+    <td class="rank-cell">${rank}</td>
+    <td>${ownerCell(row[0], rank === 1)}</td>
+    <td class="num">${row[1].toFixed(1)}</td>
+  </tr>`;
+}
+
+function champsRow({ rank, row }) {
+  return `<tr>
+    <td class="rank-cell">${rank}</td>
+    <td>${ownerCell(row[0], rank === 1)}</td>
+    <td class="num">${row[1]}</td>
+    <td class="num" style="color:var(--muted);font-size:0.82rem;">${row[2].join(', ')}</td>
+  </tr>`;
+}
+
+function finalsRow({ rank, row }) {
+  return `<tr>
+    <td class="rank-cell">${rank}</td>
+    <td>${ownerCell(row[0], rank === 1)}</td>
+    <td class="num">${row[1]}</td>
+    <td class="num" style="color:var(--muted);font-size:0.82rem;">${row[2].join(', ')}</td>
+  </tr>`;
+}
+
+// ─── BUILD TABLES ─────────────────────────────────────────────────────────────
+
+function buildAllTables() {
+  const fi = filterIndex[currentFilter];
+
+  // Wins
+  const winsRanked = rankRows(WINS_DATA, r => r[fi]);
+  renderTable('tbl-wins',
+    ['Rank', 'Owner', 'Wins'],
+    winsRanked.filter(({row}) => row[fi] > 0),
+    winRow
+  );
+
+  // Losses
+  const lossRanked = rankRows(LOSSES_DEDUPED, r => r[fi]);
+  renderTable('tbl-losses',
+    ['Rank', 'Owner', 'Losses'],
+    lossRanked.filter(({row}) => row[fi] > 0),
+    ({ rank, row }) => {
+      const val = row[fi];
+      if (!val) return '';
+      return `<tr>
+        <td class="rank-cell">${rank}</td>
+        <td>${ownerCell(row[0], rank === 1)}</td>
+        <td class="num">${val}</td>
+      </tr>`;
+    }
+  );
+
+  // Win Pct — 4+ seasons, filter out null for current filter
+  const wpRanked = rankRows(WINPCT_DATA.filter(r => (SEASONS[r[0]] || 0) >= 4), r => r[fi]);
+  renderTable('tbl-winpct',
+    ['Rank', 'Owner', 'Win %'],
+    wpRanked.filter(({row}) => row[fi] !== null),
+    pctRow
+  );
+
+  // Points For
+  const pfRanked = rankRows(PF_DEDUPED, r => r[fi]);
+  renderTable('tbl-pf',
+    ['Rank', 'Owner', 'Points'],
+    pfRanked.filter(({row}) => row[fi] > 0),
+    pointsRow
+  );
+
+  // PPG
+  const ppgRanked = rankRows(PPG_DATA.filter(r => (SEASONS[r[0]] || 0) >= 4), r => r[fi]);
+  renderTable('tbl-ppg',
+    ['Rank', 'Owner', 'PPG'],
+    ppgRanked.filter(({row}) => row[fi] !== null),
+    ppgRow
+  );
+
+  // Points Against total
+  const paRanked = rankRows(PA_DATA, r => r[fi]);
+  renderTable('tbl-pa',
+    ['Rank', 'Owner', 'Points Against'],
+    paRanked.filter(({row}) => row[fi] > 0),
+    pointsRow
+  );
+
+  // PA/G — high first, 4+ seasons
+  const pagRanked = rankRows(PAG_DATA.filter(r => (SEASONS[r[0]] || 0) >= 4), r => r[fi]);
+  renderTable('tbl-pag',
+    ['Rank', 'Owner', 'PA / Game'],
+    pagRanked.filter(({row}) => row[fi] !== null),
+    ppgRow
+  );
+
+  // Power Score — always reg season, always visible
+  const powRanked = rankRows(POWER_DATA, r => r[1]);
+  renderTable('tbl-power',
+    ['Rank', 'Owner', 'Power Score'],
+    powRanked,
+    powerRow
+  );
+
+  // Earnings — always total, always visible
+  const earnRanked = rankRows(EARNINGS_DATA, r => r[1]);
+  renderTable('tbl-earnings',
+    ['Rank', 'Owner', 'Net Earnings'],
+    earnRanked,
+    ({ rank, row }) => {
+      const val = row[1];
+      const cls = val > 0 ? 'earn-pos' : val < 0 ? 'earn-neg' : 'earn-zero';
+      const fmt = val === 0 ? '$0.00'
+        : val > 0 ? `$${val.toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}`
+        : `-$${Math.abs(val).toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}`;
+      return `<tr>
+        <td class="rank-cell">${rank}</td>
+        <td>${ownerCell(row[0], rank === 1)}</td>
+        <td class="num"><span class="${cls}">${fmt}</span></td>
+      </tr>`;
+    },
+    27 // show all
+  );
+
+  // Championships
+  const champsRanked = rankRows(CHAMPS_DATA, r => r[1]);
+  renderTable('tbl-champs',
+    ['Rank', 'Owner', 'Titles', 'Years'],
+    champsRanked,
+    champsRow,
+    CHAMPS_DATA.length
+  );
+
+  // Finals
+  const finalsRanked = rankRows(FINALS_DATA, r => r[1]);
+  renderTable('tbl-finals',
+    ['Rank', 'Owner', 'Appearances', 'Years'],
+    finalsRanked,
+    finalsRow,
+    FINALS_DATA.length
+  );
+
+  // Playoff Appearances
+  const poAppsRanked = rankRows(POAPPS_DATA, r => r[1]);
+  renderTable('tbl-poapps',
+    ['Rank', 'Owner', 'Appearances'],
+    poAppsRanked,
+    simpleRow
+  );
+
+  // Playoff Wins
+  const poWinsRanked = rankRows(POWINS_DATA.filter(r => r[1] > 0), r => r[1]);
+  renderTable('tbl-powins',
+    ['Rank', 'Owner', 'Playoff Wins'],
+    poWinsRanked,
+    simpleRow
+  );
+}
+
+// ─── FILTER VISIBILITY ────────────────────────────────────────────────────────
+
+function applyFilterVisibility() {
+  const playoffSections = document.querySelectorAll('.playoff-only');
+  // Hide playoff-only sections on regular season filter
+  const hidePlayoff = currentFilter === 'regular';
+  playoffSections.forEach(s => {
+    s.classList.toggle('filter-hide', hidePlayoff);
+  });
+}
+
+// ─── FILTER TABS ──────────────────────────────────────────────────────────────
+
+document.getElementById('filterTabs').addEventListener('click', e => {
+  const btn = e.target.closest('.type-tab');
+  if (!btn) return;
+  document.querySelectorAll('.type-tab').forEach(b => b.classList.remove('active'));
+  btn.classList.add('active');
+  currentFilter = btn.dataset.filter;
+  applyFilterVisibility();
+  buildAllTables();
+});
+
+// ─── SPOTLIGHT ────────────────────────────────────────────────────────────────
+
+const SPOTLIGHT_RECORDS = [
+  {
+    label: 'Most Championships',
+    name: 'Dylan',
+    value: '3 Titles',
+    note: 'Dylan Thackston won the Slingshot Bowl in 2017, 2021, and 2025 — more championships than any owner in league history.',
+    photo: 'dylan'
+  },
+  {
+    label: 'Most Finals Appearances',
+    name: 'Kyle',
+    value: '5 Appearances',
+    note: "Kyle Gilbreath has reached the Slingshot Bowl five times, more than any other owner. He's converted two of those into championships.",
+    photo: 'kyle'
+  },
+  {
+    label: 'All-Time Wins Leader',
+    name: 'Jack',
+    value: '108 Wins',
+    note: 'Jack Corcoran leads all owners in career wins across all game types, edging out Mike M. (98) and Dylan (96).',
+    photo: 'jack'
+  },
+  {
+    label: 'Best Career Win %',
+    name: 'Jack',
+    value: '60.3%',
+    note: 'Among owners with at least 4 seasons played, Jack holds the best overall win percentage at .603, with Kyle close behind at .592.',
+    photo: 'jack'
+  },
+  {
+    label: 'Most Points Scored',
+    name: 'Jack',
+    value: '17,646 Pts',
+    note: "Jack's career scoring total of 17,646.12 points leads all owners — over 350 points ahead of second-place Jon Franks.",
+    photo: 'jack'
+  },
+  {
+    label: 'Most Playoff Wins',
+    name: 'Kyle',
+    value: '10 Wins',
+    note: 'Kyle Gilbreath has won 10 playoff games in his career — the most of any owner — on the back of 5 finals appearances.',
+    photo: 'kyle'
+  },
+];
+
+let spotIndex = 0;
+
+function renderSpotlight(idx) {
+  const rec = SPOTLIGHT_RECORDS[idx];
+  const photoEl = document.getElementById('spotPhoto');
+  const placeholderEl = document.getElementById('spotPhotoPlaceholder');
+  photoEl.src = `images/${rec.photo}.png`;
+  photoEl.onerror = function() {
+    this.onerror = null;
+    this.src = `images/${rec.photo}.jpg`;
+    this.onerror = function() {
+      this.style.display = 'none';
+      placeholderEl.style.display = 'block';
+    };
+  };
+  photoEl.style.display = 'block';
+  placeholderEl.style.display = 'none';
+
+  document.getElementById('spotLabel').textContent = rec.label;
+  document.getElementById('spotName').textContent = rec.name;
+  document.getElementById('spotValue').textContent = rec.value;
+  document.getElementById('spotNote').textContent = rec.note;
+  document.getElementById('spotCounter').textContent = `${idx + 1} / ${SPOTLIGHT_RECORDS.length}`;
+
+  document.querySelectorAll('.spot-dot').forEach((d, i) => {
+    d.classList.toggle('active', i === idx);
+  });
+}
+
+function buildSpotDots() {
+  const container = document.getElementById('spotDots');
+  container.innerHTML = SPOTLIGHT_RECORDS.map((_, i) =>
+    `<div class="spot-dot${i === 0 ? ' active' : ''}" data-i="${i}"></div>`
+  ).join('');
+  container.addEventListener('click', e => {
+    const dot = e.target.closest('.spot-dot');
+    if (!dot) return;
+    spotIndex = parseInt(dot.dataset.i);
+    renderSpotlight(spotIndex);
+  });
+}
+
+document.getElementById('spotPrev').addEventListener('click', () => {
+  spotIndex = (spotIndex - 1 + SPOTLIGHT_RECORDS.length) % SPOTLIGHT_RECORDS.length;
+  renderSpotlight(spotIndex);
+});
+document.getElementById('spotNext').addEventListener('click', () => {
+  spotIndex = (spotIndex + 1) % SPOTLIGHT_RECORDS.length;
+  renderSpotlight(spotIndex);
+});
+
+// ─── LAST UPDATED ─────────────────────────────────────────────────────────────
+
+fetch('profiles-data.json')
+  .then(r => r.json())
+  .then(data => {
+    const date = data.pageUpdates && data.pageUpdates['career-records'];
+    if (date) document.getElementById('pageUpdated').textContent = 'Updated · ' + date;
+  })
+  .catch(() => {});
+
+// ─── INIT ─────────────────────────────────────────────────────────────────────
+
+buildSpotDots();
+renderSpotlight(0);
+applyFilterVisibility();
+buildAllTables();
+</script>
+</body>
+</html>
