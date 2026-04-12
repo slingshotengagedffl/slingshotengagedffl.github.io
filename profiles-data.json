@@ -1,1171 +1,5 @@
 {
   "owners": {
-    "jack": {
-      "name": "Jack",
-      "nickname": "The Commish",
-      "memberSince": 2014,
-      "photo": "../images/jack.jpg",
-      "lastUpdated": "April 2, 2026",
-      "location": "California",
-      "locationEmoji": "\ud83c\udf34",
-      "broughtInBy": "League Founder",
-      "statusLines": [
-        "Commissioner",
-        "2X LEAGUE CHAMPION",
-        "HALL OF GREATNESS INDUCTEE"
-      ],
-      "prestige": {
-        "rank": 2,
-        "points": 2155,
-        "outOf": 27
-      },
-      "traits": [
-        {
-          "emoji": "\ud83d\udd01",
-          "label": "SERIAL TRADER"
-        },
-        {
-          "emoji": "\ud83e\udd92",
-          "label": "ELITE LENGTH"
-        },
-        {
-          "emoji": "\ud83d\udc51",
-          "label": "DICTATOR TENDENCIES"
-        },
-        {
-          "emoji": "\ud83d\ude24",
-          "label": "PLAYS DESPERATE"
-        }
-      ],
-      "currentSeason": {
-        "year": 2026,
-        "record": null,
-        "standing": null,
-        "ptsPerGame": null,
-        "lastGame": {
-          "result": "W",
-          "opponent": "MATT",
-          "score": "153.64-101.20",
-          "lifetimeVsOpponent": "9-3"
-        },
-        "nextGame": {
-          "opponent": null,
-          "lifetimeVsOpponent": null
-        }
-      },
-      "rivalries": {
-        "owns": [],
-        "ownedBy": [],
-        "rivals": "DYLAN & DANIEL",
-        "ryderCup": "THE MUSCULAR"
-      },
-      "narrative": {
-        "sectionLabel": "The Narrative",
-        "pullQuote": "THAT'S SHOWBIZ BABY",
-        "body": "OH YEAH THIS IS SICK AS HELL. COMMISH GONNA GO WILD IN 2026 CAUSE IT'S HIS YEAR. #MYNINERS"
-      },
-      "careerStats": {
-        "general": [
-          {
-            "stat": "Seasons Played",
-            "value": 12,
-            "rank": "#1",
-            "explainer": null,
-            "isEarnings": false
-          },
-          {
-            "stat": "Net Earnings",
-            "value": 730,
-            "rank": "#2",
-            "explainer": "Total winnings minus entry fees",
-            "isEarnings": true
-          },
-          {
-            "stat": "Prestige Points",
-            "value": 2155,
-            "rank": "#2",
-            "explainer": null,
-            "isEarnings": false
-          }
-        ],
-        "regularSeason": [
-          {
-            "stat": "Wins",
-            "value": 99,
-            "rank": "#1",
-            "explainer": null,
-            "isEarnings": false
-          },
-          {
-            "stat": "Win %",
-            "value": 0.615,
-            "rank": "#1",
-            "explainer": null,
-            "isEarnings": false
-          },
-          {
-            "stat": "Avg Finish",
-            "value": 4.9,
-            "rank": "#2",
-            "explainer": null,
-            "isEarnings": false
-          },
-          {
-            "stat": "Pts Per Game",
-            "value": 99.38,
-            "rank": "#2",
-            "explainer": null,
-            "isEarnings": false
-          },
-          {
-            "stat": "Point Share",
-            "value": "7.77%",
-            "rank": "#2",
-            "explainer": "% of total league points scored",
-            "isEarnings": false
-          },
-          {
-            "stat": "Career High Score",
-            "value": 168.8,
-            "rank": "#4",
-            "explainer": null,
-            "isEarnings": false
-          },
-          {
-            "stat": "Weekly High Scores",
-            "value": 19,
-            "rank": "#1",
-            "explainer": null,
-            "isEarnings": false
-          },
-          {
-            "stat": "Power Score",
-            "value": 132.42,
-            "rank": "#2",
-            "explainer": null,
-            "isEarnings": false
-          },
-          {
-            "stat": "Weeks at #1",
-            "value": 27,
-            "rank": "#1",
-            "explainer": null,
-            "isEarnings": false
-          },
-          {
-            "stat": "Boom Rate",
-            "value": "31.1%",
-            "rank": "#2",
-            "explainer": "% of games scoring 120% or more of league average",
-            "isEarnings": false
-          },
-          {
-            "stat": "Start Rate",
-            "value": "60.9%",
-            "rank": "#2",
-            "explainer": "% of games scoring at or above league average",
-            "isEarnings": false
-          },
-          {
-            "stat": "Luck Rate",
-            "value": "3.41%",
-            "rank": "#2",
-            "explainer": "Win % above/below expected",
-            "isEarnings": false
-          }
-        ],
-        "playoffs": [
-          {
-            "stat": "Appearances",
-            "value": 8,
-            "rank": "T-1",
-            "explainer": null,
-            "isEarnings": false
-          },
-          {
-            "stat": "Wins",
-            "value": 7,
-            "rank": "#3",
-            "explainer": null,
-            "isEarnings": false
-          },
-          {
-            "stat": "Win %",
-            "value": 0.538,
-            "rank": "#5",
-            "explainer": null,
-            "isEarnings": false
-          },
-          {
-            "stat": "Championships",
-            "value": 2,
-            "rank": "T-2",
-            "explainer": null,
-            "isEarnings": false
-          }
-        ]
-      },
-      "charts": {
-        "winsAndFinish": {
-          "years": [
-            2014,
-            2015,
-            2016,
-            2017,
-            2018,
-            2019,
-            2020,
-            2021,
-            2022,
-            2023,
-            2024,
-            2025,
-            2026
-          ],
-          "wins": [
-            10,
-            7,
-            7,
-            8,
-            12,
-            10,
-            6,
-            7,
-            7,
-            9,
-            6,
-            10,
-            null
-          ],
-          "finish": [
-            1,
-            5,
-            5,
-            5,
-            1,
-            2,
-            9,
-            8,
-            8,
-            3,
-            11,
-            1,
-            null
-          ]
-        },
-        "pointShare": {
-          "years": [
-            2014,
-            2015,
-            2016,
-            2017,
-            2018,
-            2019,
-            2020,
-            2021,
-            2022,
-            2023,
-            2024,
-            2025,
-            2026
-          ],
-          "values": [
-            8.62,
-            7.42,
-            7.42,
-            7.66,
-            8.84,
-            7.52,
-            7.25,
-            7.37,
-            6.87,
-            8.17,
-            6.88,
-            8.15,
-            null
-          ]
-        },
-        "winnings": {
-          "years": [
-            2014,
-            2015,
-            2016,
-            2017,
-            2018,
-            2019,
-            2020,
-            2021,
-            2022,
-            2023,
-            2024,
-            2025,
-            2026
-          ],
-          "values": [
-            75,
-            0,
-            0,
-            10,
-            330,
-            210,
-            75,
-            107.5,
-            15,
-            317,
-            235,
-            220,
-            null
-          ]
-        },
-        "prestigePerSeason": {
-          "years": [
-            2014,
-            2015,
-            2016,
-            2017,
-            2018,
-            2019,
-            2020,
-            2021,
-            2022,
-            2023,
-            2024,
-            2025,
-            2026
-          ],
-          "values": [
-            251,
-            108,
-            61,
-            125,
-            571,
-            480,
-            74,
-            59,
-            42,
-            139,
-            54,
-            191,
-            null
-          ]
-        }
-      },
-      "seasons": [
-        {
-          "year": 2026,
-          "teamName": null,
-          "record": null,
-          "finish": null,
-          "ptsPerGame": null,
-          "pointShare": null,
-          "powerScore": null,
-          "winnings": null,
-          "prestigeEarned": null,
-          "playoffResult": null,
-          "result": null
-        },
-        {
-          "year": 2025,
-          "teamName": "Proper Feck'n Eejits \u2618\ufe0f",
-          "record": "10-4",
-          "finish": 1,
-          "ptsPerGame": 104.98,
-          "pointShare": "8.0%",
-          "powerScore": 146.38,
-          "winnings": 220.0,
-          "prestigeEarned": 191,
-          "playoffResult": "Lost in Semifinals",
-          "result": "playoff"
-        },
-        {
-          "year": 2024,
-          "teamName": "Bayou Bears Be Howlin' \ud83c\udf0a\ud83d\udc3b",
-          "record": "6-8",
-          "finish": 11,
-          "ptsPerGame": 90.82,
-          "pointShare": "7.0%",
-          "powerScore": 113.5,
-          "winnings": 235.0,
-          "prestigeEarned": 54,
-          "playoffResult": "Missed Playoffs",
-          "result": "missed"
-        },
-        {
-          "year": 2023,
-          "teamName": "The Night Commish",
-          "record": "9-5",
-          "finish": 3,
-          "ptsPerGame": 104.78,
-          "pointShare": "8.0%",
-          "powerScore": 137.93,
-          "winnings": 317.0,
-          "prestigeEarned": 139,
-          "playoffResult": "Lost in First Round",
-          "result": "playoff"
-        },
-        {
-          "year": 2022,
-          "teamName": "The 100 Point Exceeders \ud83d\udcaf",
-          "record": "7-7",
-          "finish": 8,
-          "ptsPerGame": 87.02,
-          "pointShare": "7.0%",
-          "powerScore": 111.54,
-          "winnings": 15.0,
-          "prestigeEarned": 42,
-          "playoffResult": "Missed Playoffs",
-          "result": "missed"
-        },
-        {
-          "year": 2021,
-          "teamName": "Beef Spritz Boys \ud83d\udc2e\ud83d\udca6",
-          "record": "7-7",
-          "finish": 8,
-          "ptsPerGame": 97.18,
-          "pointShare": "7.0%",
-          "powerScore": 125.58,
-          "winnings": 107.5,
-          "prestigeEarned": 59,
-          "playoffResult": "Missed Playoffs",
-          "result": "missed"
-        },
-        {
-          "year": 2020,
-          "teamName": "Tangy \ud83d\udc45\ud83c\udf5eSourdough ",
-          "record": "6-7",
-          "finish": 9,
-          "ptsPerGame": 96.8,
-          "pointShare": "7.0%",
-          "powerScore": 115.26,
-          "winnings": 75.0,
-          "prestigeEarned": 74,
-          "playoffResult": "Missed Playoffs",
-          "result": "missed"
-        },
-        {
-          "year": 2019,
-          "teamName": "The Beacons are Lit",
-          "record": "10-3",
-          "finish": 2,
-          "ptsPerGame": 97.66,
-          "pointShare": "8.0%",
-          "powerScore": 140.42,
-          "winnings": 210.0,
-          "prestigeEarned": 480,
-          "playoffResult": "Won Championship",
-          "result": "champion"
-        },
-        {
-          "year": 2018,
-          "teamName": "America's Commish",
-          "record": "12-1",
-          "finish": 1,
-          "ptsPerGame": 121.18,
-          "pointShare": "9.0%",
-          "powerScore": 174.34,
-          "winnings": 330.0,
-          "prestigeEarned": 571,
-          "playoffResult": "Won Championship",
-          "result": "champion"
-        },
-        {
-          "year": 2017,
-          "teamName": "Commissioner Action Jackson",
-          "record": "8-5",
-          "finish": 5,
-          "ptsPerGame": 93.45,
-          "pointShare": "8.0%",
-          "powerScore": 130.0,
-          "winnings": 10.0,
-          "prestigeEarned": 125,
-          "playoffResult": "Lost in Semifinals",
-          "result": "playoff"
-        },
-        {
-          "year": 2016,
-          "teamName": "Action Jaxson Strikes Back",
-          "record": "7-6",
-          "finish": 5,
-          "ptsPerGame": 95.53,
-          "pointShare": "7.0%",
-          "powerScore": 121.61,
-          "winnings": 0.0,
-          "prestigeEarned": 61,
-          "playoffResult": "Lost in First Round",
-          "result": "playoff"
-        },
-        {
-          "year": 2015,
-          "teamName": "The Dezman Cometh",
-          "record": "7-6",
-          "finish": 5,
-          "ptsPerGame": 93.22,
-          "pointShare": "7.0%",
-          "powerScore": 118.2,
-          "winnings": 0.0,
-          "prestigeEarned": 108,
-          "playoffResult": "Lost in Semifinals",
-          "result": "playoff"
-        },
-        {
-          "year": 2014,
-          "teamName": "Action Jaxson",
-          "record": "10-3",
-          "finish": 1,
-          "ptsPerGame": 110.83,
-          "pointShare": "9.0%",
-          "powerScore": 151.22,
-          "winnings": 75.0,
-          "prestigeEarned": 251,
-          "playoffResult": "Lost in Slingshot Bowl",
-          "result": "finalist"
-        }
-      ],
-      "trophies": [
-        {
-          "name": "League Champion",
-          "count": 2
-        },
-        {
-          "name": "2nd Place",
-          "count": 1
-        },
-        {
-          "name": "3rd Place",
-          "count": 1
-        },
-        {
-          "name": "Regular Season Champion",
-          "count": 3
-        },
-        {
-          "name": "Owner of the Year",
-          "count": 0
-        },
-        {
-          "name": "AVL Memorial Cup",
-          "count": 0
-        },
-        {
-          "name": "Rivalry Week",
-          "count": 0
-        },
-        {
-          "name": "Hottest Team in Sports Bowl",
-          "count": 2
-        },
-        {
-          "name": "Hung the * Chain",
-          "count": 1
-        },
-        {
-          "name": "Intercontinental Champ",
-          "count": 0
-        },
-        {
-          "name": "Somehow the Champion",
-          "count": 2
-        },
-        {
-          "name": "Survivor King",
-          "count": 2
-        },
-        {
-          "name": "Degen Bowl",
-          "count": 1
-        },
-        {
-          "name": "Dad Bod's Preseason Rankings",
-          "count": 2
-        },
-        {
-          "name": "JopO or KG Pick 'Em",
-          "count": 1
-        },
-        {
-          "name": "Da Choppaaa Champ",
-          "count": 0
-        },
-        {
-          "name": "Bronze Franz",
-          "count": 0
-        }
-      ],
-      "headToHead": {
-        "dylan": {
-          "wins": 7,
-          "losses": 6,
-          "winPct": 0.538
-        }
-      }
-    },
-    "dylan": {
-      "name": "Dylan",
-      "nickname": "Dyl",
-      "memberSince": 2015,
-      "photo": "../images/dylan.jpg",
-      "lastUpdated": "April 3, 2026",
-      "location": "Maryland",
-      "locationEmoji": "\ud83e\udd80",
-      "broughtInBy": "Recruited by Brian",
-      "statusLines": [
-        "3x League Champion"
-      ],
-      "prestige": {
-        "rank": 1,
-        "points": 2201,
-        "outOf": 27
-      },
-      "traits": [],
-      "currentSeason": {
-        "year": 2026,
-        "record": null,
-        "standing": null,
-        "ptsPerGame": null,
-        "lastGame": {
-          "result": null,
-          "opponent": null,
-          "score": null,
-          "lifetimeVsOpponent": null
-        },
-        "nextGame": {
-          "opponent": null,
-          "lifetimeVsOpponent": null
-        }
-      },
-      "rivalries": {
-        "owns": [],
-        "ownedBy": [],
-        "rivals": null,
-        "ryderCup": null
-      },
-      "narrative": {
-        "sectionLabel": "The Narrative",
-        "pullQuote": null,
-        "body": null
-      },
-      "careerStats": {
-        "general": [
-          {
-            "stat": "Seasons Played",
-            "value": 11,
-            "rank": "#2",
-            "explainer": null,
-            "isEarnings": false
-          },
-          {
-            "stat": "Net Earnings",
-            "value": 321,
-            "rank": "#3",
-            "explainer": "Total winnings minus entry fees",
-            "isEarnings": true
-          },
-          {
-            "stat": "Prestige Points",
-            "value": 2201,
-            "rank": "#1",
-            "explainer": null,
-            "isEarnings": false
-          }
-        ],
-        "regularSeason": [
-          {
-            "stat": "Wins",
-            "value": 84,
-            "rank": "#3",
-            "explainer": null,
-            "isEarnings": false
-          },
-          {
-            "stat": "Win %",
-            "value": 0.568,
-            "rank": "#3",
-            "explainer": null,
-            "isEarnings": false
-          },
-          {
-            "stat": "Avg Finish",
-            "value": 5.4,
-            "rank": "#3",
-            "explainer": null,
-            "isEarnings": false
-          },
-          {
-            "stat": "Pts Per Game",
-            "value": 96.41,
-            "rank": "#3",
-            "explainer": null,
-            "isEarnings": false
-          },
-          {
-            "stat": "Point Share",
-            "value": "7.45%",
-            "rank": "#3",
-            "explainer": "% of total league points scored",
-            "isEarnings": false
-          },
-          {
-            "stat": "Career High Score",
-            "value": 163.3,
-            "rank": "#6",
-            "explainer": null,
-            "isEarnings": false
-          },
-          {
-            "stat": "Weekly High Scores",
-            "value": 13,
-            "rank": "#4",
-            "explainer": null,
-            "isEarnings": false
-          },
-          {
-            "stat": "Power Score",
-            "value": 126.87,
-            "rank": "#3",
-            "explainer": null,
-            "isEarnings": false
-          },
-          {
-            "stat": "Weeks at #1",
-            "value": 9,
-            "rank": "#7",
-            "explainer": null,
-            "isEarnings": false
-          },
-          {
-            "stat": "Boom Rate",
-            "value": "25.0%",
-            "rank": "#3",
-            "explainer": "% of games scoring 120% or more of league average",
-            "isEarnings": false
-          },
-          {
-            "stat": "Start Rate",
-            "value": "53.4%",
-            "rank": "#4",
-            "explainer": "% of games scoring at or above league average",
-            "isEarnings": false
-          },
-          {
-            "stat": "Luck Rate",
-            "value": "2.18%",
-            "rank": "#4",
-            "explainer": "Win % above/below expected",
-            "isEarnings": false
-          }
-        ],
-        "playoffs": [
-          {
-            "stat": "Appearances",
-            "value": 7,
-            "rank": "T-3",
-            "explainer": null,
-            "isEarnings": false
-          },
-          {
-            "stat": "Wins",
-            "value": 8,
-            "rank": "#2",
-            "explainer": null,
-            "isEarnings": false
-          },
-          {
-            "stat": "Win %",
-            "value": 0.667,
-            "rank": "#1",
-            "explainer": null,
-            "isEarnings": false
-          },
-          {
-            "stat": "Championships",
-            "value": 3,
-            "rank": "#1",
-            "explainer": null,
-            "isEarnings": false
-          }
-        ]
-      },
-      "charts": {
-        "winsAndFinish": {
-          "years": [
-            2014,
-            2015,
-            2016,
-            2017,
-            2018,
-            2019,
-            2020,
-            2021,
-            2022,
-            2023,
-            2024,
-            2025,
-            2026
-          ],
-          "wins": [
-            null,
-            8,
-            6,
-            10,
-            7,
-            8,
-            3,
-            9,
-            6,
-            10,
-            8,
-            9,
-            null
-          ],
-          "finish": [
-            null,
-            4,
-            7,
-            1,
-            6,
-            3,
-            14,
-            2,
-            9,
-            2,
-            7,
-            4,
-            null
-          ]
-        },
-        "pointShare": {
-          "years": [
-            2014,
-            2015,
-            2016,
-            2017,
-            2018,
-            2019,
-            2020,
-            2021,
-            2022,
-            2023,
-            2024,
-            2025,
-            2026
-          ],
-          "values": [
-            null,
-            7.37,
-            7.67,
-            7.9,
-            7.93,
-            7.88,
-            6.57,
-            8.1,
-            6.51,
-            7.44,
-            7.37,
-            7.2,
-            null
-          ]
-        },
-        "winnings": {
-          "years": [
-            2014,
-            2015,
-            2016,
-            2017,
-            2018,
-            2019,
-            2020,
-            2021,
-            2022,
-            2023,
-            2024,
-            2025,
-            2026
-          ],
-          "values": [
-            null,
-            0,
-            20,
-            370,
-            20,
-            10,
-            0,
-            400,
-            117.5,
-            155,
-            20,
-            383,
-            null
-          ]
-        },
-        "prestigePerSeason": {
-          "years": [
-            2014,
-            2015,
-            2016,
-            2017,
-            2018,
-            2019,
-            2020,
-            2021,
-            2022,
-            2023,
-            2024,
-            2025,
-            2026
-          ],
-          "values": [
-            null,
-            53,
-            59,
-            539,
-            144,
-            125,
-            21,
-            511,
-            25,
-            156,
-            58,
-            510,
-            null
-          ]
-        }
-      },
-      "seasons": [
-        {
-          "year": 2026,
-          "teamName": null,
-          "record": null,
-          "finish": null,
-          "ptsPerGame": null,
-          "pointShare": null,
-          "powerScore": null,
-          "winnings": null,
-          "prestigeEarned": null,
-          "playoffResult": null,
-          "result": null
-        },
-        {
-          "year": 2025,
-          "teamName": "\ud83e\udd77 RageCage \ud83e\udd77",
-          "record": "9-5",
-          "finish": 4,
-          "ptsPerGame": 92.63,
-          "pointShare": "7.0%",
-          "powerScore": 126.68,
-          "winnings": 383.0,
-          "prestigeEarned": 510,
-          "playoffResult": "Won Championship",
-          "result": "champion"
-        },
-        {
-          "year": 2024,
-          "teamName": "The Overprojectors",
-          "record": "8-6",
-          "finish": 7,
-          "ptsPerGame": 97.36,
-          "pointShare": "7.0%",
-          "powerScore": 129.44,
-          "winnings": 20.0,
-          "prestigeEarned": 58,
-          "playoffResult": "Missed Playoffs",
-          "result": "missed"
-        },
-        {
-          "year": 2023,
-          "teamName": "Back Yard Olympic Bronz Frogz",
-          "record": "10-4",
-          "finish": 2,
-          "ptsPerGame": 95.44,
-          "pointShare": "7.0%",
-          "powerScore": 136.56,
-          "winnings": 155.0,
-          "prestigeEarned": 156,
-          "playoffResult": "Lost in Semifinals",
-          "result": "playoff"
-        },
-        {
-          "year": 2022,
-          "teamName": "The Dumb Poo Poo Poop Heads",
-          "record": "6-8",
-          "finish": 9,
-          "ptsPerGame": 82.42,
-          "pointShare": "7.0%",
-          "powerScore": 101.13,
-          "winnings": 117.5,
-          "prestigeEarned": 25,
-          "playoffResult": "Missed Playoffs",
-          "result": "missed"
-        },
-        {
-          "year": 2021,
-          "teamName": "Keep My 6 and 9 Seperate",
-          "record": "9-5",
-          "finish": 2,
-          "ptsPerGame": 106.76,
-          "pointShare": "8.0%",
-          "powerScore": 141.06,
-          "winnings": 400.0,
-          "prestigeEarned": 511,
-          "playoffResult": "Won Championship",
-          "result": "champion"
-        },
-        {
-          "year": 2020,
-          "teamName": "CantSpellJesus WithoutSus",
-          "record": "3-10",
-          "finish": 14,
-          "ptsPerGame": 87.76,
-          "pointShare": "7.0%",
-          "powerScore": 97.53,
-          "winnings": 0.0,
-          "prestigeEarned": 21,
-          "playoffResult": "Missed Playoffs",
-          "result": "missed"
-        },
-        {
-          "year": 2019,
-          "teamName": "Merrickles Testicles",
-          "record": "8-5",
-          "finish": 3,
-          "ptsPerGame": 102.31,
-          "pointShare": "8.0%",
-          "powerScore": 136.83,
-          "winnings": 10.0,
-          "prestigeEarned": 125,
-          "playoffResult": "Lost in Semifinals",
-          "result": "playoff"
-        },
-        {
-          "year": 2018,
-          "teamName": "Plunder Buns",
-          "record": "7-6",
-          "finish": 6,
-          "ptsPerGame": 108.72,
-          "pointShare": "8.0%",
-          "powerScore": 134.47,
-          "winnings": 20.0,
-          "prestigeEarned": 144,
-          "playoffResult": "Lost in Semifinals",
-          "result": "playoff"
-        },
-        {
-          "year": 2017,
-          "teamName": "Golden Bells",
-          "record": "10-3",
-          "finish": 1,
-          "ptsPerGame": 96.45,
-          "pointShare": "8.0%",
-          "powerScore": 138.22,
-          "winnings": 370.0,
-          "prestigeEarned": 539,
-          "playoffResult": "Won Championship",
-          "result": "champion"
-        },
-        {
-          "year": 2016,
-          "teamName": "Daddy's Lil Diddle",
-          "record": "6-7",
-          "finish": 7,
-          "ptsPerGame": 98.73,
-          "pointShare": "8.0%",
-          "powerScore": 122.25,
-          "winnings": 20.0,
-          "prestigeEarned": 59,
-          "playoffResult": "Missed Playoffs",
-          "result": "missed"
-        },
-        {
-          "year": 2015,
-          "teamName": "Hakuna MaNgata",
-          "record": "8-5",
-          "finish": 4,
-          "ptsPerGame": 92.5,
-          "pointShare": "7.0%",
-          "powerScore": 123.62,
-          "winnings": 0.0,
-          "prestigeEarned": 53,
-          "playoffResult": "Lost in First Round",
-          "result": "playoff"
-        }
-      ],
-      "trophies": [
-        {
-          "name": "League Champion",
-          "count": 3
-        },
-        {
-          "name": "2nd Place",
-          "count": 0
-        },
-        {
-          "name": "3rd Place",
-          "count": 1
-        },
-        {
-          "name": "Regular Season Champion",
-          "count": 1
-        },
-        {
-          "name": "Owner of the Year",
-          "count": 0
-        },
-        {
-          "name": "AVL Memorial Cup",
-          "count": 0
-        },
-        {
-          "name": "Rivalry Week",
-          "count": 3
-        },
-        {
-          "name": "Hottest Team in Sports Bowl",
-          "count": 0
-        },
-        {
-          "name": "Hung the * Chain",
-          "count": 0
-        },
-        {
-          "name": "Intercontinental Champ",
-          "count": 1
-        },
-        {
-          "name": "Somehow the Champion",
-          "count": 0
-        },
-        {
-          "name": "Survivor King",
-          "count": 0
-        },
-        {
-          "name": "Degen Bowl",
-          "count": 0
-        },
-        {
-          "name": "Dad Bod's Preseason Rankings",
-          "count": 2
-        },
-        {
-          "name": "JopO or KG Pick 'Em",
-          "count": 0
-        },
-        {
-          "name": "Da Choppaaa Champ",
-          "count": 0
-        },
-        {
-          "name": "Bronze Franz",
-          "count": 0
-        }
-      ],
-      "headToHead": {
-        "jack": {
-          "wins": 6,
-          "losses": 7,
-          "winPct": 0.462
-        }
-      }
-    },
     "alex": {
       "name": "Alex",
       "nickname": "AVL",
@@ -1173,15 +7,34 @@
       "photo": "../images/alex.jpg",
       "lastUpdated": null,
       "location": "Minnesota",
-      "locationEmoji": "\u2744\ufe0f",
+      "locationEmoji": "❄️",
       "broughtInBy": "Recruited by Timbe (ret)",
-      "statusLines": [],
+      "statusLines": [
+        "LEAGUE CHAMPION"
+      ],
       "prestige": {
         "rank": 5,
         "points": 1431,
         "outOf": 27
       },
-      "traits": [],
+      "traits": [
+        {
+          "emoji": "👶",
+          "label": "DINK Life"
+        },
+        {
+          "emoji": "🧻",
+          "label": "Incredibly Pale"
+        },
+        {
+          "emoji": "👀",
+          "label": "Body Analyst"
+        },
+        {
+          "emoji": "❄️",
+          "label": "Minnesota Nice"
+        }
+      ],
       "currentSeason": {
         "year": 2026,
         "record": null,
@@ -1201,14 +54,15 @@
       "rivalries": {
         "owns": [],
         "ownedBy": [],
-        "rivals": null,
-        "ryderCup": null
+        "rivals": "TBD",
+        "ryderCup": "TBD"
       },
       "narrative": {
         "sectionLabel": "The Narrative",
         "pullQuote": null,
         "body": null
       },
+      "dossierNotes": null,
       "careerStats": {
         "general": [
           {
@@ -1515,7 +369,7 @@
           "record": "5-9",
           "finish": 13,
           "ptsPerGame": 83.68,
-          "pointShare": "6.0%",
+          "pointShare": "6.5%",
           "powerScore": 100.67,
           "winnings": 33.0,
           "prestigeEarned": 36,
@@ -1528,7 +382,7 @@
           "record": "3-11",
           "finish": 14,
           "ptsPerGame": 88.69,
-          "pointShare": "7.0%",
+          "pointShare": "6.7%",
           "powerScore": 95.73,
           "winnings": 5.0,
           "prestigeEarned": 21,
@@ -1541,7 +395,7 @@
           "record": "10-4",
           "finish": 1,
           "ptsPerGame": 110.16,
-          "pointShare": "9.0%",
+          "pointShare": "8.6%",
           "powerScore": 146.23,
           "winnings": 450.0,
           "prestigeEarned": 587,
@@ -1550,11 +404,11 @@
         },
         {
           "year": 2022,
-          "teamName": "StartedFromThe BottomNowImHere ",
+          "teamName": "StartedFromThe BottomNowImHere",
           "record": "5-9",
           "finish": 10,
           "ptsPerGame": 81.01,
-          "pointShare": "6.0%",
+          "pointShare": "6.4%",
           "powerScore": 96.73,
           "winnings": 10.0,
           "prestigeEarned": 33,
@@ -1580,12 +434,12 @@
           "record": "8-5",
           "finish": 3,
           "ptsPerGame": 101.73,
-          "pointShare": "8.0%",
+          "pointShare": "7.6%",
           "powerScore": 135.45,
           "winnings": 100.0,
           "prestigeEarned": 148,
           "playoffResult": "Lost in Semifinals",
-          "result": "playoff"
+          "result": "playoffs"
         },
         {
           "year": 2019,
@@ -1593,7 +447,7 @@
           "record": "12-1",
           "finish": 1,
           "ptsPerGame": 101.87,
-          "pointShare": "8.0%",
+          "pointShare": "7.8%",
           "powerScore": 151.61,
           "winnings": 215.0,
           "prestigeEarned": 297,
@@ -1606,7 +460,7 @@
           "record": "5-8",
           "finish": 10,
           "ptsPerGame": 94.64,
-          "pointShare": "7.0%",
+          "pointShare": "6.9%",
           "powerScore": 109.5,
           "winnings": 0.0,
           "prestigeEarned": 22,
@@ -1619,12 +473,12 @@
           "record": "8-5",
           "finish": 6,
           "ptsPerGame": 82.28,
-          "pointShare": "7.0%",
+          "pointShare": "6.7%",
           "powerScore": 115.06,
           "winnings": 50.0,
           "prestigeEarned": 107,
           "playoffResult": "Lost in Semifinals",
-          "result": "playoff"
+          "result": "playoffs"
         },
         {
           "year": 2016,
@@ -1637,7 +491,33 @@
           "winnings": 10.0,
           "prestigeEarned": 145,
           "playoffResult": "Lost in Semifinals",
-          "result": "playoff"
+          "result": "playoffs"
+        },
+        {
+          "year": 2015,
+          "teamName": null,
+          "record": null,
+          "finish": null,
+          "ptsPerGame": null,
+          "pointShare": null,
+          "powerScore": null,
+          "winnings": null,
+          "prestigeEarned": null,
+          "playoffResult": null,
+          "result": null
+        },
+        {
+          "year": 2014,
+          "teamName": null,
+          "record": null,
+          "finish": null,
+          "ptsPerGame": null,
+          "pointShare": null,
+          "powerScore": null,
+          "winnings": null,
+          "prestigeEarned": null,
+          "playoffResult": null,
+          "result": null
         }
       ],
       "trophies": [
@@ -1719,7 +599,7 @@
       "photo": "../images/andy.jpg",
       "lastUpdated": null,
       "location": "Colorado",
-      "locationEmoji": "\ud83c\udfd4\ufe0f",
+      "locationEmoji": "🏔️",
       "broughtInBy": "Recruited by Scott",
       "statusLines": [],
       "prestige": {
@@ -1727,7 +607,24 @@
         "points": 300,
         "outOf": 27
       },
-      "traits": [],
+      "traits": [
+        {
+          "emoji": "🍺",
+          "label": "Chug Champ"
+        },
+        {
+          "emoji": "🪙",
+          "label": "FAAB Penny Pincher"
+        },
+        {
+          "emoji": "📣",
+          "label": "Loud"
+        },
+        {
+          "emoji": "👕",
+          "label": "Shirt Optional"
+        }
+      ],
       "currentSeason": {
         "year": 2026,
         "record": null,
@@ -1747,14 +644,15 @@
       "rivalries": {
         "owns": [],
         "ownedBy": [],
-        "rivals": null,
-        "ryderCup": null
+        "rivals": "TBD",
+        "ryderCup": "TBD"
       },
       "narrative": {
         "sectionLabel": "The Narrative",
         "pullQuote": null,
         "body": null
       },
+      "dossierNotes": null,
       "careerStats": {
         "general": [
           {
@@ -2061,7 +959,7 @@
           "record": "5-9",
           "finish": 11,
           "ptsPerGame": 85.91,
-          "pointShare": "7.0%",
+          "pointShare": "6.7%",
           "powerScore": 101.25,
           "winnings": 0.0,
           "prestigeEarned": 24,
@@ -2074,7 +972,7 @@
           "record": "6-8",
           "finish": 9,
           "ptsPerGame": 91.15,
-          "pointShare": "7.0%",
+          "pointShare": "6.9%",
           "powerScore": 109.26,
           "winnings": 10.0,
           "prestigeEarned": 35,
@@ -2087,7 +985,7 @@
           "record": "6-8",
           "finish": 11,
           "ptsPerGame": 86.02,
-          "pointShare": "7.0%",
+          "pointShare": "6.7%",
           "powerScore": 107.89,
           "winnings": 10.0,
           "prestigeEarned": 43,
@@ -2100,133 +998,186 @@
           "record": "12-2",
           "finish": 1,
           "ptsPerGame": 107.29,
-          "pointShare": "8.0%",
+          "pointShare": "8.5%",
           "powerScore": 156.9,
           "winnings": 130.0,
           "prestigeEarned": 198,
           "playoffResult": "Lost in Semifinals",
-          "result": "playoff"
+          "result": "playoffs"
+        },
+        {
+          "year": 2021,
+          "teamName": null,
+          "record": null,
+          "finish": null,
+          "ptsPerGame": null,
+          "pointShare": null,
+          "powerScore": null,
+          "winnings": null,
+          "prestigeEarned": null,
+          "playoffResult": null,
+          "result": null
+        },
+        {
+          "year": 2020,
+          "teamName": null,
+          "record": null,
+          "finish": null,
+          "ptsPerGame": null,
+          "pointShare": null,
+          "powerScore": null,
+          "winnings": null,
+          "prestigeEarned": null,
+          "playoffResult": null,
+          "result": null
+        },
+        {
+          "year": 2019,
+          "teamName": null,
+          "record": null,
+          "finish": null,
+          "ptsPerGame": null,
+          "pointShare": null,
+          "powerScore": null,
+          "winnings": null,
+          "prestigeEarned": null,
+          "playoffResult": null,
+          "result": null
+        },
+        {
+          "year": 2018,
+          "teamName": null,
+          "record": null,
+          "finish": null,
+          "ptsPerGame": null,
+          "pointShare": null,
+          "powerScore": null,
+          "winnings": null,
+          "prestigeEarned": null,
+          "playoffResult": null,
+          "result": null
+        },
+        {
+          "year": 2017,
+          "teamName": null,
+          "record": null,
+          "finish": null,
+          "ptsPerGame": null,
+          "pointShare": null,
+          "powerScore": null,
+          "winnings": null,
+          "prestigeEarned": null,
+          "playoffResult": null,
+          "result": null
+        },
+        {
+          "year": 2016,
+          "teamName": null,
+          "record": null,
+          "finish": null,
+          "ptsPerGame": null,
+          "pointShare": null,
+          "powerScore": null,
+          "winnings": null,
+          "prestigeEarned": null,
+          "playoffResult": null,
+          "result": null
+        },
+        {
+          "year": 2015,
+          "teamName": null,
+          "record": null,
+          "finish": null,
+          "ptsPerGame": null,
+          "pointShare": null,
+          "powerScore": null,
+          "winnings": null,
+          "prestigeEarned": null,
+          "playoffResult": null,
+          "result": null
+        },
+        {
+          "year": 2014,
+          "teamName": null,
+          "record": null,
+          "finish": null,
+          "ptsPerGame": null,
+          "pointShare": null,
+          "powerScore": null,
+          "winnings": null,
+          "prestigeEarned": null,
+          "playoffResult": null,
+          "result": null
         }
       ],
       "trophies": [
         {
           "name": "League Champion",
-          "emoji": "\ud83c\udfc6",
-          "image": "../images/League Champion.png",
-          "count": 0,
-          "won": false
+          "count": 0
         },
         {
           "name": "2nd Place",
-          "emoji": "\ud83e\udd48",
-          "image": "../images/2nd Place.png",
-          "count": 0,
-          "won": false
+          "count": 0
         },
         {
           "name": "3rd Place",
-          "emoji": "\ud83e\udd49",
-          "image": "../images/3rd Place.png",
-          "count": 0,
-          "won": false
+          "count": 0
         },
         {
           "name": "Regular Season Champion",
-          "emoji": "\ud83d\udcc5",
-          "image": "../images/Regular Season Champion.png",
-          "count": 1,
-          "won": true
+          "count": 1
         },
         {
           "name": "Owner of the Year",
-          "emoji": "\ud83d\udc51",
-          "image": "../images/Owner of the Year.png",
-          "count": 0,
-          "won": false
+          "count": 0
         },
         {
           "name": "AVL Memorial Cup",
-          "emoji": "\ud83d\udd6f\ufe0f",
-          "image": "../images/AVL Memorial Cup.png",
-          "count": 0,
-          "won": false
+          "count": 0
         },
         {
           "name": "Rivalry Week",
-          "emoji": "\u2694\ufe0f",
-          "image": "../images/Rivalry Week.png",
-          "count": 0,
-          "won": false
+          "count": 0
         },
         {
           "name": "Hottest Team in Sports Bowl",
-          "emoji": "\ud83d\udd25",
-          "image": "../images/Hottest Team in Sports Bowl.png",
-          "count": 0,
-          "won": false
+          "count": 0
         },
         {
           "name": "Hung the * Chain",
-          "emoji": "\u2b50",
-          "image": "../images/Hung the Star Chain.png",
-          "count": 0,
-          "won": false
+          "count": 0
         },
         {
           "name": "Intercontinental Champ",
-          "emoji": "\ud83c\udf0d",
-          "image": "../images/Intercontinental Champ.png",
-          "count": 1,
-          "won": true
+          "count": 1
         },
         {
           "name": "Somehow the Champion",
-          "emoji": "\ud83c\udfb2",
-          "image": "../images/Somehow the Champion.png",
-          "count": 0,
-          "won": false
+          "count": 0
         },
         {
           "name": "Survivor King",
-          "emoji": "\ud83c\udf34",
-          "image": "../images/Survivor King.png",
-          "count": 0,
-          "won": false
+          "count": 0
         },
         {
           "name": "Degen Bowl",
-          "emoji": "\ud83c\udfb0",
-          "image": "../images/Degen Bowl.png",
-          "count": 0,
-          "won": false
+          "count": 0
         },
         {
           "name": "Dad Bod's Preseason Rankings",
-          "emoji": "\ud83d\udcca",
-          "image": "../images/Dad Bod's Preseason Rankings.png",
-          "count": 0,
-          "won": false
+          "count": 0
         },
         {
           "name": "JopO or KG Pick 'Em",
-          "emoji": "\ud83c\udfaf",
-          "image": "../images/JopO or KG Pick Em.png",
-          "count": 0,
-          "won": false
+          "count": 0
         },
         {
           "name": "Da Choppaaa Champ",
-          "emoji": "\ud83d\ude81",
-          "image": "../images/Da Choppaaa Champ.png",
-          "count": 0,
-          "won": false
+          "count": 0
         },
         {
           "name": "Bronze Franz",
-          "emoji": "\ud83e\udd49",
-          "image": "../images/Bronze Franz.png",
-          "count": 0,
-          "won": false
+          "count": 0
         }
       ],
       "headToHead": {}
@@ -2238,15 +1189,34 @@
       "photo": "../images/brian.png",
       "lastUpdated": null,
       "location": "Maryland",
-      "locationEmoji": "\ud83e\udd80",
+      "locationEmoji": "🦀",
       "broughtInBy": "Recruited by Jack",
-      "statusLines": [],
+      "statusLines": [
+        "LEAGUE CHAMPION"
+      ],
       "prestige": {
         "rank": 7,
         "points": 1009,
         "outOf": 27
       },
-      "traits": [],
+      "traits": [
+        {
+          "emoji": "😄",
+          "label": "Happy to Be Here"
+        },
+        {
+          "emoji": "💪",
+          "label": "Jacked Upper Body"
+        },
+        {
+          "emoji": "🏥",
+          "label": "Injury Prone"
+        },
+        {
+          "emoji": "💬",
+          "label": "Prolific Chatter"
+        }
+      ],
       "currentSeason": {
         "year": 2026,
         "record": null,
@@ -2266,14 +1236,15 @@
       "rivalries": {
         "owns": [],
         "ownedBy": [],
-        "rivals": null,
-        "ryderCup": null
+        "rivals": "TBD",
+        "ryderCup": "TBD"
       },
       "narrative": {
         "sectionLabel": "The Narrative",
         "pullQuote": null,
         "body": null
       },
+      "dossierNotes": null,
       "careerStats": {
         "general": [
           {
@@ -2580,12 +1551,12 @@
           "record": "9-5",
           "finish": 2,
           "ptsPerGame": 99.06,
-          "pointShare": "8.0%",
+          "pointShare": "7.7%",
           "powerScore": 133.92,
           "winnings": 145.0,
           "prestigeEarned": 99,
           "playoffResult": "Lost in First Round",
-          "result": "playoff"
+          "result": "playoffs"
         },
         {
           "year": 2024,
@@ -2593,7 +1564,7 @@
           "record": "7-7",
           "finish": 8,
           "ptsPerGame": 89.75,
-          "pointShare": "7.0%",
+          "pointShare": "6.8%",
           "powerScore": 115.94,
           "winnings": 45.0,
           "prestigeEarned": 46,
@@ -2606,7 +1577,7 @@
           "record": "6-8",
           "finish": 13,
           "ptsPerGame": 77.98,
-          "pointShare": "6.0%",
+          "pointShare": "6.1%",
           "powerScore": 95.02,
           "winnings": 10.0,
           "prestigeEarned": 25,
@@ -2619,12 +1590,12 @@
           "record": "8-6",
           "finish": 6,
           "ptsPerGame": 95.74,
-          "pointShare": "8.0%",
+          "pointShare": "7.6%",
           "powerScore": 124.91,
           "winnings": 20.0,
           "prestigeEarned": 80,
           "playoffResult": "Lost in First Round",
-          "result": "playoff"
+          "result": "playoffs"
         },
         {
           "year": 2021,
@@ -2632,7 +1603,7 @@
           "record": "5-9",
           "finish": 13,
           "ptsPerGame": 84.19,
-          "pointShare": "6.0%",
+          "pointShare": "6.4%",
           "powerScore": 99.15,
           "winnings": 10.0,
           "prestigeEarned": 29,
@@ -2645,7 +1616,7 @@
           "record": "4-9",
           "finish": 13,
           "ptsPerGame": 84.09,
-          "pointShare": "6.0%",
+          "pointShare": "6.3%",
           "powerScore": 97.23,
           "winnings": 0.0,
           "prestigeEarned": 23,
@@ -2654,11 +1625,11 @@
         },
         {
           "year": 2019,
-          "teamName": "The Fu Minshew Choo Choo ",
+          "teamName": "The Fu Minshew Choo Choo",
           "record": "6-7",
           "finish": 8,
           "ptsPerGame": 90.15,
-          "pointShare": "7.0%",
+          "pointShare": "6.9%",
           "powerScore": 107.73,
           "winnings": 40.0,
           "prestigeEarned": 42,
@@ -2671,12 +1642,12 @@
           "record": "8-5",
           "finish": 4,
           "ptsPerGame": 101.47,
-          "pointShare": "7.0%",
+          "pointShare": "7.4%",
           "powerScore": 131.98,
           "winnings": 0.0,
           "prestigeEarned": 60,
           "playoffResult": "Lost in First Round",
-          "result": "playoff"
+          "result": "playoffs"
         },
         {
           "year": 2017,
@@ -2684,7 +1655,7 @@
           "record": "7-6",
           "finish": 7,
           "ptsPerGame": 89.63,
-          "pointShare": "7.0%",
+          "pointShare": "7.3%",
           "powerScore": 119.02,
           "winnings": 0.0,
           "prestigeEarned": 37,
@@ -2697,7 +1668,7 @@
           "record": "9-4",
           "finish": 2,
           "ptsPerGame": 92.08,
-          "pointShare": "7.0%",
+          "pointShare": "7.2%",
           "powerScore": 124.74,
           "winnings": 200.0,
           "prestigeEarned": 474,
@@ -2710,7 +1681,7 @@
           "record": "5-8",
           "finish": 10,
           "ptsPerGame": 90.58,
-          "pointShare": "7.0%",
+          "pointShare": "7.2%",
           "powerScore": 108.66,
           "winnings": 0.0,
           "prestigeEarned": 34,
@@ -2723,7 +1694,7 @@
           "record": "7-6",
           "finish": 5,
           "ptsPerGame": 98.23,
-          "pointShare": "8.0%",
+          "pointShare": "7.6%",
           "powerScore": 125.45,
           "winnings": 0.0,
           "prestigeEarned": 60,
@@ -2734,122 +1705,71 @@
       "trophies": [
         {
           "name": "League Champion",
-          "emoji": "\ud83c\udfc6",
-          "image": "../images/League Champion.png",
-          "count": 1,
-          "won": true
+          "count": 1
         },
         {
           "name": "2nd Place",
-          "emoji": "\ud83e\udd48",
-          "image": "../images/2nd Place.png",
-          "count": 0,
-          "won": false
+          "count": 0
         },
         {
           "name": "3rd Place",
-          "emoji": "\ud83e\udd49",
-          "image": "../images/3rd Place.png",
-          "count": 0,
-          "won": false
+          "count": 0
         },
         {
           "name": "Regular Season Champion",
-          "emoji": "\ud83d\udcc5",
-          "image": "../images/Regular Season Champion.png",
-          "count": 0,
-          "won": false
+          "count": 0
         },
         {
           "name": "Owner of the Year",
-          "emoji": "\ud83d\udc51",
-          "image": "../images/Owner of the Year.png",
-          "count": 0,
-          "won": false
+          "count": 0
         },
         {
           "name": "AVL Memorial Cup",
-          "emoji": "\ud83d\udd6f\ufe0f",
-          "image": "../images/AVL Memorial Cup.png",
-          "count": 0,
-          "won": false
+          "count": 0
         },
         {
           "name": "Rivalry Week",
-          "emoji": "\u2694\ufe0f",
-          "image": "../images/Rivalry Week.png",
-          "count": 0,
-          "won": false
+          "count": 0
         },
         {
           "name": "Hottest Team in Sports Bowl",
-          "emoji": "\ud83d\udd25",
-          "image": "../images/Hottest Team in Sports Bowl.png",
-          "count": 3,
-          "won": true
+          "count": 3
         },
         {
           "name": "Hung the * Chain",
-          "emoji": "\u2b50",
-          "image": "../images/Hung the Star Chain.png",
-          "count": 0,
-          "won": false
+          "count": 0
         },
         {
           "name": "Intercontinental Champ",
-          "emoji": "\ud83c\udf0d",
-          "image": "../images/Intercontinental Champ.png",
-          "count": 0,
-          "won": false
+          "count": 0
         },
         {
           "name": "Somehow the Champion",
-          "emoji": "\ud83c\udfb2",
-          "image": "../images/Somehow the Champion.png",
-          "count": 0,
-          "won": false
+          "count": 0
         },
         {
           "name": "Survivor King",
-          "emoji": "\ud83c\udf34",
-          "image": "../images/Survivor King.png",
-          "count": 0,
-          "won": false
+          "count": 0
         },
         {
           "name": "Degen Bowl",
-          "emoji": "\ud83c\udfb0",
-          "image": "../images/Degen Bowl.png",
-          "count": 0,
-          "won": false
+          "count": 0
         },
         {
           "name": "Dad Bod's Preseason Rankings",
-          "emoji": "\ud83d\udcca",
-          "image": "../images/Dad Bod's Preseason Rankings.png",
-          "count": 0,
-          "won": false
+          "count": 0
         },
         {
           "name": "JopO or KG Pick 'Em",
-          "emoji": "\ud83c\udfaf",
-          "image": "../images/JopO or KG Pick Em.png",
-          "count": 0,
-          "won": false
+          "count": 0
         },
         {
           "name": "Da Choppaaa Champ",
-          "emoji": "\ud83d\ude81",
-          "image": "../images/Da Choppaaa Champ.png",
-          "count": 0,
-          "won": false
+          "count": 0
         },
         {
           "name": "Bronze Franz",
-          "emoji": "\ud83e\udd49",
-          "image": "../images/Bronze Franz.png",
-          "count": 1,
-          "won": true
+          "count": 1
         }
       ],
       "headToHead": {}
@@ -2861,7 +1781,7 @@
       "photo": "../images/daniel.jpg",
       "lastUpdated": null,
       "location": "Colorado",
-      "locationEmoji": "\ud83c\udfd4\ufe0f",
+      "locationEmoji": "🏔️",
       "broughtInBy": "Recruited by Jack",
       "statusLines": [],
       "prestige": {
@@ -2869,7 +1789,24 @@
         "points": 1057,
         "outOf": 27
       },
-      "traits": [],
+      "traits": [
+        {
+          "emoji": "🧗",
+          "label": "Beautiful Movement"
+        },
+        {
+          "emoji": "🍆",
+          "label": "Perv"
+        },
+        {
+          "emoji": "😬",
+          "label": "Unprepared Drafter"
+        },
+        {
+          "emoji": "🗣️",
+          "label": "Certified Trash Talker"
+        }
+      ],
       "currentSeason": {
         "year": 2026,
         "record": null,
@@ -2889,14 +1826,15 @@
       "rivalries": {
         "owns": [],
         "ownedBy": [],
-        "rivals": null,
-        "ryderCup": null
+        "rivals": "TBD",
+        "ryderCup": "TBD"
       },
       "narrative": {
         "sectionLabel": "The Narrative",
         "pullQuote": null,
         "body": null
       },
+      "dossierNotes": null,
       "careerStats": {
         "general": [
           {
@@ -3203,7 +2141,7 @@
           "record": "7-7",
           "finish": 8,
           "ptsPerGame": 94.36,
-          "pointShare": "7.0%",
+          "pointShare": "7.3%",
           "powerScore": 119.29,
           "winnings": 35.0,
           "prestigeEarned": 53,
@@ -3212,11 +2150,11 @@
         },
         {
           "year": 2024,
-          "teamName": "Real Frogs Never Die ",
+          "teamName": "Real Frogs Never Die",
           "record": "10-4",
           "finish": 2,
           "ptsPerGame": 99.24,
-          "pointShare": "8.0%",
+          "pointShare": "7.5%",
           "powerScore": 138.62,
           "winnings": 135.0,
           "prestigeEarned": 231,
@@ -3229,7 +2167,7 @@
           "record": "6-8",
           "finish": 9,
           "ptsPerGame": 95.52,
-          "pointShare": "7.0%",
+          "pointShare": "7.5%",
           "powerScore": 116.99,
           "winnings": 20.0,
           "prestigeEarned": 45,
@@ -3242,12 +2180,12 @@
           "record": "9-5",
           "finish": 4,
           "ptsPerGame": 98.21,
-          "pointShare": "8.0%",
+          "pointShare": "7.8%",
           "powerScore": 129.16,
           "winnings": 316.51,
           "prestigeEarned": 150,
           "playoffResult": "Lost in Semifinals",
-          "result": "playoff"
+          "result": "playoffs"
         },
         {
           "year": 2021,
@@ -3255,7 +2193,7 @@
           "record": "4-10",
           "finish": 14,
           "ptsPerGame": 89.37,
-          "pointShare": "7.0%",
+          "pointShare": "6.8%",
           "powerScore": 101.42,
           "winnings": 15.0,
           "prestigeEarned": 27,
@@ -3268,7 +2206,7 @@
           "record": "5-8",
           "finish": 10,
           "ptsPerGame": 91.98,
-          "pointShare": "7.0%",
+          "pointShare": "6.9%",
           "powerScore": 111.2,
           "winnings": 10.0,
           "prestigeEarned": 25,
@@ -3281,7 +2219,7 @@
           "record": "1-12",
           "finish": 14,
           "ptsPerGame": 69.24,
-          "pointShare": "5.0%",
+          "pointShare": "5.3%",
           "powerScore": 68.76,
           "winnings": 0.0,
           "prestigeEarned": 3,
@@ -3294,12 +2232,12 @@
           "record": "8-5",
           "finish": 3,
           "ptsPerGame": 102.52,
-          "pointShare": "7.0%",
+          "pointShare": "7.5%",
           "powerScore": 134.79,
           "winnings": 20.0,
           "prestigeEarned": 73,
           "playoffResult": "Lost in First Round",
-          "result": "playoff"
+          "result": "playoffs"
         },
         {
           "year": 2017,
@@ -3307,7 +2245,7 @@
           "record": "5-8",
           "finish": 10,
           "ptsPerGame": 79.33,
-          "pointShare": "7.0%",
+          "pointShare": "6.5%",
           "powerScore": 97.84,
           "winnings": 10.0,
           "prestigeEarned": 22,
@@ -3320,7 +2258,7 @@
           "record": "10-3",
           "finish": 1,
           "ptsPerGame": 112.65,
-          "pointShare": "9.0%",
+          "pointShare": "8.8%",
           "powerScore": 152.88,
           "winnings": 200.0,
           "prestigeEarned": 284,
@@ -3333,7 +2271,7 @@
           "record": "5-8",
           "finish": 11,
           "ptsPerGame": 89.18,
-          "pointShare": "7.0%",
+          "pointShare": "7.1%",
           "powerScore": 107.48,
           "winnings": 0.0,
           "prestigeEarned": 31,
@@ -3351,148 +2289,116 @@
           "winnings": 40.0,
           "prestigeEarned": 113,
           "playoffResult": "Lost in Semifinals",
-          "result": "playoff"
+          "result": "playoffs"
         }
       ],
       "trophies": [
         {
           "name": "League Champion",
-          "emoji": "\ud83c\udfc6",
-          "image": "../images/League Champion.png",
-          "count": 0,
-          "won": false
+          "count": 0
         },
         {
           "name": "2nd Place",
-          "emoji": "\ud83e\udd48",
-          "image": "../images/2nd Place.png",
-          "count": 2,
-          "won": true
+          "count": 2
         },
         {
           "name": "3rd Place",
-          "emoji": "\ud83e\udd49",
-          "image": "../images/3rd Place.png",
-          "count": 2,
-          "won": true
+          "count": 2
         },
         {
           "name": "Regular Season Champion",
-          "emoji": "\ud83d\udcc5",
-          "image": "../images/Regular Season Champion.png",
-          "count": 1,
-          "won": true
+          "count": 1
         },
         {
           "name": "Owner of the Year",
-          "emoji": "\ud83d\udc51",
-          "image": "../images/Owner of the Year.png",
-          "count": 1,
-          "won": true
+          "count": 1
         },
         {
           "name": "AVL Memorial Cup",
-          "emoji": "\ud83d\udd6f\ufe0f",
-          "image": "../images/AVL Memorial Cup.png",
-          "count": 0,
-          "won": false
+          "count": 0
         },
         {
           "name": "Rivalry Week",
-          "emoji": "\u2694\ufe0f",
-          "image": "../images/Rivalry Week.png",
-          "count": 0,
-          "won": false
+          "count": 0
         },
         {
           "name": "Hottest Team in Sports Bowl",
-          "emoji": "\ud83d\udd25",
-          "image": "../images/Hottest Team in Sports Bowl.png",
-          "count": 0,
-          "won": false
+          "count": 0
         },
         {
           "name": "Hung the * Chain",
-          "emoji": "\u2b50",
-          "image": "../images/Hung the Star Chain.png",
-          "count": 0,
-          "won": false
+          "count": 0
         },
         {
           "name": "Intercontinental Champ",
-          "emoji": "\ud83c\udf0d",
-          "image": "../images/Intercontinental Champ.png",
-          "count": 0,
-          "won": false
+          "count": 0
         },
         {
           "name": "Somehow the Champion",
-          "emoji": "\ud83c\udfb2",
-          "image": "../images/Somehow the Champion.png",
-          "count": 1,
-          "won": true
+          "count": 1
         },
         {
           "name": "Survivor King",
-          "emoji": "\ud83c\udf34",
-          "image": "../images/Survivor King.png",
-          "count": 0,
-          "won": false
+          "count": 0
         },
         {
           "name": "Degen Bowl",
-          "emoji": "\ud83c\udfb0",
-          "image": "../images/Degen Bowl.png",
-          "count": 1,
-          "won": true
+          "count": 1
         },
         {
           "name": "Dad Bod's Preseason Rankings",
-          "emoji": "\ud83d\udcca",
-          "image": "../images/Dad Bod's Preseason Rankings.png",
-          "count": 0,
-          "won": false
+          "count": 0
         },
         {
           "name": "JopO or KG Pick 'Em",
-          "emoji": "\ud83c\udfaf",
-          "image": "../images/JopO or KG Pick Em.png",
-          "count": 0,
-          "won": false
+          "count": 0
         },
         {
           "name": "Da Choppaaa Champ",
-          "emoji": "\ud83d\ude81",
-          "image": "../images/Da Choppaaa Champ.png",
-          "count": 0,
-          "won": false
+          "count": 0
         },
         {
           "name": "Bronze Franz",
-          "emoji": "\ud83e\udd49",
-          "image": "../images/Bronze Franz.png",
-          "count": 2,
-          "won": true
+          "count": 2
         }
       ],
       "headToHead": {}
     },
-    "jordan": {
-      "name": "Jordan",
-      "nickname": "JopO",
-      "memberSince": 2019,
-      "photo": "../images/jordan.jpg",
-      "lastUpdated": null,
-      "location": "North Carolina",
-      "locationEmoji": "\ud83c\udf32",
-      "broughtInBy": "Recruited by Scott",
-      "statusLines": [],
+    "dylan": {
+      "name": "Dylan",
+      "nickname": "Dyl",
+      "memberSince": 2015,
+      "photo": "../images/dylan.jpg",
+      "lastUpdated": "April 3, 2026",
+      "location": "Maryland",
+      "locationEmoji": "🦀",
+      "broughtInBy": "Recruited by Brian",
+      "statusLines": [
+        "3X LEAGUE CHAMPION"
+      ],
       "prestige": {
-        "rank": 17,
-        "points": 297,
+        "rank": 1,
+        "points": 2201,
         "outOf": 27
       },
-      "traits": [],
+      "traits": [
+        {
+          "emoji": "👶",
+          "label": "DINK Life"
+        },
+        {
+          "emoji": "🚫",
+          "label": "Anti-69"
+        },
+        {
+          "emoji": "☀️",
+          "label": "Positive Attitude"
+        },
+        {
+          "emoji": "🍪",
+          "label": "Snack Master"
+        }
+      ],
       "currentSeason": {
         "year": 2026,
         "record": null,
@@ -3512,14 +2418,1211 @@
       "rivalries": {
         "owns": [],
         "ownedBy": [],
-        "rivals": null,
-        "ryderCup": null
+        "rivals": "TBD",
+        "ryderCup": "TBD"
       },
       "narrative": {
         "sectionLabel": "The Narrative",
         "pullQuote": null,
         "body": null
       },
+      "dossierNotes": null,
+      "careerStats": {
+        "general": [
+          {
+            "stat": "Seasons Played",
+            "value": 11,
+            "rank": "#2",
+            "explainer": null,
+            "isEarnings": false
+          },
+          {
+            "stat": "Net Earnings",
+            "value": 320,
+            "rank": "#3",
+            "explainer": "Total winnings minus entry fees",
+            "isEarnings": true
+          },
+          {
+            "stat": "Prestige Points",
+            "value": 2201,
+            "rank": "#1",
+            "explainer": null,
+            "isEarnings": false
+          }
+        ],
+        "regularSeason": [
+          {
+            "stat": "Wins",
+            "value": 84,
+            "rank": "#3",
+            "explainer": null,
+            "isEarnings": false
+          },
+          {
+            "stat": "Win %",
+            "value": 0.568,
+            "rank": "#3",
+            "explainer": null,
+            "isEarnings": false
+          },
+          {
+            "stat": "Avg Finish",
+            "value": 5.4,
+            "rank": "#3",
+            "explainer": null,
+            "isEarnings": false
+          },
+          {
+            "stat": "Pts Per Game",
+            "value": 96.41,
+            "rank": "#3",
+            "explainer": null,
+            "isEarnings": false
+          },
+          {
+            "stat": "Point Share",
+            "value": "7.45%",
+            "rank": "#3",
+            "explainer": "% of total league points scored",
+            "isEarnings": false
+          },
+          {
+            "stat": "Career High Score",
+            "value": 163.3,
+            "rank": "#6",
+            "explainer": null,
+            "isEarnings": false
+          },
+          {
+            "stat": "Weekly High Scores",
+            "value": 13,
+            "rank": "#4",
+            "explainer": null,
+            "isEarnings": false
+          },
+          {
+            "stat": "Power Score",
+            "value": 126.87,
+            "rank": "#3",
+            "explainer": null,
+            "isEarnings": false
+          },
+          {
+            "stat": "Weeks at #1",
+            "value": 9,
+            "rank": "#7",
+            "explainer": null,
+            "isEarnings": false
+          },
+          {
+            "stat": "Boom Rate",
+            "value": "25.0%",
+            "rank": "#3",
+            "explainer": "% of games scoring 120% or more of league average",
+            "isEarnings": false
+          },
+          {
+            "stat": "Start Rate",
+            "value": "53.4%",
+            "rank": "#4",
+            "explainer": "% of games scoring at or above league average",
+            "isEarnings": false
+          },
+          {
+            "stat": "Luck Rate",
+            "value": "2.18%",
+            "rank": "#4",
+            "explainer": "Win % above/below expected",
+            "isEarnings": false
+          }
+        ],
+        "playoffs": [
+          {
+            "stat": "Appearances",
+            "value": 7,
+            "rank": "T-3",
+            "explainer": null,
+            "isEarnings": false
+          },
+          {
+            "stat": "Wins",
+            "value": 8,
+            "rank": "#2",
+            "explainer": null,
+            "isEarnings": false
+          },
+          {
+            "stat": "Win %",
+            "value": 0.667,
+            "rank": "#1",
+            "explainer": null,
+            "isEarnings": false
+          },
+          {
+            "stat": "Championships",
+            "value": 3,
+            "rank": "#1",
+            "explainer": null,
+            "isEarnings": false
+          }
+        ]
+      },
+      "charts": {
+        "winsAndFinish": {
+          "years": [
+            2014,
+            2015,
+            2016,
+            2017,
+            2018,
+            2019,
+            2020,
+            2021,
+            2022,
+            2023,
+            2024,
+            2025,
+            2026
+          ],
+          "wins": [
+            null,
+            8,
+            6,
+            10,
+            7,
+            8,
+            3,
+            9,
+            6,
+            10,
+            8,
+            9,
+            null
+          ],
+          "finish": [
+            null,
+            4,
+            7,
+            1,
+            6,
+            3,
+            14,
+            2,
+            9,
+            2,
+            7,
+            4,
+            null
+          ]
+        },
+        "pointShare": {
+          "years": [
+            2014,
+            2015,
+            2016,
+            2017,
+            2018,
+            2019,
+            2020,
+            2021,
+            2022,
+            2023,
+            2024,
+            2025,
+            2026
+          ],
+          "values": [
+            null,
+            7.37,
+            7.67,
+            7.9,
+            7.93,
+            7.88,
+            6.57,
+            8.1,
+            6.51,
+            7.44,
+            7.37,
+            7.2,
+            null
+          ]
+        },
+        "winnings": {
+          "years": [
+            2014,
+            2015,
+            2016,
+            2017,
+            2018,
+            2019,
+            2020,
+            2021,
+            2022,
+            2023,
+            2024,
+            2025,
+            2026
+          ],
+          "values": [
+            null,
+            0,
+            20,
+            370,
+            20,
+            10,
+            0,
+            400,
+            117.5,
+            155,
+            20,
+            383,
+            null
+          ]
+        },
+        "prestigePerSeason": {
+          "years": [
+            2014,
+            2015,
+            2016,
+            2017,
+            2018,
+            2019,
+            2020,
+            2021,
+            2022,
+            2023,
+            2024,
+            2025,
+            2026
+          ],
+          "values": [
+            null,
+            53,
+            59,
+            539,
+            144,
+            125,
+            21,
+            511,
+            25,
+            156,
+            58,
+            510,
+            null
+          ]
+        }
+      },
+      "seasons": [
+        {
+          "year": 2026,
+          "teamName": null,
+          "record": null,
+          "finish": null,
+          "ptsPerGame": null,
+          "pointShare": null,
+          "powerScore": null,
+          "winnings": null,
+          "prestigeEarned": null,
+          "playoffResult": null,
+          "result": null
+        },
+        {
+          "year": 2025,
+          "teamName": "🥷 RageCage 🥷",
+          "record": "9-5",
+          "finish": 4,
+          "ptsPerGame": 92.63,
+          "pointShare": "7.2%",
+          "powerScore": 126.68,
+          "winnings": 383.0,
+          "prestigeEarned": 510,
+          "playoffResult": "Won Championship",
+          "result": "champion"
+        },
+        {
+          "year": 2024,
+          "teamName": "The Overprojectors",
+          "record": "8-6",
+          "finish": 7,
+          "ptsPerGame": 97.36,
+          "pointShare": "7.4%",
+          "powerScore": 129.44,
+          "winnings": 20.0,
+          "prestigeEarned": 58,
+          "playoffResult": "Missed Playoffs",
+          "result": "missed"
+        },
+        {
+          "year": 2023,
+          "teamName": "Back Yard Olympic Bronz Frogz",
+          "record": "10-4",
+          "finish": 2,
+          "ptsPerGame": 95.44,
+          "pointShare": "7.4%",
+          "powerScore": 136.56,
+          "winnings": 155.0,
+          "prestigeEarned": 156,
+          "playoffResult": "Lost in Semifinals",
+          "result": "playoffs"
+        },
+        {
+          "year": 2022,
+          "teamName": "The Dumb Poo Poo Poop Heads",
+          "record": "6-8",
+          "finish": 9,
+          "ptsPerGame": 82.42,
+          "pointShare": "6.5%",
+          "powerScore": 101.13,
+          "winnings": 117.5,
+          "prestigeEarned": 25,
+          "playoffResult": "Missed Playoffs",
+          "result": "missed"
+        },
+        {
+          "year": 2021,
+          "teamName": "Keep My 6 and 9 Seperate",
+          "record": "9-5",
+          "finish": 2,
+          "ptsPerGame": 106.76,
+          "pointShare": "8.1%",
+          "powerScore": 141.06,
+          "winnings": 400.0,
+          "prestigeEarned": 511,
+          "playoffResult": "Won Championship",
+          "result": "champion"
+        },
+        {
+          "year": 2020,
+          "teamName": "CantSpellJesus WithoutSus",
+          "record": "3-10",
+          "finish": 14,
+          "ptsPerGame": 87.76,
+          "pointShare": "6.6%",
+          "powerScore": 97.53,
+          "winnings": 0.0,
+          "prestigeEarned": 21,
+          "playoffResult": "Missed Playoffs",
+          "result": "missed"
+        },
+        {
+          "year": 2019,
+          "teamName": "Merrickles Testicles",
+          "record": "8-5",
+          "finish": 3,
+          "ptsPerGame": 102.31,
+          "pointShare": "7.9%",
+          "powerScore": 136.83,
+          "winnings": 10.0,
+          "prestigeEarned": 125,
+          "playoffResult": "Lost in Semifinals",
+          "result": "playoffs"
+        },
+        {
+          "year": 2018,
+          "teamName": "Plunder Buns",
+          "record": "7-6",
+          "finish": 6,
+          "ptsPerGame": 108.72,
+          "pointShare": "7.9%",
+          "powerScore": 134.47,
+          "winnings": 20.0,
+          "prestigeEarned": 144,
+          "playoffResult": "Lost in Semifinals",
+          "result": "playoffs"
+        },
+        {
+          "year": 2017,
+          "teamName": "Golden Bells",
+          "record": "10-3",
+          "finish": 1,
+          "ptsPerGame": 96.45,
+          "pointShare": "7.9%",
+          "powerScore": 138.22,
+          "winnings": 370.0,
+          "prestigeEarned": 539,
+          "playoffResult": "Won Championship",
+          "result": "champion"
+        },
+        {
+          "year": 2016,
+          "teamName": "Daddy's Lil Diddle",
+          "record": "6-7",
+          "finish": 7,
+          "ptsPerGame": 98.73,
+          "pointShare": "7.7%",
+          "powerScore": 122.25,
+          "winnings": 20.0,
+          "prestigeEarned": 59,
+          "playoffResult": "Missed Playoffs",
+          "result": "missed"
+        },
+        {
+          "year": 2015,
+          "teamName": "Hakuna MaNgata",
+          "record": "8-5",
+          "finish": 4,
+          "ptsPerGame": 92.5,
+          "pointShare": "7.4%",
+          "powerScore": 123.62,
+          "winnings": 0.0,
+          "prestigeEarned": 53,
+          "playoffResult": "Lost in First Round",
+          "result": "playoffs"
+        },
+        {
+          "year": 2014,
+          "teamName": null,
+          "record": null,
+          "finish": null,
+          "ptsPerGame": null,
+          "pointShare": null,
+          "powerScore": null,
+          "winnings": null,
+          "prestigeEarned": null,
+          "playoffResult": null,
+          "result": null
+        }
+      ],
+      "trophies": [
+        {
+          "name": "League Champion",
+          "count": 3
+        },
+        {
+          "name": "2nd Place",
+          "count": 0
+        },
+        {
+          "name": "3rd Place",
+          "count": 1
+        },
+        {
+          "name": "Regular Season Champion",
+          "count": 1
+        },
+        {
+          "name": "Owner of the Year",
+          "count": 0
+        },
+        {
+          "name": "AVL Memorial Cup",
+          "count": 0
+        },
+        {
+          "name": "Rivalry Week",
+          "count": 3
+        },
+        {
+          "name": "Hottest Team in Sports Bowl",
+          "count": 0
+        },
+        {
+          "name": "Hung the * Chain",
+          "count": 0
+        },
+        {
+          "name": "Intercontinental Champ",
+          "count": 1
+        },
+        {
+          "name": "Somehow the Champion",
+          "count": 0
+        },
+        {
+          "name": "Survivor King",
+          "count": 0
+        },
+        {
+          "name": "Degen Bowl",
+          "count": 0
+        },
+        {
+          "name": "Dad Bod's Preseason Rankings",
+          "count": 2
+        },
+        {
+          "name": "JopO or KG Pick 'Em",
+          "count": 0
+        },
+        {
+          "name": "Da Choppaaa Champ",
+          "count": 0
+        },
+        {
+          "name": "Bronze Franz",
+          "count": 0
+        }
+      ],
+      "headToHead": {
+        "jack": {
+          "wins": 6,
+          "losses": 7,
+          "winPct": 0.462
+        }
+      }
+    },
+    "jack": {
+      "name": "Jack",
+      "nickname": "The Commish",
+      "memberSince": 2014,
+      "photo": "../images/jack.jpg",
+      "lastUpdated": "April 2, 2026",
+      "location": "California",
+      "locationEmoji": "🌴",
+      "broughtInBy": "League Founder",
+      "statusLines": [
+        "Commissioner",
+        "2X LEAGUE CHAMPION",
+        "HALL OF GREATNESS INDUCTEE"
+      ],
+      "prestige": {
+        "rank": 2,
+        "points": 2155,
+        "outOf": 27
+      },
+      "traits": [
+        {
+          "emoji": "📊",
+          "label": "Spreadsheet Freak"
+        },
+        {
+          "emoji": "👑",
+          "label": "Dictator Tendencies"
+        },
+        {
+          "emoji": "🔄",
+          "label": "Serial Trader"
+        },
+        {
+          "emoji": "🦒",
+          "label": "Elite Measurements"
+        }
+      ],
+      "currentSeason": {
+        "year": 2026,
+        "record": null,
+        "standing": null,
+        "ptsPerGame": null,
+        "lastGame": {
+          "result": "W",
+          "opponent": "MATT",
+          "score": "153.64-101.20",
+          "lifetimeVsOpponent": "9-3"
+        },
+        "nextGame": {
+          "opponent": null,
+          "lifetimeVsOpponent": null
+        }
+      },
+      "rivalries": {
+        "owns": [],
+        "ownedBy": [],
+        "rivals": "TBD",
+        "ryderCup": "TBD"
+      },
+      "narrative": {
+        "sectionLabel": "The Narrative",
+        "pullQuote": null,
+        "body": null
+      },
+      "dossierNotes": null,
+      "careerStats": {
+        "general": [
+          {
+            "stat": "Seasons Played",
+            "value": 12,
+            "rank": "#1",
+            "explainer": null,
+            "isEarnings": false
+          },
+          {
+            "stat": "Net Earnings",
+            "value": 730,
+            "rank": "#2",
+            "explainer": "Total winnings minus entry fees",
+            "isEarnings": true
+          },
+          {
+            "stat": "Prestige Points",
+            "value": 2155,
+            "rank": "#2",
+            "explainer": null,
+            "isEarnings": false
+          }
+        ],
+        "regularSeason": [
+          {
+            "stat": "Wins",
+            "value": 99,
+            "rank": "#1",
+            "explainer": null,
+            "isEarnings": false
+          },
+          {
+            "stat": "Win %",
+            "value": 0.615,
+            "rank": "#1",
+            "explainer": null,
+            "isEarnings": false
+          },
+          {
+            "stat": "Avg Finish",
+            "value": 4.9,
+            "rank": "#2",
+            "explainer": null,
+            "isEarnings": false
+          },
+          {
+            "stat": "Pts Per Game",
+            "value": 99.38,
+            "rank": "#2",
+            "explainer": null,
+            "isEarnings": false
+          },
+          {
+            "stat": "Point Share",
+            "value": "7.77%",
+            "rank": "#2",
+            "explainer": "% of total league points scored",
+            "isEarnings": false
+          },
+          {
+            "stat": "Career High Score",
+            "value": 168.8,
+            "rank": "#4",
+            "explainer": null,
+            "isEarnings": false
+          },
+          {
+            "stat": "Weekly High Scores",
+            "value": 19,
+            "rank": "#1",
+            "explainer": null,
+            "isEarnings": false
+          },
+          {
+            "stat": "Power Score",
+            "value": 132.42,
+            "rank": "#2",
+            "explainer": null,
+            "isEarnings": false
+          },
+          {
+            "stat": "Weeks at #1",
+            "value": 27,
+            "rank": "#1",
+            "explainer": null,
+            "isEarnings": false
+          },
+          {
+            "stat": "Boom Rate",
+            "value": "31.1%",
+            "rank": "#2",
+            "explainer": "% of games scoring 120% or more of league average",
+            "isEarnings": false
+          },
+          {
+            "stat": "Start Rate",
+            "value": "60.9%",
+            "rank": "#2",
+            "explainer": "% of games scoring at or above league average",
+            "isEarnings": false
+          },
+          {
+            "stat": "Luck Rate",
+            "value": "3.41%",
+            "rank": "#2",
+            "explainer": "Win % above/below expected",
+            "isEarnings": false
+          }
+        ],
+        "playoffs": [
+          {
+            "stat": "Appearances",
+            "value": 8,
+            "rank": "T-1",
+            "explainer": null,
+            "isEarnings": false
+          },
+          {
+            "stat": "Wins",
+            "value": 7,
+            "rank": "#3",
+            "explainer": null,
+            "isEarnings": false
+          },
+          {
+            "stat": "Win %",
+            "value": 0.538,
+            "rank": "#5",
+            "explainer": null,
+            "isEarnings": false
+          },
+          {
+            "stat": "Championships",
+            "value": 2,
+            "rank": "T-2",
+            "explainer": null,
+            "isEarnings": false
+          }
+        ]
+      },
+      "charts": {
+        "winsAndFinish": {
+          "years": [
+            2014,
+            2015,
+            2016,
+            2017,
+            2018,
+            2019,
+            2020,
+            2021,
+            2022,
+            2023,
+            2024,
+            2025,
+            2026
+          ],
+          "wins": [
+            10,
+            7,
+            7,
+            8,
+            12,
+            10,
+            6,
+            7,
+            7,
+            9,
+            6,
+            10,
+            null
+          ],
+          "finish": [
+            1,
+            5,
+            5,
+            5,
+            1,
+            2,
+            9,
+            8,
+            8,
+            3,
+            11,
+            1,
+            null
+          ]
+        },
+        "pointShare": {
+          "years": [
+            2014,
+            2015,
+            2016,
+            2017,
+            2018,
+            2019,
+            2020,
+            2021,
+            2022,
+            2023,
+            2024,
+            2025,
+            2026
+          ],
+          "values": [
+            8.62,
+            7.42,
+            7.42,
+            7.66,
+            8.84,
+            7.52,
+            7.25,
+            7.37,
+            6.87,
+            8.17,
+            6.88,
+            8.15,
+            null
+          ]
+        },
+        "winnings": {
+          "years": [
+            2014,
+            2015,
+            2016,
+            2017,
+            2018,
+            2019,
+            2020,
+            2021,
+            2022,
+            2023,
+            2024,
+            2025,
+            2026
+          ],
+          "values": [
+            75,
+            0,
+            0,
+            10,
+            330,
+            210,
+            75,
+            107.5,
+            15,
+            317,
+            235,
+            220,
+            null
+          ]
+        },
+        "prestigePerSeason": {
+          "years": [
+            2014,
+            2015,
+            2016,
+            2017,
+            2018,
+            2019,
+            2020,
+            2021,
+            2022,
+            2023,
+            2024,
+            2025,
+            2026
+          ],
+          "values": [
+            251,
+            108,
+            61,
+            125,
+            571,
+            480,
+            74,
+            59,
+            42,
+            139,
+            54,
+            191,
+            null
+          ]
+        }
+      },
+      "seasons": [
+        {
+          "year": 2026,
+          "teamName": null,
+          "record": null,
+          "finish": null,
+          "ptsPerGame": null,
+          "pointShare": null,
+          "powerScore": null,
+          "winnings": null,
+          "prestigeEarned": null,
+          "playoffResult": null,
+          "result": null
+        },
+        {
+          "year": 2025,
+          "teamName": "Proper Feck'n Eejits ☘️",
+          "record": "10-4",
+          "finish": 1,
+          "ptsPerGame": 104.98,
+          "pointShare": "8.2%",
+          "powerScore": 146.38,
+          "winnings": 220.0,
+          "prestigeEarned": 191,
+          "playoffResult": "Lost in Semifinals",
+          "result": "playoffs"
+        },
+        {
+          "year": 2024,
+          "teamName": "Bayou Bears Be Howlin' 🌊🐻",
+          "record": "6-8",
+          "finish": 11,
+          "ptsPerGame": 90.82,
+          "pointShare": "6.9%",
+          "powerScore": 113.5,
+          "winnings": 235.0,
+          "prestigeEarned": 54,
+          "playoffResult": "Missed Playoffs",
+          "result": "missed"
+        },
+        {
+          "year": 2023,
+          "teamName": "The Night Commish",
+          "record": "9-5",
+          "finish": 3,
+          "ptsPerGame": 104.78,
+          "pointShare": "8.2%",
+          "powerScore": 137.93,
+          "winnings": 317.0,
+          "prestigeEarned": 139,
+          "playoffResult": "Lost in First Round",
+          "result": "playoffs"
+        },
+        {
+          "year": 2022,
+          "teamName": "The 100 Point Exceeders 💯",
+          "record": "7-7",
+          "finish": 8,
+          "ptsPerGame": 87.02,
+          "pointShare": "6.9%",
+          "powerScore": 111.54,
+          "winnings": 15.0,
+          "prestigeEarned": 42,
+          "playoffResult": "Missed Playoffs",
+          "result": "missed"
+        },
+        {
+          "year": 2021,
+          "teamName": "Beef Spritz Boys 🐮💦",
+          "record": "7-7",
+          "finish": 8,
+          "ptsPerGame": 97.18,
+          "pointShare": "7.4%",
+          "powerScore": 125.58,
+          "winnings": 107.5,
+          "prestigeEarned": 59,
+          "playoffResult": "Missed Playoffs",
+          "result": "missed"
+        },
+        {
+          "year": 2020,
+          "teamName": "Tangy 👅🍞Sourdough",
+          "record": "6-7",
+          "finish": 9,
+          "ptsPerGame": 96.8,
+          "pointShare": "7.2%",
+          "powerScore": 115.26,
+          "winnings": 75.0,
+          "prestigeEarned": 74,
+          "playoffResult": "Missed Playoffs",
+          "result": "missed"
+        },
+        {
+          "year": 2019,
+          "teamName": "The Beacons are Lit",
+          "record": "10-3",
+          "finish": 2,
+          "ptsPerGame": 97.66,
+          "pointShare": "7.5%",
+          "powerScore": 140.42,
+          "winnings": 210.0,
+          "prestigeEarned": 480,
+          "playoffResult": "Won Championship",
+          "result": "champion"
+        },
+        {
+          "year": 2018,
+          "teamName": "America's Commish",
+          "record": "12-1",
+          "finish": 1,
+          "ptsPerGame": 121.18,
+          "pointShare": "8.8%",
+          "powerScore": 174.34,
+          "winnings": 330.0,
+          "prestigeEarned": 571,
+          "playoffResult": "Won Championship",
+          "result": "champion"
+        },
+        {
+          "year": 2017,
+          "teamName": "Commissioner Action Jackson",
+          "record": "8-5",
+          "finish": 5,
+          "ptsPerGame": 93.45,
+          "pointShare": "7.7%",
+          "powerScore": 130.0,
+          "winnings": 10.0,
+          "prestigeEarned": 125,
+          "playoffResult": "Lost in Semifinals",
+          "result": "playoffs"
+        },
+        {
+          "year": 2016,
+          "teamName": "Action Jaxson Strikes Back",
+          "record": "7-6",
+          "finish": 5,
+          "ptsPerGame": 95.53,
+          "pointShare": "7.4%",
+          "powerScore": 121.61,
+          "winnings": 0.0,
+          "prestigeEarned": 61,
+          "playoffResult": "Lost in First Round",
+          "result": "playoffs"
+        },
+        {
+          "year": 2015,
+          "teamName": "The Dezman Cometh",
+          "record": "7-6",
+          "finish": 5,
+          "ptsPerGame": 93.22,
+          "pointShare": "7.4%",
+          "powerScore": 118.2,
+          "winnings": 0.0,
+          "prestigeEarned": 108,
+          "playoffResult": "Lost in Semifinals",
+          "result": "playoffs"
+        },
+        {
+          "year": 2014,
+          "teamName": "Action Jaxson",
+          "record": "10-3",
+          "finish": 1,
+          "ptsPerGame": 110.83,
+          "pointShare": "8.6%",
+          "powerScore": 151.22,
+          "winnings": 75.0,
+          "prestigeEarned": 251,
+          "playoffResult": "Lost in Slingshot Bowl",
+          "result": "finalist"
+        }
+      ],
+      "trophies": [
+        {
+          "name": "League Champion",
+          "count": 2
+        },
+        {
+          "name": "2nd Place",
+          "count": 1
+        },
+        {
+          "name": "3rd Place",
+          "count": 1
+        },
+        {
+          "name": "Regular Season Champion",
+          "count": 3
+        },
+        {
+          "name": "Owner of the Year",
+          "count": 0
+        },
+        {
+          "name": "AVL Memorial Cup",
+          "count": 0
+        },
+        {
+          "name": "Rivalry Week",
+          "count": 0
+        },
+        {
+          "name": "Hottest Team in Sports Bowl",
+          "count": 2
+        },
+        {
+          "name": "Hung the * Chain",
+          "count": 1
+        },
+        {
+          "name": "Intercontinental Champ",
+          "count": 0
+        },
+        {
+          "name": "Somehow the Champion",
+          "count": 2
+        },
+        {
+          "name": "Survivor King",
+          "count": 2
+        },
+        {
+          "name": "Degen Bowl",
+          "count": 1
+        },
+        {
+          "name": "Dad Bod's Preseason Rankings",
+          "count": 2
+        },
+        {
+          "name": "JopO or KG Pick 'Em",
+          "count": 1
+        },
+        {
+          "name": "Da Choppaaa Champ",
+          "count": 0
+        },
+        {
+          "name": "Bronze Franz",
+          "count": 0
+        }
+      ],
+      "headToHead": {
+        "dylan": {
+          "wins": 7,
+          "losses": 6,
+          "winPct": 0.538
+        }
+      }
+    },
+    "jordan": {
+      "name": "Jordan",
+      "nickname": "JopO",
+      "memberSince": 2019,
+      "photo": "../images/jordan.jpg",
+      "lastUpdated": null,
+      "location": "North Carolina",
+      "locationEmoji": "🌲",
+      "broughtInBy": "Recruited by Scott",
+      "statusLines": [],
+      "prestige": {
+        "rank": 17,
+        "points": 297,
+        "outOf": 27
+      },
+      "traits": [
+        {
+          "emoji": "🗡️",
+          "label": "Cutting Commentary"
+        },
+        {
+          "emoji": "🧔",
+          "label": "Memorable Facial Hair"
+        },
+        {
+          "emoji": "👻",
+          "label": "Questionable Availability"
+        },
+        {
+          "emoji": "🤐",
+          "label": "Withholding"
+        }
+      ],
+      "currentSeason": {
+        "year": 2026,
+        "record": null,
+        "standing": null,
+        "ptsPerGame": null,
+        "lastGame": {
+          "result": null,
+          "opponent": null,
+          "score": null,
+          "lifetimeVsOpponent": null
+        },
+        "nextGame": {
+          "opponent": null,
+          "lifetimeVsOpponent": null
+        }
+      },
+      "rivalries": {
+        "owns": [],
+        "ownedBy": [],
+        "rivals": "TBD",
+        "ryderCup": "TBD"
+      },
+      "narrative": {
+        "sectionLabel": "The Narrative",
+        "pullQuote": null,
+        "body": null
+      },
+      "dossierNotes": null,
       "careerStats": {
         "general": [
           {
@@ -3826,7 +3929,7 @@
           "record": "5-9",
           "finish": 14,
           "ptsPerGame": 82.69,
-          "pointShare": "6.0%",
+          "pointShare": "6.4%",
           "powerScore": 99.06,
           "winnings": 95.0,
           "prestigeEarned": 32,
@@ -3835,11 +3938,11 @@
         },
         {
           "year": 2024,
-          "teamName": "Howell* 4 Prez (*Maye) ",
+          "teamName": "Howell* 4 Prez (*Maye)",
           "record": "4-10",
           "finish": 13,
           "ptsPerGame": 90.2,
-          "pointShare": "7.0%",
+          "pointShare": "6.8%",
           "powerScore": 99.17,
           "winnings": 5.0,
           "prestigeEarned": 16,
@@ -3852,7 +3955,7 @@
           "record": "6-8",
           "finish": 10,
           "ptsPerGame": 92.06,
-          "pointShare": "7.0%",
+          "pointShare": "7.2%",
           "powerScore": 112.56,
           "winnings": 84.0,
           "prestigeEarned": 25,
@@ -3865,7 +3968,7 @@
           "record": "8-6",
           "finish": 7,
           "ptsPerGame": 89.86,
-          "pointShare": "7.0%",
+          "pointShare": "7.1%",
           "powerScore": 119.58,
           "winnings": 5.0,
           "prestigeEarned": 34,
@@ -3878,7 +3981,7 @@
           "record": "7-7",
           "finish": 7,
           "ptsPerGame": 96.74,
-          "pointShare": "7.0%",
+          "pointShare": "7.3%",
           "powerScore": 122.56,
           "winnings": 65.0,
           "prestigeEarned": 86,
@@ -3891,25 +3994,90 @@
           "record": "8-5",
           "finish": 5,
           "ptsPerGame": 96.83,
-          "pointShare": "7.0%",
+          "pointShare": "7.3%",
           "powerScore": 129.58,
           "winnings": 10.0,
           "prestigeEarned": 69,
           "playoffResult": "Lost in First Round",
-          "result": "playoff"
+          "result": "playoffs"
         },
         {
           "year": 2019,
-          "teamName": "Turns Out I\u2019m 100% That Minsh ",
+          "teamName": "Turns Out I’m 100% That Minsh",
           "record": "4-9",
           "finish": 13,
           "ptsPerGame": 87.56,
-          "pointShare": "7.0%",
+          "pointShare": "6.7%",
           "powerScore": 103.8,
           "winnings": 80.0,
           "prestigeEarned": 35,
           "playoffResult": "Missed Playoffs",
           "result": "missed"
+        },
+        {
+          "year": 2018,
+          "teamName": null,
+          "record": null,
+          "finish": null,
+          "ptsPerGame": null,
+          "pointShare": null,
+          "powerScore": null,
+          "winnings": null,
+          "prestigeEarned": null,
+          "playoffResult": null,
+          "result": null
+        },
+        {
+          "year": 2017,
+          "teamName": null,
+          "record": null,
+          "finish": null,
+          "ptsPerGame": null,
+          "pointShare": null,
+          "powerScore": null,
+          "winnings": null,
+          "prestigeEarned": null,
+          "playoffResult": null,
+          "result": null
+        },
+        {
+          "year": 2016,
+          "teamName": null,
+          "record": null,
+          "finish": null,
+          "ptsPerGame": null,
+          "pointShare": null,
+          "powerScore": null,
+          "winnings": null,
+          "prestigeEarned": null,
+          "playoffResult": null,
+          "result": null
+        },
+        {
+          "year": 2015,
+          "teamName": null,
+          "record": null,
+          "finish": null,
+          "ptsPerGame": null,
+          "pointShare": null,
+          "powerScore": null,
+          "winnings": null,
+          "prestigeEarned": null,
+          "playoffResult": null,
+          "result": null
+        },
+        {
+          "year": 2014,
+          "teamName": null,
+          "record": null,
+          "finish": null,
+          "ptsPerGame": null,
+          "pointShare": null,
+          "powerScore": null,
+          "winnings": null,
+          "prestigeEarned": null,
+          "playoffResult": null,
+          "result": null
         }
       ],
       "trophies": [
@@ -3991,15 +4159,35 @@
       "photo": "../images/kyle.png",
       "lastUpdated": null,
       "location": "Colorado",
-      "locationEmoji": "\ud83c\udfd4\ufe0f",
+      "locationEmoji": "🏔️",
       "broughtInBy": "Recruited by Jack",
-      "statusLines": [],
+      "statusLines": [
+        "2X LEAGUE CHAMPION",
+        "HALL OF GREATNESS INDUCTEE"
+      ],
       "prestige": {
         "rank": 3,
         "points": 2018,
         "outOf": 27
       },
-      "traits": [],
+      "traits": [
+        {
+          "emoji": "✅",
+          "label": "Annoyingly Competent"
+        },
+        {
+          "emoji": "🥎",
+          "label": "Weak Wiffle Baller"
+        },
+        {
+          "emoji": "🧐",
+          "label": "Snooty"
+        },
+        {
+          "emoji": "💻",
+          "label": "Tech Bro"
+        }
+      ],
       "currentSeason": {
         "year": 2026,
         "record": null,
@@ -4019,14 +4207,15 @@
       "rivalries": {
         "owns": [],
         "ownedBy": [],
-        "rivals": null,
-        "ryderCup": null
+        "rivals": "TBD",
+        "ryderCup": "TBD"
       },
       "narrative": {
         "sectionLabel": "The Narrative",
         "pullQuote": null,
         "body": null
       },
+      "dossierNotes": null,
       "careerStats": {
         "general": [
           {
@@ -4333,12 +4522,12 @@
           "record": "7-7",
           "finish": 6,
           "ptsPerGame": 103.98,
-          "pointShare": "8.0%",
+          "pointShare": "8.1%",
           "powerScore": 132.56,
           "winnings": 35.0,
           "prestigeEarned": 87,
           "playoffResult": "Lost in First Round",
-          "result": "playoff"
+          "result": "playoffs"
         },
         {
           "year": 2024,
@@ -4359,7 +4548,7 @@
           "record": "7-7",
           "finish": 5,
           "ptsPerGame": 97.26,
-          "pointShare": "8.0%",
+          "pointShare": "7.6%",
           "powerScore": 125.7,
           "winnings": 140.0,
           "prestigeEarned": 205,
@@ -4372,7 +4561,7 @@
           "record": "9-5",
           "finish": 3,
           "ptsPerGame": 105.59,
-          "pointShare": "8.0%",
+          "pointShare": "8.3%",
           "powerScore": 142.53,
           "winnings": 475.0,
           "prestigeEarned": 531,
@@ -4385,12 +4574,12 @@
           "record": "8-6",
           "finish": 4,
           "ptsPerGame": 95.65,
-          "pointShare": "7.0%",
+          "pointShare": "7.3%",
           "powerScore": 125.62,
           "winnings": 107.5,
           "prestigeEarned": 76,
           "playoffResult": "Lost in First Round",
-          "result": "playoff"
+          "result": "playoffs"
         },
         {
           "year": 2020,
@@ -4398,7 +4587,7 @@
           "record": "7-6",
           "finish": 6,
           "ptsPerGame": 103.15,
-          "pointShare": "8.0%",
+          "pointShare": "7.7%",
           "powerScore": 133.22,
           "winnings": 140.0,
           "prestigeEarned": 216,
@@ -4407,16 +4596,16 @@
         },
         {
           "year": 2019,
-          "teamName": "\u2744\ufe0f Ice Cold Boy ",
+          "teamName": "❄️ Ice Cold Boy",
           "record": "7-6",
           "finish": 5,
           "ptsPerGame": 106.88,
-          "pointShare": "8.0%",
+          "pointShare": "8.2%",
           "powerScore": 138.29,
           "winnings": 20.0,
           "prestigeEarned": 65,
           "playoffResult": "Lost in First Round",
-          "result": "playoff"
+          "result": "playoffs"
         },
         {
           "year": 2018,
@@ -4424,12 +4613,64 @@
           "record": "9-4",
           "finish": 2,
           "ptsPerGame": 126.38,
-          "pointShare": "9.0%",
+          "pointShare": "9.2%",
           "powerScore": 167.02,
           "winnings": 215.0,
           "prestigeEarned": 258,
           "playoffResult": "Lost in Slingshot Bowl",
           "result": "finalist"
+        },
+        {
+          "year": 2017,
+          "teamName": null,
+          "record": null,
+          "finish": null,
+          "ptsPerGame": null,
+          "pointShare": null,
+          "powerScore": null,
+          "winnings": null,
+          "prestigeEarned": null,
+          "playoffResult": null,
+          "result": null
+        },
+        {
+          "year": 2016,
+          "teamName": null,
+          "record": null,
+          "finish": null,
+          "ptsPerGame": null,
+          "pointShare": null,
+          "powerScore": null,
+          "winnings": null,
+          "prestigeEarned": null,
+          "playoffResult": null,
+          "result": null
+        },
+        {
+          "year": 2015,
+          "teamName": null,
+          "record": null,
+          "finish": null,
+          "ptsPerGame": null,
+          "pointShare": null,
+          "powerScore": null,
+          "winnings": null,
+          "prestigeEarned": null,
+          "playoffResult": null,
+          "result": null
+        },
+        {
+          "year": 2014,
+          "teamName": null,
+          "record": null,
+          "finish": null,
+          "ptsPerGame": null,
+          "pointShare": null,
+          "powerScore": null,
+          "winnings": null,
+          "prestigeEarned": null,
+          "playoffResult": null,
+          "result": null
         }
       ],
       "trophies": [
@@ -4511,15 +4752,32 @@
       "photo": "../images/luke.jpg",
       "lastUpdated": null,
       "location": "Minnesota",
-      "locationEmoji": "\u2744\ufe0f",
+      "locationEmoji": "❄️",
       "broughtInBy": "Recruited by Alex",
       "statusLines": [],
       "prestige": {
         "rank": 27,
-        "points": null,
+        "points": 0,
         "outOf": 27
       },
-      "traits": [],
+      "traits": [
+        {
+          "emoji": "💍",
+          "label": "Eligible Bachelor"
+        },
+        {
+          "emoji": "🔄",
+          "label": "Serial Trader"
+        },
+        {
+          "emoji": "⏱️",
+          "label": "Short Timer"
+        },
+        {
+          "emoji": "❓",
+          "label": "Unknown Potential"
+        }
+      ],
       "currentSeason": {
         "year": 2026,
         "record": null,
@@ -4539,14 +4797,15 @@
       "rivalries": {
         "owns": [],
         "ownedBy": [],
-        "rivals": null,
-        "ryderCup": null
+        "rivals": "TBD",
+        "ryderCup": "TBD"
       },
       "narrative": {
         "sectionLabel": "The Narrative",
         "pullQuote": null,
         "body": null
       },
+      "dossierNotes": null,
       "careerStats": {
         "general": [
           {
@@ -4846,6 +5105,162 @@
           "prestigeEarned": null,
           "playoffResult": null,
           "result": null
+        },
+        {
+          "year": 2025,
+          "teamName": null,
+          "record": null,
+          "finish": null,
+          "ptsPerGame": null,
+          "pointShare": null,
+          "powerScore": null,
+          "winnings": null,
+          "prestigeEarned": null,
+          "playoffResult": null,
+          "result": null
+        },
+        {
+          "year": 2024,
+          "teamName": null,
+          "record": null,
+          "finish": null,
+          "ptsPerGame": null,
+          "pointShare": null,
+          "powerScore": null,
+          "winnings": null,
+          "prestigeEarned": null,
+          "playoffResult": null,
+          "result": null
+        },
+        {
+          "year": 2023,
+          "teamName": null,
+          "record": null,
+          "finish": null,
+          "ptsPerGame": null,
+          "pointShare": null,
+          "powerScore": null,
+          "winnings": null,
+          "prestigeEarned": null,
+          "playoffResult": null,
+          "result": null
+        },
+        {
+          "year": 2022,
+          "teamName": null,
+          "record": null,
+          "finish": null,
+          "ptsPerGame": null,
+          "pointShare": null,
+          "powerScore": null,
+          "winnings": null,
+          "prestigeEarned": null,
+          "playoffResult": null,
+          "result": null
+        },
+        {
+          "year": 2021,
+          "teamName": null,
+          "record": null,
+          "finish": null,
+          "ptsPerGame": null,
+          "pointShare": null,
+          "powerScore": null,
+          "winnings": null,
+          "prestigeEarned": null,
+          "playoffResult": null,
+          "result": null
+        },
+        {
+          "year": 2020,
+          "teamName": null,
+          "record": null,
+          "finish": null,
+          "ptsPerGame": null,
+          "pointShare": null,
+          "powerScore": null,
+          "winnings": null,
+          "prestigeEarned": null,
+          "playoffResult": null,
+          "result": null
+        },
+        {
+          "year": 2019,
+          "teamName": null,
+          "record": null,
+          "finish": null,
+          "ptsPerGame": null,
+          "pointShare": null,
+          "powerScore": null,
+          "winnings": null,
+          "prestigeEarned": null,
+          "playoffResult": null,
+          "result": null
+        },
+        {
+          "year": 2018,
+          "teamName": null,
+          "record": null,
+          "finish": null,
+          "ptsPerGame": null,
+          "pointShare": null,
+          "powerScore": null,
+          "winnings": null,
+          "prestigeEarned": null,
+          "playoffResult": null,
+          "result": null
+        },
+        {
+          "year": 2017,
+          "teamName": null,
+          "record": null,
+          "finish": null,
+          "ptsPerGame": null,
+          "pointShare": null,
+          "powerScore": null,
+          "winnings": null,
+          "prestigeEarned": null,
+          "playoffResult": null,
+          "result": null
+        },
+        {
+          "year": 2016,
+          "teamName": null,
+          "record": null,
+          "finish": null,
+          "ptsPerGame": null,
+          "pointShare": null,
+          "powerScore": null,
+          "winnings": null,
+          "prestigeEarned": null,
+          "playoffResult": null,
+          "result": null
+        },
+        {
+          "year": 2015,
+          "teamName": null,
+          "record": null,
+          "finish": null,
+          "ptsPerGame": null,
+          "pointShare": null,
+          "powerScore": null,
+          "winnings": null,
+          "prestigeEarned": null,
+          "playoffResult": null,
+          "result": null
+        },
+        {
+          "year": 2014,
+          "teamName": null,
+          "record": null,
+          "finish": null,
+          "ptsPerGame": null,
+          "pointShare": null,
+          "powerScore": null,
+          "winnings": null,
+          "prestigeEarned": null,
+          "playoffResult": null,
+          "result": null
         }
       ],
       "trophies": [
@@ -4927,7 +5342,7 @@
       "photo": "../images/matt.jpg",
       "lastUpdated": null,
       "location": "Colorado",
-      "locationEmoji": "\ud83c\udfd4\ufe0f",
+      "locationEmoji": "🏔️",
       "broughtInBy": "Recruited by Jack",
       "statusLines": [],
       "prestige": {
@@ -4935,7 +5350,24 @@
         "points": 570,
         "outOf": 27
       },
-      "traits": [],
+      "traits": [
+        {
+          "emoji": "🎨",
+          "label": "Culture Maker"
+        },
+        {
+          "emoji": "🎉",
+          "label": "Party Commish"
+        },
+        {
+          "emoji": "☀️",
+          "label": "Positive Attitude"
+        },
+        {
+          "emoji": "💬",
+          "label": "Prolific Chatter"
+        }
+      ],
       "currentSeason": {
         "year": 2026,
         "record": null,
@@ -4955,14 +5387,15 @@
       "rivalries": {
         "owns": [],
         "ownedBy": [],
-        "rivals": null,
-        "ryderCup": null
+        "rivals": "TBD",
+        "ryderCup": "TBD"
       },
       "narrative": {
         "sectionLabel": "The Narrative",
         "pullQuote": null,
         "body": null
       },
+      "dossierNotes": null,
       "careerStats": {
         "general": [
           {
@@ -5067,7 +5500,7 @@
           },
           {
             "stat": "Luck Rate",
-            "value": "-3.3%",
+            "value": "-3.30%",
             "rank": "#11",
             "explainer": "Win % above/below expected",
             "isEarnings": false
@@ -5269,20 +5702,20 @@
           "record": "9-5",
           "finish": 3,
           "ptsPerGame": 93.48,
-          "pointShare": "7.0%",
+          "pointShare": "7.3%",
           "powerScore": 126.65,
           "winnings": 164.0,
           "prestigeEarned": 134,
           "playoffResult": "Lost in First Round",
-          "result": "playoff"
+          "result": "playoffs"
         },
         {
           "year": 2024,
-          "teamName": "Osos de Agua por Vida \ud83d\udc3b\ud83c\udf0a\ud83c\udfc8 ",
+          "teamName": "Osos de Agua por Vida 🐻🌊🏈",
           "record": "4-10",
           "finish": 12,
           "ptsPerGame": 85.08,
-          "pointShare": "6.0%",
+          "pointShare": "6.4%",
           "powerScore": 97.86,
           "winnings": 0.0,
           "prestigeEarned": 12,
@@ -5295,7 +5728,7 @@
           "record": "7-7",
           "finish": 7,
           "ptsPerGame": 92.88,
-          "pointShare": "7.0%",
+          "pointShare": "7.2%",
           "powerScore": 113.87,
           "winnings": 90.0,
           "prestigeEarned": 34,
@@ -5308,7 +5741,7 @@
           "record": "5-9",
           "finish": 11,
           "ptsPerGame": 78.83,
-          "pointShare": "6.0%",
+          "pointShare": "6.2%",
           "powerScore": 94.82,
           "winnings": 5.0,
           "prestigeEarned": 22,
@@ -5321,12 +5754,12 @@
           "record": "8-6",
           "finish": 5,
           "ptsPerGame": 97.99,
-          "pointShare": "7.0%",
+          "pointShare": "7.4%",
           "powerScore": 128.03,
           "winnings": 65.0,
           "prestigeEarned": 127,
           "playoffResult": "Lost in Semifinals",
-          "result": "playoff"
+          "result": "playoffs"
         },
         {
           "year": 2020,
@@ -5334,7 +5767,7 @@
           "record": "7-6",
           "finish": 7,
           "ptsPerGame": 86.27,
-          "pointShare": "6.0%",
+          "pointShare": "6.5%",
           "powerScore": 114.8,
           "winnings": 10.0,
           "prestigeEarned": 37,
@@ -5347,12 +5780,12 @@
           "record": "7-6",
           "finish": 6,
           "ptsPerGame": 106.71,
-          "pointShare": "8.0%",
+          "pointShare": "8.2%",
           "powerScore": 131.2,
           "winnings": 40.0,
           "prestigeEarned": 96,
           "playoffResult": "Lost in First Round",
-          "result": "playoff"
+          "result": "playoffs"
         },
         {
           "year": 2018,
@@ -5360,7 +5793,7 @@
           "record": "4-9",
           "finish": 13,
           "ptsPerGame": 84.06,
-          "pointShare": "6.0%",
+          "pointShare": "6.1%",
           "powerScore": 95.25,
           "winnings": 0.0,
           "prestigeEarned": 12,
@@ -5373,7 +5806,7 @@
           "record": "4-9",
           "finish": 13,
           "ptsPerGame": 68.21,
-          "pointShare": "6.0%",
+          "pointShare": "5.6%",
           "powerScore": 78.72,
           "winnings": 0.0,
           "prestigeEarned": 17,
@@ -5386,7 +5819,7 @@
           "record": "3-10",
           "finish": 13,
           "ptsPerGame": 100.69,
-          "pointShare": "8.0%",
+          "pointShare": "7.8%",
           "powerScore": 106.83,
           "winnings": 20.0,
           "prestigeEarned": 29,
@@ -5399,12 +5832,25 @@
           "record": "7-6",
           "finish": 9,
           "ptsPerGame": 92.13,
-          "pointShare": "7.0%",
+          "pointShare": "7.3%",
           "powerScore": 121.84,
           "winnings": 0.0,
           "prestigeEarned": 50,
           "playoffResult": "Missed Playoffs",
           "result": "missed"
+        },
+        {
+          "year": 2014,
+          "teamName": null,
+          "record": null,
+          "finish": null,
+          "ptsPerGame": null,
+          "pointShare": null,
+          "powerScore": null,
+          "winnings": null,
+          "prestigeEarned": null,
+          "playoffResult": null,
+          "result": null
         }
       ],
       "trophies": [
@@ -5486,15 +5932,34 @@
       "photo": "../images/mike.jpg",
       "lastUpdated": null,
       "location": "Pennsylvania",
-      "locationEmoji": "\ud83d\udd14",
+      "locationEmoji": "🔔",
       "broughtInBy": "Recruited by Jack",
-      "statusLines": [],
+      "statusLines": [
+        "LEAGUE CHAMPION"
+      ],
       "prestige": {
         "rank": 4,
         "points": 1480,
         "outOf": 27
       },
-      "traits": [],
+      "traits": [
+        {
+          "emoji": "🤝",
+          "label": "Man of the People"
+        },
+        {
+          "emoji": "😤",
+          "label": "Disagreeable"
+        },
+        {
+          "emoji": "💍",
+          "label": "Eligible Bachelor"
+        },
+        {
+          "emoji": "📅",
+          "label": "Many Meetings"
+        }
+      ],
       "currentSeason": {
         "year": 2026,
         "record": null,
@@ -5514,14 +5979,15 @@
       "rivalries": {
         "owns": [],
         "ownedBy": [],
-        "rivals": null,
-        "ryderCup": null
+        "rivals": "TBD",
+        "ryderCup": "TBD"
       },
       "narrative": {
         "sectionLabel": "The Narrative",
         "pullQuote": null,
         "body": null
       },
+      "dossierNotes": null,
       "careerStats": {
         "general": [
           {
@@ -5837,16 +6303,16 @@
         },
         {
           "year": 2024,
-          "teamName": "Jop-O Isn\u2019t Real ",
+          "teamName": "Jop-O Isn’t Real",
           "record": "8-6",
           "finish": 5,
           "ptsPerGame": 93.74,
-          "pointShare": "7.0%",
+          "pointShare": "7.1%",
           "powerScore": 122.41,
           "winnings": 187.5,
           "prestigeEarned": 126,
           "playoffResult": "Lost in Semifinals",
-          "result": "playoff"
+          "result": "playoffs"
         },
         {
           "year": 2023,
@@ -5854,7 +6320,7 @@
           "record": "7-7",
           "finish": 8,
           "ptsPerGame": 84.23,
-          "pointShare": "7.0%",
+          "pointShare": "6.6%",
           "powerScore": 108.67,
           "winnings": 0.0,
           "prestigeEarned": 25,
@@ -5867,7 +6333,7 @@
           "record": "10-4",
           "finish": 2,
           "ptsPerGame": 108.11,
-          "pointShare": "9.0%",
+          "pointShare": "8.5%",
           "powerScore": 147.24,
           "winnings": 165.0,
           "prestigeEarned": 251,
@@ -5880,7 +6346,7 @@
           "record": "6-8",
           "finish": 10,
           "ptsPerGame": 89.38,
-          "pointShare": "7.0%",
+          "pointShare": "6.8%",
           "powerScore": 113.93,
           "winnings": 112.5,
           "prestigeEarned": 29,
@@ -5893,7 +6359,7 @@
           "record": "11-2",
           "finish": 1,
           "ptsPerGame": 104.16,
-          "pointShare": "8.0%",
+          "pointShare": "7.8%",
           "powerScore": 152.67,
           "winnings": 520.0,
           "prestigeEarned": 562,
@@ -5906,7 +6372,7 @@
           "record": "6-7",
           "finish": 9,
           "ptsPerGame": 84.5,
-          "pointShare": "7.0%",
+          "pointShare": "6.5%",
           "powerScore": 110.34,
           "winnings": 0.0,
           "prestigeEarned": 25,
@@ -5919,7 +6385,7 @@
           "record": "5-8",
           "finish": 11,
           "ptsPerGame": 90.89,
-          "pointShare": "7.0%",
+          "pointShare": "6.6%",
           "powerScore": 107.56,
           "winnings": 0.0,
           "prestigeEarned": 22,
@@ -5937,7 +6403,7 @@
           "winnings": 10.0,
           "prestigeEarned": 68,
           "playoffResult": "Lost in First Round",
-          "result": "playoff"
+          "result": "playoffs"
         },
         {
           "year": 2016,
@@ -5945,7 +6411,7 @@
           "record": "3-10",
           "finish": 14,
           "ptsPerGame": 74.26,
-          "pointShare": "6.0%",
+          "pointShare": "5.8%",
           "powerScore": 80.58,
           "winnings": 0.0,
           "prestigeEarned": 9,
@@ -5958,12 +6424,12 @@
           "record": "7-6",
           "finish": 6,
           "ptsPerGame": 93.05,
-          "pointShare": "7.0%",
+          "pointShare": "7.4%",
           "powerScore": 123.66,
           "winnings": 0.0,
           "prestigeEarned": 52,
           "playoffResult": "Lost in First Round",
-          "result": "playoff"
+          "result": "playoffs"
         },
         {
           "year": 2014,
@@ -5971,12 +6437,12 @@
           "record": "9-4",
           "finish": 3,
           "ptsPerGame": 89.26,
-          "pointShare": "7.0%",
+          "pointShare": "6.9%",
           "powerScore": 122.62,
           "winnings": 0.0,
           "prestigeEarned": 119,
           "playoffResult": "Lost in Semifinals",
-          "result": "playoff"
+          "result": "playoffs"
         }
       ],
       "trophies": [
@@ -6058,7 +6524,7 @@
       "photo": "../images/scott.jpg",
       "lastUpdated": null,
       "location": "California",
-      "locationEmoji": "\ud83c\udf34",
+      "locationEmoji": "🌴",
       "broughtInBy": "Recruited by Jack",
       "statusLines": [],
       "prestige": {
@@ -6066,7 +6532,24 @@
         "points": 538,
         "outOf": 27
       },
-      "traits": [],
+      "traits": [
+        {
+          "emoji": "😄",
+          "label": "Happy to Be Here"
+        },
+        {
+          "emoji": "🪙",
+          "label": "FAAB Penny Pincher"
+        },
+        {
+          "emoji": "🧔",
+          "label": "Memorable Facial Hair"
+        },
+        {
+          "emoji": "🤐",
+          "label": "Withholding"
+        }
+      ],
       "currentSeason": {
         "year": 2026,
         "record": null,
@@ -6086,14 +6569,15 @@
       "rivalries": {
         "owns": [],
         "ownedBy": [],
-        "rivals": null,
-        "ryderCup": null
+        "rivals": "TBD",
+        "ryderCup": "TBD"
       },
       "narrative": {
         "sectionLabel": "The Narrative",
         "pullQuote": null,
         "body": null
       },
+      "dossierNotes": null,
       "careerStats": {
         "general": [
           {
@@ -6198,7 +6682,7 @@
           },
           {
             "stat": "Luck Rate",
-            "value": "-0.2%",
+            "value": "-0.20%",
             "rank": "#7",
             "explainer": "Win % above/below expected",
             "isEarnings": false
@@ -6413,7 +6897,7 @@
           "record": "6-8",
           "finish": 10,
           "ptsPerGame": 86.29,
-          "pointShare": "7.0%",
+          "pointShare": "6.5%",
           "powerScore": 109.94,
           "winnings": 5.0,
           "prestigeEarned": 27,
@@ -6426,12 +6910,12 @@
           "record": "8-6",
           "finish": 4,
           "ptsPerGame": 87.32,
-          "pointShare": "7.0%",
+          "pointShare": "6.8%",
           "powerScore": 116.93,
           "winnings": 104.0,
           "prestigeEarned": 115,
           "playoffResult": "Lost in Semifinals",
-          "result": "playoff"
+          "result": "playoffs"
         },
         {
           "year": 2022,
@@ -6439,7 +6923,7 @@
           "record": "3-11",
           "finish": 14,
           "ptsPerGame": 72.64,
-          "pointShare": "6.0%",
+          "pointShare": "5.7%",
           "powerScore": 82.18,
           "winnings": 55.0,
           "prestigeEarned": 31,
@@ -6452,7 +6936,7 @@
           "record": "5-9",
           "finish": 12,
           "ptsPerGame": 84.78,
-          "pointShare": "6.0%",
+          "pointShare": "6.4%",
           "powerScore": 98.61,
           "winnings": 10.0,
           "prestigeEarned": 15,
@@ -6465,7 +6949,7 @@
           "record": "6-7",
           "finish": 8,
           "ptsPerGame": 101.51,
-          "pointShare": "8.0%",
+          "pointShare": "7.6%",
           "powerScore": 118.35,
           "winnings": 55.0,
           "prestigeEarned": 49,
@@ -6478,7 +6962,7 @@
           "record": "5-8",
           "finish": 10,
           "ptsPerGame": 89.87,
-          "pointShare": "7.0%",
+          "pointShare": "6.9%",
           "powerScore": 105.88,
           "winnings": 0.0,
           "prestigeEarned": 17,
@@ -6491,7 +6975,7 @@
           "record": "6-7",
           "finish": 8,
           "ptsPerGame": 97.31,
-          "pointShare": "7.0%",
+          "pointShare": "7.1%",
           "powerScore": 119.58,
           "winnings": 20.0,
           "prestigeEarned": 32,
@@ -6504,7 +6988,7 @@
           "record": "4-9",
           "finish": 12,
           "ptsPerGame": 76.38,
-          "pointShare": "6.0%",
+          "pointShare": "6.3%",
           "powerScore": 89.49,
           "winnings": 0.0,
           "prestigeEarned": 15,
@@ -6522,7 +7006,7 @@
           "winnings": 40.0,
           "prestigeEarned": 145,
           "playoffResult": "Lost in Semifinals",
-          "result": "playoff"
+          "result": "playoffs"
         },
         {
           "year": 2015,
@@ -6543,7 +7027,7 @@
           "record": "7-6",
           "finish": 6,
           "ptsPerGame": 87.25,
-          "pointShare": "7.0%",
+          "pointShare": "6.8%",
           "powerScore": 117.45,
           "winnings": 0.0,
           "prestigeEarned": 30,
@@ -6630,7 +7114,7 @@
       "photo": "../images/tim.jpg",
       "lastUpdated": null,
       "location": "Colorado",
-      "locationEmoji": "\ud83c\udfd4\ufe0f",
+      "locationEmoji": "🏔️",
       "broughtInBy": "Recruited by Matt",
       "statusLines": [],
       "prestige": {
@@ -6638,7 +7122,24 @@
         "points": 303,
         "outOf": 27
       },
-      "traits": [],
+      "traits": [
+        {
+          "emoji": "🔄",
+          "label": "Serial Trader"
+        },
+        {
+          "emoji": "🤦",
+          "label": "Poor Copy/Paste Skills"
+        },
+        {
+          "emoji": "🍆",
+          "label": "Perv"
+        },
+        {
+          "emoji": "🧐",
+          "label": "Snooty"
+        }
+      ],
       "currentSeason": {
         "year": 2026,
         "record": null,
@@ -6658,14 +7159,15 @@
       "rivalries": {
         "owns": [],
         "ownedBy": [],
-        "rivals": null,
-        "ryderCup": null
+        "rivals": "TBD",
+        "ryderCup": "TBD"
       },
       "narrative": {
         "sectionLabel": "The Narrative",
         "pullQuote": null,
         "body": null
       },
+      "dossierNotes": null,
       "careerStats": {
         "general": [
           {
@@ -6677,7 +7179,7 @@
           },
           {
             "stat": "Net Earnings",
-            "value": -359,
+            "value": -358,
             "rank": "#10",
             "explainer": "Total winnings minus entry fees",
             "isEarnings": true
@@ -6968,11 +7470,11 @@
         },
         {
           "year": 2025,
-          "teamName": "Mike \ud83d\udca9's standing up",
+          "teamName": "Mike 💩's standing up",
           "record": "5-9",
           "finish": 12,
           "ptsPerGame": 85.69,
-          "pointShare": "7.0%",
+          "pointShare": "6.7%",
           "powerScore": 103.0,
           "winnings": 43.0,
           "prestigeEarned": 29,
@@ -6981,16 +7483,16 @@
         },
         {
           "year": 2024,
-          "teamName": "Naughty Step Sisters ",
+          "teamName": "Naughty Step Sisters",
           "record": "9-5",
           "finish": 3,
           "ptsPerGame": 96.08,
-          "pointShare": "7.0%",
+          "pointShare": "7.3%",
           "powerScore": 127.08,
           "winnings": 75.0,
           "prestigeEarned": 109,
           "playoffResult": "Lost in First Round",
-          "result": "playoff"
+          "result": "playoffs"
         },
         {
           "year": 2023,
@@ -7011,7 +7513,7 @@
           "record": "3-11",
           "finish": 13,
           "ptsPerGame": 80.47,
-          "pointShare": "6.0%",
+          "pointShare": "6.4%",
           "powerScore": 86.73,
           "winnings": 117.5,
           "prestigeEarned": 9,
@@ -7024,12 +7526,12 @@
           "record": "7-7",
           "finish": 6,
           "ptsPerGame": 95.79,
-          "pointShare": "7.0%",
+          "pointShare": "7.3%",
           "powerScore": 118.26,
           "winnings": 25.0,
           "prestigeEarned": 114,
           "playoffResult": "Lost in Semifinals",
-          "result": "playoff"
+          "result": "playoffs"
         },
         {
           "year": 2020,
@@ -7037,12 +7539,90 @@
           "record": "4-9",
           "finish": 12,
           "ptsPerGame": 87.84,
-          "pointShare": "7.0%",
+          "pointShare": "6.6%",
           "powerScore": 102.77,
           "winnings": 0.0,
           "prestigeEarned": 19,
           "playoffResult": "Missed Playoffs",
           "result": "missed"
+        },
+        {
+          "year": 2019,
+          "teamName": null,
+          "record": null,
+          "finish": null,
+          "ptsPerGame": null,
+          "pointShare": null,
+          "powerScore": null,
+          "winnings": null,
+          "prestigeEarned": null,
+          "playoffResult": null,
+          "result": null
+        },
+        {
+          "year": 2018,
+          "teamName": null,
+          "record": null,
+          "finish": null,
+          "ptsPerGame": null,
+          "pointShare": null,
+          "powerScore": null,
+          "winnings": null,
+          "prestigeEarned": null,
+          "playoffResult": null,
+          "result": null
+        },
+        {
+          "year": 2017,
+          "teamName": null,
+          "record": null,
+          "finish": null,
+          "ptsPerGame": null,
+          "pointShare": null,
+          "powerScore": null,
+          "winnings": null,
+          "prestigeEarned": null,
+          "playoffResult": null,
+          "result": null
+        },
+        {
+          "year": 2016,
+          "teamName": null,
+          "record": null,
+          "finish": null,
+          "ptsPerGame": null,
+          "pointShare": null,
+          "powerScore": null,
+          "winnings": null,
+          "prestigeEarned": null,
+          "playoffResult": null,
+          "result": null
+        },
+        {
+          "year": 2015,
+          "teamName": null,
+          "record": null,
+          "finish": null,
+          "ptsPerGame": null,
+          "pointShare": null,
+          "powerScore": null,
+          "winnings": null,
+          "prestigeEarned": null,
+          "playoffResult": null,
+          "result": null
+        },
+        {
+          "year": 2014,
+          "teamName": null,
+          "record": null,
+          "finish": null,
+          "ptsPerGame": null,
+          "pointShare": null,
+          "powerScore": null,
+          "winnings": null,
+          "prestigeEarned": null,
+          "playoffResult": null,
+          "result": null
         }
       ],
       "trophies": [
@@ -7124,7 +7704,7 @@
       "photo": "../images/wade.jpg",
       "lastUpdated": null,
       "location": "Pennsylvania",
-      "locationEmoji": "\ud83d\udd14",
+      "locationEmoji": "🔔",
       "broughtInBy": "Recruited by Kyle",
       "statusLines": [],
       "prestige": {
@@ -7132,7 +7712,24 @@
         "points": 311,
         "outOf": 27
       },
-      "traits": [],
+      "traits": [
+        {
+          "emoji": "🧔",
+          "label": "Memorable Facial Hair"
+        },
+        {
+          "emoji": "💬",
+          "label": "Prolific Chatter"
+        },
+        {
+          "emoji": "🍆",
+          "label": "Perv"
+        },
+        {
+          "emoji": "🗣️",
+          "label": "Certified Trash Talker"
+        }
+      ],
       "currentSeason": {
         "year": 2026,
         "record": null,
@@ -7152,14 +7749,15 @@
       "rivalries": {
         "owns": [],
         "ownedBy": [],
-        "rivals": null,
-        "ryderCup": null
+        "rivals": "TBD",
+        "ryderCup": "TBD"
       },
       "narrative": {
         "sectionLabel": "The Narrative",
         "pullQuote": null,
         "body": null
       },
+      "dossierNotes": null,
       "careerStats": {
         "general": [
           {
@@ -7466,7 +8064,7 @@
           "record": "6-8",
           "finish": 10,
           "ptsPerGame": 83.01,
-          "pointShare": "6.0%",
+          "pointShare": "6.4%",
           "powerScore": 105.52,
           "winnings": 55.0,
           "prestigeEarned": 37,
@@ -7475,16 +8073,16 @@
         },
         {
           "year": 2024,
-          "teamName": "BellBrkzBgBodac BtfBncyBrzlnBty ",
+          "teamName": "BellBrkzBgBodac BtfBncyBrzlnBty",
           "record": "9-5",
           "finish": 4,
           "ptsPerGame": 110.78,
-          "pointShare": "8.0%",
+          "pointShare": "8.4%",
           "powerScore": 146.61,
           "winnings": 55.0,
           "prestigeEarned": 125,
           "playoffResult": "Lost in First Round",
-          "result": "playoff"
+          "result": "playoffs"
         },
         {
           "year": 2023,
@@ -7492,12 +8090,12 @@
           "record": "7-7",
           "finish": 6,
           "ptsPerGame": 96.67,
-          "pointShare": "8.0%",
+          "pointShare": "7.5%",
           "powerScore": 117.97,
           "winnings": 10.0,
           "prestigeEarned": 36,
           "playoffResult": "Lost in First Round",
-          "result": "playoff"
+          "result": "playoffs"
         },
         {
           "year": 2022,
@@ -7505,7 +8103,7 @@
           "record": "5-9",
           "finish": 12,
           "ptsPerGame": 76.75,
-          "pointShare": "6.0%",
+          "pointShare": "6.1%",
           "powerScore": 94.0,
           "winnings": 0.0,
           "prestigeEarned": 19,
@@ -7518,7 +8116,7 @@
           "record": "6-8",
           "finish": 11,
           "ptsPerGame": 83.91,
-          "pointShare": "6.0%",
+          "pointShare": "6.4%",
           "powerScore": 106.01,
           "winnings": 102.5,
           "prestigeEarned": 29,
@@ -7531,12 +8129,90 @@
           "record": "8-5",
           "finish": 4,
           "ptsPerGame": 98.13,
-          "pointShare": "7.0%",
+          "pointShare": "7.3%",
           "powerScore": 132.23,
           "winnings": 0.0,
           "prestigeEarned": 65,
           "playoffResult": "Lost in First Round",
-          "result": "playoff"
+          "result": "playoffs"
+        },
+        {
+          "year": 2019,
+          "teamName": null,
+          "record": null,
+          "finish": null,
+          "ptsPerGame": null,
+          "pointShare": null,
+          "powerScore": null,
+          "winnings": null,
+          "prestigeEarned": null,
+          "playoffResult": null,
+          "result": null
+        },
+        {
+          "year": 2018,
+          "teamName": null,
+          "record": null,
+          "finish": null,
+          "ptsPerGame": null,
+          "pointShare": null,
+          "powerScore": null,
+          "winnings": null,
+          "prestigeEarned": null,
+          "playoffResult": null,
+          "result": null
+        },
+        {
+          "year": 2017,
+          "teamName": null,
+          "record": null,
+          "finish": null,
+          "ptsPerGame": null,
+          "pointShare": null,
+          "powerScore": null,
+          "winnings": null,
+          "prestigeEarned": null,
+          "playoffResult": null,
+          "result": null
+        },
+        {
+          "year": 2016,
+          "teamName": null,
+          "record": null,
+          "finish": null,
+          "ptsPerGame": null,
+          "pointShare": null,
+          "powerScore": null,
+          "winnings": null,
+          "prestigeEarned": null,
+          "playoffResult": null,
+          "result": null
+        },
+        {
+          "year": 2015,
+          "teamName": null,
+          "record": null,
+          "finish": null,
+          "ptsPerGame": null,
+          "pointShare": null,
+          "powerScore": null,
+          "winnings": null,
+          "prestigeEarned": null,
+          "playoffResult": null,
+          "result": null
+        },
+        {
+          "year": 2014,
+          "teamName": null,
+          "record": null,
+          "finish": null,
+          "ptsPerGame": null,
+          "pointShare": null,
+          "powerScore": null,
+          "winnings": null,
+          "prestigeEarned": null,
+          "playoffResult": null,
+          "result": null
         }
       ],
       "trophies": [
