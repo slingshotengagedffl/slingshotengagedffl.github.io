@@ -41,10 +41,10 @@
         "standing": null,
         "ptsPerGame": null,
         "lastGame": {
-          "result": null,
-          "opponent": null,
-          "score": null,
-          "lifetimeVsOpponent": null
+          "result": "L",
+          "opponent": "DYLAN",
+          "score": "71.86-73.22",
+          "lifetimeVsOpponent": "5-8"
         },
         "nextGame": {
           "opponent": null,
@@ -52,8 +52,18 @@
         }
       },
       "rivalries": {
-        "owns": [],
-        "ownedBy": [],
+        "owns": [
+          {
+            "name": "Brian",
+            "record": "9-2"
+          }
+        ],
+        "ownedBy": [
+          {
+            "name": "Wade",
+            "record": "2-5"
+          }
+        ],
         "rivals": "TBD",
         "ryderCup": "TBD"
       },
@@ -631,10 +641,10 @@
         "standing": null,
         "ptsPerGame": null,
         "lastGame": {
-          "result": null,
-          "opponent": null,
-          "score": null,
-          "lifetimeVsOpponent": null
+          "result": "L",
+          "opponent": "TIM",
+          "score": "71.14-76.42",
+          "lifetimeVsOpponent": "4-2"
         },
         "nextGame": {
           "opponent": null,
@@ -642,7 +652,12 @@
         }
       },
       "rivalries": {
-        "owns": [],
+        "owns": [
+          {
+            "name": "Mike",
+            "record": "4-1"
+          }
+        ],
         "ownedBy": [],
         "rivals": "TBD",
         "ryderCup": "TBD"
@@ -1223,10 +1238,10 @@
         "standing": null,
         "ptsPerGame": null,
         "lastGame": {
-          "result": null,
-          "opponent": null,
-          "score": null,
-          "lifetimeVsOpponent": null
+          "result": "L",
+          "opponent": "MIKE",
+          "score": "101.26-78.80",
+          "lifetimeVsOpponent": "3-10"
         },
         "nextGame": {
           "opponent": null,
@@ -1234,8 +1249,22 @@
         }
       },
       "rivalries": {
-        "owns": [],
-        "ownedBy": [],
+        "owns": [
+          {
+            "name": "Kyle",
+            "record": "7-2"
+          }
+        ],
+        "ownedBy": [
+          {
+            "name": "Mike",
+            "record": "3-10"
+          },
+          {
+            "name": "Alex",
+            "record": "2-9"
+          }
+        ],
         "rivals": "TBD",
         "ryderCup": "TBD"
       },
@@ -1813,10 +1842,10 @@
         "standing": null,
         "ptsPerGame": null,
         "lastGame": {
-          "result": null,
-          "opponent": null,
-          "score": null,
-          "lifetimeVsOpponent": null
+          "result": "L",
+          "opponent": "TIM",
+          "score": "68.98-80.26",
+          "lifetimeVsOpponent": "6-1"
         },
         "nextGame": {
           "opponent": null,
@@ -1824,8 +1853,22 @@
         }
       },
       "rivalries": {
-        "owns": [],
-        "ownedBy": [],
+        "owns": [
+          {
+            "name": "Tim",
+            "record": "6-1"
+          }
+        ],
+        "ownedBy": [
+          {
+            "name": "Wade",
+            "record": "0-6"
+          },
+          {
+            "name": "Kyle",
+            "record": "2-8"
+          }
+        ],
         "rivals": "TBD",
         "ryderCup": "TBD"
       },
@@ -2405,10 +2448,10 @@
         "standing": null,
         "ptsPerGame": null,
         "lastGame": {
-          "result": null,
-          "opponent": null,
-          "score": null,
-          "lifetimeVsOpponent": null
+          "result": "W",
+          "opponent": "MIKE",
+          "score": "142.20-109.88",
+          "lifetimeVsOpponent": "5-9"
         },
         "nextGame": {
           "opponent": null,
@@ -2416,7 +2459,20 @@
         }
       },
       "rivalries": {
-        "owns": [],
+        "owns": [
+          {
+            "name": "Scott",
+            "record": "9-3"
+          },
+          {
+            "name": "Wade",
+            "record": "5-1"
+          },
+          {
+            "name": "Tim",
+            "record": "5-2"
+          }
+        ],
         "ownedBy": [],
         "rivals": "TBD",
         "ryderCup": "TBD"
@@ -3006,9 +3062,9 @@
         "ptsPerGame": null,
         "lastGame": {
           "result": "W",
-          "opponent": "MATT",
-          "score": "153.64-101.20",
-          "lifetimeVsOpponent": "9-3"
+          "opponent": "JON",
+          "score": "92.38-66.98",
+          "lifetimeVsOpponent": "9-5"
         },
         "nextGame": {
           "opponent": null,
@@ -3016,7 +3072,12 @@
         }
       },
       "rivalries": {
-        "owns": [],
+        "owns": [
+          {
+            "name": "Matt",
+            "record": "9-3"
+          }
+        ],
         "ownedBy": [],
         "rivals": "TBD",
         "ryderCup": "TBD"
@@ -3601,10 +3662,10 @@
         "standing": null,
         "ptsPerGame": null,
         "lastGame": {
-          "result": null,
-          "opponent": null,
-          "score": null,
-          "lifetimeVsOpponent": null
+          "result": "L",
+          "opponent": "BRIAN",
+          "score": "64.84-69.90",
+          "lifetimeVsOpponent": "3-6"
         },
         "nextGame": {
           "opponent": null,
@@ -3612,8 +3673,26 @@
         }
       },
       "rivalries": {
-        "owns": [],
-        "ownedBy": [],
+        "owns": [
+          {
+            "name": "Scott",
+            "record": "5-2"
+          },
+          {
+            "name": "Wade",
+            "record": "5-1"
+          }
+        ],
+        "ownedBy": [
+          {
+            "name": "Kyle",
+            "record": "2-5"
+          },
+          {
+            "name": "Mike",
+            "record": "1-6"
+          }
+        ],
         "rivals": "TBD",
         "ryderCup": "TBD"
       },
@@ -4194,10 +4273,10 @@
         "standing": null,
         "ptsPerGame": null,
         "lastGame": {
-          "result": null,
-          "opponent": null,
-          "score": null,
-          "lifetimeVsOpponent": null
+          "result": "L",
+          "opponent": "DYLAN",
+          "score": "88.98-101.24",
+          "lifetimeVsOpponent": "5-6"
         },
         "nextGame": {
           "opponent": null,
@@ -4205,8 +4284,34 @@
         }
       },
       "rivalries": {
-        "owns": [],
-        "ownedBy": [],
+        "owns": [
+          {
+            "name": "Scott",
+            "record": "7-2"
+          },
+          {
+            "name": "Wade",
+            "record": "5-2"
+          },
+          {
+            "name": "Jordan",
+            "record": "5-2"
+          },
+          {
+            "name": "Tim",
+            "record": "6-1"
+          },
+          {
+            "name": "Daniel",
+            "record": "8-2"
+          }
+        ],
+        "ownedBy": [
+          {
+            "name": "Brian",
+            "record": "2-7"
+          }
+        ],
         "rivals": "TBD",
         "ryderCup": "TBD"
       },
@@ -5374,10 +5479,10 @@
         "standing": null,
         "ptsPerGame": null,
         "lastGame": {
-          "result": null,
-          "opponent": null,
-          "score": null,
-          "lifetimeVsOpponent": null
+          "result": "L",
+          "opponent": "JON",
+          "score": "156.54-105.06",
+          "lifetimeVsOpponent": "4-10"
         },
         "nextGame": {
           "opponent": null,
@@ -5386,7 +5491,12 @@
       },
       "rivalries": {
         "owns": [],
-        "ownedBy": [],
+        "ownedBy": [
+          {
+            "name": "Jack",
+            "record": "3-9"
+          }
+        ],
         "rivals": "TBD",
         "ryderCup": "TBD"
       },
@@ -5966,10 +6076,10 @@
         "standing": null,
         "ptsPerGame": null,
         "lastGame": {
-          "result": null,
-          "opponent": null,
-          "score": null,
-          "lifetimeVsOpponent": null
+          "result": "L",
+          "opponent": "DYLAN",
+          "score": "109.88-142.20",
+          "lifetimeVsOpponent": "9-5"
         },
         "nextGame": {
           "opponent": null,
@@ -5977,8 +6087,30 @@
         }
       },
       "rivalries": {
-        "owns": [],
-        "ownedBy": [],
+        "owns": [
+          {
+            "name": "Brian",
+            "record": "10-3"
+          },
+          {
+            "name": "Tim",
+            "record": "5-2"
+          },
+          {
+            "name": "Wade",
+            "record": "5-2"
+          },
+          {
+            "name": "Jordan",
+            "record": "6-1"
+          }
+        ],
+        "ownedBy": [
+          {
+            "name": "Andy",
+            "record": "1-4"
+          }
+        ],
         "rivals": "TBD",
         "ryderCup": "TBD"
       },
@@ -6556,10 +6688,10 @@
         "standing": null,
         "ptsPerGame": null,
         "lastGame": {
-          "result": null,
-          "opponent": null,
-          "score": null,
-          "lifetimeVsOpponent": null
+          "result": "W",
+          "opponent": "KYLE",
+          "score": "117.76-84.64",
+          "lifetimeVsOpponent": "2-7"
         },
         "nextGame": {
           "opponent": null,
@@ -6568,7 +6700,20 @@
       },
       "rivalries": {
         "owns": [],
-        "ownedBy": [],
+        "ownedBy": [
+          {
+            "name": "Kyle",
+            "record": "2-7"
+          },
+          {
+            "name": "Jordan",
+            "record": "2-5"
+          },
+          {
+            "name": "Dylan",
+            "record": "3-9"
+          }
+        ],
         "rivals": "TBD",
         "ryderCup": "TBD"
       },
@@ -7146,10 +7291,10 @@
         "standing": null,
         "ptsPerGame": null,
         "lastGame": {
-          "result": null,
-          "opponent": null,
-          "score": null,
-          "lifetimeVsOpponent": null
+          "result": "W",
+          "opponent": "DANIEL",
+          "score": "80.26-68.98",
+          "lifetimeVsOpponent": "1-6"
         },
         "nextGame": {
           "opponent": null,
@@ -7158,7 +7303,28 @@
       },
       "rivalries": {
         "owns": [],
-        "ownedBy": [],
+        "ownedBy": [
+          {
+            "name": "Daniel",
+            "record": "1-6"
+          },
+          {
+            "name": "Mike",
+            "record": "2-5"
+          },
+          {
+            "name": "Kyle",
+            "record": "1-6"
+          },
+          {
+            "name": "Wade",
+            "record": "1-5"
+          },
+          {
+            "name": "Dylan",
+            "record": "2-5"
+          }
+        ],
         "rivals": "TBD",
         "ryderCup": "TBD"
       },
@@ -7736,10 +7902,10 @@
         "standing": null,
         "ptsPerGame": null,
         "lastGame": {
-          "result": null,
-          "opponent": null,
-          "score": null,
-          "lifetimeVsOpponent": null
+          "result": "L",
+          "opponent": "JON",
+          "score": "103.86-110.64",
+          "lifetimeVsOpponent": "2-5"
         },
         "nextGame": {
           "opponent": null,
@@ -7747,8 +7913,38 @@
         }
       },
       "rivalries": {
-        "owns": [],
-        "ownedBy": [],
+        "owns": [
+          {
+            "name": "Daniel",
+            "record": "6-0"
+          },
+          {
+            "name": "Alex",
+            "record": "5-2"
+          },
+          {
+            "name": "Tim",
+            "record": "5-1"
+          }
+        ],
+        "ownedBy": [
+          {
+            "name": "Kyle",
+            "record": "2-5"
+          },
+          {
+            "name": "Dylan",
+            "record": "1-5"
+          },
+          {
+            "name": "Mike",
+            "record": "2-5"
+          },
+          {
+            "name": "Jordan",
+            "record": "1-5"
+          }
+        ],
         "rivals": "TBD",
         "ryderCup": "TBD"
       },
