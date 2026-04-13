@@ -422,6 +422,36 @@
     margin-bottom: 16px;
   }
 
+
+  .tone-toggle {
+    display: flex;
+    gap: 0;
+    margin-bottom: 14px;
+    border-radius: 6px;
+    overflow: hidden;
+    border: 1px solid var(--border);
+  }
+  .tone-btn {
+    flex: 1;
+    background: var(--surface2);
+    color: var(--muted);
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 0.78rem;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    border: none;
+    padding: 9px 4px;
+    cursor: pointer;
+    transition: background 0.15s, color 0.15s;
+    border-right: 1px solid var(--border);
+  }
+  .tone-btn:last-child { border-right: none; }
+  .tone-btn.active {
+    background: var(--surface);
+    color: var(--gold);
+  }
+  .tone-btn:hover:not(.active) { color: var(--white); }
+
   .dossier-trigger-card {
     background: var(--surface);
     border: 1px solid var(--border);
@@ -1783,6 +1813,11 @@ function renderProfile(p) {
         <div class="dossier-eyebrow">Classified Intelligence · Generated Fresh on Demand</div>
         <div class="dossier-headline">Pull the File on ${p.name}</div>
         <div class="dossier-subline">An AI-generated scouting report in the voice of Chuck Klosterman. Every pull is a fresh take — same career, different angle.</div>
+        <div class="tone-toggle">
+          <button class="tone-btn active" id="toneAnalytical" onclick="setTone('analytical')">Analytical</button>
+          <button class="tone-btn" id="toneRuthless" onclick="setTone('ruthless')">Ruthless</button>
+          <button class="tone-btn" id="toneEulogy" onclick="setTone('eulogy')">Eulogy</button>
+        </div>
         <button class="pull-file-btn" id="pullFileBtn" onclick="pullDossier()">
           <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg" style="flex-shrink:0"><path d="M3 2h7l3 3v9H3V2z" stroke="#fff" stroke-width="1.3" stroke-linejoin="round"/><path d="M10 2v3h3" stroke="#fff" stroke-width="1.3" stroke-linejoin="round"/><path d="M5 8h6M5 11h4" stroke="#fff" stroke-width="1.3" stroke-linecap="round"/></svg>
           Pull the File
@@ -2382,7 +2417,7 @@ const DOSSIER_LOADING_PHRASES = [
 
 let dossierPhraseInterval = null;
 
-function buildDossierPrompt(p) {
+function buildDossierPrompt(p, tone) {
   const wonTrophies = p.trophies.filter(t => t.count > 0)
     .map(t => `${t.name}${t.count > 1 ? ' (x' + t.count + ')' : ''}`)
     .join(', ') || 'None yet';
@@ -2391,7 +2426,7 @@ function buildDossierPrompt(p) {
 
   const completedSeasons = p.seasons.filter(s => s.record !== null);
   const seasonSummary = completedSeasons.map(s =>
-    `${s.year}: ${s.record}, regular season finish: ${s.finish ? s.finish + (s.finish===1?'st':s.finish===2?'nd':s.finish===3?'rd':'th')+' out of 14' : '—'}, playoff result: ${s.playoffResult || s.result || '—'}, $${s.winnings || 0} earned`
+    `${s.year}${s.teamName ? ' ("' + s.teamName + '")' : ''}: ${s.record}, regular season finish: ${s.finish ? s.finish + (s.finish===1?'st':s.finish===2?'nd':s.finish===3?'rd':'th')+' out of 14' : '—'}, playoff result: ${s.playoffResult || s.result || '—'}, $${s.winnings || 0} earned`
   ).join('\n');
 
   const cs = p.careerStats;
@@ -2403,96 +2438,126 @@ function buildDossierPrompt(p) {
   const finalistYears = completedSeasons.filter(s => s.result === 'finalist').map(s => s.year);
 
   const ownsText = p.rivalries.owns && p.rivalries.owns.length
-    ? p.rivalries.owns.map(o => `${o.name} (${o.record} all-time)`).join(', ')
+    ? p.rivalries.owns.map(o => `${o.name} (${o.record} all-time head-to-head)`).join(', ')
     : 'None';
   const ownedByText = p.rivalries.ownedBy && p.rivalries.ownedBy.length
-    ? p.rivalries.ownedBy.map(o => `${o.name} (${o.record} all-time)`).join(', ')
+    ? p.rivalries.ownedBy.map(o => `${o.name} (${o.record} all-time head-to-head)`).join(', ')
     : 'None';
 
+  const netEarnings = gen['Net Earnings'] ? gen['Net Earnings'].value : null;
+  const earningsStr = netEarnings !== null
+    ? (netEarnings >= 0 ? `+$${netEarnings}` : `-$${Math.abs(netEarnings)}`)
+    : '—';
+
+  const winPct = rs['Win %'] ? rs['Win %'].value : null;
+  const winPctStr = winPct !== null ? `${(winPct * 100).toFixed(1)}%` : '—';
+
+  const poWinPct = po['Win %'] ? po['Win %'].value : null;
+  const poWinPctStr = poWinPct !== null ? `${(poWinPct * 100).toFixed(1)}%` : '—';
+
+  const toneModifiers = {
+    analytical: `TONE: Default Klosterman mode. Wry, detached, analytical. Finds unexpected meaning in mundane patterns. Neither cruel nor kind — just observational and slightly unsettling in its accuracy.`,
+    ruthless: `TONE: Ruthless mode. Klosterman with the gloves off. Still essayistic, still precise — but no softening, no diplomatic hedging. If the record is bad, say so. If the owner is delusional about their ability, name it. The truth, delivered without mercy but also without cruelty — just clarity.`,
+    eulogy: `TONE: Eulogy mode. Klosterman finds the beauty and dignity in this career, even in failure. Every losing streak has philosophical weight. Every missed playoff is a near-miss worth mourning. The tone is elegiac, almost tender — but never saccharine. Find the humanity in the numbers.`
+  };
+
+  const toneBlock = toneModifiers[tone] || toneModifiers.analytical;
+
   return `You are writing a scouting report on a fantasy football league manager in the voice of Chuck Klosterman. Klosterman's style: treats trivial things with outsized analytical gravity, finds unexpected cultural meaning in mundane patterns, detached ironic confidence, essayistic prose that builds an argument, occasional surprising pop culture comparisons, never uses bullet points — only flowing paragraphs. He does not flatter. He does not moralize. He simply observes and draws conclusions that feel true and slightly uncomfortable.
+
+${toneBlock}
 
 Write a dossier on ${p.name} ("${p.nickname}") for the Slingshot Engaged Fantasy Football League, a 14-owner league active since 2014. The report should end with a forward-looking argument for why 2026 could be this owner's year to win the championship — make it feel specific to their arc, not generic. Even if the case is a stretch, make it convincingly.
 
 LEAGUE CONTEXT — READ CAREFULLY BEFORE WRITING:
-- The league has exactly 14 owners. Finishing 1st in the regular season = best record, NOT champion. The champion is determined by the playoffs.
-- REGULAR SEASON FINISH is just standings — finishing 1st in the regular season means best record, not a championship. Championship is only won by winning the playoff bracket.
-- Stat ranks (wins, win %, PPG, boom rate, start rate, luck rate, avg finish, etc.) are among the 14 ACTIVE owners only. 14th = last place among active owners. 13th = second to last. 1st = best among active owners. Luke has played zero seasons so he is 14th by default.
+- The league has exactly 14 owners. Finishing 1st in the regular season = best record that season only, NOT the champion. The champion is determined solely by winning the playoff bracket.
+- This is a ONE-KEEPER league. Each owner may carry over exactly one player from the previous season. All other positions are redrafted from scratch each year.
+- Stat ranks (wins, win %, PPG, boom rate, start rate, luck rate, avg finish, etc.) are among the 14 ACTIVE owners only. 14th = last among active owners. 13th = second to last. 1st = best. Luke has played zero seasons and is 14th by default in all volume stats.
 - PRESTIGE RANK is the one exception — it is out of 27 all-time owners including retired members.
-- FINISH calibration (regular season): 1st–3rd = elite. 4th–6th = strong. 7th–9th = average. 10th–12th = poor. 13th–14th = bottom of the league.
-- WIN RATE calibration: .580+ = elite. .530–.579 = solid. .480–.529 = average. .430–.479 = below average. Below .430 = genuinely poor. A .350 win rate is bad, not mediocre.
-- LUCK RATE = how much a manager's actual win % exceeds or falls short of their expected win % based on points scored. The full range in this league runs from Kyle at -5.93% (most unlucky owner in league history) to Mike at +4.66% (luckiest). Neutral zone: -1% to +1%. Above +2% = noticeably lucky. Below -2% = noticeably unlucky. A high positive luck rate means winning more than your points would predict — not purely a skill metric.
-- POINT SHARE: league average is ~7.14%. Above 8% = elite scorer. Below 6.5% = weak scorer.
+- FINISH calibration (regular season standing): 1st–3rd = elite. 4th–6th = strong. 7th–9th = average. 10th–12th = poor. 13th–14th = bottom of the league.
+- WIN RATE calibration: 58.0%+ = elite. 53.0–57.9% = solid. 48.0–52.9% = average. 43.0–47.9% = below average. Below 43.0% = genuinely poor. A 35% win rate is bad, not mediocre.
+- LUCK RATE = how much a manager's actual win % exceeds or falls short of their expected win % based on points scored. Full league range: Kyle at -5.93% (most unlucky in league history) to Mike at +4.66% (luckiest). Neutral zone: -1% to +1%. Above +2% = noticeably lucky. Below -2% = noticeably unlucky. A positive luck rate means winning more than your points would predict — not purely a skill metric.
+- POINT SHARE: league average ~7.14%. Above 8% = elite scorer. Below 6.5% = weak scorer.
 - BOOM RATE (% of games scoring 120%+ of league average): 30%+ = top tier. 22–29% = strong. 16–21% = average. Below 16% = weak.
 - START RATE (% of games at or above league average): 60%+ = top tier. 50–59% = strong. 44–49% = average. Below 44% = weak.
-- NET EARNINGS: positive = profitable overall after entry fees. Negative = lost money overall.
+- NET EARNINGS: positive = profitable overall after entry fees. Negative = net loss.
+- OWNS means this owner has a 70%+ all-time head-to-head win rate against that opponent with 5+ games played. OWNED BY means the opponent has 70%+ against them. These are specific documented relationships — do not generalize or invent head-to-head dominance beyond what is listed.
+
+FORMATTING RULES:
+- Win percentages: always as a percentage with one decimal place (e.g. 61.5%, never 0.615).
+- Net earnings: always with explicit sign and dollar sign (e.g. +$730 or -$445). Never omit the sign.
 
 OWNER DATA:
 - Name: ${p.name}, Nickname: "${p.nickname}"
 - Location: ${p.location}
 - Member since: ${p.memberSince} (${completedSeasons.length} completed seasons)
+- Recruited by / origin: ${p.broughtInBy || '—'}
 - Status: ${p.statusLines ? p.statusLines.join(', ') : ''}
 - Traits: ${traits}
 - Current rivals: ${p.rivalries.rivals || '—'}
 - Ryder Cup Team: ${p.rivalries.ryderCup || '—'}
-- Head-to-head dominance (owns, 70%+ win rate over 5+ games): ${ownsText}
-- Head-to-head dominated by (owned by, 70%+ win rate against them): ${ownedByText}
+- Head-to-head dominance — Owns (70%+ win rate, 5+ games): ${ownsText}
+- Head-to-head dominated by — Owned By: ${ownedByText}
 - Championship years: ${champYears.length ? champYears.join(', ') : 'None'}
 - Runner-up (finalist) years: ${finalistYears.length ? finalistYears.join(', ') : 'None'}
 
 CAREER STATS:
 - Prestige Rank: #${p.prestige.rank} of 27 all-time owners
 - Prestige Points: ${p.prestige.points}
-- Net Earnings: $${gen['Net Earnings'] ? gen['Net Earnings'].value : '—'} (Rank among 14 active owners: ${gen['Net Earnings'] ? gen['Net Earnings'].rank : '—'})
+- Net Earnings: ${earningsStr} (Rank: ${gen['Net Earnings'] ? gen['Net Earnings'].rank : '—'} among 14 active owners)
 - Wins: ${rs['Wins'] ? rs['Wins'].value : '—'} (Rank: ${rs['Wins'] ? rs['Wins'].rank : '—'} among 14 active owners)
-- Win %: ${rs['Win %'] ? rs['Win %'].value : '—'} (Rank: ${rs['Win %'] ? rs['Win %'].rank : '—'} among 14 active owners)
-- Avg Regular Season Finish: ${rs['Avg Finish'] ? rs['Avg Finish'].value : '—'} — LOWER IS BETTER. This is regular season standing only, not playoff result. (Rank: ${rs['Avg Finish'] ? rs['Avg Finish'].rank : '—'} among 14 active owners)
+- Win %: ${winPctStr} (Rank: ${rs['Win %'] ? rs['Win %'].rank : '—'} among 14 active owners)
+- Avg Regular Season Finish: ${rs['Avg Finish'] ? rs['Avg Finish'].value : '—'} — LOWER IS BETTER. Regular season standing only, not playoff result. (Rank: ${rs['Avg Finish'] ? rs['Avg Finish'].rank : '—'} among 14 active owners)
 - Pts Per Game: ${rs['Pts Per Game'] ? rs['Pts Per Game'].value : '—'} (Rank: ${rs['Pts Per Game'] ? rs['Pts Per Game'].rank : '—'} among 14 active owners)
 - Point Share: ${rs['Point Share'] ? rs['Point Share'].value : '—'} (league avg ~7.14%) (Rank: ${rs['Point Share'] ? rs['Point Share'].rank : '—'} among 14 active owners)
 - Weekly High Scores: ${rs['Weekly High Scores'] ? rs['Weekly High Scores'].value : '—'} (Rank: ${rs['Weekly High Scores'] ? rs['Weekly High Scores'].rank : '—'} among 14 active owners)
 - Weeks at #1 in Power Score: ${rs['Weeks at #1'] ? rs['Weeks at #1'].value : '—'} (Rank: ${rs['Weeks at #1'] ? rs['Weeks at #1'].rank : '—'} among 14 active owners)
 - Boom Rate: ${rs['Boom Rate'] ? rs['Boom Rate'].value : '—'} (Rank: ${rs['Boom Rate'] ? rs['Boom Rate'].rank : '—'} among 14 active owners)
 - Start Rate: ${rs['Start Rate'] ? rs['Start Rate'].value : '—'} (Rank: ${rs['Start Rate'] ? rs['Start Rate'].rank : '—'} among 14 active owners)
-- Luck Rate: ${rs['Luck Rate'] ? rs['Luck Rate'].value : '—'} (Rank: ${rs['Luck Rate'] ? rs['Luck Rate'].rank : '—'} among 14 active owners; reference range: Kyle -5.93% most unlucky, Mike +4.66% most lucky)
+- Luck Rate: ${rs['Luck Rate'] ? rs['Luck Rate'].value : '—'} (Rank: ${rs['Luck Rate'] ? rs['Luck Rate'].rank : '—'} among 14 active owners; league range: -5.93% most unlucky to +4.66% most lucky)
 - Playoff Appearances: ${po['Appearances'] ? po['Appearances'].value : '—'}
-- Playoff Win %: ${po['Win %'] ? po['Win %'].value : '—'}
+- Playoff Win %: ${poWinPctStr}
 - Championships: ${po['Championships'] ? po['Championships'].value : '—'}
 
 TROPHIES AND CONTESTS WON: ${wonTrophies}
 Trophy context:
-- "League Champion" = won the playoff bracket and the whole season
-- "Regular Season Champion" = best regular season record only, not a playoff title
+- "League Champion" = won the playoff bracket, the ultimate prize
+- "Regular Season Champion" = best regular season record only — not a playoff title
 - "2nd Place" / "3rd Place" = playoff finishes
-- "Owner of the Year" = awarded for contributions to league CULTURE and FUN, NOT for on-field performance. This is a personality/community award.
-- "Hottest Team in Sports Bowl" = best team in final regular season weeks
+- "Owner of the Year" = awarded for contributions to league CULTURE and FUN, NOT on-field performance. A personality/community award.
+- "Hottest Team in Sports Bowl" = best team in the final weeks of the regular season
 - "Rivalry Week" = won the designated rivalry matchup
 - "Intercontinental Champ" = won a mid-season side tournament
 - "AVL Memorial Cup" = named after a founding member, awarded for a specific achievement
 - "Degen Bowl" = a side gambling contest
 - "Somehow the Champion" = won despite being a significant underdog
-- "Survivor King" = won a SEPARATE pick'em survival contest entirely unrelated to fantasy football performance
-- "Bronze Franz" = LOST the consolation bracket final — this means finishing DEAD LAST among all playoff teams. The most humiliating possible outcome for a team that made the postseason.
+- "Survivor King" = won a SEPARATE pick'em survival contest, entirely unrelated to fantasy football performance
+- "Bronze Franz" = finished LAST in the consolation bracket among teams that MISSED the playoffs. Most humiliating result for a non-playoff team.
 - "Da Choppaaa Champ" / "JopO or KG Pick 'Em" / "Dad Bod's Preseason Rankings" = miscellaneous skill contests
-If this owner has won notable trophies, reference at least one specifically.
+If this owner has won notable trophies, reference at least one specifically by name.
 
-SEASON BY SEASON (most recent first):
+SEASON BY SEASON (most recent first) — team names in quotes where available:
 ${seasonSummary}
 ${p.dossierNotes ? `\nINSIDER NOTES (use freely — personality, notable moments, context):\n${p.dossierNotes}` : ''}
 ACCURACY RULES — CRITICAL:
 - Only reference stats and seasons explicitly provided above. Do not invent or approximate numbers.
-- A regular season finish of 1st means best record that season — it does NOT mean they won the championship. Championship is determined by playoffs only.
-- Championship years are: ${champYears.length ? champYears.join(', ') : 'none'}. Do not claim championships in other years.
+- A regular season finish of 1st means best record that season — NOT a championship. Championships are playoff results only.
+- Championship years: ${champYears.length ? champYears.join(', ') : 'none'}. Do not claim championships in other years.
 - Seasons played: ${completedSeasons.length}. Do not reference more or fewer.
-- Do not reference other specific owners by name UNLESS they appear in: rivals, owns, owned by, or insider notes. Do not invent matchup history.
+- Only reference other owners by name if they appear in: rivals, owns, owned by, recruited by, or insider notes. Do not invent matchup history.
 - NEVER use last names. First names and nicknames only.
+- Owns/Owned By are documented facts — describe them accurately using the record provided. Do not invent or generalize head-to-head claims.
+- Team names are provided where available — use them when they add color, but don't force every one.
 
 STYLE RULES — CRITICAL:
 - Do NOT open with "There exists a particular type/species/archetype/breed." Find a different entry point every time.
 - Do NOT compare this owner to a car, truck, or any vehicle.
 - The 2026 championship argument must feel specific to this owner's arc — not a generic template.
-- Vary which stats you emphasize. Weekly high scores, point share, earnings, playoff record, specific seasons, and trophy wins often tell better stories than boom rate and start rate alone.
-- The emotional register must match the actual record. Elite owners get different treatment than bottom-tier owners.
-- When owns/owned by relationships exist, weave them into the narrative naturally — not on every dossier, but when they illuminate something true about the owner.
-- When rivals are listed, feel free to reference them by first name.
+- Vary which stats you emphasize. Weekly high scores, point share, earnings, playoff record, specific seasons, trophy wins, and head-to-head dominance often tell better stories than boom rate and start rate alone.
+- The emotional register must match both the actual record AND the tone modifier above.
+- When owns/owned by relationships exist, weave them into the narrative naturally when they illuminate something true.
+- When rivals or recruiter are listed, feel free to reference them by first name.
+- If the owner was recruited by someone, consider whether that origin story is narratively interesting.
 
 OUTPUT FORMAT:
 Return a JSON object with exactly two keys:
@@ -2503,6 +2568,15 @@ Return only valid JSON. No markdown fences. No preamble.`;
 }
 
 
+
+let activeTone = 'analytical';
+function setTone(tone) {
+  activeTone = tone;
+  ['analytical','ruthless','eulogy'].forEach(t => {
+    const btn = document.getElementById('tone' + t.charAt(0).toUpperCase() + t.slice(1));
+    if (btn) btn.classList.toggle('active', t === tone);
+  });
+}
 
 async function pullDossier() {
   const btn = document.getElementById('pullFileBtn');
@@ -2540,7 +2614,7 @@ async function pullDossier() {
       body: JSON.stringify({
         model: 'claude-sonnet-4-20250514',
         max_tokens: 1000,
-        messages: [{ role: 'user', content: buildDossierPrompt(p) }]
+        messages: [{ role: 'user', content: buildDossierPrompt(p, activeTone) }]
       })
     });
 
