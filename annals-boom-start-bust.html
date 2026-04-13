@@ -104,9 +104,9 @@
     }
     .archetype-badge {
       display: inline-block; margin-top: 3px;
-      font-family: 'Barlow Condensed', sans-serif; font-size: 0.65rem;
+      font-family: 'Barlow Condensed', sans-serif; font-size: 0.75rem;
       font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase;
-      padding: 2px 7px; border-radius: 20px; white-space: nowrap;
+      padding: 3px 9px; border-radius: 20px; white-space: nowrap;
       cursor: pointer;
     }
     .badge-boom-machine    { background: rgba(201,168,76,0.15);  color: var(--gold);  border: 1px solid rgba(201,168,76,0.3); }
@@ -159,10 +159,10 @@
     @media (max-width: 480px) { .cards-grid { grid-template-columns: 1fr; } }
 
     .card-scene {
-      perspective: 900px; cursor: pointer; height: 210px;
+      perspective: 900px; cursor: pointer; height: 230px;
     }
-    .card-scene.is-pending { height: 112px; cursor: default; }
-    .card-scene.no-data    { height: 112px; cursor: default; }
+    .card-scene.is-pending { height: 120px; cursor: default; }
+    .card-scene.no-data    { height: 120px; cursor: default; }
 
     .card-inner {
       position: relative; width: 100%; height: 100%;
@@ -175,7 +175,7 @@
       position: absolute; inset: 0;
       backface-visibility: hidden; -webkit-backface-visibility: hidden;
       background: var(--surface); border: 1px solid var(--border);
-      border-radius: 8px; overflow: hidden; transition: border-color 0.15s;
+      border-radius: 8px; overflow: visible; transition: border-color 0.15s;
     }
     .card-scene:not(.is-pending):not(.no-data):hover .card-face { border-color: var(--gold); }
     .card-back { transform: rotateY(180deg); display: flex; flex-direction: column; }
@@ -193,7 +193,7 @@
     }
     .card-name-block { flex: 1; min-width: 0; }
     .card-name {
-      font-family: 'Barlow Condensed', sans-serif; font-size: 1.1rem;
+      font-family: 'Barlow Condensed', sans-serif; font-size: 1.25rem;
       font-weight: 700; color: var(--text); letter-spacing: 0.04em;
       white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
     }
@@ -222,18 +222,18 @@
     .card-rates { flex: 1; display: flex; flex-direction: column; gap: 5px; }
     .rate-row { display: flex; align-items: center; gap: 6px; }
     .rate-label {
-      font-family: 'Barlow Condensed', sans-serif; font-size: 0.68rem;
+      font-family: 'Barlow Condensed', sans-serif; font-size: 0.8rem;
       letter-spacing: 0.1em; text-transform: uppercase;
-      color: var(--label); width: 32px; flex-shrink: 0;
+      color: var(--label); width: 36px; flex-shrink: 0;
     }
     .rate-bar-outer {
-      flex: 1; height: 4px; background: var(--surface3);
+      flex: 1; height: 5px; background: var(--surface3);
       border-radius: 2px; overflow: hidden;
     }
     .rate-bar-inner { height: 100%; border-radius: 2px; }
     .rate-val {
-      font-family: 'Barlow Condensed', sans-serif; font-size: 0.75rem;
-      font-weight: 700; width: 34px; text-align: right; flex-shrink: 0;
+      font-family: 'Barlow Condensed', sans-serif; font-size: 0.88rem;
+      font-weight: 700; width: 38px; text-align: right; flex-shrink: 0;
     }
     .flip-hint {
       font-family: 'Barlow Condensed', sans-serif; font-size: 0.6rem;
@@ -250,11 +250,11 @@
       display: flex; align-items: center; justify-content: space-between;
     }
     .back-name {
-      font-family: 'Barlow Condensed', sans-serif; font-size: 1rem;
+      font-family: 'Barlow Condensed', sans-serif; font-size: 1.15rem;
       font-weight: 700; color: var(--text); letter-spacing: 0.04em;
     }
     .back-flip-hint {
-      font-family: 'Barlow Condensed', sans-serif; font-size: 0.6rem;
+      font-family: 'Barlow Condensed', sans-serif; font-size: 0.7rem;
       letter-spacing: 0.12em; text-transform: uppercase; color: var(--muted);
     }
     .back-body { flex: 1; padding: 10px 14px 10px; display: flex; flex-direction: column; gap: 8px; }
@@ -268,9 +268,9 @@
       display: flex; align-items: center; gap: 8px;
     }
     .rank-stat-label {
-      font-family: 'Barlow Condensed', sans-serif; font-size: 0.72rem;
+      font-family: 'Barlow Condensed', sans-serif; font-size: 0.82rem;
       font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase;
-      width: 38px; flex-shrink: 0;
+      width: 42px; flex-shrink: 0;
     }
     .rank-bar-outer {
       flex: 1; height: 5px; background: var(--surface3);
@@ -278,12 +278,14 @@
     }
     .rank-bar-inner { height: 100%; border-radius: 3px; }
     .rank-number {
-      font-family: 'Bebas Neue', sans-serif; font-size: 1.05rem;
-      line-height: 1; width: 36px; text-align: right; flex-shrink: 0;
+      font-family: 'Bebas Neue', sans-serif; font-size: 1.15rem;
+      line-height: 1; width: 40px; text-align: right; flex-shrink: 0;
     }
-    .rank-suffix {
-      font-family: 'Barlow Condensed', sans-serif; font-size: 0.62rem;
-      color: var(--muted); margin-left: 1px;
+    .rank-low-best {
+      font-family: 'Barlow Condensed', sans-serif; font-size: 0.65rem;
+      letter-spacing: 0.08em; text-transform: uppercase;
+      color: var(--muted); text-align: right; margin-top: -3px;
+      padding-right: 2px;
     }
     .rank-unqualified {
       font-family: 'Barlow Condensed', sans-serif; font-size: 0.72rem;
@@ -307,7 +309,7 @@
     }
     table { width: 100%; border-collapse: collapse; min-width: 480px; }
     thead th {
-      font-family: 'Barlow Condensed', sans-serif; font-size: 0.82rem;
+      font-family: 'Barlow Condensed', sans-serif; font-size: 0.88rem;
       font-weight: 700; letter-spacing: 0.18em; text-transform: uppercase;
       color: var(--label); background: var(--surface2);
       padding: 10px 12px; text-align: right;
@@ -323,14 +325,14 @@
 
     tbody td {
       padding: 9px 12px; vertical-align: middle;
-      border-bottom: 1px solid var(--border); font-size: 0.9rem;
+      border-bottom: 1px solid var(--border); font-size: 0.95rem;
     }
     tbody tr:last-child td { border-bottom: none; }
     tbody tr:hover { background: var(--surface2); transition: background 0.15s; }
 
     .td-owner {
       font-family: 'Barlow Condensed', sans-serif;
-      font-size: 1rem; font-weight: 700; color: var(--text);
+      font-size: 1.05rem; font-weight: 700; color: var(--text);
     }
     .td-owner a { color: var(--gold); text-decoration: none; }
     .td-owner a:hover { text-decoration: underline; }
@@ -339,7 +341,7 @@
     .td-start { color: var(--start-color); }
     .td-mid   { color: var(--muted); font-weight: 400; }
     .td-bust  { color: var(--bust-color); }
-    .td-games { color: var(--muted); font-weight: 400; font-size: 0.82rem; }
+    .td-games { color: var(--muted); font-weight: 400; font-size: 0.88rem; }
     .td-dash  { color: var(--border); text-align: right; font-family: 'Barlow Condensed', sans-serif; }
     .td-hist-row td { opacity: 0.72; }
 
@@ -540,11 +542,15 @@ function buildBack(name, data) {
   // bar width: rank 1 = full, rank N = thin
   const rows = statDefs.map(d => {
     const barPct = Math.max(6, Math.round(((RANK_N - d.rank) / (RANK_N - 1)) * 100));
-    const bustNote = (d.key==='bust'||d.key==='mid') ? `<span style="font-family:'Barlow Condensed',sans-serif;font-size:0.58rem;color:var(--muted);margin-left:2px">(low=best)</span>` : '';
+    const lowBest = (d.key==='bust'||d.key==='mid')
+      ? `<div class="rank-low-best">low = best</div>` : '';
     return `<div class="rank-row">
-      <span class="rank-stat-label" style="color:${d.color}">${d.label}${bustNote}</span>
+      <span class="rank-stat-label" style="color:${d.color}">${d.label}</span>
       <div class="rank-bar-outer"><div class="rank-bar-inner" style="width:${barPct}%;background:${d.color};opacity:0.7"></div></div>
-      <span class="rank-number" style="color:${d.color}">${ordinal(d.rank)}</span>
+      <div style="display:flex;flex-direction:column;align-items:flex-end;flex-shrink:0;width:44px">
+        <span class="rank-number" style="color:${d.color}">${ordinal(d.rank)}</span>
+        ${lowBest}
+      </div>
     </div>`;
   }).join('');
 
