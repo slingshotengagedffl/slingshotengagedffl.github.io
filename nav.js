@@ -27,7 +27,7 @@
         { label: 'Prestige Rankings',                href: 'annals-prestige-rankings.html' },
         { label: 'Head-To-Head',                     href: 'annals-head-to-head.html' },
         { label: 'Season Summaries',                 href: 'annals-season-summaries.html' },
-        { label: 'Boom Or Bust',                     href: 'annals-boom-or-bust.html' },
+        { label: 'Boom, Start & Bust',               href: 'annals-boom-start-bust.html' },
         { label: 'The Streak And The Drought',       href: 'annals-streak-and-drought.html' },
         { label: 'The Intercontinental Championship', href: 'annals-intercontinental.html' },
         { label: 'Draft Position Success',           href: 'annals-draft-position-success.html' },

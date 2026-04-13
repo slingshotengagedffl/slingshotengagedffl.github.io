@@ -7,7 +7,7 @@
       "photo": "../images/alex.jpg",
       "lastUpdated": null,
       "location": "Minnesota",
-      "locationEmoji": "❄️",
+      "locationEmoji": "\u2744\ufe0f",
       "broughtInBy": "Recruited by Timbe (ret)",
       "statusLines": [
         "LEAGUE CHAMPION"
@@ -19,19 +19,19 @@
       },
       "traits": [
         {
-          "emoji": "👶",
+          "emoji": "\ud83d\udc76",
           "label": "DINK Life"
         },
         {
-          "emoji": "🧻",
+          "emoji": "\ud83e\uddfb",
           "label": "Incredibly Pale"
         },
         {
-          "emoji": "👀",
+          "emoji": "\ud83d\udc40",
           "label": "Body Analyst"
         },
         {
-          "emoji": "❄️",
+          "emoji": "\u2744\ufe0f",
           "label": "Minnesota Nice"
         }
       ],
@@ -609,7 +609,7 @@
       "photo": "../images/andy.jpg",
       "lastUpdated": null,
       "location": "Colorado",
-      "locationEmoji": "🏔️",
+      "locationEmoji": "\ud83c\udfd4\ufe0f",
       "broughtInBy": "Recruited by Scott",
       "statusLines": [],
       "prestige": {
@@ -619,19 +619,19 @@
       },
       "traits": [
         {
-          "emoji": "🍺",
+          "emoji": "\ud83c\udf7a",
           "label": "Chug Champ"
         },
         {
-          "emoji": "🪙",
+          "emoji": "\ud83e\ude99",
           "label": "FAAB Penny Pincher"
         },
         {
-          "emoji": "📣",
+          "emoji": "\ud83d\udce3",
           "label": "Loud"
         },
         {
-          "emoji": "👕",
+          "emoji": "\ud83d\udc55",
           "label": "Shirt Optional"
         }
       ],
@@ -1204,7 +1204,7 @@
       "photo": "../images/brian.png",
       "lastUpdated": null,
       "location": "Maryland",
-      "locationEmoji": "🦀",
+      "locationEmoji": "\ud83e\udd80",
       "broughtInBy": "Recruited by Jack",
       "statusLines": [
         "LEAGUE CHAMPION"
@@ -1216,19 +1216,19 @@
       },
       "traits": [
         {
-          "emoji": "😄",
+          "emoji": "\ud83d\ude04",
           "label": "Happy to Be Here"
         },
         {
-          "emoji": "💪",
+          "emoji": "\ud83d\udcaa",
           "label": "Jacked Upper Body"
         },
         {
-          "emoji": "🏥",
+          "emoji": "\ud83c\udfe5",
           "label": "Injury Prone"
         },
         {
-          "emoji": "💬",
+          "emoji": "\ud83d\udcac",
           "label": "Prolific Chatter"
         }
       ],
@@ -1810,7 +1810,7 @@
       "photo": "../images/daniel.jpg",
       "lastUpdated": null,
       "location": "Colorado",
-      "locationEmoji": "🏔️",
+      "locationEmoji": "\ud83c\udfd4\ufe0f",
       "broughtInBy": "Recruited by Jack",
       "statusLines": [],
       "prestige": {
@@ -1820,19 +1820,19 @@
       },
       "traits": [
         {
-          "emoji": "🧗",
+          "emoji": "\ud83e\uddd7",
           "label": "Beautiful Movement"
         },
         {
-          "emoji": "🍆",
+          "emoji": "\ud83c\udf46",
           "label": "Perv"
         },
         {
-          "emoji": "😬",
+          "emoji": "\ud83d\ude2c",
           "label": "Unprepared Drafter"
         },
         {
-          "emoji": "🗣️",
+          "emoji": "\ud83d\udde3\ufe0f",
           "label": "Certified Trash Talker"
         }
       ],
@@ -2414,7 +2414,7 @@
       "photo": "../images/dylan.jpg",
       "lastUpdated": "April 3, 2026",
       "location": "Maryland",
-      "locationEmoji": "🦀",
+      "locationEmoji": "\ud83e\udd80",
       "broughtInBy": "Recruited by Brian",
       "statusLines": [
         "3X LEAGUE CHAMPION"
@@ -2426,19 +2426,19 @@
       },
       "traits": [
         {
-          "emoji": "👶",
+          "emoji": "\ud83d\udc76",
           "label": "DINK Life"
         },
         {
-          "emoji": "🚫",
+          "emoji": "\ud83d\udeab",
           "label": "Anti-69"
         },
         {
-          "emoji": "☀️",
+          "emoji": "\u2600\ufe0f",
           "label": "Positive Attitude"
         },
         {
-          "emoji": "🍪",
+          "emoji": "\ud83c\udf6a",
           "label": "Snack Master"
         }
       ],
@@ -2785,7 +2785,7 @@
         },
         {
           "year": 2025,
-          "teamName": "🥷 RageCage 🥷",
+          "teamName": "\ud83e\udd77 RageCage \ud83e\udd77",
           "record": "9-5",
           "finish": 4,
           "ptsPerGame": 92.63,
@@ -3025,7 +3025,7 @@
       "photo": "../images/jack.jpg",
       "lastUpdated": "April 2, 2026",
       "location": "California",
-      "locationEmoji": "🌴",
+      "locationEmoji": "\ud83c\udf34",
       "broughtInBy": "League Founder",
       "statusLines": [
         "Commissioner",
@@ -3039,19 +3039,19 @@
       },
       "traits": [
         {
-          "emoji": "📊",
+          "emoji": "\ud83d\udcca",
           "label": "Spreadsheet Freak"
         },
         {
-          "emoji": "👑",
+          "emoji": "\ud83d\udc51",
           "label": "Dictator Tendencies"
         },
         {
-          "emoji": "🔄",
+          "emoji": "\ud83d\udd04",
           "label": "Serial Trader"
         },
         {
-          "emoji": "🦒",
+          "emoji": "\ud83e\udd92",
           "label": "Elite Measurements"
         }
       ],
@@ -3390,7 +3390,7 @@
         },
         {
           "year": 2025,
-          "teamName": "Proper Feck'n Eejits ☘️",
+          "teamName": "Proper Feck'n Eejits \u2618\ufe0f",
           "record": "10-4",
           "finish": 1,
           "ptsPerGame": 104.98,
@@ -3403,7 +3403,7 @@
         },
         {
           "year": 2024,
-          "teamName": "Bayou Bears Be Howlin' 🌊🐻",
+          "teamName": "Bayou Bears Be Howlin' \ud83c\udf0a\ud83d\udc3b",
           "record": "6-8",
           "finish": 11,
           "ptsPerGame": 90.82,
@@ -3429,7 +3429,7 @@
         },
         {
           "year": 2022,
-          "teamName": "The 100 Point Exceeders 💯",
+          "teamName": "The 100 Point Exceeders \ud83d\udcaf",
           "record": "7-7",
           "finish": 8,
           "ptsPerGame": 87.02,
@@ -3442,7 +3442,7 @@
         },
         {
           "year": 2021,
-          "teamName": "Beef Spritz Boys 🐮💦",
+          "teamName": "Beef Spritz Boys \ud83d\udc2e\ud83d\udca6",
           "record": "7-7",
           "finish": 8,
           "ptsPerGame": 97.18,
@@ -3455,7 +3455,7 @@
         },
         {
           "year": 2020,
-          "teamName": "Tangy 👅🍞Sourdough",
+          "teamName": "Tangy \ud83d\udc45\ud83c\udf5eSourdough",
           "record": "6-7",
           "finish": 9,
           "ptsPerGame": 96.8,
@@ -3630,7 +3630,7 @@
       "photo": "../images/jordan.jpg",
       "lastUpdated": null,
       "location": "North Carolina",
-      "locationEmoji": "🌲",
+      "locationEmoji": "\ud83c\udf32",
       "broughtInBy": "Recruited by Scott",
       "statusLines": [],
       "prestige": {
@@ -3640,19 +3640,19 @@
       },
       "traits": [
         {
-          "emoji": "🗡️",
+          "emoji": "\ud83d\udde1\ufe0f",
           "label": "Cutting Commentary"
         },
         {
-          "emoji": "🧔",
+          "emoji": "\ud83e\uddd4",
           "label": "Memorable Facial Hair"
         },
         {
-          "emoji": "👻",
+          "emoji": "\ud83d\udc7b",
           "label": "Questionable Availability"
         },
         {
-          "emoji": "🤐",
+          "emoji": "\ud83e\udd10",
           "label": "Withholding"
         }
       ],
@@ -4082,7 +4082,7 @@
         },
         {
           "year": 2019,
-          "teamName": "Turns Out I’m 100% That Minsh",
+          "teamName": "Turns Out I\u2019m 100% That Minsh",
           "record": "4-9",
           "finish": 13,
           "ptsPerGame": 87.56,
@@ -4238,7 +4238,7 @@
       "photo": "../images/kyle.png",
       "lastUpdated": null,
       "location": "Colorado",
-      "locationEmoji": "🏔️",
+      "locationEmoji": "\ud83c\udfd4\ufe0f",
       "broughtInBy": "Recruited by Jack",
       "statusLines": [
         "2X LEAGUE CHAMPION",
@@ -4251,19 +4251,19 @@
       },
       "traits": [
         {
-          "emoji": "✅",
+          "emoji": "\u2705",
           "label": "Annoyingly Competent"
         },
         {
-          "emoji": "🥎",
+          "emoji": "\ud83e\udd4e",
           "label": "Weak Wiffle Baller"
         },
         {
-          "emoji": "🧐",
+          "emoji": "\ud83e\uddd0",
           "label": "Snooty"
         },
         {
-          "emoji": "💻",
+          "emoji": "\ud83d\udcbb",
           "label": "Tech Bro"
         }
       ],
@@ -4701,7 +4701,7 @@
         },
         {
           "year": 2019,
-          "teamName": "❄️ Ice Cold Boy",
+          "teamName": "\u2744\ufe0f Ice Cold Boy",
           "record": "7-6",
           "finish": 5,
           "ptsPerGame": 106.88,
@@ -4857,7 +4857,7 @@
       "photo": "../images/luke.jpg",
       "lastUpdated": null,
       "location": "Minnesota",
-      "locationEmoji": "❄️",
+      "locationEmoji": "\u2744\ufe0f",
       "broughtInBy": "Recruited by Alex",
       "statusLines": [],
       "prestige": {
@@ -4867,19 +4867,19 @@
       },
       "traits": [
         {
-          "emoji": "💍",
+          "emoji": "\ud83d\udc8d",
           "label": "Eligible Bachelor"
         },
         {
-          "emoji": "🔄",
+          "emoji": "\ud83d\udd04",
           "label": "Serial Trader"
         },
         {
-          "emoji": "⏱️",
+          "emoji": "\u23f1\ufe0f",
           "label": "Short Timer"
         },
         {
-          "emoji": "❓",
+          "emoji": "\u2753",
           "label": "Unknown Potential"
         }
       ],
@@ -5447,7 +5447,7 @@
       "photo": "../images/matt.jpg",
       "lastUpdated": null,
       "location": "Colorado",
-      "locationEmoji": "🏔️",
+      "locationEmoji": "\ud83c\udfd4\ufe0f",
       "broughtInBy": "Recruited by Jack",
       "statusLines": [],
       "prestige": {
@@ -5457,19 +5457,19 @@
       },
       "traits": [
         {
-          "emoji": "🎨",
+          "emoji": "\ud83c\udfa8",
           "label": "Culture Maker"
         },
         {
-          "emoji": "🎉",
+          "emoji": "\ud83c\udf89",
           "label": "Party Commish"
         },
         {
-          "emoji": "☀️",
+          "emoji": "\u2600\ufe0f",
           "label": "Positive Attitude"
         },
         {
-          "emoji": "💬",
+          "emoji": "\ud83d\udcac",
           "label": "Prolific Chatter"
         }
       ],
@@ -5821,7 +5821,7 @@
         },
         {
           "year": 2024,
-          "teamName": "Osos de Agua por Vida 🐻🌊🏈",
+          "teamName": "Osos de Agua por Vida \ud83d\udc3b\ud83c\udf0a\ud83c\udfc8",
           "record": "4-10",
           "finish": 12,
           "ptsPerGame": 85.08,
@@ -6042,7 +6042,7 @@
       "photo": "../images/mike.jpg",
       "lastUpdated": null,
       "location": "Pennsylvania",
-      "locationEmoji": "🔔",
+      "locationEmoji": "\ud83d\udd14",
       "broughtInBy": "Recruited by Jack",
       "statusLines": [
         "LEAGUE CHAMPION"
@@ -6054,19 +6054,19 @@
       },
       "traits": [
         {
-          "emoji": "🤝",
+          "emoji": "\ud83e\udd1d",
           "label": "Man of the People"
         },
         {
-          "emoji": "😤",
+          "emoji": "\ud83d\ude24",
           "label": "Disagreeable"
         },
         {
-          "emoji": "💍",
+          "emoji": "\ud83d\udc8d",
           "label": "Eligible Bachelor"
         },
         {
-          "emoji": "📅",
+          "emoji": "\ud83d\udcc5",
           "label": "Many Meetings"
         }
       ],
@@ -6435,7 +6435,7 @@
         },
         {
           "year": 2024,
-          "teamName": "Jop-O Isn’t Real",
+          "teamName": "Jop-O Isn\u2019t Real",
           "record": "8-6",
           "finish": 5,
           "ptsPerGame": 93.74,
@@ -6656,7 +6656,7 @@
       "photo": "../images/scott.jpg",
       "lastUpdated": null,
       "location": "California",
-      "locationEmoji": "🌴",
+      "locationEmoji": "\ud83c\udf34",
       "broughtInBy": "Recruited by Jack",
       "statusLines": [],
       "prestige": {
@@ -6666,19 +6666,19 @@
       },
       "traits": [
         {
-          "emoji": "😄",
+          "emoji": "\ud83d\ude04",
           "label": "Happy to Be Here"
         },
         {
-          "emoji": "🪙",
+          "emoji": "\ud83e\ude99",
           "label": "FAAB Penny Pincher"
         },
         {
-          "emoji": "🧔",
+          "emoji": "\ud83e\uddd4",
           "label": "Memorable Facial Hair"
         },
         {
-          "emoji": "🤐",
+          "emoji": "\ud83e\udd10",
           "label": "Withholding"
         }
       ],
@@ -7259,7 +7259,7 @@
       "photo": "../images/tim.jpg",
       "lastUpdated": null,
       "location": "Colorado",
-      "locationEmoji": "🏔️",
+      "locationEmoji": "\ud83c\udfd4\ufe0f",
       "broughtInBy": "Recruited by Matt",
       "statusLines": [],
       "prestige": {
@@ -7269,19 +7269,19 @@
       },
       "traits": [
         {
-          "emoji": "🔄",
+          "emoji": "\ud83d\udd04",
           "label": "Serial Trader"
         },
         {
-          "emoji": "🤦",
+          "emoji": "\ud83e\udd26",
           "label": "Poor Copy/Paste Skills"
         },
         {
-          "emoji": "🍆",
+          "emoji": "\ud83c\udf46",
           "label": "Perv"
         },
         {
-          "emoji": "🧐",
+          "emoji": "\ud83e\uddd0",
           "label": "Snooty"
         }
       ],
@@ -7636,7 +7636,7 @@
         },
         {
           "year": 2025,
-          "teamName": "Mike 💩's standing up",
+          "teamName": "Mike \ud83d\udca9's standing up",
           "record": "5-9",
           "finish": 12,
           "ptsPerGame": 85.69,
@@ -7870,7 +7870,7 @@
       "photo": "../images/wade.jpg",
       "lastUpdated": null,
       "location": "Pennsylvania",
-      "locationEmoji": "🔔",
+      "locationEmoji": "\ud83d\udd14",
       "broughtInBy": "Recruited by Kyle",
       "statusLines": [],
       "prestige": {
@@ -7880,19 +7880,19 @@
       },
       "traits": [
         {
-          "emoji": "🧔",
+          "emoji": "\ud83e\uddd4",
           "label": "Memorable Facial Hair"
         },
         {
-          "emoji": "💬",
+          "emoji": "\ud83d\udcac",
           "label": "Prolific Chatter"
         },
         {
-          "emoji": "🍆",
+          "emoji": "\ud83c\udf46",
           "label": "Perv"
         },
         {
-          "emoji": "🗣️",
+          "emoji": "\ud83d\udde3\ufe0f",
           "label": "Certified Trash Talker"
         }
       ],
@@ -8496,6 +8496,7 @@
     "intercontinental": "April 8, 2026",
     "playoff-odds": "April 9, 2026",
     "single-game-records": "April 10, 2026",
-    "career-records": "April 10, 2026"
+    "career-records": "April 10, 2026",
+    "boom-start-bust": "April 2026"
   }
 }
