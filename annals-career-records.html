@@ -128,10 +128,10 @@
     }
     .spotlight-eyebrow {
       font-family: 'Barlow Condensed', sans-serif;
-      font-size: 0.82rem;
+      font-size: 0.72rem;
       letter-spacing: 0.22em;
       text-transform: uppercase;
-      color: var(--label);
+      color: var(--gold);
       margin-bottom: 14px;
       display: flex;
       align-items: center;
@@ -140,7 +140,7 @@
     .spotlight-body {
       display: flex;
       align-items: center;
-      gap: 12px;
+      gap: 16px;
       margin-bottom: 14px;
     }
     .spotlight-photo {
@@ -164,7 +164,7 @@
       font-size: 0.78rem;
       letter-spacing: 0.18em;
       text-transform: uppercase;
-      color: var(--label);
+      color: var(--muted);
       margin-bottom: 2px;
     }
     .spotlight-name {
@@ -254,7 +254,7 @@
       font-weight: 700;
       letter-spacing: 0.18em;
       text-transform: uppercase;
-      color: var(--label);
+      color: var(--muted);
       background: var(--surface2);
       padding: 10px 12px;
       text-align: left;
@@ -274,9 +274,8 @@
     td.num { text-align: right; font-variant-numeric: tabular-nums; }
     td.rank-cell {
       font-family: 'Barlow Condensed', sans-serif;
-      font-size: 0.88rem;
-      font-weight: 700;
-      color: var(--label);
+      font-size: 0.82rem;
+      color: var(--muted);
       width: 36px;
       text-align: center;
     }
@@ -299,7 +298,7 @@
       font-size: 0.72rem;
       letter-spacing: 0.15em;
       text-transform: uppercase;
-      color: var(--label);
+      color: var(--muted);
       margin-top: 8px;
     }
 
@@ -310,6 +309,8 @@
 
     /* hidden sections */
     .filter-hide { display: none !important; }
+    /* reg-only: visible on all and regular, hidden on playoffs */
+    .reg-only-hide { display: none !important; }
   </style>
 </head>
 <body>
@@ -430,6 +431,24 @@
     <div class="table-wrap">
       <table id="tbl-earnings"></table>
     </div>
+  </div>
+
+  <!-- ===================== LUCKIEST ===================== -->
+  <div class="section-block reg-only" id="sec-lucky">
+    <div class="section-title">Luckiest All-Time</div>
+    <div class="table-wrap">
+      <table id="tbl-lucky"></table>
+    </div>
+    <p class="qualifier-note">* Win % above expected based on points scored vs. all possible opponents. Minimum 4 seasons played to qualify</p>
+  </div>
+
+  <!-- ===================== UNLUCKIEST ===================== -->
+  <div class="section-block reg-only" id="sec-unlucky">
+    <div class="section-title">Unluckiest All-Time</div>
+    <div class="table-wrap">
+      <table id="tbl-unlucky"></table>
+    </div>
+    <p class="qualifier-note">* Win % below expected based on points scored vs. all possible opponents. Minimum 4 seasons played to qualify</p>
   </div>
 
   <!-- ===================== CHAMPIONSHIPS (playoff-only) ===================== -->
@@ -712,6 +731,17 @@ const POWER_DATA = [
   ['Scott',108.4],['Anthony M.',104.9],['Tim H.',104.4],
 ];
 
+// Luck Rate — career regular season, 4+ seasons only [owner, luck%]
+// Positive = luckier than expected, Negative = unluckier than expected
+const LUCK_DATA = [
+  ['Mike M.', 0.0466], ['Jack', 0.0341], ['Alex V.', 0.0294],
+  ['Dylan', 0.0218], ['Brian', 0.0155], ['Wade', 0.0037],
+  ['Scott', -0.0020], ['Andy', -0.0055], ['Daniel', -0.0097],
+  ['Michelle C.', -0.0137], ['Jordan', -0.0304], ['Matt', -0.0330],
+  ['Tim C.', -0.0335], ['Jon', -0.0361], ['Tim H.', -0.0389],
+  ['Kyle', -0.0593],
+];
+
 // Net Earnings
 const EARNINGS_DATA = [
   ['Kyle',1035.00],['Jack',729.50],['Dylan',320.50],['Mike M.',225.00],
@@ -777,15 +807,14 @@ function rankRows(rows, valFn, asc = false) {
   const filtered = rows.filter(r => valFn(r) !== null && valFn(r) !== undefined);
   filtered.sort((a, b) => asc ? valFn(a) - valFn(b) : valFn(b) - valFn(a));
   const result = [];
-  let rank = 1;
+  let currentRank = 1;
   for (let i = 0; i < filtered.length; i++) {
-    const row = filtered[i];
-    if (i > 0 && valFn(row) === valFn(filtered[i - 1])) {
-      result.push({ rank: result[i - 1].rank, row });
+    if (i > 0 && valFn(filtered[i]) === valFn(filtered[i - 1])) {
+      result.push({ rank: result[i - 1].rank, row: filtered[i] });
     } else {
-      result.push({ rank, row });
+      currentRank = i + 1;
+      result.push({ rank: currentRank, row: filtered[i] });
     }
-    rank = i + 2;
   }
   return result;
 }
@@ -796,7 +825,7 @@ function renderTable(tableId, headers, rows, renderRow, maxRows = 10) {
   const top = rows.slice(0, maxRows);
   tbl.innerHTML = `
     <thead><tr>${headers.map((h, i) => `<th${i > 0 ? ' class="num"' : ''}>${h}</th>`).join('')}</tr></thead>
-    <tbody>${top.map(renderRow).join('')}</tbody>
+    <tbody>${top.map(r => renderRow(r) || '').join('')}</tbody>
   `;
 }
 
@@ -849,6 +878,18 @@ function simpleRow({ rank, row }) {
     <td class="rank-cell">${rank}</td>
     <td>${ownerCell(row[0], rank === 1)}</td>
     <td class="num">${row[1]}</td>
+  </tr>`;
+}
+
+function luckRow({ rank, row }, positive) {
+  const val = row[1];
+  const pct = (val * 100).toFixed(2);
+  const formatted = (val >= 0 ? '+' : '') + pct + '%';
+  const color = positive ? '#2ecc71' : 'var(--red-bright)';
+  return `<tr>
+    <td class="rank-cell">${rank}</td>
+    <td>${ownerCell(row[0], rank === 1)}</td>
+    <td class="num" style="color:${color};font-weight:700;">${formatted}</td>
   </tr>`;
 }
 
@@ -975,6 +1016,22 @@ function buildAllTables() {
     27 // show all
   );
 
+  // Luckiest — positive luck, sorted high first
+  const luckyRanked = rankRows(LUCK_DATA.filter(r => r[1] > 0), r => r[1]);
+  renderTable('tbl-lucky',
+    ['Rank', 'Owner', 'Luck Rate'],
+    luckyRanked,
+    r => luckRow(r, true)
+  );
+
+  // Unluckiest — negative luck, sorted low first (most negative = rank 1)
+  const unluckyRanked = rankRows(LUCK_DATA.filter(r => r[1] < 0), r => r[1], true);
+  renderTable('tbl-unlucky',
+    ['Rank', 'Owner', 'Luck Rate'],
+    unluckyRanked,
+    r => luckRow(r, false)
+  );
+
   // Championships
   const champsRanked = rankRows(CHAMPS_DATA, r => r[1]);
   renderTable('tbl-champs',
@@ -1013,11 +1070,15 @@ function buildAllTables() {
 // ─── FILTER VISIBILITY ────────────────────────────────────────────────────────
 
 function applyFilterVisibility() {
-  const playoffSections = document.querySelectorAll('.playoff-only');
   // Hide playoff-only sections on regular season filter
   const hidePlayoff = currentFilter === 'regular';
-  playoffSections.forEach(s => {
+  document.querySelectorAll('.playoff-only').forEach(s => {
     s.classList.toggle('filter-hide', hidePlayoff);
+  });
+  // Hide reg-only sections on playoffs filter
+  const hideReg = currentFilter === 'playoff';
+  document.querySelectorAll('.reg-only').forEach(s => {
+    s.classList.toggle('reg-only-hide', hideReg);
   });
 }
 
@@ -1040,22 +1101,43 @@ const SPOTLIGHT_RECORDS = [
     label: 'Most Championships',
     name: 'Dylan',
     value: '3 Titles',
-    note: 'Dylan Thackston won the Slingshot Bowl in 2017, 2021, and 2025 — more championships than any owner in league history.',
+    note: 'Dylan won the Slingshot Bowl in 2017, 2021, and 2025 — more championships than any owner in league history.',
     photo: 'dylan'
   },
   {
     label: 'Most Finals Appearances',
     name: 'Kyle',
     value: '5 Appearances',
-    note: "Kyle Gilbreath has reached the Slingshot Bowl five times, more than any other owner. He's converted two of those into championships.",
+    note: "Kyle has reached the Slingshot Bowl five times, more than any other owner. He's converted two of those into championships.",
     photo: 'kyle'
   },
   {
     label: 'All-Time Wins Leader',
     name: 'Jack',
     value: '108 Wins',
-    note: 'Jack Corcoran leads all owners in career wins across all game types, edging out Mike M. (98) and Dylan (96).',
+    note: 'Jack leads all owners in career wins across all game types, edging out Mike M. (98) and Dylan (96).',
     photo: 'jack'
+  },
+  {
+    label: 'Highest Power Score',
+    name: 'Kyle',
+    value: '140.4',
+    note: "Kyle's career regular season power score of 140.4 is the highest all-time — a full 8 points ahead of second-place Jack.",
+    photo: 'kyle'
+  },
+  {
+    label: 'Luckiest All-Time',
+    name: 'Mike M.',
+    value: '+4.66%',
+    note: "Mike M.'s actual win rate has outpaced his all-play expected win rate by 4.66% over 12 seasons — the luckiest schedule fate in league history.",
+    photo: 'mike'
+  },
+  {
+    label: 'Most Points Scored Against',
+    name: 'Jon',
+    value: '17,509 Pts',
+    note: "Jon has faced more total points scored against him than anyone in league history — a testament to 12 seasons of brutal schedule luck.",
+    photo: 'jon'
   },
   {
     label: 'Best Career Win %',
@@ -1065,18 +1147,11 @@ const SPOTLIGHT_RECORDS = [
     photo: 'jack'
   },
   {
-    label: 'Most Points Scored',
-    name: 'Jack',
-    value: '17,646 Pts',
-    note: "Jack's career scoring total of 17,646.12 points leads all owners — over 350 points ahead of second-place Jon Franks.",
-    photo: 'jack'
-  },
-  {
-    label: 'Most Playoff Wins',
-    name: 'Kyle',
-    value: '10 Wins',
-    note: 'Kyle Gilbreath has won 10 playoff games in his career — the most of any owner — on the back of 5 finals appearances.',
-    photo: 'kyle'
+    label: 'Most Career Losses',
+    name: 'Scott',
+    value: '101 Losses',
+    note: "Scott leads all owners in career losses with 101 — a byproduct of 12 seasons of consistent participation and some brutal schedule luck.",
+    photo: 'scott'
   },
 ];
 
