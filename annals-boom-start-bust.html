@@ -1,0 +1,745 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Boom, Start & Bust — Slingshot Engaged</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Barlow+Condensed:wght@400;600;700&family=Barlow:wght@400;500;600&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --red: #c0392b;
+      --red-bright: #e74c3c;
+      --bg: #0a0a0a;
+      --surface: #141414;
+      --surface2: #1c1c1c;
+      --surface3: #242424;
+      --text: #f0f0f0;
+      --text-body: #e8e8e8;
+      --muted: #bbb;
+      --label: #d8d8d8;
+      --border: #2a2a2a;
+      --gold: #c9a84c;
+      --boom-color: #c9a84c;
+      --start-color: #4a9eda;
+      --mid-color: #6b6b6b;
+      --bust-color: #c0392b;
+    }
+
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: 'Barlow', sans-serif;
+      min-height: 100vh;
+    }
+
+    .page-header { padding: 40px 20px 0; text-align: center; }
+    .page-supertitle {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: 1rem; letter-spacing: 0.25em; text-transform: uppercase;
+      color: #d0d0d0; margin-bottom: 6px;
+    }
+    .page-header h1 {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: clamp(2.8rem, 8vw, 5rem);
+      color: var(--red-bright); letter-spacing: 0.06em;
+      text-transform: uppercase; line-height: 1;
+    }
+    .page-updated {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: 0.72rem; letter-spacing: 0.2em;
+      text-transform: uppercase; color: var(--muted); margin-top: 6px;
+    }
+    .header-spacer { height: 20px; }
+    .content { max-width: 680px; margin: 0 auto; padding: 0 16px 60px; }
+
+    .intro {
+      font-family: 'Barlow', sans-serif; font-size: 1.1rem;
+      color: var(--text-body); line-height: 1.7; margin: 12px 0 28px; text-align: center;
+    }
+
+    /* Tabs */
+    .type-tabs {
+      display: flex; flex-wrap: wrap; border: 1px solid var(--border);
+      border-radius: 4px; overflow: hidden; width: 100%; margin-bottom: 24px;
+    }
+    .type-tab {
+      font-family: 'Barlow Condensed', sans-serif; font-size: 0.82rem;
+      font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase;
+      padding: 10px 16px; background: transparent; color: var(--muted);
+      border: none; border-right: 1px solid var(--border);
+      cursor: pointer; transition: background 0.15s, color 0.15s;
+      white-space: nowrap; flex: 1 1 auto;
+    }
+    .type-tab:last-child { border-right: none; }
+    .type-tab.active { background: var(--red); color: #fff; }
+    .type-tab:not(.active):hover { color: var(--text); }
+
+    /* Legend */
+    .legend {
+      display: flex; gap: 20px; flex-wrap: wrap;
+      margin-bottom: 20px; justify-content: center;
+    }
+    .legend-item {
+      display: flex; align-items: center; gap: 6px;
+      font-family: 'Barlow Condensed', sans-serif; font-size: 0.78rem;
+      letter-spacing: 0.12em; text-transform: uppercase; color: var(--label);
+    }
+    .legend-dot { width: 10px; height: 10px; border-radius: 50%; flex-shrink: 0; }
+
+    /* Section title */
+    .section-title {
+      font-family: 'Bebas Neue', sans-serif; font-size: 1.4rem;
+      letter-spacing: 0.12em; text-transform: uppercase;
+      color: var(--label); margin-bottom: 16px;
+    }
+
+    /* ── TOOLTIP ─────────────────────────────────────────────────── */
+    .badge-wrap {
+      position: relative;
+      display: inline-block;
+    }
+    .archetype-badge {
+      display: inline-block; margin-top: 3px;
+      font-family: 'Barlow Condensed', sans-serif; font-size: 0.65rem;
+      font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase;
+      padding: 2px 7px; border-radius: 20px; white-space: nowrap;
+      cursor: pointer;
+    }
+    .badge-boom-machine    { background: rgba(201,168,76,0.15);  color: var(--gold);  border: 1px solid rgba(201,168,76,0.3); }
+    .badge-high-variance   { background: rgba(155,89,182,0.15);  color: #c39bd3;      border: 1px solid rgba(155,89,182,0.3); }
+    .badge-reliable        { background: rgba(74,158,218,0.15);  color: #7ec8e3;      border: 1px solid rgba(74,158,218,0.3); }
+    .badge-middling        { background: rgba(107,107,107,0.2);  color: #aaa;         border: 1px solid rgba(107,107,107,0.4); }
+    .badge-underperforming { background: rgba(192,57,43,0.15);   color: #e0826f;      border: 1px solid rgba(192,57,43,0.3); }
+    .badge-pending         { background: rgba(107,107,107,0.12); color: var(--muted); border: 1px solid var(--border); cursor: default; }
+
+    .badge-tooltip {
+      display: none;
+      position: absolute;
+      bottom: calc(100% + 8px);
+      left: 50%;
+      transform: translateX(-50%);
+      background: var(--surface3);
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      padding: 10px 12px;
+      width: 210px;
+      z-index: 200;
+      box-shadow: 0 4px 20px rgba(0,0,0,0.5);
+      pointer-events: none;
+    }
+    .badge-tooltip::after {
+      content: '';
+      position: absolute;
+      top: 100%;
+      left: 50%;
+      transform: translateX(-50%);
+      border: 5px solid transparent;
+      border-top-color: var(--border);
+    }
+    .badge-tooltip.visible { display: block; }
+    .tooltip-name {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: 0.78rem; font-weight: 700; letter-spacing: 0.14em;
+      text-transform: uppercase; margin-bottom: 5px;
+    }
+    .tooltip-desc {
+      font-family: 'Barlow', sans-serif;
+      font-size: 0.78rem; color: var(--text-body); line-height: 1.45;
+    }
+
+    /* ── FLIP CARDS ──────────────────────────────────────────────── */
+    .cards-grid {
+      display: grid; grid-template-columns: repeat(2, 1fr);
+      gap: 14px; margin-bottom: 48px;
+    }
+    @media (max-width: 480px) { .cards-grid { grid-template-columns: 1fr; } }
+
+    .card-scene {
+      perspective: 900px; cursor: pointer; height: 210px;
+    }
+    .card-scene.is-pending { height: 112px; cursor: default; }
+    .card-scene.no-data    { height: 112px; cursor: default; }
+
+    .card-inner {
+      position: relative; width: 100%; height: 100%;
+      transform-style: preserve-3d;
+      transition: transform 0.45s cubic-bezier(0.4, 0.2, 0.2, 1);
+    }
+    .card-scene.flipped .card-inner { transform: rotateY(180deg); }
+
+    .card-face {
+      position: absolute; inset: 0;
+      backface-visibility: hidden; -webkit-backface-visibility: hidden;
+      background: var(--surface); border: 1px solid var(--border);
+      border-radius: 8px; overflow: hidden; transition: border-color 0.15s;
+    }
+    .card-scene:not(.is-pending):not(.no-data):hover .card-face { border-color: var(--gold); }
+    .card-back { transform: rotateY(180deg); display: flex; flex-direction: column; }
+
+    /* Card front header */
+    .card-header {
+      background: var(--surface2); padding: 10px 12px 8px;
+      display: flex; align-items: center; gap: 10px;
+      border-bottom: 1px solid var(--border);
+    }
+    .card-photo {
+      width: 46px; height: 46px; border-radius: 50%;
+      object-fit: cover; object-position: top;
+      border: 2px solid var(--gold); flex-shrink: 0;
+    }
+    .card-name-block { flex: 1; min-width: 0; }
+    .card-name {
+      font-family: 'Barlow Condensed', sans-serif; font-size: 1.1rem;
+      font-weight: 700; color: var(--text); letter-spacing: 0.04em;
+      white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
+    }
+    .card-name a { color: var(--text); text-decoration: none; }
+    .card-name a:hover { color: var(--gold); }
+
+    /* Card body (front) */
+    .card-body {
+      padding: 10px 12px 6px;
+      display: flex; align-items: center; gap: 12px;
+    }
+    .donut-container { position: relative; width: 66px; height: 66px; flex-shrink: 0; }
+    .donut-svg { width: 66px; height: 66px; transform: rotate(-90deg); }
+    .donut-center {
+      position: absolute; top: 50%; left: 50%;
+      transform: translate(-50%, -50%); text-align: center; line-height: 1;
+    }
+    .donut-games {
+      font-family: 'Bebas Neue', sans-serif; font-size: 1.2rem;
+      color: var(--text); display: block;
+    }
+    .donut-label {
+      font-family: 'Barlow Condensed', sans-serif; font-size: 0.55rem;
+      letter-spacing: 0.1em; text-transform: uppercase; color: var(--muted);
+    }
+    .card-rates { flex: 1; display: flex; flex-direction: column; gap: 5px; }
+    .rate-row { display: flex; align-items: center; gap: 6px; }
+    .rate-label {
+      font-family: 'Barlow Condensed', sans-serif; font-size: 0.68rem;
+      letter-spacing: 0.1em; text-transform: uppercase;
+      color: var(--label); width: 32px; flex-shrink: 0;
+    }
+    .rate-bar-outer {
+      flex: 1; height: 4px; background: var(--surface3);
+      border-radius: 2px; overflow: hidden;
+    }
+    .rate-bar-inner { height: 100%; border-radius: 2px; }
+    .rate-val {
+      font-family: 'Barlow Condensed', sans-serif; font-size: 0.75rem;
+      font-weight: 700; width: 34px; text-align: right; flex-shrink: 0;
+    }
+    .flip-hint {
+      font-family: 'Barlow Condensed', sans-serif; font-size: 0.6rem;
+      letter-spacing: 0.12em; text-transform: uppercase;
+      color: var(--border); text-align: center; padding: 0 0 6px;
+      transition: color 0.15s;
+    }
+    .card-scene:not(.is-pending):not(.no-data):hover .flip-hint { color: var(--muted); }
+
+    /* Card back — rank sheet */
+    .back-header {
+      background: var(--surface2); padding: 8px 12px;
+      border-bottom: 1px solid var(--border);
+      display: flex; align-items: center; justify-content: space-between;
+    }
+    .back-name {
+      font-family: 'Barlow Condensed', sans-serif; font-size: 1rem;
+      font-weight: 700; color: var(--text); letter-spacing: 0.04em;
+    }
+    .back-flip-hint {
+      font-family: 'Barlow Condensed', sans-serif; font-size: 0.6rem;
+      letter-spacing: 0.12em; text-transform: uppercase; color: var(--muted);
+    }
+    .back-body { flex: 1; padding: 10px 14px 10px; display: flex; flex-direction: column; gap: 8px; }
+    .back-context {
+      font-family: 'Barlow Condensed', sans-serif; font-size: 0.65rem;
+      letter-spacing: 0.1em; text-transform: uppercase; color: var(--muted);
+      text-align: center; margin-bottom: 2px;
+    }
+    .rank-rows { display: flex; flex-direction: column; gap: 6px; }
+    .rank-row {
+      display: flex; align-items: center; gap: 8px;
+    }
+    .rank-stat-label {
+      font-family: 'Barlow Condensed', sans-serif; font-size: 0.72rem;
+      font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase;
+      width: 38px; flex-shrink: 0;
+    }
+    .rank-bar-outer {
+      flex: 1; height: 5px; background: var(--surface3);
+      border-radius: 3px; overflow: hidden;
+    }
+    .rank-bar-inner { height: 100%; border-radius: 3px; }
+    .rank-number {
+      font-family: 'Bebas Neue', sans-serif; font-size: 1.05rem;
+      line-height: 1; width: 36px; text-align: right; flex-shrink: 0;
+    }
+    .rank-suffix {
+      font-family: 'Barlow Condensed', sans-serif; font-size: 0.62rem;
+      color: var(--muted); margin-left: 1px;
+    }
+    .rank-unqualified {
+      font-family: 'Barlow Condensed', sans-serif; font-size: 0.72rem;
+      letter-spacing: 0.1em; text-transform: uppercase;
+      color: var(--muted); font-style: italic; text-align: center;
+      padding: 8px 0;
+    }
+
+    /* Pending / no-data */
+    .card-state-msg {
+      padding: 16px 12px; text-align: center;
+      font-family: 'Barlow Condensed', sans-serif; font-size: 0.78rem;
+      letter-spacing: 0.1em; text-transform: uppercase;
+      color: var(--muted); font-style: italic;
+    }
+
+    /* ── TABLE ───────────────────────────────────────────────────── */
+    .table-wrap {
+      background: var(--surface); border: 1px solid var(--border);
+      border-radius: 8px; overflow-x: auto; -webkit-overflow-scrolling: touch;
+    }
+    table { width: 100%; border-collapse: collapse; min-width: 480px; }
+    thead th {
+      font-family: 'Barlow Condensed', sans-serif; font-size: 0.82rem;
+      font-weight: 700; letter-spacing: 0.18em; text-transform: uppercase;
+      color: var(--label); background: var(--surface2);
+      padding: 10px 12px; text-align: right;
+      border-bottom: 1px solid var(--border);
+      white-space: nowrap; user-select: none; transition: color 0.15s;
+    }
+    thead th:first-child { text-align: left; cursor: default; }
+    thead th.sortable { cursor: pointer; }
+    thead th.sortable:hover { color: var(--text); }
+    thead th.sort-active { color: var(--gold); }
+    .sort-arrow { margin-left: 3px; font-size: 0.7rem; opacity: 0.6; }
+    thead th.sort-active .sort-arrow { opacity: 1; }
+
+    tbody td {
+      padding: 9px 12px; vertical-align: middle;
+      border-bottom: 1px solid var(--border); font-size: 0.9rem;
+    }
+    tbody tr:last-child td { border-bottom: none; }
+    tbody tr:hover { background: var(--surface2); transition: background 0.15s; }
+
+    .td-owner {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: 1rem; font-weight: 700; color: var(--text);
+    }
+    .td-owner a { color: var(--gold); text-decoration: none; }
+    .td-owner a:hover { text-decoration: underline; }
+    .td-num { text-align: right; font-family: 'Barlow Condensed', sans-serif; font-weight: 700; }
+    .td-boom  { color: var(--boom-color); }
+    .td-start { color: var(--start-color); }
+    .td-mid   { color: var(--muted); font-weight: 400; }
+    .td-bust  { color: var(--bust-color); }
+    .td-games { color: var(--muted); font-weight: 400; font-size: 0.82rem; }
+    .td-dash  { color: var(--border); text-align: right; font-family: 'Barlow Condensed', sans-serif; }
+    .td-hist-row td { opacity: 0.72; }
+
+    .section-spacer { height: 36px; }
+  </style>
+</head>
+<body>
+
+<script src="nav.js"></script>
+
+<div class="page-header">
+  <div class="page-supertitle">The Annals of History</div>
+  <h1>Boom, Start &amp; Bust</h1>
+  <p class="page-updated" id="pageUpdated"></p>
+</div>
+
+<div class="header-spacer"></div>
+
+<div class="content">
+
+  <p class="intro">Every week a manager either shows up or doesn't. A <strong>Boom</strong> is scoring 120% or more of that season's league average. A <strong>Start</strong> is at or above average without booming. A <strong>Mid</strong> is below average but above the bust threshold. A <strong>Bust</strong> is 80% or less of the season average. These are the scorecards.</p>
+
+  <div class="type-tabs" role="tablist">
+    <button class="type-tab active" data-cat="all">All Games</button>
+    <button class="type-tab" data-cat="regular">Regular Season</button>
+    <button class="type-tab" data-cat="playoff">Playoffs</button>
+    <button class="type-tab" data-cat="consolation">Consolation</button>
+  </div>
+
+  <div class="legend">
+    <div class="legend-item"><div class="legend-dot" style="background:var(--boom-color)"></div>Boom ≥120%</div>
+    <div class="legend-item"><div class="legend-dot" style="background:var(--start-color)"></div>Start ≥100%</div>
+    <div class="legend-item"><div class="legend-dot" style="background:var(--mid-color)"></div>Mid &gt;80%</div>
+    <div class="legend-item"><div class="legend-dot" style="background:var(--bust-color)"></div>Bust ≤80%</div>
+  </div>
+
+  <div class="section-title">Active Owners</div>
+  <div class="cards-grid" id="cardsGrid"></div>
+
+  <div class="section-spacer"></div>
+
+  <div class="section-title">All-Time Leaderboard</div>
+  <div class="table-wrap">
+    <table id="allTable">
+      <thead>
+        <tr>
+          <th>Owner</th>
+          <th class="sortable" data-col="games">G<span class="sort-arrow">↕</span></th>
+          <th class="sortable sort-active" data-col="boom">Boom%<span class="sort-arrow">↓</span></th>
+          <th class="sortable" data-col="start">Start%<span class="sort-arrow">↕</span></th>
+          <th class="sortable" data-col="mid">Mid%<span class="sort-arrow">↕</span></th>
+          <th class="sortable" data-col="bust">Bust%<span class="sort-arrow">↕</span></th>
+        </tr>
+      </thead>
+      <tbody id="allBody"></tbody>
+    </table>
+  </div>
+
+</div>
+
+<script>
+// ── ARCHETYPE DEFINITIONS ─────────────────────────────────────────────────────
+
+const ARCHETYPE_DEFS = {
+  'Boom Machine':    { color: 'var(--gold)',   desc: 'Scores 120%+ of league average more often than almost anyone. The ceiling is real and it shows up.' },
+  'High Variance':   { color: '#c39bd3',       desc: 'High boom rate paired with a high bust rate. Every week is a coin flip — could carry your lineup or sink it.' },
+  'Reliable':        { color: '#7ec8e3',       desc: 'Solid boom rate with a controlled bust rate. Counts on showing up most weeks without blowing up.' },
+  'Middling':        { color: '#aaa',          desc: 'Rarely booms, rarely busts. Week after week of scores that hover just below average — dependably mediocre.' },
+  'Underperforming': { color: '#e0826f',       desc: 'Low boom rate and a high bust rate. Below average more often than not, without the upside to compensate.' },
+  'Pending':         { color: 'var(--muted)',  desc: 'No games played yet. Check back after the season gets underway.' },
+};
+
+// ── RANKS (all-games, 4+ season owners, n=17) ─────────────────────────────────
+// bust rank: #1 = lowest bust rate (best)
+
+const RANKS = {
+  "Kyle":       { boom:1,  start:1,  mid:1,  bust:1  },
+  "Jack":       { boom:2,  start:5,  mid:2,  bust:3  },
+  "Dylan":      { boom:3,  start:6,  mid:10, bust:2  },
+  "Mike":       { boom:8,  start:10, mid:15, bust:5  },
+  "Brian":      { boom:6,  start:10, mid:8,  bust:9  },
+  "Daniel":     { boom:5,  start:13, mid:4,  bust:13 },
+  "Andy":       { boom:7,  start:2,  mid:12, bust:4  },
+  "Matt":       { boom:12, start:15, mid:11, bust:14 },
+  "Scott":      { boom:14, start:16, mid:14, bust:12 },
+  "Alex V.":    { boom:9,  start:7,  mid:9,  bust:8  },
+  "Tim H.":     { boom:15, start:13, mid:5,  bust:17 },
+  "Jordan":     { boom:13, start:12, mid:7,  bust:15 },
+  "Wade":       { boom:16, start:8,  mid:16, bust:7  },
+};
+const RANK_N = 17;
+
+// ── DATA ──────────────────────────────────────────────────────────────────────
+
+const ACTIVE_PROFILES = {
+  'Kyle':'profiles/kyle.html','Jack':'profiles/jack.html','Dylan':'profiles/dylan.html',
+  'Mike':'profiles/mike.html','Brian':'profiles/brian.html','Daniel':'profiles/daniel.html',
+  'Andy':'profiles/andy.html','Matt':'profiles/matt.html','Scott':'profiles/scott.html',
+  'Alex V.':'profiles/alex.html','Tim H.':'profiles/tim.html','Jordan':'profiles/jordan.html',
+  'Wade':'profiles/wade.html','Luke':'profiles/luke.html',
+};
+
+const ACTIVE = {
+  "Kyle":   {archetype:"Boom Machine",   photoId:"kyle",   stats:{all:{games:125,boom_rate:0.32,start_rate:0.384,mid_rate:0.248,bust_rate:0.048},regular:{games:109,boom_rate:0.321,start_rate:0.385,mid_rate:0.257,bust_rate:0.037},playoff:{games:16,boom_rate:0.312,start_rate:0.375,mid_rate:0.188,bust_rate:0.125},consolation:null}},
+  "Jack":   {archetype:"Boom Machine",   photoId:"jack",   stats:{all:{games:179,boom_rate:0.291,start_rate:0.302,mid_rate:0.257,bust_rate:0.151},regular:{games:161,boom_rate:0.304,start_rate:0.298,mid_rate:0.261,bust_rate:0.137},playoff:{games:13,boom_rate:0.231,start_rate:0.385,mid_rate:0.231,bust_rate:0.154},consolation:{games:5,boom_rate:0.0,start_rate:0.2,mid_rate:0.2,bust_rate:0.6}}},
+  "Dylan":  {archetype:"Reliable",       photoId:"dylan",  stats:{all:{games:170,boom_rate:0.259,start_rate:0.294,mid_rate:0.3,bust_rate:0.147},regular:{games:148,boom_rate:0.25,start_rate:0.284,mid_rate:0.311,bust_rate:0.155},playoff:{games:13,boom_rate:0.385,start_rate:0.308,mid_rate:0.231,bust_rate:0.077},consolation:{games:9,boom_rate:0.222,start_rate:0.444,mid_rate:0.222,bust_rate:0.111}}},
+  "Mike":   {archetype:"Reliable",       photoId:"mike",   stats:{all:{games:183,boom_rate:0.197,start_rate:0.273,mid_rate:0.35,bust_rate:0.18},regular:{games:161,boom_rate:0.199,start_rate:0.261,mid_rate:0.354,bust_rate:0.186},playoff:{games:12,boom_rate:0.167,start_rate:0.5,mid_rate:0.333,bust_rate:0.0},consolation:{games:10,boom_rate:0.2,start_rate:0.2,mid_rate:0.3,bust_rate:0.3}}},
+  "Brian":  {archetype:"Reliable",       photoId:"brian",  stats:{all:{games:176,boom_rate:0.205,start_rate:0.273,mid_rate:0.29,bust_rate:0.233},regular:{games:161,boom_rate:0.199,start_rate:0.28,mid_rate:0.286,bust_rate:0.236},playoff:{games:5,boom_rate:0.4,start_rate:0.0,mid_rate:0.4,bust_rate:0.2},consolation:{games:10,boom_rate:0.2,start_rate:0.3,mid_rate:0.3,bust_rate:0.2}}},
+  "Daniel": {archetype:"High Variance",  photoId:"daniel", stats:{all:{games:180,boom_rate:0.222,start_rate:0.256,mid_rate:0.261,bust_rate:0.261},regular:{games:161,boom_rate:0.236,start_rate:0.236,mid_rate:0.261,bust_rate:0.267},playoff:{games:8,boom_rate:0.125,start_rate:0.5,mid_rate:0.125,bust_rate:0.25},consolation:{games:11,boom_rate:0.091,start_rate:0.364,mid_rate:0.364,bust_rate:0.182}}},
+  "Andy":   {archetype:"Reliable",       photoId:"andy",   stats:{all:{games:59,boom_rate:0.203,start_rate:0.322,mid_rate:0.305,bust_rate:0.169},regular:{games:56,boom_rate:0.214,start_rate:0.339,mid_rate:0.268,bust_rate:0.179},playoff:{games:1,boom_rate:0.0,start_rate:0.0,mid_rate:1.0,bust_rate:0.0},consolation:{games:2,boom_rate:0.0,start_rate:0.0,mid_rate:1.0,bust_rate:0.0}}},
+  "Matt":   {archetype:"Underperforming",photoId:"matt",   stats:{all:{games:165,boom_rate:0.176,start_rate:0.255,mid_rate:0.303,bust_rate:0.267},regular:{games:148,boom_rate:0.176,start_rate:0.264,mid_rate:0.291,bust_rate:0.27},playoff:{games:4,boom_rate:0.25,start_rate:0.5,mid_rate:0.25,bust_rate:0.0},consolation:{games:13,boom_rate:0.154,start_rate:0.077,mid_rate:0.462,bust_rate:0.308}}},
+  "Scott":  {archetype:"Underperforming",photoId:"scott",  stats:{all:{games:177,boom_rate:0.164,start_rate:0.237,mid_rate:0.339,bust_rate:0.26},regular:{games:161,boom_rate:0.149,start_rate:0.23,mid_rate:0.348,bust_rate:0.273},playoff:{games:4,boom_rate:0.25,start_rate:0.25,mid_rate:0.25,bust_rate:0.25},consolation:{games:12,boom_rate:0.333,start_rate:0.333,mid_rate:0.25,bust_rate:0.083}}},
+  "Alex V.":{archetype:"Reliable",       photoId:"alex",   stats:{all:{games:150,boom_rate:0.193,start_rate:0.293,mid_rate:0.293,bust_rate:0.22},regular:{games:135,boom_rate:0.193,start_rate:0.289,mid_rate:0.289,bust_rate:0.23},playoff:{games:10,boom_rate:0.2,start_rate:0.4,mid_rate:0.2,bust_rate:0.2},consolation:{games:5,boom_rate:0.2,start_rate:0.2,mid_rate:0.6,bust_rate:0.0}}},
+  "Tim H.": {archetype:"Underperforming",photoId:"tim",    stats:{all:{games:90,boom_rate:0.133,start_rate:0.256,mid_rate:0.267,bust_rate:0.344},regular:{games:83,boom_rate:0.145,start_rate:0.253,mid_rate:0.265,bust_rate:0.337},playoff:{games:3,boom_rate:0.0,start_rate:0.333,mid_rate:0.0,bust_rate:0.667},consolation:{games:4,boom_rate:0.0,start_rate:0.25,mid_rate:0.5,bust_rate:0.25}}},
+  "Jordan": {archetype:"Underperforming",photoId:"jordan", stats:{all:{games:97,boom_rate:0.175,start_rate:0.268,mid_rate:0.289,bust_rate:0.268},regular:{games:96,boom_rate:0.177,start_rate:0.271,mid_rate:0.292,bust_rate:0.26},playoff:{games:1,boom_rate:0.0,start_rate:0.0,mid_rate:0.0,bust_rate:1.0},consolation:null}},
+  "Wade":   {archetype:"Middling",       photoId:"wade",   stats:{all:{games:87,boom_rate:0.115,start_rate:0.276,mid_rate:0.391,bust_rate:0.218},regular:{games:83,boom_rate:0.12,start_rate:0.277,mid_rate:0.386,bust_rate:0.217},playoff:{games:3,boom_rate:0.0,start_rate:0.333,mid_rate:0.333,bust_rate:0.333},consolation:{games:1,boom_rate:0.0,start_rate:0.0,mid_rate:1.0,bust_rate:0.0}}},
+  "Luke":   {archetype:"Pending",        photoId:"luke",   stats:{all:null,regular:null,playoff:null,consolation:null}},
+};
+
+const HISTORICAL = {
+  "Alex M.":   {stats:{all:{games:15,boom_rate:0.267,start_rate:0.4,mid_rate:0.133,bust_rate:0.2},regular:{games:13,boom_rate:0.231,start_rate:0.385,mid_rate:0.154,bust_rate:0.231},playoff:{games:2,boom_rate:0.5,start_rate:0.5,mid_rate:0.0,bust_rate:0.0},consolation:null}},
+  "Anthony":   {stats:{all:{games:58,boom_rate:0.034,start_rate:0.276,mid_rate:0.414,bust_rate:0.276},regular:{games:52,boom_rate:0.038,start_rate:0.288,mid_rate:0.404,bust_rate:0.269},playoff:null,consolation:{games:6,boom_rate:0.0,start_rate:0.167,mid_rate:0.5,bust_rate:0.333}}},
+  "Anthony B.":{stats:{all:{games:15,boom_rate:0.0,start_rate:0.133,mid_rate:0.333,bust_rate:0.533},regular:{games:13,boom_rate:0.0,start_rate:0.154,mid_rate:0.385,bust_rate:0.462},playoff:null,consolation:{games:2,boom_rate:0.0,start_rate:0.0,mid_rate:0.0,bust_rate:1.0}}},
+  "Christine": {stats:{all:{games:48,boom_rate:0.146,start_rate:0.292,mid_rate:0.396,bust_rate:0.167},regular:{games:39,boom_rate:0.179,start_rate:0.231,mid_rate:0.462,bust_rate:0.128},playoff:{games:2,boom_rate:0.0,start_rate:0.5,mid_rate:0.0,bust_rate:0.5},consolation:{games:7,boom_rate:0.0,start_rate:0.571,mid_rate:0.143,bust_rate:0.286}}},
+  "James":     {stats:{all:{games:15,boom_rate:0.0,start_rate:0.133,mid_rate:0.333,bust_rate:0.533},regular:{games:13,boom_rate:0.0,start_rate:0.077,mid_rate:0.385,bust_rate:0.538},playoff:null,consolation:{games:2,boom_rate:0.0,start_rate:0.5,mid_rate:0.0,bust_rate:0.5}}},
+  "Jon":       {stats:{all:{games:187,boom_rate:0.193,start_rate:0.305,mid_rate:0.257,bust_rate:0.246},regular:{games:161,boom_rate:0.199,start_rate:0.292,mid_rate:0.273,bust_rate:0.236},playoff:{games:9,boom_rate:0.222,start_rate:0.556,mid_rate:0.0,bust_rate:0.222},consolation:{games:17,boom_rate:0.118,start_rate:0.294,mid_rate:0.235,bust_rate:0.353}}},
+  "Michael V.":{stats:{all:{games:15,boom_rate:0.2,start_rate:0.2,mid_rate:0.4,bust_rate:0.2},regular:{games:14,boom_rate:0.214,start_rate:0.214,mid_rate:0.429,bust_rate:0.143},playoff:{games:1,boom_rate:0.0,start_rate:0.0,mid_rate:0.0,bust_rate:1.0},consolation:null}},
+  "Michelle C.":{stats:{all:{games:90,boom_rate:0.244,start_rate:0.233,mid_rate:0.333,bust_rate:0.189},regular:{games:78,boom_rate:0.244,start_rate:0.231,mid_rate:0.333,bust_rate:0.192},playoff:{games:1,boom_rate:0.0,start_rate:1.0,mid_rate:0.0,bust_rate:0.0},consolation:{games:11,boom_rate:0.273,start_rate:0.182,mid_rate:0.364,bust_rate:0.182}}},
+  "Michelle T.":{stats:{all:{games:46,boom_rate:0.348,start_rate:0.174,mid_rate:0.217,bust_rate:0.261},regular:{games:39,boom_rate:0.359,start_rate:0.205,mid_rate:0.179,bust_rate:0.256},playoff:{games:4,boom_rate:0.5,start_rate:0.0,mid_rate:0.5,bust_rate:0.0},consolation:{games:3,boom_rate:0.0,start_rate:0.0,mid_rate:0.333,bust_rate:0.667}}},
+  "Pauly":     {stats:{all:{games:16,boom_rate:0.125,start_rate:0.438,mid_rate:0.25,bust_rate:0.188},regular:{games:13,boom_rate:0.154,start_rate:0.385,mid_rate:0.308,bust_rate:0.154},playoff:null,consolation:{games:3,boom_rate:0.0,start_rate:0.667,mid_rate:0.0,bust_rate:0.333}}},
+  "Taylor":    {stats:{all:{games:46,boom_rate:0.196,start_rate:0.261,mid_rate:0.348,bust_rate:0.196},regular:{games:39,boom_rate:0.231,start_rate:0.179,mid_rate:0.359,bust_rate:0.231},playoff:{games:2,boom_rate:0.0,start_rate:0.5,mid_rate:0.5,bust_rate:0.0},consolation:{games:5,boom_rate:0.0,start_rate:0.8,mid_rate:0.2,bust_rate:0.0}}},
+  "Tim C.":    {stats:{all:{games:90,boom_rate:0.178,start_rate:0.311,mid_rate:0.278,bust_rate:0.233},regular:{games:78,boom_rate:0.167,start_rate:0.295,mid_rate:0.282,bust_rate:0.256},playoff:{games:4,boom_rate:0.5,start_rate:0.25,mid_rate:0.0,bust_rate:0.25},consolation:{games:8,boom_rate:0.125,start_rate:0.5,mid_rate:0.375,bust_rate:0.0}}},
+  "Tyler":     {stats:{all:{games:15,boom_rate:0.333,start_rate:0.267,mid_rate:0.267,bust_rate:0.133},regular:{games:13,boom_rate:0.308,start_rate:0.308,mid_rate:0.231,bust_rate:0.154},playoff:null,consolation:{games:2,boom_rate:0.5,start_rate:0.0,mid_rate:0.5,bust_rate:0.0}}},
+};
+
+// ── HELPERS ───────────────────────────────────────────────────────────────────
+
+function archetypeClass(a) { return 'badge-' + a.toLowerCase().replace(/\s+/g,'-'); }
+
+function ordinal(n) {
+  const s=['th','st','nd','rd'], v=n%100;
+  return n+(s[(v-20)%10]||s[v]||s[0]);
+}
+
+function buildDonut(s) {
+  const R=26,cx=33,cy=33,sw=7,circ=2*Math.PI*R;
+  const segs=[
+    {pct:s.boom_rate, color:'var(--boom-color)'},
+    {pct:s.start_rate,color:'var(--start-color)'},
+    {pct:s.mid_rate,  color:'var(--mid-color)'},
+    {pct:s.bust_rate, color:'var(--bust-color)'},
+  ];
+  let offset=0,paths='';
+  for(const seg of segs){
+    const len=seg.pct*circ,gap=circ-len;
+    paths+=`<circle cx="${cx}" cy="${cy}" r="${R}" fill="none" stroke="${seg.color}" stroke-width="${sw}" stroke-dasharray="${len.toFixed(2)} ${gap.toFixed(2)}" stroke-dashoffset="${(-offset).toFixed(2)}"/>`;
+    offset+=len;
+  }
+  return `<svg class="donut-svg" viewBox="0 0 66 66">${paths}</svg>`;
+}
+
+function rateRow(label,rate,color){
+  const pct=Math.max(2,Math.round(rate*100));
+  return `<div class="rate-row">
+    <span class="rate-label">${label}</span>
+    <div class="rate-bar-outer"><div class="rate-bar-inner" style="width:${pct}%;background:${color}"></div></div>
+    <span class="rate-val" style="color:${color}">${(rate*100).toFixed(1)}%</span>
+  </div>`;
+}
+
+// ── CARD BACK — RANK SHEET ────────────────────────────────────────────────────
+
+function buildBack(name, data) {
+  const ranks = RANKS[name];
+  const qualified = !!ranks;
+
+  const header = `<div class="back-header">
+    <span class="back-name">${name}</span>
+    <span class="back-flip-hint">tap to flip back</span>
+  </div>`;
+
+  if (!qualified) {
+    return `<div class="card-face card-back">
+      ${header}
+      <div class="back-body">
+        <div class="rank-unqualified">Fewer than 4 seasons played —<br>not ranked in career standings</div>
+      </div>
+    </div>`;
+  }
+
+  const statDefs = [
+    { key:'boom',  label:'Boom',  color:'var(--boom-color)',  rank:ranks.boom,  asc:false },
+    { key:'start', label:'Start', color:'var(--start-color)', rank:ranks.start, asc:false },
+    { key:'mid',   label:'Mid',   color:'var(--mid-color)',   rank:ranks.mid,   asc:true  },
+    { key:'bust',  label:'Bust',  color:'var(--bust-color)',  rank:ranks.bust,  asc:true  },
+  ];
+
+  // bar width: rank 1 = full, rank N = thin
+  const rows = statDefs.map(d => {
+    const barPct = Math.max(6, Math.round(((RANK_N - d.rank) / (RANK_N - 1)) * 100));
+    const bustNote = (d.key==='bust'||d.key==='mid') ? `<span style="font-family:'Barlow Condensed',sans-serif;font-size:0.58rem;color:var(--muted);margin-left:2px">(low=best)</span>` : '';
+    return `<div class="rank-row">
+      <span class="rank-stat-label" style="color:${d.color}">${d.label}${bustNote}</span>
+      <div class="rank-bar-outer"><div class="rank-bar-inner" style="width:${barPct}%;background:${d.color};opacity:0.7"></div></div>
+      <span class="rank-number" style="color:${d.color}">${ordinal(d.rank)}</span>
+    </div>`;
+  }).join('');
+
+  return `<div class="card-face card-back">
+    ${header}
+    <div class="back-body">
+      <div class="back-context">Career ranking · ${RANK_N} qualified owners (4+ seasons)</div>
+      <div class="rank-rows">${rows}</div>
+    </div>
+  </div>`;
+}
+
+// ── BUILD CARD ────────────────────────────────────────────────────────────────
+
+const AO={'Boom Machine':0,'High Variance':1,'Reliable':2,'Middling':3,'Underperforming':4,'Pending':5};
+
+function buildCard(name, data, cat) {
+  const s = data.stats[cat];
+  const archetype = data.archetype;
+  const isPending = archetype === 'Pending';
+  const hasData = s && !isPending;
+  const profileHref = ACTIVE_PROFILES[name] || '#';
+  const def = ARCHETYPE_DEFS[archetype] || {};
+
+  const photo = `<img class="card-photo" src="images/${data.photoId}.png" onerror="this.onerror=null;this.src='images/${data.photoId}.jpg'" alt="${name}">`;
+
+  const tooltipHTML = isPending ? '' : `<div class="badge-tooltip">
+    <div class="tooltip-name" style="color:${def.color}">${archetype}</div>
+    <div class="tooltip-desc">${def.desc}</div>
+  </div>`;
+
+  const badge = `<div class="badge-wrap">
+    <span class="archetype-badge ${archetypeClass(archetype)}">${archetype}</span>
+    ${tooltipHTML}
+  </div>`;
+
+  const header = `<div class="card-header">
+    ${photo}
+    <div class="card-name-block">
+      <div class="card-name"><a href="${profileHref}" onclick="event.stopPropagation()">${name}</a></div>
+      ${badge}
+    </div>
+  </div>`;
+
+  let body, sceneExtra = '';
+  if (isPending) {
+    body = `<div class="card-state-msg">No games yet — first season upcoming</div>`;
+    sceneExtra = ' is-pending';
+  } else if (!hasData) {
+    body = `<div class="card-state-msg">No games in this category</div>`;
+    sceneExtra = ' no-data';
+  } else {
+    body = `<div class="card-body">
+      <div class="donut-container">
+        ${buildDonut(s)}
+        <div class="donut-center">
+          <span class="donut-games">${s.games}</span>
+          <span class="donut-label">games</span>
+        </div>
+      </div>
+      <div class="card-rates">
+        ${rateRow('Boom',  s.boom_rate,  'var(--boom-color)')}
+        ${rateRow('Start', s.start_rate, 'var(--start-color)')}
+        ${rateRow('Mid',   s.mid_rate,   'var(--mid-color)')}
+        ${rateRow('Bust',  s.bust_rate,  'var(--bust-color)')}
+      </div>
+    </div>
+    <div class="flip-hint">tap to see career rankings</div>`;
+  }
+
+  const front = `<div class="card-face">${header}${body}</div>`;
+  const back = hasData ? buildBack(name, data) : '';
+  return `<div class="card-scene${sceneExtra}" data-name="${name}"><div class="card-inner">${front}${back}</div></div>`;
+}
+
+// ── RENDER CARDS ──────────────────────────────────────────────────────────────
+
+function renderCards(cat) {
+  const sorted = Object.entries(ACTIVE).sort(([,a],[,b]) => {
+    const d = AO[a.archetype] - AO[b.archetype];
+    if (d !== 0) return d;
+    const ar = a.stats[cat] ? a.stats[cat].boom_rate : -1;
+    const br = b.stats[cat] ? b.stats[cat].boom_rate : -1;
+    return br - ar;
+  });
+  document.getElementById('cardsGrid').innerHTML = sorted.map(([n,d]) => buildCard(n,d,cat)).join('');
+
+  // Flip on card click (not badge click)
+  document.querySelectorAll('.card-scene:not(.is-pending):not(.no-data)').forEach(el => {
+    el.addEventListener('click', () => el.classList.toggle('flipped'));
+  });
+
+  // Tooltip: toggle on badge click, stop propagation so card doesn't flip
+  document.querySelectorAll('.badge-wrap').forEach(wrap => {
+    const badge = wrap.querySelector('.archetype-badge');
+    const tip   = wrap.querySelector('.badge-tooltip');
+    if (!tip) return;
+    badge.addEventListener('click', e => {
+      e.stopPropagation();
+      // close all others
+      document.querySelectorAll('.badge-tooltip.visible').forEach(t => { if(t!==tip) t.classList.remove('visible'); });
+      tip.classList.toggle('visible');
+    });
+  });
+
+  // Close tooltips on outside click
+  document.addEventListener('click', () => {
+    document.querySelectorAll('.badge-tooltip.visible').forEach(t => t.classList.remove('visible'));
+  }, { capture: true, once: false });
+}
+
+// ── TABLE ─────────────────────────────────────────────────────────────────────
+
+let sortCol = 'boom', sortDir = -1;
+
+function getVal(name, isActive, cat, col) {
+  const d = isActive ? ACTIVE[name] : HISTORICAL[name];
+  const s = d.stats[cat];
+  if (!s) return null;
+  return {games:s.games,boom:s.boom_rate,start:s.start_rate,mid:s.mid_rate,bust:s.bust_rate}[col] ?? null;
+}
+
+function renderTable(cat) {
+  const all = [
+    ...Object.keys(ACTIVE).map(n=>({name:n,isActive:true})),
+    ...Object.keys(HISTORICAL).map(n=>({name:n,isActive:false})),
+  ];
+  all.sort((a,b) => {
+    const av = getVal(a.name,a.isActive,cat,sortCol);
+    const bv = getVal(b.name,b.isActive,cat,sortCol);
+    if (av===null && bv===null) return 0;
+    if (av===null) return 1;
+    if (bv===null) return -1;
+    return (av-bv)*sortDir;
+  });
+  document.getElementById('allBody').innerHTML = all.map(({name,isActive}) => {
+    const d = isActive ? ACTIVE[name] : HISTORICAL[name];
+    const s = d.stats[cat];
+    const link = isActive ? (ACTIVE_PROFILES[name]||null) : null;
+    const nameCell = link ? `<a href="${link}">${name}</a>` : name;
+    const rowClass = isActive ? '' : 'td-hist-row';
+    if (!s) return `<tr class="${rowClass}"><td class="td-owner">${nameCell}</td><td class="td-dash">—</td><td class="td-dash">—</td><td class="td-dash">—</td><td class="td-dash">—</td><td class="td-dash">—</td></tr>`;
+    return `<tr class="${rowClass}">
+      <td class="td-owner">${nameCell}</td>
+      <td class="td-num td-games">${s.games}</td>
+      <td class="td-num td-boom">${(s.boom_rate*100).toFixed(1)}%</td>
+      <td class="td-num td-start">${(s.start_rate*100).toFixed(1)}%</td>
+      <td class="td-num td-mid">${(s.mid_rate*100).toFixed(1)}%</td>
+      <td class="td-num td-bust">${(s.bust_rate*100).toFixed(1)}%</td>
+    </tr>`;
+  }).join('');
+}
+
+document.querySelectorAll('thead th.sortable').forEach(th => {
+  th.addEventListener('click', () => {
+    const col = th.dataset.col;
+    sortDir = sortCol===col ? sortDir*-1 : -1;
+    sortCol = col;
+    document.querySelectorAll('thead th').forEach(h => {
+      h.classList.remove('sort-active');
+      const a = h.querySelector('.sort-arrow');
+      if (a) a.textContent = '↕';
+    });
+    th.classList.add('sort-active');
+    const a = th.querySelector('.sort-arrow');
+    if (a) a.textContent = sortDir===-1 ? '↓' : '↑';
+    renderTable(activeCat);
+  });
+});
+
+// ── TABS ──────────────────────────────────────────────────────────────────────
+
+let activeCat = 'all';
+document.querySelectorAll('.type-tab').forEach(btn => {
+  btn.addEventListener('click', () => {
+    document.querySelectorAll('.type-tab').forEach(b => b.classList.remove('active'));
+    btn.classList.add('active');
+    activeCat = btn.dataset.cat;
+    renderCards(activeCat);
+    renderTable(activeCat);
+  });
+});
+
+// ── INIT ──────────────────────────────────────────────────────────────────────
+
+renderCards('all');
+renderTable('all');
+
+fetch('profiles-data.json')
+  .then(r => r.json())
+  .then(data => {
+    const date = data.pageUpdates && data.pageUpdates['boom-start-bust'];
+    if (date) document.getElementById('pageUpdated').textContent = 'Updated · ' + date;
+  })
+  .catch(() => {});
+</script>
+</body>
+</html>
