@@ -63,18 +63,29 @@
 
     /* Tabs */
     .type-tabs {
-      display: flex; flex-wrap: wrap; border: 1px solid var(--border);
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr;
+      grid-template-rows: auto auto;
+      border: 1px solid var(--border);
       border-radius: 4px; overflow: hidden; width: 100%; margin-bottom: 24px;
     }
     .type-tab {
-      font-family: 'Barlow Condensed', sans-serif; font-size: 0.82rem;
+      font-family: 'Barlow Condensed', sans-serif; font-size: 0.9rem;
       font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase;
       padding: 10px 16px; background: transparent; color: var(--muted);
       border: none; border-right: 1px solid var(--border);
+      border-bottom: 1px solid var(--border);
       cursor: pointer; transition: background 0.15s, color 0.15s;
-      white-space: nowrap; flex: 1 1 auto;
+      white-space: nowrap; text-align: center;
     }
-    .type-tab:last-child { border-right: none; }
+    .type-tab[data-cat="all"] {
+      grid-column: 1 / -1;
+      border-right: none;
+    }
+    .type-tab:nth-child(4) { border-right: none; }
+    .type-tab:nth-child(2),
+    .type-tab:nth-child(3),
+    .type-tab:nth-child(4) { border-bottom: none; }
     .type-tab.active { background: var(--red); color: #fff; }
     .type-tab:not(.active):hover { color: var(--text); }
 
@@ -85,7 +96,7 @@
     }
     .legend-item {
       display: flex; align-items: center; gap: 6px;
-      font-family: 'Barlow Condensed', sans-serif; font-size: 0.78rem;
+      font-family: 'Barlow Condensed', sans-serif; font-size: 0.9rem;
       letter-spacing: 0.12em; text-transform: uppercase; color: var(--label);
     }
     .legend-dot { width: 10px; height: 10px; border-radius: 50%; flex-shrink: 0; }
@@ -212,11 +223,11 @@
       transform: translate(-50%, -50%); text-align: center; line-height: 1;
     }
     .donut-games {
-      font-family: 'Bebas Neue', sans-serif; font-size: 1.2rem;
+      font-family: 'Bebas Neue', sans-serif; font-size: 1.35rem;
       color: var(--text); display: block;
     }
     .donut-label {
-      font-family: 'Barlow Condensed', sans-serif; font-size: 0.55rem;
+      font-family: 'Barlow Condensed', sans-serif; font-size: 0.62rem;
       letter-spacing: 0.1em; text-transform: uppercase; color: var(--muted);
     }
     .card-rates { flex: 1; display: flex; flex-direction: column; gap: 5px; }
@@ -236,12 +247,12 @@
       font-weight: 700; width: 38px; text-align: right; flex-shrink: 0;
     }
     .flip-hint {
-      font-family: 'Barlow Condensed', sans-serif; font-size: 0.6rem;
+      font-family: 'Barlow Condensed', sans-serif; font-size: 0.75rem;
       letter-spacing: 0.12em; text-transform: uppercase;
-      color: var(--border); text-align: center; padding: 0 0 6px;
+      color: var(--muted); text-align: center; padding: 0 0 6px;
       transition: color 0.15s;
     }
-    .card-scene:not(.is-pending):not(.no-data):hover .flip-hint { color: var(--muted); }
+    .card-scene:not(.is-pending):not(.no-data):hover .flip-hint { color: var(--label); }
 
     /* Card back — rank sheet */
     .back-header {
@@ -259,13 +270,17 @@
     }
     .back-body { flex: 1; padding: 10px 14px 10px; display: flex; flex-direction: column; gap: 8px; }
     .back-context {
-      font-family: 'Barlow Condensed', sans-serif; font-size: 0.65rem;
+      font-family: 'Barlow Condensed', sans-serif; font-size: 0.75rem;
       letter-spacing: 0.1em; text-transform: uppercase; color: var(--muted);
       text-align: center; margin-bottom: 2px;
     }
-    .rank-rows { display: flex; flex-direction: column; gap: 6px; }
+    .rank-rows { display: flex; flex-direction: column; gap: 4px; }
     .rank-row {
       display: flex; align-items: center; gap: 8px;
+    }
+    .rank-number-wrap {
+      display: flex; flex-direction: column; align-items: flex-end;
+      flex-shrink: 0; width: 44px; justify-content: center;
     }
     .rank-stat-label {
       font-family: 'Barlow Condensed', sans-serif; font-size: 0.82rem;
@@ -282,10 +297,10 @@
       line-height: 1; width: 40px; text-align: right; flex-shrink: 0;
     }
     .rank-low-best {
-      font-family: 'Barlow Condensed', sans-serif; font-size: 0.65rem;
-      letter-spacing: 0.08em; text-transform: uppercase;
-      color: var(--muted); text-align: right; margin-top: -3px;
-      padding-right: 2px;
+      font-family: 'Barlow Condensed', sans-serif; font-size: 0.58rem;
+      letter-spacing: 0.06em; text-transform: uppercase;
+      color: var(--muted); text-align: right; line-height: 1;
+      display: block; margin-top: 1px;
     }
     .rank-unqualified {
       font-family: 'Barlow Condensed', sans-serif; font-size: 0.72rem;
@@ -543,11 +558,11 @@ function buildBack(name, data) {
   const rows = statDefs.map(d => {
     const barPct = Math.max(6, Math.round(((RANK_N - d.rank) / (RANK_N - 1)) * 100));
     const lowBest = (d.key==='bust'||d.key==='mid')
-      ? `<div class="rank-low-best">low = best</div>` : '';
+      ? `<span class="rank-low-best">low = best</span>` : '';
     return `<div class="rank-row">
       <span class="rank-stat-label" style="color:${d.color}">${d.label}</span>
       <div class="rank-bar-outer"><div class="rank-bar-inner" style="width:${barPct}%;background:${d.color};opacity:0.7"></div></div>
-      <div style="display:flex;flex-direction:column;align-items:flex-end;flex-shrink:0;width:44px">
+      <div class="rank-number-wrap">
         <span class="rank-number" style="color:${d.color}">${ordinal(d.rank)}</span>
         ${lowBest}
       </div>
@@ -575,7 +590,8 @@ function buildCard(name, data, cat) {
   const profileHref = ACTIVE_PROFILES[name] || '#';
   const def = ARCHETYPE_DEFS[archetype] || {};
 
-  const photo = `<img class="card-photo" src="images/${data.photoId}.png" onerror="this.onerror=null;this.src='images/${data.photoId}.jpg'" alt="${name}">`;
+  const photoBorderColor = def.color || 'var(--gold)';
+  const photo = `<img class="card-photo" src="images/${data.photoId}.png" onerror="this.onerror=null;this.src='images/${data.photoId}.jpg'" alt="${name}" style="border-color:${photoBorderColor}">`;
 
   const tooltipHTML = isPending ? '' : `<div class="badge-tooltip">
     <div class="tooltip-name" style="color:${def.color}">${archetype}</div>
