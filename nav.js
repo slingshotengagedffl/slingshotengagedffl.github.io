@@ -30,6 +30,7 @@
         { label: 'Head-To-Head',                 href: 'annals-head-to-head.html' },
         { label: 'Playoff Odds Oracle (POO) 💩', href: 'annals-playoff-odds.html' },
         { label: 'Draft Position Success',       href: 'annals-draft-position-success.html' },
+        { label: 'Lucky / Unlucky',              href: 'annals-lucky-unlucky.html' },
         { label: 'Boom Or Bust',                 href: 'annals-boom-or-bust.html' },
         { label: 'The Streak And The Drought',   href: 'annals-streak-and-drought.html' },
         { label: 'The Intercontinental Championship', href: 'annals-intercontinental.html' },
