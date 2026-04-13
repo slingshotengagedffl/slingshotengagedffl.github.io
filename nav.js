@@ -22,10 +22,8 @@
     { emoji: '🏛️', label: 'The Annals',              href: 'annals.html',       external: false,
       submenu: [
         { label: 'Hall of Greatness 🐗',          href: 'annals-hog.html' },
-        { label: 'Single Season Stats',          href: 'annals-single-season-stats.html' },
         { label: 'Single Game Records',          href: 'annals-single-game-records.html' },
         { label: 'Single Season Records',        href: 'annals-single-season-records.html' },
-        { label: 'Career Stats',                 href: 'annals-career-stats.html' },
         { label: 'Career Records',               href: 'annals-career-records.html' },
         { label: 'Season Summaries',             href: 'annals-season-summaries.html' },
         { label: 'Prestige Rankings',            href: 'annals-prestige-rankings.html' },
