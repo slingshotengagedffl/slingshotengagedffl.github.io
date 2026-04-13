@@ -170,10 +170,10 @@
     @media (max-width: 480px) { .cards-grid { grid-template-columns: 1fr; } }
 
     .card-scene {
-      perspective: 900px; cursor: pointer; height: 230px;
+      perspective: 900px; cursor: pointer; height: 290px;
     }
-    .card-scene.is-pending { height: 120px; cursor: default; }
-    .card-scene.no-data    { height: 120px; cursor: default; }
+    .card-scene.is-pending { height: 130px; cursor: default; }
+    .card-scene.no-data    { height: 130px; cursor: default; }
 
     .card-inner {
       position: relative; width: 100%; height: 100%;
@@ -185,22 +185,19 @@
     .card-face {
       position: absolute; inset: 0;
       backface-visibility: hidden; -webkit-backface-visibility: hidden;
-      background: var(--surface); border: 1px solid var(--border);
-      border-radius: 8px; overflow: visible; transition: border-color 0.15s;
+      background: var(--surface); border: 2px solid var(--border);
+      border-radius: 8px; overflow: visible; transition: border-color 0.15s, box-shadow 0.15s;
     }
-    .card-scene:not(.is-pending):not(.no-data):hover .card-face { border-color: var(--gold); }
+    .card-scene:not(.is-pending):not(.no-data):hover .card-face {
+      box-shadow: 0 0 12px rgba(0,0,0,0.4);
+    }
     .card-back { transform: rotateY(180deg); display: flex; flex-direction: column; }
 
     /* Card front header */
     .card-header {
-      background: var(--surface2); padding: 10px 12px 8px;
-      display: flex; align-items: center; gap: 10px;
+      background: var(--surface2); padding: 8px 12px;
+      display: flex; align-items: center;
       border-bottom: 1px solid var(--border);
-    }
-    .card-photo {
-      width: 46px; height: 46px; border-radius: 50%;
-      object-fit: cover; object-position: top;
-      border: 2px solid var(--gold); flex-shrink: 0;
     }
     .card-name-block { flex: 1; min-width: 0; }
     .card-name {
@@ -211,40 +208,47 @@
     .card-name a { color: var(--text); text-decoration: none; }
     .card-name a:hover { color: var(--gold); }
 
-    /* Card body (front) */
+    /* Card body (front) — big circles */
     .card-body {
-      padding: 10px 12px 6px;
-      display: flex; align-items: center; gap: 12px;
+      padding: 10px 14px 4px;
+      display: flex; align-items: center; justify-content: center; gap: 14px;
     }
-    .donut-container { position: relative; width: 66px; height: 66px; flex-shrink: 0; }
-    .donut-svg { width: 66px; height: 66px; transform: rotate(-90deg); }
+    .card-photo-large {
+      width: 86px; height: 86px; border-radius: 50%;
+      object-fit: cover; object-position: top;
+      border: 3px solid var(--gold); flex-shrink: 0;
+    }
+    .donut-container { position: relative; width: 86px; height: 86px; flex-shrink: 0; }
+    .donut-svg { width: 86px; height: 86px; transform: rotate(-90deg); }
     .donut-center {
       position: absolute; top: 50%; left: 50%;
       transform: translate(-50%, -50%); text-align: center; line-height: 1;
     }
     .donut-games {
-      font-family: 'Bebas Neue', sans-serif; font-size: 1.35rem;
+      font-family: 'Bebas Neue', sans-serif; font-size: 1.5rem;
       color: var(--text); display: block;
     }
     .donut-label {
       font-family: 'Barlow Condensed', sans-serif; font-size: 0.62rem;
       letter-spacing: 0.1em; text-transform: uppercase; color: var(--muted);
     }
-    .card-rates { flex: 1; display: flex; flex-direction: column; gap: 5px; }
-    .rate-row { display: flex; align-items: center; gap: 6px; }
-    .rate-label {
-      font-family: 'Barlow Condensed', sans-serif; font-size: 0.8rem;
-      letter-spacing: 0.1em; text-transform: uppercase;
-      color: var(--label); width: 36px; flex-shrink: 0;
+    /* 2x2 stat grid below circles */
+    .card-stat-grid {
+      display: grid; grid-template-columns: 1fr 1fr;
+      gap: 4px 6px; padding: 4px 12px 6px;
     }
-    .rate-bar-outer {
-      flex: 1; height: 5px; background: var(--surface3);
-      border-radius: 2px; overflow: hidden;
+    .stat-cell {
+      display: flex; flex-direction: column; align-items: center;
+      background: var(--surface2); border-radius: 4px; padding: 3px 6px;
     }
-    .rate-bar-inner { height: 100%; border-radius: 2px; }
-    .rate-val {
-      font-family: 'Barlow Condensed', sans-serif; font-size: 0.88rem;
-      font-weight: 700; width: 38px; text-align: right; flex-shrink: 0;
+    .stat-cell-label {
+      font-family: 'Barlow Condensed', sans-serif; font-size: 0.68rem;
+      font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase;
+      color: var(--label); line-height: 1;
+    }
+    .stat-cell-val {
+      font-family: 'Bebas Neue', sans-serif; font-size: 1.1rem;
+      line-height: 1.1;
     }
     .flip-hint {
       font-family: 'Barlow Condensed', sans-serif; font-size: 0.75rem;
@@ -501,30 +505,46 @@ function ordinal(n) {
   return n+(s[(v-20)%10]||s[v]||s[0]);
 }
 
-function buildDonut(s) {
-  const R=26,cx=33,cy=33,sw=7,circ=2*Math.PI*R;
+function buildDonut(s, cardId) {
+  const R=34,cx=43,cy=43,sw=9,circ=2*Math.PI*R;
   const segs=[
-    {pct:s.boom_rate, color:'var(--boom-color)'},
-    {pct:s.start_rate,color:'var(--start-color)'},
-    {pct:s.mid_rate,  color:'var(--mid-color)'},
-    {pct:s.bust_rate, color:'var(--bust-color)'},
+    {key:'boom',  pct:s.boom_rate,  color:'var(--boom-color)'},
+    {key:'start', pct:s.start_rate, color:'var(--start-color)'},
+    {key:'mid',   pct:s.mid_rate,   color:'var(--mid-color)'},
+    {key:'bust',  pct:s.bust_rate,  color:'var(--bust-color)'},
   ];
   let offset=0,paths='';
   for(const seg of segs){
     const len=seg.pct*circ,gap=circ-len;
-    paths+=`<circle cx="${cx}" cy="${cy}" r="${R}" fill="none" stroke="${seg.color}" stroke-width="${sw}" stroke-dasharray="${len.toFixed(2)} ${gap.toFixed(2)}" stroke-dashoffset="${(-offset).toFixed(2)}"/>`;
+    paths+=`<circle
+      class="donut-seg"
+      data-stat="${seg.key}"
+      data-card="${cardId}"
+      data-sw="${sw}"
+      data-color="${seg.color}"
+      cx="${cx}" cy="${cy}" r="${R}" fill="none"
+      stroke="${seg.color}" stroke-width="${sw}"
+      stroke-dasharray="${len.toFixed(2)} ${gap.toFixed(2)}"
+      stroke-dashoffset="${(-offset).toFixed(2)}"
+      style="transition:stroke-width 0.2s,filter 0.2s"/>`;
     offset+=len;
   }
-  return `<svg class="donut-svg" viewBox="0 0 66 66">${paths}</svg>`;
+  return `<svg class="donut-svg" viewBox="0 0 86 86" style="overflow:visible">${paths}</svg>`;
 }
 
-function rateRow(label,rate,color){
-  const pct=Math.max(2,Math.round(rate*100));
-  return `<div class="rate-row">
-    <span class="rate-label">${label}</span>
-    <div class="rate-bar-outer"><div class="rate-bar-inner" style="width:${pct}%;background:${color}"></div></div>
-    <span class="rate-val" style="color:${color}">${(rate*100).toFixed(1)}%</span>
-  </div>`;
+function statGrid(s, cardId) {
+  const cells = [
+    { key:'boom',  label: 'Boom',  val: s.boom_rate,  color: 'var(--boom-color)'  },
+    { key:'start', label: 'Start', val: s.start_rate, color: 'var(--start-color)' },
+    { key:'mid',   label: 'Mid',   val: s.mid_rate,   color: 'var(--mid-color)'   },
+    { key:'bust',  label: 'Bust',  val: s.bust_rate,  color: 'var(--bust-color)'  },
+  ];
+  return cells.map(c =>
+    `<div class="stat-cell" data-stat="${c.key}" data-card="${cardId}" style="transition:transform 0.2s,box-shadow 0.2s">
+      <span class="stat-cell-label" style="color:${c.color}">${c.label}</span>
+      <span class="stat-cell-val" style="color:${c.color}">${(c.val*100).toFixed(1)}%</span>
+    </div>`
+  ).join('');
 }
 
 // ── CARD BACK — RANK SHEET ────────────────────────────────────────────────────
@@ -539,7 +559,7 @@ function buildBack(name, data) {
   </div>`;
 
   if (!qualified) {
-    return `<div class="card-face card-back">
+    return `<div class="card-face card-back" style="border-color:${ARCHETYPE_DEFS[data.archetype]?.color||'var(--border)'}">
       ${header}
       <div class="back-body">
         <div class="rank-unqualified">Fewer than 4 seasons played —<br>not ranked in career standings</div>
@@ -569,7 +589,7 @@ function buildBack(name, data) {
     </div>`;
   }).join('');
 
-  return `<div class="card-face card-back">
+  return `<div class="card-face card-back" style="border-color:${ARCHETYPE_DEFS[data.archetype]?.color||'var(--border)'}">
     ${header}
     <div class="back-body">
       <div class="back-context">Career ranking · ${RANK_N} qualified owners (4+ seasons)</div>
@@ -589,9 +609,10 @@ function buildCard(name, data, cat) {
   const hasData = s && !isPending;
   const profileHref = ACTIVE_PROFILES[name] || '#';
   const def = ARCHETYPE_DEFS[archetype] || {};
+  const cardId = name.replace(/[^a-z0-9]/gi, '').toLowerCase();
 
   const photoBorderColor = def.color || 'var(--gold)';
-  const photo = `<img class="card-photo" src="images/${data.photoId}.png" onerror="this.onerror=null;this.src='images/${data.photoId}.jpg'" alt="${name}" style="border-color:${photoBorderColor}">`;
+  const photo = `<img class="card-photo-large" src="images/${data.photoId}.png" onerror="this.onerror=null;this.src='images/${data.photoId}.jpg'" alt="${name}" style="border-color:${photoBorderColor}">`;
 
   const tooltipHTML = isPending ? '' : `<div class="badge-tooltip">
     <div class="tooltip-name" style="color:${def.color}">${archetype}</div>
@@ -603,8 +624,7 @@ function buildCard(name, data, cat) {
     ${tooltipHTML}
   </div>`;
 
-  const header = `<div class="card-header">
-    ${photo}
+  const header = `<div class="card-header" style="border-bottom-color:${photoBorderColor}20">
     <div class="card-name-block">
       <div class="card-name"><a href="${profileHref}" onclick="event.stopPropagation()">${name}</a></div>
       ${badge}
@@ -620,24 +640,21 @@ function buildCard(name, data, cat) {
     sceneExtra = ' no-data';
   } else {
     body = `<div class="card-body">
+      ${photo}
       <div class="donut-container">
-        ${buildDonut(s)}
+        ${buildDonut(s, cardId)}
         <div class="donut-center">
           <span class="donut-games">${s.games}</span>
           <span class="donut-label">games</span>
         </div>
       </div>
-      <div class="card-rates">
-        ${rateRow('Boom',  s.boom_rate,  'var(--boom-color)')}
-        ${rateRow('Start', s.start_rate, 'var(--start-color)')}
-        ${rateRow('Mid',   s.mid_rate,   'var(--mid-color)')}
-        ${rateRow('Bust',  s.bust_rate,  'var(--bust-color)')}
-      </div>
     </div>
+    <div class="card-stat-grid">${statGrid(s, cardId)}</div>
     <div class="flip-hint">tap to see career rankings</div>`;
   }
 
-  const front = `<div class="card-face">${header}${body}</div>`;
+  const archetypeColor = def.color || 'var(--border)';
+  const front = `<div class="card-face" style="border-color:${archetypeColor}">${header}${body}</div>`;
   const back = hasData ? buildBack(name, data) : '';
   return `<div class="card-scene${sceneExtra}" data-name="${name}"><div class="card-inner">${front}${back}</div></div>`;
 }
@@ -654,9 +671,90 @@ function renderCards(cat) {
   });
   document.getElementById('cardsGrid').innerHTML = sorted.map(([n,d]) => buildCard(n,d,cat)).join('');
 
-  // Flip on card click (not badge click)
+  // Flip on card click — but not if tapping a stat cell, donut seg, badge, or link
   document.querySelectorAll('.card-scene:not(.is-pending):not(.no-data)').forEach(el => {
-    el.addEventListener('click', () => el.classList.toggle('flipped'));
+    el.addEventListener('click', e => {
+      if (e.target.closest('.stat-cell,.donut-seg,.badge-wrap,a')) return;
+      const name = el.dataset.name;
+      const cardId = name.replace(/[^a-z0-9]/gi, '').toLowerCase();
+      deactivateStat(cardId);
+      activeTouches = {};
+      el.classList.toggle('flipped');
+    });
+  });
+
+  // ── BIDIRECTIONAL HIGHLIGHT ───────────────────────────────────────────────
+
+  function activateStat(cardId, statKey) {
+    // Highlight donut segment
+    document.querySelectorAll(`.donut-seg[data-card="${cardId}"]`).forEach(seg => {
+      const key = seg.dataset.stat;
+      if (key === statKey) {
+        seg.style.strokeWidth = '14';
+        seg.style.filter = `drop-shadow(0 0 5px ${seg.dataset.color})`;
+      } else {
+        seg.style.opacity = '0.3';
+      }
+    });
+    // Highlight stat cell
+    document.querySelectorAll(`.stat-cell[data-card="${cardId}"]`).forEach(cell => {
+      if (cell.dataset.stat === statKey) {
+        cell.style.transform = 'scale(1.07)';
+        cell.style.boxShadow = '0 0 8px rgba(255,255,255,0.1)';
+        cell.style.zIndex = '2';
+      } else {
+        cell.style.opacity = '0.4';
+      }
+    });
+  }
+
+  function deactivateStat(cardId) {
+    document.querySelectorAll(`.donut-seg[data-card="${cardId}"]`).forEach(seg => {
+      seg.style.strokeWidth = seg.dataset.sw;
+      seg.style.filter = '';
+      seg.style.opacity = '';
+    });
+    document.querySelectorAll(`.stat-cell[data-card="${cardId}"]`).forEach(cell => {
+      cell.style.transform = '';
+      cell.style.boxShadow = '';
+      cell.style.opacity = '';
+      cell.style.zIndex = '';
+    });
+  }
+
+  // Desktop: mouseenter/mouseleave on donut segments
+  document.querySelectorAll('.donut-seg').forEach(seg => {
+    seg.addEventListener('mouseenter', () => activateStat(seg.dataset.card, seg.dataset.stat));
+    seg.addEventListener('mouseleave', () => deactivateStat(seg.dataset.card));
+  });
+
+  // Desktop: mouseenter/mouseleave on stat cells
+  document.querySelectorAll('.stat-cell').forEach(cell => {
+    cell.addEventListener('mouseenter', e => { e.stopPropagation(); activateStat(cell.dataset.card, cell.dataset.stat); });
+    cell.addEventListener('mouseleave', e => { e.stopPropagation(); deactivateStat(cell.dataset.card); });
+  });
+
+  // Mobile: touchstart on donut segments and stat cells — toggle
+  let activeTouches = {};
+  function handleTouch(cardId, statKey, e) {
+    e.stopPropagation();
+    const key = cardId + ':' + statKey;
+    if (activeTouches[key]) {
+      deactivateStat(cardId);
+      delete activeTouches[key];
+    } else {
+      // deactivate any other active for this card
+      Object.keys(activeTouches).forEach(k => { if (k.startsWith(cardId + ':')) { deactivateStat(cardId); delete activeTouches[k]; } });
+      activateStat(cardId, statKey);
+      activeTouches[key] = true;
+    }
+  }
+
+  document.querySelectorAll('.donut-seg').forEach(seg => {
+    seg.addEventListener('touchstart', e => handleTouch(seg.dataset.card, seg.dataset.stat, e), { passive: false });
+  });
+  document.querySelectorAll('.stat-cell').forEach(cell => {
+    cell.addEventListener('touchstart', e => handleTouch(cell.dataset.card, cell.dataset.stat, e), { passive: false });
   });
 
   // Tooltip: toggle on badge click, stop propagation so card doesn't flip
