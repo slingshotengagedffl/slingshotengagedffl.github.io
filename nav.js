@@ -25,19 +25,20 @@
         { label: 'Single Season Records',            href: 'annals-single-season-records.html' },
         { label: 'Career Records',                   href: 'annals-career-records.html' },
         { label: 'Prestige Rankings',                href: 'annals-prestige-rankings.html' },
-        { label: 'Head-To-Head',                     href: 'annals-head-to-head.html' },
+        { label: 'Hall of Greatness 🐷',             href: 'annals-hog.html' },
         { label: 'Season Summaries',                 href: 'annals-season-summaries.html' },
+        { label: 'Head-To-Head',                     href: 'annals-head-to-head.html' },
         { label: 'Boom, Start & Bust',               href: 'annals-boom-start-bust.html' },
         { label: 'The Streak And The Drought',       href: 'annals-streak-and-drought.html' },
         { label: 'The Intercontinental Championship', href: 'annals-intercontinental.html' },
         { label: 'Draft Position Success',           href: 'annals-draft-position-success.html' },
         { label: 'Playoff Odds Oracle (POO) 💩',     href: 'annals-playoff-odds.html' },
-        { label: 'Hall of Greatness 🐗',             href: 'annals-hog.html' },
       ]
     },
     { emoji: '📜', label: 'Constitution',            href: 'https://drive.google.com/file/d/1u5CjjgncTrwKSedc5rtYRhpPllhlc3w7/view?usp=drivesdk', external: true },
     { emoji: '📸', label: 'Album',                   href: 'https://photos.app.goo.gl/B97a54JNwhCwhof39', external: true },
     { emoji: '🌍', label: "Franks 'Round the World", href: 'https://maps.app.goo.gl/jM1vFzPdmUkwxZN57?g_st=ac', external: true },
+    { emoji: '🍺', label: 'League Weekend Memories', href: 'annals-league-weekends.html', external: false },
   ];
 
   // Detect if we're in a subfolder (e.g. profiles/)
