@@ -1519,6 +1519,8 @@ const OWNER_ID = 'daniel';
 
 
 function renderProfile(p) {
+  document.title = `${p.name} "${p.nickname}" — Slingshot Engaged`;
+
   const photoHTML = p.photo
     ? `<img src="${p.photo}" alt="${p.name}">`
     : `<div class="avatar-placeholder">Photo Coming Soon</div>`;
