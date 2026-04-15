@@ -48,24 +48,26 @@
     justify-content: center;
     gap: 16px;
     width: 100%;
-    max-width: 500px;
-    height: 240px;
+    max-width: 560px;
+    height: 260px;
   }
 
   .hero-logo {
+    flex: 1 1 0;
+    min-width: 0;
     height: 100%;
-    width: auto;
-    max-width: 50%;
+    width: 50%;
     object-fit: contain;
     object-position: bottom;
   }
 
   .hero-dylan {
+    flex: 1 1 0;
+    min-width: 0;
     height: 100%;
-    width: auto;
-    max-width: 50%;
-    object-fit: contain;
-    object-position: bottom;
+    width: 50%;
+    object-fit: cover;
+    object-position: top center;
   }
 
   /* ── ACTION GRID ── */
@@ -95,15 +97,16 @@
   .action-btn.red { background: var(--red); border: 1px solid rgba(255,255,255,0.1); }
   .action-btn.dark { background: #2e2e2e; border: 1px solid #444444; }
 
-  .action-btn-emoji { font-size: 1.5rem; flex-shrink: 0; }
+  .action-btn-emoji { font-size: 1.6rem; flex-shrink: 0; }
 
   .action-btn-label {
     font-family: 'Bebas Neue', sans-serif;
     font-weight: 400;
-    font-size: 1.1rem;
-    letter-spacing: 0.1em;
+    font-size: 1.2rem;
+    letter-spacing: 0.08em;
     text-transform: uppercase;
     color: #fff;
+    line-height: 1.15;
   }
 
 
@@ -135,7 +138,7 @@
   .league-note-week {
     font-family: 'Barlow Condensed', sans-serif;
     font-weight: 700;
-    font-size: 0.85rem;
+    font-size: 1.4rem;
     letter-spacing: 0.12em;
     text-transform: uppercase;
     color: var(--red-bright);
@@ -160,17 +163,17 @@
 
   .league-note-text {
     font-family: 'Barlow', sans-serif;
-    font-size: 1rem;
-    line-height: 1.7;
+    font-size: 1.15rem;
+    line-height: 1.8;
     color: var(--text-body);
   }
-  .league-note-text h1 { font-family: 'Bebas Neue', sans-serif; font-size: 1.8rem; letter-spacing: 0.06em; color: #fff; margin: 8px 0 4px; }
-  .league-note-text h2 { font-family: 'Bebas Neue', sans-serif; font-size: 1.3rem; letter-spacing: 0.06em; color: var(--red-bright); margin: 6px 0 4px; }
-  .league-note-text p { margin: 6px 0; }
+  .league-note-text h1 { font-family: 'Bebas Neue', sans-serif; font-size: 2.2rem; letter-spacing: 0.06em; color: #fff; margin: 12px 0 6px; }
+  .league-note-text h2 { font-family: 'Bebas Neue', sans-serif; font-size: 1.6rem; letter-spacing: 0.06em; color: var(--red-bright); margin: 10px 0 6px; }
+  .league-note-text p { margin: 8px 0; }
   .league-note-text strong { color: #fff; }
   .league-note-text em { color: var(--muted); }
-  .league-note-text ul { padding-left: 20px; margin: 6px 0; }
-  .league-note-text li { margin: 3px 0; }
+  .league-note-text ul { padding-left: 20px; margin: 8px 0; }
+  .league-note-text li { margin: 4px 0; }
 </style>
 </head>
 <body>
