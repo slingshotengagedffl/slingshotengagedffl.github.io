@@ -431,32 +431,32 @@
 
   .tone-toggle {
     display: flex;
-    gap: 0;
+    gap: 6px;
     margin-bottom: 14px;
-    border-radius: 6px;
-    overflow: hidden;
-    border: 1px solid var(--border);
   }
   .tone-btn {
     flex: 1;
     background: var(--surface2);
-    color: var(--muted);
+    color: var(--label);
     font-family: 'Barlow Condensed', sans-serif;
-    font-size: 0.78rem;
+    font-size: 0.95rem;
     letter-spacing: 0.18em;
     text-transform: uppercase;
-    border: none;
-    padding: 9px 4px;
+    border: 1px solid var(--border);
+    border-radius: 4px;
+    padding: 10px 4px;
     cursor: pointer;
-    transition: background 0.15s, color 0.15s;
-    border-right: 1px solid var(--border);
+    transition: background 0.15s, color 0.15s, border-color 0.15s;
   }
-  .tone-btn:last-child { border-right: none; }
   .tone-btn.active {
-    background: var(--surface);
+    background: rgba(201,168,76,0.1);
     color: var(--gold);
+    border-color: var(--gold);
   }
-  .tone-btn:hover:not(.active) { color: var(--white); }
+  .tone-btn:hover:not(.active) {
+    border-color: var(--muted);
+    color: var(--white);
+  }
 
   .dossier-trigger-card {
     background: var(--surface);
@@ -765,7 +765,7 @@
   }
 
   .chart-label {
-    font-size: 0.78rem;
+    font-size: 1rem;
     font-weight: 700;
     letter-spacing: 2.5px;
     text-transform: uppercase;
@@ -907,7 +907,7 @@
   .acc-bucket:last-child { margin-bottom: 0; }
 
   .acc-bucket-label {
-    font-size: 0.75rem;
+    font-size: 0.95rem;
     font-weight: 700;
     letter-spacing: 2px;
     text-transform: uppercase;
@@ -1038,7 +1038,7 @@
 
   .trophy-name {
     font-family: 'Barlow Condensed', sans-serif;
-    font-size: 1.1rem;
+    font-size: 1.3rem;
     font-weight: 700;
     letter-spacing: 1.5px;
     text-transform: uppercase;
@@ -1053,7 +1053,7 @@
 
   .trophy-count {
     font-family: 'Barlow Condensed', sans-serif;
-    font-size: 0.95rem;
+    font-size: 1.1rem;
     font-weight: 700;
     letter-spacing: 1px;
     color: var(--gold);
@@ -1306,7 +1306,7 @@
 
   .cmp-section-title {
     font-family: 'Barlow Condensed', sans-serif;
-    font-size: 1rem;
+    font-size: 1.2rem;
     font-weight: 700;
     letter-spacing: 3px;
     text-transform: uppercase;
@@ -1387,11 +1387,11 @@
 
   .cmp-chart-label {
     font-family: 'Barlow Condensed', sans-serif;
-    font-size: 0.78rem;
+    font-size: 1rem;
     font-weight: 700;
     letter-spacing: 2px;
     text-transform: uppercase;
-    color: var(--muted);
+    color: var(--label);
     margin-bottom: 10px;
     text-align: center;
   }
@@ -1819,8 +1819,7 @@ function renderProfile(p) {
     <section class="dossier-section fade-in">
       <div class="section-label">Scouting Report</div>
       <div class="dossier-trigger-card">
-        <div class="dossier-eyebrow">Scouting Report · Generated Fresh on Demand</div>
-        <div class="dossier-headline">The Scout's Report on ${p.name}</div>
+        <div class="dossier-eyebrow">Fresh Evaluation · Generated on Demand</div>
         <div class="dossier-subline">AI-generated. Chuck Klosterman voice. Every pull is a fresh evaluation — same career, never the same take.</div>
         <div class="tone-toggle">
           <button class="tone-btn active" id="toneAnalytical" onclick="setTone('analytical')">Analytical</button>
@@ -2445,12 +2444,12 @@ document.addEventListener('click', function(e) {
 
 // ── DOSSIER ──
 const DOSSIER_LOADING_PHRASES = [
-  'Pulling the file',
-  'Consulting the archive',
-  'Cross-referencing the record',
-  'Compiling the dossier',
-  'Reviewing the evidence',
-  'Accessing classified data'
+  'Running the tape',
+  'Pulling the game film',
+  'Reviewing the stats',
+  'Checking the record book',
+  'Consulting the war room',
+  'Running the numbers'
 ];
 
 let dossierPhraseInterval = null;
