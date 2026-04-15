@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Jack "The Commish" — Slingshot Engaged</title>
+<title>Daniel — Slingshot Engaged</title>
 <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Barlow+Condensed:wght@400;600;700&family=Barlow:ital,wght@0,400;0,500;1,400&display=swap" rel="stylesheet">
 <style>
   :root {
@@ -121,6 +121,9 @@
     color: var(--muted);
     margin-bottom: 6px;
   }
+  .owner-champion.is-champion {
+    color: var(--gold);
+  }
   .owner-champion.last-status { margin-bottom: 24px; }
   .owner-champion.mid-status { margin-bottom: 6px; }
 
@@ -174,7 +177,7 @@
 
   .live-dot {
     font-family: 'Barlow Condensed', sans-serif;
-    font-size: 1rem;
+    font-size: 1.3rem;
     font-weight: 700;
     letter-spacing: 2px;
     text-transform: uppercase;
@@ -291,6 +294,9 @@
     display: flex;
     flex-direction: column;
     gap: 4px;
+    align-items: center;
+    text-align: center;
+    flex: 1;
   }
 
   .prestige-title {
@@ -462,16 +468,16 @@
 
   .dossier-eyebrow {
     font-family: 'Barlow Condensed', sans-serif;
-    font-size: 0.78rem;
+    font-size: 0.95rem;
     letter-spacing: 0.22em;
     text-transform: uppercase;
-    color: var(--muted);
+    color: var(--label);
     margin-bottom: 8px;
   }
 
   .dossier-headline {
     font-family: 'Bebas Neue', sans-serif;
-    font-size: 1.7rem;
+    font-size: 2rem;
     letter-spacing: 0.06em;
     color: var(--white);
     line-height: 1.1;
@@ -480,8 +486,8 @@
 
   .dossier-subline {
     font-family: 'Barlow', sans-serif;
-    font-size: 0.9rem;
-    color: var(--muted);
+    font-size: 1.05rem;
+    color: var(--label);
     line-height: 1.5;
     margin-bottom: 18px;
   }
@@ -535,18 +541,14 @@
 
   .dossier-label-tag {
     font-family: 'Barlow Condensed', sans-serif;
-    font-size: 0.72rem;
+    font-size: 0.9rem;
     letter-spacing: 0.25em;
     text-transform: uppercase;
     color: var(--gold);
   }
 
   .dossier-stamp {
-    font-family: 'Barlow Condensed', sans-serif;
-    font-size: 0.65rem;
-    letter-spacing: 0.15em;
-    text-transform: uppercase;
-    color: #444;
+    display: none;
   }
 
   .dossier-loading {
@@ -628,12 +630,12 @@
 
   .gen-again-btn {
     font-family: 'Barlow Condensed', sans-serif;
-    font-size: 0.78rem;
+    font-size: 1rem;
     letter-spacing: 0.15em;
     text-transform: uppercase;
     background: transparent;
     border: 1px solid var(--border);
-    color: var(--muted);
+    color: var(--label);
     padding: 8px 16px;
     border-radius: 4px;
     cursor: pointer;
@@ -644,10 +646,10 @@
 
   .dossier-disclaimer {
     font-family: 'Barlow Condensed', sans-serif;
-    font-size: 0.65rem;
+    font-size: 0.85rem;
     letter-spacing: 0.12em;
     text-transform: uppercase;
-    color: #444;
+    color: var(--muted);
   }
 
   /* ── CAREER STATS ── */
@@ -668,7 +670,7 @@
   .stats-bucket { margin-bottom: 20px; }
 
   .stats-bucket-label {
-    font-size: 0.78rem;
+    font-size: 1rem;
     font-weight: 700;
     letter-spacing: 2.5px;
     text-transform: uppercase;
@@ -1109,9 +1111,9 @@
 
   .compare-bar-label {
     font-family: 'Bebas Neue', sans-serif;
-    font-size: 1.3rem;
-    letter-spacing: 2px;
-    color: var(--red);
+    font-size: 2.4rem;
+    letter-spacing: 3px;
+    color: var(--white);
   }
 
   .compare-select {
@@ -1144,7 +1146,7 @@
     border-radius: 6px;
     padding: 10px 20px;
     font-family: 'Barlow Condensed', sans-serif;
-    font-size: 1rem;
+    font-size: 1.4rem;
     font-weight: 700;
     letter-spacing: 2px;
     text-transform: uppercase;
@@ -1515,6 +1517,8 @@
 
 <script src="../nav.js"></script>
 <script>
+const H2H_DATA = {"Dylan||Mike M.":{"p0":"Dylan","p1":"Mike M.","all":{"w0":5,"w1":9}},"Daniel||Tim H.":{"p0":"Daniel","p1":"Tim H.","all":{"w0":6,"w1":1}},"Jack||Mike M.":{"p0":"Jack","p1":"Mike M.","all":{"w0":10,"w1":5}},"Dylan||Kyle":{"p0":"Dylan","p1":"Kyle","all":{"w0":6,"w1":5}},"Brian||Mike M.":{"p0":"Brian","p1":"Mike M.","all":{"w0":3,"w1":10}},"Jack||Matt":{"p0":"Jack","p1":"Matt","all":{"w0":9,"w1":3}},"Daniel||Mike M.":{"p0":"Daniel","p1":"Mike M.","all":{"w0":7,"w1":9}},"Brian||Jordan":{"p0":"Brian","p1":"Jordan","all":{"w0":6,"w1":3}},"Alex V.||Dylan":{"p0":"Alex V.","p1":"Dylan","all":{"w0":5,"w1":8}},"Kyle||Scott":{"p0":"Kyle","p1":"Scott","all":{"w0":7,"w1":2}},"Andy||Tim H.":{"p0":"Andy","p1":"Tim H.","all":{"w0":4,"w1":2}},"Dylan||Jack":{"p0":"Dylan","p1":"Jack","all":{"w0":6,"w1":7}},"Alex V.||Brian":{"p0":"Alex V.","p1":"Brian","all":{"w0":9,"w1":2}},"Jordan||Scott":{"p0":"Jordan","p1":"Scott","all":{"w0":5,"w1":2}},"Daniel||Matt":{"p0":"Daniel","p1":"Matt","all":{"w0":8,"w1":5}},"Kyle||Wade":{"p0":"Kyle","p1":"Wade","all":{"w0":5,"w1":2}},"Andy||Mike M.":{"p0":"Andy","p1":"Mike M.","all":{"w0":4,"w1":1}},"Jack||Wade":{"p0":"Jack","p1":"Wade","all":{"w0":4,"w1":2}},"Brian||Scott":{"p0":"Brian","p1":"Scott","all":{"w0":7,"w1":7}},"Dylan||Jordan":{"p0":"Dylan","p1":"Jordan","all":{"w0":4,"w1":3}},"Kyle||Matt":{"p0":"Kyle","p1":"Matt","all":{"w0":6,"w1":3}},"Alex V.||Tim H.":{"p0":"Alex V.","p1":"Tim H.","all":{"w0":4,"w1":3}},"Andy||Brian":{"p0":"Andy","p1":"Brian","all":{"w0":2,"w1":2}},"Matt||Tim H.":{"p0":"Matt","p1":"Tim H.","all":{"w0":4,"w1":3}},"Alex V.||Jordan":{"p0":"Alex V.","p1":"Jordan","all":{"w0":6,"w1":4}},"Scott||Wade":{"p0":"Scott","p1":"Wade","all":{"w0":3,"w1":6}},"Andy||Wade":{"p0":"Andy","p1":"Wade","all":{"w0":1,"w1":3}},"Alex V.||Scott":{"p0":"Alex V.","p1":"Scott","all":{"w0":4,"w1":8}},"Jordan||Kyle":{"p0":"Jordan","p1":"Kyle","all":{"w0":2,"w1":5}},"Dylan||Matt":{"p0":"Dylan","p1":"Matt","all":{"w0":9,"w1":5}},"Daniel||Wade":{"p0":"Daniel","p1":"Wade","all":{"w0":0,"w1":6}},"Andy||Jordan":{"p0":"Andy","p1":"Jordan","all":{"w0":4,"w1":0}},"Dylan||Scott":{"p0":"Dylan","p1":"Scott","all":{"w0":9,"w1":3}},"Brian||Tim H.":{"p0":"Brian","p1":"Tim H.","all":{"w0":2,"w1":4}},"Alex V.||Mike M.":{"p0":"Alex V.","p1":"Mike M.","all":{"w0":7,"w1":4}},"Daniel||Jordan":{"p0":"Daniel","p1":"Jordan","all":{"w0":4,"w1":3}},"Andy||Scott":{"p0":"Andy","p1":"Scott","all":{"w0":1,"w1":3}},"Alex V.||Matt":{"p0":"Alex V.","p1":"Matt","all":{"w0":5,"w1":5}},"Brian||Kyle":{"p0":"Brian","p1":"Kyle","all":{"w0":7,"w1":2}},"Jack||Tim H.":{"p0":"Jack","p1":"Tim H.","all":{"w0":4,"w1":2}},"Daniel||Dylan":{"p0":"Daniel","p1":"Dylan","all":{"w0":6,"w1":6}},"Matt||Wade":{"p0":"Matt","p1":"Wade","all":{"w0":4,"w1":2}},"Alex V.||Andy":{"p0":"Alex V.","p1":"Andy","all":{"w0":1,"w1":3}},"Jordan||Tim H.":{"p0":"Jordan","p1":"Tim H.","all":{"w0":3,"w1":3}},"Brian||Jack":{"p0":"Brian","p1":"Jack","all":{"w0":7,"w1":5}},"Alex V.||Wade":{"p0":"Alex V.","p1":"Wade","all":{"w0":2,"w1":5}},"Brian||Matt":{"p0":"Brian","p1":"Matt","all":{"w0":6,"w1":7}},"Mike M.||Tim H.":{"p0":"Mike M.","p1":"Tim H.","all":{"w0":5,"w1":2}},"Andy||Dylan":{"p0":"Andy","p1":"Dylan","all":{"w0":2,"w1":3}},"Daniel||Scott":{"p0":"Daniel","p1":"Scott","all":{"w0":8,"w1":9}},"Jack||Kyle":{"p0":"Jack","p1":"Kyle","all":{"w0":6,"w1":5}},"Kyle||Tim H.":{"p0":"Kyle","p1":"Tim H.","all":{"w0":6,"w1":1}},"Andy||Daniel":{"p0":"Andy","p1":"Daniel","all":{"w0":3,"w1":2}},"Dylan||Wade":{"p0":"Dylan","p1":"Wade","all":{"w0":5,"w1":1}},"Matt||Mike M.":{"p0":"Matt","p1":"Mike M.","all":{"w0":7,"w1":5}},"Jack||Scott":{"p0":"Jack","p1":"Scott","all":{"w0":9,"w1":5}},"Andy||Jack":{"p0":"Andy","p1":"Jack","all":{"w0":1,"w1":3}},"Brian||Daniel":{"p0":"Brian","p1":"Daniel","all":{"w0":10,"w1":5}},"Kyle||Mike M.":{"p0":"Kyle","p1":"Mike M.","all":{"w0":5,"w1":5}},"Jordan||Matt":{"p0":"Jordan","p1":"Matt","all":{"w0":3,"w1":4}},"Tim H.||Wade":{"p0":"Tim H.","p1":"Wade","all":{"w0":1,"w1":5}},"Andy||Kyle":{"p0":"Andy","p1":"Kyle","all":{"w0":2,"w1":3}},"Alex V.||Daniel":{"p0":"Alex V.","p1":"Daniel","all":{"w0":6,"w1":4}},"Dylan||Tim H.":{"p0":"Dylan","p1":"Tim H.","all":{"w0":5,"w1":2}},"Matt||Scott":{"p0":"Matt","p1":"Scott","all":{"w0":6,"w1":5}},"Mike M.||Wade":{"p0":"Mike M.","p1":"Wade","all":{"w0":5,"w1":2}},"Jack||Jordan":{"p0":"Jack","p1":"Jordan","all":{"w0":4,"w1":4}},"Jordan||Wade":{"p0":"Jordan","p1":"Wade","all":{"w0":5,"w1":1}},"Alex V.||Kyle":{"p0":"Alex V.","p1":"Kyle","all":{"w0":4,"w1":5}},"Mike M.||Scott":{"p0":"Mike M.","p1":"Scott","all":{"w0":7,"w1":5}},"Brian||Dylan":{"p0":"Brian","p1":"Dylan","all":{"w0":5,"w1":7}},"Daniel||Jack":{"p0":"Daniel","p1":"Jack","all":{"w0":5,"w1":8}},"Daniel||Kyle":{"p0":"Daniel","p1":"Kyle","all":{"w0":2,"w1":8}},"Brian||Wade":{"p0":"Brian","p1":"Wade","all":{"w0":3,"w1":5}},"Scott||Tim H.":{"p0":"Scott","p1":"Tim H.","all":{"w0":3,"w1":5}},"Jordan||Mike M.":{"p0":"Jordan","p1":"Mike M.","all":{"w0":1,"w1":6}},"Andy||Matt":{"p0":"Andy","p1":"Matt","all":{"w0":2,"w1":3}},"Alex V.||Jack":{"p0":"Alex V.","p1":"Jack","all":{"w0":4,"w1":8}}};
+
 const OWNER_ID = 'daniel';
 
 
@@ -1536,7 +1540,10 @@ function renderProfile(p) {
     </div>`).join('');
 
   const statusLines = Array.isArray(p.statusLines) ? p.statusLines.filter(l => l && l.trim()) : [];
-  const statusHTML = statusLines.map((l, i) => `<div class="owner-champion${i === statusLines.length - 1 ? ' last-status' : ' mid-status'}">${l}</div>`).join('');
+  const statusHTML = statusLines.map((l, i) => {
+    const isChamp = l.toUpperCase().includes('LEAGUE CHAMPION');
+    return `<div class="owner-champion${i === statusLines.length - 1 ? ' last-status' : ' mid-status'}${isChamp ? ' is-champion' : ''}">${l}</div>`;
+  }).join('');
 
   function d(v) { return (v == null || v === 'null') ? '—' : v; }
 
@@ -1614,7 +1621,7 @@ function renderProfile(p) {
     <div class="stats-bucket">
       <div class="stats-bucket-label" style="display:flex;justify-content:space-between;align-items:center;">
         <span>General</span>
-        <span style="font-size:0.7rem;color:var(--gold);font-weight:400;letter-spacing:1px;text-transform:uppercase;">(#) = rank out of 14 active owners</span>
+        <span style="font-size:0.88rem;color:var(--gold);font-weight:400;letter-spacing:1px;text-transform:uppercase;">(#) = rank out of 14 active owners</span>
       </div>
       ${renderStatBucket(p.careerStats.general)}
     </div>
@@ -1808,13 +1815,13 @@ function renderProfile(p) {
       </div>
     </div>
 
-    <!-- DOSSIER -->
+    <!-- SCOUTING REPORT -->
     <section class="dossier-section fade-in">
-      <div class="section-label">The Dossier</div>
+      <div class="section-label">Scouting Report</div>
       <div class="dossier-trigger-card">
-        <div class="dossier-eyebrow">Classified Intelligence · Generated Fresh on Demand</div>
-        <div class="dossier-headline">Pull the File on ${p.name}</div>
-        <div class="dossier-subline">An AI-generated scouting report in the voice of Chuck Klosterman. Every pull is a fresh take — same career, different angle.</div>
+        <div class="dossier-eyebrow">Scouting Report · Generated Fresh on Demand</div>
+        <div class="dossier-headline">The Scout's Report on ${p.name}</div>
+        <div class="dossier-subline">AI-generated. Chuck Klosterman voice. Every pull is a fresh evaluation — same career, never the same take.</div>
         <div class="tone-toggle">
           <button class="tone-btn active" id="toneAnalytical" onclick="setTone('analytical')">Analytical</button>
           <button class="tone-btn" id="toneRuthless" onclick="setTone('ruthless')">Ruthless</button>
@@ -1822,13 +1829,13 @@ function renderProfile(p) {
         </div>
         <button class="pull-file-btn" id="pullFileBtn" onclick="pullDossier()">
           <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg" style="flex-shrink:0"><path d="M3 2h7l3 3v9H3V2z" stroke="#fff" stroke-width="1.3" stroke-linejoin="round"/><path d="M10 2v3h3" stroke="#fff" stroke-width="1.3" stroke-linejoin="round"/><path d="M5 8h6M5 11h4" stroke="#fff" stroke-width="1.3" stroke-linecap="round"/></svg>
-          Pull the File
+          Scout ${p.name}
         </button>
       </div>
       <div class="dossier-panel" id="dossierPanel">
         <div class="dossier-panel-header">
-          <span class="dossier-label-tag">◆ Dossier Report</span>
-          <span class="dossier-stamp">AI-Generated · Slingshot Engaged FFL</span>
+          <span class="dossier-label-tag">◆ Scouting Report</span>
+          <span class="dossier-stamp"></span>
         </div>
         <div class="dossier-loading" id="dossierLoading">
           <div class="dossier-loading-status" id="dossierLoadingStatus">Pulling the file</div>
@@ -2078,12 +2085,41 @@ function renderCompare(ownerAId, ownerBId) {
   }
 
   // ── STAT SECTIONS ──
-  const h2h = me.headToHead && me.headToHead[ownerBId] ? me.headToHead[ownerBId] : null;
-  const h2hOpp = opp.headToHead && opp.headToHead[ownerAId] ? opp.headToHead[ownerAId] : null;
-  const h2hWinsA = h2h ? h2h.wins : null;
-  const h2hWinsB = h2hOpp ? h2hOpp.wins : null;
-  const h2hPctA = h2h ? h2h.winPct : null;
-  const h2hPctB = h2hOpp ? h2hOpp.winPct : null;
+
+  // H2H name mapping: owner ID → name used in H2H dataset
+  const H2H_NAME_MAP = {
+    alex: 'Alex V.', andy: 'Andy', brian: 'Brian', daniel: 'Daniel',
+    dylan: 'Dylan', jack: 'Jack', jordan: 'Jordan', kyle: 'Kyle',
+    luke: 'Luke', matt: 'Matt', mike: 'Mike M.', scott: 'Scott',
+    tim: 'Tim H.', wade: 'Wade'
+  };
+
+  function getH2HRecord(idA, idB) {
+    if (typeof H2H_DATA === 'undefined') return { winsA: null, winsB: null, pctA: null, pctB: null };
+    const nameA = H2H_NAME_MAP[idA];
+    const nameB = H2H_NAME_MAP[idB];
+    if (!nameA || !nameB) return { winsA: null, winsB: null, pctA: null, pctB: null };
+    const key1 = nameA + '||' + nameB;
+    const key2 = nameB + '||' + nameA;
+    const entry = H2H_DATA[key1] || H2H_DATA[key2];
+    if (!entry) return { winsA: null, winsB: null, pctA: null, pctB: null };
+    let winsA, winsB;
+    if (H2H_DATA[key1]) {
+      winsA = entry.all.w0; winsB = entry.all.w1;
+    } else {
+      winsA = entry.all.w1; winsB = entry.all.w0;
+    }
+    const total = winsA + winsB;
+    const pctA = total > 0 ? (winsA / total).toFixed(3) : null;
+    const pctB = total > 0 ? (winsB / total).toFixed(3) : null;
+    return { winsA, winsB, pctA, pctB };
+  }
+
+  const h2hRec = getH2HRecord(ownerAId, ownerBId);
+  const h2hWinsA = h2hRec.winsA;
+  const h2hWinsB = h2hRec.winsB;
+  const h2hPctA = h2hRec.pctA;
+  const h2hPctB = h2hRec.pctB;
   const h2hRow = (() => {
     function h2hArrowRow(label, vA, vB) {
       const dA = vA != null ? vA : '—';
@@ -2640,7 +2676,7 @@ async function pullDossier() {
         <p>"${parsed.pullQuote}"</p>
       </div>
       <div class="dossier-body">${paragraphs}</div>
-      <div class="dossier-footer">
+        <div class="dossier-footer">
         <button class="gen-again-btn" onclick="pullDossier()">↻ Generate Again</button>
         <span class="dossier-disclaimer">AI-Generated · May contain uncomfortable truths</span>
       </div>
@@ -2656,7 +2692,7 @@ async function pullDossier() {
   }
 
   btn.disabled = false;
-  btn.innerHTML = `<svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg" style="flex-shrink:0"><path d="M3 2h7l3 3v9H3V2z" stroke="#fff" stroke-width="1.3" stroke-linejoin="round"/><path d="M10 2v3h3" stroke="#fff" stroke-width="1.3" stroke-linejoin="round"/><path d="M5 8h6M5 11h4" stroke="#fff" stroke-width="1.3" stroke-linecap="round"/></svg> Pull the File`;
+  btn.innerHTML = `<svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg" style="flex-shrink:0"><path d="M3 2h7l3 3v9H3V2z" stroke="#fff" stroke-width="1.3" stroke-linejoin="round"/><path d="M10 2v3h3" stroke="#fff" stroke-width="1.3" stroke-linejoin="round"/><path d="M5 8h6M5 11h4" stroke="#fff" stroke-width="1.3" stroke-linecap="round"/></svg> Scout ${allOwners[OWNER_ID] ? allOwners[OWNER_ID].name : 'Owner'}`;
 }
 
 // ── CHARTS ──
