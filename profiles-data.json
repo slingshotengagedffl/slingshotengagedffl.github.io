@@ -7,7 +7,7 @@
       "photo": "../images/alex.jpg",
       "lastUpdated": null,
       "location": "Minnesota",
-      "locationEmoji": "\u2744\ufe0f",
+      "locationEmoji": "❄️",
       "broughtInBy": "Recruited by Timbe (ret)",
       "statusLines": [
         "LEAGUE CHAMPION"
@@ -19,19 +19,19 @@
       },
       "traits": [
         {
-          "emoji": "\ud83d\udc76",
+          "emoji": "👶",
           "label": "DINK Life"
         },
         {
-          "emoji": "\ud83e\uddfb",
+          "emoji": "🧻",
           "label": "Incredibly Pale"
         },
         {
-          "emoji": "\ud83d\udc40",
+          "emoji": "👀",
           "label": "Body Analyst"
         },
         {
-          "emoji": "\u2744\ufe0f",
+          "emoji": "❄️",
           "label": "Minnesota Nice"
         }
       ],
@@ -502,32 +502,6 @@
           "prestigeEarned": 145,
           "playoffResult": "Lost in Semifinals",
           "result": "playoffs"
-        },
-        {
-          "year": 2015,
-          "teamName": null,
-          "record": null,
-          "finish": null,
-          "ptsPerGame": null,
-          "pointShare": null,
-          "powerScore": null,
-          "winnings": null,
-          "prestigeEarned": null,
-          "playoffResult": null,
-          "result": null
-        },
-        {
-          "year": 2014,
-          "teamName": null,
-          "record": null,
-          "finish": null,
-          "ptsPerGame": null,
-          "pointShare": null,
-          "powerScore": null,
-          "winnings": null,
-          "prestigeEarned": null,
-          "playoffResult": null,
-          "result": null
         }
       ],
       "trophies": [
@@ -609,7 +583,7 @@
       "photo": "../images/andy.jpg",
       "lastUpdated": null,
       "location": "Colorado",
-      "locationEmoji": "\ud83c\udfd4\ufe0f",
+      "locationEmoji": "🏔️",
       "broughtInBy": "Recruited by Scott",
       "statusLines": [],
       "prestige": {
@@ -619,19 +593,19 @@
       },
       "traits": [
         {
-          "emoji": "\ud83c\udf7a",
+          "emoji": "🍺",
           "label": "Chug Champ"
         },
         {
-          "emoji": "\ud83e\ude99",
+          "emoji": "🪙",
           "label": "FAAB Penny Pincher"
         },
         {
-          "emoji": "\ud83d\udce3",
+          "emoji": "📣",
           "label": "Loud"
         },
         {
-          "emoji": "\ud83d\udc55",
+          "emoji": "👕",
           "label": "Shirt Optional"
         }
       ],
@@ -1019,110 +993,6 @@
           "prestigeEarned": 198,
           "playoffResult": "Lost in Semifinals",
           "result": "playoffs"
-        },
-        {
-          "year": 2021,
-          "teamName": null,
-          "record": null,
-          "finish": null,
-          "ptsPerGame": null,
-          "pointShare": null,
-          "powerScore": null,
-          "winnings": null,
-          "prestigeEarned": null,
-          "playoffResult": null,
-          "result": null
-        },
-        {
-          "year": 2020,
-          "teamName": null,
-          "record": null,
-          "finish": null,
-          "ptsPerGame": null,
-          "pointShare": null,
-          "powerScore": null,
-          "winnings": null,
-          "prestigeEarned": null,
-          "playoffResult": null,
-          "result": null
-        },
-        {
-          "year": 2019,
-          "teamName": null,
-          "record": null,
-          "finish": null,
-          "ptsPerGame": null,
-          "pointShare": null,
-          "powerScore": null,
-          "winnings": null,
-          "prestigeEarned": null,
-          "playoffResult": null,
-          "result": null
-        },
-        {
-          "year": 2018,
-          "teamName": null,
-          "record": null,
-          "finish": null,
-          "ptsPerGame": null,
-          "pointShare": null,
-          "powerScore": null,
-          "winnings": null,
-          "prestigeEarned": null,
-          "playoffResult": null,
-          "result": null
-        },
-        {
-          "year": 2017,
-          "teamName": null,
-          "record": null,
-          "finish": null,
-          "ptsPerGame": null,
-          "pointShare": null,
-          "powerScore": null,
-          "winnings": null,
-          "prestigeEarned": null,
-          "playoffResult": null,
-          "result": null
-        },
-        {
-          "year": 2016,
-          "teamName": null,
-          "record": null,
-          "finish": null,
-          "ptsPerGame": null,
-          "pointShare": null,
-          "powerScore": null,
-          "winnings": null,
-          "prestigeEarned": null,
-          "playoffResult": null,
-          "result": null
-        },
-        {
-          "year": 2015,
-          "teamName": null,
-          "record": null,
-          "finish": null,
-          "ptsPerGame": null,
-          "pointShare": null,
-          "powerScore": null,
-          "winnings": null,
-          "prestigeEarned": null,
-          "playoffResult": null,
-          "result": null
-        },
-        {
-          "year": 2014,
-          "teamName": null,
-          "record": null,
-          "finish": null,
-          "ptsPerGame": null,
-          "pointShare": null,
-          "powerScore": null,
-          "winnings": null,
-          "prestigeEarned": null,
-          "playoffResult": null,
-          "result": null
         }
       ],
       "trophies": [
@@ -1204,7 +1074,7 @@
       "photo": "../images/brian.png",
       "lastUpdated": null,
       "location": "Maryland",
-      "locationEmoji": "\ud83e\udd80",
+      "locationEmoji": "🦀",
       "broughtInBy": "Recruited by Jack",
       "statusLines": [
         "LEAGUE CHAMPION"
@@ -1216,19 +1086,19 @@
       },
       "traits": [
         {
-          "emoji": "\ud83d\ude04",
+          "emoji": "😄",
           "label": "Happy to Be Here"
         },
         {
-          "emoji": "\ud83d\udcaa",
+          "emoji": "💪",
           "label": "Jacked Upper Body"
         },
         {
-          "emoji": "\ud83c\udfe5",
+          "emoji": "🏥",
           "label": "Injury Prone"
         },
         {
-          "emoji": "\ud83d\udcac",
+          "emoji": "💬",
           "label": "Prolific Chatter"
         }
       ],
@@ -1810,7 +1680,7 @@
       "photo": "../images/daniel.jpg",
       "lastUpdated": null,
       "location": "Colorado",
-      "locationEmoji": "\ud83c\udfd4\ufe0f",
+      "locationEmoji": "🏔️",
       "broughtInBy": "Recruited by Jack",
       "statusLines": [],
       "prestige": {
@@ -1820,19 +1690,19 @@
       },
       "traits": [
         {
-          "emoji": "\ud83e\uddd7",
+          "emoji": "🧗",
           "label": "Beautiful Movement"
         },
         {
-          "emoji": "\ud83c\udf46",
+          "emoji": "🍆",
           "label": "Perv"
         },
         {
-          "emoji": "\ud83d\ude2c",
+          "emoji": "😬",
           "label": "Unprepared Drafter"
         },
         {
-          "emoji": "\ud83d\udde3\ufe0f",
+          "emoji": "🗣️",
           "label": "Certified Trash Talker"
         }
       ],
@@ -2414,7 +2284,7 @@
       "photo": "../images/dylan.jpg",
       "lastUpdated": "April 3, 2026",
       "location": "Maryland",
-      "locationEmoji": "\ud83e\udd80",
+      "locationEmoji": "🦀",
       "broughtInBy": "Recruited by Brian",
       "statusLines": [
         "3X LEAGUE CHAMPION"
@@ -2426,19 +2296,19 @@
       },
       "traits": [
         {
-          "emoji": "\ud83d\udc76",
+          "emoji": "👶",
           "label": "DINK Life"
         },
         {
-          "emoji": "\ud83d\udeab",
+          "emoji": "🚫",
           "label": "Anti-69"
         },
         {
-          "emoji": "\u2600\ufe0f",
+          "emoji": "☀️",
           "label": "Positive Attitude"
         },
         {
-          "emoji": "\ud83c\udf6a",
+          "emoji": "🍪",
           "label": "Snack Master"
         }
       ],
@@ -2785,7 +2655,7 @@
         },
         {
           "year": 2025,
-          "teamName": "\ud83e\udd77 RageCage \ud83e\udd77",
+          "teamName": "🥷 RageCage 🥷",
           "record": "9-5",
           "finish": 4,
           "ptsPerGame": 92.63,
@@ -2925,19 +2795,6 @@
           "prestigeEarned": 53,
           "playoffResult": "Lost in First Round",
           "result": "playoffs"
-        },
-        {
-          "year": 2014,
-          "teamName": null,
-          "record": null,
-          "finish": null,
-          "ptsPerGame": null,
-          "pointShare": null,
-          "powerScore": null,
-          "winnings": null,
-          "prestigeEarned": null,
-          "playoffResult": null,
-          "result": null
         }
       ],
       "trophies": [
@@ -3025,7 +2882,7 @@
       "photo": "../images/jack.jpg",
       "lastUpdated": "April 2, 2026",
       "location": "California",
-      "locationEmoji": "\ud83c\udf34",
+      "locationEmoji": "🌴",
       "broughtInBy": "League Founder",
       "statusLines": [
         "Commissioner",
@@ -3039,19 +2896,19 @@
       },
       "traits": [
         {
-          "emoji": "\ud83d\udcca",
+          "emoji": "📊",
           "label": "Spreadsheet Freak"
         },
         {
-          "emoji": "\ud83d\udc51",
+          "emoji": "👑",
           "label": "Dictator Tendencies"
         },
         {
-          "emoji": "\ud83d\udd04",
+          "emoji": "🔄",
           "label": "Serial Trader"
         },
         {
-          "emoji": "\ud83e\udd92",
+          "emoji": "🦒",
           "label": "Elite Measurements"
         }
       ],
@@ -3390,7 +3247,7 @@
         },
         {
           "year": 2025,
-          "teamName": "Proper Feck'n Eejits \u2618\ufe0f",
+          "teamName": "Proper Feck'n Eejits ☘️",
           "record": "10-4",
           "finish": 1,
           "ptsPerGame": 104.98,
@@ -3403,7 +3260,7 @@
         },
         {
           "year": 2024,
-          "teamName": "Bayou Bears Be Howlin' \ud83c\udf0a\ud83d\udc3b",
+          "teamName": "Bayou Bears Be Howlin' 🌊🐻",
           "record": "6-8",
           "finish": 11,
           "ptsPerGame": 90.82,
@@ -3429,7 +3286,7 @@
         },
         {
           "year": 2022,
-          "teamName": "The 100 Point Exceeders \ud83d\udcaf",
+          "teamName": "The 100 Point Exceeders 💯",
           "record": "7-7",
           "finish": 8,
           "ptsPerGame": 87.02,
@@ -3442,7 +3299,7 @@
         },
         {
           "year": 2021,
-          "teamName": "Beef Spritz Boys \ud83d\udc2e\ud83d\udca6",
+          "teamName": "Beef Spritz Boys 🐮💦",
           "record": "7-7",
           "finish": 8,
           "ptsPerGame": 97.18,
@@ -3455,7 +3312,7 @@
         },
         {
           "year": 2020,
-          "teamName": "Tangy \ud83d\udc45\ud83c\udf5eSourdough",
+          "teamName": "Tangy 👅🍞Sourdough",
           "record": "6-7",
           "finish": 9,
           "ptsPerGame": 96.8,
@@ -3630,7 +3487,7 @@
       "photo": "../images/jordan.jpg",
       "lastUpdated": null,
       "location": "North Carolina",
-      "locationEmoji": "\ud83c\udf32",
+      "locationEmoji": "🌲",
       "broughtInBy": "Recruited by Scott",
       "statusLines": [],
       "prestige": {
@@ -3640,19 +3497,19 @@
       },
       "traits": [
         {
-          "emoji": "\ud83d\udde1\ufe0f",
+          "emoji": "🗡️",
           "label": "Cutting Commentary"
         },
         {
-          "emoji": "\ud83e\uddd4",
+          "emoji": "🧔",
           "label": "Memorable Facial Hair"
         },
         {
-          "emoji": "\ud83d\udc7b",
+          "emoji": "👻",
           "label": "Questionable Availability"
         },
         {
-          "emoji": "\ud83e\udd10",
+          "emoji": "🤐",
           "label": "Withholding"
         }
       ],
@@ -4082,7 +3939,7 @@
         },
         {
           "year": 2019,
-          "teamName": "Turns Out I\u2019m 100% That Minsh",
+          "teamName": "Turns Out I’m 100% That Minsh",
           "record": "4-9",
           "finish": 13,
           "ptsPerGame": 87.56,
@@ -4092,71 +3949,6 @@
           "prestigeEarned": 35,
           "playoffResult": "Missed Playoffs",
           "result": "missed"
-        },
-        {
-          "year": 2018,
-          "teamName": null,
-          "record": null,
-          "finish": null,
-          "ptsPerGame": null,
-          "pointShare": null,
-          "powerScore": null,
-          "winnings": null,
-          "prestigeEarned": null,
-          "playoffResult": null,
-          "result": null
-        },
-        {
-          "year": 2017,
-          "teamName": null,
-          "record": null,
-          "finish": null,
-          "ptsPerGame": null,
-          "pointShare": null,
-          "powerScore": null,
-          "winnings": null,
-          "prestigeEarned": null,
-          "playoffResult": null,
-          "result": null
-        },
-        {
-          "year": 2016,
-          "teamName": null,
-          "record": null,
-          "finish": null,
-          "ptsPerGame": null,
-          "pointShare": null,
-          "powerScore": null,
-          "winnings": null,
-          "prestigeEarned": null,
-          "playoffResult": null,
-          "result": null
-        },
-        {
-          "year": 2015,
-          "teamName": null,
-          "record": null,
-          "finish": null,
-          "ptsPerGame": null,
-          "pointShare": null,
-          "powerScore": null,
-          "winnings": null,
-          "prestigeEarned": null,
-          "playoffResult": null,
-          "result": null
-        },
-        {
-          "year": 2014,
-          "teamName": null,
-          "record": null,
-          "finish": null,
-          "ptsPerGame": null,
-          "pointShare": null,
-          "powerScore": null,
-          "winnings": null,
-          "prestigeEarned": null,
-          "playoffResult": null,
-          "result": null
         }
       ],
       "trophies": [
@@ -4238,7 +4030,7 @@
       "photo": "../images/kyle.png",
       "lastUpdated": null,
       "location": "Colorado",
-      "locationEmoji": "\ud83c\udfd4\ufe0f",
+      "locationEmoji": "🏔️",
       "broughtInBy": "Recruited by Jack",
       "statusLines": [
         "2X LEAGUE CHAMPION",
@@ -4251,19 +4043,19 @@
       },
       "traits": [
         {
-          "emoji": "\u2705",
+          "emoji": "✅",
           "label": "Annoyingly Competent"
         },
         {
-          "emoji": "\ud83e\udd4e",
+          "emoji": "🥎",
           "label": "Weak Wiffle Baller"
         },
         {
-          "emoji": "\ud83e\uddd0",
+          "emoji": "🧐",
           "label": "Snooty"
         },
         {
-          "emoji": "\ud83d\udcbb",
+          "emoji": "💻",
           "label": "Tech Bro"
         }
       ],
@@ -4701,7 +4493,7 @@
         },
         {
           "year": 2019,
-          "teamName": "\u2744\ufe0f Ice Cold Boy",
+          "teamName": "❄️ Ice Cold Boy",
           "record": "7-6",
           "finish": 5,
           "ptsPerGame": 106.88,
@@ -4724,58 +4516,6 @@
           "prestigeEarned": 258,
           "playoffResult": "Lost in Slingshot Bowl",
           "result": "finalist"
-        },
-        {
-          "year": 2017,
-          "teamName": null,
-          "record": null,
-          "finish": null,
-          "ptsPerGame": null,
-          "pointShare": null,
-          "powerScore": null,
-          "winnings": null,
-          "prestigeEarned": null,
-          "playoffResult": null,
-          "result": null
-        },
-        {
-          "year": 2016,
-          "teamName": null,
-          "record": null,
-          "finish": null,
-          "ptsPerGame": null,
-          "pointShare": null,
-          "powerScore": null,
-          "winnings": null,
-          "prestigeEarned": null,
-          "playoffResult": null,
-          "result": null
-        },
-        {
-          "year": 2015,
-          "teamName": null,
-          "record": null,
-          "finish": null,
-          "ptsPerGame": null,
-          "pointShare": null,
-          "powerScore": null,
-          "winnings": null,
-          "prestigeEarned": null,
-          "playoffResult": null,
-          "result": null
-        },
-        {
-          "year": 2014,
-          "teamName": null,
-          "record": null,
-          "finish": null,
-          "ptsPerGame": null,
-          "pointShare": null,
-          "powerScore": null,
-          "winnings": null,
-          "prestigeEarned": null,
-          "playoffResult": null,
-          "result": null
         }
       ],
       "trophies": [
@@ -4857,7 +4597,7 @@
       "photo": "../images/luke.jpg",
       "lastUpdated": null,
       "location": "Minnesota",
-      "locationEmoji": "\u2744\ufe0f",
+      "locationEmoji": "❄️",
       "broughtInBy": "Recruited by Alex",
       "statusLines": [],
       "prestige": {
@@ -4867,19 +4607,19 @@
       },
       "traits": [
         {
-          "emoji": "\ud83d\udc8d",
+          "emoji": "💍",
           "label": "Eligible Bachelor"
         },
         {
-          "emoji": "\ud83d\udd04",
+          "emoji": "🔄",
           "label": "Serial Trader"
         },
         {
-          "emoji": "\u23f1\ufe0f",
+          "emoji": "⏱️",
           "label": "Short Timer"
         },
         {
-          "emoji": "\u2753",
+          "emoji": "❓",
           "label": "Unknown Potential"
         }
       ],
@@ -5210,162 +4950,6 @@
           "prestigeEarned": null,
           "playoffResult": null,
           "result": null
-        },
-        {
-          "year": 2025,
-          "teamName": null,
-          "record": null,
-          "finish": null,
-          "ptsPerGame": null,
-          "pointShare": null,
-          "powerScore": null,
-          "winnings": null,
-          "prestigeEarned": null,
-          "playoffResult": null,
-          "result": null
-        },
-        {
-          "year": 2024,
-          "teamName": null,
-          "record": null,
-          "finish": null,
-          "ptsPerGame": null,
-          "pointShare": null,
-          "powerScore": null,
-          "winnings": null,
-          "prestigeEarned": null,
-          "playoffResult": null,
-          "result": null
-        },
-        {
-          "year": 2023,
-          "teamName": null,
-          "record": null,
-          "finish": null,
-          "ptsPerGame": null,
-          "pointShare": null,
-          "powerScore": null,
-          "winnings": null,
-          "prestigeEarned": null,
-          "playoffResult": null,
-          "result": null
-        },
-        {
-          "year": 2022,
-          "teamName": null,
-          "record": null,
-          "finish": null,
-          "ptsPerGame": null,
-          "pointShare": null,
-          "powerScore": null,
-          "winnings": null,
-          "prestigeEarned": null,
-          "playoffResult": null,
-          "result": null
-        },
-        {
-          "year": 2021,
-          "teamName": null,
-          "record": null,
-          "finish": null,
-          "ptsPerGame": null,
-          "pointShare": null,
-          "powerScore": null,
-          "winnings": null,
-          "prestigeEarned": null,
-          "playoffResult": null,
-          "result": null
-        },
-        {
-          "year": 2020,
-          "teamName": null,
-          "record": null,
-          "finish": null,
-          "ptsPerGame": null,
-          "pointShare": null,
-          "powerScore": null,
-          "winnings": null,
-          "prestigeEarned": null,
-          "playoffResult": null,
-          "result": null
-        },
-        {
-          "year": 2019,
-          "teamName": null,
-          "record": null,
-          "finish": null,
-          "ptsPerGame": null,
-          "pointShare": null,
-          "powerScore": null,
-          "winnings": null,
-          "prestigeEarned": null,
-          "playoffResult": null,
-          "result": null
-        },
-        {
-          "year": 2018,
-          "teamName": null,
-          "record": null,
-          "finish": null,
-          "ptsPerGame": null,
-          "pointShare": null,
-          "powerScore": null,
-          "winnings": null,
-          "prestigeEarned": null,
-          "playoffResult": null,
-          "result": null
-        },
-        {
-          "year": 2017,
-          "teamName": null,
-          "record": null,
-          "finish": null,
-          "ptsPerGame": null,
-          "pointShare": null,
-          "powerScore": null,
-          "winnings": null,
-          "prestigeEarned": null,
-          "playoffResult": null,
-          "result": null
-        },
-        {
-          "year": 2016,
-          "teamName": null,
-          "record": null,
-          "finish": null,
-          "ptsPerGame": null,
-          "pointShare": null,
-          "powerScore": null,
-          "winnings": null,
-          "prestigeEarned": null,
-          "playoffResult": null,
-          "result": null
-        },
-        {
-          "year": 2015,
-          "teamName": null,
-          "record": null,
-          "finish": null,
-          "ptsPerGame": null,
-          "pointShare": null,
-          "powerScore": null,
-          "winnings": null,
-          "prestigeEarned": null,
-          "playoffResult": null,
-          "result": null
-        },
-        {
-          "year": 2014,
-          "teamName": null,
-          "record": null,
-          "finish": null,
-          "ptsPerGame": null,
-          "pointShare": null,
-          "powerScore": null,
-          "winnings": null,
-          "prestigeEarned": null,
-          "playoffResult": null,
-          "result": null
         }
       ],
       "trophies": [
@@ -5447,7 +5031,7 @@
       "photo": "../images/matt.jpg",
       "lastUpdated": null,
       "location": "Colorado",
-      "locationEmoji": "\ud83c\udfd4\ufe0f",
+      "locationEmoji": "🏔️",
       "broughtInBy": "Recruited by Jack",
       "statusLines": [],
       "prestige": {
@@ -5457,19 +5041,19 @@
       },
       "traits": [
         {
-          "emoji": "\ud83c\udfa8",
+          "emoji": "🎨",
           "label": "Culture Maker"
         },
         {
-          "emoji": "\ud83c\udf89",
+          "emoji": "🎉",
           "label": "Party Commish"
         },
         {
-          "emoji": "\u2600\ufe0f",
+          "emoji": "☀️",
           "label": "Positive Attitude"
         },
         {
-          "emoji": "\ud83d\udcac",
+          "emoji": "💬",
           "label": "Prolific Chatter"
         }
       ],
@@ -5821,7 +5405,7 @@
         },
         {
           "year": 2024,
-          "teamName": "Osos de Agua por Vida \ud83d\udc3b\ud83c\udf0a\ud83c\udfc8",
+          "teamName": "Osos de Agua por Vida 🐻🌊🏈",
           "record": "4-10",
           "finish": 12,
           "ptsPerGame": 85.08,
@@ -5948,19 +5532,6 @@
           "prestigeEarned": 50,
           "playoffResult": "Missed Playoffs",
           "result": "missed"
-        },
-        {
-          "year": 2014,
-          "teamName": null,
-          "record": null,
-          "finish": null,
-          "ptsPerGame": null,
-          "pointShare": null,
-          "powerScore": null,
-          "winnings": null,
-          "prestigeEarned": null,
-          "playoffResult": null,
-          "result": null
         }
       ],
       "trophies": [
@@ -6042,7 +5613,7 @@
       "photo": "../images/mike.jpg",
       "lastUpdated": null,
       "location": "Pennsylvania",
-      "locationEmoji": "\ud83d\udd14",
+      "locationEmoji": "🔔",
       "broughtInBy": "Recruited by Jack",
       "statusLines": [
         "LEAGUE CHAMPION"
@@ -6054,19 +5625,19 @@
       },
       "traits": [
         {
-          "emoji": "\ud83e\udd1d",
+          "emoji": "🤝",
           "label": "Man of the People"
         },
         {
-          "emoji": "\ud83d\ude24",
+          "emoji": "😤",
           "label": "Disagreeable"
         },
         {
-          "emoji": "\ud83d\udc8d",
+          "emoji": "💍",
           "label": "Eligible Bachelor"
         },
         {
-          "emoji": "\ud83d\udcc5",
+          "emoji": "📅",
           "label": "Many Meetings"
         }
       ],
@@ -6435,7 +6006,7 @@
         },
         {
           "year": 2024,
-          "teamName": "Jop-O Isn\u2019t Real",
+          "teamName": "Jop-O Isn’t Real",
           "record": "8-6",
           "finish": 5,
           "ptsPerGame": 93.74,
@@ -6656,7 +6227,7 @@
       "photo": "../images/scott.jpg",
       "lastUpdated": null,
       "location": "California",
-      "locationEmoji": "\ud83c\udf34",
+      "locationEmoji": "🌴",
       "broughtInBy": "Recruited by Jack",
       "statusLines": [],
       "prestige": {
@@ -6666,19 +6237,19 @@
       },
       "traits": [
         {
-          "emoji": "\ud83d\ude04",
+          "emoji": "😄",
           "label": "Happy to Be Here"
         },
         {
-          "emoji": "\ud83e\ude99",
+          "emoji": "🪙",
           "label": "FAAB Penny Pincher"
         },
         {
-          "emoji": "\ud83e\uddd4",
+          "emoji": "🧔",
           "label": "Memorable Facial Hair"
         },
         {
-          "emoji": "\ud83e\udd10",
+          "emoji": "🤐",
           "label": "Withholding"
         }
       ],
@@ -7259,7 +6830,7 @@
       "photo": "../images/tim.jpg",
       "lastUpdated": null,
       "location": "Colorado",
-      "locationEmoji": "\ud83c\udfd4\ufe0f",
+      "locationEmoji": "🏔️",
       "broughtInBy": "Recruited by Matt",
       "statusLines": [],
       "prestige": {
@@ -7269,19 +6840,19 @@
       },
       "traits": [
         {
-          "emoji": "\ud83d\udd04",
+          "emoji": "🔄",
           "label": "Serial Trader"
         },
         {
-          "emoji": "\ud83e\udd26",
+          "emoji": "🤦",
           "label": "Poor Copy/Paste Skills"
         },
         {
-          "emoji": "\ud83c\udf46",
+          "emoji": "🍆",
           "label": "Perv"
         },
         {
-          "emoji": "\ud83e\uddd0",
+          "emoji": "🧐",
           "label": "Snooty"
         }
       ],
@@ -7636,7 +7207,7 @@
         },
         {
           "year": 2025,
-          "teamName": "Mike \ud83d\udca9's standing up",
+          "teamName": "Mike 💩's standing up",
           "record": "5-9",
           "finish": 12,
           "ptsPerGame": 85.69,
@@ -7711,84 +7282,6 @@
           "prestigeEarned": 19,
           "playoffResult": "Missed Playoffs",
           "result": "missed"
-        },
-        {
-          "year": 2019,
-          "teamName": null,
-          "record": null,
-          "finish": null,
-          "ptsPerGame": null,
-          "pointShare": null,
-          "powerScore": null,
-          "winnings": null,
-          "prestigeEarned": null,
-          "playoffResult": null,
-          "result": null
-        },
-        {
-          "year": 2018,
-          "teamName": null,
-          "record": null,
-          "finish": null,
-          "ptsPerGame": null,
-          "pointShare": null,
-          "powerScore": null,
-          "winnings": null,
-          "prestigeEarned": null,
-          "playoffResult": null,
-          "result": null
-        },
-        {
-          "year": 2017,
-          "teamName": null,
-          "record": null,
-          "finish": null,
-          "ptsPerGame": null,
-          "pointShare": null,
-          "powerScore": null,
-          "winnings": null,
-          "prestigeEarned": null,
-          "playoffResult": null,
-          "result": null
-        },
-        {
-          "year": 2016,
-          "teamName": null,
-          "record": null,
-          "finish": null,
-          "ptsPerGame": null,
-          "pointShare": null,
-          "powerScore": null,
-          "winnings": null,
-          "prestigeEarned": null,
-          "playoffResult": null,
-          "result": null
-        },
-        {
-          "year": 2015,
-          "teamName": null,
-          "record": null,
-          "finish": null,
-          "ptsPerGame": null,
-          "pointShare": null,
-          "powerScore": null,
-          "winnings": null,
-          "prestigeEarned": null,
-          "playoffResult": null,
-          "result": null
-        },
-        {
-          "year": 2014,
-          "teamName": null,
-          "record": null,
-          "finish": null,
-          "ptsPerGame": null,
-          "pointShare": null,
-          "powerScore": null,
-          "winnings": null,
-          "prestigeEarned": null,
-          "playoffResult": null,
-          "result": null
         }
       ],
       "trophies": [
@@ -7870,7 +7363,7 @@
       "photo": "../images/wade.jpg",
       "lastUpdated": null,
       "location": "Pennsylvania",
-      "locationEmoji": "\ud83d\udd14",
+      "locationEmoji": "🔔",
       "broughtInBy": "Recruited by Kyle",
       "statusLines": [],
       "prestige": {
@@ -7880,19 +7373,19 @@
       },
       "traits": [
         {
-          "emoji": "\ud83e\uddd4",
+          "emoji": "🧔",
           "label": "Memorable Facial Hair"
         },
         {
-          "emoji": "\ud83d\udcac",
+          "emoji": "💬",
           "label": "Prolific Chatter"
         },
         {
-          "emoji": "\ud83c\udf46",
+          "emoji": "🍆",
           "label": "Perv"
         },
         {
-          "emoji": "\ud83d\udde3\ufe0f",
+          "emoji": "🗣️",
           "label": "Certified Trash Talker"
         }
       ],
@@ -8331,84 +7824,6 @@
           "prestigeEarned": 65,
           "playoffResult": "Lost in First Round",
           "result": "playoffs"
-        },
-        {
-          "year": 2019,
-          "teamName": null,
-          "record": null,
-          "finish": null,
-          "ptsPerGame": null,
-          "pointShare": null,
-          "powerScore": null,
-          "winnings": null,
-          "prestigeEarned": null,
-          "playoffResult": null,
-          "result": null
-        },
-        {
-          "year": 2018,
-          "teamName": null,
-          "record": null,
-          "finish": null,
-          "ptsPerGame": null,
-          "pointShare": null,
-          "powerScore": null,
-          "winnings": null,
-          "prestigeEarned": null,
-          "playoffResult": null,
-          "result": null
-        },
-        {
-          "year": 2017,
-          "teamName": null,
-          "record": null,
-          "finish": null,
-          "ptsPerGame": null,
-          "pointShare": null,
-          "powerScore": null,
-          "winnings": null,
-          "prestigeEarned": null,
-          "playoffResult": null,
-          "result": null
-        },
-        {
-          "year": 2016,
-          "teamName": null,
-          "record": null,
-          "finish": null,
-          "ptsPerGame": null,
-          "pointShare": null,
-          "powerScore": null,
-          "winnings": null,
-          "prestigeEarned": null,
-          "playoffResult": null,
-          "result": null
-        },
-        {
-          "year": 2015,
-          "teamName": null,
-          "record": null,
-          "finish": null,
-          "ptsPerGame": null,
-          "pointShare": null,
-          "powerScore": null,
-          "winnings": null,
-          "prestigeEarned": null,
-          "playoffResult": null,
-          "result": null
-        },
-        {
-          "year": 2014,
-          "teamName": null,
-          "record": null,
-          "finish": null,
-          "ptsPerGame": null,
-          "pointShare": null,
-          "powerScore": null,
-          "winnings": null,
-          "prestigeEarned": null,
-          "playoffResult": null,
-          "result": null
         }
       ],
       "trophies": [
