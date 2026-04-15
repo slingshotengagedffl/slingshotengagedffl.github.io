@@ -145,7 +145,7 @@
 
   .card-name {
     font-family: 'Bebas Neue', sans-serif;
-    font-size: 1.7rem;
+    font-size: 1.15rem;
     letter-spacing: 0.12em;
     color: #fff;
     text-transform: uppercase;
@@ -252,7 +252,7 @@
 
   .modal-name {
     font-family: 'Bebas Neue', sans-serif;
-    font-size: 2rem;
+    font-size: 2.6rem;
     letter-spacing: 0.06em;
     color: #fff;
     line-height: 1;
@@ -261,7 +261,7 @@
   .modal-location {
     font-family: 'Barlow Condensed', sans-serif;
     font-weight: 700;
-    font-size: 0.8rem;
+    font-size: 1rem;
     letter-spacing: 0.1em;
     color: var(--muted);
     text-transform: uppercase;
@@ -274,7 +274,7 @@
   .modal-nickname {
     font-family: 'Barlow Condensed', sans-serif;
     font-weight: 700;
-    font-size: 0.8rem;
+    font-size: 1.15rem;
     letter-spacing: 0.12em;
     color: var(--red-bright);
     text-transform: uppercase;
@@ -297,7 +297,7 @@
 
   .stat-value {
     font-family: 'Bebas Neue', sans-serif;
-    font-size: 1.3rem;
+    font-size: 1.7rem;
     letter-spacing: 0.06em;
     color: var(--gold);
     display: block;
@@ -307,7 +307,7 @@
   .stat-label {
     font-family: 'Barlow Condensed', sans-serif;
     font-weight: 700;
-    font-size: 0.72rem;
+    font-size: 0.88rem;
     letter-spacing: 0.14em;
     text-transform: uppercase;
     color: var(--muted);
@@ -324,7 +324,7 @@
     padding: 14px;
     text-align: center;
     font-family: 'Bebas Neue', sans-serif;
-    font-size: 1.1rem;
+    font-size: 1.4rem;
     letter-spacing: 0.14em;
     color: #fff;
     text-transform: uppercase;
@@ -468,7 +468,7 @@
       <div class="modal-stats">
         <div class="stat-box">
           <span class="stat-value" id="statRank"></span>
-          <span class="stat-label">Prestige Rank<br>(out of 27)</span>
+          <span class="stat-label">Prestige Rank<br>(out of 25)</span>
         </div>
         <div class="stat-box">
           <span class="stat-value" id="statSince"></span>
@@ -476,7 +476,7 @@
         </div>
         <div class="stat-box">
           <span class="stat-value" id="statTrophies"></span>
-          <span class="stat-label">Championships</span>
+          <span class="stat-label">D*****S</span>
         </div>
       </div>
       <a href="#" class="modal-profile-btn" id="modalProfileBtn">View Full Profile →</a>
@@ -488,20 +488,20 @@
   // ── BEEFCAKE DATA ──
   // Fill in real data as you have it. image paths are relative to this file.
   const beefcakes = {
-    alex:   { name: 'Alex',   nickname: '"AVL"',            location: '❄️ Minnesota',      rank: '#5',  since: '2016', trophies: '1', img: 'images/alex.jpg',   profile: 'profiles/alex.html' },
-    andy:   { name: 'Andy',   nickname: '"Bronco Superfan"',location: '🏔️ Colorado',       rank: '#16', since: '2022', trophies: '0', img: 'images/andy.jpg',   profile: 'profiles/andy.html' },
-    brian:  { name: 'Brian',  nickname: '"BThax"',          location: '🦀 Maryland',       rank: '#7',  since: '2014', trophies: '1', img: 'images/brian.png',  profile: 'profiles/brian.html' },
-    daniel: { name: 'Daniel', nickname: '"Naughty Man"',    location: '🏔️ Colorado',       rank: '#6',  since: '2014', trophies: '0', img: 'images/daniel.jpg', profile: 'profiles/daniel.html' },
-    dylan:  { name: 'Dylan',  nickname: '"Dyl"',            location: '🦀 Maryland',       rank: '#1',  since: '2015', trophies: '3', img: 'images/dylan.jpg',  profile: 'profiles/dylan.html' },
-    jack:   { name: 'Jack',   nickname: '"The Commish"',    location: '🌴 California',     rank: '#2',  since: '2014', trophies: '2', img: 'images/jack.jpg',   profile: 'profiles/jack.html' },
-    jordan: { name: 'Jordan', nickname: '"JopO"',           location: '🌲 North Carolina', rank: '#17', since: '2019', trophies: '0', img: 'images/jordan.jpg', profile: 'profiles/jordan.html' },
-    kyle:   { name: 'Kyle',   nickname: '"The Snoot"',      location: '🏔️ Colorado',       rank: '#3',  since: '2018', trophies: '2', img: 'images/kyle.png',   profile: 'profiles/kyle.html' },
-    luke:   { name: 'Luke',   nickname: '"The Rook"',       location: '❄️ Minnesota',      rank: '#27', since: '2026', trophies: '0', img: 'images/luke.jpg',   profile: 'profiles/luke.html' },
-    matt:   { name: 'Matt',   nickname: '"Dad Bod"',        location: '🏔️ Colorado',       rank: '#10', since: '2015', trophies: '0', img: 'images/matt.jpg',   profile: 'profiles/matt.html' },
-    mike:   { name: 'Mike',   nickname: '"The Contrarian"', location: '🔔 Pennsylvania',   rank: '#4',  since: '2014', trophies: '1', img: 'images/mike.jpg',   profile: 'profiles/mike.html' },
-    scott:  { name: 'Scott',  nickname: '"Murph"',          location: '🌴 California',     rank: '#11', since: '2014', trophies: '0', img: 'images/scott.jpg',  profile: 'profiles/scott.html' },
-    tim:    { name: 'Tim',    nickname: '"Hot Tim"',        location: '🏔️ Colorado',       rank: '#15', since: '2020', trophies: '0', img: 'images/tim.jpg',    profile: 'profiles/tim.html' },
-    wade:   { name: 'Wade',   nickname: '"Bathhouse"',      location: '🔔 Pennsylvania',   rank: '#14', since: '2020', trophies: '0', img: 'images/wade.jpg',   profile: 'profiles/wade.html' },
+    alex:   { name: 'Alex',   nickname: '"AVL"',            location: '❄️ Minnesota',      rank: '—', since: '2016', trophies: '1', img: 'images/alex.jpg',   profile: 'profiles/alex.html' },
+    andy:   { name: 'Andy',   nickname: '"Bronco Superfan"',location: '🏔️ Colorado',       rank: '—', since: '2022', trophies: '0', img: 'images/andy.jpg',   profile: 'profiles/andy.html' },
+    brian:  { name: 'Brian',  nickname: '"BThax"',          location: '🦀 Maryland',       rank: '—', since: '2014', trophies: '1', img: 'images/brian.png',  profile: 'profiles/brian.html' },
+    daniel: { name: 'Daniel', nickname: '"Naughty Man"',    location: '🏔️ Colorado',       rank: '—', since: '2014', trophies: '0', img: 'images/daniel.jpg', profile: 'profiles/daniel.html' },
+    dylan:  { name: 'Dylan',  nickname: '"Dyl"',            location: '🦀 Maryland',       rank: '—', since: '2015', trophies: '3', img: 'images/dylan.jpg',  profile: 'profiles/dylan.html' },
+    jack:   { name: 'Jack',   nickname: '"The Commish"',    location: '🌴 California',     rank: '—', since: '2014', trophies: '2', img: 'images/jack.jpg',   profile: 'profiles/jack.html' },
+    jordan: { name: 'Jordan', nickname: '"JopO"',           location: '🌲 North Carolina', rank: '—', since: '2019', trophies: '0', img: 'images/jordan.jpg', profile: 'profiles/jordan.html' },
+    kyle:   { name: 'Kyle',   nickname: '"The Snoot"',      location: '🏔️ Colorado',       rank: '—', since: '2018', trophies: '2', img: 'images/kyle.png',   profile: 'profiles/kyle.html' },
+    luke:   { name: 'Luke',   nickname: '"The Rook"',       location: '❄️ Minnesota',      rank: '—', since: '2026', trophies: '0', img: 'images/luke.jpg',   profile: 'profiles/luke.html' },
+    matt:   { name: 'Matt',   nickname: '"Dad Bod"',        location: '🏔️ Colorado',       rank: '—', since: '2015', trophies: '0', img: 'images/matt.jpg',   profile: 'profiles/matt.html' },
+    mike:   { name: 'Mike',   nickname: '"The Contrarian"', location: '🔔 Pennsylvania',   rank: '—', since: '2014', trophies: '1', img: 'images/mike.jpg',   profile: 'profiles/mike.html' },
+    scott:  { name: 'Scott',  nickname: '"Murph"',          location: '🌴 California',     rank: '—', since: '2014', trophies: '0', img: 'images/scott.jpg',  profile: 'profiles/scott.html' },
+    tim:    { name: 'Tim',    nickname: '"Hot Tim"',        location: '🏔️ Colorado',       rank: '—', since: '2020', trophies: '0', img: 'images/tim.jpg',    profile: 'profiles/tim.html' },
+    wade:   { name: 'Wade',   nickname: '"Bathhouse"',      location: '🔔 Pennsylvania',   rank: '—', since: '2020', trophies: '0', img: 'images/wade.jpg',   profile: 'profiles/wade.html' },
   };
 
   // ── MODAL ──
