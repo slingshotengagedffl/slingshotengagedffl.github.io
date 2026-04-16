@@ -61,7 +61,7 @@
       color: var(--muted);
       margin-top: 6px;
     }
-    .header-spacer { height: 36px; }
+    .header-spacer { height: 20px; }
 
     /* ── CONTENT ── */
     .content {
@@ -72,7 +72,7 @@
 
     .section-title {
       font-family: 'Bebas Neue', sans-serif;
-      font-size: 1.1rem;
+      font-size: 1.4rem;
       letter-spacing: 0.12em;
       text-transform: uppercase;
       color: var(--label);
@@ -94,71 +94,90 @@
       background: var(--surface);
       border: 1px solid var(--border);
       border-radius: 8px;
-      padding: 28px 24px;
+      padding: 24px;
       margin-bottom: 36px;
       display: flex;
-      gap: 24px;
+      gap: 20px;
       align-items: center;
     }
-    .hero-belt {
+    /* Left column: owner photo stacked over belt */
+    .hero-visuals {
+      flex-shrink: 0;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 8px;
+    }
+    .hero-owner-photo {
+      width: 80px;
+      height: 80px;
+      border-radius: 6px;
+      overflow: hidden;
+      border: 2px solid var(--gold);
+      background: var(--surface3);
       flex-shrink: 0;
     }
-    .hero-belt img {
-      width: 80px;
-      height: 80px;
-      object-fit: contain;
+    .hero-owner-photo img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: top center;
     }
-    .hero-belt-placeholder {
-      width: 80px;
-      height: 80px;
-      background: var(--surface3);
-      border: 1px solid var(--border);
-      border-radius: 6px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-family: 'Bebas Neue', sans-serif;
-      font-size: 1.8rem;
-      color: var(--gold);
+    .hero-belt-img {
+      width: 48px;
+      height: 48px;
+      object-fit: contain;
+      opacity: 0.85;
     }
     .hero-body { flex: 1; min-width: 0; }
     .hero-label {
       font-family: 'Barlow Condensed', sans-serif;
-      font-size: 0.7rem;
+      font-size: 0.82rem;
       letter-spacing: 0.22em;
       text-transform: uppercase;
-      color: var(--label);
-      margin-bottom: 3px;
+      color: var(--gold);
+      margin-bottom: 2px;
+      font-weight: 700;
     }
     .hero-name {
       font-family: 'Bebas Neue', sans-serif;
-      font-size: 2.6rem;
+      font-size: 3rem;
       color: var(--gold);
       line-height: 1;
-      margin-bottom: 4px;
+      margin-bottom: 2px;
+    }
+    .hero-season-note {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: 0.78rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin-bottom: 14px;
     }
     .hero-sublabel {
       font-family: 'Barlow Condensed', sans-serif;
-      font-size: 0.66rem;
+      font-size: 0.78rem;
       letter-spacing: 0.18em;
       text-transform: uppercase;
       color: var(--label);
       margin-bottom: 10px;
+      border-top: 1px solid var(--border);
+      padding-top: 10px;
     }
     .hero-stats {
       display: flex;
-      gap: 24px;
+      gap: 20px;
       flex-wrap: wrap;
     }
     .hero-stat-val {
       font-family: 'Bebas Neue', sans-serif;
-      font-size: 1.5rem;
+      font-size: 1.8rem;
       color: var(--text);
       line-height: 1;
     }
     .hero-stat-label {
       font-family: 'Barlow Condensed', sans-serif;
-      font-size: 0.78rem;
+      font-size: 0.82rem;
       letter-spacing: 0.14em;
       text-transform: uppercase;
       color: var(--label);
@@ -197,7 +216,7 @@
     }
     .fact-card-label {
       font-family: 'Barlow Condensed', sans-serif;
-      font-size: 0.66rem;
+      font-size: 0.72rem;
       letter-spacing: 0.2em;
       text-transform: uppercase;
       color: var(--label);
@@ -232,7 +251,7 @@
     }
     .fact-sub {
       font-family: 'Barlow Condensed', sans-serif;
-      font-size: 0.7rem;
+      font-size: 0.72rem;
       color: var(--muted);
       white-space: nowrap;
     }
@@ -256,39 +275,83 @@
     .lineage-section { margin-bottom: 36px; }
 
     .lineage-season-block {
-      margin-bottom: 20px;
+      margin-bottom: 28px;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      overflow: hidden;
     }
     .lineage-season-header {
       display: flex;
       align-items: center;
-      gap: 10px;
-      margin-bottom: 6px;
+      gap: 12px;
+      padding: 10px 14px;
+      background: var(--surface2);
+      border-bottom: 1px solid var(--border);
     }
     .lineage-yr {
       font-family: 'Bebas Neue', sans-serif;
-      font-size: 1.2rem;
-      color: var(--label);
+      font-size: 1.3rem;
+      color: var(--text);
       letter-spacing: 0.04em;
-      min-width: 40px;
+      min-width: 44px;
     }
-    .lineage-season-champ {
+
+    .snake-wrap {
+      padding: 10px 10px 6px;
+      display: flex;
+      flex-direction: column;
+      gap: 0;
+    }
+
+    /* Row direction label */
+    .snake-row-wrap {
+      display: flex;
+      flex-direction: column;
+    }
+    .snake-row-label {
       font-family: 'Barlow Condensed', sans-serif;
-      font-size: 0.68rem;
-      letter-spacing: 0.16em;
-      text-transform: uppercase;
-      color: var(--label);
-    }
-    .lineage-wwe-comp {
-      font-family: 'Barlow', sans-serif;
       font-size: 0.72rem;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
       color: var(--muted);
-      font-style: italic;
-      margin-left: auto;
+      margin-bottom: 3px;
+      display: flex;
+      align-items: center;
+      gap: 4px;
     }
+    .snake-row-label.rtl { justify-content: flex-end; }
+    .snake-row-label .arrow { font-size: 0.8rem; }
+
     .lineage-week-grid {
       display: flex;
       gap: 3px;
       flex-wrap: nowrap;
+    }
+
+    /* Turn connector between rows */
+    .snake-turn {
+      height: 14px;
+      position: relative;
+      margin: 0 0;
+    }
+    .snake-turn-right {
+      border-right: 3px solid var(--border);
+      border-bottom: 3px solid var(--border);
+      border-bottom-right-radius: 8px;
+      margin-right: 0;
+      margin-left: auto;
+      width: 24px;
+      height: 14px;
+    }
+    .snake-turn-left {
+      border-left: 3px solid var(--border);
+      border-bottom: 3px solid var(--border);
+      border-bottom-left-radius: 8px;
+      margin-left: 0;
+      margin-right: auto;
+      width: 24px;
+      height: 14px;
     }
 
     /* each week cell */
@@ -307,7 +370,8 @@
     }
     .wk-inner.is-champ {
       border-color: var(--gold);
-      box-shadow: 0 0 6px rgba(201,168,76,0.2);
+      background: rgba(201,168,76,0.08);
+      box-shadow: 0 0 8px rgba(201,168,76,0.25);
     }
     .wk-inner.new-reign {
       border-color: var(--red);
@@ -341,14 +405,34 @@
       padding: 0 2px;
       letter-spacing: 0.03em;
     }
+
+    /* Week number badge — top left */
+    .wk-badge {
+      position: absolute;
+      top: 2px;
+      left: 2px;
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: 0.55rem;
+      font-weight: 700;
+      color: #fff;
+      background: rgba(0,0,0,0.55);
+      border-radius: 2px;
+      padding: 0 2px;
+      line-height: 1.4;
+      z-index: 2;
+      letter-spacing: 0.03em;
+    }
+
+    /* Gold star for season champ — top right */
     .wk-inner.is-champ .wk-photo::after {
       content: '★';
       position: absolute;
       top: 1px;
       right: 2px;
-      font-size: 0.55rem;
+      font-size: 0.65rem;
       color: var(--gold);
-      text-shadow: 0 0 3px #000;
+      text-shadow: 0 0 4px #000;
+      z-index: 2;
     }
     .wk-inner.new-reign .wk-photo::before {
       content: '';
@@ -370,9 +454,12 @@
       background: var(--surface);
       border-top: 1px solid var(--border);
     }
+    .wk-inner.is-champ .wk-foot {
+      background: rgba(201,168,76,0.06);
+    }
     .wk-foot-name {
       font-family: 'Barlow Condensed', sans-serif;
-      font-size: 0.56rem;
+      font-size: 0.6rem;
       font-weight: 700;
       letter-spacing: 0.04em;
       text-transform: uppercase;
@@ -436,29 +523,6 @@
       line-height: 1.4;
     }
 
-    .snake-wrap {
-      display: flex;
-      flex-direction: column;
-      gap: 0;
-    }
-    .snake-connector {
-      display: flex;
-      height: 16px;
-      align-items: center;
-    }
-    .snake-arrow {
-      font-size: 0.8rem;
-      color: var(--border);
-      line-height: 1;
-    }
-    .snake-arrow-right {
-      margin-left: auto;
-      padding-right: 22px; /* align with right edge of last cell */
-    }
-    .snake-arrow-left {
-      margin-right: auto;
-      padding-left: 22px; /* align with left edge of first cell */
-    }
 
     .lineage-legend {
       display: flex;
@@ -521,7 +585,7 @@
     .stats-tbl { width: 100%; border-collapse: collapse; }
     .stats-tbl th {
       font-family: 'Barlow Condensed', sans-serif;
-      font-size: 0.82rem;
+      font-size: 0.88rem;
       letter-spacing: 0.16em;
       text-transform: uppercase;
       color: var(--label);
@@ -535,13 +599,13 @@
     }
     .stats-tbl th:hover { color: var(--text); }
     .stats-tbl th.sorted { color: var(--gold); }
-    .sort-asc::after { content: ' ▲'; font-size: 0.55rem; }
-    .sort-desc::after { content: ' ▼'; font-size: 0.55rem; }
+    .sort-asc::after { content: ' ▲'; font-size: 0.6rem; }
+    .sort-desc::after { content: ' ▼'; font-size: 0.6rem; }
     .stats-tbl td {
       padding: 8px 12px;
       border-bottom: 1px solid var(--border);
       font-family: 'Barlow Condensed', sans-serif;
-      font-size: 0.8rem;
+      font-size: 0.9rem;
       vertical-align: middle;
     }
     .stats-tbl tr:last-child td { border-bottom: none; }
@@ -583,12 +647,16 @@
 
   <!-- ── HERO ── -->
   <div class="hero">
-    <div class="hero-belt">
-      <img src="images/intercontinental.png" alt="IC Belt" />
+    <div class="hero-visuals">
+      <div class="hero-owner-photo">
+        <img src="images/dylan.jpg" alt="Dylan" onerror="this.parentElement.innerHTML='<div style=\'display:flex;align-items:center;justify-content:center;height:100%;font-family:Bebas Neue,sans-serif;font-size:1.4rem;color:var(--gold)\'>D</div>'" />
+      </div>
+      <img class="hero-belt-img" src="images/intercontinental.png" alt="IC Belt" />
     </div>
     <div class="hero-body">
       <div class="hero-label">2025 Season Champion</div>
       <div class="hero-name">Dylan</div>
+      <div class="hero-season-note">Held the belt at end of Week 14</div>
       <div class="hero-sublabel">Career IC Record</div>
       <div class="hero-stats">
         <div>
@@ -671,6 +739,38 @@
         <div class="fact-row"><span class="fact-rank">3</span><span class="fact-name">Brian</span><span class="fact-val">25%</span><span class="fact-sub">2W–6L</span></div>
       </div>
 
+      <!-- Most Unique Champions in a Season -->
+      <div class="fact-card">
+        <div class="fact-card-label">Most Unique Champions (Season)</div>
+        <div class="fact-row"><span class="fact-rank">1</span><span class="fact-name">2021</span><span class="fact-val">7</span></div>
+        <div class="fact-row"><span class="fact-rank">1</span><span class="fact-name">2025</span><span class="fact-val">7</span></div>
+        <div class="fact-row"><span class="fact-rank">3</span><span class="fact-name">2020</span><span class="fact-val">6</span></div>
+      </div>
+
+      <!-- Fewest Unique Champions in a Season -->
+      <div class="fact-card">
+        <div class="fact-card-label">Fewest Unique Champions (Season)</div>
+        <div class="fact-row"><span class="fact-rank">1</span><span class="fact-name">2019</span><span class="fact-val">2</span></div>
+        <div class="fact-row"><span class="fact-rank">2</span><span class="fact-name">2022</span><span class="fact-val">5</span></div>
+        <div class="fact-row"><span class="fact-rank">2</span><span class="fact-name">2023</span><span class="fact-val">5</span></div>
+      </div>
+
+      <!-- Most Belt Exchanges in a Season -->
+      <div class="fact-card">
+        <div class="fact-card-label">Most Belt Exchanges (Season)</div>
+        <div class="fact-row"><span class="fact-rank">1</span><span class="fact-name">2021</span><span class="fact-val">8</span></div>
+        <div class="fact-row"><span class="fact-rank">1</span><span class="fact-name">2023</span><span class="fact-val">8</span></div>
+        <div class="fact-row"><span class="fact-rank">1</span><span class="fact-name">2025</span><span class="fact-val">8</span></div>
+      </div>
+
+      <!-- Fewest Belt Exchanges in a Season -->
+      <div class="fact-card">
+        <div class="fact-card-label">Fewest Belt Exchanges (Season)</div>
+        <div class="fact-row"><span class="fact-rank">1</span><span class="fact-name">2019</span><span class="fact-val">1</span></div>
+        <div class="fact-row"><span class="fact-rank">2</span><span class="fact-name">2022</span><span class="fact-val">6</span></div>
+        <div class="fact-row"><span class="fact-rank">2</span><span class="fact-name">2024</span><span class="fact-val">6</span></div>
+      </div>
+
     </div>
   </div>
 
@@ -698,9 +798,9 @@
             <th class="s-rank">#</th>
             <th onclick="sortBy('name')">Owner</th>
             <th onclick="sortBy('reigns')" class="sorted sort-desc">Reigns</th>
-            <th onclick="sortBy('weeks')">Weeks as Champ</th>
+            <th onclick="sortBy('weeks')">Wins / Weeks</th>
+            <th onclick="sortBy('losses')">Losses</th>
             <th onclick="sortBy('pct')">Win%</th>
-            <th onclick="sortBy('losses')">L</th>
           </tr>
         </thead>
         <tbody id="statsBody"></tbody>
@@ -806,15 +906,6 @@ const CAREER = [
   {key:'Tyler Trueblood', name:'Tyler Trueblood', active:false, reigns:0, wins:0, losses:0, weeks:0, sc:false},
 ];
 
-const WWE_COMPS = {
-  2019: { name: 'Honky Tonk Man', line: 'Longest single reign in IC history. Nobody could take it from him.' },
-  2020: { name: 'Tito Santana',   line: 'Lost the belt early, spent the whole season fighting back, reclaimed it at the end.' },
-  2021: { name: 'Randy Savage',   line: 'Won it and ran through four challengers without pause. Once he had it, nobody could stop the momentum.' },
-  2022: { name: 'Razor Ramon',    line: 'Won it dramatically late, in a moment nobody saw coming.' },
-  2023: { name: 'Rick Rude',      line: 'Opportunistic and calculating — won it right when Dylan thought he had it locked up.' },
-  2024: { name: 'Mr. Perfect',    line: 'Held it longer than felt possible, kept surviving, made everyone look foolish for doubting him.' },
-  2025: { name: 'Don Muraco',     line: 'Keeps coming back to the title because he simply belongs there. Always legitimate, never flashy.' },
-};
 
 const SEASONS = [2019,2020,2021,2022,2023,2024,2025];
 const SEASON_WEEKS = {2019:13, 2020:13, 2021:14, 2022:14, 2023:14, 2024:14, 2025:14};
@@ -864,10 +955,21 @@ function makeWeekCell(week, data) {
   const photo = document.createElement('div');
   photo.className = 'wk-photo';
 
-  const displayName = data.champ === 'Michelle' ? 'Meesh' :
-                      data.champ === 'Tim C' ? 'Timbē' :
-                      data.champ;
-  const photoSrc = PHOTOS[data.champ];
+  // Normalize Mike V / Mike -> Mike (active owner with photo)
+  let champKey = data.champ;
+  if (champKey === 'Mike V') champKey = 'Mike';
+
+  const displayName = champKey === 'Michelle' ? 'Meesh' :
+                      champKey === 'Tim C' ? 'Timbē' :
+                      champKey;
+
+  // Week number badge
+  const badge = document.createElement('div');
+  badge.className = 'wk-badge';
+  badge.textContent = `W${week}`;
+  photo.appendChild(badge);
+
+  const photoSrc = PHOTOS[champKey];
   if (photoSrc) {
     const img = document.createElement('img');
     img.src = photoSrc;
@@ -891,14 +993,39 @@ function makeWeekCell(week, data) {
 
   const foot = document.createElement('div');
   foot.className = 'wk-foot';
+  // Always show "def. X" for new reigns, otherwise show week num
   let footSub = `W${week}`;
   if (data.isNewReign && data.defeated && data.defeated.length) {
-    footSub = `def. ${data.defeated[0]}`;
+    // Normalize defeated names too
+    const defeatedName = data.defeated[0] === 'Merrick' ? 'Mike' : data.defeated[0];
+    footSub = `def. ${defeatedName}`;
   }
   foot.innerHTML = `<div class="wk-foot-name">${displayName}</div><div class="wk-foot-num">${footSub}</div>`;
   inner.appendChild(foot);
 
+  // Tooltip
+  const tip = document.createElement('div');
+  tip.className = 'wk-tip';
+  const noteText = data.notes ? data.notes.replace(/Merrick/g, 'Mike') : '';
+  tip.innerHTML = `<div class="tip-wk">Week ${week}</div><div class="tip-name">${displayName}</div>${noteText ? `<div class="tip-detail">${noteText}</div>` : ''}`;
   cell.appendChild(inner);
+  cell.appendChild(tip);
+
+  // Tooltip interaction
+  inner.addEventListener('mouseenter', () => {
+    tip.style.opacity = '1';
+    tip.style.transform = 'translateX(-50%) translateY(0)';
+  });
+  inner.addEventListener('mouseleave', () => {
+    tip.style.opacity = '0';
+    tip.style.transform = 'translateX(-50%) translateY(4px)';
+  });
+  inner.addEventListener('click', () => {
+    const showing = tip.style.opacity === '1';
+    document.querySelectorAll('.wk-tip').forEach(t => { t.style.opacity='0'; t.style.transform='translateX(-50%) translateY(4px)'; });
+    if (!showing) { tip.style.opacity='1'; tip.style.transform='translateX(-50%) translateY(0)'; }
+  });
+
   return cell;
 }
 
@@ -907,31 +1034,17 @@ function buildLineage() {
   SEASONS.forEach(yr => {
     const weekMap = buildWeekMap(yr);
     const totalWeeks = SEASON_WEEKS[yr];
-    const seasonChamp = REIGNS.find(r => r.year === yr && r.sc);
-    const comp = WWE_COMPS[yr];
 
     const block = document.createElement('div');
     block.className = 'lineage-season-block';
 
-    // Header
+    // Header — just year
     const header = document.createElement('div');
     header.className = 'lineage-season-header';
     const yrLabel = document.createElement('div');
     yrLabel.className = 'lineage-yr';
     yrLabel.textContent = yr;
     header.appendChild(yrLabel);
-    if (seasonChamp) {
-      const champEl = document.createElement('div');
-      champEl.className = 'lineage-season-champ';
-      champEl.textContent = `★ ${seasonChamp.champ}`;
-      header.appendChild(champEl);
-    }
-    if (comp) {
-      const compEl = document.createElement('div');
-      compEl.className = 'lineage-wwe-comp';
-      compEl.textContent = `The ${comp.name} Season`;
-      header.appendChild(compEl);
-    }
     block.appendChild(header);
 
     // Build weeks list
@@ -950,19 +1063,39 @@ function buildLineage() {
     }
 
     rows.forEach((row, rowIdx) => {
+      const isRTL = rowIdx % 2 !== 0;
+      const wStart = row[0].w;
+      const wEnd = row[row.length - 1].w;
+
+      // Row wrap with direction label
+      const rowWrap = document.createElement('div');
+      rowWrap.className = 'snake-row-wrap';
+
+      // Direction label
+      const label = document.createElement('div');
+      label.className = 'snake-row-label' + (isRTL ? ' rtl' : '');
+      if (isRTL) {
+        label.innerHTML = `<span class="arrow">←</span> W${wEnd}–W${wStart}`;
+      } else {
+        label.innerHTML = `W${wStart}–W${wEnd} <span class="arrow">→</span>`;
+      }
+      rowWrap.appendChild(label);
+
       const rowEl = document.createElement('div');
       rowEl.className = 'lineage-week-grid';
-      const cells = rowIdx % 2 === 0 ? row : [...row].reverse();
+      const cells = isRTL ? [...row].reverse() : row;
       cells.forEach(({ w, data }) => rowEl.appendChild(makeWeekCell(w, data)));
-      snakeWrap.appendChild(rowEl);
+      rowWrap.appendChild(rowEl);
+      snakeWrap.appendChild(rowWrap);
 
+      // Turn connector
       if (rowIdx < rows.length - 1) {
-        const conn = document.createElement('div');
-        conn.className = 'snake-connector';
-        conn.innerHTML = rowIdx % 2 === 0
-          ? '<div class="snake-arrow snake-arrow-right">&#8627;</div>'
-          : '<div class="snake-arrow snake-arrow-left">&#8626;</div>';
-        snakeWrap.appendChild(conn);
+        const turn = document.createElement('div');
+        turn.className = 'snake-turn';
+        const turnInner = document.createElement('div');
+        turnInner.className = isRTL ? 'snake-turn-left' : 'snake-turn-right';
+        turn.appendChild(turnInner);
+        snakeWrap.appendChild(turn);
       }
     });
 
@@ -1022,9 +1155,8 @@ function renderStats() {
     return `<tr>
       <td class="s-rank">${i+1}</td>
       <td class="s-owner${activeClass}">${nameHtml}${dot}</td>
-      ${rHtml}${wkHtml}
+      ${rHtml}${wkHtml}${lHtml}
       <td>${fmtPct(o.wins,o.losses)}</td>
-      ${lHtml}
     </tr>`;
   }).join('');
 }
