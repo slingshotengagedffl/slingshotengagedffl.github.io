@@ -277,7 +277,7 @@
     .lineage-section { margin-bottom: 36px; }
 
     .lineage-season-block {
-      margin-bottom: 20px;
+      margin-bottom: 16px;
       background: var(--surface);
       border: 1px solid var(--border);
       border-radius: 8px;
@@ -296,82 +296,28 @@
       font-size: 1.3rem;
       color: var(--text);
       letter-spacing: 0.04em;
-      min-width: 44px;
     }
 
-    .snake-wrap {
-      padding: 10px 10px 8px;
-      display: flex;
-      flex-direction: column;
-      gap: 0;
+    /* Horizontal scroll row */
+    .lineage-scroll {
+      overflow-x: auto;
+      -webkit-overflow-scrolling: touch;
+      padding: 10px 10px 10px;
     }
-
-    /* Row direction label */
-    .snake-row-wrap {
-      display: flex;
-      flex-direction: column;
-    }
-    .snake-row-label {
-      font-family: 'Barlow Condensed', sans-serif;
-      font-size: 0.75rem;
-      letter-spacing: 0.12em;
-      text-transform: uppercase;
-      color: var(--muted);
-      margin-bottom: 4px;
-      display: flex;
-      align-items: center;
-      gap: 4px;
-    }
-    .snake-row-label.rtl { justify-content: flex-end; }
-    .snake-row-label .arrow { font-size: 0.85rem; }
-
     .lineage-week-grid {
       display: flex;
       gap: 4px;
       flex-wrap: nowrap;
+      width: max-content;
     }
 
-    /* Bold snake turn connector */
-    .snake-turn-bar {
-      display: flex;
-      align-items: center;
-      gap: 8px;
-      margin: 6px 0;
-      padding: 5px 10px;
-      background: var(--surface3);
-      border-radius: 4px;
-      border: 1px solid var(--border);
-    }
-    .snake-turn-bar.turn-right { justify-content: flex-end; }
-    .snake-turn-bar.turn-left  { justify-content: flex-start; }
-    .snake-turn-text {
-      font-family: 'Barlow Condensed', sans-serif;
-      font-size: 0.8rem;
-      font-weight: 700;
-      letter-spacing: 0.14em;
-      text-transform: uppercase;
-      color: var(--label);
-    }
-    .snake-turn-arrow {
-      font-size: 1.1rem;
-      color: var(--gold);
-      line-height: 1;
-    }
-
-    /* each week cell — desktop 56px, mobile fills 5-across */
+    /* each week cell */
     .wk-cell {
-      position: relative;
       flex-shrink: 0;
-      width: 56px;
+      width: 64px;
     }
     @media (max-width: 480px) {
-      .wk-cell {
-        /* 5 cells across: (100% - padding 20px - gaps 4*4px) / 5 */
-        width: calc((100vw - 20px - 16px) / 5);
-        min-width: 0;
-      }
-      .snake-wrap { padding: 8px 0 6px; }
-      .lineage-week-grid { gap: 3px; }
+      .wk-cell { width: 56px; }
     }
 
     .wk-inner {
@@ -379,17 +325,13 @@
       overflow: hidden;
       border: 1px solid var(--border);
       background: var(--surface2);
-      transition: border-color 0.12s;
-      cursor: pointer;
     }
     .wk-inner.is-champ {
       border-color: var(--gold);
       background: rgba(201,168,76,0.1);
       box-shadow: 0 0 8px rgba(201,168,76,0.3);
     }
-    .wk-inner.new-reign {
-      border-color: var(--red);
-    }
+    .wk-inner.new-reign { border-color: var(--red); }
     .wk-inner.is-champ.new-reign {
       border-color: var(--gold);
       border-top-color: var(--red);
@@ -417,10 +359,9 @@
       color: var(--muted);
       text-align: center;
       padding: 0 2px;
-      letter-spacing: 0.03em;
     }
 
-    /* Week number badge — top left, always shown */
+    /* Week number badge — top left */
     .wk-badge {
       position: absolute;
       top: 2px;
@@ -434,10 +375,9 @@
       padding: 1px 3px;
       line-height: 1.3;
       z-index: 2;
-      letter-spacing: 0.02em;
     }
 
-    /* Gold star for season champ — top right */
+    /* Gold star — season champ top right */
     .wk-inner.is-champ .wk-photo::after {
       content: '★';
       position: absolute;
@@ -448,13 +388,11 @@
       text-shadow: 0 0 4px #000;
       z-index: 2;
     }
-    /* Red bar for new reign — top edge */
+    /* Red bar — new reign top edge */
     .wk-inner.new-reign .wk-photo::before {
       content: '';
       position: absolute;
-      top: 0;
-      left: 0;
-      right: 0;
+      top: 0; left: 0; right: 0;
       height: 3px;
       background: var(--red);
       z-index: 1;
@@ -466,12 +404,10 @@
       background: var(--surface);
       border-top: 1px solid var(--border);
     }
-    .wk-inner.is-champ .wk-foot {
-      background: rgba(201,168,76,0.06);
-    }
+    .wk-inner.is-champ .wk-foot { background: rgba(201,168,76,0.06); }
     .wk-foot-name {
       font-family: 'Barlow Condensed', sans-serif;
-      font-size: 0.65rem;
+      font-size: 0.68rem;
       font-weight: 700;
       letter-spacing: 0.03em;
       text-transform: uppercase;
@@ -481,62 +417,6 @@
       text-overflow: ellipsis;
     }
     .wk-inner.is-champ .wk-foot-name { color: var(--gold); }
-    .wk-foot-num {
-      font-family: 'Barlow Condensed', sans-serif;
-      font-size: 0.6rem;
-      color: var(--label);
-      white-space: nowrap;
-      overflow: hidden;
-      text-overflow: ellipsis;
-    }
-
-    /* tooltip */
-    .wk-tip {
-      position: absolute;
-      bottom: calc(100% + 7px);
-      left: 50%;
-      transform: translateX(-50%) translateY(4px);
-      width: 180px;
-      background: var(--surface);
-      border: 1px solid var(--border);
-      border-radius: 6px;
-      padding: 9px 11px;
-      z-index: 300;
-      opacity: 0;
-      pointer-events: none;
-      transition: opacity 0.12s, transform 0.12s;
-      text-align: left;
-    }
-    .wk-tip::after {
-      content: '';
-      position: absolute;
-      top: 100%;
-      left: 50%;
-      transform: translateX(-50%);
-      border: 5px solid transparent;
-      border-top-color: var(--border);
-    }
-    .tip-wk {
-      font-family: 'Barlow Condensed', sans-serif;
-      font-size: 0.58rem;
-      letter-spacing: 0.16em;
-      text-transform: uppercase;
-      color: var(--label);
-      margin-bottom: 2px;
-    }
-    .tip-name {
-      font-family: 'Bebas Neue', sans-serif;
-      font-size: 1rem;
-      color: var(--gold);
-      line-height: 1;
-      margin-bottom: 4px;
-    }
-    .tip-detail {
-      font-family: 'Barlow', sans-serif;
-      font-size: 0.72rem;
-      color: var(--label);
-      line-height: 1.4;
-    }
 
 
     .lineage-legend {
@@ -924,7 +804,6 @@ const CAREER = [
 
 const SEASONS = [2019,2020,2021,2022,2023,2024,2025];
 const SEASON_WEEKS = {2019:13, 2020:13, 2021:14, 2022:14, 2023:14, 2024:14, 2025:14};
-const CELLS_PER_ROW = 5;
 
 function buildWeekMap(yr) {
   const totalWeeks = SEASON_WEEKS[yr];
@@ -973,75 +852,49 @@ function makeWeekCell(week, data) {
   let cls = 'wk-inner';
   if (data.sc) cls += ' is-champ';
   if (data.isNewReign) cls += ' new-reign';
-  if (data.isCarryover) cls += ' carryover';
   inner.className = cls;
 
   const photo = document.createElement('div');
   photo.className = 'wk-photo';
 
   const champKey = normName(data.champ);
-  const displayName = champKey;
 
-  // Week number badge — always shown top-left
+  // Week badge
   const badge = document.createElement('div');
   badge.className = 'wk-badge';
   badge.textContent = `W${week}`;
   photo.appendChild(badge);
 
-  // Owner photo or initials fallback
+  // Photo or initials
   const photoSrc = PHOTOS[data.champ] || PHOTOS[champKey];
   if (photoSrc) {
     const img = document.createElement('img');
     img.src = photoSrc;
-    img.alt = displayName;
+    img.alt = champKey;
     img.onerror = () => {
       img.remove();
       const init = document.createElement('div');
       init.className = 'wk-init';
-      init.textContent = displayName;
+      init.textContent = champKey;
       photo.appendChild(init);
     };
     photo.appendChild(img);
   } else {
     const init = document.createElement('div');
     init.className = 'wk-init';
-    init.textContent = displayName;
+    init.textContent = champKey;
     photo.appendChild(init);
   }
 
   inner.appendChild(photo);
 
-  // Footer: winner name always on top line
-  // Second line: "def. X" if belt changed hands, "carried over" if carryover, blank otherwise
+  // Footer: name only
   const foot = document.createElement('div');
   foot.className = 'wk-foot';
-  let footSub = '';
-  if (data.isNewReign && data.defeated && data.defeated.length) {
-    footSub = `def. ${normName(data.defeated[0])}`;
-  } else if (data.isCarryover) {
-    footSub = 'carried over';
-  }
-  foot.innerHTML = `<div class="wk-foot-name">${displayName}</div><div class="wk-foot-num">${footSub}</div>`;
+  foot.innerHTML = `<div class="wk-foot-name">${champKey}</div>`;
   inner.appendChild(foot);
 
-  // Tooltip
-  const tip = document.createElement('div');
-  tip.className = 'wk-tip';
-  const noteText = data.notes
-    ? data.notes.replace(/Merrick/g,'Mike').replace(/Mike V/g,'Mike').replace(/Murph/g,'Scott')
-    : '';
-  tip.innerHTML = `<div class="tip-wk">Week ${week}</div><div class="tip-name">${displayName}</div>${noteText ? `<div class="tip-detail">${noteText}</div>` : ''}`;
   cell.appendChild(inner);
-  cell.appendChild(tip);
-
-  inner.addEventListener('mouseenter', () => { tip.style.opacity='1'; tip.style.transform='translateX(-50%) translateY(0)'; });
-  inner.addEventListener('mouseleave', () => { tip.style.opacity='0'; tip.style.transform='translateX(-50%) translateY(4px)'; });
-  inner.addEventListener('click', () => {
-    const showing = tip.style.opacity === '1';
-    document.querySelectorAll('.wk-tip').forEach(t => { t.style.opacity='0'; t.style.transform='translateX(-50%) translateY(4px)'; });
-    if (!showing) { tip.style.opacity='1'; tip.style.transform='translateX(-50%) translateY(0)'; }
-  });
-
   return cell;
 }
 
@@ -1054,7 +907,7 @@ function buildLineage() {
     const block = document.createElement('div');
     block.className = 'lineage-season-block';
 
-    // Header — year only
+    // Header
     const header = document.createElement('div');
     header.className = 'lineage-season-header';
     const yrLabel = document.createElement('div');
@@ -1063,55 +916,19 @@ function buildLineage() {
     header.appendChild(yrLabel);
     block.appendChild(header);
 
-    const weeks = [];
+    // Single horizontal scrolling row
+    const scrollWrap = document.createElement('div');
+    scrollWrap.className = 'lineage-scroll';
+
+    const rowEl = document.createElement('div');
+    rowEl.className = 'lineage-week-grid';
+
     for (let w = 1; w <= totalWeeks; w++) {
-      if (weekMap[w]) weeks.push({ w, data: weekMap[w] });
+      if (weekMap[w]) rowEl.appendChild(makeWeekCell(w, weekMap[w]));
     }
 
-    const snakeWrap = document.createElement('div');
-    snakeWrap.className = 'snake-wrap';
-
-    const rows = [];
-    for (let i = 0; i < weeks.length; i += CELLS_PER_ROW) {
-      rows.push(weeks.slice(i, i + CELLS_PER_ROW));
-    }
-
-    rows.forEach((row, rowIdx) => {
-      const isRTL = rowIdx % 2 !== 0;
-      const wStart = row[0].w;
-      const wEnd = row[row.length - 1].w;
-
-      const rowWrap = document.createElement('div');
-      rowWrap.className = 'snake-row-wrap';
-
-      // Direction label
-      const label = document.createElement('div');
-      label.className = 'snake-row-label' + (isRTL ? ' rtl' : '');
-      label.innerHTML = isRTL
-        ? `<span class="arrow">←</span> W${wEnd} – W${wStart}`
-        : `W${wStart} – W${wEnd} <span class="arrow">→</span>`;
-      rowWrap.appendChild(label);
-
-      const rowEl = document.createElement('div');
-      rowEl.className = 'lineage-week-grid';
-      const cells = isRTL ? [...row].reverse() : row;
-      cells.forEach(({ w, data }) => rowEl.appendChild(makeWeekCell(w, data)));
-      rowWrap.appendChild(rowEl);
-      snakeWrap.appendChild(rowWrap);
-
-      // Bold snake turn bar
-      if (rowIdx < rows.length - 1) {
-        const turnBar = document.createElement('div');
-        const nextIsRTL = (rowIdx + 1) % 2 !== 0;
-        turnBar.className = 'snake-turn-bar ' + (isRTL ? 'turn-left' : 'turn-right');
-        const arrowChar = isRTL ? '↙' : '↘';
-        const dirText = nextIsRTL ? 'continues right to left' : 'continues left to right';
-        turnBar.innerHTML = `<span class="snake-turn-arrow">${arrowChar}</span><span class="snake-turn-text">${dirText}</span>`;
-        snakeWrap.appendChild(turnBar);
-      }
-    });
-
-    block.appendChild(snakeWrap);
+    scrollWrap.appendChild(rowEl);
+    block.appendChild(scrollWrap);
     container.appendChild(block);
   });
 }
