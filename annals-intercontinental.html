@@ -216,42 +216,44 @@
     }
     .fact-card-label {
       font-family: 'Barlow Condensed', sans-serif;
-      font-size: 0.72rem;
-      letter-spacing: 0.2em;
+      font-size: 0.85rem;
+      letter-spacing: 0.16em;
       text-transform: uppercase;
       color: var(--label);
-      margin-bottom: 8px;
+      margin-bottom: 10px;
+      border-bottom: 1px solid var(--border);
+      padding-bottom: 6px;
     }
     .fact-row {
       display: flex;
       align-items: baseline;
-      gap: 8px;
-      margin-bottom: 5px;
+      gap: 6px;
+      margin-bottom: 6px;
     }
     .fact-row:last-child { margin-bottom: 0; }
     .fact-rank {
       font-family: 'Bebas Neue', sans-serif;
-      font-size: 0.85rem;
-      color: var(--label);
-      min-width: 16px;
+      font-size: 1rem;
+      color: var(--muted);
+      min-width: 18px;
     }
     .fact-name {
       font-family: 'Barlow Condensed', sans-serif;
-      font-size: 0.88rem;
+      font-size: 1.05rem;
       font-weight: 700;
-      letter-spacing: 0.06em;
+      letter-spacing: 0.04em;
       color: var(--text);
       flex: 1;
     }
     .fact-val {
       font-family: 'Bebas Neue', sans-serif;
-      font-size: 1rem;
+      font-size: 1.2rem;
       color: var(--gold);
       white-space: nowrap;
     }
     .fact-sub {
       font-family: 'Barlow Condensed', sans-serif;
-      font-size: 0.72rem;
+      font-size: 0.82rem;
       color: var(--muted);
       white-space: nowrap;
     }
@@ -275,7 +277,7 @@
     .lineage-section { margin-bottom: 36px; }
 
     .lineage-season-block {
-      margin-bottom: 28px;
+      margin-bottom: 20px;
       background: var(--surface);
       border: 1px solid var(--border);
       border-radius: 8px;
@@ -298,7 +300,7 @@
     }
 
     .snake-wrap {
-      padding: 10px 10px 6px;
+      padding: 10px 10px 8px;
       display: flex;
       flex-direction: column;
       gap: 0;
@@ -311,54 +313,65 @@
     }
     .snake-row-label {
       font-family: 'Barlow Condensed', sans-serif;
-      font-size: 0.72rem;
-      letter-spacing: 0.14em;
+      font-size: 0.75rem;
+      letter-spacing: 0.12em;
       text-transform: uppercase;
       color: var(--muted);
-      margin-bottom: 3px;
+      margin-bottom: 4px;
       display: flex;
       align-items: center;
       gap: 4px;
     }
     .snake-row-label.rtl { justify-content: flex-end; }
-    .snake-row-label .arrow { font-size: 0.8rem; }
+    .snake-row-label .arrow { font-size: 0.85rem; }
 
     .lineage-week-grid {
       display: flex;
-      gap: 3px;
+      gap: 4px;
       flex-wrap: nowrap;
     }
 
-    /* Turn connector between rows */
-    .snake-turn {
-      height: 14px;
-      position: relative;
-      margin: 0 0;
+    /* Bold snake turn connector */
+    .snake-turn-bar {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      margin: 6px 0;
+      padding: 5px 10px;
+      background: var(--surface3);
+      border-radius: 4px;
+      border: 1px solid var(--border);
     }
-    .snake-turn-right {
-      border-right: 3px solid var(--border);
-      border-bottom: 3px solid var(--border);
-      border-bottom-right-radius: 8px;
-      margin-right: 0;
-      margin-left: auto;
-      width: 24px;
-      height: 14px;
+    .snake-turn-bar.turn-right { justify-content: flex-end; }
+    .snake-turn-bar.turn-left  { justify-content: flex-start; }
+    .snake-turn-text {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: 0.8rem;
+      font-weight: 700;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--label);
     }
-    .snake-turn-left {
-      border-left: 3px solid var(--border);
-      border-bottom: 3px solid var(--border);
-      border-bottom-left-radius: 8px;
-      margin-left: 0;
-      margin-right: auto;
-      width: 24px;
-      height: 14px;
+    .snake-turn-arrow {
+      font-size: 1.1rem;
+      color: var(--gold);
+      line-height: 1;
     }
 
-    /* each week cell */
+    /* each week cell — desktop 56px, mobile fills 5-across */
     .wk-cell {
       position: relative;
       flex-shrink: 0;
-      width: 44px;
+      width: 56px;
+    }
+    @media (max-width: 480px) {
+      .wk-cell {
+        /* 5 cells across: (100% - padding 20px - gaps 4*4px) / 5 */
+        width: calc((100vw - 20px - 16px) / 5);
+        min-width: 0;
+      }
+      .snake-wrap { padding: 8px 0 6px; }
+      .lineage-week-grid { gap: 3px; }
     }
 
     .wk-inner {
@@ -366,12 +379,13 @@
       overflow: hidden;
       border: 1px solid var(--border);
       background: var(--surface2);
-      transition: border-color 0.12s, transform 0.12s;
+      transition: border-color 0.12s;
+      cursor: pointer;
     }
     .wk-inner.is-champ {
       border-color: var(--gold);
-      background: rgba(201,168,76,0.08);
-      box-shadow: 0 0 8px rgba(201,168,76,0.25);
+      background: rgba(201,168,76,0.1);
+      box-shadow: 0 0 8px rgba(201,168,76,0.3);
     }
     .wk-inner.new-reign {
       border-color: var(--red);
@@ -382,8 +396,8 @@
     }
 
     .wk-photo {
-      width: 44px;
-      height: 44px;
+      width: 100%;
+      aspect-ratio: 1;
       background: var(--surface3);
       display: flex;
       align-items: center;
@@ -399,41 +413,42 @@
     }
     .wk-photo .wk-init {
       font-family: 'Bebas Neue', sans-serif;
-      font-size: 0.72rem;
+      font-size: 0.8rem;
       color: var(--muted);
       text-align: center;
       padding: 0 2px;
       letter-spacing: 0.03em;
     }
 
-    /* Week number badge — top left */
+    /* Week number badge — top left, always shown */
     .wk-badge {
       position: absolute;
       top: 2px;
       left: 2px;
       font-family: 'Barlow Condensed', sans-serif;
-      font-size: 0.55rem;
+      font-size: 0.6rem;
       font-weight: 700;
       color: #fff;
-      background: rgba(0,0,0,0.55);
+      background: rgba(0,0,0,0.6);
       border-radius: 2px;
-      padding: 0 2px;
-      line-height: 1.4;
+      padding: 1px 3px;
+      line-height: 1.3;
       z-index: 2;
-      letter-spacing: 0.03em;
+      letter-spacing: 0.02em;
     }
 
     /* Gold star for season champ — top right */
     .wk-inner.is-champ .wk-photo::after {
       content: '★';
       position: absolute;
-      top: 1px;
-      right: 2px;
-      font-size: 0.65rem;
+      top: 2px;
+      right: 3px;
+      font-size: 0.7rem;
       color: var(--gold);
       text-shadow: 0 0 4px #000;
       z-index: 2;
     }
+    /* Red bar for new reign — top edge */
     .wk-inner.new-reign .wk-photo::before {
       content: '';
       position: absolute;
@@ -444,12 +459,9 @@
       background: var(--red);
       z-index: 1;
     }
-    .wk-inner.is-champ.new-reign .wk-photo::before {
-      background: var(--red);
-    }
 
     .wk-foot {
-      padding: 2px 2px 3px;
+      padding: 3px 3px 4px;
       text-align: center;
       background: var(--surface);
       border-top: 1px solid var(--border);
@@ -459,9 +471,9 @@
     }
     .wk-foot-name {
       font-family: 'Barlow Condensed', sans-serif;
-      font-size: 0.6rem;
+      font-size: 0.65rem;
       font-weight: 700;
-      letter-spacing: 0.04em;
+      letter-spacing: 0.03em;
       text-transform: uppercase;
       color: var(--text);
       white-space: nowrap;
@@ -471,8 +483,11 @@
     .wk-inner.is-champ .wk-foot-name { color: var(--gold); }
     .wk-foot-num {
       font-family: 'Barlow Condensed', sans-serif;
-      font-size: 0.62rem;
+      font-size: 0.6rem;
       color: var(--label);
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
     }
 
     /* tooltip */
@@ -909,7 +924,7 @@ const CAREER = [
 
 const SEASONS = [2019,2020,2021,2022,2023,2024,2025];
 const SEASON_WEEKS = {2019:13, 2020:13, 2021:14, 2022:14, 2023:14, 2024:14, 2025:14};
-const CELLS_PER_ROW = 7;
+const CELLS_PER_ROW = 5;
 
 function buildWeekMap(yr) {
   const totalWeeks = SEASON_WEEKS[yr];
@@ -941,6 +956,15 @@ function buildWeekMap(yr) {
   return weekMap;
 }
 
+function normName(n) {
+  if (!n) return n;
+  if (n === 'Merrick' || n === 'Mike V') return 'Mike';
+  if (n === 'Michelle') return 'Meesh';
+  if (n === 'Tim C') return 'Timbē';
+  if (n === 'Murph') return 'Scott';
+  return n;
+}
+
 function makeWeekCell(week, data) {
   const cell = document.createElement('div');
   cell.className = 'wk-cell';
@@ -955,21 +979,17 @@ function makeWeekCell(week, data) {
   const photo = document.createElement('div');
   photo.className = 'wk-photo';
 
-  // Normalize Mike V / Mike -> Mike (active owner with photo)
-  let champKey = data.champ;
-  if (champKey === 'Mike V') champKey = 'Mike';
+  const champKey = normName(data.champ);
+  const displayName = champKey;
 
-  const displayName = champKey === 'Michelle' ? 'Meesh' :
-                      champKey === 'Tim C' ? 'Timbē' :
-                      champKey;
-
-  // Week number badge
+  // Week number badge — always shown top-left
   const badge = document.createElement('div');
   badge.className = 'wk-badge';
   badge.textContent = `W${week}`;
   photo.appendChild(badge);
 
-  const photoSrc = PHOTOS[champKey];
+  // Owner photo or initials fallback
+  const photoSrc = PHOTOS[data.champ] || PHOTOS[champKey];
   if (photoSrc) {
     const img = document.createElement('img');
     img.src = photoSrc;
@@ -991,14 +1011,15 @@ function makeWeekCell(week, data) {
 
   inner.appendChild(photo);
 
+  // Footer: winner name always on top line
+  // Second line: "def. X" if belt changed hands, "carried over" if carryover, blank otherwise
   const foot = document.createElement('div');
   foot.className = 'wk-foot';
-  // Always show "def. X" for new reigns, otherwise show week num
-  let footSub = `W${week}`;
+  let footSub = '';
   if (data.isNewReign && data.defeated && data.defeated.length) {
-    // Normalize defeated names too
-    const defeatedName = data.defeated[0] === 'Merrick' ? 'Mike' : data.defeated[0];
-    footSub = `def. ${defeatedName}`;
+    footSub = `def. ${normName(data.defeated[0])}`;
+  } else if (data.isCarryover) {
+    footSub = 'carried over';
   }
   foot.innerHTML = `<div class="wk-foot-name">${displayName}</div><div class="wk-foot-num">${footSub}</div>`;
   inner.appendChild(foot);
@@ -1006,20 +1027,15 @@ function makeWeekCell(week, data) {
   // Tooltip
   const tip = document.createElement('div');
   tip.className = 'wk-tip';
-  const noteText = data.notes ? data.notes.replace(/Merrick/g, 'Mike') : '';
+  const noteText = data.notes
+    ? data.notes.replace(/Merrick/g,'Mike').replace(/Mike V/g,'Mike').replace(/Murph/g,'Scott')
+    : '';
   tip.innerHTML = `<div class="tip-wk">Week ${week}</div><div class="tip-name">${displayName}</div>${noteText ? `<div class="tip-detail">${noteText}</div>` : ''}`;
   cell.appendChild(inner);
   cell.appendChild(tip);
 
-  // Tooltip interaction
-  inner.addEventListener('mouseenter', () => {
-    tip.style.opacity = '1';
-    tip.style.transform = 'translateX(-50%) translateY(0)';
-  });
-  inner.addEventListener('mouseleave', () => {
-    tip.style.opacity = '0';
-    tip.style.transform = 'translateX(-50%) translateY(4px)';
-  });
+  inner.addEventListener('mouseenter', () => { tip.style.opacity='1'; tip.style.transform='translateX(-50%) translateY(0)'; });
+  inner.addEventListener('mouseleave', () => { tip.style.opacity='0'; tip.style.transform='translateX(-50%) translateY(4px)'; });
   inner.addEventListener('click', () => {
     const showing = tip.style.opacity === '1';
     document.querySelectorAll('.wk-tip').forEach(t => { t.style.opacity='0'; t.style.transform='translateX(-50%) translateY(4px)'; });
@@ -1038,7 +1054,7 @@ function buildLineage() {
     const block = document.createElement('div');
     block.className = 'lineage-season-block';
 
-    // Header — just year
+    // Header — year only
     const header = document.createElement('div');
     header.className = 'lineage-season-header';
     const yrLabel = document.createElement('div');
@@ -1047,13 +1063,11 @@ function buildLineage() {
     header.appendChild(yrLabel);
     block.appendChild(header);
 
-    // Build weeks list
     const weeks = [];
     for (let w = 1; w <= totalWeeks; w++) {
       if (weekMap[w]) weeks.push({ w, data: weekMap[w] });
     }
 
-    // Snake grid
     const snakeWrap = document.createElement('div');
     snakeWrap.className = 'snake-wrap';
 
@@ -1067,18 +1081,15 @@ function buildLineage() {
       const wStart = row[0].w;
       const wEnd = row[row.length - 1].w;
 
-      // Row wrap with direction label
       const rowWrap = document.createElement('div');
       rowWrap.className = 'snake-row-wrap';
 
       // Direction label
       const label = document.createElement('div');
       label.className = 'snake-row-label' + (isRTL ? ' rtl' : '');
-      if (isRTL) {
-        label.innerHTML = `<span class="arrow">←</span> W${wEnd}–W${wStart}`;
-      } else {
-        label.innerHTML = `W${wStart}–W${wEnd} <span class="arrow">→</span>`;
-      }
+      label.innerHTML = isRTL
+        ? `<span class="arrow">←</span> W${wEnd} – W${wStart}`
+        : `W${wStart} – W${wEnd} <span class="arrow">→</span>`;
       rowWrap.appendChild(label);
 
       const rowEl = document.createElement('div');
@@ -1088,14 +1099,15 @@ function buildLineage() {
       rowWrap.appendChild(rowEl);
       snakeWrap.appendChild(rowWrap);
 
-      // Turn connector
+      // Bold snake turn bar
       if (rowIdx < rows.length - 1) {
-        const turn = document.createElement('div');
-        turn.className = 'snake-turn';
-        const turnInner = document.createElement('div');
-        turnInner.className = isRTL ? 'snake-turn-left' : 'snake-turn-right';
-        turn.appendChild(turnInner);
-        snakeWrap.appendChild(turn);
+        const turnBar = document.createElement('div');
+        const nextIsRTL = (rowIdx + 1) % 2 !== 0;
+        turnBar.className = 'snake-turn-bar ' + (isRTL ? 'turn-left' : 'turn-right');
+        const arrowChar = isRTL ? '↙' : '↘';
+        const dirText = nextIsRTL ? 'continues right to left' : 'continues left to right';
+        turnBar.innerHTML = `<span class="snake-turn-arrow">${arrowChar}</span><span class="snake-turn-text">${dirText}</span>`;
+        snakeWrap.appendChild(turnBar);
       }
     });
 
