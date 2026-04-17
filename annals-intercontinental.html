@@ -505,7 +505,24 @@
     }
     .stats-tbl tr:last-child td { border-bottom: none; }
     .stats-tbl tr:hover td { background: var(--surface2); }
-    .s-rank { color: var(--label); font-size: 0.78rem; font-weight: 700; text-align: center; width: 24px; }
+    .stats-tbl th.s-rank,
+    .stats-tbl td.s-rank {
+      position: sticky;
+      left: 0;
+      z-index: 2;
+      background: var(--surface2);
+    }
+    .stats-tbl td.s-rank { background: var(--surface); }
+    .stats-tbl tr:hover td.s-rank { background: var(--surface2); }
+    .stats-tbl th.s-owner-col,
+    .stats-tbl td.s-owner-col {
+      position: sticky;
+      left: 36px;
+      z-index: 2;
+      background: var(--surface2);
+      border-right: 1px solid var(--border);
+    }
+    .s-rank { color: var(--label); font-size: 0.78rem; font-weight: 700; text-align: center; width: 36px; }
     .s-owner { color: var(--text); }
     .s-owner a { color: var(--text); text-decoration: none; }
     .s-owner a:hover { color: var(--gold); }
@@ -691,7 +708,7 @@
         <thead>
           <tr>
             <th class="s-rank">#</th>
-            <th onclick="sortBy('name')">Owner</th>
+            <th class="s-owner-col" onclick="sortBy('name')">Owner</th>
             <th onclick="sortBy('reigns')" class="sorted sort-desc">Reigns</th>
             <th onclick="sortBy('weeks')">Wins / Weeks</th>
             <th onclick="sortBy('losses')">Losses</th>
@@ -983,7 +1000,7 @@ function renderStats() {
     const lHtml  = o.losses>0 ? `<td class="s-ctr">${o.losses}</td>` : `<td class="s-zero">0</td>`;
     return `<tr>
       <td class="s-rank">${i+1}</td>
-      <td class="s-owner${activeClass}">${nameHtml}${dot}</td>
+      <td class="s-owner s-owner-col${activeClass}">${nameHtml}${dot}</td>
       ${rHtml}${wkHtml}${lHtml}
       <td>${fmtPct(o.wins,o.losses)}</td>
     </tr>`;
