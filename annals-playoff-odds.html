@@ -319,6 +319,15 @@
       text-align: center;
       font-weight: 700;
       background: var(--bg);
+      position: sticky;
+      top: 0;
+      z-index: 3;
+    }
+
+    /* top-left corner cell: sticky both axes */
+    .matrix-table th.wins-header {
+      left: 0;
+      z-index: 4;
     }
 
     .matrix-wrapper {
@@ -392,6 +401,9 @@
       font-size: 0.82rem !important;
       color: var(--label) !important;
       background: var(--bg) !important;
+      position: sticky;
+      left: 0;
+      z-index: 2;
     }
 
     @keyframes cellReveal {
