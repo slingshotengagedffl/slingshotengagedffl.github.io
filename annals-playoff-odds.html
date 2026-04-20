@@ -121,7 +121,7 @@
 
     .sim-label {
       font-family: 'Barlow', sans-serif;
-      font-size: 1rem;
+      font-size: 2rem;
       color: var(--label);
       margin-bottom: 16px;
       text-align: center;
@@ -203,7 +203,7 @@
       border-top: 1px solid var(--border);
       padding-top: 20px;
       text-align: center;
-      height: 175px;
+      height: 220px;
       display: flex;
       flex-direction: column;
       align-items: center;
@@ -221,16 +221,13 @@
 
     .result-flavor {
       font-family: 'Barlow Condensed', sans-serif;
-      font-size: 1rem;
-      letter-spacing: 0.08em;
+      font-size: 1.5rem;
+      letter-spacing: 0.06em;
       text-transform: uppercase;
       color: var(--label);
-      max-width: 400px;
-      height: 2.2em;
-      line-height: 1.1;
-      display: flex;
-      align-items: center;
-      justify-content: center;
+      max-width: 500px;
+      line-height: 1.2;
+      text-align: center;
     }
 
     .result-impossible {
@@ -281,12 +278,13 @@
 
     .matrix-label {
       font-family: 'Barlow Condensed', sans-serif;
-      font-size: 0.92rem;
-      letter-spacing: 0.25em;
+      font-size: 1.38rem;
+      letter-spacing: 0.2em;
       text-transform: uppercase;
       color: var(--label);
       margin-bottom: 14px;
       text-align: center;
+      line-height: 1.5;
     }
 
     .matrix-scroll-wrap {
@@ -311,11 +309,11 @@
 
     .matrix-table th {
       font-family: 'Barlow Condensed', sans-serif;
-      font-size: 0.78rem;
+      font-size: 1.17rem;
       letter-spacing: 0.1em;
       text-transform: uppercase;
       color: var(--label);
-      padding: 4px 2px;
+      padding: 4px 4px;
       text-align: center;
       font-weight: 700;
       background: var(--bg);
@@ -345,7 +343,7 @@
 
     .axis-wins span {
       font-family: 'Barlow Condensed', sans-serif;
-      font-size: 0.9rem;
+      font-size: 1.35rem;
       letter-spacing: 0.2em;
       text-transform: uppercase;
       color: var(--label);
@@ -355,7 +353,7 @@
 
     .axis-losses {
       font-family: 'Barlow Condensed', sans-serif;
-      font-size: 0.9rem;
+      font-size: 1.35rem;
       letter-spacing: 0.2em;
       text-transform: uppercase;
       color: var(--label);
@@ -364,10 +362,10 @@
     }
 
     .matrix-table td {
-      width: 36px;
-      height: 28px;
+      width: 44px;
+      height: 34px;
       text-align: center;
-      font-size: 0.78rem;
+      font-size: 1.17rem;
       font-weight: 700;
       letter-spacing: 0.02em;
       border: 1px solid transparent;
@@ -390,7 +388,7 @@
     .matrix-table td.no-data {
       background: #161616;
       color: #666;
-      font-size: 0.78rem;
+      font-size: 1.17rem;
       opacity: 1;
       border: 1px solid #3a3a3a !important;
     }
@@ -398,7 +396,7 @@
     .wins-header {
       text-align: right !important;
       padding-right: 10px !important;
-      font-size: 0.82rem !important;
+      font-size: 1.23rem !important;
       color: var(--label) !important;
       background: var(--bg) !important;
       position: sticky;
@@ -443,14 +441,12 @@
 <div class="content">
 
   <p class="intro">
-    Ancient oracles spoke in riddles. The Playoff Odds Oracle — the POO — doesn't. It speaks in percentages.
-    Enter your record below and let history render its verdict — <strong>how often has a team standing exactly where you stand made the playoffs?</strong>
-    Consult The POO. It has seen things.
+    Ancient oracles spoke in riddles. The Playoff Odds Oracle — the POO — speaks in percentages. Enter your record below and let history render its verdict — <strong>how often has a team standing exactly where you stand made the playoffs?</strong> Consult The POO. It has seen things.
   </p>
 
   <!-- SIMULATOR -->
   <div class="simulator">
-    <div class="sim-label">Where do you stand?</div>
+    <div class="sim-label">Consult the Oracle</div>
     <div class="sim-inputs">
       <div class="sim-field">
         <div class="sim-field-label">Wins</div>
@@ -482,7 +478,7 @@
 
   <!-- MATRIX -->
   <div class="matrix-section">
-    <div class="matrix-label">Historical Playoff Odds Matrix — Updated Through 2025</div>
+    <div class="matrix-label">Historical Playoff Odds Matrix<br><span style="font-size:0.75em; letter-spacing:0.2em;">Updated Through 2025</span></div>
     <div class="matrix-wrapper">
       <div class="axis-wins"><span>Wins</span></div>
       <div style="flex:1; min-width:0;">
@@ -757,18 +753,18 @@
 
   function flavorText(pct, state) {
     if (state === 'impossible') return "That record isn't possible in a 14-week season.";
-    if (pct === 100) return "Inevitable. History has never seen this record miss.";
-    if (pct >= 91)   return "As close to a lock as this league allows. Sleep easy.";
-    if (pct >= 81)   return "You're in the driver's seat. The D***y is within reach.";
-    if (pct >= 71)   return "Odds are firmly in your favor. Finish the job.";
-    if (pct >= 61)   return "More likely in than out. Don't get comfortable.";
-    if (pct >= 51)   return "Coin flip territory — but the coin is tilted your way.";
-    if (pct >= 41)   return "It's a toss-up. You'll need a strong finish.";
-    if (pct >= 31)   return "Uphill battle. It's been done, but not often.";
-    if (pct >= 21)   return "Longshot. The Hottest Team in Sports Bowl might be your season now.";
-    if (pct >= 11)   return "It's not zero. That's literally all we've got.";
-    if (pct > 0)     return "Start mentally preparing for the Bronze Franz.";
-    return "Pack it up. History has never seen this record make it.";
+    if (pct === 100) return "The fates have already written your name among the chosen. Do not squander what the gods have granted.";
+    if (pct >= 91)   return "The path to glory lies open before you. Only your own hand may close it.";
+    if (pct >= 81)   return "Victory favors you, though the thread is not yet cut. Hold your course.";
+    if (pct >= 71)   return "The omens bend in your favor. Yet hubris has felled greater champions than you.";
+    if (pct >= 61)   return "More likely than not, the laurels await. But the oracle does not promise — it reveals.";
+    if (pct >= 51)   return "The scales tip toward you, though a feather's weight could shift them. Press on.";
+    if (pct >= 41)   return "You stand at the crossroads. The oracle sees both roads well-traveled.";
+    if (pct >= 31)   return "The climb is steep. Others have reached the summit from here — but few.";
+    if (pct >= 21)   return "The oracle sees a long road yet to travel, and fewer travelers who complete it.";
+    if (pct >= 11)   return "The gods are not cruel. But neither are they kind to those who linger here.";
+    if (pct > 0)     return "The oracle speaks softly here. What it says, you do not wish to hear.";
+    return "The oracle has turned away. The answer is already known.";
   }
 
   const resultCount = document.getElementById('resultCount');
