@@ -462,7 +462,7 @@
       padding: 8px 12px;
       border-bottom: 1px solid var(--border);
       font-family: 'Barlow Condensed', sans-serif;
-      font-size: 0.9rem;
+      font-size: 1.05rem;
       vertical-align: middle;
     }
     .stats-tbl tr:last-child td { border-bottom: none; }
@@ -749,18 +749,18 @@ const CAREER = [
   {key:'Wade',    name:'Wade',    active:true,  reigns:5, wins:6,  losses:8,  weeks:6,  sc:false},
   {key:'Kyle',    name:'Kyle',    active:true,  reigns:3, wins:10, losses:7,  weeks:10, sc:true},
   {key:'Dylan',   name:'Dylan',   active:true,  reigns:4, wins:8,  losses:5,  weeks:8,  sc:true},
-  {key:'Mike',    name:'Mike',    active:true,  reigns:4, wins:8,  losses:7,  weeks:8,  sc:false},
+  {key:'Mike',    name:'Mike M',  active:true,  reigns:4, wins:8,  losses:7,  weeks:8,  sc:false},
   {key:'Matt',    name:'Matt',    active:true,  reigns:3, wins:8,  losses:6,  weeks:8,  sc:false},
-  {key:'Tim',     name:'Tim',     active:true,  reigns:3, wins:6,  losses:5,  weeks:6,  sc:true},
+  {key:'Tim',     name:'Tim H',   active:true,  reigns:3, wins:6,  losses:5,  weeks:6,  sc:true},
   {key:'Andy',    name:'Andy',    active:true,  reigns:3, wins:5,  losses:5,  weeks:5,  sc:true},
   {key:'Jordan',  name:'Jordan',  active:true,  reigns:1, wins:1,  losses:6,  weeks:1,  sc:false},
   {key:'Daniel',  name:'Daniel',  active:true,  reigns:2, wins:2,  losses:5,  weeks:2,  sc:false},
   {key:'Brian',   name:'Brian',   active:true,  reigns:1, wins:2,  losses:6,  weeks:2,  sc:false},
   {key:'Scott',   name:'Scott',   active:true,  reigns:0, wins:0,  losses:7,  weeks:0,  sc:false},
   {key:'Luke',    name:'Luke',    active:true,  reigns:0, wins:0,  losses:0,  weeks:0,  sc:false},
-  {key:'Michelle',name:'Michelle',active:false, reigns:1, wins:1,  losses:1,  weeks:1,  sc:false},
-  {key:'Mike V',  name:'Mike V',  active:false, reigns:2, wins:4,  losses:2,  weeks:4,  sc:false},
-  {key:'Tim C',   name:'Timbē',   active:false, reigns:1, wins:3,  losses:2,  weeks:3,  sc:false},
+  {key:'Michelle',name:'Michelle C',active:false, reigns:1, wins:1,  losses:1,  weeks:1,  sc:false},
+  {key:'Mike V',  name:'Mike V',    active:false, reigns:2, wins:4,  losses:2,  weeks:4,  sc:false},
+  {key:'Tim C',   name:'Tim C',     active:false, reigns:1, wins:3,  losses:2,  weeks:3,  sc:false},
   {key:'Jon',     name:'Jon',     active:false, reigns:2, wins:2,  losses:4,  weeks:2,  sc:false},
 ];
 
@@ -799,9 +799,11 @@ function buildWeekMap(yr) {
 
 function normName(n) {
   if (!n) return n;
-  if (n === 'Merrick' || n === 'Mike V') return 'Mike';
-  if (n === 'Michelle') return 'Meesh';
-  if (n === 'Tim C') return 'Timbē';
+  if (n === 'Merrick' || n === 'Mike') return 'Mike M';
+  if (n === 'Mike V') return 'Mike V';
+  if (n === 'Michelle') return 'Michelle C';
+  if (n === 'Tim C') return 'Tim C';
+  if (n === 'Tim') return 'Tim H';
   if (n === 'Murph') return 'Scott';
   return n;
 }
