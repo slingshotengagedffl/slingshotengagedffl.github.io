@@ -148,15 +148,15 @@
     }
     .hero-season-note {
       font-family: 'Barlow Condensed', sans-serif;
-      font-size: 0.78rem;
+      font-size: 0.92rem;
       letter-spacing: 0.12em;
       text-transform: uppercase;
-      color: var(--muted);
+      color: var(--label);
       margin-bottom: 14px;
     }
     .hero-sublabel {
       font-family: 'Barlow Condensed', sans-serif;
-      font-size: 0.78rem;
+      font-size: 0.92rem;
       letter-spacing: 0.18em;
       text-transform: uppercase;
       color: var(--label);
@@ -177,7 +177,7 @@
     }
     .hero-stat-label {
       font-family: 'Barlow Condensed', sans-serif;
-      font-size: 0.82rem;
+      font-size: 0.92rem;
       letter-spacing: 0.14em;
       text-transform: uppercase;
       color: var(--label);
@@ -202,11 +202,8 @@
     }
     .facts-grid {
       display: grid;
-      grid-template-columns: 1fr 1fr;
+      grid-template-columns: 1fr;
       gap: 10px;
-    }
-    @media (max-width: 480px) {
-      .facts-grid { grid-template-columns: 1fr; }
     }
     .fact-card {
       background: var(--surface);
@@ -216,42 +213,45 @@
     }
     .fact-card-label {
       font-family: 'Barlow Condensed', sans-serif;
-      font-size: 0.72rem;
-      letter-spacing: 0.2em;
+      font-size: 0.85rem;
+      letter-spacing: 0.16em;
       text-transform: uppercase;
       color: var(--label);
-      margin-bottom: 8px;
+      margin-bottom: 10px;
+      border-bottom: 1px solid var(--border);
+      padding-bottom: 6px;
     }
     .fact-row {
       display: flex;
       align-items: baseline;
-      gap: 8px;
-      margin-bottom: 5px;
+      gap: 10px;
+      margin-bottom: 7px;
     }
     .fact-row:last-child { margin-bottom: 0; }
     .fact-rank {
       font-family: 'Bebas Neue', sans-serif;
-      font-size: 0.85rem;
-      color: var(--label);
-      min-width: 16px;
+      font-size: 1rem;
+      color: var(--muted);
+      min-width: 18px;
+      flex-shrink: 0;
     }
     .fact-name {
       font-family: 'Barlow Condensed', sans-serif;
-      font-size: 0.88rem;
+      font-size: 1.1rem;
       font-weight: 700;
-      letter-spacing: 0.06em;
+      letter-spacing: 0.04em;
       color: var(--text);
-      flex: 1;
     }
     .fact-val {
       font-family: 'Bebas Neue', sans-serif;
-      font-size: 1rem;
+      font-size: 1.2rem;
       color: var(--gold);
       white-space: nowrap;
+      margin-left: auto;
     }
     .fact-sub {
       font-family: 'Barlow Condensed', sans-serif;
-      font-size: 0.72rem;
+      font-size: 0.85rem;
       color: var(--muted);
       white-space: nowrap;
     }
@@ -274,8 +274,27 @@
     /* ── LINEAGE ── */
     .lineage-section { margin-bottom: 36px; }
 
-    /* ── LINEAGE ── */
-    .lineage-section { margin-bottom: 36px; }
+    .lineage-legend {
+      display: flex;
+      gap: 16px;
+      margin-bottom: 12px;
+      flex-wrap: wrap;
+    }
+    .leg-item {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: 0.82rem;
+      letter-spacing: 0.13em;
+      text-transform: uppercase;
+      color: var(--label);
+    }
+    .leg-swatch {
+      width: 14px; height: 14px; border-radius: 2px; flex-shrink: 0;
+    }
+    .leg-swatch.gold { background: rgba(201,168,76,0.15); border: 2px solid var(--gold); }
+    .leg-swatch.new-reign { background: var(--surface2); border: 2px solid var(--red-bright); }
 
     .lineage-grid {
       display: grid;
@@ -283,25 +302,23 @@
       gap: 4px;
     }
 
-    /* each week cell */
-    .wk-cell {
-      min-width: 0;
-    }
+    .wk-cell { min-width: 0; }
+
     .wk-inner {
       border-radius: 4px;
       overflow: hidden;
-      border: 1px solid var(--border);
+      border: 2px solid var(--border);
       background: var(--surface2);
     }
     .wk-inner.is-champ {
       border-color: var(--gold);
-      background: rgba(201,168,76,0.1);
-      box-shadow: 0 0 8px rgba(201,168,76,0.3);
+      background: rgba(201,168,76,0.12);
+      box-shadow: 0 0 10px rgba(201,168,76,0.35);
     }
-    .wk-inner.new-reign { border-color: var(--red); }
+    .wk-inner.new-reign { border-color: var(--red-bright); }
     .wk-inner.is-champ.new-reign {
       border-color: var(--gold);
-      border-top-color: var(--red);
+      border-top-color: var(--red-bright);
     }
 
     .wk-photo {
@@ -334,10 +351,10 @@
       top: 2px;
       left: 2px;
       font-family: 'Barlow Condensed', sans-serif;
-      font-size: 0.62rem;
+      font-size: 0.72rem;
       font-weight: 700;
       color: #fff;
-      background: rgba(0,0,0,0.65);
+      background: rgba(0,0,0,0.7);
       border-radius: 2px;
       padding: 1px 3px;
       line-height: 1.3;
@@ -361,8 +378,8 @@
       content: '';
       position: absolute;
       top: 0; left: 0; right: 0;
-      height: 3px;
-      background: var(--red);
+      height: 4px;
+      background: var(--red-bright);
       z-index: 1;
     }
 
@@ -385,29 +402,6 @@
       text-overflow: ellipsis;
     }
     .wk-inner.is-champ .wk-foot-name { color: var(--gold); }
-
-
-    .lineage-legend {
-      display: flex;
-      gap: 16px;
-      margin-top: 10px;
-      flex-wrap: wrap;
-    }
-    .leg-item {
-      display: flex;
-      align-items: center;
-      gap: 6px;
-      font-family: 'Barlow Condensed', sans-serif;
-      font-size: 0.68rem;
-      letter-spacing: 0.13em;
-      text-transform: uppercase;
-      color: var(--label);
-    }
-    .leg-swatch {
-      width: 12px; height: 12px; border-radius: 2px;
-    }
-    .leg-swatch.gold { background: rgba(201,168,76,0.2); border: 1px solid var(--gold); }
-    .leg-swatch.new-reign { background: var(--surface2); border: 1px solid var(--red); }
 
     /* ── CAREER STATS ── */
     .stats-section { margin-bottom: 36px; }
@@ -473,22 +467,32 @@
     }
     .stats-tbl tr:last-child td { border-bottom: none; }
     .stats-tbl tr:hover td { background: var(--surface2); }
-    .s-rank { color: var(--label); font-size: 0.78rem; font-weight: 700; text-align: center; width: 24px; }
+    .s-rank { color: var(--label); font-size: 0.78rem; font-weight: 700; text-align: center; width: 36px; }
+    .stats-tbl th.s-rank,
+    .stats-tbl td.s-rank {
+      position: sticky;
+      left: 0;
+      z-index: 2;
+      background: var(--surface2);
+    }
+    .stats-tbl td.s-rank { background: var(--surface); }
+    .stats-tbl tr:hover td.s-rank { background: var(--surface2); }
+    .stats-tbl th.s-owner-col,
+    .stats-tbl td.s-owner-col {
+      position: sticky;
+      left: 36px;
+      z-index: 2;
+      background: var(--surface2);
+      border-right: 1px solid var(--border);
+    }
+    .stats-tbl td.s-owner-col { background: var(--surface); }
+    .stats-tbl tr:hover td.s-owner-col { background: var(--surface2); }
     .s-owner { color: var(--text); }
     .s-owner a { color: var(--text); text-decoration: none; }
     .s-owner a:hover { color: var(--gold); }
     .s-owner.active { border-left: 2px solid var(--gold); padding-left: 10px; }
     .s-ctr { text-align: center; }
     .s-zero { text-align: center; color: var(--muted); }
-    .s-champ-dot {
-      display: inline-block;
-      width: 6px; height: 6px;
-      border-radius: 50%;
-      background: var(--gold);
-      margin-left: 5px;
-      vertical-align: middle;
-      margin-bottom: 1px;
-    }
   </style>
 </head>
 <body>
@@ -640,11 +644,11 @@
   <!-- ── BELT LINEAGE ── -->
   <div class="lineage-section">
     <div class="section-title">Belt Lineage</div>
-    <div id="lineageContainer" class="lineage-grid"></div>
     <div class="lineage-legend">
       <div class="leg-item"><div class="leg-swatch gold"></div> Season Champion</div>
       <div class="leg-item"><div class="leg-swatch new-reign"></div> Belt changed hands</div>
     </div>
+    <div id="lineageContainer" class="lineage-grid"></div>
   </div>
 
   <!-- ── CAREER STATS ── -->
@@ -659,7 +663,7 @@
         <thead>
           <tr>
             <th class="s-rank">#</th>
-            <th onclick="sortBy('name')">Owner</th>
+            <th class="s-owner-col" onclick="sortBy('name')">Owner</th>
             <th onclick="sortBy('reigns')" class="sorted sort-desc">Reigns</th>
             <th onclick="sortBy('weeks')">Wins / Weeks</th>
             <th onclick="sortBy('losses')">Losses</th>
@@ -758,15 +762,6 @@ const CAREER = [
   {key:'Mike V',  name:'Mike V',  active:false, reigns:2, wins:4,  losses:2,  weeks:4,  sc:false},
   {key:'Tim C',   name:'Timbē',   active:false, reigns:1, wins:3,  losses:2,  weeks:3,  sc:false},
   {key:'Jon',     name:'Jon',     active:false, reigns:2, wins:2,  losses:4,  weeks:2,  sc:false},
-  {key:'Anthony Monaco', name:'Anthony Monaco', active:false, reigns:0, wins:0, losses:1, weeks:0, sc:false},
-  {key:'Alex McGrew',    name:'Alex McGrew',    active:false, reigns:0, wins:0, losses:0, weeks:0, sc:false},
-  {key:'Anthony Brown',  name:'Anthony Brown',  active:false, reigns:0, wins:0, losses:0, weeks:0, sc:false},
-  {key:'Christine Boluda', name:'Christine Boluda', active:false, reigns:0, wins:0, losses:0, weeks:0, sc:false},
-  {key:'James Trueblood', name:'James Trueblood', active:false, reigns:0, wins:0, losses:0, weeks:0, sc:false},
-  {key:'Michelle Trueblood', name:'Michelle Trueblood', active:false, reigns:0, wins:0, losses:0, weeks:0, sc:false},
-  {key:'Pauly Rodney',   name:'Pauly Rodney',   active:false, reigns:0, wins:0, losses:0, weeks:0, sc:false},
-  {key:'Taylor Ely',     name:'Taylor Ely',     active:false, reigns:0, wins:0, losses:0, weeks:0, sc:false},
-  {key:'Tyler Trueblood', name:'Tyler Trueblood', active:false, reigns:0, wins:0, losses:0, weeks:0, sc:false},
 ];
 
 
@@ -826,7 +821,7 @@ function makeWeekCell(week, year, data) {
 
   const champKey = normName(data.champ);
 
-  // Year/week badge — e.g. '19 Wk 1
+  // Year/week badge
   const badge = document.createElement('div');
   badge.className = 'wk-badge';
   badge.textContent = `'${String(year).slice(2)} W${week}`;
@@ -855,7 +850,6 @@ function makeWeekCell(week, year, data) {
 
   inner.appendChild(photo);
 
-  // Footer: name only
   const foot = document.createElement('div');
   foot.className = 'wk-foot';
   foot.innerHTML = `<div class="wk-foot-name">${champKey}</div>`;
@@ -920,14 +914,13 @@ function renderStats() {
   document.getElementById('statsBody').innerHTML = data.map((o,i) => {
     const link = PROFILE_LINKS[o.key];
     const nameHtml = link ? `<a href="${link}">${o.name}</a>` : o.name;
-    const dot = o.sc ? '<span class="s-champ-dot" title="Season champion"></span>' : '';
     const activeClass = o.active ? ' active' : '';
     const rHtml  = o.reigns>0 ? `<td class="s-ctr">${o.reigns}</td>` : `<td class="s-zero">0</td>`;
     const wkHtml = o.weeks>0  ? `<td class="s-ctr">${o.weeks}</td>`  : `<td class="s-zero">0</td>`;
     const lHtml  = o.losses>0 ? `<td class="s-ctr">${o.losses}</td>` : `<td class="s-zero">0</td>`;
     return `<tr>
       <td class="s-rank">${i+1}</td>
-      <td class="s-owner${activeClass}">${nameHtml}${dot}</td>
+      <td class="s-owner s-owner-col${activeClass}">${nameHtml}</td>
       ${rHtml}${wkHtml}${lHtml}
       <td>${fmtPct(o.wins,o.losses)}</td>
     </tr>`;
