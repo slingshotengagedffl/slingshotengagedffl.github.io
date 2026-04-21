@@ -170,10 +170,10 @@
     @media (max-width: 480px) { .cards-grid { grid-template-columns: 1fr; } }
 
     .card-scene {
-      perspective: 900px; cursor: pointer; height: 290px;
+      perspective: 1200px; cursor: default; height: 400px;
     }
-    .card-scene.is-pending { height: 130px; cursor: default; }
-    .card-scene.no-data    { height: 130px; cursor: default; }
+    .card-scene.is-pending { height: 140px; cursor: default; }
+    .card-scene.no-data    { height: 140px; cursor: default; }
 
     .card-inner {
       position: relative; width: 100%; height: 100%;
@@ -214,12 +214,12 @@
       display: flex; align-items: center; justify-content: center; gap: 14px;
     }
     .card-photo-large {
-      width: 86px; height: 86px; border-radius: 50%;
+      width: 160px; height: 160px; border-radius: 50%;
       object-fit: cover; object-position: top;
       border: 3px solid var(--gold); flex-shrink: 0;
     }
-    .donut-container { position: relative; width: 86px; height: 86px; flex-shrink: 0; }
-    .donut-svg { width: 86px; height: 86px; transform: rotate(-90deg); }
+    .donut-container { position: relative; width: 160px; height: 160px; flex-shrink: 0; }
+    .donut-svg { width: 160px; height: 160px; transform: rotate(-90deg); }
     .donut-center {
       position: absolute; top: 50%; left: 50%;
       transform: translate(-50%, -50%); text-align: center; line-height: 1;
@@ -246,17 +246,24 @@
       font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase;
       color: var(--label); line-height: 1;
     }
+    .stat-cell-sub {
+      font-size: 0.55rem; letter-spacing: 0.04em; font-weight: 400;
+      opacity: 0.72; text-transform: lowercase;
+    }
     .stat-cell-val {
       font-family: 'Bebas Neue', sans-serif; font-size: 1.1rem;
       line-height: 1.1;
     }
-    .flip-hint {
-      font-family: 'Barlow Condensed', sans-serif; font-size: 0.75rem;
-      letter-spacing: 0.12em; text-transform: uppercase;
-      color: var(--muted); text-align: center; padding: 0 0 6px;
-      transition: color 0.15s;
+    .flip-btn {
+      display: block; width: calc(100% - 24px); margin: 0 12px 10px;
+      font-family: 'Barlow Condensed', sans-serif; font-size: 0.82rem;
+      font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase;
+      background: var(--surface2); border: 1px solid var(--border);
+      color: var(--muted); border-radius: 4px; padding: 8px 0;
+      cursor: pointer; transition: color 0.15s, border-color 0.15s;
     }
-    .card-scene:not(.is-pending):not(.no-data):hover .flip-hint { color: var(--label); }
+    .flip-btn:hover { color: var(--text); border-color: var(--muted); }
+    .flip-btn-back { margin-top: auto; }
 
     /* Card back — rank sheet */
     .back-header {
@@ -278,33 +285,17 @@
       letter-spacing: 0.1em; text-transform: uppercase; color: var(--muted);
       text-align: center; margin-bottom: 2px;
     }
-    .rank-rows { display: flex; flex-direction: column; gap: 4px; }
+    .rank-rows { display: flex; flex-direction: column; gap: 12px; justify-content: center; flex: 1; }
     .rank-row {
-      display: flex; align-items: center; gap: 8px;
-    }
-    .rank-number-wrap {
-      display: flex; flex-direction: column; align-items: flex-end;
-      flex-shrink: 0; width: 44px; justify-content: center;
+      display: flex; align-items: baseline; justify-content: space-between; gap: 8px;
     }
     .rank-stat-label {
-      font-family: 'Barlow Condensed', sans-serif; font-size: 0.82rem;
+      font-family: 'Barlow Condensed', sans-serif; font-size: 1rem;
       font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase;
-      width: 42px; flex-shrink: 0;
     }
-    .rank-bar-outer {
-      flex: 1; height: 5px; background: var(--surface3);
-      border-radius: 3px; overflow: hidden;
-    }
-    .rank-bar-inner { height: 100%; border-radius: 3px; }
     .rank-number {
-      font-family: 'Bebas Neue', sans-serif; font-size: 1.15rem;
-      line-height: 1; width: 40px; text-align: right; flex-shrink: 0;
-    }
-    .rank-low-best {
-      font-family: 'Barlow Condensed', sans-serif; font-size: 0.58rem;
-      letter-spacing: 0.06em; text-transform: uppercase;
-      color: var(--muted); text-align: right; line-height: 1;
-      display: block; margin-top: 1px;
+      font-family: 'Bebas Neue', sans-serif; font-size: 2.2rem;
+      line-height: 1;
     }
     .rank-unqualified {
       font-family: 'Barlow Condensed', sans-serif; font-size: 0.72rem;
@@ -335,7 +326,11 @@
       border-bottom: 1px solid var(--border);
       white-space: nowrap; user-select: none; transition: color 0.15s;
     }
-    thead th:first-child { text-align: left; cursor: default; }
+    thead th:first-child {
+      text-align: left; cursor: default;
+      position: sticky; left: 0; z-index: 2;
+      background: var(--surface2);
+    }
     thead th.sortable { cursor: pointer; }
     thead th.sortable:hover { color: var(--text); }
     thead th.sort-active { color: var(--gold); }
@@ -352,7 +347,10 @@
     .td-owner {
       font-family: 'Barlow Condensed', sans-serif;
       font-size: 1.05rem; font-weight: 700; color: var(--text);
+      position: sticky; left: 0; z-index: 1;
+      background: var(--surface);
     }
+    tbody tr:hover .td-owner { background: var(--surface2); }
     .td-owner a { color: var(--gold); text-decoration: none; }
     .td-owner a:hover { text-decoration: underline; }
     .td-num { text-align: right; font-family: 'Barlow Condensed', sans-serif; font-weight: 700; }
@@ -381,7 +379,7 @@
 
 <div class="content">
 
-  <p class="intro">Every week a manager either shows up or doesn't. A <strong>Boom</strong> is scoring 120% or more of that season's league average. A <strong>Start</strong> is at or above average without booming. A <strong>Mid</strong> is below average but above the bust threshold. A <strong>Bust</strong> is 80% or less of the season average. These are the scorecards.</p>
+  <p class="intro">Every week a manager either shows up or doesn't. A <strong>Boom</strong> is scoring 120% or more of that season's league average. A <strong>Start</strong> is scoring at or above average — boom weeks count. A <strong>Mid</strong> is below average but above the bust threshold. A <strong>Bust</strong> is 80% or less of the season average. These are the scorecards.</p>
 
   <div class="type-tabs" role="tablist">
     <button class="type-tab active" data-cat="all">All Games</button>
@@ -392,7 +390,7 @@
 
   <div class="legend">
     <div class="legend-item"><div class="legend-dot" style="background:var(--boom-color)"></div>Boom ≥120%</div>
-    <div class="legend-item"><div class="legend-dot" style="background:var(--start-color)"></div>Start ≥100%</div>
+    <div class="legend-item"><div class="legend-dot" style="background:var(--start-color)"></div>Start ≥100% (incl. booms)</div>
     <div class="legend-item"><div class="legend-dot" style="background:var(--mid-color)"></div>Mid &gt;80%</div>
     <div class="legend-item"><div class="legend-dot" style="background:var(--bust-color)"></div>Bust ≤80%</div>
   </div>
@@ -427,7 +425,7 @@
 const ARCHETYPE_DEFS = {
   'Boom Machine':    { color: 'var(--gold)',   desc: 'Scores 120%+ of league average more often than almost anyone. The ceiling is real and it shows up.' },
   'High Variance':   { color: '#c39bd3',       desc: 'High boom rate paired with a high bust rate. Every week is a coin flip — could carry your lineup or sink it.' },
-  'Reliable':        { color: '#7ec8e3',       desc: 'Solid boom rate with a controlled bust rate. Counts on showing up most weeks without blowing up.' },
+  'Reliable':        { color: '#7ec8e3',       desc: 'Scores at or above average consistently, with a low bust rate. Steady without being spectacular.' },
   'Middling':        { color: '#aaa',          desc: 'Rarely booms, rarely busts. Week after week of scores that hover just below average — dependably mediocre.' },
   'Underperforming': { color: '#e0826f',       desc: 'Low boom rate and a high bust rate. Below average more often than not, without the upside to compensate.' },
   'Pending':         { color: 'var(--muted)',  desc: 'No games played yet. Check back after the season gets underway.' },
@@ -437,21 +435,21 @@ const ARCHETYPE_DEFS = {
 // bust rank: #1 = lowest bust rate (best)
 
 const RANKS = {
-  "Kyle":       { boom:1,  start:1,  mid:1,  bust:1  },
-  "Jack":       { boom:2,  start:5,  mid:2,  bust:3  },
-  "Dylan":      { boom:3,  start:6,  mid:10, bust:2  },
-  "Mike":       { boom:8,  start:10, mid:15, bust:5  },
-  "Brian":      { boom:6,  start:10, mid:8,  bust:9  },
-  "Daniel":     { boom:5,  start:13, mid:4,  bust:13 },
-  "Andy":       { boom:7,  start:2,  mid:12, bust:4  },
-  "Matt":       { boom:12, start:15, mid:11, bust:14 },
-  "Scott":      { boom:14, start:16, mid:14, bust:12 },
-  "Alex V.":    { boom:9,  start:7,  mid:9,  bust:8  },
-  "Tim H.":     { boom:15, start:13, mid:5,  bust:17 },
-  "Jordan":     { boom:13, start:12, mid:7,  bust:15 },
-  "Wade":       { boom:16, start:8,  mid:16, bust:7  },
+  "Kyle":       { boom:1,  start:1  },
+  "Jack":       { boom:2,  start:2  },
+  "Dylan":      { boom:3,  start:3  },
+  "Mike":       { boom:7,  start:8  },
+  "Brian":      { boom:5,  start:7  },
+  "Daniel":     { boom:4,  start:6  },
+  "Andy":       { boom:6,  start:4  },
+  "Matt":       { boom:9,  start:10 },
+  "Scott":      { boom:11, start:11 },
+  "Alex V.":    { boom:8,  start:5  },
+  "Tim H.":     { boom:12, start:13 },
+  "Jordan":     { boom:10, start:9  },
+  "Wade":       { boom:13, start:12 },
 };
-const RANK_N = 17;
+const RANK_N = 13;
 
 // ── DATA ──────────────────────────────────────────────────────────────────────
 
@@ -464,19 +462,19 @@ const ACTIVE_PROFILES = {
 };
 
 const ACTIVE = {
-  "Kyle":   {archetype:"Boom Machine",   photoId:"kyle",   stats:{all:{games:125,boom_rate:0.32,start_rate:0.384,mid_rate:0.248,bust_rate:0.048},regular:{games:109,boom_rate:0.321,start_rate:0.385,mid_rate:0.257,bust_rate:0.037},playoff:{games:16,boom_rate:0.312,start_rate:0.375,mid_rate:0.188,bust_rate:0.125},consolation:null}},
-  "Jack":   {archetype:"Boom Machine",   photoId:"jack",   stats:{all:{games:179,boom_rate:0.291,start_rate:0.302,mid_rate:0.257,bust_rate:0.151},regular:{games:161,boom_rate:0.304,start_rate:0.298,mid_rate:0.261,bust_rate:0.137},playoff:{games:13,boom_rate:0.231,start_rate:0.385,mid_rate:0.231,bust_rate:0.154},consolation:{games:5,boom_rate:0.0,start_rate:0.2,mid_rate:0.2,bust_rate:0.6}}},
-  "Dylan":  {archetype:"Reliable",       photoId:"dylan",  stats:{all:{games:170,boom_rate:0.259,start_rate:0.294,mid_rate:0.3,bust_rate:0.147},regular:{games:148,boom_rate:0.25,start_rate:0.284,mid_rate:0.311,bust_rate:0.155},playoff:{games:13,boom_rate:0.385,start_rate:0.308,mid_rate:0.231,bust_rate:0.077},consolation:{games:9,boom_rate:0.222,start_rate:0.444,mid_rate:0.222,bust_rate:0.111}}},
-  "Mike":   {archetype:"Reliable",       photoId:"mike",   stats:{all:{games:183,boom_rate:0.197,start_rate:0.273,mid_rate:0.35,bust_rate:0.18},regular:{games:161,boom_rate:0.199,start_rate:0.261,mid_rate:0.354,bust_rate:0.186},playoff:{games:12,boom_rate:0.167,start_rate:0.5,mid_rate:0.333,bust_rate:0.0},consolation:{games:10,boom_rate:0.2,start_rate:0.2,mid_rate:0.3,bust_rate:0.3}}},
-  "Brian":  {archetype:"Reliable",       photoId:"brian",  stats:{all:{games:176,boom_rate:0.205,start_rate:0.273,mid_rate:0.29,bust_rate:0.233},regular:{games:161,boom_rate:0.199,start_rate:0.28,mid_rate:0.286,bust_rate:0.236},playoff:{games:5,boom_rate:0.4,start_rate:0.0,mid_rate:0.4,bust_rate:0.2},consolation:{games:10,boom_rate:0.2,start_rate:0.3,mid_rate:0.3,bust_rate:0.2}}},
-  "Daniel": {archetype:"High Variance",  photoId:"daniel", stats:{all:{games:180,boom_rate:0.222,start_rate:0.256,mid_rate:0.261,bust_rate:0.261},regular:{games:161,boom_rate:0.236,start_rate:0.236,mid_rate:0.261,bust_rate:0.267},playoff:{games:8,boom_rate:0.125,start_rate:0.5,mid_rate:0.125,bust_rate:0.25},consolation:{games:11,boom_rate:0.091,start_rate:0.364,mid_rate:0.364,bust_rate:0.182}}},
-  "Andy":   {archetype:"Reliable",       photoId:"andy",   stats:{all:{games:59,boom_rate:0.203,start_rate:0.322,mid_rate:0.305,bust_rate:0.169},regular:{games:56,boom_rate:0.214,start_rate:0.339,mid_rate:0.268,bust_rate:0.179},playoff:{games:1,boom_rate:0.0,start_rate:0.0,mid_rate:1.0,bust_rate:0.0},consolation:{games:2,boom_rate:0.0,start_rate:0.0,mid_rate:1.0,bust_rate:0.0}}},
-  "Matt":   {archetype:"Underperforming",photoId:"matt",   stats:{all:{games:165,boom_rate:0.176,start_rate:0.255,mid_rate:0.303,bust_rate:0.267},regular:{games:148,boom_rate:0.176,start_rate:0.264,mid_rate:0.291,bust_rate:0.27},playoff:{games:4,boom_rate:0.25,start_rate:0.5,mid_rate:0.25,bust_rate:0.0},consolation:{games:13,boom_rate:0.154,start_rate:0.077,mid_rate:0.462,bust_rate:0.308}}},
-  "Scott":  {archetype:"Underperforming",photoId:"scott",  stats:{all:{games:177,boom_rate:0.164,start_rate:0.237,mid_rate:0.339,bust_rate:0.26},regular:{games:161,boom_rate:0.149,start_rate:0.23,mid_rate:0.348,bust_rate:0.273},playoff:{games:4,boom_rate:0.25,start_rate:0.25,mid_rate:0.25,bust_rate:0.25},consolation:{games:12,boom_rate:0.333,start_rate:0.333,mid_rate:0.25,bust_rate:0.083}}},
-  "Alex V.":{archetype:"Reliable",       photoId:"alex",   stats:{all:{games:150,boom_rate:0.193,start_rate:0.293,mid_rate:0.293,bust_rate:0.22},regular:{games:135,boom_rate:0.193,start_rate:0.289,mid_rate:0.289,bust_rate:0.23},playoff:{games:10,boom_rate:0.2,start_rate:0.4,mid_rate:0.2,bust_rate:0.2},consolation:{games:5,boom_rate:0.2,start_rate:0.2,mid_rate:0.6,bust_rate:0.0}}},
-  "Tim H.": {archetype:"Underperforming",photoId:"tim",    stats:{all:{games:90,boom_rate:0.133,start_rate:0.256,mid_rate:0.267,bust_rate:0.344},regular:{games:83,boom_rate:0.145,start_rate:0.253,mid_rate:0.265,bust_rate:0.337},playoff:{games:3,boom_rate:0.0,start_rate:0.333,mid_rate:0.0,bust_rate:0.667},consolation:{games:4,boom_rate:0.0,start_rate:0.25,mid_rate:0.5,bust_rate:0.25}}},
-  "Jordan": {archetype:"Underperforming",photoId:"jordan", stats:{all:{games:97,boom_rate:0.175,start_rate:0.268,mid_rate:0.289,bust_rate:0.268},regular:{games:96,boom_rate:0.177,start_rate:0.271,mid_rate:0.292,bust_rate:0.26},playoff:{games:1,boom_rate:0.0,start_rate:0.0,mid_rate:0.0,bust_rate:1.0},consolation:null}},
-  "Wade":   {archetype:"Middling",       photoId:"wade",   stats:{all:{games:87,boom_rate:0.115,start_rate:0.276,mid_rate:0.391,bust_rate:0.218},regular:{games:83,boom_rate:0.12,start_rate:0.277,mid_rate:0.386,bust_rate:0.217},playoff:{games:3,boom_rate:0.0,start_rate:0.333,mid_rate:0.333,bust_rate:0.333},consolation:{games:1,boom_rate:0.0,start_rate:0.0,mid_rate:1.0,bust_rate:0.0}}},
+  "Kyle":   {archetype:"Boom Machine",   photoId:"kyle",   stats:{all:{games:125,boom_rate:0.32,start_rate:0.704,mid_rate:0.248,bust_rate:0.048},regular:{games:109,boom_rate:0.321,start_rate:0.706,mid_rate:0.257,bust_rate:0.037},playoff:{games:16,boom_rate:0.312,start_rate:0.688,mid_rate:0.188,bust_rate:0.125},consolation:null}},
+  "Jack":   {archetype:"Boom Machine",   photoId:"jack",   stats:{all:{games:179,boom_rate:0.291,start_rate:0.592,mid_rate:0.257,bust_rate:0.151},regular:{games:161,boom_rate:0.304,start_rate:0.602,mid_rate:0.261,bust_rate:0.137},playoff:{games:13,boom_rate:0.231,start_rate:0.615,mid_rate:0.231,bust_rate:0.154},consolation:{games:5,boom_rate:0.0,start_rate:0.2,mid_rate:0.2,bust_rate:0.6}}},
+  "Dylan":  {archetype:"Reliable",       photoId:"dylan",  stats:{all:{games:170,boom_rate:0.259,start_rate:0.553,mid_rate:0.3,bust_rate:0.147},regular:{games:148,boom_rate:0.25,start_rate:0.534,mid_rate:0.311,bust_rate:0.155},playoff:{games:13,boom_rate:0.385,start_rate:0.692,mid_rate:0.231,bust_rate:0.077},consolation:{games:9,boom_rate:0.222,start_rate:0.667,mid_rate:0.222,bust_rate:0.111}}},
+  "Mike":   {archetype:"Reliable",       photoId:"mike",   stats:{all:{games:183,boom_rate:0.197,start_rate:0.47,mid_rate:0.35,bust_rate:0.18},regular:{games:161,boom_rate:0.199,start_rate:0.46,mid_rate:0.354,bust_rate:0.186},playoff:{games:12,boom_rate:0.167,start_rate:0.667,mid_rate:0.333,bust_rate:0.0},consolation:{games:10,boom_rate:0.2,start_rate:0.4,mid_rate:0.3,bust_rate:0.3}}},
+  "Brian":  {archetype:"Reliable",       photoId:"brian",  stats:{all:{games:176,boom_rate:0.205,start_rate:0.477,mid_rate:0.29,bust_rate:0.233},regular:{games:161,boom_rate:0.199,start_rate:0.478,mid_rate:0.286,bust_rate:0.236},playoff:{games:5,boom_rate:0.4,start_rate:0.4,mid_rate:0.4,bust_rate:0.2},consolation:{games:10,boom_rate:0.2,start_rate:0.5,mid_rate:0.3,bust_rate:0.2}}},
+  "Daniel": {archetype:"High Variance",  photoId:"daniel", stats:{all:{games:180,boom_rate:0.222,start_rate:0.478,mid_rate:0.261,bust_rate:0.261},regular:{games:161,boom_rate:0.236,start_rate:0.472,mid_rate:0.261,bust_rate:0.267},playoff:{games:8,boom_rate:0.125,start_rate:0.625,mid_rate:0.125,bust_rate:0.25},consolation:{games:11,boom_rate:0.091,start_rate:0.455,mid_rate:0.364,bust_rate:0.182}}},
+  "Andy":   {archetype:"Reliable",       photoId:"andy",   stats:{all:{games:59,boom_rate:0.203,start_rate:0.525,mid_rate:0.305,bust_rate:0.169},regular:{games:56,boom_rate:0.214,start_rate:0.554,mid_rate:0.268,bust_rate:0.179},playoff:{games:1,boom_rate:0.0,start_rate:0.0,mid_rate:1.0,bust_rate:0.0},consolation:{games:2,boom_rate:0.0,start_rate:0.0,mid_rate:1.0,bust_rate:0.0}}},
+  "Matt":   {archetype:"Underperforming",photoId:"matt",   stats:{all:{games:165,boom_rate:0.176,start_rate:0.43,mid_rate:0.303,bust_rate:0.267},regular:{games:148,boom_rate:0.176,start_rate:0.439,mid_rate:0.291,bust_rate:0.27},playoff:{games:4,boom_rate:0.25,start_rate:0.75,mid_rate:0.25,bust_rate:0.0},consolation:{games:13,boom_rate:0.154,start_rate:0.231,mid_rate:0.462,bust_rate:0.308}}},
+  "Scott":  {archetype:"Underperforming",photoId:"scott",  stats:{all:{games:177,boom_rate:0.164,start_rate:0.401,mid_rate:0.339,bust_rate:0.26},regular:{games:161,boom_rate:0.149,start_rate:0.379,mid_rate:0.348,bust_rate:0.273},playoff:{games:4,boom_rate:0.25,start_rate:0.5,mid_rate:0.25,bust_rate:0.25},consolation:{games:12,boom_rate:0.333,start_rate:0.667,mid_rate:0.25,bust_rate:0.083}}},
+  "Alex V.":{archetype:"Reliable",       photoId:"alex",   stats:{all:{games:150,boom_rate:0.193,start_rate:0.487,mid_rate:0.293,bust_rate:0.22},regular:{games:135,boom_rate:0.193,start_rate:0.481,mid_rate:0.289,bust_rate:0.23},playoff:{games:10,boom_rate:0.2,start_rate:0.6,mid_rate:0.2,bust_rate:0.2},consolation:{games:5,boom_rate:0.2,start_rate:0.4,mid_rate:0.6,bust_rate:0.0}}},
+  "Tim H.": {archetype:"Underperforming",photoId:"tim",    stats:{all:{games:90,boom_rate:0.133,start_rate:0.389,mid_rate:0.267,bust_rate:0.344},regular:{games:83,boom_rate:0.145,start_rate:0.398,mid_rate:0.265,bust_rate:0.337},playoff:{games:3,boom_rate:0.0,start_rate:0.333,mid_rate:0.0,bust_rate:0.667},consolation:{games:4,boom_rate:0.0,start_rate:0.25,mid_rate:0.5,bust_rate:0.25}}},
+  "Jordan": {archetype:"Underperforming",photoId:"jordan", stats:{all:{games:97,boom_rate:0.175,start_rate:0.443,mid_rate:0.289,bust_rate:0.268},regular:{games:96,boom_rate:0.177,start_rate:0.448,mid_rate:0.292,bust_rate:0.26},playoff:{games:1,boom_rate:0.0,start_rate:0.0,mid_rate:0.0,bust_rate:1.0},consolation:null}},
+  "Wade":   {archetype:"Middling",       photoId:"wade",   stats:{all:{games:87,boom_rate:0.115,start_rate:0.391,mid_rate:0.391,bust_rate:0.218},regular:{games:83,boom_rate:0.12,start_rate:0.398,mid_rate:0.386,bust_rate:0.217},playoff:{games:3,boom_rate:0.0,start_rate:0.333,mid_rate:0.333,bust_rate:0.333},consolation:{games:1,boom_rate:0.0,start_rate:0.0,mid_rate:1.0,bust_rate:0.0}}},
   "Luke":   {archetype:"Pending",        photoId:"luke",   stats:{all:null,regular:null,playoff:null,consolation:null}},
 };
 
@@ -506,13 +504,17 @@ function ordinal(n) {
 }
 
 function buildDonut(s, cardId) {
-  const R=34,cx=43,cy=43,sw=9,circ=2*Math.PI*R;
+  const R=65,cx=80,cy=80,sw=14,circ=2*Math.PI*R;
   const segs=[
-    {key:'boom',  pct:s.boom_rate,  color:'var(--boom-color)'},
-    {key:'start', pct:s.start_rate, color:'var(--start-color)'},
-    {key:'mid',   pct:s.mid_rate,   color:'var(--mid-color)'},
-    {key:'bust',  pct:s.bust_rate,  color:'var(--bust-color)'},
+    {key:'boom', count:Math.round(s.boom_rate * s.games), pct:s.boom_rate,  color:'var(--boom-color)'},
+    {key:'mid',  count:Math.round(s.mid_rate  * s.games), pct:s.mid_rate,   color:'var(--mid-color)'},
+    {key:'bust', count:Math.round(s.bust_rate * s.games), pct:s.bust_rate,  color:'var(--bust-color)'},
   ];
+  // fill remainder (start-only band) with a neutral gap color
+  const remainder = Math.max(0, 1 - s.boom_rate - s.mid_rate - s.bust_rate);
+  if (remainder > 0.001) {
+    segs.splice(1, 0, {key:'start-band', count:0, pct:remainder, color:'var(--start-color)'});
+  }
   let offset=0,paths='';
   for(const seg of segs){
     const len=seg.pct*circ,gap=circ-len;
@@ -521,27 +523,29 @@ function buildDonut(s, cardId) {
       data-stat="${seg.key}"
       data-card="${cardId}"
       data-sw="${sw}"
+      data-count="${seg.count||0}"
+      data-total="${s.games}"
       data-color="${seg.color}"
       cx="${cx}" cy="${cy}" r="${R}" fill="none"
       stroke="${seg.color}" stroke-width="${sw}"
       stroke-dasharray="${len.toFixed(2)} ${gap.toFixed(2)}"
       stroke-dashoffset="${(-offset).toFixed(2)}"
-      style="transition:stroke-width 0.2s,filter 0.2s"/>`;
+      style="transition:stroke-width 0.2s,filter 0.2s,opacity 0.2s${seg.key==='start-band' ? ';opacity:0.35' : ''}"/>`;
     offset+=len;
   }
-  return `<svg class="donut-svg" viewBox="0 0 86 86" style="overflow:visible">${paths}</svg>`;
+  return `<svg class="donut-svg" viewBox="0 0 160 160" style="overflow:visible">${paths}</svg>`;
 }
 
 function statGrid(s, cardId) {
   const cells = [
-    { key:'boom',  label: 'Boom',  val: s.boom_rate,  color: 'var(--boom-color)'  },
-    { key:'start', label: 'Start', val: s.start_rate, color: 'var(--start-color)' },
-    { key:'mid',   label: 'Mid',   val: s.mid_rate,   color: 'var(--mid-color)'   },
-    { key:'bust',  label: 'Bust',  val: s.bust_rate,  color: 'var(--bust-color)'  },
+    { key:'boom',  label: 'Boom',  sublabel: null,         val: s.boom_rate,  color: 'var(--boom-color)',  count: Math.round(s.boom_rate  * s.games) },
+    { key:'start', label: 'Start', sublabel: 'incl. booms',val: s.start_rate, color: 'var(--start-color)', count: Math.round(s.start_rate * s.games) },
+    { key:'mid',   label: 'Mid',   sublabel: null,         val: s.mid_rate,   color: 'var(--mid-color)',   count: Math.round(s.mid_rate   * s.games) },
+    { key:'bust',  label: 'Bust',  sublabel: null,         val: s.bust_rate,  color: 'var(--bust-color)',  count: Math.round(s.bust_rate  * s.games) },
   ];
   return cells.map(c =>
-    `<div class="stat-cell" data-stat="${c.key}" data-card="${cardId}" style="transition:transform 0.2s,box-shadow 0.2s">
-      <span class="stat-cell-label" style="color:${c.color}">${c.label}</span>
+    `<div class="stat-cell" data-stat="${c.key}" data-card="${cardId}" data-count="${c.count}" style="transition:transform 0.2s,box-shadow 0.2s,opacity 0.2s">
+      <span class="stat-cell-label" style="color:${c.color}">${c.label}${c.sublabel ? `<span class="stat-cell-sub"> ${c.sublabel}</span>` : ''}</span>
       <span class="stat-cell-val" style="color:${c.color}">${(c.val*100).toFixed(1)}%</span>
     </div>`
   ).join('');
@@ -555,7 +559,6 @@ function buildBack(name, data) {
 
   const header = `<div class="back-header">
     <span class="back-name">${name}</span>
-    <span class="back-flip-hint">tap to flip back</span>
   </div>`;
 
   if (!qualified) {
@@ -564,37 +567,29 @@ function buildBack(name, data) {
       <div class="back-body">
         <div class="rank-unqualified">Fewer than 4 seasons played —<br>not ranked in career standings</div>
       </div>
+      <button class="flip-btn flip-btn-back" onclick="event.stopPropagation()">← Back</button>
     </div>`;
   }
 
   const statDefs = [
-    { key:'boom',  label:'Boom',  color:'var(--boom-color)',  rank:ranks.boom,  asc:false },
-    { key:'start', label:'Start', color:'var(--start-color)', rank:ranks.start, asc:false },
-    { key:'mid',   label:'Mid',   color:'var(--mid-color)',   rank:ranks.mid,   asc:true  },
-    { key:'bust',  label:'Bust',  color:'var(--bust-color)',  rank:ranks.bust,  asc:true  },
+    { label:'Boom',  color:'var(--boom-color)',  rank:ranks.boom  },
+    { label:'Start', color:'var(--start-color)', rank:ranks.start },
   ];
 
-  // bar width: rank 1 = full, rank N = thin
-  const rows = statDefs.map(d => {
-    const barPct = Math.max(6, Math.round(((RANK_N - d.rank) / (RANK_N - 1)) * 100));
-    const lowBest = (d.key==='bust'||d.key==='mid')
-      ? `<span class="rank-low-best">low = best</span>` : '';
-    return `<div class="rank-row">
+  const rows = statDefs.map(d =>
+    `<div class="rank-row">
       <span class="rank-stat-label" style="color:${d.color}">${d.label}</span>
-      <div class="rank-bar-outer"><div class="rank-bar-inner" style="width:${barPct}%;background:${d.color};opacity:0.7"></div></div>
-      <div class="rank-number-wrap">
-        <span class="rank-number" style="color:${d.color}">${ordinal(d.rank)}</span>
-        ${lowBest}
-      </div>
-    </div>`;
-  }).join('');
+      <span class="rank-number" style="color:${d.color}">${ordinal(d.rank)}</span>
+    </div>`
+  ).join('');
 
   return `<div class="card-face card-back" style="border-color:${ARCHETYPE_DEFS[data.archetype]?.color||'var(--border)'}">
     ${header}
     <div class="back-body">
-      <div class="back-context">Career ranking · ${RANK_N} qualified owners (4+ seasons)</div>
+      <div class="back-context">Ranked among 13 active owners</div>
       <div class="rank-rows">${rows}</div>
     </div>
+    <button class="flip-btn flip-btn-back" onclick="event.stopPropagation()">← Back</button>
   </div>`;
 }
 
@@ -650,7 +645,7 @@ function buildCard(name, data, cat) {
       </div>
     </div>
     <div class="card-stat-grid">${statGrid(s, cardId)}</div>
-    <div class="flip-hint">tap to see career rankings</div>`;
+    <button class="flip-btn" onclick="event.stopPropagation()">Rankings ↗</button>`;
   }
 
   const archetypeColor = def.color || 'var(--border)';
@@ -672,9 +667,10 @@ function renderCards(cat) {
   document.getElementById('cardsGrid').innerHTML = sorted.map(([n,d]) => buildCard(n,d,cat)).join('');
 
   // Flip on card click — but not if tapping a stat cell, donut seg, badge, or link
+  // Flip only when the dedicated flip button is clicked
   document.querySelectorAll('.card-scene:not(.is-pending):not(.no-data)').forEach(el => {
     el.addEventListener('click', e => {
-      if (e.target.closest('.stat-cell,.donut-seg,.badge-wrap,a')) return;
+      if (!e.target.closest('.flip-btn')) return;
       const name = el.dataset.name;
       const cardId = name.replace(/[^a-z0-9]/gi, '').toLowerCase();
       deactivateStat(cardId);
@@ -685,34 +681,70 @@ function renderCards(cat) {
 
   // ── BIDIRECTIONAL HIGHLIGHT ───────────────────────────────────────────────
 
-  function activateStat(cardId, statKey) {
-    // Highlight donut segment
+  function activateStat(cardId, statKey, statCount) {
+    // Update donut center
+    const container = document.querySelector(`.donut-seg[data-card="${cardId}"]`)?.closest('.donut-container');
+    if (container) {
+      const gamesEl = container.querySelector('.donut-games');
+      const labelEl = container.querySelector('.donut-label');
+      const seg = document.querySelector(`.donut-seg[data-card="${cardId}"][data-stat="${statKey}"]`);
+      if (gamesEl && statKey !== 'start') {
+        gamesEl.textContent = statCount;
+        gamesEl.style.color = seg?.dataset.color || '';
+      } else if (gamesEl && statKey === 'start') {
+        gamesEl.textContent = statCount;
+        gamesEl.style.color = 'var(--start-color)';
+      }
+      if (labelEl) { const labels={boom:'booms',start:'starts',mid:'mids',bust:'busts'}; labelEl.textContent = labels[statKey]||statKey; }
+    }
+    // Highlight donut segments
     document.querySelectorAll(`.donut-seg[data-card="${cardId}"]`).forEach(seg => {
       const key = seg.dataset.stat;
-      if (key === statKey) {
-        seg.style.strokeWidth = '14';
-        seg.style.filter = `drop-shadow(0 0 5px ${seg.dataset.color})`;
+      const isStartGroup = statKey === 'start' && (key === 'boom' || key === 'start-band');
+      if (key === statKey || isStartGroup) {
+        seg.style.strokeWidth = '20';
+        seg.style.filter = `drop-shadow(0 0 6px var(--start-color))`;
+        seg.style.opacity = '1';
+      } else if (key === statKey) {
+        seg.style.strokeWidth = '20';
+        seg.style.filter = `drop-shadow(0 0 6px ${seg.dataset.color})`;
+        seg.style.opacity = '1';
       } else {
-        seg.style.opacity = '0.3';
+        seg.style.strokeWidth = seg.dataset.sw || '14';
+        seg.style.filter = '';
+        seg.style.opacity = '0.25';
       }
     });
     // Highlight stat cell
     document.querySelectorAll(`.stat-cell[data-card="${cardId}"]`).forEach(cell => {
       if (cell.dataset.stat === statKey) {
-        cell.style.transform = 'scale(1.07)';
-        cell.style.boxShadow = '0 0 8px rgba(255,255,255,0.1)';
+        cell.style.transform = 'scale(1.08)';
+        cell.style.boxShadow = '0 0 10px rgba(255,255,255,0.12)';
         cell.style.zIndex = '2';
+        cell.style.opacity = '1';
       } else {
-        cell.style.opacity = '0.4';
+        cell.style.transform = '';
+        cell.style.boxShadow = '';
+        cell.style.zIndex = '';
+        cell.style.opacity = '0.35';
       }
     });
   }
 
   function deactivateStat(cardId) {
-    document.querySelectorAll(`.donut-seg[data-card="${cardId}"]`).forEach(seg => {
+    const segs = document.querySelectorAll(`.donut-seg[data-card="${cardId}"]`);
+    const container = segs[0]?.closest('.donut-container');
+    if (container) {
+      const total = segs[0]?.dataset.total || '';
+      const gamesEl = container.querySelector('.donut-games');
+      const labelEl = container.querySelector('.donut-label');
+      if (gamesEl) { gamesEl.textContent = total; gamesEl.style.color = ''; }
+      if (labelEl) labelEl.textContent = 'games';
+    }
+    segs.forEach(seg => {
       seg.style.strokeWidth = seg.dataset.sw;
       seg.style.filter = '';
-      seg.style.opacity = '';
+      seg.style.opacity = seg.dataset.stat === 'start-band' ? '0.35' : '';
     });
     document.querySelectorAll(`.stat-cell[data-card="${cardId}"]`).forEach(cell => {
       cell.style.transform = '';
@@ -722,39 +754,44 @@ function renderCards(cat) {
     });
   }
 
-  // Desktop: mouseenter/mouseleave on donut segments
+  // Desktop: mouseenter/mouseleave on donut segments (skip start-band)
   document.querySelectorAll('.donut-seg').forEach(seg => {
-    seg.addEventListener('mouseenter', () => activateStat(seg.dataset.card, seg.dataset.stat));
+    if (seg.dataset.stat === 'start-band') return;
+    seg.addEventListener('mouseenter', () => activateStat(seg.dataset.card, seg.dataset.stat, seg.dataset.count));
     seg.addEventListener('mouseleave', () => deactivateStat(seg.dataset.card));
   });
 
   // Desktop: mouseenter/mouseleave on stat cells
   document.querySelectorAll('.stat-cell').forEach(cell => {
-    cell.addEventListener('mouseenter', e => { e.stopPropagation(); activateStat(cell.dataset.card, cell.dataset.stat); });
+    cell.addEventListener('mouseenter', e => {
+      e.stopPropagation();
+      activateStat(cell.dataset.card, cell.dataset.stat, cell.dataset.count);
+    });
     cell.addEventListener('mouseleave', e => { e.stopPropagation(); deactivateStat(cell.dataset.card); });
   });
 
-  // Mobile: touchstart on donut segments and stat cells — toggle
+  // Mobile: tap to toggle
   let activeTouches = {};
-  function handleTouch(cardId, statKey, e) {
+  function handleTouch(cardId, statKey, count, e) {
     e.stopPropagation();
+    e.preventDefault();
     const key = cardId + ':' + statKey;
     if (activeTouches[key]) {
       deactivateStat(cardId);
       delete activeTouches[key];
     } else {
-      // deactivate any other active for this card
       Object.keys(activeTouches).forEach(k => { if (k.startsWith(cardId + ':')) { deactivateStat(cardId); delete activeTouches[k]; } });
-      activateStat(cardId, statKey);
+      activateStat(cardId, statKey, count);
       activeTouches[key] = true;
     }
   }
 
   document.querySelectorAll('.donut-seg').forEach(seg => {
-    seg.addEventListener('touchstart', e => handleTouch(seg.dataset.card, seg.dataset.stat, e), { passive: false });
+    if (seg.dataset.stat === 'start-band') return;
+    seg.addEventListener('touchend', e => handleTouch(seg.dataset.card, seg.dataset.stat, seg.dataset.count, e), { passive: false });
   });
   document.querySelectorAll('.stat-cell').forEach(cell => {
-    cell.addEventListener('touchstart', e => handleTouch(cell.dataset.card, cell.dataset.stat, e), { passive: false });
+    cell.addEventListener('touchend', e => handleTouch(cell.dataset.card, cell.dataset.stat, cell.dataset.count, e), { passive: false });
   });
 
   // Tooltip: toggle on badge click, stop propagation so card doesn't flip
@@ -788,10 +825,7 @@ function getVal(name, isActive, cat, col) {
 }
 
 function renderTable(cat) {
-  const all = [
-    ...Object.keys(ACTIVE).map(n=>({name:n,isActive:true})),
-    ...Object.keys(HISTORICAL).map(n=>({name:n,isActive:false})),
-  ];
+  const all = Object.keys(ACTIVE).map(n=>({name:n,isActive:true}));
   all.sort((a,b) => {
     const av = getVal(a.name,a.isActive,cat,sortCol);
     const bv = getVal(b.name,b.isActive,cat,sortCol);
