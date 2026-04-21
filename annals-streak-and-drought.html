@@ -187,8 +187,8 @@
 
     .record-label {
       font-family: 'Barlow Condensed', sans-serif;
-      font-size: 0.82rem;
-      letter-spacing: 0.22em;
+      font-size: 1rem;
+      letter-spacing: 0.18em;
       text-transform: uppercase;
       color: var(--label);
       margin-bottom: 12px;
@@ -244,7 +244,7 @@
 
     .record-years {
       font-family: 'Barlow Condensed', sans-serif;
-      font-size: 0.88rem;
+      font-size: 1rem;
       letter-spacing: 0.14em;
       text-transform: uppercase;
       padding: 4px 12px;
@@ -318,10 +318,9 @@
       text-transform: uppercase;
       color: var(--label);
       background: var(--surface2);
-      padding: 10px 12px;
+      padding: 10px 8px;
       text-align: left;
       border-bottom: 1px solid var(--border);
-      white-space: nowrap;
     }
 
     thead th:not(:first-child) { text-align: center; }
@@ -334,7 +333,7 @@
     tbody tr:hover { background: var(--surface2); }
 
     td {
-      padding: 12px 12px;
+      padding: 12px 8px;
       vertical-align: middle;
     }
 
@@ -446,9 +445,15 @@
     @media (max-width: 480px) {
       .record-number { font-size: 2.2rem; }
       .record-name { font-size: 1.2rem; }
-      thead th { font-size: 0.75rem; padding: 8px 8px; }
-      td { padding: 10px 8px; }
-      .pip { width: 11px; height: 11px; }
+      .record-label { font-size: 0.82rem; }
+      .record-years { font-size: 0.85rem; }
+      thead th { font-size: 0.75rem; padding: 8px 5px; }
+      td { padding: 10px 5px; }
+      .owner-cell { font-size: 0.95rem; }
+      .num-cell { font-size: 0.95rem; }
+      .pct-pill { font-size: 0.8rem; padding: 3px 7px; }
+      .status-label { font-size: 0.7rem; }
+      .pip { width: 9px; height: 9px; }
     }
   </style>
 </head>
@@ -467,10 +472,7 @@
   <div class="content">
 
     <p class="intro">
-      Every season resets the scoreboard, but the streak doesn't lie. Neither does the drought.
-      Here's where every owner stands heading into the next campaign — the ones on a run,
-      the ones still waiting for their number to get called, and one guy who hasn't even suited up yet.
-      And somewhere, a drought grows longer.
+      Streaks end. Droughts deepen. Every season either extends your run or adds another year to the wait. Here's where every owner stands.
     </p>
 
     <!-- RECORD CARDS -->
@@ -485,7 +487,7 @@
             <th>Owner</th>
             <th>Status</th>
             <th>Seasons</th>
-            <th>Playoff Apps</th>
+            <th>Apps</th>
             <th>Playoff %</th>
           </tr>
         </thead>
@@ -534,9 +536,7 @@
 
       const activeBadge = cfg.active ? `<div style="text-align:center;margin-bottom:2px;">
         <span class="active-badge"><span class="active-badge-dot"></span>Active</span>
-      </div>` : `<div style="text-align:center;margin-bottom:2px;">
-        <span class="active-badge" style="background:rgba(255,255,255,0.04);border-color:rgba(255,255,255,0.1);color:var(--muted);">Record Closed</span>
-      </div>`;
+      </div>` : `<div style="height:34px;"></div>`;
 
       let holdersHTML;
       if (isTied) {
