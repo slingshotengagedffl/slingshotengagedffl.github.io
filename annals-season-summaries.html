@@ -98,7 +98,7 @@
     }
     .toggle-btn {
       font-family: 'Barlow Condensed', sans-serif;
-      font-size: 0.82rem;
+      font-size: 1rem;
       font-weight: 700;
       letter-spacing: 0.14em;
       text-transform: uppercase;
@@ -214,9 +214,10 @@
     .contest-row:nth-child(even) { background: var(--surface2); }
     .contest-name {
       font-family: 'Barlow Condensed', sans-serif;
-      font-size: 1rem;
+      font-size: 1.1rem;
+      font-weight: 700;
       letter-spacing: 0.04em;
-      color: var(--label);
+      color: var(--gold);
       text-transform: uppercase;
       flex: 1;
       max-width: 60%;
@@ -251,7 +252,7 @@
       display: flex;
       justify-content: space-between;
       align-items: center;
-      padding: 13px 20px;
+      padding: 8px 20px;
       border-bottom: 1px solid var(--border);
       background: var(--surface);
       gap: 12px;
@@ -410,8 +411,8 @@
   }
 
   function winnerLink(name) {
-    if (!name || name === '—' || name === 'None' || name === 'No one') {
-      return `<span class="no-link">${name || '—'}</span>`;
+    if (!name || name === 'None' || name === 'No one' || name === '—') {
+      return `<span class="no-link">${name === '—' ? '—' : '—'}</span>`;
     }
     const href = profileFor(name);
     if (href) return `<a href="${href}">${name}</a>`;
@@ -422,7 +423,7 @@
   const CONTEST_INFO = {
     'League Champion': {
       image: 'images/Daddy Graphic.png',
-      desc: "The whole reason you're here. Win the Slingshot Bowl and your name goes on The D***y. Defend it until someone takes it from you.",
+      desc: "Fourteen weeks of suffering. A playoff gauntlet. One Slingshot Bowl. The champion hoists The D***y, and their name is engraved in league history forever. There is no greater glory in Slingshot Engaged.",
     },
     '2nd Place': {
       image: 'images/2nd.png',
@@ -504,10 +505,6 @@
       image: null,
       desc: "An early-era contest from 2015–2017. Details lost to history.",
     },
-    'Consolation Last Place': {
-      image: null,
-      desc: "The predecessor to the Bronze Franz.",
-    },
   };
 
   // ── DATA ──────────────────────────────────────────────────────────────────
@@ -516,21 +513,21 @@
   const SEASONS = {
     2025: [
       { contest: 'League Champion',                   winner: 'Dylan' },
-      { contest: '2nd Place',                         winner: 'Mike' },
+      { contest: '2nd Place',                         winner: 'Mike M' },
       { contest: '3rd Place',                         winner: 'Jack' },
       { contest: 'Regular Season Champion',           winner: 'Jack' },
-      { contest: 'Owner of the Year',                 winner: 'Alex' },
+      { contest: 'Owner of the Year',                 winner: 'Alex V' },
       { contest: 'AVL Memorial Cup',                  winner: 'Matt' },
       { contest: 'Rivalry Week',                      winner: 'Jordan' },
       { contest: 'Ryder Cup',                         winner: 'MAGA defeated Snowflakes' },
       { contest: 'Hottest Team in Sports Bowl',       winner: 'Wade' },
-      { contest: 'Hung the * Chain',                  winner: 'No one' },
+      { contest: 'Hung the * Chain',                  winner: '—' },
       { contest: 'Intercontinental Champion',         winner: 'Dylan' },
       { contest: 'Somehow the Champion',              winner: 'Jack' },
-      { contest: 'Survivor King',                     winner: 'Alex' },
-      { contest: 'Degen Bowl',                        winner: 'Mike' },
-      { contest: "Dad Bod's Preseason Rankings",      winner: 'Dylan/Alex/Tim' },
-      { contest: "KG's Playoff Pick Em",              winner: 'Tim' },
+      { contest: 'Survivor King',                     winner: 'Alex V' },
+      { contest: 'Degen Bowl',                        winner: 'Mike M' },
+      { contest: "Dad Bod's Preseason Rankings",      winner: 'Dylan/Alex V/Tim H' },
+      { contest: "KG's Playoff Pick Em",              winner: 'Tim H' },
       { contest: 'Da Choppaaa Champ',                 winner: 'Matt' },
       { contest: 'Bronze Franz',                      winner: 'Daniel' },
       { contest: 'Regular Season Last Place',         winner: 'Jordan' },
@@ -539,23 +536,23 @@
     2024: [
       { contest: 'League Champion',                   winner: 'Kyle' },
       { contest: '2nd Place',                         winner: 'Daniel' },
-      { contest: '3rd Place',                         winner: 'Mike' },
+      { contest: '3rd Place',                         winner: 'Mike M' },
       { contest: 'Regular Season Champion',           winner: 'Kyle' },
       { contest: 'Owner of the Year',                 winner: 'Matt' },
       { contest: 'AVL Memorial Cup',                  winner: 'Kyle' },
-      { contest: 'Rivalry Week',                      winner: 'Tim' },
+      { contest: 'Rivalry Week',                      winner: 'Tim H' },
       { contest: 'Ryder Cup',                         winner: 'Team Tim defeated Team Matt' },
       { contest: 'Hottest Team in Sports Bowl',       winner: 'Brian' },
-      { contest: 'Hung the * Chain',                  winner: 'None' },
-      { contest: 'Intercontinental Champion',         winner: 'Tim' },
+      { contest: 'Hung the * Chain',                  winner: '—' },
+      { contest: 'Intercontinental Champion',         winner: 'Tim H' },
       { contest: 'Somehow the Champion',              winner: 'Jon' },
       { contest: 'Survivor King',                     winner: 'Jack' },
       { contest: 'Degen Bowl',                        winner: 'Kyle' },
       { contest: "Dad Bod's Preseason Rankings",      winner: 'Jack' },
-      { contest: "KG's Playoff Pick Em",              winner: 'Mike' },
+      { contest: "KG's Playoff Pick Em",              winner: 'Mike M' },
       { contest: 'Bronze Franz',                      winner: 'Matt' },
-      { contest: 'Regular Season Last Place',         winner: 'Alex' },
-      { contest: 'Partner of the Year',               winner: 'Mrs 9.5' },
+      { contest: 'Regular Season Last Place',         winner: 'Alex V' },
+      { contest: 'Partner of the Year',               winner: 'Mrs. 9.5' },
     ],
     2023: [
       { contest: 'League Champion',                   winner: 'Alex V' },
@@ -565,7 +562,7 @@
       { contest: 'Owner of the Year',                 winner: 'Daniel' },
       { contest: 'AVL Memorial Cup',                  winner: 'Alex V' },
       { contest: 'Rivalry Week',                      winner: 'Dylan' },
-      { contest: 'Ryder Cup',                         winner: 'Team Dylan defeated Team Alex' },
+      { contest: 'Ryder Cup',                         winner: 'Team Dylan defeated Team Alex V' },
       { contest: 'Hottest Team in Sports Bowl',       winner: 'Jack' },
       { contest: 'Hung the * Chain',                  winner: 'Jack' },
       { contest: 'Intercontinental Champion',         winner: 'Alex V' },
@@ -580,7 +577,7 @@
     ],
     2022: [
       { contest: 'League Champion',                   winner: 'Kyle' },
-      { contest: '2nd Place',                         winner: 'Mike' },
+      { contest: '2nd Place',                         winner: 'Mike M' },
       { contest: '3rd Place',                         winner: 'Daniel' },
       { contest: 'Regular Season Champion',           winner: 'Andy' },
       { contest: 'Owner of the Year',                 winner: 'Murph & Wade' },
@@ -591,13 +588,13 @@
       { contest: 'Hung the * Chain',                  winner: 'Scott' },
       { contest: 'Intercontinental Champion',         winner: 'Andy' },
       { contest: 'Somehow the Champion',              winner: 'Daniel' },
-      { contest: 'Survivor King',                     winner: 'Tim' },
+      { contest: 'Survivor King',                     winner: 'Tim H' },
       { contest: 'Degen Bowl',                        winner: 'Daniel' },
       { contest: "Dad Bod's Preseason Rankings",      winner: 'Dylan' },
       { contest: "KG's Playoff Pick Em",              winner: 'Jon' },
-      { contest: 'Bronze Franz',                      winner: 'Tim' },
+      { contest: 'Bronze Franz',                      winner: 'Tim H' },
       { contest: 'Regular Season Last Place',         winner: 'Scott' },
-      { contest: 'Partner of the Year',               winner: 'Mrs 9.5' },
+      { contest: 'Partner of the Year',               winner: 'Mrs. 9.5' },
     ],
     2021: [
       { contest: 'League Champion',                   winner: 'Dylan' },
@@ -620,17 +617,17 @@
       { contest: 'Regular Season Last Place',         winner: 'Daniel' },
     ],
     2020: [
-      { contest: 'League Champion',                   winner: 'Mike' },
+      { contest: 'League Champion',                   winner: 'Mike M' },
       { contest: '2nd Place',                         winner: 'Kyle' },
-      { contest: '3rd Place',                         winner: 'Alex' },
-      { contest: 'Regular Season Champion',           winner: 'Mike' },
+      { contest: '3rd Place',                         winner: 'Alex V' },
+      { contest: 'Regular Season Champion',           winner: 'Mike M' },
       { contest: 'Owner of the Year',                 winner: 'Matt' },
-      { contest: 'Rivalry Week',                      winner: 'Mike' },
+      { contest: 'Rivalry Week',                      winner: 'Mike M' },
       { contest: 'Ryder Cup',                         winner: 'Youths defeated Ageds' },
       { contest: 'Ryder Cup',                         winner: 'Childless defeated Dads' },
       { contest: 'Hottest Team in Sports Bowl',       winner: 'Jack' },
-      { contest: 'Hung the * Chain',                  winner: 'No one' },
-      { contest: 'Intercontinental Champion',         winner: 'Alex' },
+      { contest: 'Hung the * Chain',                  winner: '—' },
+      { contest: 'Intercontinental Champion',         winner: 'Alex V' },
       { contest: 'Somehow the Champion',              winner: 'Tim C' },
       { contest: 'Survivor King',                     winner: 'Tim C' },
       { contest: 'Bronze Franz',                      winner: 'Scott' },
@@ -644,7 +641,7 @@
       { contest: 'Owner of the Year',                 winner: 'Kyle' },
       { contest: 'Rivalry Week',                      winner: 'Jordan' },
       { contest: 'Hottest Team in Sports Bowl',       winner: 'Brian' },
-      { contest: 'Hung the * Chain',                  winner: 'No one' },
+      { contest: 'Hung the * Chain',                  winner: '—' },
       { contest: 'Intercontinental Champion',         winner: 'Alex V' },
       { contest: 'Somehow the Champion',              winner: 'Alex V' },
       { contest: 'Survivor King',                     winner: 'Michelle C' },
@@ -659,9 +656,9 @@
       { contest: 'Owner of the Year',                 winner: 'Kyle' },
       { contest: 'Rivalry Week',                      winner: 'Kyle' },
       { contest: 'Hottest Team in Sports Bowl',       winner: 'Anthony' },
-      { contest: 'Survivor King',                     winner: 'Tim' },
+      { contest: 'Survivor King',                     winner: 'Tim C' },
       { contest: 'Bronze Franz',                      winner: 'Alex V' },
-      { contest: 'Regular Season Last Place',         winner: 'Tim' },
+      { contest: 'Regular Season Last Place',         winner: 'Tim C' },
     ],
     2017: [
       { contest: 'League Champion',                   winner: 'Dylan' },
@@ -670,9 +667,8 @@
       { contest: 'Regular Season Champion',           winner: 'Dylan' },
       { contest: 'Rivalry Week',                      winner: 'Dylan' },
       { contest: 'Hottest Team in Sports Bowl',       winner: 'Jon' },
-      { contest: 'Swag Champion',                     winner: 'Mike' },
+      { contest: 'Swag Champion',                     winner: 'Mike M' },
       { contest: 'Regular Season Last Place',         winner: 'Jon' },
-      { contest: 'Consolation Last Place',            winner: 'Scott' },
     ],
     2016: [
       { contest: 'League Champion',                   winner: 'Brian' },
@@ -682,15 +678,15 @@
       { contest: 'Rivalry Week',                      winner: 'Jon' },
       { contest: 'Hottest Team in Sports Bowl',       winner: 'Jon' },
       { contest: 'Swag Champion',                     winner: 'Brian' },
-      { contest: 'Regular Season Last Place',         winner: 'Mike' },
+      { contest: 'Regular Season Last Place',         winner: 'Mike M' },
     ],
     2015: [
       { contest: 'League Champion',                   winner: 'Alex M' },
       { contest: '2nd Place',                         winner: 'Taylor' },
-      { contest: '3rd Place',                         winner: 'Tim' },
+      { contest: '3rd Place',                         winner: 'Tim C' },
       { contest: 'Regular Season Champion',           winner: 'Taylor' },
       { contest: 'Hottest Team in Sports Bowl',       winner: 'Scott' },
-      { contest: 'Swag Champion',                     winner: 'Mike' },
+      { contest: 'Swag Champion',                     winner: 'Mike M' },
       { contest: 'Regular Season Last Place',         winner: 'Michelle T' },
     ],
     2014: [
@@ -715,7 +711,7 @@
       'Somehow the Champion', 'Survivor King', 'Degen Bowl',
       "Dad Bod's Preseason Rankings", "KG's Playoff Pick Em",
       'Da Choppaaa Champ', 'Bronze Franz', 'Regular Season Last Place',
-      'Partner of the Year', 'Swag Champion', 'Consolation Last Place',
+      'Partner of the Year', 'Swag Champion',
     ];
     const seen = new Set();
     const result = [];
