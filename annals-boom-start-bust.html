@@ -64,7 +64,7 @@
     /* Tabs */
     .type-tabs {
       display: grid;
-      grid-template-columns: 1fr 1fr 1fr;
+      grid-template-columns: 1fr 1fr;
       grid-template-rows: auto auto;
       border: 1px solid var(--border);
       border-radius: 4px; overflow: hidden; width: 100%; margin-bottom: 24px;
@@ -82,10 +82,9 @@
       grid-column: 1 / -1;
       border-right: none;
     }
-    .type-tab:nth-child(4) { border-right: none; }
+    .type-tab:nth-child(3) { border-right: none; }
     .type-tab:nth-child(2),
-    .type-tab:nth-child(3),
-    .type-tab:nth-child(4) { border-bottom: none; }
+    .type-tab:nth-child(3) { border-bottom: none; }
     .type-tab.active { background: var(--red); color: #fff; }
     .type-tab:not(.active):hover { color: var(--text); }
 
@@ -378,7 +377,6 @@
     <button class="type-tab active" data-cat="all">All Games</button>
     <button class="type-tab" data-cat="regular">Regular Season</button>
     <button class="type-tab" data-cat="playoff">Playoffs</button>
-    <button class="type-tab" data-cat="consolation">Consolation</button>
   </div>
 
   <div class="legend">
@@ -603,14 +601,14 @@ function buildBack(name, data) {
   const circles = `<div class="back-circles">
     <div class="rank-circle-wrap">
       ${buildRankCircle(ranks.boom, RANK_N, 'var(--boom-color)')}
-      <span class="rank-circle-label" style="color:var(--boom-color)">Boom</span>
+      <span class="rank-circle-label" style="color:var(--boom-color)">Boom%</span>
     </div>
     <div class="rank-circle-wrap">
       ${buildRankCircle(ranks.start, RANK_N, 'var(--start-color)')}
-      <span class="rank-circle-label" style="color:var(--start-color)">Start</span>
+      <span class="rank-circle-label" style="color:var(--start-color)">Start%</span>
     </div>
   </div>
-  <div class="back-context">among 13 active owners</div>`;
+  <div class="back-context">All-time rank among 13 active owners</div>`;
 
   return `<div class="card-face card-back" style="border-color:${archetypeColor}">
     ${header}
