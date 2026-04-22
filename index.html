@@ -396,6 +396,24 @@
   .gon-rank-row.medal-2 .gon-rank-bar-inner { opacity: 0.9; background: #C0C0C0; }
   .gon-rank-row.medal-3 .gon-rank-bar-inner { opacity: 0.85; background: #CD7F32; }
 
+  .gon-rankings-close {
+    display: block;
+    width: 100%;
+    margin-top: 16px;
+    padding: 10px;
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 0.82rem;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    background: var(--surface3);
+    border: 1px solid var(--border);
+    color: var(--label);
+    border-radius: 4px;
+    cursor: pointer;
+    transition: color 0.15s, border-color 0.15s;
+  }
+  .gon-rankings-close:hover { color: var(--text); border-color: var(--gold); }
+
   /* name swap fade */
   .gon-name.fade-out { opacity: 0; transition: opacity 0.12s; }
   .gon-name.fade-in  { opacity: 1; transition: opacity 0.12s; }
@@ -466,6 +484,7 @@
     <div class="gon-rankings" id="gonRankings">
       <div class="gon-rankings-title">Top 69 — All-Time Elo Rankings</div>
       <div id="gonRankList">Loading rankings…</div>
+      <button class="gon-rankings-close" onclick="gonToggleRankings()">Close ▴</button>
     </div>
   </div>
 </div>
