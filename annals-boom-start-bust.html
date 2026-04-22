@@ -25,7 +25,7 @@
       --gold: #c9a84c;
       --boom-color: #c9a84c;
       --start-color: #4a9eda;
-      --mid-color: #6b6b6b;
+      --mid-color: #a0a0a0;
       --bust-color: #c0392b;
     }
 
@@ -215,8 +215,8 @@
       transform: translate(-50%, -50%); text-align: center; line-height: 1;
     }
     .donut-games {
-      font-family: 'Bebas Neue', sans-serif; font-size: 1.5rem;
-      color: var(--text); display: block;
+      font-family: 'Bebas Neue', sans-serif; font-size: 2.4rem;
+      color: var(--text); display: block; line-height: 1;
     }
     .donut-label {
       font-family: 'Barlow Condensed', sans-serif; font-size: 0.72rem;
@@ -368,7 +368,7 @@
 
 <div class="content">
 
-  <p class="intro">Every week a manager either shows up or doesn't. A <strong>Boom</strong> is scoring 120% or more of that season's league average. A <strong>Start</strong> is scoring at or above average — boom weeks count. A <strong>Mid</strong> is below average but above the bust threshold. A <strong>Bust</strong> is 80% or less of the season average. These are the scorecards.</p>
+  <p class="intro">Every week a manager either shows up or doesn't. A <strong>Boom</strong> is scoring 120% or more of that season's league average. A <strong>Start</strong> is scoring at or above average — boom weeks count. A <strong>Mid</strong> is below average but above 80% of average. A <strong>Bust</strong> is 80% or less of the season average. These are the scorecards.</p>
 
   <div class="type-tabs" role="tablist">
     <button class="type-tab active" data-cat="all">All Games</button>
@@ -380,7 +380,7 @@
   <div class="legend">
     <div class="legend-item"><div class="legend-dot" style="background:var(--boom-color)"></div>Boom ≥120%</div>
     <div class="legend-item"><div class="legend-dot" style="background:var(--start-color)"></div>Start ≥100% (incl. booms)</div>
-    <div class="legend-item"><div class="legend-dot" style="background:var(--mid-color)"></div>Mid &gt;80%</div>
+    <div class="legend-item"><div class="legend-dot" style="background:var(--mid-color)"></div>Mid 80–100%</div>
     <div class="legend-item"><div class="legend-dot" style="background:var(--bust-color)"></div>Bust ≤80%</div>
   </div>
 
@@ -778,10 +778,10 @@ function renderCards(cat) {
     });
   }
 
-  // Desktop: mouseenter/mouseleave on donut segments (skip start-band)
+  // Desktop: mouseenter/mouseleave on donut segments
   document.querySelectorAll('.donut-seg').forEach(seg => {
-    if (seg.dataset.stat === 'start-band') return;
-    seg.addEventListener('mouseenter', () => activateStat(seg.dataset.card, seg.dataset.stat, seg.dataset.count));
+    const statKey = seg.dataset.stat === 'start-band' ? 'start' : seg.dataset.stat;
+    seg.addEventListener('mouseenter', () => activateStat(seg.dataset.card, statKey, seg.dataset.count));
     seg.addEventListener('mouseleave', () => deactivateStat(seg.dataset.card));
   });
 
@@ -811,8 +811,8 @@ function renderCards(cat) {
   }
 
   document.querySelectorAll('.donut-seg').forEach(seg => {
-    if (seg.dataset.stat === 'start-band') return;
-    seg.addEventListener('touchend', e => handleTouch(seg.dataset.card, seg.dataset.stat, seg.dataset.count, e), { passive: false });
+    const statKey = seg.dataset.stat === 'start-band' ? 'start' : seg.dataset.stat;
+    seg.addEventListener('touchend', e => handleTouch(seg.dataset.card, statKey, seg.dataset.count, e), { passive: false });
   });
   document.querySelectorAll('.stat-cell').forEach(cell => {
     cell.addEventListener('touchend', e => handleTouch(cell.dataset.card, cell.dataset.stat, cell.dataset.count, e), { passive: false });
