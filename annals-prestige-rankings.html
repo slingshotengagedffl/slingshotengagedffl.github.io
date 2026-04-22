@@ -149,7 +149,8 @@
       text-align: center;
       line-height: 1;
     }
-    .rank-1, .rank-2, .rank-3, .rank-other { color: var(--muted); }
+    .rank-1 { color: var(--gold); }
+    .rank-2, .rank-3, .rank-other { color: var(--label); }
 
     /* ── Owner name + bar ── */
     .owner-info { min-width: 0; }
@@ -165,7 +166,7 @@
     .active-owner .owner-name { color: var(--text); }
     .inactive-label {
       font-family: 'Barlow Condensed', sans-serif;
-      font-size: 0.65rem;
+      font-size: 0.72rem;
       letter-spacing: 0.15em;
       text-transform: uppercase;
       color: var(--muted);
@@ -351,6 +352,21 @@
       color: var(--muted);
       font-style: italic;
     }
+    .rank-change {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: 0.72rem;
+      font-weight: 700;
+      letter-spacing: 0.04em;
+      padding: 2px 5px;
+      border-radius: 3px;
+      white-space: nowrap;
+      flex-shrink: 0;
+      line-height: 1.4;
+    }
+    .rank-change.up   { color: #2ecc71; background: rgba(46,204,113,0.12); }
+    .rank-change.down { color: var(--red-bright); background: rgba(231,76,60,0.12); }
+    .rank-change.same { color: var(--muted); background: var(--surface2); }
+    .rank-change.new  { color: var(--gold); background: var(--gold-dim); }
   </style>
 </head>
 <body>
@@ -364,7 +380,7 @@
 
   <div class="header-spacer"></div>
 
-  <p class="intro">A formula-based score across 24 factors that objectively measures historical success. Think Patriots vs Browns. Tap any owner to see their breakdown.</p>
+  <p class="intro">The most important number in the league. More important than wins. More important than championships. More important than what your family thinks of you. A formula-based score across 24 factors that objectively measures historical success. Think Patriots vs Browns. Tap any owner to see their breakdown.</p>
 
   <div class="legend">
     <div class="legend-item"><div class="legend-dot active"></div> Active Owner</div>
@@ -387,7 +403,7 @@
   <script>
   const OWNERS = [
     {
-      name: 'Dylan', active: true, pts: 2201,
+      name: 'Dylan', active: true, pts: 2201, rankChange: 2,
       breakdown: { playoff: 65, regseason: 35, consolation: 0 },
       topFactors: [
         { name: 'Championships', pts: 750 },
@@ -402,7 +418,7 @@
       race: '46 pts ahead of Jack (#2)',
     },
     {
-      name: 'Jack', active: true, pts: 2155,
+      name: 'Jack', active: true, pts: 2155, rankChange: -1,
       breakdown: { playoff: 53, regseason: 44, consolation: 2 },
       topFactors: [
         { name: 'Championships', pts: 500 },
@@ -417,7 +433,7 @@
       race: '46 pts behind Dylan (#1) · 137 ahead of Kyle (#3)',
     },
     {
-      name: 'Kyle', active: true, pts: 2018,
+      name: 'Kyle', active: true, pts: 2018, rankChange: -1,
       breakdown: { playoff: 65, regseason: 35, consolation: 0 },
       topFactors: [
         { name: 'Championships', pts: 500 },
@@ -432,7 +448,7 @@
       race: '137 pts behind Jack (#2) · 538 ahead of Mike (#4)',
     },
     {
-      name: 'Mike', active: true, pts: 1480,
+      name: 'Mike M', active: true, pts: 1480, rankChange: 1,
       breakdown: { playoff: 56, regseason: 44, consolation: 0 },
       topFactors: [
         { name: 'Regular Season Wins', pts: 264 },
@@ -447,7 +463,7 @@
       race: '538 pts behind Kyle (#3) · 49 ahead of Alex (#5)',
     },
     {
-      name: 'Alex', active: true, pts: 1431,
+      name: 'Alex V', active: true, pts: 1431, rankChange: -1,
       breakdown: { playoff: 52, regseason: 48, consolation: 0 },
       topFactors: [
         { name: 'Championships', pts: 250 },
@@ -462,7 +478,7 @@
       race: '49 pts behind Mike (#4) · 374 ahead of Daniel (#6)',
     },
     {
-      name: 'Daniel', active: true, pts: 1057,
+      name: 'Daniel', active: true, pts: 1057, rankChange: 0,
       breakdown: { playoff: 37, regseason: 62, consolation: 0 },
       topFactors: [
         { name: 'Regular Season Wins', pts: 234 },
@@ -477,7 +493,7 @@
       race: '374 pts behind Alex (#5) · 48 ahead of Brian (#7)',
     },
     {
-      name: 'Brian', active: true, pts: 1009,
+      name: 'Brian', active: true, pts: 1009, rankChange: 1,
       breakdown: { playoff: 43, regseason: 53, consolation: 4 },
       topFactors: [
         { name: 'Championships', pts: 250 },
@@ -492,7 +508,7 @@
       race: '48 pts behind Daniel (#6) · 78 ahead of Jon (#8)',
     },
     {
-      name: 'Jon', active: false, pts: 931,
+      name: 'Jon', active: false, pts: 931, rankChange: -1,
       breakdown: { playoff: 40, regseason: 58, consolation: 2 },
       topFactors: [
         { name: 'Regular Season Wins', pts: 225 },
@@ -506,7 +522,7 @@
       ],
     },
     {
-      name: 'Michelle T', active: false, pts: 704,
+      name: 'Michelle T', active: false, pts: 704, rankChange: 0,
       breakdown: { playoff: 76, regseason: 24, consolation: 0 },
       topFactors: [
         { name: 'Championships', pts: 250 },
@@ -520,7 +536,7 @@
       ],
     },
     {
-      name: 'Matt', active: true, pts: 570,
+      name: 'Matt', active: true, pts: 570, rankChange: 2,
       breakdown: { playoff: 17, regseason: 82, consolation: 1 },
       topFactors: [
         { name: 'Regular Season Wins', pts: 195 },
@@ -535,7 +551,7 @@
       race: '134 pts behind Michelle T (#9) · 32 ahead of Scott (#11)',
     },
     {
-      name: 'Scott', active: true, pts: 538,
+      name: 'Scott', active: true, pts: 538, rankChange: -1,
       breakdown: { playoff: 26, regseason: 68, consolation: 6 },
       topFactors: [
         { name: 'Regular Season Wins', pts: 210 },
@@ -550,7 +566,7 @@
       race: '32 pts behind Matt (#10) · 28 ahead of Alex M (#12)',
     },
     {
-      name: 'Alex M', active: false, pts: 510,
+      name: 'Alex M', active: false, pts: 510, rankChange: -1,
       breakdown: { playoff: 80, regseason: 20, consolation: 0 },
       topFactors: [
         { name: 'Championships', pts: 250 },
@@ -562,7 +578,7 @@
       ],
     },
     {
-      name: 'Tim C', active: false, pts: 414,
+      name: 'Tim C', active: false, pts: 414, rankChange: 0,
       breakdown: { playoff: 33, regseason: 67, consolation: 0 },
       topFactors: [
         { name: 'Regular Season Wins', pts: 108 },
@@ -576,7 +592,7 @@
       ],
     },
     {
-      name: 'Wade', active: true, pts: 311,
+      name: 'Wade', active: true, pts: 311, rankChange: 3,
       breakdown: { playoff: 10, regseason: 86, consolation: 5 },
       topFactors: [
         { name: 'Regular Season Wins', pts: 123 },
@@ -591,7 +607,7 @@
       race: '103 pts behind Tim C (#13) · 8 ahead of Tim (#15)',
     },
     {
-      name: 'Tim', active: true, pts: 303,
+      name: 'Tim H', active: true, pts: 303, rankChange: 3,
       breakdown: { playoff: 26, regseason: 74, consolation: 0 },
       topFactors: [
         { name: 'Regular Season Wins', pts: 93 },
@@ -606,7 +622,7 @@
       race: '8 pts behind Wade (#14) · 3 ahead of Andy (#16)',
     },
     {
-      name: 'Andy', active: true, pts: 300,
+      name: 'Andy', active: true, pts: 300, rankChange: -1,
       breakdown: { playoff: 17, regseason: 83, consolation: 0 },
       topFactors: [
         { name: 'Regular Season Wins', pts: 87 },
@@ -621,7 +637,7 @@
       race: '3 pts behind Tim (#15) · 3 ahead of Jordan (#17)',
     },
     {
-      name: 'Jordan', active: true, pts: 297,
+      name: 'Jordan', active: true, pts: 297, rankChange: -1,
       breakdown: { playoff: 3, regseason: 88, consolation: 9 },
       topFactors: [
         { name: 'Regular Season Wins', pts: 126 },
@@ -636,7 +652,7 @@
       race: '3 pts behind Andy (#16) · tied with Taylor (#18)',
     },
     {
-      name: 'Taylor', active: false, pts: 297,
+      name: 'Taylor', active: false, pts: 297, rankChange: -4,
       breakdown: { playoff: 44, regseason: 56, consolation: 0 },
       topFactors: [
         { name: 'Regular Season Wins', pts: 66 },
@@ -650,7 +666,7 @@
       ],
     },
     {
-      name: 'Michelle C', active: false, pts: 266,
+      name: 'Michelle C', active: false, pts: 266, rankChange: 0,
       breakdown: { playoff: 4, regseason: 93, consolation: 3 },
       topFactors: [
         { name: 'Regular Season Wins', pts: 117 },
@@ -664,7 +680,7 @@
       ],
     },
     {
-      name: 'Christine', active: false, pts: 181,
+      name: 'Christine', active: false, pts: 181, rankChange: 0,
       breakdown: { playoff: 39, regseason: 61, consolation: 0 },
       topFactors: [
         { name: 'Regular Season Wins', pts: 60 },
@@ -678,7 +694,7 @@
       ],
     },
     {
-      name: 'Anthony M', active: false, pts: 89,
+      name: 'Anthony M', active: false, pts: 89, rankChange: 0,
       breakdown: { playoff: 0, regseason: 89, consolation: 11 },
       topFactors: [
         { name: 'Regular Season Wins', pts: 69 },
@@ -692,7 +708,7 @@
       ],
     },
     {
-      name: 'Mike V', active: false, pts: 67,
+      name: 'Mike V', active: false, pts: 67, rankChange: 0,
       breakdown: { playoff: 15, regseason: 85, consolation: 0 },
       topFactors: [
         { name: 'Regular Season Wins', pts: 24 },
@@ -704,7 +720,7 @@
       ],
     },
     {
-      name: 'Pauly', active: false, pts: 25,
+      name: 'Pauly', active: false, pts: 25, rankChange: 0,
       breakdown: { playoff: 0, regseason: 100, consolation: 0 },
       topFactors: [
         { name: 'Regular Season Wins', pts: 21 },
@@ -715,7 +731,7 @@
       ],
     },
     {
-      name: 'Tyler', active: false, pts: 25,
+      name: 'Tyler', active: false, pts: 25, rankChange: 0,
       breakdown: { playoff: 0, regseason: 92, consolation: 8 },
       topFactors: [
         { name: 'Regular Season Wins', pts: 15 },
@@ -727,7 +743,7 @@
       ],
     },
     {
-      name: 'Anthony B', active: false, pts: 18,
+      name: 'Anthony B', active: false, pts: 18, rankChange: 0,
       breakdown: { playoff: 0, regseason: 100, consolation: 0 },
       topFactors: [
         { name: 'Regular Season Wins', pts: 18 },
@@ -737,7 +753,7 @@
       ],
     },
     {
-      name: 'James', active: false, pts: 3,
+      name: 'James', active: false, pts: 3, rankChange: 0,
       breakdown: { playoff: 0, regseason: 100, consolation: 0 },
       topFactors: [
         { name: 'Regular Season Wins', pts: 3 },
@@ -747,7 +763,7 @@
       ],
     },
     {
-      name: 'Luke', active: true, pts: 0,
+      name: 'Luke', active: true, pts: 0, rankChange: null,
       breakdown: { playoff: 0, regseason: 0, consolation: 0 },
       topFactors: [],
       topSeasons: [],
@@ -802,6 +818,13 @@
     </div>`;
   }
 
+  function buildRankChange(rc) {
+    if (rc === null) return '<span class="rank-change new">NEW</span>';
+    if (rc > 0)  return `<span class="rank-change up">▲${rc}</span>`;
+    if (rc < 0)  return `<span class="rank-change down">▼${Math.abs(rc)}</span>`;
+    return '<span class="rank-change same">—</span>';
+  }
+
   function toggleRow(idx) {
     document.getElementById(`row-${idx}`).classList.toggle('open');
   }
@@ -830,7 +853,7 @@
       <div class="owner-row-main" onclick="toggleRow(${idx})">
         <div class="rank-num ${rankClass(rank)}">${rank}</div>
         <div class="owner-info">
-          <div class="owner-name">${owner.name}${inactiveLabel}</div>
+          <div class="owner-name">${owner.name}${inactiveLabel} ${buildRankChange(owner.rankChange)}</div>
           <div class="prestige-bar-wrap">
             <div class="prestige-bar-fill" style="width:${barWidth}%"></div>
           </div>
