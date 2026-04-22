@@ -70,7 +70,7 @@
       border-radius: 4px; overflow: hidden; width: 100%; margin-bottom: 24px;
     }
     .type-tab {
-      font-family: 'Barlow Condensed', sans-serif; font-size: 0.9rem;
+      font-family: 'Barlow Condensed', sans-serif; font-size: 1.05rem;
       font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase;
       padding: 10px 16px; background: transparent; color: var(--muted);
       border: none; border-right: 1px solid var(--border);
@@ -96,7 +96,7 @@
     }
     .legend-item {
       display: flex; align-items: center; gap: 6px;
-      font-family: 'Barlow Condensed', sans-serif; font-size: 0.9rem;
+      font-family: 'Barlow Condensed', sans-serif; font-size: 1rem;
       letter-spacing: 0.12em; text-transform: uppercase; color: var(--label);
     }
     .legend-dot { width: 10px; height: 10px; border-radius: 50%; flex-shrink: 0; }
@@ -115,11 +115,12 @@
     }
     .archetype-badge {
       display: inline-block; margin-top: 3px;
-      font-family: 'Barlow Condensed', sans-serif; font-size: 0.75rem;
+      font-family: 'Barlow Condensed', sans-serif; font-size: 0.82rem;
       font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase;
       padding: 3px 9px; border-radius: 20px; white-space: nowrap;
       cursor: pointer;
     }
+    .badge-outlier        { background: rgba(231,76,60,0.15);   color: #e74c3c;      border: 1px solid rgba(231,76,60,0.4); }
     .badge-boom-machine    { background: rgba(201,168,76,0.15);  color: var(--gold);  border: 1px solid rgba(201,168,76,0.3); }
     .badge-high-variance   { background: rgba(155,89,182,0.15);  color: #c39bd3;      border: 1px solid rgba(155,89,182,0.3); }
     .badge-reliable        { background: rgba(74,158,218,0.15);  color: #7ec8e3;      border: 1px solid rgba(74,158,218,0.3); }
@@ -129,27 +130,16 @@
 
     .badge-tooltip {
       display: none;
-      position: absolute;
-      bottom: calc(100% + 8px);
-      left: 50%;
-      transform: translateX(-50%);
+      position: fixed;
       background: var(--surface3);
       border: 1px solid var(--border);
       border-radius: 6px;
       padding: 10px 12px;
-      width: 210px;
-      z-index: 200;
-      box-shadow: 0 4px 20px rgba(0,0,0,0.5);
+      width: 220px;
+      max-width: calc(100vw - 24px);
+      z-index: 500;
+      box-shadow: 0 4px 20px rgba(0,0,0,0.6);
       pointer-events: none;
-    }
-    .badge-tooltip::after {
-      content: '';
-      position: absolute;
-      top: 100%;
-      left: 50%;
-      transform: translateX(-50%);
-      border: 5px solid transparent;
-      border-top-color: var(--border);
     }
     .badge-tooltip.visible { display: block; }
     .tooltip-name {
@@ -229,7 +219,7 @@
       color: var(--text); display: block;
     }
     .donut-label {
-      font-family: 'Barlow Condensed', sans-serif; font-size: 0.62rem;
+      font-family: 'Barlow Condensed', sans-serif; font-size: 0.72rem;
       letter-spacing: 0.1em; text-transform: uppercase; color: var(--muted);
     }
     /* 2x2 stat grid below circles */
@@ -242,21 +232,21 @@
       background: var(--surface2); border-radius: 4px; padding: 3px 6px;
     }
     .stat-cell-label {
-      font-family: 'Barlow Condensed', sans-serif; font-size: 0.68rem;
+      font-family: 'Barlow Condensed', sans-serif; font-size: 0.82rem;
       font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase;
-      color: var(--label); line-height: 1;
+      line-height: 1;
     }
     .stat-cell-sub {
-      font-size: 0.55rem; letter-spacing: 0.04em; font-weight: 400;
+      font-size: 0.62rem; letter-spacing: 0.04em; font-weight: 400;
       opacity: 0.72; text-transform: lowercase;
     }
     .stat-cell-val {
-      font-family: 'Bebas Neue', sans-serif; font-size: 1.1rem;
+      font-family: 'Bebas Neue', sans-serif; font-size: 1.35rem;
       line-height: 1.1;
     }
     .flip-btn {
       display: block; width: calc(100% - 24px); margin: 0 12px 10px;
-      font-family: 'Barlow Condensed', sans-serif; font-size: 0.82rem;
+      font-family: 'Barlow Condensed', sans-serif; font-size: 0.92rem;
       font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase;
       background: var(--surface2); border: 1px solid var(--border);
       color: var(--muted); border-radius: 4px; padding: 8px 0;
@@ -265,40 +255,39 @@
     .flip-btn:hover { color: var(--text); border-color: var(--muted); }
     .flip-btn-back { margin-top: auto; }
 
-    /* Card back — rank sheet */
+    /* Card back — rank circles */
     .back-header {
       background: var(--surface2); padding: 8px 12px;
       border-bottom: 1px solid var(--border);
-      display: flex; align-items: center; justify-content: space-between;
+      display: flex; align-items: center;
     }
     .back-name {
-      font-family: 'Barlow Condensed', sans-serif; font-size: 1.15rem;
+      font-family: 'Barlow Condensed', sans-serif; font-size: 1.25rem;
       font-weight: 700; color: var(--text); letter-spacing: 0.04em;
     }
-    .back-flip-hint {
-      font-family: 'Barlow Condensed', sans-serif; font-size: 0.7rem;
-      letter-spacing: 0.12em; text-transform: uppercase; color: var(--muted);
+    .back-body {
+      flex: 1; display: flex; flex-direction: column;
+      align-items: center; justify-content: center;
+      padding: 10px 14px 4px; gap: 4px;
     }
-    .back-body { flex: 1; padding: 10px 14px 10px; display: flex; flex-direction: column; gap: 8px; }
     .back-context {
-      font-family: 'Barlow Condensed', sans-serif; font-size: 0.75rem;
+      font-family: 'Barlow Condensed', sans-serif; font-size: 0.82rem;
       letter-spacing: 0.1em; text-transform: uppercase; color: var(--muted);
-      text-align: center; margin-bottom: 2px;
+      text-align: center;
     }
-    .rank-rows { display: flex; flex-direction: column; gap: 12px; justify-content: center; flex: 1; }
-    .rank-row {
-      display: flex; align-items: baseline; justify-content: space-between; gap: 8px;
+    .back-circles {
+      display: flex; align-items: center; justify-content: center; gap: 16px;
     }
-    .rank-stat-label {
-      font-family: 'Barlow Condensed', sans-serif; font-size: 1rem;
-      font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase;
+    .rank-circle-wrap {
+      display: flex; flex-direction: column; align-items: center; gap: 4px;
     }
-    .rank-number {
-      font-family: 'Bebas Neue', sans-serif; font-size: 2.2rem;
-      line-height: 1;
+    .rank-circle-svg { display: block; }
+    .rank-circle-label {
+      font-family: 'Barlow Condensed', sans-serif; font-size: 0.92rem;
+      font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase;
     }
     .rank-unqualified {
-      font-family: 'Barlow Condensed', sans-serif; font-size: 0.72rem;
+      font-family: 'Barlow Condensed', sans-serif; font-size: 0.82rem;
       letter-spacing: 0.1em; text-transform: uppercase;
       color: var(--muted); font-style: italic; text-align: center;
       padding: 8px 0;
@@ -319,7 +308,7 @@
     }
     table { width: 100%; border-collapse: collapse; min-width: 480px; }
     thead th {
-      font-family: 'Barlow Condensed', sans-serif; font-size: 0.88rem;
+      font-family: 'Barlow Condensed', sans-serif; font-size: 0.95rem;
       font-weight: 700; letter-spacing: 0.18em; text-transform: uppercase;
       color: var(--label); background: var(--surface2);
       padding: 10px 12px; text-align: right;
@@ -339,14 +328,14 @@
 
     tbody td {
       padding: 9px 12px; vertical-align: middle;
-      border-bottom: 1px solid var(--border); font-size: 0.95rem;
+      border-bottom: 1px solid var(--border); font-size: 1rem;
     }
     tbody tr:last-child td { border-bottom: none; }
     tbody tr:hover { background: var(--surface2); transition: background 0.15s; }
 
     .td-owner {
       font-family: 'Barlow Condensed', sans-serif;
-      font-size: 1.05rem; font-weight: 700; color: var(--text);
+      font-size: 1.15rem; font-weight: 700; color: var(--text);
       position: sticky; left: 0; z-index: 1;
       background: var(--surface);
     }
@@ -358,7 +347,7 @@
     .td-start { color: var(--start-color); }
     .td-mid   { color: var(--muted); font-weight: 400; }
     .td-bust  { color: var(--bust-color); }
-    .td-games { color: var(--muted); font-weight: 400; font-size: 0.88rem; }
+    .td-games { color: var(--muted); font-weight: 400; font-size: 0.95rem; }
     .td-dash  { color: var(--border); text-align: right; font-family: 'Barlow Condensed', sans-serif; }
     .td-hist-row td { opacity: 0.72; }
 
@@ -423,6 +412,7 @@
 // ── ARCHETYPE DEFINITIONS ─────────────────────────────────────────────────────
 
 const ARCHETYPE_DEFS = {
+  'Outlier':         { color: '#e74c3c',       desc: 'In a league of his own. Kyle\'s boom rate and floor are so far above the field that no other archetype fits.' },
   'Boom Machine':    { color: 'var(--gold)',   desc: 'Scores 120%+ of league average more often than almost anyone. The ceiling is real and it shows up.' },
   'High Variance':   { color: '#c39bd3',       desc: 'High boom rate paired with a high bust rate. Every week is a coin flip — could carry your lineup or sink it.' },
   'Reliable':        { color: '#7ec8e3',       desc: 'Scores at or above average consistently, with a low bust rate. Steady without being spectacular.' },
@@ -462,7 +452,7 @@ const ACTIVE_PROFILES = {
 };
 
 const ACTIVE = {
-  "Kyle":   {archetype:"Boom Machine",   photoId:"kyle",   stats:{all:{games:125,boom_rate:0.32,start_rate:0.704,mid_rate:0.248,bust_rate:0.048},regular:{games:109,boom_rate:0.321,start_rate:0.706,mid_rate:0.257,bust_rate:0.037},playoff:{games:16,boom_rate:0.312,start_rate:0.688,mid_rate:0.188,bust_rate:0.125},consolation:null}},
+  "Kyle":   {archetype:"Outlier",        photoId:"kyle",   stats:{all:{games:125,boom_rate:0.32,start_rate:0.704,mid_rate:0.248,bust_rate:0.048},regular:{games:109,boom_rate:0.321,start_rate:0.706,mid_rate:0.257,bust_rate:0.037},playoff:{games:16,boom_rate:0.312,start_rate:0.688,mid_rate:0.188,bust_rate:0.125},consolation:null}},
   "Jack":   {archetype:"Boom Machine",   photoId:"jack",   stats:{all:{games:179,boom_rate:0.291,start_rate:0.592,mid_rate:0.257,bust_rate:0.151},regular:{games:161,boom_rate:0.304,start_rate:0.602,mid_rate:0.261,bust_rate:0.137},playoff:{games:13,boom_rate:0.231,start_rate:0.615,mid_rate:0.231,bust_rate:0.154},consolation:{games:5,boom_rate:0.0,start_rate:0.2,mid_rate:0.2,bust_rate:0.6}}},
   "Dylan":  {archetype:"Reliable",       photoId:"dylan",  stats:{all:{games:170,boom_rate:0.259,start_rate:0.553,mid_rate:0.3,bust_rate:0.147},regular:{games:148,boom_rate:0.25,start_rate:0.534,mid_rate:0.311,bust_rate:0.155},playoff:{games:13,boom_rate:0.385,start_rate:0.692,mid_rate:0.231,bust_rate:0.077},consolation:{games:9,boom_rate:0.222,start_rate:0.667,mid_rate:0.222,bust_rate:0.111}}},
   "Mike":   {archetype:"Reliable",       photoId:"mike",   stats:{all:{games:183,boom_rate:0.197,start_rate:0.47,mid_rate:0.35,bust_rate:0.18},regular:{games:161,boom_rate:0.199,start_rate:0.46,mid_rate:0.354,bust_rate:0.186},playoff:{games:12,boom_rate:0.167,start_rate:0.667,mid_rate:0.333,bust_rate:0.0},consolation:{games:10,boom_rate:0.2,start_rate:0.4,mid_rate:0.3,bust_rate:0.3}}},
@@ -551,51 +541,85 @@ function statGrid(s, cardId) {
   ).join('');
 }
 
-// ── CARD BACK — RANK SHEET ────────────────────────────────────────────────────
+// ── CARD BACK — RANK CIRCLES ─────────────────────────────────────────────────
+
+function buildRankCircle(rank, n, color) {
+  const size = 160;
+  const cx = size / 2, cy = size / 2;
+  const R = 65, sw = 14;
+  const circ = 2 * Math.PI * R;
+  const fillPct = Math.max(0.06, (n - rank + 1) / n);
+  const filled = fillPct * circ;
+  const gap = circ - filled;
+  return `<svg class="rank-circle-svg" width="${size}" height="${size}" viewBox="0 0 ${size} ${size}">
+    <circle cx="${cx}" cy="${cy}" r="${R}" fill="none" stroke="var(--surface3)" stroke-width="${sw}"/>
+    <circle cx="${cx}" cy="${cy}" r="${R}" fill="none" stroke="${color}" stroke-width="${sw}"
+      stroke-dasharray="${filled.toFixed(2)} ${gap.toFixed(2)}"
+      stroke-linecap="round"
+      transform="rotate(-90 ${cx} ${cy})"/>
+    <text x="${cx}" y="${cy - 8}" text-anchor="middle" dominant-baseline="middle"
+      font-family="Bebas Neue, sans-serif" font-size="52" fill="${color}">${ordinal(rank)}</text>
+  </svg>`;
+}
 
 function buildBack(name, data) {
   const ranks = RANKS[name];
   const qualified = !!ranks;
+  const archetype = data.archetype;
+  const def = ARCHETYPE_DEFS[archetype] || {};
+  const archetypeColor = def.color || 'var(--border)';
 
-  const header = `<div class="back-header">
-    <span class="back-name">${name}</span>
+  const tooltipHTML = `<div class="badge-tooltip">
+    <div class="tooltip-name" style="color:${def.color}">${archetype}</div>
+    <div class="tooltip-desc">${def.desc}</div>
+  </div>`;
+
+  const badge = `<div class="badge-wrap">
+    <span class="archetype-badge ${archetypeClass(archetype)}">${archetype}</span>
+    ${tooltipHTML}
+  </div>`;
+
+  const header = `<div class="card-header" style="border-bottom-color:${archetypeColor}20">
+    <div class="card-name-block">
+      <div class="card-name">${name}</div>
+      ${badge}
+    </div>
   </div>`;
 
   if (!qualified) {
-    return `<div class="card-face card-back" style="border-color:${ARCHETYPE_DEFS[data.archetype]?.color||'var(--border)'}">
+    return `<div class="card-face card-back" style="border-color:${archetypeColor}">
       ${header}
       <div class="back-body">
-        <div class="rank-unqualified">Fewer than 4 seasons played —<br>not ranked in career standings</div>
+        <div class="rank-unqualified">No games yet —<br>not ranked</div>
       </div>
-      <button class="flip-btn flip-btn-back" onclick="event.stopPropagation()">← Back</button>
+      <button class="flip-btn flip-btn-back">← Back</button>
     </div>`;
   }
 
-  const statDefs = [
-    { label:'Boom',  color:'var(--boom-color)',  rank:ranks.boom  },
-    { label:'Start', color:'var(--start-color)', rank:ranks.start },
-  ];
+  const circles = `<div class="back-circles">
+    <div class="rank-circle-wrap">
+      ${buildRankCircle(ranks.boom, RANK_N, 'var(--boom-color)')}
+      <span class="rank-circle-label" style="color:var(--boom-color)">Boom</span>
+    </div>
+    <div class="rank-circle-wrap">
+      ${buildRankCircle(ranks.start, RANK_N, 'var(--start-color)')}
+      <span class="rank-circle-label" style="color:var(--start-color)">Start</span>
+    </div>
+  </div>
+  <div class="back-context">among 13 active owners</div>`;
 
-  const rows = statDefs.map(d =>
-    `<div class="rank-row">
-      <span class="rank-stat-label" style="color:${d.color}">${d.label}</span>
-      <span class="rank-number" style="color:${d.color}">${ordinal(d.rank)}</span>
-    </div>`
-  ).join('');
-
-  return `<div class="card-face card-back" style="border-color:${ARCHETYPE_DEFS[data.archetype]?.color||'var(--border)'}">
+  return `<div class="card-face card-back" style="border-color:${archetypeColor}">
     ${header}
     <div class="back-body">
-      <div class="back-context">Ranked among 13 active owners</div>
-      <div class="rank-rows">${rows}</div>
+      ${circles}
     </div>
-    <button class="flip-btn flip-btn-back" onclick="event.stopPropagation()">← Back</button>
+    <button class="flip-btn flip-btn-back">← Back</button>
   </div>`;
 }
 
 // ── BUILD CARD ────────────────────────────────────────────────────────────────
 
-const AO={'Boom Machine':0,'High Variance':1,'Reliable':2,'Middling':3,'Underperforming':4,'Pending':5};
+const AO={'Outlier':0,'Boom Machine':1,'Reliable':2,'High Variance':3,'Underperforming':4,'Middling':5,'Pending':6};
 
 function buildCard(name, data, cat) {
   const s = data.stats[cat];
@@ -645,7 +669,7 @@ function buildCard(name, data, cat) {
       </div>
     </div>
     <div class="card-stat-grid">${statGrid(s, cardId)}</div>
-    <button class="flip-btn" onclick="event.stopPropagation()">Rankings ↗</button>`;
+    <button class="flip-btn">Rankings ↗</button>`;
   }
 
   const archetypeColor = def.color || 'var(--border)';
@@ -801,9 +825,18 @@ function renderCards(cat) {
     if (!tip) return;
     badge.addEventListener('click', e => {
       e.stopPropagation();
-      // close all others
       document.querySelectorAll('.badge-tooltip.visible').forEach(t => { if(t!==tip) t.classList.remove('visible'); });
       tip.classList.toggle('visible');
+      if (tip.classList.contains('visible')) {
+        const rect = badge.getBoundingClientRect();
+        const tipW = 220;
+        let left = rect.left + rect.width / 2 - tipW / 2;
+        left = Math.max(12, Math.min(left, window.innerWidth - tipW - 12));
+        const top = rect.top - 8;
+        tip.style.left = left + 'px';
+        tip.style.top = top + 'px';
+        tip.style.transform = 'translateY(-100%)';
+      }
     });
   });
 
