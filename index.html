@@ -170,6 +170,235 @@
   .league-note-text em { color: var(--muted); }
   .league-note-text ul { padding-left: 20px; margin: 8px 0; }
   .league-note-text li { margin: 4px 0; }
+
+  /* ── GAME OF NAMES ── */
+  .gon-section {
+    padding: 30px 16px 10px;
+    max-width: 900px;
+    margin: 0 auto;
+    width: 100%;
+  }
+  .gon-header {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    margin-bottom: 20px;
+  }
+  .gon-title {
+    font-family: 'Bebas Neue', sans-serif;
+    font-weight: 400;
+    font-size: 2.2rem;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: var(--text);
+  }
+  .gon-subtitle {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 0.88rem;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--label);
+  }
+  .gon-arena {
+    background: var(--bg3);
+    border: 1px solid var(--border);
+    border-top: 3px solid var(--red-bright);
+    border-radius: 6px;
+    overflow: hidden;
+  }
+  .gon-matchup {
+    display: grid;
+    grid-template-columns: 1fr 44px 1fr;
+    gap: 0;
+    min-height: 170px;
+  }
+  .gon-card {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 28px 14px 20px;
+    cursor: pointer;
+    transition: background 0.15s, transform 0.12s;
+    position: relative;
+    text-align: center;
+    border: none;
+    color: var(--text);
+    -webkit-tap-highlight-color: transparent;
+    user-select: none;
+    min-width: 0;
+  }
+  #gonCardA { background: linear-gradient(135deg, rgba(231,76,60,0.07) 0%, transparent 60%); }
+  #gonCardB { background: linear-gradient(225deg, rgba(96,165,250,0.07) 0%, transparent 60%); }
+  .gon-card:hover { filter: brightness(1.1); }
+  .gon-card:active { transform: scale(0.96); }
+  .gon-card.chosen {
+    animation: gonWin 0.35s ease forwards;
+  }
+  #gonCardA.chosen { background: linear-gradient(135deg, rgba(231,76,60,0.22) 0%, rgba(231,76,60,0.06) 60%); }
+  #gonCardB.chosen { background: linear-gradient(225deg, rgba(96,165,250,0.22) 0%, rgba(96,165,250,0.06) 60%); }
+  .gon-card.loser {
+    opacity: 0.28;
+    transition: opacity 0.3s;
+  }
+  @keyframes gonWin {
+    0%   { transform: scale(1); }
+    30%  { transform: scale(1.04); }
+    100% { transform: scale(1); }
+  }
+  .gon-name {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: clamp(1.15rem, 4.5vw, 1.9rem);
+    letter-spacing: 0.04em;
+    line-height: 1.2;
+    color: var(--text);
+    word-break: break-word;
+    overflow-wrap: anywhere;
+    hyphens: auto;
+    max-width: 100%;
+  }
+  .gon-tap-hint {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 0.78rem;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: var(--label);
+    margin-top: 10px;
+  }
+  #gonCardA .gon-tap-hint { color: #e87c6e; }
+  #gonCardB .gon-tap-hint { color: #7ab8f0; }
+  .gon-vs {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 1.1rem;
+    color: var(--red-bright);
+    letter-spacing: 0.1em;
+    border-left: 1px solid var(--border);
+    border-right: 1px solid var(--border);
+    background: rgba(192,57,43,0.06);
+    flex-shrink: 0;
+  }
+  .gon-footer {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 12px 16px;
+    border-top: 1px solid var(--border);
+    background: rgba(0,0,0,0.25);
+    gap: 12px;
+  }
+  .gon-count {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 0.82rem;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--gold);
+    white-space: nowrap;
+  }
+  .gon-rankings-btn {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 0.82rem;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    background: var(--surface3);
+    border: 1px solid var(--border);
+    color: var(--label);
+    padding: 8px 16px;
+    border-radius: 20px;
+    cursor: pointer;
+    transition: color 0.15s, border-color 0.15s, background 0.15s;
+    white-space: nowrap;
+    flex-shrink: 0;
+    min-height: 36px;
+  }
+  .gon-rankings-btn:hover { color: var(--text); border-color: var(--gold); }
+  .gon-rankings-btn.active {
+    color: #000;
+    background: var(--gold);
+    border-color: var(--gold);
+  }
+
+  /* Rankings panel */
+  .gon-rankings {
+    display: none;
+    border-top: 1px solid var(--border);
+    padding: 20px 16px;
+    background: rgba(0,0,0,0.2);
+  }
+  .gon-rankings.open { display: block; }
+  .gon-rankings-title {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 0.78rem;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: var(--muted);
+    margin-bottom: 16px;
+  }
+  .gon-rank-row {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 8px 0;
+    border-bottom: 1px solid rgba(42,42,42,0.7);
+  }
+  .gon-rank-row:last-child { border-bottom: none; }
+  .gon-rank-num {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 1.1rem;
+    color: var(--muted);
+    width: 26px;
+    text-align: right;
+    flex-shrink: 0;
+  }
+  .gon-rank-row.medal-1 .gon-rank-num { color: #FFD700; }
+  .gon-rank-row.medal-2 .gon-rank-num { color: #C0C0C0; }
+  .gon-rank-row.medal-3 .gon-rank-num { color: #CD7F32; }
+  .gon-rank-name {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 1rem;
+    letter-spacing: 0.03em;
+    color: var(--text-body);
+    flex: 1;
+    min-width: 0;
+    word-break: break-word;
+    overflow-wrap: anywhere;
+  }
+  .gon-rank-row.medal-1 .gon-rank-name { color: #FFD700; }
+  .gon-rank-row.medal-2 .gon-rank-name { color: #C0C0C0; }
+  .gon-rank-row.medal-3 .gon-rank-name { color: #CD7F32; }
+  .gon-rank-score {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 0.82rem;
+    color: var(--muted);
+    white-space: nowrap;
+    flex-shrink: 0;
+  }
+  .gon-rank-bar-wrap {
+    width: 52px;
+    flex-shrink: 0;
+  }
+  .gon-rank-bar-outer {
+    width: 100%;
+    height: 4px;
+    background: var(--surface3);
+    border-radius: 2px;
+    overflow: hidden;
+  }
+  .gon-rank-bar-inner {
+    height: 100%;
+    border-radius: 2px;
+    background: var(--gold);
+    opacity: 0.45;
+  }
+  .gon-rank-row.medal-1 .gon-rank-bar-inner { opacity: 1; background: #FFD700; }
+  .gon-rank-row.medal-2 .gon-rank-bar-inner { opacity: 0.9; background: #C0C0C0; }
+  .gon-rank-row.medal-3 .gon-rank-bar-inner { opacity: 0.85; background: #CD7F32; }
+
+  /* name swap fade */
+  .gon-name.fade-out { opacity: 0; transition: opacity 0.12s; }
+  .gon-name.fade-in  { opacity: 1; transition: opacity 0.12s; }
 </style>
 </head>
 <body>
@@ -211,6 +440,200 @@
 </div>
 
 
+
+<!-- GAME OF NAMES -->
+<div class="gon-section">
+  <div class="gon-header">
+    <div class="gon-title">Game of Names</div>
+    <div class="gon-subtitle">Pick your favorite — every vote shapes the all-time rankings</div>
+  </div>
+  <div class="gon-arena">
+    <div class="gon-matchup" id="gonMatchup">
+      <button class="gon-card" id="gonCardA" onclick="gonVote(0)">
+        <div class="gon-name" id="gonNameA">Loading…</div>
+        <div class="gon-tap-hint">Tap to pick</div>
+      </button>
+      <div class="gon-vs">VS</div>
+      <button class="gon-card" id="gonCardB" onclick="gonVote(1)">
+        <div class="gon-name" id="gonNameB">Loading…</div>
+        <div class="gon-tap-hint">Tap to pick</div>
+      </button>
+    </div>
+    <div class="gon-footer">
+      <div class="gon-count" id="gonCount">Loading…</div>
+      <button class="gon-rankings-btn" id="gonRankingsBtn" onclick="gonToggleRankings()">Top 25 ▾</button>
+    </div>
+    <div class="gon-rankings" id="gonRankings">
+      <div class="gon-rankings-title">Top 25 — All-Time Elo Rankings</div>
+      <div id="gonRankList">Loading rankings…</div>
+    </div>
+  </div>
+</div>
+
+<script>
+(function() {
+  const FIREBASE_URL = 'https://slingshot-engaged-default-rtdb.firebaseio.com/gameOfNames';
+  const K = 32;
+  const NAMES = ["\".O6\" O Face","72 inches of glizz","A Team Has No Name","Action Jaxson","Action Jaxson Strikes Back","All Pain No Gain","America's Commish","AMerricka's Team","AssEatinFrogz","axolotl cooler than frogs","Back Yard Olympic Bronz Frogz","Bayou Bears Be Howlin' 🌊🐻","Bearly Ready","Beef Spritz Boys 🐮💦","BellBrkzBgBodac BtfBncyBrzlnBty","BEST IN THE WEST","Big Hats and Mint-Shewlips","Bottom Power","Bronco Boy","CantSpellJesus WithoutSus","Cardiac Franks","Cardiac Franks is Back","Centerfold Spread'emsXXX","Chug Champs","Cleat to the Penis","Colonizer Claws","Commissioner Action Jackson","Cool Neb Guy","Could It Be?... The Naughty Men","Dad Bod Life","Daddy to All Bug Eaters","Daddy's Lil Diddle","Dem Hog Wild Boiz","Disney World Warrior","dropped Fields twice","Duhawks No Excuses","Dusty gazongas","Eifert'ed so Hard it Ertz","El Bod de Padre","El Hog De Padre","Eli Supermanning","Elijah Miss-ell","Fantasy Team","Forever Alone","Franks and Beans","Gettin' Dicky","Gettin' Schwifty","Ghost Frogs","Gibbs Libs","Golden Bells","Golden Tate Bridge","Gooodell's Jizzz Machine","Gordon's Back Bitches","Hakuna MaNgata","Here for the Gamgbanging","HighFives and SlappinButts","How now BROWN cow","Howell* 4 Prez (*Maye)","Hurtsin' for a Squirtin'","I Aint Mad","I love Mike Merrick","I Touchdown There","JetFuelCantMelt Playoff Dreams","Jop-O Isn't Real","Keep My 6 and 9 Seperate","Kerryon my Wayward Chubb","Kicking Ass Gamma Allstars","King LaserFace + tha Mad Dogz","Kyle Orton's Neck Beard","Legion of Shitfuck","Losing, oh Well but Super Hot","Lost my win in my face pubes","Luck King","Magic Merrick XXS","Maybe Enough Tavens?","Meat Raffle Musketeers","Meesh Crushes","MEGAHOG and his Little Hoglings","Megahog Messiah","Merrickles Testicles","Mike Tuck","Mike 💩's standing up","Mile high Magic","Miz Meesh Mash","Moist for Minshew","Naughty Step Sisters","NJDelphia Iggles","no such thing as halfway rooks","Not Nearly Enough Tavens","Osos de Agua por Vida 🐻🌊🏈","Osta-A-Spankos","Over the Boxers Urinators","Plunder Buns","Proper Feck'n Eejits ☘️","Putangy SourHoe","RAMsey of House Thax","Real Frogs Never Die","Red Hot Cuties","Rock hard for rookies","Ron Swanson's Decoy Gold","Rookie Hazing Committee","S.S. Beginner's Luck","SanFranShitsGo 4 and 9ers","Santanico Pandemonium","Scott Frost! Huskers","Sesame Street Leads to Hell","Sexy Infirmary","Sh'Aiken Bake","Shirtless Minshew","Show Me Your Troobs","Smallwood To Your Mother","So I Married A 9.5","SO MANY DAMN TAVENS","Spare Parts","StartedFromThe BottomNowImHere","Still Intact Sacs","Suck My MegaHog","Sucky Nerds","T-T TEAAAMMM-T- Tay-TBONE-TEAM","TA(s)TE THE RAINBOW","Tangy 👅🍞Sourdough","Team JimmyT","Team mr.merrick","Team Shake 'N Bake","Team Trash Can","Thack Daddy B","Thax Machine","Thaxnut Cracker","The 100 Point Exceeders 💯","The Beacons are Lit","The Crying Dutchman","The Dezman Cometh","The Dumb Poo Poo Poop Heads","The Fanny Fluffers","The Flying Dutchman","The Fu Minshew Choo Choo","The Garbage Man","The Gilbreath Gasher","The Golden Revival","The Naughty Men","The Nerd Burdz","The Night Commish","The Overprojectors","The Resurgent Hot Boys","Trash Daddy B","Trubisky Truthers","Turns Out I'm 100% That Minsh","We Float Down Here","WetBears","Whatsa Manning Goon Squad","Where's Tucker?","White People Suck","Wyfe Swappin Frogs","Youre all dead to me","❄️ Ice Cold Boy","👉 👌 👈","🥷 RageCage 🥷"];
+
+  let ratings = {};
+  let totalVotes = 0;
+  let pairA = '', pairB = '';
+  let rankingsOpen = false;
+  let lastUsed = [];
+
+  function nameToKey(n) {
+    return n.replace(/[^a-zA-Z0-9]/g, '_').substring(0, 60);
+  }
+
+  function initRatings(data) {
+    NAMES.forEach(n => {
+      const k = nameToKey(n);
+      ratings[k] = data && data[k] ? data[k] : { elo: 1000, votes: 0, name: n };
+    });
+    totalVotes = data && data._meta ? (data._meta.totalVotes || 0) : 0;
+  }
+
+  function expectedScore(rA, rB) {
+    return 1 / (1 + Math.pow(10, (rB - rA) / 400));
+  }
+
+  function nextPair() {
+    // Pick two distinct names, preferring less-voted ones, avoiding recent repeats
+    const candidates = NAMES.filter(n => !lastUsed.slice(-4).includes(n));
+    const pool = candidates.length >= 2 ? candidates : NAMES;
+    // Weight toward lower vote counts
+    const sorted = [...pool].sort((a, b) => {
+      const va = ratings[nameToKey(a)]?.votes || 0;
+      const vb = ratings[nameToKey(b)]?.votes || 0;
+      return va - vb;
+    });
+    const pickFrom = sorted.slice(0, Math.max(20, Math.floor(sorted.length * 0.4)));
+    let idxA = Math.floor(Math.random() * pickFrom.length);
+    let idxB;
+    do { idxB = Math.floor(Math.random() * pickFrom.length); } while (idxB === idxA);
+    pairA = pickFrom[idxA];
+    pairB = pickFrom[idxB];
+    lastUsed.push(pairA, pairB);
+    if (lastUsed.length > 20) lastUsed = lastUsed.slice(-20);
+  }
+
+  function renderPair() {
+    document.getElementById('gonNameA').textContent = pairA;
+    document.getElementById('gonNameB').textContent = pairB;
+    document.getElementById('gonCardA').classList.remove('chosen','loser');
+    document.getElementById('gonCardB').classList.remove('chosen','loser');
+    updateCount();
+  }
+
+  function updateCount() {
+    document.getElementById('gonCount').textContent =
+      totalVotes.toLocaleString() + ' vote' + (totalVotes !== 1 ? 's' : '') + ' cast';
+  }
+
+  async function loadFromFirebase() {
+    try {
+      const res = await fetch(FIREBASE_URL + '.json');
+      const data = await res.json();
+      initRatings(data);
+    } catch(e) {
+      initRatings(null);
+    }
+    nextPair();
+    renderPair();
+    if (rankingsOpen) renderRankings();
+  }
+
+  async function saveToFirebase(updates) {
+    try {
+      await fetch(FIREBASE_URL + '.json', {
+        method: 'PATCH',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(updates)
+      });
+    } catch(e) { /* silent fail */ }
+  }
+
+  window.gonVote = function(winner) {
+    const winName = winner === 0 ? pairA : pairB;
+    const loseName = winner === 0 ? pairB : pairA;
+    const winKey = nameToKey(winName);
+    const loseKey = nameToKey(loseName);
+
+    const rW = ratings[winKey].elo;
+    const rL = ratings[loseKey].elo;
+    const eW = expectedScore(rW, rL);
+
+    const newRW = Math.round(rW + K * (1 - eW));
+    const newRL = Math.round(rL + K * (0 - (1 - eW)));
+
+    ratings[winKey].elo = newRW;
+    ratings[winKey].votes = (ratings[winKey].votes || 0) + 1;
+    ratings[loseKey].elo = newRL;
+    ratings[loseKey].votes = (ratings[loseKey].votes || 0) + 1;
+    totalVotes++;
+
+    // Flash winner/loser
+    const chosenCard = winner === 0 ? document.getElementById('gonCardA') : document.getElementById('gonCardB');
+    const loserCard  = winner === 0 ? document.getElementById('gonCardB') : document.getElementById('gonCardA');
+    chosenCard.classList.add('chosen');
+    loserCard.classList.add('loser');
+
+    // Save to Firebase
+    const updates = {
+      [winKey]: ratings[winKey],
+      [loseKey]: ratings[loseKey],
+      '_meta': { totalVotes: totalVotes }
+    };
+    saveToFirebase(updates);
+
+    // Next pair after short delay
+    setTimeout(() => {
+      nextPair();
+      renderPair();
+      if (rankingsOpen) renderRankings();
+    }, 380);
+  };
+
+  window.gonToggleRankings = function() {
+    rankingsOpen = !rankingsOpen;
+    document.getElementById('gonRankings').classList.toggle('open', rankingsOpen);
+    const btn = document.getElementById('gonRankingsBtn');
+    btn.classList.toggle('active', rankingsOpen);
+    btn.textContent = rankingsOpen ? 'Top 25 ▴' : 'Top 25 ▾';
+    if (rankingsOpen) renderRankings();
+  };
+
+  function renderRankings() {
+    const sorted = NAMES
+      .map(n => ({ name: n, elo: ratings[nameToKey(n)]?.elo || 1000, votes: ratings[nameToKey(n)]?.votes || 0 }))
+      .sort((a, b) => b.elo - a.elo)
+      .slice(0, 25);
+
+    const maxElo = sorted[0]?.elo || 1000;
+    const minElo = sorted[sorted.length - 1]?.elo || 1000;
+    const range = maxElo - minElo || 1;
+
+    const html = sorted.map((item, i) => {
+      const pct = Math.max(6, Math.round(((item.elo - minElo) / range) * 94 + 6));
+      const medalClass = i === 0 ? ' medal-1' : i === 1 ? ' medal-2' : i === 2 ? ' medal-3' : '';
+      const medal = i === 0 ? '🥇' : i === 1 ? '🥈' : i === 2 ? '🥉' : '';
+      return `<div class="gon-rank-row${medalClass}">
+        <div class="gon-rank-num">${medal || (i+1)}</div>
+        <div class="gon-rank-name">${item.name}</div>
+        <div class="gon-rank-bar-wrap">
+          <div class="gon-rank-bar-outer"><div class="gon-rank-bar-inner" style="width:${pct}%"></div></div>
+        </div>
+        <div class="gon-rank-score">${item.elo}</div>
+      </div>`;
+    }).join('');
+
+    document.getElementById('gonRankList').innerHTML = html;
+  }
+
+  loadFromFirebase();
+})();
+</script>
 
 <!-- LEAGUE NOTE -->
 <div class="league-note-section">
