@@ -112,7 +112,9 @@
     .badge-wrap {
       position: relative;
       display: inline-block;
+      z-index: 1;
     }
+    .badge-wrap:has(.badge-tooltip.visible) { z-index: 100; }
     .archetype-badge {
       display: inline-block; margin-top: 3px;
       font-family: 'Barlow Condensed', sans-serif; font-size: 0.82rem;
@@ -130,7 +132,9 @@
 
     .badge-tooltip {
       display: none;
-      position: fixed;
+      position: absolute;
+      top: calc(100% + 6px);
+      left: 0;
       background: var(--surface3);
       border: 1px solid var(--border);
       border-radius: 6px;
@@ -503,7 +507,7 @@ function buildDonut(s, cardId) {
   // fill remainder (start-only band) with a neutral gap color
   const remainder = Math.max(0, 1 - s.boom_rate - s.mid_rate - s.bust_rate);
   if (remainder > 0.001) {
-    segs.splice(1, 0, {key:'start-band', count:0, pct:remainder, color:'var(--start-color)'});
+    segs.splice(1, 0, {key:'start-band', count:Math.round(s.start_rate * s.games), pct:remainder, color:'var(--start-color)'});
   }
   let offset=0,paths='';
   for(const seg of segs){
@@ -827,27 +831,16 @@ function renderCards(cat) {
     badge.addEventListener('click', e => {
       e.stopPropagation();
       const wasVisible = tip.classList.contains('visible');
-      // close all
       document.querySelectorAll('.badge-tooltip.visible').forEach(t => t.classList.remove('visible'));
       if (!wasVisible) {
         tip.classList.add('visible');
         tooltipJustOpened = true;
         setTimeout(() => { tooltipJustOpened = false; }, 50);
-        const rect = badge.getBoundingClientRect();
-        const tipW = 220;
-        let left = rect.left + rect.width / 2 - tipW / 2;
-        left = Math.max(12, Math.min(left, window.innerWidth - tipW - 12));
-        // rect.top can be negative/wrong on flipped back cards — clamp to visible area
-        let top = rect.top - 8;
-        if (top < 60) top = rect.bottom + 8; // flip below if too close to top
-        tip.style.left = left + 'px';
-        tip.style.top = top + 'px';
-        tip.style.transform = top === rect.bottom + 8 ? 'none' : 'translateY(-100%)';
       }
     });
   });
 
-  // Close tooltips on outside click — but not the same click that opened one
+  // Close tooltips on outside click
   document.addEventListener('click', () => {
     if (tooltipJustOpened) return;
     document.querySelectorAll('.badge-tooltip.visible').forEach(t => t.classList.remove('visible'));
