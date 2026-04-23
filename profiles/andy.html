@@ -2475,10 +2475,10 @@ function buildDossierPrompt(p, tone) {
   const finalistYears = completedSeasons.filter(s => s.result === 'finalist').map(s => s.year);
 
   const ownsText = p.rivalries.owns && p.rivalries.owns.length
-    ? p.rivalries.owns.map(o => `${o.name} (${o.record} all-time head-to-head)`).join(', ')
+    ? p.rivalries.owns.map(o => `${o.name} (${o.record} — this owner leads)`).join(', ')
     : 'None';
   const ownedByText = p.rivalries.ownedBy && p.rivalries.ownedBy.length
-    ? p.rivalries.ownedBy.map(o => `${o.name} (${o.record} all-time head-to-head)`).join(', ')
+    ? p.rivalries.ownedBy.map(o => `${o.name} (${o.record} — opponent leads)`).join(', ')
     : 'None';
 
   const netEarnings = gen['Net Earnings'] ? gen['Net Earnings'].value : null;
@@ -2493,9 +2493,17 @@ function buildDossierPrompt(p, tone) {
   const poWinPctStr = poWinPct !== null ? `${(poWinPct * 100).toFixed(1)}%` : '—';
 
   const toneModifiers = {
-    analytical: `TONE: Default Klosterman mode. Wry, detached, analytical. Finds unexpected meaning in mundane patterns. Neither cruel nor kind — just observational and slightly unsettling in its accuracy.`,
-    ruthless: `TONE: Ruthless mode. Klosterman with the gloves off. Still essayistic, still precise — but no softening, no diplomatic hedging. If the record is bad, say so. If the owner is delusional about their ability, name it. The truth, delivered without mercy but also without cruelty — just clarity.`,
-    eulogy: `TONE: Eulogy mode. Klosterman finds the beauty and dignity in this career, even in failure. Every losing streak has philosophical weight. Every missed playoff is a near-miss worth mourning. The tone is elegiac, almost tender — but never saccharine. Find the humanity in the numbers.`
+    analytical: `TONE: Analytical Klosterman. Wry, detached, finds unexpected meaning in patterns. Neither cruel nor kind — observational and slightly unsettling in its accuracy. You may note uncomfortable truths but you are not attacking the subject. The goal is insight, not punishment. If the writing would make the subject feel genuinely attacked rather than just slightly unsettled, you have gone too far. Save the knife for Ruthless mode.
+
+For the final paragraph (2026 outlook): weigh both the legitimate case FOR and AGAINST this owner winning in 2026. Find the interesting contradiction in their data. Do not resolve the tension — leave the reader sitting with the ambiguity. Do not rely on cycles, patterns, or "due factor" — make the argument specific to this owner's actual stats, arc, and situation.`,
+
+    eulogy: `TONE: Eulogy Klosterman. Find the beauty and dignity in this career, even in failure. Every losing streak has philosophical weight. Every missed playoff is a near-miss worth mourning. The tone is elegiac, almost tender — but never saccharine. Find the humanity in the numbers.
+
+For the final paragraph (2026 outlook): make the affirmative case that 2026 IS this owner's year. Ground it in their specific arc, their trajectory, their data. Even if the case requires some faith, make it feel earned and specific to them — not a generic "every dog has its day" argument.`,
+
+    ruthless: `TONE: Ruthless Klosterman. Gloves off. Still essayistic, still precise — but no softening, no diplomatic hedging. If the record is bad, name it. If the owner is delusional about their ability, say so. The truth delivered without mercy but also without cruelty — just cold clarity.
+
+For the final paragraph (2026 outlook): make the case that 2026 will NOT be this owner's year. Use their actual record, their patterns, their weaknesses. Be specific. Do not be gratuitously cruel but do not soften the conclusion. The argument should feel inevitable given the evidence.`
   };
 
   const toneBlock = toneModifiers[tone] || toneModifiers.analytical;
@@ -2504,32 +2512,38 @@ function buildDossierPrompt(p, tone) {
 
 ${toneBlock}
 
-Write a dossier on ${p.name} ("${p.nickname}") for the Slingshot Engaged Fantasy Football League, a 14-owner league active since 2014. The report should end with a forward-looking argument for why 2026 could be this owner's year to win the championship — make it feel specific to their arc, not generic. Even if the case is a stretch, make it convincingly.
+Write a dossier on ${p.name} ("${p.nickname}") for the Slingshot Engaged fantasy football league (also called "Slingshot"), a 14-owner league active since 2014.
 
 LEAGUE CONTEXT — READ CAREFULLY BEFORE WRITING:
 - The league has exactly 14 owners. Finishing 1st in the regular season = best record that season only, NOT the champion. The champion is determined solely by winning the playoff bracket.
-- Stat ranks (wins, win %, PPG, boom rate, start rate, luck rate, avg finish, etc.) are among the 14 ACTIVE owners only. 14th = last among active owners. 13th = second to last. 1st = best. Luke has played zero seasons and is 14th by default in all volume stats.
+- Stat ranks (wins, win %, PPG, boom rate, start rate, luck rate, avg finish, etc.) are among the 14 ACTIVE owners only. Luke has played ZERO seasons and is ranked 14th by default in all volume stats. Any owner ranked 13th is therefore last among owners who have actually played.
 - PRESTIGE RANK is the one exception — it is out of 27 all-time owners including retired members.
-- FINISH calibration (regular season standing): 1st–3rd = elite. 4th–6th = strong. 7th–9th = average. 10th–12th = poor. 13th–14th = bottom of the league.
-- WIN RATE calibration: 58.0%+ = elite. 53.0–57.9% = solid. 48.0–52.9% = average. 43.0–47.9% = below average. Below 43.0% = genuinely poor.
-- LUCK RATE = how much a manager's actual win % exceeds or falls short of their expected win % based on points scored. Full league range: Kyle at -5.93% (most unlucky) to Mike at +4.66% (luckiest). Neutral zone: -1% to +1%. Above +2% = noticeably lucky. Below -2% = noticeably unlucky.
+- FINISH calibration (regular season standing out of 14): 1st–3rd = elite. 4th–6th = strong. 7th–9th = average. 10th–12th = poor. 13th–14th = bottom of the league.
+- WIN RATE calibration: 58%+ = elite. 53–57.9% = solid. 48–52.9% = average. 43–47.9% = below average. Below 43% = genuinely poor.
+- PPG calibration: 105+ = elite. 95–104 = strong. 85–94 = average. Below 85 = weak. 87 PPG is objectively below average for this league, not "functional adequacy."
+- LUCK RATE: league range is -5.93% (most unlucky, Kyle) to +4.66% (luckiest, Mike). Neutral zone: -1% to +1%. Above +2% = noticeably lucky. Below -2% = noticeably unlucky.
 - POINT SHARE: league average ~7.14%. Above 8% = elite scorer. Below 6.5% = weak scorer.
 - BOOM RATE (% of games scoring 120%+ of league average): 30%+ = top tier. 22–29% = strong. 16–21% = average. Below 16% = weak.
 - START RATE (% of games at or above league average): 60%+ = top tier. 50–59% = strong. 44–49% = average. Below 44% = weak.
-- NET EARNINGS: positive = profitable overall after entry fees. Negative = net loss.
-- OWNS means this owner has a 70%+ all-time head-to-head win rate against that opponent with 5+ games played. OWNED BY means the opponent has 70%+ against them.
+- NET EARNINGS: positive = profitable. Negative = net loss.
+- OWNS: this owner has 70%+ win rate over that opponent (5+ games). OWNED BY: opponent has 70%+ over this owner. CRITICAL: never invert the direction. If this owner OWNS someone, that means THIS owner wins 70%+ of the time — not the opponent.
 
 FORMATTING RULES:
-- Win percentages: always as a percentage with one decimal place (e.g. 61.5%, never 0.615).
-- Net earnings: always with explicit sign and dollar sign (e.g. +$730 or -$445). Never omit the sign.
+- Win percentages: always as a percentage with one decimal (e.g. 61.5%, never 0.615).
+- Net earnings: always with explicit sign and dollar sign (e.g. +$730 or -$445).
+- NEVER state or imply an owner's age. No ages under any circumstances.
+- NEVER use last names. First names and nicknames only. This is an absolute rule with no exceptions.
+- NEVER call the championship game "the Finals." It is always and only "the Slingshot Bowl."
+- The league is called "Slingshot Engaged" or "Slingshot." Never "Slingshot Engaged Fantasy Football League" or any other variation.
+- "Perfected the art of" is a good phrase but use it sparingly — at most once across the entire report.
 
-LEAGUE HISTORY & LORE — draw on this freely when relevant, never force it:
+LEAGUE HISTORY & LORE — use freely when genuinely relevant, never force it:
 
 FOUNDING & STRUCTURE:
 - Founded 2014. 12 completed seasons entering 2026. Five founding members still active: Jack, Mike, Brian, Scott, Daniel.
-- The trophy is called The Daddy (written as "The D***y" — censored as a tongue-in-cheek gender joke). Named after Brian's 2016 championship run when he made himself "everyone's daddy," especially Daniel's.
+- The trophy is called The Daddy (written "The D***y" — censored as a tongue-in-cheek gender joke). Named after Brian's 2016 championship run when he made himself "everyone's daddy," especially Daniel's.
 - The league is absurdly over-constitutionalized. Side games and odd rules added every year. No one fully understands the rules. People pay their buy-in just to be friends.
-- Annual League Weekend: the highlight of the year. Different city each year. Draft, games, mayhem. Cities: 2016 Denver (Mud Run), 2017 Denver (First Sticker Draft), 2018 Denver (Rocky Mtn Showdown), 2019 Denver (Brunch, Puke & Rally), 2020 Virtual, 2021 Deep Creek, 2022 Sacramento, 2023 Nashville, 2024 Texas Hill Country, 2025 Twin Cities, 2026 Iron Mansion.
+- Annual League Weekend: the highlight of the year. Different city each year. Draft, games, mayhem. The League Weekend is just the season kickoff — the draft and surrounding festivities. The actual fantasy season does NOT take place at League Weekend. Cities: 2016 Denver (Mud Run), 2017 Denver (First Sticker Draft), 2018 Denver (Rocky Mtn Showdown), 2019 Denver (Brunch, Puke & Rally), 2020 Virtual, 2021 Deep Creek, 2022 Sacramento, 2023 Nashville, 2024 Texas Hill Country, 2025 Twin Cities, 2026 Iron Mansion.
 
 CHAMPIONSHIP HISTORY (all 12 Slingshot Bowls):
 - 2014: Michelle T beat Jack | 2015: Alex M beat Taylor | 2016: Brian beat Daniel
@@ -2540,11 +2554,12 @@ CHAMPIONSHIP HISTORY (all 12 Slingshot Bowls):
 - Kyle has 5 Slingshot Bowl appearances (2018, 2020, 2022, 2023, 2024) — most all-time.
 - 2025 was the first Slingshot Bowl ever without a #1 or #2 seed (Dylan #4, Mike #5).
 - The 2022 Slingshot Bowl is the closest ever — Kyle beat Mike by 1.06 points.
+- Of the five founding members (Jack, Mike, Brian, Scott, Daniel), only Jack, Mike, and Brian have won championships. Scott and Daniel have never won.
 
 HALL OF GREATNESS (HOG) — three inductees, all enshrined 2025:
 - Dylan: 3 championships, 66.7% playoff win rate (#1 all-time), Prestige #1 of 27 all-time owners.
 - Jack: most all-time wins (108 total), 27 weeks at #1 in power score (#1 all-time), 19 weekly high scores (#1 all-time), +$730 net earnings (#2 all-time).
-- Kyle: leads all-time in PPG (105.4), boom rate (32.1%), start rate (70.6%), power score (140.4). +$1,035 net earnings (#1 all-time). Most unlucky owner in league history at -5.93% luck rate yet still wins.
+- Kyle: leads all-time in PPG (105.4), boom rate (32.1%), start rate (70.6%), power score (140.4). +$1,035 net earnings (#1 all-time). Most unlucky owner in league history at -5.93% luck rate — yet still wins.
 
 PRESTIGE RANKINGS (out of 27 all-time owners):
 Dylan #1 (2,201) · Jack #2 (2,155) · Kyle #3 (2,018) · Mike #4 (1,480) · Alex #5 (1,431) · Daniel #6 (1,057) · Brian #7 (1,009) · Matt #10 (570) · Scott #11 (538) · Wade #14 (311) · Tim #15 (303) · Andy #16 (300) · Jordan #17 (297) · Luke #27 (0)
@@ -2566,19 +2581,19 @@ SINGLE SEASON RECORDS:
 - Highest PPG ever: Kyle 2018 (126.38 PPG)
 - Most wins in a season: 12 wins — Alex (2019), Andy (2022), Jon (2021), Jack (2018)
 - Unluckiest season ever: Matt 2016 (-42.6% luck)
-- Most weekly high scores in a season: Wade 2024 (5 weeks — also posted 3rd-highest PPG season ever at 110.78 — yet missed the playoffs)
+- Most weekly high scores in a season (all-time record, held alone): Wade 2024 (5 weeks — also posted 3rd-highest PPG season ever at 110.78 — yet missed the playoffs)
 - Most cursed season: Daniel 2019 (1-12, lowest power score ever for active owner 68.76)
 
 SINGLE GAME RECORDS:
 - All-time high score: Daniel 213.3 (Week 13, 2014 — beat James by 129 points)
 - All-time low score: Tim C. 29.1 (Week 11, 2018)
-- Closest game ever: Scott beat Mike by 0.06 points (Week 11, 2015) — discovered the league had a second decimal
+- Closest game ever: Scott beat Mike by 0.06 points (Week 11, 2015) — Scott won, Mike lost. Discovered the league had a second decimal.
 - Biggest playoff blowout: Kyle beat Wade by 74.1 points (2020 First Round)
 - Closest Slingshot Bowl ever: Kyle beat Mike by 1.06 points (2022)
 
 BOOM/BUST ARCHETYPES:
-- Kyle: "Outlier" — in a category alone. 32.1% boom, 70.6% start rate, 4.8% bust rate. No one else is close.
-- Jack: "Boom Machine" — 30.4% boom regular season, but 13.7% bust rate (high ceiling, real floor risk)
+- Kyle: "Outlier" — in a category alone. 32.1% boom, 70.6% start rate, 4.8% bust rate.
+- Jack: "Boom Machine" — 30.4% boom, but 13.7% bust rate (high ceiling, real floor risk)
 - Dylan, Mike, Brian, Alex, Andy: "Reliable"
 - Daniel: "High Variance" — 23.6% boom AND 26.7% bust. Equal chance of either.
 - Matt, Scott, Tim H, Jordan: "Underperforming"
@@ -2591,9 +2606,9 @@ PLAYOFF STREAK & DROUGHT RECORDS:
 - Scott holds all-time drought record: 6 consecutive misses (2017–2022, now broken)
 - Jordan has the longest active drought: 5 consecutive misses with only 1 career playoff appearance
 
-INTERCONTINENTAL CHAMPIONSHIP (belt changes hands weekly — career stats):
-- Alex leads all-time: 5 reigns, 17 wins, 17 weeks held. His 2019 reign of 12 consecutive weeks undefeated is the all-time record.
-- Scott is the only active owner with 0 reigns and 0 weeks held (7 losses, never held the belt)
+INTERCONTINENTAL CHAMPIONSHIP (belt changes hands weekly):
+- Alex leads all-time: 5 reigns, 17 wins, 17 weeks held. His 2019 reign of 12 consecutive weeks is the all-time record.
+- Scott is the only active owner with 0 reigns (7 losses, never held the belt)
 - Year-end champions: 2019 Alex, 2020 Alex, 2021 Kyle, 2022 Andy, 2023 Alex, 2024 Tim, 2025 Dylan
 
 ACTIVE HEAD-TO-HEAD OWNERSHIPS (70%+ win rate, 5+ games, both owners active):
@@ -2602,50 +2617,52 @@ ACTIVE HEAD-TO-HEAD OWNERSHIPS (70%+ win rate, 5+ games, both owners active):
 - Dylan owns: Scott (9-3), Wade (5-1), Tim H (5-2)
 - Daniel owns: Tim H (6-1)
 - Alex owns: Brian (9-2)
-- Jack owns: Matt (9-3). No active owner has documented ownership over Jack — despite 12 seasons and 13 rotating opponents, he has never been owned.
+- Jack owns: Matt (9-3). No active owner has documented ownership over Jack.
 - Wade owns: Daniel (6-0 — perfect record), Tim H (5-1)
 - Jordan owns: Scott (5-2), Wade (5-1)
 - Brian owns: Kyle (7-2) — the great anomaly. Kyle dominates almost everyone but cannot beat Brian.
 
-NOTABLE OWNER DETAILS (use as texture, not a checklist):
-- Brian and Dylan are brothers (the Thackston brothers). Both from Maryland, both Ravens fans. Brian once drunkenly misspelled Ravens as "Tavens" — the league has never let him forget it. He tore his Achilles trying to cross up neighborhood kids in basketball. Sends daily weightlifting thirst traps with trademark steely gaze.
+NOTABLE OWNER DETAILS (texture only — use what's relevant, ignore the rest):
+- Brian and Dylan are brothers (the Thackston brothers). Both Ravens fans. Brian once drunkenly misspelled Ravens as "Tavens" — the league has never forgotten. He tore his Achilles trying to cross up neighborhood kids in basketball. Sends daily weightlifting thirst traps with trademark steely gaze. Has had multiple body parts fail resulting in surgery.
 - Jack is commissioner and founder. Has lived in multiple cities, abandoning friends each time. Loves trades and minutiae. Hung championship banners to celebrate his titles.
-- Kyle is annoyingly good at everything. Roasts his own coffee, wears Lululemon pants, drives a BMW. Got a vasectomy as a sacrifice to win the championship — it worked. Once had to ski without pants due to a lost side bet. Also had to do a Beyoncé maternity photo shoot for a lost bet.
+- Kyle is annoyingly good at everything. Roasts his own coffee, wears Lululemon pants. Got a vasectomy as a sacrifice to win the championship — it worked. Once had to ski without pants due to a lost bet. Also had to do a Beyoncé maternity photo shoot for a lost bet. Tech bro.
 - Dylan is Brian's younger brother. Snack guru — loves snack collabs like Reese's Oreos. DINK life. Is "like a scientist or something — no one really knows."
-- Mike looks like Aaron Rodgers. Makes many GroupMe typos. Self-proclaimed league historian who never actually knows any history. The league contrarian — disagrees with nearly everything. Rumored to hook up with league members' sisters.
-- Daniel says whatever filthy thing is on his mind. Spends more time rock climbing than with his family. Lost a playoff game to a single player (Derrick Henry) on Thursday night. Once did an unhinged presentation about the bangability of league member moms at League Weekend.
-- Scott grew his beard for a year and looked like a cult leader — a following emerged called the Church of Murph. The draft doesn't officially begin until Scott removes his shirt. Has an insanely detailed memory of the lives of other league members. Just happy to be here.
+- Mike looks like Aaron Rodgers. Makes many GroupMe typos. Self-proclaimed league historian who never actually knows any history. The league contrarian — disagrees with nearly everything. Rumored to hook up with league members' sisters. During the 2020 virtual draft — the year he won the championship — Mike disappeared entirely during the draft and the league finished his picks for him. He won the title anyway.
+- Daniel says whatever filthy thing is on his mind. Spends more time rock climbing than with his family. Lost a playoff game to a single player (Derrick Henry) on Thursday night. Once did an unhinged presentation about the bangability of league member moms at League Weekend. One of the league's self-designated "pervs" (along with Tim H and Wade).
+- Scott grew his beard for a year and looked like a cult leader — a following emerged called the Church of Murph. The draft doesn't officially begin until Scott removes his shirt. Insanely detailed memory of the lives of other league members. Just happy to be here. Automatically likes any Office or Parks and Rec content in GroupMe.
 - Matt is considered the soul of the league. Always has a new "maybe the best song ever." Undisputed step challenge champion. Breaks world and sports news in the group chat. Big fan of Die Hard. Only owner to fully commit to one team name/identity: El Bod de Padre.
-- Jordan has a trademark mustache. Notoriously difficult to get to like your GroupMe posts. Spends the least time at League Weekends — always has a wedding or something. Snowflake, uber-progressive lib.
-- Tim H accidentally sent an NSFW link to the group chat when he meant to send a beer link. It became his whole persona. Perhaps even snootier than Kyle. Has a backyard hot tub setup with cameras. Drives a BMW.
-- Wade lives on what he calls "a reserve" (possibly a bunker compound). Grumpy old man vibe. Big fan of Nekrogoblikon. Has a patented trade analyzer. An engineer who does nothing at work. Weird long goatee. Favorite Disney character is Elastigirl.
-- Andy brought Trivia Thursday to the league. Loud voice — rallies people to action at League Weekends. Went 12-2 his rookie season then lost in the Final Four to Kyle and has not been back to the playoffs since. No one knows where he actually lives (Sacramento? Oakland? Colorado? Ohio? Connecticut?). Was a Browns fan for years before recently becoming a "lifelong" Broncos fan.
+- Jordan has a trademark mustache. Notoriously difficult to get to like your GroupMe posts. Spends the least time at League Weekends — always has a wedding or something. Uber-progressive.
+- Tim H accidentally sent an NSFW link to the group chat when he meant to send a beer link. It became his whole persona. Perhaps even snootier than Kyle. Has a backyard hot tub with cameras. Drives a BMW. One of the league's self-designated "pervs" (along with Daniel and Wade). Note: there are TWO Tims in league history — Tim H (active, joined 2020) and Tim C (retired). Survivor King stats: Tim H has 1 win. Tim C had 2 wins. Do not conflate them.
+- Wade lives on what he calls "a reserve" (possibly a bunker compound). Grumpy old man vibe. Big fan of Nekrogoblikon. Has a patented trade analyzer. An engineer who does nothing at work. Weird long goatee. Favorite Disney character is Elastigirl. One of the league's self-designated "pervs" (along with Daniel and Tim H).
+- Andy brought Trivia Thursday to the league. Loud voice — rallies people to action at League Weekends. Went 12-2 his rookie season then lost his first playoff game to Kyle and has not been back to the playoffs since. No one knows where he actually lives (Sacramento? Oakland? Colorado? Ohio? Connecticut?). Was a Browns fan for years before recently becoming a "lifelong" Broncos fan.
 - Alex was in Thailand when he forgot his virtual draft was starting. Paid a sex worker for a scooter ride home to make it in time. Made the draft. Corporate drone. Loves his dad's Minnesota Hot Dish. Minnesota nice — says "ope."
-- Luke is replacing Jon (retired after 2025). From Minnesota. Plays disc golf. Reportedly 6'2" (may be exaggerating). Huge shoes to fill as Jon's replacement.
+- Luke is replacing Jon (retired after 2025). From Minnesota. Plays disc golf. Reportedly 6'2" (may be exaggerating). Has played zero seasons. Huge shoes to fill.
 
 KEY LORE MOMENTS (use sparingly — only when genuinely relevant to THIS owner):
-- "The .06 Bowl" (2015, Week 11): Scott beat Mike by 0.06. Discovered the second decimal existed.
-- Brian's 2016 championship: shocked everyone. Named The Daddy after this run — he made himself "everyone's daddy," especially Daniel's.
-- "The Pedal Hopper puke-and-rally" (2019 League Weekend): Brian threw up off a pedal party bike, immediately rallied. Called greatest moment in league history.
+- "The .06 Bowl" (2015, Week 11): Scott beat Mike by 0.06 points. Scott won. Mike lost. Discovered the second decimal existed.
+- Brian's 2016 championship: shocked everyone. Named The Daddy after this run.
+- "The Pedal Hopper puke-and-rally" (2019 League Weekend, Denver): Brian threw up off a pedal party bike, immediately rallied. Called greatest moment in league history.
 - Daniel lost a playoff game to a single player (Derrick Henry) on a Thursday night.
-- Kyle once had to ski without pants and once had to do a Beyoncé maternity photo shoot — both lost side bets.
+- Kyle once had to ski without pants and once had to do a Beyoncé maternity photo shoot — both lost bets.
 - 2025 Slingshot Bowl: first ever without a #1 or #2 seed. Dylan (#4) beat Mike (#5).
+- Mike disappeared during the 2020 virtual draft. The league finished his picks. He won the championship that year.
 
-TROPHY CONTEXT:
-- "League Champion" = won the playoff bracket. The only thing that matters.
-- "Regular Season Champion" = best regular season record only — not a playoff title.
-- "Owner of the Year (OOTY)" = culture/personality award, NOT performance.
-- "Bronze Franz" = last place in the consolation bracket. Loser wears a hot dog costume to the next draft. Daniel has won it twice (2019, 2025) — first ever 2x Franzer. Tim H was first to wear the costume (2022 Franz, worn at 2023 draft).
-- "Somehow the Champion" = league votes for non-champion with the best claim to the title. Jack won it twice (2023, 2025).
-- "Asterisk Chain" = awarded if the consolation champion outscores the league champion in Week 17. Hung from The Daddy.
-- "Hottest Team in Sports Bowl" = consolation championship belt.
-- "AVL Memorial Cup" = started 2023, named after Alex (tongue-in-cheek — he's alive).
-- "Survivor King" = separate NFL pick'em survival contest, entirely unrelated to fantasy performance.
+TROPHY CONTEXT — understand what each trophy means before writing about it:
+- "League Champion" = WON THE PLAYOFF BRACKET. The ultimate prize. The only thing that truly matters.
+- "Regular Season Champion" = best regular season record only. Prestigious but not a championship.
+- "2nd Place" / "3rd Place" = playoff finishes — runner-up and semifinal loser.
+- "Owner of the Year (OOTY)" = a CULTURE and PERSONALITY award voted on by the league. Has NOTHING to do with on-field performance. Winning it does not mean you played well.
+- "Hottest Team in Sports Bowl" = PERFORMANCE award — best scoring team among consolation bracket teams in the final weeks. This is NOT a culture award. It is a belt for the best consolation performer.
+- "Bronze Franz" = LAST PLACE in the consolation bracket. This is BAD. The loser — the Bronze Franz winner — must wear a hot dog costume to the next draft and perform draft duties. It is a punishment. Daniel has won it twice (2019, 2025) — first ever 2x Franzer. Tim H was first to wear the costume (2022 Franz, worn at 2023 draft).
+- "Somehow the Champion" = league votes for non-champion with the best claim to the title. Jack won twice (2023, 2025).
+- "Asterisk Chain" = awarded if the consolation champion outscores the league champion in Week 17. Hung from The Daddy. Petty and celebrated.
+- "AVL Memorial Cup" = started 2023. Named after Alex because he won the inaugural edition — tongue-in-cheek because it's called "Memorial" and he's very much alive. He did not name it himself.
+- "Survivor King" = a SEPARATE NFL pick'em survival contest. Entirely unrelated to fantasy football performance. Winning it says nothing about fantasy ability.
 - "Intercontinental Champ" = held the belt at end of regular season.
 - "Rivalry Week" = best record across two designated rivalry weeks per season.
 - "Da Choppaaa Champ" = guillotine league, started 2025 only.
-- "Degen Bowl" = side gambling contest.
-If this owner has won notable trophies, reference at least one specifically by name.
+- "Degen Bowl" = side gambling contest on league game outcomes.
+If this owner has won notable trophies, reference at least one specifically — but frame it accurately.
 
 OWNER DATA:
 - Name: ${p.name}, Nickname: "${p.nickname}"
@@ -2654,10 +2671,10 @@ OWNER DATA:
 - Recruited by / origin: ${p.broughtInBy || '—'}
 - Status: ${p.statusLines ? p.statusLines.join(', ') : ''}
 - Traits: ${traits}
-- Head-to-head dominance — Owns (70%+ win rate, 5+ games): ${ownsText}
-- Head-to-head dominated by — Owned By: ${ownedByText}
+- Head-to-head — Owns (this owner has 70%+ win rate): ${ownsText}
+- Head-to-head — Owned By (opponent has 70%+ win rate over this owner): ${ownedByText}
 - Championship years: ${champYears.length ? champYears.join(', ') : 'None'}
-- Runner-up (finalist) years: ${finalistYears.length ? finalistYears.join(', ') : 'None'}
+- Slingshot Bowl runner-up years: ${finalistYears.length ? finalistYears.join(', ') : 'None'}
 
 CAREER STATS:
 - Prestige Rank: #${p.prestige.rank} of 27 all-time owners
@@ -2665,50 +2682,51 @@ CAREER STATS:
 - Net Earnings: ${earningsStr} (Rank: ${gen['Net Earnings'] ? gen['Net Earnings'].rank : '—'} among 14 active owners)
 - Wins: ${rs['Wins'] ? rs['Wins'].value : '—'} (Rank: ${rs['Wins'] ? rs['Wins'].rank : '—'} among 14 active owners)
 - Win %: ${winPctStr} (Rank: ${rs['Win %'] ? rs['Win %'].rank : '—'} among 14 active owners)
-- Avg Regular Season Finish: ${rs['Avg Finish'] ? rs['Avg Finish'].value : '—'} — LOWER IS BETTER. Regular season standing only, not playoff result. (Rank: ${rs['Avg Finish'] ? rs['Avg Finish'].rank : '—'} among 14 active owners)
+- Avg Regular Season Finish: ${rs['Avg Finish'] ? rs['Avg Finish'].value : '—'} — LOWER IS BETTER (Rank: ${rs['Avg Finish'] ? rs['Avg Finish'].rank : '—'} among 14 active owners)
 - Pts Per Game: ${rs['Pts Per Game'] ? rs['Pts Per Game'].value : '—'} (Rank: ${rs['Pts Per Game'] ? rs['Pts Per Game'].rank : '—'} among 14 active owners)
 - Point Share: ${rs['Point Share'] ? rs['Point Share'].value : '—'} (league avg ~7.14%) (Rank: ${rs['Point Share'] ? rs['Point Share'].rank : '—'} among 14 active owners)
 - Weekly High Scores: ${rs['Weekly High Scores'] ? rs['Weekly High Scores'].value : '—'} (Rank: ${rs['Weekly High Scores'] ? rs['Weekly High Scores'].rank : '—'} among 14 active owners)
 - Weeks at #1 in Power Score: ${rs['Weeks at #1'] ? rs['Weeks at #1'].value : '—'} (Rank: ${rs['Weeks at #1'] ? rs['Weeks at #1'].rank : '—'} among 14 active owners)
 - Boom Rate: ${rs['Boom Rate'] ? rs['Boom Rate'].value : '—'} (Rank: ${rs['Boom Rate'] ? rs['Boom Rate'].rank : '—'} among 14 active owners)
 - Start Rate: ${rs['Start Rate'] ? rs['Start Rate'].value : '—'} (Rank: ${rs['Start Rate'] ? rs['Start Rate'].rank : '—'} among 14 active owners)
-- Luck Rate: ${rs['Luck Rate'] ? rs['Luck Rate'].value : '—'} (Rank: ${rs['Luck Rate'] ? rs['Luck Rate'].rank : '—'} among 14 active owners; league range: -5.93% most unlucky to +4.66% most lucky)
+- Luck Rate: ${rs['Luck Rate'] ? rs['Luck Rate'].value : '—'} (Rank: ${rs['Luck Rate'] ? rs['Luck Rate'].rank : '—'} among 14 active owners; full range: -5.93% most unlucky to +4.66% most lucky)
 - Playoff Appearances: ${po['Appearances'] ? po['Appearances'].value : '—'}
 - Playoff Win %: ${poWinPctStr}
 - Championships: ${po['Championships'] ? po['Championships'].value : '—'}
 
 TROPHIES AND CONTESTS WON: ${wonTrophies}
-If this owner has won notable trophies, reference at least one specifically by name.
 
-SEASON BY SEASON (most recent first) — team names in quotes where available:
+SEASON BY SEASON (most recent first):
 ${seasonSummary}
 
 ACCURACY RULES — CRITICAL:
-- Only reference stats and seasons explicitly provided above. Do not invent or approximate numbers.
-- A regular season finish of 1st means best record that season — NOT a championship. Championships are playoff results only.
-- Championship years: ${champYears.length ? champYears.join(', ') : 'none'}. Do not claim championships in other years.
+- Only reference stats and seasons explicitly provided above. Do not invent numbers.
+- A regular season finish of 1st = best record that season only. NOT a championship.
+- Championship years for this owner: ${champYears.length ? champYears.join(', ') : 'none'}. Do not claim championships in any other years.
 - Seasons played: ${completedSeasons.length}. Do not reference more or fewer.
-- Only reference other owners by name if they appear in the data above (owns, owned by, recruited by, or league context). Do not invent matchup history beyond what is documented.
-- NEVER use last names. First names and nicknames only.
-- Owns/Owned By are documented facts — describe them accurately using the record provided. OWNS means THIS owner has the 70%+ win rate over the opponent — not the reverse. Never invert the direction of an ownership relationship.
-- Team names are provided where available — use them when they add color, but don't force every one.
-- League lore is background color. Only deploy it when it genuinely illuminates something about THIS owner. Do not shoehorn in lore that has nothing to do with them.
+- NEVER use last names. This rule has no exceptions, not even for nicknames derived from last names.
+- NEVER invert owns/owned by direction. If this owner OWNS someone, this owner wins 70%+ of the time.
+- NEVER call the championship game "the Finals." Slingshot Bowl only.
+- NEVER state or imply an owner's age.
+- NEVER mention keeper mechanics.
+- Only reference other owners by name if they appear in the data above. Do not invent matchup history.
+- The .06 Bowl: Scott won, Mike lost. Never reverse this.
+- Bronze Franz = last place = bad. Hot dog costume punishment. Never treat it as an honor.
+- Hottest Team in Sports Bowl = performance award for best consolation scorer. Not a culture award.
+- The 2026 championship case must be specific to this owner's arc and data. Do not rely on cycles, patterns, or "due factor."
 
-STYLE RULES — CRITICAL:
-- Do NOT open with "There exists a particular type/species/archetype/breed." Find a different entry point every time.
+STYLE RULES:
+- Do NOT open with "There exists a particular type/species/archetype/breed."
 - Do NOT compare this owner to a car, truck, or any vehicle.
-- NEVER call the championship game "the Finals." It is always and only "the Slingshot Bowl."
-- The 2026 championship argument must feel specific to this owner's arc — not a generic template.
-- Vary which stats you emphasize. Weekly high scores, point share, earnings, playoff record, specific seasons, trophy wins, and head-to-head dominance often tell better stories than boom rate and start rate alone.
-- The emotional register must match both the actual record AND the tone modifier above.
-- When owns/owned by relationships exist, weave them into the narrative naturally when they illuminate something true.
-- When rivals or recruiter are listed, feel free to reference them by first name.
-- League lore and owner details are texture. One well-placed specific detail beats five forced ones.
+- Do NOT use Kyle as the default reference point for every owner. Kyle may appear naturally when genuinely relevant — championship matchups, direct H2H dominance, specific lore — but he should not anchor every dossier.
+- "Perfected the art of" is allowed but use sparingly — at most once per report.
+- Vary which stats you lead with. Weekly high scores, point share, earnings, playoff record, specific seasons, and trophy history often tell better stories than boom/bust rates alone.
+- League lore and owner details are texture. One specific well-placed detail beats five generic ones.
 
 OUTPUT FORMAT:
 Return a JSON object with exactly two keys:
-- "pullQuote": A single punchy sentence (in quotes) that captures this owner's essence. Dry, memorable, specific to this person. Under 25 words.
-- "report": 3 paragraphs of flowing Klosterman-voice prose. No bullet points. No headers. Just essay. Each paragraph separated by a newline. The final paragraph must address 2026.
+- "pullQuote": A single punchy sentence (in quotes) capturing this owner's essence. Dry, memorable, specific. Under 25 words.
+- "report": 3 paragraphs of flowing Klosterman-voice prose. No bullet points. No headers. Each paragraph separated by a newline. Final paragraph must address 2026 per the tone instructions above.
 
 Return only valid JSON. No markdown fences. No preamble.`;
 }
