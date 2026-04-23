@@ -89,21 +89,6 @@
   }
   .action-btn:hover { filter: brightness(1.12); transform: translateY(-1px); }
   .action-btn:active { transform: translateY(0); }
-  .action-btn.disabled {
-    opacity: 0.38;
-    cursor: not-allowed;
-    pointer-events: none;
-    filter: grayscale(0.4);
-  }
-  .action-btn-coming {
-    font-family: 'Barlow Condensed', sans-serif;
-    font-size: 0.68rem;
-    letter-spacing: 0.16em;
-    text-transform: uppercase;
-    color: var(--muted);
-    margin-top: 2px;
-  }
-
   .action-btn.red { background: var(--red); border: 1px solid rgba(255,255,255,0.1); }
   .action-btn.dark { background: #2e2e2e; border: 1px solid #444444; }
 
@@ -117,6 +102,16 @@
     text-transform: uppercase;
     color: #fff;
     line-height: 1.2;
+  }
+
+  .action-grid-note {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 0.82rem;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: var(--muted);
+    text-align: center;
+    padding: 10px 16px 4px;
   }
 
 
@@ -208,7 +203,7 @@
   }
   .gon-subtitle {
     font-family: 'Barlow Condensed', sans-serif;
-    font-size: 0.88rem;
+    font-size: 1rem;
     letter-spacing: 0.14em;
     text-transform: uppercase;
     color: var(--label);
@@ -262,21 +257,21 @@
   }
   .gon-name {
     font-family: 'Bebas Neue', sans-serif;
-    font-size: clamp(1.15rem, 4.5vw, 1.9rem);
+    font-size: clamp(1.3rem, 5vw, 2rem);
     letter-spacing: 0.04em;
     line-height: 1.2;
-    color: var(--text);
     word-break: break-word;
     overflow-wrap: anywhere;
     hyphens: auto;
     max-width: 100%;
   }
+  #gonCardA .gon-name { color: #f97316; }
+  #gonCardB .gon-name { color: #60a5fa; }
   .gon-tap-hint {
     font-family: 'Barlow Condensed', sans-serif;
-    font-size: 0.78rem;
+    font-size: 0.88rem;
     letter-spacing: 0.16em;
     text-transform: uppercase;
-    color: var(--label);
     margin-top: 10px;
   }
   #gonCardA .gon-tap-hint { color: #e87c6e; }
@@ -305,7 +300,7 @@
   }
   .gon-count {
     font-family: 'Barlow Condensed', sans-serif;
-    font-size: 0.82rem;
+    font-size: 0.95rem;
     letter-spacing: 0.12em;
     text-transform: uppercase;
     color: var(--gold);
@@ -313,7 +308,7 @@
   }
   .gon-rankings-btn {
     font-family: 'Barlow Condensed', sans-serif;
-    font-size: 0.82rem;
+    font-size: 0.95rem;
     letter-spacing: 0.14em;
     text-transform: uppercase;
     background: var(--surface3);
@@ -371,7 +366,7 @@
   .gon-rank-row.medal-3 .gon-rank-num { color: #CD7F32; }
   .gon-rank-name {
     font-family: 'Barlow Condensed', sans-serif;
-    font-size: 1rem;
+    font-size: 1.1rem;
     letter-spacing: 0.03em;
     color: var(--text-body);
     flex: 1;
@@ -384,7 +379,7 @@
   .gon-rank-row.medal-3 .gon-rank-name { color: #CD7F32; }
   .gon-rank-score {
     font-family: 'Barlow Condensed', sans-serif;
-    font-size: 0.82rem;
+    font-size: 0.92rem;
     color: var(--muted);
     white-space: nowrap;
     flex-shrink: 0;
@@ -444,30 +439,31 @@
   </div>
 
 <!-- ACTION GRID -->
+<div class="action-grid-note">⏳ Ready by Kickoff</div>
 <div class="action-grid">
-  <a href="#" class="action-btn red disabled">
+  <a href="#" class="action-btn red">
     <span class="action-btn-emoji">🎲</span>
-    <span class="action-btn-label">Place a Degen Bowl Bet<span class="action-btn-coming">Ready by Kickoff</span></span>
+    <span class="action-btn-label">Place a Degen Bowl Bet</span>
   </a>
-  <a href="#" class="action-btn dark disabled">
+  <a href="#" class="action-btn dark">
     <span class="action-btn-emoji">📊</span>
-    <span class="action-btn-label">Degen Bowl Standings<span class="action-btn-coming">Ready by Kickoff</span></span>
+    <span class="action-btn-label">Degen Bowl Standings</span>
   </a>
-  <a href="#" class="action-btn dark disabled">
+  <a href="#" class="action-btn dark">
     <span class="action-btn-emoji">🌴</span>
-    <span class="action-btn-label">Make Your Survivor Pick<span class="action-btn-coming">Ready by Kickoff</span></span>
+    <span class="action-btn-label">Make Your Survivor Pick</span>
   </a>
-  <a href="#" class="action-btn red disabled">
+  <a href="#" class="action-btn red">
     <span class="action-btn-emoji">🧠</span>
-    <span class="action-btn-label">Dad Bod's Preseason Rankings<span class="action-btn-coming">Ready by Kickoff</span></span>
+    <span class="action-btn-label">Dad Bod's Preseason Rankings</span>
   </a>
-  <a href="#" class="action-btn red disabled">
+  <a href="#" class="action-btn red">
     <span class="action-btn-emoji">🎯</span>
-    <span class="action-btn-label">Call Your Shot<span class="action-btn-coming">Ready by Kickoff</span></span>
+    <span class="action-btn-label">Call Your Shot</span>
   </a>
-  <a href="#" class="action-btn dark disabled">
+  <a href="#" class="action-btn dark">
     <span class="action-btn-emoji">🪙</span>
-    <span class="action-btn-label">Log a Side Bet<span class="action-btn-coming">Ready by Kickoff</span></span>
+    <span class="action-btn-label">Log a Side Bet</span>
   </a>
 </div>
 
