@@ -1,6 +1,24 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-72LZJZ8DX1"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-72LZJZ8DX1');
+  gtag('event', 'page_view', {'page_type': 'profile'});
+</script>
+<script>
+  // GA4 event helpers — called from existing functions
+  function ga_dossierGenerated(owner) {
+    gtag('event', 'dossier_generated', {'owner_id': owner});
+  }
+  function ga_compareOpened(owner) {
+    gtag('event', 'compare_opened', {'owner_id': owner});
+  }
+</script>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Mike — Slingshot Engaged</title>
@@ -1983,6 +2001,7 @@ function swapOwner(side, newId) {
 }
 
 async function openCompare() {
+  ga_compareOpened(OWNER_ID);
   const sel = document.getElementById('compareSelect');
   if (!sel || !sel.value) return;
   if (!allOwnersReady) await allOwnersPromise;
@@ -2740,6 +2759,7 @@ function setTone(tone) {
 }
 
 async function pullDossier() {
+    ga_dossierGenerated(OWNER_ID);
   const btn = document.getElementById('pullFileBtn');
   const panel = document.getElementById('dossierPanel');
   const loading = document.getElementById('dossierLoading');
