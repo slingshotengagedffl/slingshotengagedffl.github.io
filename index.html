@@ -89,8 +89,8 @@
     text-decoration: none;
     transition: filter 0.15s, transform 0.15s;
   }
-  .action-btn:hover { filter: brightness(1.12); transform: translateY(-1px); }
-  .action-btn:active { transform: translateY(0); }
+  .action-btn:hover { filter: brightness(1.12); }
+  .action-btn:active { filter: brightness(1.0); }
   .action-btn.red { background: var(--red); border: 1px solid rgba(255,255,255,0.1); }
   .action-btn.dark { background: #2e2e2e; border: 1px solid #444444; }
 
@@ -108,12 +108,20 @@
 
   .action-grid-note {
     font-family: 'Barlow Condensed', sans-serif;
-    font-size: 0.82rem;
+    font-size: 1rem;
     letter-spacing: 0.16em;
     text-transform: uppercase;
+    color: var(--label);
+    text-align: center;
+    padding: 10px 16px 2px;
+  }
+  .action-grid-sub {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 0.78rem;
+    letter-spacing: 0.08em;
     color: var(--muted);
     text-align: center;
-    padding: 10px 16px 4px;
+    padding: 0 16px 8px;
   }
 
 
@@ -442,31 +450,32 @@
 
 <!-- ACTION GRID -->
 <div class="action-grid-note">⏳ Ready by Kickoff</div>
+<div class="action-grid-sub">Side hustle links will be updated prior to kickoff</div>
 <div class="action-grid">
-  <a href="#" class="action-btn red">
+  <span class="action-btn red">
     <span class="action-btn-emoji">🎲</span>
     <span class="action-btn-label">Place a Degen Bowl Bet</span>
-  </a>
-  <a href="#" class="action-btn dark">
+  </span>
+  <span class="action-btn dark">
     <span class="action-btn-emoji">📊</span>
     <span class="action-btn-label">Degen Bowl Standings</span>
-  </a>
-  <a href="#" class="action-btn dark">
+  </span>
+  <span class="action-btn dark">
     <span class="action-btn-emoji">🌴</span>
     <span class="action-btn-label">Make Your Survivor Pick</span>
-  </a>
-  <a href="#" class="action-btn red">
+  </span>
+  <span class="action-btn red">
     <span class="action-btn-emoji">🧠</span>
     <span class="action-btn-label">Dad Bod's Preseason Rankings</span>
-  </a>
-  <a href="#" class="action-btn red">
+  </span>
+  <span class="action-btn red">
     <span class="action-btn-emoji">🎯</span>
     <span class="action-btn-label">Call Your Shot</span>
-  </a>
-  <a href="#" class="action-btn dark">
+  </span>
+  <span class="action-btn dark">
     <span class="action-btn-emoji">🪙</span>
     <span class="action-btn-label">Log a Side Bet</span>
-  </a>
+  </span>
 </div>
 
 
