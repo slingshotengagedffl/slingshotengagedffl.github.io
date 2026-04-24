@@ -2512,17 +2512,17 @@ function buildDossierPrompt(p, tone) {
   const poWinPctStr = poWinPct !== null ? `${(poWinPct * 100).toFixed(1)}%` : '—';
 
   const toneModifiers = {
-    analytical: `TONE: Analytical Klosterman. Wry, detached, finds unexpected meaning in patterns. Neither cruel nor kind — observational and slightly unsettling in its accuracy. You may note uncomfortable truths but you are not attacking the subject. The goal is insight, not punishment. If the writing would make the subject feel genuinely attacked rather than just slightly unsettled, you have gone too far. Save the knife for Ruthless mode.
+    analytical: `TONE: Analytical Klosterman. Wry, detached, finds unexpected cultural meaning in mundane patterns. The goal is insight, not verdict. You may identify tensions and contradictions in a person's record — that is the job. But you are an observer, not a prosecutor. The subject might feel slightly unsettled reading this, but not attacked. Think: the smartest person at the bar who has noticed something true about you that you haven't quite admitted to yourself. Not the person trying to embarrass you.
 
-For the final paragraph (2026 outlook): weigh both the legitimate case FOR and AGAINST this owner winning in 2026. Find the interesting contradiction in their data. Do not resolve the tension — leave the reader sitting with the ambiguity. Do not rely on cycles, patterns, or "due factor" — make the argument specific to this owner's actual stats, arc, and situation.`,
+For the final paragraph (2026 outlook): weigh both the legitimate case FOR and AGAINST this owner winning in 2026. Find the interesting contradiction in their data. Do not resolve the tension — leave the reader sitting with the ambiguity. Make the argument specific to this owner's actual arc and situation, not cycles or patterns.`,
 
     eulogy: `TONE: Eulogy Klosterman. Find the beauty and dignity in this career, even in failure. Every losing streak has philosophical weight. Every missed playoff is a near-miss worth mourning. The tone is elegiac, almost tender — but never saccharine. Find the humanity in the numbers.
 
 For the final paragraph (2026 outlook): make the affirmative case that 2026 IS this owner's year. Ground it in their specific arc, their trajectory, their data. Even if the case requires some faith, make it feel earned and specific to them — not a generic "every dog has its day" argument.`,
 
-    ruthless: `TONE: Ruthless Klosterman. Gloves off. Still essayistic, still precise — but no softening, no diplomatic hedging. If the record is bad, name it. If the owner is delusional about their ability, say so. The truth delivered without mercy but also without cruelty — just cold clarity.
+    ruthless: `TONE: Ruthless Klosterman. The sharpest of the three modes — but sharp like a scalpel, not a sledgehammer. Still essayistic, still precise. The difference between Ruthless and Analytical is that Ruthless does not soften conclusions or hedge. If the record suggests a pattern of self-delusion, name it. If the numbers tell a story the owner probably doesn't want told, tell it. But the weapon is clarity, not cruelty. You are not trying to humiliate anyone — you are simply refusing to look away from what the data says. A good ruthless dossier should sting, not wound.
 
-For the final paragraph (2026 outlook): make the case that 2026 will NOT be this owner's year. Use their actual record, their patterns, their weaknesses. Be specific. Do not be gratuitously cruel but do not soften the conclusion. The argument should feel inevitable given the evidence.`
+For the final paragraph (2026 outlook): make the case that 2026 will NOT be this owner's year. Use their actual record, patterns, and weaknesses. Be specific and unflinching. Do not be gratuitously cruel but do not soften the conclusion. The argument should feel like a diagnosis, not an insult.`
   };
 
   const toneBlock = toneModifiers[tone] || toneModifiers.analytical;
@@ -2532,6 +2532,8 @@ For the final paragraph (2026 outlook): make the case that 2026 will NOT be this
 ${toneBlock}
 
 Write a dossier on ${p.name} ("${p.nickname}") for the Slingshot Engaged fantasy football league (also called "Slingshot"), a 14-owner league active since 2014.
+
+WRITING PRIORITY: Statistics should illuminate character, not replace it. The numbers matter because of what they reveal about who this person is in the league. The owner details, lore, and personality context provided below are not optional decoration — they are the raw material. Weave personality and story into the analysis rather than keeping them separate. A stat without a human insight behind it is just arithmetic.
 
 LEAGUE CONTEXT — READ CAREFULLY BEFORE WRITING:
 - The league has exactly 14 owners. Finishing 1st in the regular season = best record that season only, NOT the champion. The champion is determined solely by winning the playoff bracket.
@@ -2556,7 +2558,32 @@ FORMATTING RULES:
 - The league is called "Slingshot Engaged" or "Slingshot." Never "Slingshot Engaged Fantasy Football League" or any other variation.
 - "Perfected the art of" is a good phrase but use it sparingly — at most once across the entire report.
 
-LEAGUE HISTORY & LORE — use freely when genuinely relevant, never force it:
+NOTABLE OWNER DETAILS (texture — use what's relevant, ignore the rest):
+- Brian and Dylan are brothers. Both Ravens fans. Brian once drunkenly misspelled Ravens as "Tavens" — the league has never forgotten. He tore his Achilles trying to cross up neighborhood kids in basketball. Sends daily weightlifting thirst traps with trademark steely gaze. Has had multiple body parts fail resulting in surgery.
+- Jack is commissioner and founder. Has lived in multiple cities, abandoning friends each time. Loves trades and minutiae. Hung championship banners to celebrate his titles.
+- Kyle is annoyingly good at everything. Roasts his own coffee, wears Lululemon pants. Got a vasectomy as a sacrifice to win the championship — it worked. Once had to ski without pants due to a lost bet. Also had to do a Beyoncé maternity photo shoot for a lost bet. Tech bro.
+- Dylan is Brian's younger brother. Snack guru — loves snack collabs like Reese's Oreos. DINK life. Is "like a scientist or something — no one really knows."
+- Mike looks like Aaron Rodgers. Makes many GroupMe typos. Self-proclaimed league historian who never actually knows any history. The league contrarian — disagrees with nearly everything. Rumored to hook up with league members' sisters. During the 2020 virtual draft — the year he won the championship — Mike disappeared entirely during the draft and the league finished his picks for him. He won the title anyway.
+- Daniel says whatever filthy thing is on his mind. Spends more time rock climbing than with his family. Lost a playoff game to a single player (Derrick Henry) on Thursday night. Once did an unhinged presentation about the bangability of league member moms at League Weekend. One of the league's self-designated "pervs" (along with Tim H and Wade).
+- Scott grew his beard for a year and looked like a cult leader — a following emerged called the Church of Murph. The draft doesn't officially begin until Scott removes his shirt. Insanely detailed memory of the lives of other league members. Just happy to be here. Automatically likes any Office or Parks and Rec content in GroupMe.
+- Matt is considered the soul of the league. Always has a new "maybe the best song ever." Undisputed step challenge champion. Breaks world and sports news in the group chat. Big fan of Die Hard. Only owner to fully commit to one team name/identity: El Bod de Padre.
+- Jordan has a trademark mustache. Notoriously difficult to get to like your GroupMe posts. Spends the least time at League Weekends — always has a wedding or something. Uber-progressive.
+- Tim H accidentally sent an NSFW link to the group chat when he meant to send a beer link. It became his whole persona. Perhaps even snootier than Kyle. Has a backyard hot tub with cameras. Drives a BMW. One of the league's self-designated "pervs" (along with Daniel and Wade). Note: there are TWO Tims in league history — Tim H (active, joined 2020) and Tim C (retired). Survivor King stats: Tim H has 1 win. Tim C had 2 wins. Do not conflate them.
+- Wade lives on what he calls "a reserve" (possibly a bunker compound). Grumpy old man vibe. Big fan of Nekrogoblikon. Has a patented trade analyzer. An engineer who does nothing at work. Weird long goatee. Favorite Disney character is Elastigirl. One of the league's self-designated "pervs" (along with Daniel and Tim H).
+- Andy brought Trivia Thursday to the league. Loud voice — rallies people to action at League Weekends. Went 12-2 his rookie season then lost his first playoff game and has not been back to the playoffs since. No one knows where he actually lives (Sacramento? Oakland? Colorado? Ohio? Connecticut?). Was a Browns fan for years before recently becoming a "lifelong" Broncos fan.
+- Alex was in Thailand when he forgot his virtual draft was starting. Paid a sex worker for a scooter ride home to make it in time. Made the draft. Corporate drone. Loves his dad's Minnesota Hot Dish. Minnesota nice — says "ope."
+- Luke is replacing Jon (retired after 2025). From Minnesota. Plays disc golf. Reportedly 6'2" (may be exaggerating). Has played zero seasons. Huge shoes to fill.
+
+KEY LORE MOMENTS (use sparingly — only when genuinely relevant to THIS owner):
+- "The .06 Bowl" (2015, Week 11): Scott beat Mike by 0.06 points. Scott won. Mike lost. Discovered the second decimal existed.
+- Brian's 2016 championship: shocked everyone. Named The Daddy after this run.
+- "The Pedal Hopper puke-and-rally" (2019 League Weekend, Denver): Brian threw up off a pedal party bike, immediately rallied. Called greatest moment in league history.
+- Daniel lost a playoff game to a single player (Derrick Henry) on a Thursday night.
+- Kyle once had to ski without pants and once had to do a Beyoncé maternity photo shoot — both lost bets.
+- 2025 Slingshot Bowl: first ever without a #1 or #2 seed. Dylan (#4) beat Mike (#5).
+- Mike disappeared during the 2020 virtual draft. The league finished his picks. He won the championship that year.
+
+LEAGUE HISTORY & LORE:
 
 FOUNDING & STRUCTURE:
 - Founded 2014. 12 completed seasons entering 2026. Five founding members still active: Jack, Mike, Brian, Scott, Daniel.
@@ -2641,31 +2668,6 @@ ACTIVE HEAD-TO-HEAD OWNERSHIPS (70%+ win rate, 5+ games, both owners active):
 - Jordan owns: Scott (5-2), Wade (5-1)
 - Brian owns: Kyle (7-2) — the great anomaly. Kyle dominates almost everyone but cannot beat Brian.
 
-NOTABLE OWNER DETAILS (texture only — use what's relevant, ignore the rest):
-- Brian and Dylan are brothers. Both Ravens fans. Brian once drunkenly misspelled Ravens as "Tavens" — the league has never forgotten. He tore his Achilles trying to cross up neighborhood kids in basketball. Sends daily weightlifting thirst traps with trademark steely gaze. Has had multiple body parts fail resulting in surgery.
-- Jack is commissioner and founder. Has lived in multiple cities, abandoning friends each time. Loves trades and minutiae. Hung championship banners to celebrate his titles.
-- Kyle is annoyingly good at everything. Roasts his own coffee, wears Lululemon pants. Got a vasectomy as a sacrifice to win the championship — it worked. Once had to ski without pants due to a lost bet. Also had to do a Beyoncé maternity photo shoot for a lost bet. Tech bro.
-- Dylan is Brian's younger brother. Snack guru — loves snack collabs like Reese's Oreos. DINK life. Is "like a scientist or something — no one really knows."
-- Mike looks like Aaron Rodgers. Makes many GroupMe typos. Self-proclaimed league historian who never actually knows any history. The league contrarian — disagrees with nearly everything. Rumored to hook up with league members' sisters. During the 2020 virtual draft — the year he won the championship — Mike disappeared entirely during the draft and the league finished his picks for him. He won the title anyway.
-- Daniel says whatever filthy thing is on his mind. Spends more time rock climbing than with his family. Lost a playoff game to a single player (Derrick Henry) on Thursday night. Once did an unhinged presentation about the bangability of league member moms at League Weekend. One of the league's self-designated "pervs" (along with Tim H and Wade).
-- Scott grew his beard for a year and looked like a cult leader — a following emerged called the Church of Murph. The draft doesn't officially begin until Scott removes his shirt. Insanely detailed memory of the lives of other league members. Just happy to be here. Automatically likes any Office or Parks and Rec content in GroupMe.
-- Matt is considered the soul of the league. Always has a new "maybe the best song ever." Undisputed step challenge champion. Breaks world and sports news in the group chat. Big fan of Die Hard. Only owner to fully commit to one team name/identity: El Bod de Padre.
-- Jordan has a trademark mustache. Notoriously difficult to get to like your GroupMe posts. Spends the least time at League Weekends — always has a wedding or something. Uber-progressive.
-- Tim H accidentally sent an NSFW link to the group chat when he meant to send a beer link. It became his whole persona. Perhaps even snootier than Kyle. Has a backyard hot tub with cameras. Drives a BMW. One of the league's self-designated "pervs" (along with Daniel and Wade). Note: there are TWO Tims in league history — Tim H (active, joined 2020) and Tim C (retired). Survivor King stats: Tim H has 1 win. Tim C had 2 wins. Do not conflate them.
-- Wade lives on what he calls "a reserve" (possibly a bunker compound). Grumpy old man vibe. Big fan of Nekrogoblikon. Has a patented trade analyzer. An engineer who does nothing at work. Weird long goatee. Favorite Disney character is Elastigirl. One of the league's self-designated "pervs" (along with Daniel and Tim H).
-- Andy brought Trivia Thursday to the league. Loud voice — rallies people to action at League Weekends. Went 12-2 his rookie season then lost his first playoff game to Kyle and has not been back to the playoffs since. No one knows where he actually lives (Sacramento? Oakland? Colorado? Ohio? Connecticut?). Was a Browns fan for years before recently becoming a "lifelong" Broncos fan.
-- Alex was in Thailand when he forgot his virtual draft was starting. Paid a sex worker for a scooter ride home to make it in time. Made the draft. Corporate drone. Loves his dad's Minnesota Hot Dish. Minnesota nice — says "ope."
-- Luke is replacing Jon (retired after 2025). From Minnesota. Plays disc golf. Reportedly 6'2" (may be exaggerating). Has played zero seasons. Huge shoes to fill.
-
-KEY LORE MOMENTS (use sparingly — only when genuinely relevant to THIS owner):
-- "The .06 Bowl" (2015, Week 11): Scott beat Mike by 0.06 points. Scott won. Mike lost. Discovered the second decimal existed.
-- Brian's 2016 championship: shocked everyone. Named The Daddy after this run.
-- "The Pedal Hopper puke-and-rally" (2019 League Weekend, Denver): Brian threw up off a pedal party bike, immediately rallied. Called greatest moment in league history.
-- Daniel lost a playoff game to a single player (Derrick Henry) on a Thursday night.
-- Kyle once had to ski without pants and once had to do a Beyoncé maternity photo shoot — both lost bets.
-- 2025 Slingshot Bowl: first ever without a #1 or #2 seed. Dylan (#4) beat Mike (#5).
-- Mike disappeared during the 2020 virtual draft. The league finished his picks. He won the championship that year.
-
 TROPHY CONTEXT — understand what each trophy means before writing about it:
 - "League Champion" = WON THE PLAYOFF BRACKET. The ultimate prize. The only thing that truly matters.
 - "Regular Season Champion" = best regular season record only. Prestigious but not a championship.
@@ -2740,7 +2742,8 @@ STYLE RULES:
 - Do NOT use Kyle as the default reference point for every owner. Kyle may appear naturally when genuinely relevant — championship matchups, direct H2H dominance, specific lore — but he should not anchor every dossier.
 - "Perfected the art of" is allowed but use sparingly — at most once per report.
 - Vary which stats you lead with. Weekly high scores, point share, earnings, playoff record, specific seasons, and trophy history often tell better stories than boom/bust rates alone.
-- League lore and owner details are texture. One specific well-placed detail beats five generic ones.
+- Statistics should illuminate who this person actually is in the league — their reputation, their habits, their lore, how others see them — not replace that story. A win percentage is interesting because of what it says about the kind of person who produces it.
+- You have access to and should actively draw from: this owner's trait cards, location, team names, and personal lore; the league-wide lore and history; and the details and personalities of every other owner. These are not background noise — they are the material. When another owner's detail illuminates something true about the subject, use it.
 
 OUTPUT FORMAT:
 Return a JSON object with exactly two keys:
