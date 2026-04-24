@@ -76,6 +76,17 @@
       color: var(--muted);
       margin-top: 6px;
     }
+    .header-spacer { height: 20px; }
+    .intro {
+      font-family: 'Barlow', sans-serif;
+      font-size: 1.1rem;
+      color: var(--text-body);
+      line-height: 1.7;
+      margin: 12px auto;
+      text-align: center;
+      max-width: 680px;
+      padding: 0 16px;
+    }
 
     /* ── Commissioner mode button ── */
     .commish-wrap {
@@ -363,13 +374,17 @@
   </style>
 </head>
 <body>
-  <script src="../nav.js"></script>
+  <script src="nav.js"></script>
 
   <div class="page-header">
     <div class="page-supertitle">The Annals of History</div>
     <h1>League Weekends</h1>
-    <p class="page-updated" id="lastUpdated"></p>
+    <p class="page-updated" id="pageUpdated"></p>
   </div>
+
+  <div class="header-spacer"></div>
+
+  <p class="intro">The annual league weekend is the soul of this league — a gathering of grown men, a pile of receipts, and memories nobody will ever fully agree on. This is the board where we keep them.</p>
 
   <div class="commish-wrap">
     <button class="commish-btn" id="commishBtn" onclick="toggleCommishMode()">⚙ Commissioner Mode</button>
@@ -588,12 +603,12 @@
     };
 
     // ── LAST UPDATED ───────────────────────────────────────────────────────
-    fetch('../profiles-data.json')
+    fetch('profiles-data.json')
       .then(r => r.json())
       .then(data => {
         const date = data.pageUpdates?.['league-weekends'];
         if (date) {
-          document.getElementById('lastUpdated').textContent = 'Updated · ' + date;
+          document.getElementById('pageUpdated').textContent = 'Updated · ' + date;
         }
       })
       .catch(() => {});

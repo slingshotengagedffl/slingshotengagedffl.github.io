@@ -76,7 +76,7 @@
       color: var(--muted);
       margin-top: 6px;
     }
-    .header-spacer { height: 36px; }
+    .header-spacer { height: 20px; }
 
     /* ── CONTENT ── */
     .content {
@@ -102,7 +102,7 @@
       color: var(--text-body);
       line-height: 1.7;
       text-align: center;
-      margin-bottom: 36px;
+      margin: 12px 0 12px;
     }
 
     /* ── SPOTLIGHT CARD ── */
@@ -1739,11 +1739,11 @@ function renderLogTable(games, nameA, nameB, aIsP0) {
       : 'border-left: 3px solid transparent;';
 
     const typeBadge = isBowl
-      ? ` <span style="font-size:0.65rem;font-weight:700;letter-spacing:0.06em;color:#000;background:var(--gold);padding:1px 5px;border-radius:3px;vertical-align:middle;font-family:'Barlow Condensed',sans-serif;">SB</span>`
+      ? ` <span style="font-size:0.72rem;font-weight:700;letter-spacing:0.06em;color:#000;background:var(--gold);padding:1px 5px;border-radius:3px;vertical-align:middle;font-family:'Barlow Condensed',sans-serif;">SB</span>`
       : isPlayoff
-      ? ` <span style="font-size:0.65rem;font-weight:700;letter-spacing:0.06em;color:#000;background:var(--gold);padding:1px 5px;border-radius:3px;vertical-align:middle;font-family:'Barlow Condensed',sans-serif;">PO</span>`
+      ? ` <span style="font-size:0.72rem;font-weight:700;letter-spacing:0.06em;color:#000;background:var(--gold);padding:1px 5px;border-radius:3px;vertical-align:middle;font-family:'Barlow Condensed',sans-serif;">PO</span>`
       : isConsolation
-      ? ` <span style="font-size:0.65rem;font-weight:700;letter-spacing:0.06em;color:#fff;background:#7a9cc0;padding:1px 5px;border-radius:3px;vertical-align:middle;font-family:'Barlow Condensed',sans-serif;">CON</span>`
+      ? ` <span style="font-size:0.72rem;font-weight:700;letter-spacing:0.06em;color:#fff;background:#7a9cc0;padding:1px 5px;border-radius:3px;vertical-align:middle;font-family:'Barlow Condensed',sans-serif;">CON</span>`
       : '';
 
     const aWon = sA > sB;
