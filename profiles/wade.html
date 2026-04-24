@@ -2642,7 +2642,7 @@ ACTIVE HEAD-TO-HEAD OWNERSHIPS (70%+ win rate, 5+ games, both owners active):
 - Brian owns: Kyle (7-2) — the great anomaly. Kyle dominates almost everyone but cannot beat Brian.
 
 NOTABLE OWNER DETAILS (texture only — use what's relevant, ignore the rest):
-- Brian and Dylan are brothers (the Thackston brothers). Both Ravens fans. Brian once drunkenly misspelled Ravens as "Tavens" — the league has never forgotten. He tore his Achilles trying to cross up neighborhood kids in basketball. Sends daily weightlifting thirst traps with trademark steely gaze. Has had multiple body parts fail resulting in surgery.
+- Brian and Dylan are brothers. Both Ravens fans. Brian once drunkenly misspelled Ravens as "Tavens" — the league has never forgotten. He tore his Achilles trying to cross up neighborhood kids in basketball. Sends daily weightlifting thirst traps with trademark steely gaze. Has had multiple body parts fail resulting in surgery.
 - Jack is commissioner and founder. Has lived in multiple cities, abandoning friends each time. Loves trades and minutiae. Hung championship banners to celebrate his titles.
 - Kyle is annoyingly good at everything. Roasts his own coffee, wears Lululemon pants. Got a vasectomy as a sacrifice to win the championship — it worked. Once had to ski without pants due to a lost bet. Also had to do a Beyoncé maternity photo shoot for a lost bet. Tech bro.
 - Dylan is Brian's younger brother. Snack guru — loves snack collabs like Reese's Oreos. DINK life. Is "like a scientist or something — no one really knows."
@@ -2806,7 +2806,34 @@ async function pullDossier() {
     const clean = raw.replace(/```json|```/g, '').trim();
     const parsed = JSON.parse(clean);
 
-    const paragraphs = parsed.report
+    function sanitizeLastNames(text) {
+      // Disambiguation: replace last name with initial for owners with name collisions
+      const withInitial = [
+        [/Vander\s+Linden/g, 'V.'], [/VanderLinden/g, 'V.'],  // Alex V.
+        [/McGrew/g, 'M.'],           // Alex M.
+        [/Hermann/g, 'H.'],          // Tim H.
+        [/Campbell/g, 'C.'],         // Tim C.
+        [/Merrick/g, 'M.'],          // Mike M.
+        [/Vinup/g, 'V.'],            // Mike V.
+      ];
+      // Strip entirely: only one person with this first name, no disambiguation needed
+      const stripOnly = [
+        /Thackston/g, /Corcoran/g, /Gilbreath/g, /Martinez/g,
+        /Brenner/g, /Bradshaw/g, /Jacobs/g, /Powell/g, /Murphy/g,
+        /Franks/g, /Alger/g, /Monaco/g, /Rodney/g, /Boluda/g,
+        /Trueblood/g, /Ely/g
+      ];
+      let clean = text;
+      withInitial.forEach(([p, init]) => { clean = clean.replace(p, init); });
+      stripOnly.forEach(p => { clean = clean.replace(p, ''); });
+      clean = clean.replace(/  +/g, ' ').replace(/ ([.,;:!?\u2014])/g, '$1').trim();
+      return clean;
+    }
+
+    const safeQuote = sanitizeLastNames(parsed.pullQuote);
+    const safeReport = sanitizeLastNames(parsed.report);
+
+    const paragraphs = safeReport
       .split('\n')
       .filter(s => s.trim())
       .map(s => `<p>${s.trim()}</p>`)
@@ -2816,7 +2843,7 @@ async function pullDossier() {
     loading.style.display = 'none';
     report.innerHTML = `
       <div class="dossier-pull-quote">
-        <p>"${parsed.pullQuote}"</p>
+        <p>"${safeQuote}"</p>
       </div>
       <div class="dossier-body">${paragraphs}</div>
         <div class="dossier-footer">
