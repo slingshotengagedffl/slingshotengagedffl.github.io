@@ -85,7 +85,7 @@
       flex-shrink: 0;
     }
     .close-btn {
-      background: none; border: none; color: #666; font-size: 1.5rem;
+      background: none; border: none; color: var(--muted); font-size: 1.5rem;
       cursor: pointer; line-height: 1;
     }
     .close-btn:hover { color: #fff; }
@@ -109,8 +109,8 @@
     .menu-item.active .menu-item-label { color: var(--red-bright); }
     .submenu-toggle {
       background: none; border: none; cursor: pointer;
-      padding: 20px 18px 20px 4px; color: #666;
-      font-size: 0.75rem; line-height: 1; transition: color 0.15s;
+      padding: 20px 18px 20px 4px; color: var(--muted);
+      font-size: 0.85rem; line-height: 1; transition: color 0.15s;
       flex-shrink: 0;
     }
     .submenu-toggle:hover { color: var(--red-bright); }
@@ -124,8 +124,8 @@
       display: block; text-decoration: none;
       padding: 12px 22px 12px 52px;
       font-family: 'Bebas Neue', sans-serif; font-weight: 400;
-      font-size: 1rem; letter-spacing: 0.12em; text-transform: uppercase;
-      color: #aaa; border-bottom: 1px solid #1a1a1a;
+      font-size: 1.1rem; letter-spacing: 0.12em; text-transform: uppercase;
+      color: var(--label); border-bottom: 1px solid #1a1a1a;
       transition: color 0.15s, background 0.15s;
     }
     .submenu-item:last-child { border-bottom: none; }
