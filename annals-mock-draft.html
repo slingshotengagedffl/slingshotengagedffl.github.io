@@ -762,7 +762,13 @@ RULES:
 
 4. NO same-team-same-position rosters (no CeeDee + Pickens both DAL WRs). Different positions same team is fine.
 
-5. NO mid-blurb flubs.
+5. **NO mid-blurb flubs. NO self-correction in writing. NO duplicate picks.** This is critical:
+   - Before generating each pick, mentally check the running list of who's been taken.
+   - If you realize mid-blurb that the player you were about to pick is gone, do NOT write something like "WAIT — that's taken. Let me correct — Brian takes X instead." That breaks the broadcast illusion.
+   - Instead, silently revise. Output ONLY the final, correct pick with a clean blurb. No "WAIT", no "Let me correct", no "actually", no narration of the AI's own thinking.
+   - **NEVER** output two pick entries for the same owner in the same round. Each owner gets exactly ONE pick per round.
+   - **NEVER** output the same player twice across all 28 picks.
+   - If you find yourself wanting to "correct" mid-stream, STOP and re-output that entire pick entry from scratch with the right player.
 
 6. VOICE ALTERNATES strictly: Pick 1.01=Mel, 1.02=Booger, etc. through 2.14.
 
@@ -929,6 +935,53 @@ async function generateMockDraft() {
       if (!g.comment) g.comment = g.blurb || g.text || '';
       g.comment = sanitizeLastNames(g.comment);
     });
+
+    // ── PICK VALIDATOR — strip duplicates, enforce 28 unique picks ──
+    if (parsed.picks && Array.isArray(parsed.picks)) {
+      const seenPlayers = new Set();
+      const seenSlots = new Set();
+      const ownerPickCount = {};
+      const cleanPicks = [];
+      let droppedAny = false;
+
+      for (const pick of parsed.picks) {
+        const playerKey = (pick.player || '').toLowerCase().trim();
+        const slotKey = pick.pickNum;
+        const ownerKey = pick.owner;
+
+        // Skip if duplicate player, duplicate slot, or owner already has 2 picks
+        if (!playerKey || seenPlayers.has(playerKey)) {
+          console.warn('Dropped duplicate-player pick:', pick);
+          droppedAny = true;
+          continue;
+        }
+        if (seenSlots.has(slotKey)) {
+          console.warn('Dropped duplicate-slot pick:', pick);
+          droppedAny = true;
+          continue;
+        }
+        if ((ownerPickCount[ownerKey] || 0) >= 2) {
+          console.warn('Dropped extra-pick-for-owner:', pick);
+          droppedAny = true;
+          continue;
+        }
+        // Strip any "WAIT" / "Let me correct" / "actually that's taken" self-correction language from blurb
+        if (pick.blurb) {
+          pick.blurb = pick.blurb
+            .replace(/^(WAIT[^.!?]*[.!?]\s*)/i, '')
+            .replace(/Let me correct[^.!?]*[.!?]\s*/gi, '')
+            .replace(/[—-]\s*(actually|wait)[^.!?]*[.!?]\s*/gi, ' ')
+            .trim();
+        }
+
+        seenPlayers.add(playerKey);
+        seenSlots.add(slotKey);
+        ownerPickCount[ownerKey] = (ownerPickCount[ownerKey] || 0) + 1;
+        cleanPicks.push(pick);
+      }
+      parsed.picks = cleanPicks;
+      if (droppedAny) console.warn('Mock draft validator dropped duplicate/invalid picks. Final count:', cleanPicks.length);
+    }
 
     clearInterval(loadingInterval);
     barFill.style.transition = 'width 0.3s ease';
