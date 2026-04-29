@@ -232,6 +232,20 @@ body {
 .loading-dots span:nth-child(2) { animation-delay: 0.2s; }
 .loading-dots span:nth-child(3) { animation-delay: 0.4s; }
 @keyframes blink { 0%, 80%, 100% { opacity: 0.2; } 40% { opacity: 1; } }
+.loading-bar-track {
+  margin-top: 16px;
+  height: 6px;
+  background: var(--surface3);
+  border-radius: 3px;
+  overflow: hidden;
+}
+.loading-bar-fill {
+  height: 100%;
+  width: 0%;
+  background: linear-gradient(90deg, var(--red), var(--gold));
+  border-radius: 3px;
+  transition: width 0.4s ease;
+}
 
 /* RESULTS */
 #resultsArea { display: none; margin-top: 24px; }
@@ -285,14 +299,14 @@ body {
 .pick-num-tag {
   display: inline-block;
   font-family: 'Barlow Condensed', sans-serif;
-  font-size: 0.78rem;
+  font-size: 0.95rem;
   letter-spacing: 0.2em;
   text-transform: uppercase;
   color: var(--gold);
   background: var(--surface3);
-  padding: 3px 10px;
+  padding: 4px 12px;
   border-radius: 12px;
-  margin-bottom: 4px;
+  margin-bottom: 6px;
 }
 .owner-name {
   font-family: 'Bebas Neue', sans-serif;
@@ -304,19 +318,20 @@ body {
 }
 .player-line {
   font-family: 'Barlow', sans-serif;
-  font-size: 1.05rem;
+  font-size: 1.3rem;
   color: var(--text-body);
   line-height: 1.3;
-  margin-top: 4px;
+  margin-top: 6px;
 }
 .player-line .player-name {
   font-weight: 700;
   color: var(--text);
+  font-size: 1.35rem;
 }
 .player-line .player-meta {
   color: var(--muted);
   font-family: 'Barlow Condensed', sans-serif;
-  font-size: 0.92rem;
+  font-size: 1.05rem;
   letter-spacing: 0.06em;
   text-transform: uppercase;
 }
@@ -342,16 +357,16 @@ body {
 .blurb-content { flex: 1; min-width: 0; }
 .blurb-speaker {
   font-family: 'Barlow Condensed', sans-serif;
-  font-size: 0.78rem;
+  font-size: 0.92rem;
   letter-spacing: 0.18em;
   text-transform: uppercase;
   font-weight: 700;
-  margin-bottom: 4px;
+  margin-bottom: 5px;
 }
 .blurb-speaker.mel { color: var(--mel-blue); }
 .blurb-speaker.booger { color: var(--booger-orange); }
 .blurb-text {
-  font-size: 0.96rem;
+  font-size: 1.05rem;
   line-height: 1.55;
   color: var(--text-body);
 }
@@ -379,16 +394,16 @@ body {
 .callout-card.red-accent { border-top: 3px solid var(--red-bright); }
 .callout-label {
   font-family: 'Barlow Condensed', sans-serif;
-  font-size: 0.86rem;
+  font-size: 1rem;
   letter-spacing: 0.18em;
   text-transform: uppercase;
   color: var(--gold);
-  margin-bottom: 8px;
+  margin-bottom: 10px;
   font-weight: 700;
 }
 .callout-card.red-accent .callout-label { color: var(--red-bright); }
 .callout-body {
-  font-size: 0.96rem;
+  font-size: 1.05rem;
   line-height: 1.55;
   color: var(--text-body);
 }
@@ -397,7 +412,7 @@ body {
   font-weight: 700;
   letter-spacing: 0.12em;
   text-transform: uppercase;
-  font-size: 0.78rem;
+  font-size: 0.85rem;
   margin-right: 6px;
 }
 .callout-body .speaker.mel { color: var(--mel-blue); }
@@ -434,20 +449,20 @@ body {
 }
 .grade-owner {
   font-family: 'Bebas Neue', sans-serif;
-  font-size: 1.4rem;
+  font-size: 1.6rem;
   letter-spacing: 0.04em;
   color: var(--text);
 }
 .grade-letter {
   font-family: 'Bebas Neue', sans-serif;
-  font-size: 1.5rem;
+  font-size: 1.8rem;
   letter-spacing: 0.04em;
   color: var(--gold);
   flex-shrink: 0;
 }
 .grade-comment {
-  font-size: 0.9rem;
-  line-height: 1.45;
+  font-size: 1rem;
+  line-height: 1.5;
   color: var(--text-body);
 }
 .grade-comment .speaker {
@@ -455,8 +470,8 @@ body {
   font-weight: 700;
   letter-spacing: 0.12em;
   text-transform: uppercase;
-  font-size: 0.72rem;
-  margin-right: 4px;
+  font-size: 0.85rem;
+  margin-right: 5px;
 }
 .grade-comment .speaker.mel { color: var(--mel-blue); }
 .grade-comment .speaker.booger { color: var(--booger-orange); }
@@ -508,8 +523,15 @@ body {
 @media (max-width: 480px) {
   .owner-name { font-size: 1.7rem; }
   .owner-img { width: 56px; height: 56px; }
-  .player-line { font-size: 0.98rem; }
-  .blurb-text { font-size: 0.92rem; }
+  .player-line { font-size: 1.15rem; margin-top: 4px; }
+  .player-line .player-name { font-size: 1.2rem; }
+  .player-line .player-meta { font-size: 0.95rem; }
+  .blurb-text { font-size: 1rem; }
+  .pick-num-tag { font-size: 0.85rem; }
+  .grade-owner { font-size: 1.45rem; }
+  .grade-letter { font-size: 1.65rem; }
+  .grade-comment { font-size: 0.95rem; }
+  .callout-body { font-size: 1rem; }
 }
 </style>
 </head>
@@ -554,6 +576,7 @@ body {
   <div class="loading-panel" id="loadingPanel">
     <div class="loading-status" id="loadingStatus">Mel is studyin' the tape</div>
     <div class="loading-dots"><span>.</span><span>.</span><span>.</span></div>
+    <div class="loading-bar-track"><div class="loading-bar-fill" id="loadingBarFill"></div></div>
   </div>
 
   <div id="resultsArea"></div>
@@ -653,17 +676,7 @@ const PLAYER_RANKINGS = [
   { rank: 47, name: 'Breece Hall', pos: 'RB', team: 'NYJ' },
   { rank: 48, name: 'Zay Flowers', pos: 'WR', team: 'BAL' },
   { rank: 49, name: 'Colston Loveland', pos: 'TE', team: 'CHI' },
-  { rank: 50, name: 'Bucky Irving', pos: 'RB', team: 'TB' },
-  { rank: 51, name: 'Terry McLaurin', pos: 'WR', team: 'WAS' },
-  { rank: 52, name: 'Jameson Williams', pos: 'WR', team: 'DET' },
-  { rank: 53, name: 'Makai Lemon', pos: 'WR', team: 'PHI' },
-  { rank: 54, name: 'Cam Skattebo', pos: 'RB', team: 'NYG' },
-  { rank: 55, name: 'Ladd McConkey', pos: 'WR', team: 'LAC' },
-  { rank: 56, name: 'Jalen Hurts', pos: 'QB', team: 'PHI' },
-  { rank: 57, name: 'Luther Burden III', pos: 'WR', team: 'CHI' },
-  { rank: 58, name: 'TreVeyon Henderson', pos: 'RB', team: 'NE' },
-  { rank: 59, name: 'Christian Watson', pos: 'WR', team: 'GB' },
-  { rank: 60, name: 'Emeka Egbuka', pos: 'WR', team: 'TB' }
+  { rank: 50, name: 'Bucky Irving', pos: 'RB', team: 'TB' }
 ];
 
 // ── LOADING PHRASES ──
@@ -675,7 +688,19 @@ const LOADING_PHRASES = [
   "Booger's hot sauce levels are critical",
   "Phones are blowin' up at every owner's table",
   "Settin' the eight-minute clock",
-  "We are LIVE from Slingshot HQ"
+  "We are LIVE from Slingshot HQ",
+  "Mel is double-checkin' his rankings",
+  "Booger is callin' out a SLEEPER",
+  "Owners are huddlin' with their advisors",
+  "The trade phones are off the hook",
+  "Mel says this draft has SURPRISES",
+  "Booger says someone's about to REACH",
+  "Compilin' the historical tendencies",
+  "Crunchin' the ADP one more time",
+  "Mel's rankings just got UPDATED",
+  "Boogerin' the boog",
+  "Coach in the war room",
+  "GO time, Mel — GO time"
 ];
 let loadingInterval = null;
 
@@ -703,59 +728,68 @@ function buildMockDraftPrompt() {
     `${p.rank}. ${p.name} (${p.pos}, ${p.team})${p.slingshotNote ? ' — ' + p.slingshotNote : ''}`
   ).join('\n');
 
-  return `You are simulating a 2026 fantasy football mock draft for the Slingshot Engaged league. You are writing the broadcast in the alternating voices of Mel (a Mel Kiper-style measured analyst with catchphrases like "I'll tell ya what" and "this is a guy" — even though he's actually an NFL Draft analyst, he's been brought in here to do fantasy football) and Booger (a Booger McFarland-style ex-player hot-sauce guy with catchphrases like "listen here", "my guy", "C'MON now", "that's a dawg", repeats himself for emphasis, gets loud).
+  return `You are simulating a 2026 fantasy football mock draft for the Slingshot Engaged league as a broadcast in the alternating voices of Mel (Mel Kiper-style measured analyst — "I'll tell ya what", "this is a guy", references historical context, calm but authoritative) and Booger (Booger McFarland-style ex-player hot-sauce guy — "listen here", "my guy", "C'MON now", "that's a dawg", repeats himself for emphasis, gets loud, more emotional than analytical).
 
-LEAGUE FORMAT: 14 teams, standard scoring (PPR not specified — treat as standard), starting lineup is 1 QB, 1 RB, 2 WR, 1 TE, 2 FLEX, 1 DST, 1 K. Snake draft, two rounds.
+LEAGUE: 14 teams, standard scoring, lineup 1QB/1RB/2WR/1TE/2FLEX. Snake draft, two rounds.
 
 DRAFT ORDER:
 ${orderText}
 
-OWNER HISTORICAL TENDENCIES (use as PROBABILITY LEANS, not rules — owners adapt to value):
+OWNER TENDENCIES (probability leans, not rules):
 ${tendenciesText}
 
-CURRENT 2026 RANKINGS / ADP (FantasyPros ECR with Slingshot notes):
+2026 RANKINGS:
 ${rankingsText}
 
-RULES FOR THIS MOCK:
+RULES:
 
-1. **Maintain a strict "available players" list.** Track every player taken. NEVER select a player twice. NEVER reference taking a player who is already gone. Before each pick, mentally consult who is still on the board.
+1. AVAILABLE PLAYERS: Track every player taken. NEVER select twice. Before each pick, mentally check the remaining pool.
 
-2. **Lean heavily toward an owner's established pattern.** Only break the pattern when a clear value gap exists — a player ranked significantly above the owner's slot who fits a position they'd otherwise need. Dylan in Round 1 = RB (always, period — only breaks for an absolutely massive WR value drop). Scott in Round 2 = QB if any elite QB (Allen, Lamar, Daniels, Hurts) is on the board. Brian leans Ravens stack if Lamar is available in Round 2. Matt in Round 1 = RB. Wade in Round 2 = WR. Jordan in Round 2 leans TE if elite TE available.
+2. PATTERN LEAN: Heavy weight on each owner's tendency. Dylan R1 = RB always (only breaks for top-3 WR value drop). Scott R2 = QB if Allen/Lamar/Daniels/Hurts available. Brian R2 = Lamar if available. Matt R1 = RB. Wade R2 = WR. Jordan R2 = TE if elite TE available.
 
-3. **Picks should vary meaningfully each generation.** Do not default to ECR rank order. Realistic mock drafts have surprises — players sliding, players reaching, position runs that snowball, owners zigging when others zag. Bijan or Gibbs at 1.01 are both common; the exact 1.03-1.10 order should shake up; Henry can go anywhere from 1.05 to 1.10; QBs sometimes go in Round 2, sometimes none go top 28; TE runs can happen or not.
+3. VARY EACH GENERATION: Don't default to ECR order. Realistic chaos — slides, reaches, position runs. Different runs should produce different boards. Bijan or Gibbs at 1.01. Henry can land 1.05-1.10. Sometimes 0 QBs in R2, sometimes 2. Sometimes a TE run, sometimes none.
 
-4. **NO same-team-same-position rosters.** A drafter doesn't take both CeeDee Lamb and George Pickens (both DAL WRs). Different positions on the same team is fine (Henry RB and Lamar QB on BAL is fine).
+4. NO same-team-same-position rosters (no CeeDee + Pickens, both DAL WRs). Different positions same team is fine (Henry RB + Lamar QB on BAL).
 
-5. **NO flubs.** Do not show mid-blurb "wait, that was already taken" recovery moments. If a player is gone, don't mention them.
+5. NO mid-blurb flubs. If a player is gone, don't mention.
 
-6. **Voice alternates strictly:** Pick 1.01 = Mel. Pick 1.02 = Booger. Pick 1.03 = Mel. And so on, all 28 picks. Booger's tone is louder, more swagger, repeats himself. Mel's tone is measured, name-drops historical context.
+6. VOICE ALTERNATES: Pick 1.01=Mel, 1.02=Booger, etc. through pick 2.14.
 
-7. **Each blurb is 2-4 sentences.** Punchy, not bloated. References the owner's tendency or the value/board context.
+7. BLURBS: 2-3 sentences each. Punchy. Reference owner tendency, value, or board context.
 
-8. **Slingshot's Derrick Henry is consistently drafted top 8** in this league despite ECR 21. Acknowledge this when relevant.
+8. **NO STALE STATS.** Do NOT cite specific stat lines, target counts, snap percentages, or "last year he had X catches." Your training data is months out of date and you'll get specifics wrong. Keep blurbs QUALITATIVE — "locked-in WR1," "three-down workhorse," "red zone monster," "alpha target," "rookie phenom," "second-year leap candidate." NO specific numbers from past seasons.
 
-OUTPUT FORMAT — return ONLY this JSON, no markdown fences, no preamble:
+9. SLINGSHOT'S HENRY PREMIUM: Henry consistently drafted top 8 in this league despite ECR 21. Acknowledge when relevant.
+
+10. NO LAST NAMES for owners. Always "Jack" not "Jack Corcoran". "Mike M" "Tim H" "Alex V" with the disambiguator. Never "Brian Thackston," etc.
+
+11. GRADE DISTRIBUTION: Use the FULL range. Median grade should be B/B+/B-. Include at least one A or A- for the standout, at least one C+/C/C- for the worst. Don't grade-inflate. F is reserved for genuine disaster (rare). Grades should reflect real roster construction quality — value at each pick, position balance, ceiling vs. floor — not just "did they follow their pattern."
+
+12. CALLOUT VOICE ASSIGNMENT: Randomly assign Mel or Booger to bestPick, worstPick, and sleeperPick each generation — don't default Mel to bestPick every time. The draftWinner section ALWAYS has both Mel and Booger giving their take (they may agree or disagree).
+
+13. GRADE COMMENT VOICES: Distribute Mel/Booger across the 14 grade comments — roughly 7 each, but vary which owner each commentator covers per generation.
+
+OUTPUT — return ONLY this JSON, no fences, no preamble:
 
 {
   "picks": [
     { "pickNum": "1.01", "owner": "Tim H", "player": "Bijan Robinson", "pos": "RB", "team": "ATL", "voice": "mel", "blurb": "..." },
-    { "pickNum": "1.02", "owner": "Wade", "player": "...", "pos": "...", "team": "...", "voice": "booger", "blurb": "..." },
-    ... 28 total picks
+    ... 28 total
   ],
-  "bestPick": { "voice": "mel", "blurb": "..." },
-  "worstPick": { "voice": "booger", "blurb": "..." },
-  "sleeperPick": { "voice": "mel", "blurb": "..." },
+  "bestPick": { "voice": "mel" or "booger", "blurb": "..." },
+  "worstPick": { "voice": "mel" or "booger", "blurb": "..." },
+  "sleeperPick": { "voice": "mel" or "booger", "blurb": "..." },
   "draftWinner": {
     "melTake": "...",
     "boogerTake": "..."
   },
   "grades": [
-    { "owner": "Tim H", "letter": "B+", "voice": "mel", "comment": "..." },
-    ... one per owner, 14 total, alternating voices roughly
+    { "owner": "Tim H", "letter": "B+", "voice": "mel" or "booger", "comment": "..." },
+    ... 14 total, full A-D range used
   ]
 }
 
-Generate the full 28-pick mock with all sections now.`;
+Generate now.`;
 }
 
 // ── GENERATE ──
@@ -778,7 +812,15 @@ async function generateMockDraft() {
   loadingInterval = setInterval(() => {
     phraseIdx = (phraseIdx + 1) % LOADING_PHRASES.length;
     loadingStatus.textContent = LOADING_PHRASES[phraseIdx];
-  }, 2200);
+  }, 2800);
+
+  // Progress bar: smoothly fill to 95% over ~30s, snap to 100% on success
+  const barFill = document.getElementById('loadingBarFill');
+  barFill.style.transition = 'none';
+  barFill.style.width = '0%';
+  void barFill.offsetWidth; // force reflow
+  barFill.style.transition = 'width 30s cubic-bezier(0.2, 0.8, 0.4, 0.95)';
+  setTimeout(() => { barFill.style.width = '95%'; }, 50);
 
   try {
     const response = await fetch('https://slinshot-dossier.jack-b-corcoran.workers.dev', {
@@ -786,7 +828,7 @@ async function generateMockDraft() {
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({
         model: 'claude-sonnet-4-20250514',
-        max_tokens: 8000,
+        max_tokens: 6500,
         messages: [{ role: 'user', content: buildMockDraftPrompt() }]
       })
     });
@@ -798,8 +840,39 @@ async function generateMockDraft() {
     const clean = raw.replace(/```json|```/g, '').trim();
     const parsed = JSON.parse(clean);
 
+    // Last-name sanitizer (matches Dossier pattern) — belt-and-suspenders for owner naming
+    function sanitizeLastNames(text) {
+      if (!text) return text;
+      const withInitial = [
+        [/Vander\s+Linden/g, 'V.'], [/VanderLinden/g, 'V.'],
+        [/Hermann/g, 'H.'],
+        [/Merrick/g, 'M.'],
+      ];
+      const stripOnly = [
+        /Thackston/g, /Corcoran/g, /Gilbreath/g, /Martinez/g,
+        /Brenner/g, /Jacobs/g, /Powell/g, /Murphy/g,
+        /Alger/g
+      ];
+      let c = text;
+      withInitial.forEach(([p, init]) => { c = c.replace(p, init); });
+      stripOnly.forEach(p => { c = c.replace(p, ''); });
+      return c.replace(/\s+,/g, ',').replace(/\s{2,}/g, ' ').trim();
+    }
+    // Apply to all text fields
+    parsed.picks.forEach(p => { p.blurb = sanitizeLastNames(p.blurb); });
+    if (parsed.bestPick) parsed.bestPick.blurb = sanitizeLastNames(parsed.bestPick.blurb);
+    if (parsed.worstPick) parsed.worstPick.blurb = sanitizeLastNames(parsed.worstPick.blurb);
+    if (parsed.sleeperPick) parsed.sleeperPick.blurb = sanitizeLastNames(parsed.sleeperPick.blurb);
+    if (parsed.draftWinner) {
+      parsed.draftWinner.melTake = sanitizeLastNames(parsed.draftWinner.melTake);
+      parsed.draftWinner.boogerTake = sanitizeLastNames(parsed.draftWinner.boogerTake);
+    }
+    if (parsed.grades) parsed.grades.forEach(g => { g.comment = sanitizeLastNames(g.comment); });
+
     clearInterval(loadingInterval);
-    loadingPanel.classList.remove('visible');
+    barFill.style.transition = 'width 0.3s ease';
+    barFill.style.width = '100%';
+    setTimeout(() => loadingPanel.classList.remove('visible'), 200);
 
     renderMockDraft(parsed);
     results.classList.add('visible');
