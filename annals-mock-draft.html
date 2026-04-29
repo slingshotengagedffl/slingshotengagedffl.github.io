@@ -700,7 +700,10 @@ const LOADING_PHRASES = [
   "Mel's rankings just got UPDATED",
   "Boogerin' the boog",
   "Coach in the war room",
-  "GO time, Mel — GO time"
+  "GO time, Mel — GO time",
+  "Scott is removing his shirt",
+  "Brian is signing the national anthem",
+  "Daniel is pouring the car bombs"
 ];
 let loadingInterval = null;
 
@@ -778,6 +781,10 @@ RULES:
 13. CALLOUT VOICE ASSIGNMENT: Randomly assign Mel or Booger to bestPick, worstPick, sleeperPick each generation. Don't default Mel to bestPick every time. The draftWinner section ALWAYS has both Mel and Booger giving their take (they may agree or disagree).
 
 14. GRADE COMMENT VOICES: Distribute Mel/Booger across the 14 grade comments — roughly 7 each, but vary which owner each commentator covers per generation.
+
+15. **GRADE ACCURACY — CRITICAL.** Each grade comment MUST only reference the TWO players that specific owner actually drafted in this mock. Do NOT mention players drafted by other owners. Before writing each grade comment, look back at the picks array and confirm which two players that owner has. If a grade comment names a player, that player MUST appear in that owner's two picks.
+
+16. **CALLOUT ACCURACY.** The bestPick, worstPick, and sleeperPick callouts MUST reference actual picks from this draft. Name the owner AND the player AND the pick number — and verify all three match an entry in the picks array.
 
 OUTPUT — return ONLY this JSON, no fences, no preamble:
 
