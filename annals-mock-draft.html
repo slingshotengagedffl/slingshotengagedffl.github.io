@@ -611,7 +611,7 @@ const OWNER_IMAGES = {
 const OWNER_TENDENCIES = {
   'Jack': "12 yrs. R1: 75% RB / 25% WR. R2: 58% WR / 33% RB. NEVER drafted QB top-2 rounds. Value drafter — pivots to BPA when his preferred RB tier is gone (took Jefferson 1.01 in '23). Takes the player, not the position.",
   'Scott': "12 yrs. R1: 83% RB. R2: 58% QB (most QB-heavy active owner). Drafted Mahomes in R2 four times. Most likely owner to spend an early-Round-2 pick on an elite QB (Allen, Lamar, Hurts, Daniels).",
-  'Brian': "12 yrs. R1: 75% RB / 17% WR / 8% QB (Lamar in '20). R2: 42% WR / 33% QB. LOVES Ravens — drafted 4 of them historically including Lamar twice. Loves proven veteran QBs (Brees, Manning, Brady, Lamar twice). Slingshot's Henry premium fits him.",
+  'Brian': "12 yrs. R1: 75% RB / 17% WR / 8% QB (Lamar in '20). R2: 42% WR / 33% QB. Has historically loved Ravens (drafted 4 of them) and proven veteran QBs (Brees, Manning, Brady, Lamar twice). Slingshot's Henry premium fits him — likely takes Henry in R1 if available at his slot. The Ravens stack with Lamar in R2 is one of his moves but not automatic — only does it ~30-40% of the time, depends on board state and Lamar's value. Often goes BPA wideout in R2 instead.",
   'Andy': "4 yrs (2022-2025). R1: 75% RB / 25% WR. R2: 50% RB / 50% WR. Pattern: when picks RB early, goes WR R2 (Tyreek, Deebo). When picks WR early, doubles up RB R2 (Ja'Marr → Walker). Zero QBs/TEs ever in top 2 rounds.",
   'Mike M': "12 yrs. R1: 50% RB / 50% WR. R2: 42% RB / 33% WR / 17% TE. The mystery box — no strong tells, plays the value. Recent lean: 3 of last 5 R1 were WR. Has taken elite TE in R2 before (Kelce, Julius Thomas).",
   'Daniel': "12 yrs. R1: 58% RB / 42% WR. R2: 58% WR. Most WR-heavy active veteran (50% WR overall). Has drafted WR-WR before. Will pivot from WR-WR start when board demands it.",
@@ -728,6 +728,35 @@ function buildMockDraftPrompt() {
     `${p.rank}. ${p.name} (${p.pos}, ${p.team})${p.slingshotNote ? ' — ' + p.slingshotNote : ''}`
   ).join('\n');
 
+  // Randomness seeds — pick 1-2 scenario hints to push the draft in a different direction each generation
+  const SCENARIO_HINTS = [
+    "An EARLY WR RUN happens — 3+ wideouts come off the board in the top 6 picks.",
+    "An EARLY RB RUN happens — 5+ running backs come off the board in the top 7 picks.",
+    "Henry slides further than usual, falling to 1.07 or later.",
+    "An owner reaches for a tight end in Round 1, kicking off an early TE run in Round 2.",
+    "TWO quarterbacks come off the board in Round 2 (more QB-aggressive than usual).",
+    "ZERO quarterbacks go in the first 28 picks (everyone passes on QB).",
+    "Jeremiyah Love (the only true 2026 rookie in this range) shoots up the board into Round 1.",
+    "A surprise pick in the top 10 — someone reaches by 5+ spots for a player they love.",
+    "Bijan goes 1.01 (the chalk play).",
+    "Gibbs goes 1.01 (the upside play).",
+    "Chase or Puka goes in the top 3 (WR-first lean at the top).",
+    "An owner doubles up at WR in Rounds 1-2 instead of taking an RB.",
+    "An owner doubles up at RB in Rounds 1-2 (zero RB depth in WRs early).",
+    "A late-Round-2 slide gives someone a major value steal at 2.10+.",
+    "The TE cliff hits hard — only 1 tight end goes in the entire 28-pick window.",
+    "Three tight ends go in Round 2 (TE run snowballs).",
+    "Brian skips the Ravens stack this time — takes a non-Ravens player in Round 2.",
+    "Brian fully commits to the Ravens stack — Henry R1, Lamar R2."
+  ];
+  // Pick 2 random scenarios to nudge the draft
+  const shuffled = [...SCENARIO_HINTS].sort(() => Math.random() - 0.5);
+  const chosenScenarios = shuffled.slice(0, 2);
+  const scenarioText = chosenScenarios.map(s => `- ${s}`).join('\n');
+
+  // Random seed value to encourage variation across runs
+  const seed = Math.floor(Math.random() * 100000);
+
   return `You are simulating a 2026 fantasy football mock draft for the Slingshot Engaged league as a broadcast in the alternating voices of Mel (Mel Kiper-style measured analyst — "I'll tell ya what", "this is a guy", references historical context, calm but authoritative) and Booger (Booger McFarland-style ex-player hot-sauce guy — "listen here", "my guy", "C'MON now", "that's a dawg", repeats himself for emphasis, gets loud, more emotional than analytical).
 
 LEAGUE: 14 teams, standard scoring, lineup 1QB/1RB/2WR/1TE/2FLEX. Snake draft, two rounds.
@@ -741,33 +770,48 @@ ${tendenciesText}
 2026 RANKINGS:
 ${rankingsText}
 
+THIS GENERATION'S SCENARIO HINTS (use these to shape THIS specific draft — different runs will have different hints):
+${scenarioText}
+
+Random seed: ${seed} (use as a tiebreaker when multiple picks are equally plausible — different seeds should produce different drafts)
+
 RULES:
 
 1. AVAILABLE PLAYERS: Track every player taken. NEVER select twice. Before each pick, mentally check the remaining pool.
 
-2. PATTERN LEAN: Heavy weight on each owner's tendency. Dylan R1 = RB always (only breaks for top-3 WR value drop). Scott R2 = QB if Allen/Lamar/Daniels/Hurts available. Brian R2 = Lamar if available. Matt R1 = RB. Wade R2 = WR. Jordan R2 = TE if elite TE available.
+2. PATTERN LEAN: Heavy weight on each owner's tendency. Dylan R1 = RB always (only breaks for top-3 WR value drop). Scott R2 = QB if Allen/Lamar/Daniels/Hurts available. Brian: likely takes Henry in R1 if Henry is on the board at his slot — but does NOT always do a Ravens stack (he only takes Lamar in R2 maybe 30-40% of the time, depending on value/board state). Matt R1 = RB. Wade R2 = WR. Jordan R2 = TE if elite TE available.
 
-3. VARY EACH GENERATION: Don't default to ECR order. Realistic chaos — slides, reaches, position runs. Different runs should produce different boards. Bijan or Gibbs at 1.01. Henry can land 1.05-1.10. Sometimes 0 QBs in R2, sometimes 2. Sometimes a TE run, sometimes none.
+3. **HIGH VARIATION REQUIRED.** Every generation should produce a meaningfully different draft. Do NOT default to the same picks across runs. Specifically:
+   - 1.01 should genuinely alternate between Bijan, Gibbs, and occasionally Chase or Puka if a WR-first owner has it
+   - The 1.03–1.10 range should scramble every run
+   - Henry can land anywhere from 1.05 to 1.10 depending on slot owner
+   - Saquon, Achane, McCaffrey can all go in different orders
+   - Sometimes 0 QBs go in R2, sometimes 2, sometimes 1 (varies by owner availability and board state)
+   - Sometimes a TE run happens (3+ TEs in R2), sometimes only 1 TE goes
+   - Surprise reaches and slides should appear
+   - If two consecutive runs produce 80%+ identical picks, that's a failure of this rule
 
-4. NO same-team-same-position rosters (no CeeDee + Pickens, both DAL WRs). Different positions same team is fine (Henry RB + Lamar QB on BAL).
+4. NO same-team-same-position rosters (no CeeDee + Pickens both DAL WRs). Different positions same team is fine.
 
-5. NO mid-blurb flubs. If a player is gone, don't mention.
+5. NO mid-blurb flubs.
 
-6. VOICE ALTERNATES: Pick 1.01=Mel, 1.02=Booger, etc. through pick 2.14.
+6. VOICE ALTERNATES strictly: Pick 1.01=Mel, 1.02=Booger, etc. through 2.14.
 
-7. BLURBS: 2-3 sentences each. Punchy. Reference owner tendency, value, or board context.
+7. BLURBS: 2-3 sentences each. Punchy.
 
-8. **NO STALE STATS.** Do NOT cite specific stat lines, target counts, snap percentages, or "last year he had X catches." Your training data is months out of date and you'll get specifics wrong. Keep blurbs QUALITATIVE — "locked-in WR1," "three-down workhorse," "red zone monster," "alpha target," "rookie phenom," "second-year leap candidate." NO specific numbers from past seasons.
+8. **NO STALE STATS.** Do NOT cite specific stat lines, target counts, snap percentages, or "last year he had X catches/yards." Your training data is months out of date and you'll get specifics wrong.
 
-9. SLINGSHOT'S HENRY PREMIUM: Henry consistently drafted top 8 in this league despite ECR 21. Acknowledge when relevant.
+9. **PLAYER CAREER STATUS — be careful.** **Jeremiyah Love is the ONLY true 2026 rookie likely to be drafted in the first two rounds.** EVERY other player in this rankings list is either a veteran or a second-year/third-year player. Do NOT call ANYONE else a rookie. Specifically: Jeanty had a disappointing first year and is entering year 2 (frame him as a bounce-back candidate, not a rookie). Bowers is entering year 3. Kraft, Puka, Calvin Tate, Jordyn Tyson, Makai Lemon, Luther Burden III, Cam Skattebo, TreVeyon Henderson, Quinshon Judkins, Emeka Egbuka, and Colston Loveland are all 2025-class entering year 2. Use evergreen language: "second-year leap candidate," "bounce-back candidate," "ascending talent," "alpha target," "third-year breakout," "proven workhorse," "established starter," etc.
 
-10. NO LAST NAMES for owners. Always "Jack" not "Jack Corcoran". "Mike M" "Tim H" "Alex V" with the disambiguator. Never "Brian Thackston," etc.
+10. SLINGSHOT'S HENRY PREMIUM: Henry consistently drafted top 8 in this league despite ECR 21. Acknowledge when relevant.
 
-11. GRADE DISTRIBUTION: Use the FULL range. Median grade should be B/B+/B-. Include at least one A or A- for the standout, at least one C+/C/C- for the worst. Don't grade-inflate. F is reserved for genuine disaster (rare). Grades should reflect real roster construction quality — value at each pick, position balance, ceiling vs. floor — not just "did they follow their pattern."
+11. NO LAST NAMES for owners. Always "Jack" not "Jack Corcoran." "Mike M" / "Tim H" / "Alex V" with the disambiguator.
 
-12. CALLOUT VOICE ASSIGNMENT: Randomly assign Mel or Booger to bestPick, worstPick, and sleeperPick each generation — don't default Mel to bestPick every time. The draftWinner section ALWAYS has both Mel and Booger giving their take (they may agree or disagree).
+12. GRADE DISTRIBUTION: Use the FULL range. Median grade should be B/B+/B-. Include at least one A or A- for the standout draft, at least one C+/C/C- for the worst draft. F is reserved for genuine disaster (rare). Don't grade-inflate. Grades reflect actual roster construction quality — value at each pick, position balance, ceiling vs. floor — not just "did they follow their pattern." Grades should also vary meaningfully across generations: if a draft was clean, the standout could be A+; if everyone played it safe, no one breaks A-.
 
-13. GRADE COMMENT VOICES: Distribute Mel/Booger across the 14 grade comments — roughly 7 each, but vary which owner each commentator covers per generation.
+13. CALLOUT VOICE ASSIGNMENT: Randomly assign Mel or Booger to bestPick, worstPick, sleeperPick each generation. Don't default Mel to bestPick every time. The draftWinner section ALWAYS has both Mel and Booger giving their take (they may agree or disagree).
+
+14. GRADE COMMENT VOICES: Distribute Mel/Booger across the 14 grade comments — roughly 7 each, but vary which owner each commentator covers per generation.
 
 OUTPUT — return ONLY this JSON, no fences, no preamble:
 
@@ -814,13 +858,13 @@ async function generateMockDraft() {
     loadingStatus.textContent = LOADING_PHRASES[phraseIdx];
   }, 2800);
 
-  // Progress bar: smoothly fill to 95% over ~30s, snap to 100% on success
+  // Progress bar: linear fill to 85% over ~35s, snap to 100% on success
   const barFill = document.getElementById('loadingBarFill');
   barFill.style.transition = 'none';
   barFill.style.width = '0%';
   void barFill.offsetWidth; // force reflow
-  barFill.style.transition = 'width 30s cubic-bezier(0.2, 0.8, 0.4, 0.95)';
-  setTimeout(() => { barFill.style.width = '95%'; }, 50);
+  barFill.style.transition = 'width 35s linear';
+  setTimeout(() => { barFill.style.width = '85%'; }, 50);
 
   try {
     const response = await fetch('https://slinshot-dossier.jack-b-corcoran.workers.dev', {
@@ -937,9 +981,15 @@ function renderMockDraft(data) {
     </div>
   </div>`;
 
-  // Owner-by-owner grades
+  // Owner-by-owner grades (sorted A-to-F)
   html += `<div class="section-label" style="margin-top: 22px;">Owner-by-Owner Grades</div>`;
-  data.grades.forEach(g => {
+  const gradeRank = { 'A+': 0, 'A': 1, 'A-': 2, 'B+': 3, 'B': 4, 'B-': 5, 'C+': 6, 'C': 7, 'C-': 8, 'D+': 9, 'D': 10, 'D-': 11, 'F': 12 };
+  const sortedGrades = [...data.grades].sort((a, b) => {
+    const ra = gradeRank[a.letter] ?? 99;
+    const rb = gradeRank[b.letter] ?? 99;
+    return ra - rb;
+  });
+  sortedGrades.forEach(g => {
     html += renderGradeCard(g);
   });
 
