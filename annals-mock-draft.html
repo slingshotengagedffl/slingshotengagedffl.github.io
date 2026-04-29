@@ -716,7 +716,7 @@ fetch('profiles-data.json?v=' + Date.now())
   .catch(() => {});
 
 // ── BUILD PROMPT ──
-function buildMockDraftPrompt() {
+function buildSystemPrompt() {
   const orderText = DRAFT_ORDER.map((o, i) => `Pick 1.${String(i+1).padStart(2,'0')}: ${o}`).join('\n')
     + '\n' + DRAFT_ORDER.slice().reverse().map((o, i) => `Pick 2.${String(i+1).padStart(2,'0')}: ${o}`).join('\n');
 
@@ -727,35 +727,6 @@ function buildMockDraftPrompt() {
   const rankingsText = PLAYER_RANKINGS.map(p =>
     `${p.rank}. ${p.name} (${p.pos}, ${p.team})${p.slingshotNote ? ' — ' + p.slingshotNote : ''}`
   ).join('\n');
-
-  // Randomness seeds — pick 1-2 scenario hints to push the draft in a different direction each generation
-  const SCENARIO_HINTS = [
-    "An EARLY WR RUN happens — 3+ wideouts come off the board in the top 6 picks.",
-    "An EARLY RB RUN happens — 5+ running backs come off the board in the top 7 picks.",
-    "Henry slides further than usual, falling to 1.07 or later.",
-    "An owner reaches for a tight end in Round 1, kicking off an early TE run in Round 2.",
-    "TWO quarterbacks come off the board in Round 2 (more QB-aggressive than usual).",
-    "ZERO quarterbacks go in the first 28 picks (everyone passes on QB).",
-    "Jeremiyah Love (the only true 2026 rookie in this range) shoots up the board into Round 1.",
-    "A surprise pick in the top 10 — someone reaches by 5+ spots for a player they love.",
-    "Bijan goes 1.01 (the chalk play).",
-    "Gibbs goes 1.01 (the upside play).",
-    "Chase or Puka goes in the top 3 (WR-first lean at the top).",
-    "An owner doubles up at WR in Rounds 1-2 instead of taking an RB.",
-    "An owner doubles up at RB in Rounds 1-2 (zero RB depth in WRs early).",
-    "A late-Round-2 slide gives someone a major value steal at 2.10+.",
-    "The TE cliff hits hard — only 1 tight end goes in the entire 28-pick window.",
-    "Three tight ends go in Round 2 (TE run snowballs).",
-    "Brian skips the Ravens stack this time — takes a non-Ravens player in Round 2.",
-    "Brian fully commits to the Ravens stack — Henry R1, Lamar R2."
-  ];
-  // Pick 2 random scenarios to nudge the draft
-  const shuffled = [...SCENARIO_HINTS].sort(() => Math.random() - 0.5);
-  const chosenScenarios = shuffled.slice(0, 2);
-  const scenarioText = chosenScenarios.map(s => `- ${s}`).join('\n');
-
-  // Random seed value to encourage variation across runs
-  const seed = Math.floor(Math.random() * 100000);
 
   return `You are simulating a 2026 fantasy football mock draft for the Slingshot Engaged league as a broadcast in the alternating voices of Mel (Mel Kiper-style measured analyst — "I'll tell ya what", "this is a guy", references historical context, calm but authoritative) and Booger (Booger McFarland-style ex-player hot-sauce guy — "listen here", "my guy", "C'MON now", "that's a dawg", repeats himself for emphasis, gets loud, more emotional than analytical).
 
@@ -769,11 +740,6 @@ ${tendenciesText}
 
 2026 RANKINGS:
 ${rankingsText}
-
-THIS GENERATION'S SCENARIO HINTS (use these to shape THIS specific draft — different runs will have different hints):
-${scenarioText}
-
-Random seed: ${seed} (use as a tiebreaker when multiple picks are equally plausible — different seeds should produce different drafts)
 
 RULES:
 
@@ -831,9 +797,41 @@ OUTPUT — return ONLY this JSON, no fences, no preamble:
     { "owner": "Tim H", "letter": "B+", "voice": "mel" or "booger", "comment": "..." },
     ... 14 total, full A-D range used
   ]
+}`;
 }
 
-Generate now.`;
+function buildUserPrompt() {
+  // Per-run dynamic content (NOT cached — varies every call to ensure fresh output)
+  const SCENARIO_HINTS = [
+    "An EARLY WR RUN happens — 3+ wideouts come off the board in the top 6 picks.",
+    "An EARLY RB RUN happens — 5+ running backs come off the board in the top 7 picks.",
+    "Henry slides further than usual, falling to 1.07 or later.",
+    "An owner reaches for a tight end in Round 1, kicking off an early TE run in Round 2.",
+    "TWO quarterbacks come off the board in Round 2 (more QB-aggressive than usual).",
+    "ZERO quarterbacks go in the first 28 picks (everyone passes on QB).",
+    "Jeremiyah Love (the only true 2026 rookie in this range) shoots up the board into Round 1.",
+    "A surprise pick in the top 10 — someone reaches by 5+ spots for a player they love.",
+    "Bijan goes 1.01 (the chalk play).",
+    "Gibbs goes 1.01 (the upside play).",
+    "Chase or Puka goes in the top 3 (WR-first lean at the top).",
+    "An owner doubles up at WR in Rounds 1-2 instead of taking an RB.",
+    "An owner doubles up at RB in Rounds 1-2 (zero RB depth in WRs early).",
+    "A late-Round-2 slide gives someone a major value steal at 2.10+.",
+    "The TE cliff hits hard — only 1 tight end goes in the entire 28-pick window.",
+    "Three tight ends go in Round 2 (TE run snowballs).",
+    "Brian skips the Ravens stack this time — takes a non-Ravens player in Round 2.",
+    "Brian fully commits to the Ravens stack — Henry R1, Lamar R2."
+  ];
+  const shuffled = [...SCENARIO_HINTS].sort(() => Math.random() - 0.5);
+  const chosenScenarios = shuffled.slice(0, 2).map(s => `- ${s}`).join('\n');
+  const seed = Math.floor(Math.random() * 100000);
+
+  return `Generate the mock draft now.
+
+THIS GENERATION'S SCENARIO HINTS (use these to shape THIS specific draft):
+${chosenScenarios}
+
+Random seed: ${seed} (use as a tiebreaker when multiple picks are equally plausible — different seeds produce different drafts)`;
 }
 
 // ── GENERATE ──
@@ -871,9 +869,16 @@ async function generateMockDraft() {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({
-        model: 'claude-sonnet-4-20250514',
+        model: 'claude-haiku-4-5-20251001',
         max_tokens: 6500,
-        messages: [{ role: 'user', content: buildMockDraftPrompt() }]
+        system: [
+          {
+            type: 'text',
+            text: buildSystemPrompt(),
+            cache_control: { type: 'ephemeral' }
+          }
+        ],
+        messages: [{ role: 'user', content: buildUserPrompt() }]
       })
     });
 
