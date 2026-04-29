@@ -801,8 +801,9 @@ OUTPUT — return ONLY this JSON, no fences, no preamble:
     "boogerTake": "..."
   },
   "grades": [
-    { "owner": "Tim H", "letter": "B+", "voice": "mel" or "booger", "comment": "..." },
-    ... 14 total, full A-D range used
+    { "owner": "Tim H", "letter": "B+", "voice": "mel", "comment": "..." },
+    { "owner": "Wade", "letter": "B", "voice": "booger", "comment": "..." },
+    ... 14 total, full A-D range used. NOTE: the field is named "comment" (NOT "blurb"). EVERY grade entry must have all four fields: owner, letter, voice, and comment. Do NOT use "blurb" for grade entries — that field is only for picks.
   ]
 }`;
 }
@@ -923,7 +924,11 @@ async function generateMockDraft() {
       parsed.draftWinner.melTake = sanitizeLastNames(parsed.draftWinner.melTake);
       parsed.draftWinner.boogerTake = sanitizeLastNames(parsed.draftWinner.boogerTake);
     }
-    if (parsed.grades) parsed.grades.forEach(g => { g.comment = sanitizeLastNames(g.comment); });
+    if (parsed.grades) parsed.grades.forEach(g => {
+      // Fallback if AI used 'blurb' or 'text' instead of 'comment'
+      if (!g.comment) g.comment = g.blurb || g.text || '';
+      g.comment = sanitizeLastNames(g.comment);
+    });
 
     clearInterval(loadingInterval);
     barFill.style.transition = 'width 0.3s ease';
