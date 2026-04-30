@@ -382,6 +382,7 @@
   .mood-readout-label.mood-surviving { color: #60a5fa; }
   .mood-readout-label.mood-suffering { color: #f59e0b; }
   .mood-readout-label.mood-dead { color: #ef4444; }
+  .mood-readout-label.mood-mixed { color: var(--gold); }
   .mood-readout-label.mood-empty { color: var(--muted); }
   .mood-readout-sub {
     font-family: 'Barlow Condensed', sans-serif;
@@ -1056,7 +1057,6 @@
     suffering: "#f59e0b",
     dead:      "#ef4444"
   };
-  const MOOD_RANK = { thriving: 1, surviving: 2, suffering: 3, dead: 4 };
   const MOOD_LABELS = {
     thriving:  "Thriving",
     surviving: "Surviving",
@@ -1172,23 +1172,20 @@
       ? '1 check-in this week'
       : `${total} check-ins this week`;
 
-    // Dominant mood (mode; ties go to more severe mood)
-    let dominant = null;
-    if (total > 0) {
-      let best = -1;
-      ['thriving','surviving','suffering','dead'].forEach(m => {
-        if (counts[m] > best) {
-          best = counts[m];
-          dominant = m;
-        } else if (counts[m] === best && counts[m] > 0) {
-          if (MOOD_RANK[m] > MOOD_RANK[dominant]) dominant = m;
-        }
-      });
-    }
+    // Find the top vote count and which moods are tied at it
+    let topCount = 0;
+    ['thriving','surviving','suffering','dead'].forEach(m => {
+      if (counts[m] > topCount) topCount = counts[m];
+    });
+    const topMoods = ['thriving','surviving','suffering','dead'].filter(m => counts[m] === topCount && topCount > 0);
+
+    // dominant = single winner only; otherwise null and we render MIXED
+    const dominant = (total > 0 && topMoods.length === 1) ? topMoods[0] : null;
+    const isMixed = total > 0 && topMoods.length > 1;
 
     // Update hog
     hogEl.classList.remove('mood-thriving','mood-surviving','mood-suffering','mood-dead','mood-empty');
-    if (!dominant) {
+    if (!dominant && !isMixed) {
       hogEl.classList.add('mood-empty');
       hogEl.style.setProperty('--mood-color', '#f4a8b8'); // natural pig pink when idle
       hogEl.style.setProperty('--mood-intensity', '1');
@@ -1196,6 +1193,15 @@
       readoutLabel.className = 'mood-readout-label mood-empty';
       readoutSub.textContent = 'No check-ins yet this week';
       segbarEl.style.display = 'none';
+    } else if (isMixed) {
+      // True tie at the top - hog stays neutral pink, no pulse, no posture
+      hogEl.classList.add('mood-empty');
+      hogEl.style.setProperty('--mood-color', '#f4a8b8');
+      hogEl.style.setProperty('--mood-intensity', '1');
+      readoutLabel.textContent = 'Mixed';
+      readoutLabel.className = 'mood-readout-label mood-mixed';
+      readoutSub.textContent = 'League is split';
+      segbarEl.style.display = '';
     } else {
       hogEl.classList.add('mood-' + dominant);
       hogEl.style.setProperty('--mood-color', MOOD_COLORS[dominant]);
