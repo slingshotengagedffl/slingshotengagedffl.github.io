@@ -200,6 +200,439 @@
   .league-note-text ul { padding-left: 20px; margin: 8px 0; }
   .league-note-text li { margin: 4px 0; }
 
+  /* ── LEAGUE MOOD HOG ── */
+  .mood-section {
+    padding: 30px 16px 10px;
+    max-width: 900px;
+    margin: 0 auto;
+    width: 100%;
+  }
+  .mood-header {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    margin-bottom: 20px;
+  }
+  .mood-title {
+    font-family: 'Bebas Neue', sans-serif;
+    font-weight: 400;
+    font-size: 2.2rem;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: var(--text);
+  }
+  .mood-subtitle {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 1rem;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--label);
+  }
+  .mood-arena {
+    background: var(--bg3);
+    border: 1px solid var(--border);
+    border-top: 3px solid var(--gold);
+    border-radius: 6px;
+    overflow: hidden;
+  }
+
+  /* The hog */
+  .mood-hero {
+    display: grid;
+    grid-template-columns: 140px 1fr;
+    gap: 16px;
+    align-items: center;
+    padding: 18px 18px 14px;
+  }
+  .mood-hog {
+    width: 140px;
+    height: 140px;
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    --mood-color: #f4a8b8; /* idle pink */
+  }
+  .mood-hog svg {
+    width: 100%;
+    height: 100%;
+    overflow: visible;
+  }
+
+  /* SVG stop colors via CSS so CSS vars resolve in all browsers */
+  .mood-hog .mood-stop-glow-0   { stop-color: var(--mood-color); stop-opacity: 0.5; }
+  .mood-hog .mood-stop-glow-60  { stop-color: var(--mood-color); stop-opacity: 0.18; }
+  .mood-hog .mood-stop-glow-100 { stop-color: var(--mood-color); stop-opacity: 0; }
+  .mood-hog .mood-stop-body-0   { stop-color: #ffffff; stop-opacity: 0.4; }
+  .mood-hog .mood-stop-body-50  { stop-color: var(--mood-color); stop-opacity: 1; }
+  .mood-hog .mood-stop-body-100 { stop-color: var(--mood-color); stop-opacity: 1; }
+
+  /* Hog body parts use mood color via fill="currentColor" + parent color */
+  .mood-hog .hog-body  { fill: var(--mood-color); }
+  .mood-hog .hog-shade { fill: var(--mood-color); filter: brightness(0.82); }
+  .mood-hog .hog-snout { fill: var(--mood-color); filter: brightness(0.88); }
+  .mood-hog .hog-ear-inner { fill: var(--mood-color); filter: brightness(0.78); }
+  .mood-hog .hog-line  { stroke: var(--mood-color); filter: brightness(0.55); fill: none; }
+
+  /* Animations */
+  .hog-glow {
+    transform-origin: center;
+    animation: moodGlow 3s ease-in-out infinite;
+  }
+  .hog-group {
+    transform-origin: 100px 110px;
+    animation: moodPulse 3s ease-in-out infinite;
+    transition: transform 0.6s ease;
+  }
+  .hog-tail {
+    transform-origin: 158px 88px;
+  }
+  .hog-ear-l, .hog-ear-r {
+    transform-origin: center;
+    transition: transform 0.4s ease;
+  }
+  .hog-ear-l { transform-box: fill-box; }
+  .hog-ear-r { transform-box: fill-box; }
+  .hog-eye   { transition: opacity 0.3s ease; }
+  .hog-eye-x { opacity: 0; transition: opacity 0.3s ease; }
+  .hog-tongue { opacity: 0; transition: opacity 0.4s ease; }
+  .hog-mouth-flat { opacity: 1; transition: opacity 0.4s ease; }
+  .hog-mouth-frown { opacity: 0; transition: opacity 0.4s ease; }
+  .hog-mouth-smile { opacity: 0; transition: opacity 0.4s ease; }
+
+  @keyframes moodPulse {
+    0%, 100% { transform: scale(1); }
+    50%      { transform: scale(1.04); }
+  }
+  @keyframes moodGlow {
+    0%, 100% { opacity: 0.5; transform: scale(1); }
+    50%      { opacity: 0.9; transform: scale(1.18); }
+  }
+
+  /* Per-mood pulse speeds */
+  .mood-hog.mood-thriving  .hog-glow,
+  .mood-hog.mood-thriving  .hog-group { animation-duration: 4.5s; }
+  .mood-hog.mood-surviving .hog-glow,
+  .mood-hog.mood-surviving .hog-group { animation-duration: 3.2s; }
+  .mood-hog.mood-suffering .hog-glow,
+  .mood-hog.mood-suffering .hog-group { animation-duration: 2.0s; }
+  .mood-hog.mood-dead      .hog-glow,
+  .mood-hog.mood-dead      .hog-group { animation-duration: 1.2s; }
+
+  /* Posture changes per mood — all CSS, no SVG re-rigging */
+  /* THRIVING: ears extra perked (rotate up & out) */
+  .mood-hog.mood-thriving .hog-ear-l { transform: rotate(-12deg); }
+  .mood-hog.mood-thriving .hog-ear-r { transform: rotate(12deg); }
+  .mood-hog.mood-thriving .hog-mouth-flat  { opacity: 0; }
+  .mood-hog.mood-thriving .hog-mouth-smile { opacity: 1; }
+
+  /* SURVIVING: neutral baseline (no transforms, just baseline mouth) */
+
+  /* SUFFERING: slight slump - droop ears, frown, head tilt */
+  .mood-hog.mood-suffering .hog-group { animation: moodPulse 2s ease-in-out infinite, hogDroop 2s ease-in-out infinite; }
+  @keyframes hogDroop {
+    0%, 100% { transform: scale(1) rotate(0deg); }
+    50%      { transform: scale(1.04) rotate(-3deg); }
+  }
+  .mood-hog.mood-suffering .hog-ear-l { transform: rotate(35deg); }
+  .mood-hog.mood-suffering .hog-ear-r { transform: rotate(-35deg); }
+  .mood-hog.mood-suffering .hog-mouth-flat  { opacity: 0; }
+  .mood-hog.mood-suffering .hog-mouth-frown { opacity: 1; }
+
+  /* DEAD INSIDE: belly-up with X eyes + tongue */
+  .mood-hog.mood-dead .hog-group {
+    animation: moodPulse 1.2s ease-in-out infinite, hogFlop 1.2s ease-in-out infinite;
+  }
+  @keyframes hogFlop {
+    0%, 100% { transform: scale(1) rotate(180deg); }
+    50%      { transform: scale(1.04) rotate(180deg); }
+  }
+  .mood-hog.mood-dead .hog-eye   { opacity: 0; }
+  .mood-hog.mood-dead .hog-eye-x { opacity: 1; }
+  .mood-hog.mood-dead .hog-tongue { opacity: 1; }
+  .mood-hog.mood-dead .hog-mouth-flat { opacity: 0; }
+
+  /* Idle / empty state - no animation, slight desaturation */
+  .mood-hog.mood-empty .hog-glow,
+  .mood-hog.mood-empty .hog-group {
+    animation: none;
+    opacity: 0.85;
+  }
+
+  .mood-readout {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    min-width: 0;
+  }
+  .mood-readout-label {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 1.9rem;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    line-height: 1;
+  }
+  .mood-readout-label.mood-thriving { color: #34d399; }
+  .mood-readout-label.mood-surviving { color: #60a5fa; }
+  .mood-readout-label.mood-suffering { color: #f59e0b; }
+  .mood-readout-label.mood-dead { color: #ef4444; }
+  .mood-readout-label.mood-empty { color: var(--muted); }
+  .mood-readout-sub {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 0.9rem;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--label);
+    line-height: 1.3;
+  }
+  .mood-readout-count {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 0.9rem;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-top: 2px;
+    font-weight: 700;
+  }
+
+  /* Single segmented breakdown bar */
+  .mood-segbar {
+    display: flex;
+    height: 10px;
+    width: 100%;
+    background: var(--surface3);
+    border-radius: 5px;
+    overflow: hidden;
+    margin: 0 18px 14px;
+    width: calc(100% - 36px);
+  }
+  .mood-segbar-seg {
+    height: 100%;
+    transition: flex-basis 0.5s ease;
+  }
+  .mood-segbar-seg.mood-thriving  { background: #34d399; }
+  .mood-segbar-seg.mood-surviving { background: #60a5fa; }
+  .mood-segbar-seg.mood-suffering { background: #f59e0b; }
+  .mood-segbar-seg.mood-dead      { background: #ef4444; }
+
+  /* Missing list */
+  .mood-missing {
+    padding: 0 18px 14px;
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 0.9rem;
+    letter-spacing: 0.06em;
+    color: var(--label);
+    line-height: 1.4;
+  }
+  .mood-missing-label {
+    color: var(--muted);
+    text-transform: uppercase;
+    letter-spacing: 0.14em;
+    font-weight: 700;
+  }
+  .mood-missing-names { color: var(--label); }
+  .mood-missing.all-in { color: var(--gold); font-weight: 700; }
+
+  /* Submission form */
+  .mood-form {
+    padding: 14px 16px 16px;
+    border-top: 1px solid var(--border);
+    background: rgba(0,0,0,0.2);
+  }
+  .mood-form-toprow {
+    display: grid;
+    grid-template-columns: 1fr 130px;
+    gap: 10px;
+    margin-bottom: 10px;
+  }
+  .mood-form-cell {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    min-width: 0;
+  }
+  .mood-form-label {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 0.78rem;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: var(--label);
+  }
+  .mood-input,
+  .mood-select {
+    font-family: 'Barlow', sans-serif;
+    font-size: 1rem;
+    background: var(--bg);
+    border: 1px solid var(--border);
+    color: var(--text);
+    padding: 10px 12px;
+    border-radius: 4px;
+    width: 100%;
+    min-height: 44px;
+  }
+  .mood-input:focus,
+  .mood-select:focus {
+    outline: none;
+    border-color: var(--gold);
+  }
+  .mood-pin {
+    letter-spacing: 0.4em;
+    text-align: center;
+    font-size: 1.1rem;
+  }
+
+  .mood-options {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 6px;
+    margin-bottom: 10px;
+  }
+  .mood-option {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 0.95rem;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    background: var(--bg);
+    border: 1px solid;
+    padding: 11px 4px;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background 0.15s, border-color 0.15s, color 0.15s, filter 0.15s;
+    min-height: 44px;
+    -webkit-tap-highlight-color: transparent;
+    line-height: 1.05;
+  }
+  /* Always-on tinting acts as the color legend for the hog */
+  .mood-option[data-mood="thriving"]  { color: #34d399; border-color: rgba(52,211,153,0.45);  background: rgba(52,211,153,0.06); }
+  .mood-option[data-mood="surviving"] { color: #60a5fa; border-color: rgba(96,165,250,0.45);  background: rgba(96,165,250,0.06); }
+  .mood-option[data-mood="suffering"] { color: #f59e0b; border-color: rgba(245,158,11,0.45);  background: rgba(245,158,11,0.06); }
+  .mood-option[data-mood="dead"]      { color: #ef4444; border-color: rgba(239,68,68,0.45);   background: rgba(239,68,68,0.06); }
+  .mood-option:hover { filter: brightness(1.2); }
+  /* Selected = intensified fill + brighter border */
+  .mood-option.selected[data-mood="thriving"]  { background: rgba(52,211,153,0.22); border-color: #34d399; }
+  .mood-option.selected[data-mood="surviving"] { background: rgba(96,165,250,0.22); border-color: #60a5fa; }
+  .mood-option.selected[data-mood="suffering"] { background: rgba(245,158,11,0.22); border-color: #f59e0b; }
+  .mood-option.selected[data-mood="dead"]      { background: rgba(239,68,68,0.22);  border-color: #ef4444; }
+
+  .mood-submit {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 1.05rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    background: var(--red);
+    border: 1px solid rgba(255,255,255,0.1);
+    color: #fff;
+    padding: 12px;
+    border-radius: 4px;
+    cursor: pointer;
+    width: 100%;
+    transition: filter 0.15s;
+    min-height: 46px;
+  }
+  .mood-submit:hover { filter: brightness(1.12); }
+  .mood-submit:active { filter: brightness(1.0); }
+  .mood-submit:disabled {
+    background: var(--surface3);
+    color: var(--muted);
+    cursor: not-allowed;
+    filter: none;
+  }
+
+  .mood-msg {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 0.9rem;
+    letter-spacing: 0.08em;
+    color: var(--label);
+    text-align: center;
+    margin-top: 8px;
+    min-height: 16px;
+  }
+  .mood-msg.mood-msg-error { color: var(--red-bright); }
+  .mood-msg.mood-msg-ok    { color: #34d399; }
+
+  /* Footer with commish controls */
+  .mood-footer {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    padding: 8px 14px;
+    border-top: 1px solid var(--border);
+    background: rgba(0,0,0,0.25);
+  }
+  .mood-commish-btn {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 0.78rem;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    background: transparent;
+    border: 1px solid var(--border);
+    color: var(--muted);
+    padding: 5px 11px;
+    border-radius: 12px;
+    cursor: pointer;
+    transition: color 0.15s, border-color 0.15s;
+    min-height: 28px;
+  }
+  .mood-commish-btn:hover { color: var(--label); border-color: var(--muted); }
+  .mood-commish-panel {
+    display: none;
+    padding: 14px 16px 16px;
+    border-top: 1px solid var(--border);
+    background: rgba(0,0,0,0.35);
+  }
+  .mood-commish-panel.open { display: block; }
+  .mood-commish-panel-row {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    margin-bottom: 10px;
+  }
+  .mood-commish-actions {
+    display: flex;
+    gap: 8px;
+  }
+  .mood-reset-btn {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 0.95rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    background: var(--red);
+    border: 1px solid rgba(255,255,255,0.1);
+    color: #fff;
+    padding: 10px 14px;
+    border-radius: 4px;
+    cursor: pointer;
+    flex: 1;
+    min-height: 40px;
+  }
+  .mood-reset-btn:hover { filter: brightness(1.12); }
+  .mood-cancel-btn {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 0.95rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    background: var(--surface3);
+    border: 1px solid var(--border);
+    color: var(--label);
+    padding: 10px 14px;
+    border-radius: 4px;
+    cursor: pointer;
+    flex: 1;
+    min-height: 40px;
+  }
+
+  @media (max-width: 480px) {
+    .mood-hero { grid-template-columns: 115px 1fr; gap: 12px; padding: 16px 14px 12px; }
+    .mood-hog { width: 115px; height: 115px; }
+    .mood-readout-label { font-size: 1.6rem; }
+    .mood-segbar { margin: 0 14px 12px; width: calc(100% - 28px); }
+    .mood-missing { padding: 0 14px 12px; }
+    .mood-form { padding: 12px 14px 14px; }
+    .mood-form-toprow { grid-template-columns: 1fr 110px; gap: 8px; }
+    .mood-options { grid-template-columns: repeat(2, 1fr); }
+    .mood-option { font-size: 1rem; padding: 12px 6px; }
+  }
+
   /* ── GAME OF NAMES ── */
   .gon-section {
     padding: 30px 16px 10px;
@@ -487,6 +920,477 @@
     <span class="action-btn-label">Log a Side Bet</span>
   </span>
 </div>
+
+
+
+<!-- LEAGUE MOOD HOG -->
+<div class="mood-section">
+  <div class="mood-header">
+    <div class="mood-title">League Mood Hog</div>
+    <div class="mood-subtitle">Anonymous check-in · resets every Tuesday</div>
+  </div>
+  <div class="mood-arena">
+    <div class="mood-hero">
+      <div class="mood-hog mood-empty" id="moodHog">
+        <svg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
+          <defs>
+            <radialGradient id="moodGlowGrad" cx="50%" cy="55%" r="55%">
+              <stop offset="0%"   class="mood-stop-glow-0"/>
+              <stop offset="60%"  class="mood-stop-glow-60"/>
+              <stop offset="100%" class="mood-stop-glow-100"/>
+            </radialGradient>
+          </defs>
+
+          <!-- Outer halo -->
+          <ellipse class="hog-glow" cx="100" cy="110" rx="80" ry="60" fill="url(#moodGlowGrad)"/>
+
+          <!-- Hog group (rotates whole pig for posture) -->
+          <g class="hog-group">
+
+            <!-- Curly tail (left side, behind body) -->
+            <path class="hog-line"
+                  d="M 56 100 C 46 96, 42 88, 48 82 C 54 78, 58 84, 54 88"
+                  stroke-width="4" stroke-linecap="round"/>
+
+            <!-- Body - chunky oval, slightly wider at hindquarters (left) -->
+            <ellipse class="hog-body" cx="100" cy="115" rx="48" ry="32"/>
+            <!-- Body shading underside -->
+            <ellipse class="hog-shade" cx="100" cy="138" rx="44" ry="10" opacity="0.5"/>
+
+            <!-- Four stubby legs -->
+            <rect class="hog-shade" x="68"  y="138" width="12" height="20" rx="3"/>
+            <rect class="hog-shade" x="86"  y="140" width="12" height="18" rx="3"/>
+            <rect class="hog-shade" x="106" y="140" width="12" height="18" rx="3"/>
+            <rect class="hog-shade" x="124" y="138" width="12" height="20" rx="3"/>
+
+            <!-- Hooves (dark caps) -->
+            <rect fill="#3a2820" x="68"  y="155" width="12" height="4" rx="1.5"/>
+            <rect fill="#3a2820" x="86"  y="155" width="12" height="4" rx="1.5"/>
+            <rect fill="#3a2820" x="106" y="155" width="12" height="4" rx="1.5"/>
+            <rect fill="#3a2820" x="124" y="155" width="12" height="4" rx="1.5"/>
+
+            <!-- Head - rounded, attached to right side of body -->
+            <ellipse class="hog-body" cx="148" cy="106" rx="26" ry="24"/>
+
+            <!-- Snout (cylinder pointing right) -->
+            <ellipse class="hog-snout" cx="170" cy="110" rx="11" ry="9"/>
+            <!-- Snout nostrils -->
+            <ellipse fill="#3a2820" cx="172" cy="107" rx="1.4" ry="2"/>
+            <ellipse fill="#3a2820" cx="172" cy="113" rx="1.4" ry="2"/>
+
+            <!-- Ears (triangular, perky baseline) -->
+            <path class="hog-ear-l hog-body"
+                  d="M 134 86 L 130 72 L 144 80 Z"/>
+            <path class="hog-ear-inner hog-ear-l"
+                  d="M 135 84 L 134 78 L 140 82 Z"/>
+            <path class="hog-ear-r hog-body"
+                  d="M 156 86 L 162 72 L 162 84 Z"/>
+            <path class="hog-ear-inner hog-ear-r"
+                  d="M 157 84 L 160 78 L 160 83 Z"/>
+
+            <!-- Eye (open, baseline) -->
+            <circle class="hog-eye" fill="#1a1a1a" cx="152" cy="102" r="2.6"/>
+            <!-- Eye highlight -->
+            <circle class="hog-eye" fill="#ffffff" cx="153" cy="101" r="0.9"/>
+            <!-- X eye for Dead state -->
+            <g class="hog-eye-x" stroke="#1a1a1a" stroke-width="2" stroke-linecap="round">
+              <line x1="149" y1="99"  x2="155" y2="105"/>
+              <line x1="155" y1="99"  x2="149" y2="105"/>
+            </g>
+
+            <!-- Mouth: three states stacked, opacity-toggled -->
+            <!-- Flat (surviving / empty default) -->
+            <line class="hog-mouth-flat" x1="160" y1="118" x2="168" y2="118"
+                  stroke="#3a2820" stroke-width="1.8" stroke-linecap="round"/>
+            <!-- Smile (thriving) -->
+            <path class="hog-mouth-smile"
+                  d="M 158 116 Q 164 122, 170 116"
+                  stroke="#3a2820" stroke-width="1.8" stroke-linecap="round" fill="none"/>
+            <!-- Frown (suffering) -->
+            <path class="hog-mouth-frown"
+                  d="M 158 120 Q 164 114, 170 120"
+                  stroke="#3a2820" stroke-width="1.8" stroke-linecap="round" fill="none"/>
+            <!-- Tongue (dead inside) -->
+            <ellipse class="hog-tongue" fill="#d96b7a" cx="167" cy="120" rx="4" ry="6"/>
+
+          </g>
+        </svg>
+      </div>
+      <div class="mood-readout">
+        <div class="mood-readout-label mood-empty" id="moodReadoutLabel">Awaiting Check-Ins</div>
+        <div class="mood-readout-sub" id="moodReadoutSub">No submissions yet this week</div>
+        <div class="mood-readout-count" id="moodReadoutCount">0 of 14 checked in</div>
+      </div>
+    </div>
+
+    <div class="mood-segbar" id="moodSegbar" style="display:none;">
+      <div class="mood-segbar-seg mood-thriving"  id="moodSegThriving"  style="flex-basis:0%"></div>
+      <div class="mood-segbar-seg mood-surviving" id="moodSegSurviving" style="flex-basis:0%"></div>
+      <div class="mood-segbar-seg mood-suffering" id="moodSegSuffering" style="flex-basis:0%"></div>
+      <div class="mood-segbar-seg mood-dead"      id="moodSegDead"      style="flex-basis:0%"></div>
+    </div>
+
+    <div class="mood-missing" id="moodMissing">
+      <span class="mood-missing-label">Still missing:</span>
+      <span class="mood-missing-names" id="moodMissingNames">All 14 owners</span>
+    </div>
+
+    <div class="mood-form">
+      <div class="mood-form-toprow">
+        <div class="mood-form-cell">
+          <label class="mood-form-label" for="moodOwner">Your Name</label>
+          <select id="moodOwner" class="mood-select">
+            <option value="">— Select —</option>
+            <option value="alex">Alex</option>
+            <option value="andy">Andy</option>
+            <option value="brian">Brian</option>
+            <option value="daniel">Daniel</option>
+            <option value="dylan">Dylan</option>
+            <option value="jack">Jack</option>
+            <option value="jordan">Jordan</option>
+            <option value="kyle">Kyle</option>
+            <option value="luke">Luke</option>
+            <option value="matt">Matt</option>
+            <option value="mike">Mike</option>
+            <option value="scott">Scott</option>
+            <option value="tim">Tim</option>
+            <option value="wade">Wade</option>
+          </select>
+        </div>
+        <div class="mood-form-cell">
+          <label class="mood-form-label" for="moodPin">PIN</label>
+          <input id="moodPin" class="mood-input mood-pin" type="tel" inputmode="numeric" pattern="[0-9]{4}" maxlength="4" placeholder="• • • •" autocomplete="off"/>
+        </div>
+      </div>
+      <div class="mood-options" id="moodOptions">
+        <button type="button" class="mood-option" data-mood="thriving">Thriving</button>
+        <button type="button" class="mood-option" data-mood="surviving">Surviving</button>
+        <button type="button" class="mood-option" data-mood="suffering">Suffering</button>
+        <button type="button" class="mood-option" data-mood="dead">Dead Inside</button>
+      </div>
+      <button type="button" class="mood-submit" id="moodSubmitBtn" disabled>Submit Mood</button>
+      <div class="mood-msg" id="moodMsg"></div>
+    </div>
+
+    <div class="mood-footer">
+      <button type="button" class="mood-commish-btn" id="moodCommishBtn">Commish</button>
+    </div>
+
+    <div class="mood-commish-panel" id="moodCommishPanel">
+      <div class="mood-commish-panel-row">
+        <label class="mood-form-label" for="moodCommishPass">Commissioner Passcode</label>
+        <input id="moodCommishPass" class="mood-input" type="password" placeholder="Passcode" autocomplete="off"/>
+      </div>
+      <div class="mood-commish-actions">
+        <button type="button" class="mood-reset-btn" id="moodResetBtn">Reset Now</button>
+        <button type="button" class="mood-cancel-btn" id="moodCancelBtn">Cancel</button>
+      </div>
+      <div class="mood-msg" id="moodCommishMsg"></div>
+    </div>
+  </div>
+</div>
+
+<!-- Firebase + Mood Hog logic -->
+<script type="module">
+  import { initializeApp, getApps } from 'https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js';
+  import { getDatabase, ref, onValue, set, remove, get } from 'https://www.gstatic.com/firebasejs/10.7.1/firebase-database.js';
+
+  const firebaseConfig = {
+    apiKey: "AIzaSyDJHrXrUx3d4nKcoDarbT3So4-WCJopiss",
+    authDomain: "slingshot-engaged.firebaseapp.com",
+    databaseURL: "https://slingshot-engaged-default-rtdb.firebaseio.com",
+    projectId: "slingshot-engaged",
+    storageBucket: "slingshot-engaged.firebasestorage.app",
+    messagingSenderId: "391315870953",
+    appId: "1:391315870953:web:daf00bdb40ee414f564c78"
+  };
+
+  const app = getApps().length ? getApps()[0] : initializeApp(firebaseConfig);
+  const db = getDatabase(app);
+
+  // ── Owner PINs (commissioner master list) ─────────────────────────────
+  // EDIT THESE before going live. Share each owner's PIN with them privately.
+  const OWNER_PINS = {
+    alex:   "2824",
+    andy:   "1409",
+    brian:  "5506",
+    daniel: "5012",
+    dylan:  "4657",
+    jack:   "3286",
+    jordan: "2679",
+    kyle:   "9935",
+    luke:   "2424",
+    matt:   "7912",
+    mike:   "1520",
+    scott:  "1488",
+    tim:    "2535",
+    wade:   "4582"
+  };
+
+  // Display names (alphabetical match with the <option> list)
+  const OWNER_NAMES = {
+    alex: "Alex",   andy: "Andy",     brian: "Brian", daniel: "Daniel",
+    dylan: "Dylan", jack: "Jack",     jordan: "Jordan", kyle: "Kyle",
+    luke: "Luke",   matt: "Matt",     mike: "Mike",    scott: "Scott",
+    tim: "Tim",     wade: "Wade"
+  };
+  const OWNER_IDS = Object.keys(OWNER_NAMES);
+  const TOTAL_OWNERS = OWNER_IDS.length;
+
+  const COMMISH_PASS = "slingshot";
+
+  // Mood metadata
+  const MOOD_COLORS = {
+    thriving:  "#34d399",
+    surviving: "#60a5fa",
+    suffering: "#f59e0b",
+    dead:      "#ef4444"
+  };
+  const MOOD_RANK = { thriving: 1, surviving: 2, suffering: 3, dead: 4 };
+  const MOOD_LABELS = {
+    thriving:  "Thriving",
+    surviving: "Surviving",
+    suffering: "Suffering",
+    dead:      "Dead Inside"
+  };
+  const MOOD_LABELS_LOWER = {
+    thriving:  "thriving",
+    surviving: "surviving",
+    suffering: "suffering",
+    dead:      "dead inside"
+  };
+
+  // ── State ─────────────────────────────────────────────────────────────
+  let selectedMood = null;
+  let submissions = {}; // {ownerId: {mood, ts}}
+
+  // ── DOM refs ──────────────────────────────────────────────────────────
+  const $ = (id) => document.getElementById(id);
+  const hogEl = $('moodHog');
+  const readoutLabel = $('moodReadoutLabel');
+  const readoutSub = $('moodReadoutSub');
+  const readoutCount = $('moodReadoutCount');
+  const segbarEl = $('moodSegbar');
+  const missingEl = $('moodMissing');
+  const missingNamesEl = $('moodMissingNames');
+  const ownerSel = $('moodOwner');
+  const pinInput = $('moodPin');
+  const optionsWrap = $('moodOptions');
+  const submitBtn = $('moodSubmitBtn');
+  const msgEl = $('moodMsg');
+  const commishBtn = $('moodCommishBtn');
+  const commishPanel = $('moodCommishPanel');
+  const commishPass = $('moodCommishPass');
+  const resetBtn = $('moodResetBtn');
+  const cancelBtn = $('moodCancelBtn');
+  const commishMsg = $('moodCommishMsg');
+
+  // ── Tuesday auto-reset ────────────────────────────────────────────────
+  // Returns the timestamp (ms) of the most recent Tuesday 00:00:00 local time.
+  // If today is Tuesday, returns today at midnight.
+  function lastTuesdayMidnight(now = new Date()) {
+    const d = new Date(now);
+    d.setHours(0, 0, 0, 0);
+    const day = d.getDay(); // 0=Sun, 1=Mon, 2=Tue, 3=Wed...
+    const daysSinceTue = (day - 2 + 7) % 7; // 0 if Tue, 1 if Wed, ... 6 if Mon
+    d.setDate(d.getDate() - daysSinceTue);
+    return d.getTime();
+  }
+
+  // Wipe submissions if the most recent submission predates the most recent Tuesday.
+  // Fires once on page load. First visitor after Tuesday midnight triggers it.
+  async function maybeAutoReset() {
+    try {
+      const snap = await get(ref(db, 'moodRing/current/submissions'));
+      const data = snap.val() || {};
+      const timestamps = Object.values(data)
+        .map(s => s && typeof s.ts === 'number' ? s.ts : 0)
+        .filter(t => t > 0);
+      if (timestamps.length === 0) return;
+      const newest = Math.max(...timestamps);
+      const cutoff = lastTuesdayMidnight();
+      if (newest < cutoff) {
+        await remove(ref(db, 'moodRing/current/submissions'));
+      }
+    } catch (err) {
+      console.warn('Mood auto-reset check failed:', err);
+    }
+  }
+
+  // ── Firebase listener ─────────────────────────────────────────────────
+  const subsRef = ref(db, 'moodRing/current/submissions');
+  onValue(subsRef, (snap) => {
+    submissions = snap.val() || {};
+    render();
+  });
+
+  maybeAutoReset();
+
+  // ── Render ────────────────────────────────────────────────────────────
+  function render() {
+    const counts = { thriving: 0, surviving: 0, suffering: 0, dead: 0 };
+    Object.values(submissions).forEach(s => {
+      if (s && counts[s.mood] !== undefined) counts[s.mood]++;
+    });
+    const total = counts.thriving + counts.surviving + counts.suffering + counts.dead;
+
+    // Count line
+    readoutCount.textContent = `${total} of ${TOTAL_OWNERS} checked in`;
+
+    // Dominant mood (mode; ties go to more severe mood)
+    let dominant = null;
+    if (total > 0) {
+      let best = -1;
+      ['thriving','surviving','suffering','dead'].forEach(m => {
+        if (counts[m] > best) {
+          best = counts[m];
+          dominant = m;
+        } else if (counts[m] === best && counts[m] > 0) {
+          if (MOOD_RANK[m] > MOOD_RANK[dominant]) dominant = m;
+        }
+      });
+    }
+
+    // Update hog
+    hogEl.classList.remove('mood-thriving','mood-surviving','mood-suffering','mood-dead','mood-empty');
+    if (!dominant) {
+      hogEl.classList.add('mood-empty');
+      hogEl.style.setProperty('--mood-color', '#f4a8b8'); // natural pig pink when idle
+      readoutLabel.textContent = 'Awaiting Check-Ins';
+      readoutLabel.className = 'mood-readout-label mood-empty';
+      readoutSub.textContent = 'No submissions yet this week';
+      segbarEl.style.display = 'none';
+    } else {
+      hogEl.classList.add('mood-' + dominant);
+      hogEl.style.setProperty('--mood-color', MOOD_COLORS[dominant]);
+      readoutLabel.textContent = MOOD_LABELS[dominant];
+      readoutLabel.className = 'mood-readout-label mood-' + dominant;
+      readoutSub.textContent = `League is feeling ${MOOD_LABELS_LOWER[dominant]}`;
+      segbarEl.style.display = '';
+    }
+
+    // Segmented bar — flex-basis as percentages
+    ['thriving','surviving','suffering','dead'].forEach(m => {
+      const pct = total > 0 ? (counts[m] / total) * 100 : 0;
+      $('moodSeg' + capitalize(m)).style.flexBasis = pct + '%';
+    });
+
+    // Missing list — owners who haven't checked in
+    const missing = OWNER_IDS.filter(id => !submissions[id]).map(id => OWNER_NAMES[id]);
+    if (missing.length === 0) {
+      missingEl.classList.add('all-in');
+      missingEl.innerHTML = '🐖 All 14 checked in.';
+    } else {
+      missingEl.classList.remove('all-in');
+      missingNamesEl.textContent = missing.join(', ');
+      missingEl.innerHTML = '<span class="mood-missing-label">Still missing:</span> <span class="mood-missing-names">' + missing.join(', ') + '</span>';
+    }
+  }
+
+  function capitalize(s) { return s.charAt(0).toUpperCase() + s.slice(1); }
+
+  // ── Mood option selection ────────────────────────────────────────────
+  optionsWrap.addEventListener('click', (e) => {
+    const btn = e.target.closest('.mood-option');
+    if (!btn) return;
+    selectedMood = btn.dataset.mood;
+    optionsWrap.querySelectorAll('.mood-option').forEach(b => b.classList.remove('selected'));
+    btn.classList.add('selected');
+    updateSubmitState();
+  });
+
+  // ── Form validation ──────────────────────────────────────────────────
+  function updateSubmitState() {
+    const ok = ownerSel.value && pinInput.value.length === 4 && selectedMood;
+    submitBtn.disabled = !ok;
+  }
+  ownerSel.addEventListener('change', () => { setMsg(''); updateSubmitState(); });
+  pinInput.addEventListener('input', () => {
+    pinInput.value = pinInput.value.replace(/\D/g, '').slice(0, 4);
+    setMsg('');
+    updateSubmitState();
+  });
+
+  function setMsg(text, cls = '') {
+    msgEl.textContent = text;
+    msgEl.className = 'mood-msg' + (cls ? ' ' + cls : '');
+  }
+
+  // ── Submit ───────────────────────────────────────────────────────────
+  submitBtn.addEventListener('click', async () => {
+    const ownerId = ownerSel.value;
+    const pin = pinInput.value;
+    if (!ownerId || !pin || !selectedMood) return;
+
+    if (OWNER_PINS[ownerId] !== pin) {
+      setMsg('PIN does not match. Try again.', 'mood-msg-error');
+      return;
+    }
+
+    submitBtn.disabled = true;
+    setMsg('Submitting…');
+    try {
+      await set(ref(db, 'moodRing/current/submissions/' + ownerId), {
+        mood: selectedMood,
+        ts: Date.now()
+      });
+      setMsg('Locked in. The hog has shifted.', 'mood-msg-ok');
+      pinInput.value = '';
+      selectedMood = null;
+      optionsWrap.querySelectorAll('.mood-option').forEach(b => b.classList.remove('selected'));
+      updateSubmitState();
+    } catch (err) {
+      console.error(err);
+      setMsg('Could not submit. Check your connection.', 'mood-msg-error');
+      submitBtn.disabled = false;
+    }
+  });
+
+  // ── Commissioner panel ───────────────────────────────────────────────
+  commishBtn.addEventListener('click', () => {
+    commishPanel.classList.toggle('open');
+    if (!commishPanel.classList.contains('open')) {
+      commishPass.value = '';
+      commishMsg.textContent = '';
+      commishMsg.className = 'mood-msg';
+    }
+  });
+  cancelBtn.addEventListener('click', () => {
+    commishPanel.classList.remove('open');
+    commishPass.value = '';
+    commishMsg.textContent = '';
+    commishMsg.className = 'mood-msg';
+  });
+  resetBtn.addEventListener('click', async () => {
+    if (commishPass.value !== COMMISH_PASS) {
+      commishMsg.textContent = 'Wrong passcode.';
+      commishMsg.className = 'mood-msg mood-msg-error';
+      return;
+    }
+    if (!confirm('Reset all submissions right now? This cannot be undone.')) return;
+
+    resetBtn.disabled = true;
+    commishMsg.textContent = 'Resetting…';
+    commishMsg.className = 'mood-msg';
+    try {
+      await remove(ref(db, 'moodRing/current/submissions'));
+      commishMsg.textContent = 'Reset done.';
+      commishMsg.className = 'mood-msg mood-msg-ok';
+      setTimeout(() => {
+        commishPanel.classList.remove('open');
+        commishPass.value = '';
+        commishMsg.textContent = '';
+        commishMsg.className = 'mood-msg';
+        resetBtn.disabled = false;
+      }, 1200);
+    } catch (err) {
+      console.error(err);
+      commishMsg.textContent = 'Reset failed. Try again.';
+      commishMsg.className = 'mood-msg mood-msg-error';
+      resetBtn.disabled = false;
+    }
+  });
+</script>
 
 
 
