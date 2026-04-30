@@ -746,7 +746,7 @@ ${rankingsText}
 
 RULES:
 
-1. AVAILABLE PLAYERS: Track every player taken. NEVER select twice. Before each pick, mentally check the remaining pool.
+1. AVAILABLE PLAYERS: Track every player taken. NEVER select twice. Before each pick, mentally check the remaining pool. **CRITICAL: Only players from the 2026 RANKINGS list above are eligible to be drafted. If a player's name does not appear in that list, they CANNOT be picked. Do NOT add players from memory (e.g. Travis Kelce, Sam LaPorta, etc. are NOT in this rankings list — do NOT draft them).**
 
 2. PATTERN LEAN: Heavy weight on each owner's tendency. Dylan R1 = RB always (only breaks for top-3 WR value drop). Scott R2 = QB if Allen/Lamar/Daniels/Hurts available. Brian: likely takes Henry in R1 if Henry is on the board at his slot — but does NOT always do a Ravens stack (he only takes Lamar in R2 maybe 30-40% of the time, depending on value/board state). Matt R1 = RB. Wade R2 = WR. Jordan R2 = TE if elite TE available.
 
@@ -762,19 +762,20 @@ RULES:
 
 4. NO same-team-same-position rosters (no CeeDee + Pickens both DAL WRs). Different positions same team is fine.
 
-5. **NO mid-blurb flubs. NO self-correction in writing. NO duplicate picks.** This is critical:
+5. **NO mid-blurb flubs. NO self-correction in writing. NO duplicate picks.** This is critical — applies to picks, grades, AND callouts:
    - Before generating each pick, mentally check the running list of who's been taken.
    - If you realize mid-blurb that the player you were about to pick is gone, do NOT write something like "WAIT — that's taken. Let me correct — Brian takes X instead." That breaks the broadcast illusion.
-   - Instead, silently revise. Output ONLY the final, correct pick with a clean blurb. No "WAIT", no "Let me correct", no "actually", no narration of the AI's own thinking.
+   - Same rule for GRADE COMMENTS: do NOT write "wait, that's reversed" or "actually that's not right" or "let me correct" anywhere. If you wrote the wrong owner-player pairing, silently re-output the entire grade entry from scratch with the correct pairing.
+   - Same rule for CALLOUTS (bestPick, worstPick, sleeperPick, draftWinner): clean prose only, no self-correction language.
+   - Output ONLY the final, correct pick/grade/callout with a clean blurb. No "WAIT", no "Let me correct", no "actually", no "wait, that's reversed", no narration of the AI's own thinking process.
    - **NEVER** output two pick entries for the same owner in the same round. Each owner gets exactly ONE pick per round.
    - **NEVER** output the same player twice across all 28 picks.
-   - If you find yourself wanting to "correct" mid-stream, STOP and re-output that entire pick entry from scratch with the right player.
 
 6. VOICE ALTERNATES strictly: Pick 1.01=Mel, 1.02=Booger, etc. through 2.14.
 
 7. BLURBS: 2-3 sentences each. Punchy.
 
-8. **NO STALE STATS.** Do NOT cite specific stat lines, target counts, snap percentages, or "last year he had X catches/yards." Your training data is months out of date and you'll get specifics wrong.
+8. **NO STALE STATS — STRICT.** Do NOT cite any specific career numbers. NO "300-carry seasons," NO "1,500-yard seasons," NO "back-to-back 100-target years," NO "four-game suspension just cleared," NO specific stat counts of any kind. Your training data is months out of date — even references that feel safe (like "second-year" or "third-year") can be wrong. Stick to truly evergreen language about role and skill, not history. Phrases that ARE safe: "alpha target," "three-down workhorse," "bell-cow back," "red zone monster," "volume play," "ascending talent," "proven workhorse," "downhill runner," "contested catch monster," "deep threat," "bounce-back candidate." Phrases that are NOT safe: anything with a number, anything saying "last year," anything saying "after his X-yard season."
 
 9. **PLAYER CAREER STATUS — be careful.** **Jeremiyah Love is the ONLY true 2026 rookie likely to be drafted in the first two rounds.** EVERY other player in this rankings list is either a veteran or a second-year/third-year player. Do NOT call ANYONE else a rookie. Specifically: Jeanty had a disappointing first year and is entering year 2 (frame him as a bounce-back candidate, not a rookie). Bowers is entering year 3. Kraft, Puka, Calvin Tate, Jordyn Tyson, Makai Lemon, Luther Burden III, Cam Skattebo, TreVeyon Henderson, Quinshon Judkins, Emeka Egbuka, and Colston Loveland are all 2025-class entering year 2. Use evergreen language: "second-year leap candidate," "bounce-back candidate," "ascending talent," "alpha target," "third-year breakout," "proven workhorse," "established starter," etc.
 
@@ -788,9 +789,11 @@ RULES:
 
 14. GRADE COMMENT VOICES: Distribute Mel/Booger across the 14 grade comments — roughly 7 each, but vary which owner each commentator covers per generation.
 
-15. **GRADE ACCURACY — CRITICAL.** Each grade comment MUST only reference the TWO players that specific owner actually drafted in this mock. Do NOT mention players drafted by other owners. Before writing each grade comment, look back at the picks array and confirm which two players that owner has. If a grade comment names a player, that player MUST appear in that owner's two picks.
+15. **WORD VARIETY — IMPORTANT.** Avoid overusing the word "elite." It's appearing in nearly every blurb in test runs and the voice is collapsing into a single tone. Use "elite" no more than 5 times across the ENTIRE response (all picks + callouts + grades combined). Reach for varied descriptors instead: "alpha," "stud," "workhorse," "wrecking ball," "matchup nightmare," "target hog," "volume monster," "the guy," "a problem," "a force," "the offensive engine," "a dawg" (Booger), "a tremendous football player" (Mel), etc. Mel and Booger have different vocabularies — let them.
 
-16. **CALLOUT ACCURACY.** The bestPick, worstPick, and sleeperPick callouts MUST reference actual picks from this draft. Name the owner AND the player AND the pick number — and verify all three match an entry in the picks array.
+16. **GRADE ACCURACY — CRITICAL.** Each grade comment MUST only reference the TWO players that specific owner actually drafted in this mock. Do NOT mention players drafted by other owners. Before writing each grade comment, look back at the picks array and confirm which two players that owner has. If a grade comment names a player, that player MUST appear in that owner's two picks.
+
+17. **CALLOUT ACCURACY.** The bestPick, worstPick, and sleeperPick callouts MUST reference actual picks from this draft. Name the owner AND the player AND the pick number — and verify all three match an entry in the picks array.
 
 OUTPUT — return ONLY this JSON, no fences, no preamble:
 
@@ -933,10 +936,35 @@ async function generateMockDraft() {
     if (parsed.grades) parsed.grades.forEach(g => {
       // Fallback if AI used 'blurb' or 'text' instead of 'comment'
       if (!g.comment) g.comment = g.blurb || g.text || '';
+      // Strip self-correction language from grade comments
+      g.comment = g.comment
+        .replace(/^(WAIT[^.!?]*[.!?]\s*)/i, '')
+        .replace(/Let me correct[^.!?]*[.!?]\s*/gi, '')
+        .replace(/wait,?\s+that'?s\s+(reversed|taken|wrong|not right)[^.!?]*[.!?]\s*/gi, ' ')
+        .replace(/[—-]\s*(actually|wait,?\s+that)[^.!?]*[.!?]\s*/gi, ' ')
+        .trim();
       g.comment = sanitizeLastNames(g.comment);
     });
 
-    // ── PICK VALIDATOR — strip duplicates, enforce 28 unique picks ──
+    // Self-correction scrub for callouts too
+    function scrubCorrections(text) {
+      if (!text) return text;
+      return text
+        .replace(/^(WAIT[^.!?]*[.!?]\s*)/i, '')
+        .replace(/Let me correct[^.!?]*[.!?]\s*/gi, '')
+        .replace(/wait,?\s+that'?s\s+(reversed|taken|wrong|not right)[^.!?]*[.!?]\s*/gi, ' ')
+        .replace(/[—-]\s*(actually|wait,?\s+that)[^.!?]*[.!?]\s*/gi, ' ')
+        .trim();
+    }
+    if (parsed.bestPick) parsed.bestPick.blurb = scrubCorrections(parsed.bestPick.blurb);
+    if (parsed.worstPick) parsed.worstPick.blurb = scrubCorrections(parsed.worstPick.blurb);
+    if (parsed.sleeperPick) parsed.sleeperPick.blurb = scrubCorrections(parsed.sleeperPick.blurb);
+    if (parsed.draftWinner) {
+      parsed.draftWinner.melTake = scrubCorrections(parsed.draftWinner.melTake);
+      parsed.draftWinner.boogerTake = scrubCorrections(parsed.draftWinner.boogerTake);
+    }
+
+    // ── PICK VALIDATOR — strip duplicates, hallucinated players, enforce 28 unique picks ──
     if (parsed.picks && Array.isArray(parsed.picks)) {
       const seenPlayers = new Set();
       const seenSlots = new Set();
@@ -944,11 +972,20 @@ async function generateMockDraft() {
       const cleanPicks = [];
       let droppedAny = false;
 
+      // Build allowed-players set from rankings (lowercased, trimmed)
+      const allowedPlayers = new Set(PLAYER_RANKINGS.map(p => p.name.toLowerCase().trim()));
+
       for (const pick of parsed.picks) {
         const playerKey = (pick.player || '').toLowerCase().trim();
         const slotKey = pick.pickNum;
         const ownerKey = pick.owner;
 
+        // Skip if hallucinated player (not in rankings list)
+        if (playerKey && !allowedPlayers.has(playerKey)) {
+          console.warn('Dropped hallucinated player not in rankings:', pick);
+          droppedAny = true;
+          continue;
+        }
         // Skip if duplicate player, duplicate slot, or owner already has 2 picks
         if (!playerKey || seenPlayers.has(playerKey)) {
           console.warn('Dropped duplicate-player pick:', pick);
@@ -965,11 +1002,12 @@ async function generateMockDraft() {
           droppedAny = true;
           continue;
         }
-        // Strip any "WAIT" / "Let me correct" / "actually that's taken" self-correction language from blurb
+        // Strip any "WAIT" / "Let me correct" / "actually that's taken" / "wait, that's reversed" self-correction language
         if (pick.blurb) {
           pick.blurb = pick.blurb
             .replace(/^(WAIT[^.!?]*[.!?]\s*)/i, '')
             .replace(/Let me correct[^.!?]*[.!?]\s*/gi, '')
+            .replace(/wait,?\s+that'?s\s+(reversed|taken|wrong|not right)[^.!?]*[.!?]\s*/gi, ' ')
             .replace(/[—-]\s*(actually|wait)[^.!?]*[.!?]\s*/gi, ' ')
             .trim();
         }
@@ -980,7 +1018,7 @@ async function generateMockDraft() {
         cleanPicks.push(pick);
       }
       parsed.picks = cleanPicks;
-      if (droppedAny) console.warn('Mock draft validator dropped duplicate/invalid picks. Final count:', cleanPicks.length);
+      if (droppedAny) console.warn('Mock draft validator dropped duplicate/invalid/hallucinated picks. Final count:', cleanPicks.length);
     }
 
     clearInterval(loadingInterval);
