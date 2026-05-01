@@ -898,7 +898,7 @@
 <div class="mood-section">
   <div class="mood-header">
     <div class="mood-title">League Vibe Hog</div>
-    <div class="mood-subtitle">How's your personal league vibe this week?</div>
+    <div class="mood-subtitle">Drop your Slingshot vibe weekly. Resets every Tuesday</div>
   </div>
   <div class="mood-arena">
     <div class="mood-hero">
@@ -1003,10 +1003,10 @@
 
     <div class="mood-form">
       <div class="mood-options" id="moodOptions">
-        <button type="button" class="mood-option" data-mood="thriving">Thriving</button>
-        <button type="button" class="mood-option" data-mood="surviving">Surviving</button>
-        <button type="button" class="mood-option" data-mood="suffering">Suffering</button>
-        <button type="button" class="mood-option" data-mood="dead">Dead Inside</button>
+        <button type="button" class="mood-option" data-mood="thriving">I'm Thriving</button>
+        <button type="button" class="mood-option" data-mood="surviving">I'm Surviving</button>
+        <button type="button" class="mood-option" data-mood="suffering">I'm Suffering</button>
+        <button type="button" class="mood-option" data-mood="dead">I'm Dead Inside</button>
       </div>
       <button type="button" class="mood-submit" id="moodSubmitBtn" disabled>Submit Vibe</button>
       <div class="mood-msg" id="moodMsg"></div>
@@ -1200,7 +1200,7 @@
       hogEl.style.setProperty('--mood-intensity', '1');
       readoutLabel.textContent = 'Mixed';
       readoutLabel.className = 'mood-readout-label mood-mixed';
-      readoutSub.textContent = 'League is split';
+      readoutSub.textContent = 'The league is split';
       segbarEl.style.display = '';
     } else {
       hogEl.classList.add('mood-' + dominant);
@@ -1211,7 +1211,7 @@
       hogEl.style.setProperty('--mood-intensity', intensity.toFixed(3));
       readoutLabel.textContent = MOOD_LABELS[dominant];
       readoutLabel.className = 'mood-readout-label mood-' + dominant;
-      readoutSub.textContent = `League is ${MOOD_LABELS_LOWER[dominant]}`;
+      readoutSub.textContent = `The league is ${MOOD_LABELS_LOWER[dominant]}`;
       segbarEl.style.display = '';
     }
 
