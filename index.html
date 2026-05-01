@@ -368,7 +368,7 @@
   .mood-readout {
     display: flex;
     flex-direction: column;
-    gap: 4px;
+    gap: 2px;
     min-width: 0;
   }
   .mood-readout-label {
@@ -398,7 +398,7 @@
     letter-spacing: 0.12em;
     text-transform: uppercase;
     color: var(--gold);
-    margin-top: 2px;
+    margin-top: 6px;
     font-weight: 700;
   }
 
@@ -988,8 +988,8 @@
         </svg>
       </div>
       <div class="mood-readout">
+        <div class="mood-readout-sub" id="moodReadoutSub">No check-ins yet this week</div>
         <div class="mood-readout-label mood-empty" id="moodReadoutLabel">Awaiting Check-Ins</div>
-        <div class="mood-readout-sub" id="moodReadoutSub">No submissions yet this week</div>
         <div class="mood-readout-count" id="moodReadoutCount">0 check-ins this week</div>
       </div>
     </div>
@@ -1062,12 +1062,6 @@
     surviving: "Surviving",
     suffering: "Suffering",
     dead:      "Dead Inside"
-  };
-  const MOOD_LABELS_LOWER = {
-    thriving:  "thriving",
-    surviving: "surviving",
-    suffering: "suffering",
-    dead:      "dead inside"
   };
 
   // ── Device identity (anonymous, localStorage only) ───────────────────
@@ -1189,18 +1183,22 @@
       hogEl.classList.add('mood-empty');
       hogEl.style.setProperty('--mood-color', '#f4a8b8'); // natural pig pink when idle
       hogEl.style.setProperty('--mood-intensity', '1');
+      readoutSub.textContent = '';
+      readoutSub.style.visibility = 'hidden';
       readoutLabel.textContent = 'Awaiting Check-Ins';
       readoutLabel.className = 'mood-readout-label mood-empty';
-      readoutSub.textContent = 'No check-ins yet this week';
+      readoutCount.style.display = 'none';
       segbarEl.style.display = 'none';
     } else if (isMixed) {
       // True tie at the top - hog stays neutral pink, no pulse, no posture
       hogEl.classList.add('mood-empty');
       hogEl.style.setProperty('--mood-color', '#f4a8b8');
       hogEl.style.setProperty('--mood-intensity', '1');
-      readoutLabel.textContent = 'Mixed';
+      readoutSub.textContent = 'The league is';
+      readoutSub.style.visibility = '';
+      readoutLabel.textContent = 'Split';
       readoutLabel.className = 'mood-readout-label mood-mixed';
-      readoutSub.textContent = 'The league is split';
+      readoutCount.style.display = '';
       segbarEl.style.display = '';
     } else {
       hogEl.classList.add('mood-' + dominant);
@@ -1209,9 +1207,11 @@
       const rawShare = counts[dominant] / total;
       const intensity = Math.max(0.35, Math.min(1, (rawShare - 0.25) / 0.75 * 0.65 + 0.35));
       hogEl.style.setProperty('--mood-intensity', intensity.toFixed(3));
+      readoutSub.textContent = 'The league is';
+      readoutSub.style.visibility = '';
       readoutLabel.textContent = MOOD_LABELS[dominant];
       readoutLabel.className = 'mood-readout-label mood-' + dominant;
-      readoutSub.textContent = `The league is ${MOOD_LABELS_LOWER[dominant]}`;
+      readoutCount.style.display = '';
       segbarEl.style.display = '';
     }
 
