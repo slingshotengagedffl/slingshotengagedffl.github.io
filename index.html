@@ -717,10 +717,16 @@
     display: flex;
     align-items: center;
     justify-content: space-between;
+    flex-wrap: wrap;
     padding: 12px 16px;
     border-top: 1px solid var(--border);
     background: rgba(0,0,0,0.25);
-    gap: 12px;
+    gap: 8px;
+  }
+  .gon-footer-btns {
+    display: flex;
+    gap: 6px;
+    flex-shrink: 0;
   }
   .gon-count {
     font-family: 'Barlow Condensed', sans-serif;
@@ -732,19 +738,19 @@
   }
   .gon-rankings-btn {
     font-family: 'Barlow Condensed', sans-serif;
-    font-size: 0.95rem;
-    letter-spacing: 0.14em;
+    font-size: 0.82rem;
+    letter-spacing: 0.12em;
     text-transform: uppercase;
     background: var(--surface3);
     border: 1px solid var(--border);
     color: var(--label);
-    padding: 8px 16px;
+    padding: 7px 12px;
     border-radius: 20px;
     cursor: pointer;
     transition: color 0.15s, border-color 0.15s, background 0.15s;
     white-space: nowrap;
     flex-shrink: 0;
-    min-height: 36px;
+    min-height: 34px;
   }
   .gon-rankings-btn:hover { color: var(--text); border-color: var(--gold); }
   .gon-rankings-btn.active {
@@ -1338,7 +1344,7 @@
     </div>
     <div class="gon-footer">
       <div class="gon-count" id="gonCount">Loading…</div>
-      <div style="display:flex;gap:8px;flex-shrink:0;">
+      <div class="gon-footer-btns">
         <button class="gon-rankings-btn" id="gonRankingsBtn" onclick="gonToggleRankings()">Top 69 ▾</button>
         <button class="gon-rankings-btn" id="gonBottomBtn" onclick="gonToggleBottom()">Bottom 69 ▾</button>
       </div>
