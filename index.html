@@ -847,6 +847,9 @@
   }
   .gon-rankings-close:hover { color: var(--text); border-color: var(--gold); }
 
+  .gon-rank-row.medal-last .gon-rank-num { color: var(--muted); font-size: 0.9rem; }
+  .gon-rank-row.medal-last .gon-rank-name { color: var(--muted); }
+
   /* name swap fade */
   .gon-name.fade-out { opacity: 0; transition: opacity 0.12s; }
   .gon-name.fade-in  { opacity: 1; transition: opacity 0.12s; }
@@ -1335,12 +1338,20 @@
     </div>
     <div class="gon-footer">
       <div class="gon-count" id="gonCount">Loading…</div>
-      <button class="gon-rankings-btn" id="gonRankingsBtn" onclick="gonToggleRankings()">Top 69 ▾</button>
+      <div style="display:flex;gap:8px;flex-shrink:0;">
+        <button class="gon-rankings-btn" id="gonRankingsBtn" onclick="gonToggleRankings()">Top 69 ▾</button>
+        <button class="gon-rankings-btn" id="gonBottomBtn" onclick="gonToggleBottom()">Bottom 69 ▾</button>
+      </div>
     </div>
     <div class="gon-rankings" id="gonRankings">
       <div class="gon-rankings-title">Top 69 — All-Time Elo Rankings</div>
       <div id="gonRankList">Loading rankings…</div>
       <button class="gon-rankings-close" onclick="gonToggleRankings()">Close ▴</button>
+    </div>
+    <div class="gon-rankings" id="gonBottom">
+      <div class="gon-rankings-title">Bottom 69 — All-Time Elo Rankings</div>
+      <div id="gonBottomList">Loading rankings…</div>
+      <button class="gon-rankings-close" onclick="gonToggleBottom()">Close ▴</button>
     </div>
   </div>
 </div>
@@ -1355,6 +1366,7 @@
   let totalVotes = 0;
   let pairA = '', pairB = '';
   let rankingsOpen = false;
+  let bottomOpen = false;
   let lastUsed = [];
 
   function nameToKey(n) {
@@ -1467,6 +1479,7 @@
       nextPair();
       renderPair();
       if (rankingsOpen) renderRankings();
+      if (bottomOpen) renderBottom();
     }, 380);
   };
 
@@ -1477,6 +1490,15 @@
     btn.classList.toggle('active', rankingsOpen);
     btn.textContent = rankingsOpen ? 'Top 69 ▴' : 'Top 69 ▾';
     if (rankingsOpen) renderRankings();
+  };
+
+  window.gonToggleBottom = function() {
+    bottomOpen = !bottomOpen;
+    document.getElementById('gonBottom').classList.toggle('open', bottomOpen);
+    const btn = document.getElementById('gonBottomBtn');
+    btn.classList.toggle('active', bottomOpen);
+    btn.textContent = bottomOpen ? 'Bottom 69 ▴' : 'Bottom 69 ▾';
+    if (bottomOpen) renderBottom();
   };
 
   function renderRankings() {
@@ -1504,6 +1526,34 @@
     }).join('');
 
     document.getElementById('gonRankList').innerHTML = html;
+  }
+
+  function renderBottom() {
+    const all = NAMES
+      .map(n => ({ name: n, elo: ratings[nameToKey(n)]?.elo || 1000, votes: ratings[nameToKey(n)]?.votes || 0 }))
+      .sort((a, b) => a.elo - b.elo)
+      .slice(0, 69);
+
+    const minElo = all[0]?.elo || 1000;
+    const maxElo = all[all.length - 1]?.elo || 1000;
+    const range = maxElo - minElo || 1;
+    const totalNames = NAMES.length;
+
+    const html = all.map((item, i) => {
+      const pct = Math.max(6, Math.round(((item.elo - minElo) / range) * 94 + 6));
+      const rank = totalNames - i;
+      const lastClass = i === 0 ? ' medal-last' : '';
+      return `<div class="gon-rank-row${lastClass}">
+        <div class="gon-rank-num">${rank}</div>
+        <div class="gon-rank-name">${item.name}</div>
+        <div class="gon-rank-bar-wrap">
+          <div class="gon-rank-bar-outer"><div class="gon-rank-bar-inner" style="width:${pct}%;background:#666;"></div></div>
+        </div>
+        <div class="gon-rank-score">${item.elo}</div>
+      </div>`;
+    }).join('');
+
+    document.getElementById('gonBottomList').innerHTML = html;
   }
 
   loadFromFirebase();
