@@ -1,0 +1,1370 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Slingshot Bowl History – Slingshot Engaged FFL</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Barlow+Condensed:wght@400;600;700&family=Barlow:wght@400;500;600&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --red: #c0392b;
+      --red-bright: #e74c3c;
+      --bg: #0a0a0a;
+      --surface: #141414;
+      --surface2: #1c1c1c;
+      --surface3: #242424;
+      --text: #f0f0f0;
+      --text-body: #e8e8e8;
+      --muted: #bbb;
+      --label: #d8d8d8;
+      --border: #2a2a2a;
+      --gold: #c9a84c;
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: 'Barlow', sans-serif;
+      min-height: 100vh;
+      overflow-x: hidden;
+    }
+
+    /* ── PAGE HEADER ── */
+    .page-header {
+      padding: 40px 20px 0;
+      text-align: center;
+    }
+    .page-supertitle {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: 1rem;
+      letter-spacing: 0.25em;
+      text-transform: uppercase;
+      color: #d0d0d0;
+      margin-bottom: 6px;
+    }
+    .page-header h1 {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: clamp(2.8rem, 8vw, 5rem);
+      color: var(--red-bright);
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      line-height: 1;
+    }
+    .page-updated {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: 0.72rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin-top: 6px;
+    }
+    .header-spacer { height: 20px; }
+
+    .intro {
+      font-family: 'Barlow', sans-serif;
+      font-size: 1.1rem;
+      color: var(--text-body);
+      line-height: 1.7;
+      margin: 12px auto 12px;
+      text-align: center;
+      max-width: 680px;
+      padding: 0 16px;
+    }
+
+    /* ── TROPHY HERO ── */
+    .trophy-hero {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 20px 20px 4px;
+      gap: 10px;
+    }
+    .trophy-img-wrap {
+      position: relative;
+      display: flex;
+      justify-content: center;
+    }
+    .trophy-img-wrap::after {
+      content: '';
+      position: absolute;
+      bottom: -8px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 70px;
+      height: 16px;
+      background: radial-gradient(ellipse, rgba(201,168,76,0.4) 0%, transparent 70%);
+      filter: blur(5px);
+    }
+    .trophy-img {
+      height: clamp(110px, 26vw, 170px);
+      width: auto;
+      object-fit: contain;
+      animation: trophyGlow 3s ease-in-out infinite;
+    }
+    @keyframes trophyGlow {
+      0%, 100% { filter: drop-shadow(0 0 14px rgba(201,168,76,0.22)) drop-shadow(0 0 4px rgba(201,168,76,0.1)); }
+      50%       { filter: drop-shadow(0 0 26px rgba(201,168,76,0.48)) drop-shadow(0 0 10px rgba(201,168,76,0.22)); }
+    }
+    .trophy-label {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 1rem;
+      letter-spacing: 0.3em;
+      text-transform: uppercase;
+      color: var(--gold);
+    }
+
+    /* ── QUICK STATS ── */
+    .bowl-counter {
+      display: flex;
+      justify-content: center;
+      gap: 24px;
+      margin: 16px auto 24px;
+      max-width: 680px;
+      padding: 0 16px;
+      flex-wrap: wrap;
+    }
+    .counter-item { text-align: center; }
+    .counter-num {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 2.4rem;
+      color: var(--gold);
+      line-height: 1;
+    }
+    .counter-label {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: 0.82rem;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--label);
+      margin-top: 3px;
+    }
+
+    /* ── SWIPE HINT ── */
+    .swipe-hint {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: 0.82rem;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--muted);
+      text-align: center;
+      margin-bottom: 12px;
+    }
+
+    /* ── CARD TRACK ── */
+    .cards-track-wrap {
+      width: 100%;
+      overflow: hidden;
+      touch-action: pan-y;
+    }
+    .cards-track {
+      display: flex;
+      transition: transform 0.45s cubic-bezier(0.4, 0, 0.2, 1);
+      will-change: transform;
+    }
+
+    /* ── BOWL CARD ── */
+    .bowl-card {
+      flex: 0 0 100vw;
+      width: 100vw;
+      min-height: calc(100svh - 260px);
+      display: flex;
+      flex-direction: column;
+      padding: 0 14px 18px;
+    }
+
+    .bowl-card-inner {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      border-top: 3px solid var(--gold);
+      display: flex;
+      flex-direction: column;
+      flex: 1;
+      overflow: hidden;
+      position: relative;
+    }
+    .bowl-card-inner.close-game {
+      border-top-color: var(--red-bright);
+      box-shadow: 0 0 24px rgba(231,76,60,0.1);
+    }
+    .bowl-card-inner.blowout-game {
+      box-shadow: 0 0 24px rgba(201,168,76,0.07);
+    }
+
+    /* Roman numeral watermark */
+    .bowl-card-inner::before {
+      content: attr(data-roman);
+      position: absolute;
+      top: -4px;
+      right: 8px;
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: clamp(5.5rem, 22vw, 9rem);
+      color: rgba(255,255,255,0.025);
+      line-height: 1;
+      pointer-events: none;
+      user-select: none;
+      letter-spacing: -0.02em;
+      z-index: 0;
+    }
+    .bowl-card-inner > * { position: relative; z-index: 1; }
+
+    /* ── CARD HEADER ── */
+    .card-header {
+      padding: 16px 16px 0;
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+    }
+    .card-bowl-name {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: clamp(1.4rem, 4vw, 1.9rem);
+      color: var(--gold);
+      letter-spacing: 0.06em;
+      line-height: 1;
+    }
+    .card-year {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: clamp(1.2rem, 3.2vw, 1.6rem);
+      color: var(--muted);
+      letter-spacing: 0.08em;
+      line-height: 1;
+    }
+
+    /* ── MATCHUP BLOCK ── */
+    .matchup-block {
+      padding: 14px 16px 0;
+      display: flex;
+      align-items: flex-start;
+      gap: 6px;
+    }
+    .owner-side {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 6px;
+    }
+
+    /* Mini trophy on winner side */
+    .winner-trophy {
+      height: clamp(44px, 11vw, 68px);
+      width: auto;
+      object-fit: contain;
+      animation: trophyGlow 3s ease-in-out infinite;
+    }
+    .winner-trophy-spacer {
+      height: clamp(44px, 11vw, 68px);
+    }
+
+    .owner-photo-wrap {
+      width: clamp(68px, 17vw, 88px);
+      height: clamp(68px, 17vw, 88px);
+      border-radius: 50%;
+      overflow: hidden;
+      border: 2px solid var(--gold);
+      background: var(--surface3);
+      flex-shrink: 0;
+    }
+    .owner-photo-wrap.loser-photo {
+      border-color: var(--border);
+      opacity: 0.62;
+    }
+    .owner-photo-wrap img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: top;
+    }
+    .owner-initial {
+      width: 100%;
+      height: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: clamp(1.5rem, 4.5vw, 2rem);
+      color: var(--gold);
+      background: var(--surface3);
+    }
+    .owner-initial.loser { color: var(--muted); }
+    .owner-initial.small { font-size: 1rem; }
+
+    .owner-name {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: clamp(1.15rem, 3.5vw, 1.5rem);
+      letter-spacing: 0.06em;
+      color: var(--text);
+      text-align: center;
+      line-height: 1;
+    }
+    .owner-name a { color: var(--gold); text-decoration: none; }
+    .owner-name a:hover { text-decoration: underline; }
+    .owner-name.loser-name { color: var(--muted); }
+    .owner-name.retired-name { color: var(--muted); }
+
+    .vs-block {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding-top: clamp(54px, 14vw, 80px);
+      flex-shrink: 0;
+      width: 28px;
+    }
+    .vs-label {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: 0.82rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--muted);
+    }
+
+    /* ── SCORE BLOCK ── */
+    .score-block {
+      padding: 12px 16px 0;
+      display: flex;
+      align-items: baseline;
+      justify-content: center;
+      gap: 8px;
+    }
+    .score-winner {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: clamp(2.6rem, 8.5vw, 4rem);
+      color: var(--gold);
+      line-height: 1;
+    }
+    .score-dash {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: clamp(1.6rem, 4.5vw, 2.4rem);
+      color: var(--border);
+      line-height: 1;
+    }
+    .score-loser {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: clamp(1.9rem, 6vw, 2.8rem);
+      color: var(--muted);
+      line-height: 1;
+    }
+
+    .margin-tag {
+      display: flex;
+      justify-content: center;
+      margin-top: 7px;
+    }
+    .margin-pill {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: 0.88rem;
+      font-weight: 700;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      padding: 4px 14px;
+      border-radius: 20px;
+      color: var(--label);
+      background: var(--surface3);
+      border: 1px solid #3a3a3a;
+    }
+    .margin-pill.close {
+      background: rgba(231,76,60,0.12);
+      border-color: rgba(231,76,60,0.5);
+      color: #f06050;
+    }
+    .margin-pill.blowout {
+      background: rgba(201,168,76,0.12);
+      border-color: rgba(201,168,76,0.5);
+      color: var(--gold);
+    }
+
+    /* ── ASTERISK CHAIN ── */
+    .asterisk-tag {
+      display: flex;
+      justify-content: center;
+      margin-top: 6px;
+    }
+    .asterisk-pill {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: 0.82rem;
+      font-weight: 700;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      padding: 3px 12px;
+      border-radius: 20px;
+      color: var(--label);
+      background: var(--surface3);
+      border: 1px solid #3a3a3a;
+    }
+
+    /* ── DIVIDER ── */
+    .card-divider {
+      height: 1px;
+      background: var(--border);
+      margin: 12px 16px 0;
+    }
+
+    /* ── NARRATIVE ── */
+    .narrative-block {
+      padding: 12px 16px 0;
+      flex: 1;
+    }
+    .narrative-eyebrow {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: 0.84rem;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: var(--text);
+      margin-bottom: 9px;
+    }
+    .narrative-text {
+      font-family: 'Barlow', sans-serif;
+      font-size: 1.05rem;
+      color: var(--text-body);
+      line-height: 1.75;
+    }
+
+    /* ── KEY PERFORMERS ── */
+    .key-players {
+      padding: 12px 16px 16px;
+    }
+    .key-players-label {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: 0.84rem;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: var(--text);
+      margin-bottom: 8px;
+    }
+    .players-row {
+      display: flex;
+      gap: 6px;
+      flex-wrap: wrap;
+    }
+    .player-chip {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: 0.95rem;
+      letter-spacing: 0.04em;
+      padding: 5px 12px;
+      background: var(--surface3);
+      border: 1px solid #3a3a3a;
+      border-radius: 20px;
+      color: var(--label);
+      white-space: nowrap;
+    }
+    .player-chip.mvp {
+      background: rgba(201,168,76,0.12);
+      border-color: rgba(201,168,76,0.5);
+      color: var(--gold);
+    }
+    .player-chip.pending {
+      color: var(--muted);
+      font-style: italic;
+    }
+    .player-chip.game-mvp {
+      background: rgba(201,168,76,0.2);
+      border-color: var(--gold);
+      color: #e0be6a;
+      font-weight: 700;
+      font-size: 1rem;
+    }
+
+    /* ── LORE BULLETS ── */
+    .lore-list {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+    .lore-list li {
+      font-family: 'Barlow', sans-serif;
+      font-size: 1.05rem;
+      color: var(--text-body);
+      line-height: 1.55;
+      padding-left: 18px;
+      position: relative;
+    }
+    .lore-list li::before {
+      content: '—';
+      position: absolute;
+      left: 0;
+      color: var(--gold);
+      font-weight: 700;
+    }
+
+    /* ── NAV ── */
+    .bowl-nav {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 12px 14px 8px;
+    }
+    .nav-arrow {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: 0.9rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      background: var(--surface2);
+      border: 1px solid #3a3a3a;
+      color: var(--label);
+      padding: 10px 14px;
+      border-radius: 4px;
+      cursor: pointer;
+      transition: color 0.15s, border-color 0.15s, background 0.15s;
+      min-height: 44px;
+      white-space: nowrap;
+    }
+    .nav-arrow:hover:not(:disabled) { color: var(--text); border-color: var(--gold); background: var(--surface3); }
+    .nav-arrow:disabled { opacity: 0.25; cursor: default; }
+
+    .nav-dots {
+      display: flex;
+      gap: 6px;
+      align-items: center;
+      flex-wrap: wrap;
+      justify-content: center;
+      flex: 1;
+      padding: 0 8px;
+    }
+    .nav-dot {
+      width: 7px;
+      height: 7px;
+      border-radius: 50%;
+      background: var(--border);
+      cursor: pointer;
+      transition: background 0.2s, transform 0.2s;
+      border: none;
+      padding: 0;
+      flex-shrink: 0;
+    }
+    .nav-dot.active { background: var(--gold); transform: scale(1.35); }
+
+    .nav-counter {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: 0.78rem;
+      color: var(--muted);
+      letter-spacing: 0.1em;
+      white-space: nowrap;
+      min-width: 40px;
+      text-align: right;
+    }
+
+    /* ── CHAMPION SUMMARY ── */
+    .content {
+      max-width: 680px;
+      margin: 0 auto;
+      padding: 0 16px 60px;
+    }
+    .section-title {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 1.6rem;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--text);
+      margin-bottom: 10px;
+      margin-top: 40px;
+    }
+    .champ-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 10px;
+    }
+    @media (min-width: 480px) {
+      .champ-grid { grid-template-columns: repeat(4, 1fr); }
+    }
+    .champ-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 14px 10px;
+      text-align: center;
+    }
+    .champ-card.multi {
+      border-color: rgba(201,168,76,0.4);
+      background: linear-gradient(160deg, rgba(201,168,76,0.07) 0%, var(--surface) 65%);
+    }
+    .champ-photo-wrap {
+      width: 54px;
+      height: 54px;
+      border-radius: 50%;
+      background: var(--surface3);
+      border: 2px solid var(--border);
+      margin: 0 auto 8px;
+      overflow: hidden;
+    }
+    .champ-card.multi .champ-photo-wrap { border-color: var(--gold); }
+    .champ-photo-wrap img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: top;
+    }
+    .champ-initial {
+      width: 100%;
+      height: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 1.2rem;
+      color: var(--muted);
+    }
+    .champ-card.multi .champ-initial { color: var(--gold); }
+    .champ-name {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 1.1rem;
+      letter-spacing: 0.06em;
+      color: var(--text);
+      margin-bottom: 3px;
+    }
+    .champ-years {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: 0.82rem;
+      letter-spacing: 0.06em;
+      color: var(--muted);
+      line-height: 1.5;
+    }
+    .champ-rings { font-size: 0.82rem; margin-top: 4px; }
+  </style>
+</head>
+<body>
+
+<script src="nav.js"></script>
+
+<div class="page-header">
+  <div class="page-supertitle">The Annals of History</div>
+  <h1>Slingshot Bowl History</h1>
+  <p class="page-updated" id="pageUpdated"></p>
+</div>
+
+<div class="header-spacer"></div>
+
+<p class="intro">Twelve championship games. One ring per season. The complete record of every Slingshot Bowl — the moments, the margins, and the names that define the league.</p>
+
+<!-- Trophy Hero -->
+<div class="trophy-hero">
+  <div class="trophy-img-wrap">
+    <img class="trophy-img" src="images/trophy.png" alt="The Daddy" />
+  </div>
+  <div class="trophy-label">The Daddy</div>
+</div>
+
+<!-- Quick Stats -->
+<div class="bowl-counter">
+  <div class="counter-item">
+    <div class="counter-num">12</div>
+    <div class="counter-label">Bowls Played</div>
+  </div>
+  <div class="counter-item">
+    <div class="counter-num">8</div>
+    <div class="counter-label">Unique Champions</div>
+  </div>
+  <div class="counter-item">
+    <div class="counter-num">1.06</div>
+    <div class="counter-label">Closest Margin</div>
+  </div>
+  <div class="counter-item">
+    <div class="counter-num">45.66</div>
+    <div class="counter-label">Biggest Margin</div>
+  </div>
+</div>
+
+<p class="swipe-hint">← swipe to browse all 12 bowls →</p>
+
+<!-- CARD TRACK -->
+<div class="cards-track-wrap" id="trackWrap">
+  <div class="cards-track" id="track">
+
+    <!-- ═══ BOWL XII — 2025 ═══ -->
+    <div class="bowl-card">
+      <div class="bowl-card-inner blowout-game" data-roman="XII">
+        <div class="card-header">
+          <div class="card-bowl-name">Slingshot Bowl XII</div>
+          <div class="card-year">2025</div>
+        </div>
+        <div class="matchup-block">
+          <div class="owner-side">
+            <img class="winner-trophy" src="images/trophy.png" alt="Champion" />
+            <div class="owner-photo-wrap">
+              <img src="images/dylan.png" onerror="this.onerror=null;this.src='images/dylan.jpg'" alt="Dylan" />
+            </div>
+            <div class="owner-name"><a href="profiles/dylan.html">Dylan</a></div>
+          </div>
+          <div class="vs-block"><div class="vs-label">vs</div></div>
+          <div class="owner-side">
+            <div class="winner-trophy-spacer"></div>
+            <div class="owner-photo-wrap loser-photo">
+              <img src="images/mike.png" onerror="this.onerror=null;this.src='images/mike.jpg'" alt="Mike" />
+            </div>
+            <div class="owner-name loser-name">Mike</div>
+          </div>
+        </div>
+        <div class="score-block">
+          <div class="score-winner">142.12</div>
+          <div class="score-dash">–</div>
+          <div class="score-loser">109.88</div>
+        </div>
+        <div class="margin-tag">
+          <div class="margin-pill blowout">Won by 32.24</div>
+        </div>
+        <div class="card-divider"></div>
+        <div class="narrative-block">
+          <div class="narrative-eyebrow">📖 Lore</div>
+          <p class="narrative-text">Upon induction to the Hall of Greatness for being tied at two titles with Kyle and Jack, Dylan immediately separated himself by winning his third in 11 seasons. Derrick Henry, playing for the Baltimore Ravens — Dylan's favorite NFL team — went off for 48.6 points and his third straight Daddy. Dylan's 142.12 broke the Slingshot Bowl scoring record, a deliberate echo of Jack's legendary 142-point performance in Bowl V. The Daddy belongs to Dylan. For now.</p>
+        </div>
+        <div class="key-players">
+          <div class="key-players-label">🏆 MVP</div>
+          <div class="players-row">
+            <div class="player-chip game-mvp">Derrick Henry · RB · 48.6 pts</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ═══ BOWL XI — 2024 ═══ -->
+    <div class="bowl-card">
+      <div class="bowl-card-inner" data-roman="XI">
+        <div class="card-header">
+          <div class="card-bowl-name">Slingshot Bowl XI</div>
+          <div class="card-year">2024</div>
+        </div>
+        <div class="matchup-block">
+          <div class="owner-side">
+            <img class="winner-trophy" src="images/trophy.png" alt="Champion" />
+            <div class="owner-photo-wrap">
+              <img src="images/kyle.png" onerror="this.onerror=null;this.src='images/kyle.jpg'" alt="Kyle" />
+            </div>
+            <div class="owner-name"><a href="profiles/kyle.html">Kyle</a></div>
+          </div>
+          <div class="vs-block"><div class="vs-label">vs</div></div>
+          <div class="owner-side">
+            <div class="winner-trophy-spacer"></div>
+            <div class="owner-photo-wrap loser-photo">
+              <img src="images/daniel.png" onerror="this.onerror=null;this.src='images/daniel.jpg'" alt="Daniel" />
+            </div>
+            <div class="owner-name loser-name"><a href="profiles/daniel.html" style="color:var(--muted);text-decoration:none;">Daniel</a></div>
+          </div>
+        </div>
+        <div class="score-block">
+          <div class="score-winner">124.20</div>
+          <div class="score-dash">–</div>
+          <div class="score-loser">95.96</div>
+        </div>
+        <div class="margin-tag"><div class="margin-pill">Won by 28.24</div></div>
+        <div class="card-divider"></div>
+        <div class="narrative-block">
+          <div class="narrative-eyebrow">📖 Lore</div>
+          <p class="narrative-text">Kyle made his fifth Slingshot Bowl appearance — his fourth in a row — and this time he won it. Derrick Henry delivered the MVP performance, earning his first Daddy and setting the stage for something nobody could have predicted. Kyle, now a two-title owner alongside Jack and Dylan, commissioned Hall of Greatness jackets for all three — inducting the league's first true dynasty class into immortality.</p>
+        </div>
+        <div class="key-players">
+          <div class="key-players-label">🏆 MVP</div>
+          <div class="players-row">
+            <div class="player-chip game-mvp">Derrick Henry · RB · 24.5 pts</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ═══ BOWL X — 2023 ═══ -->
+    <div class="bowl-card">
+      <div class="bowl-card-inner" data-roman="X">
+        <div class="card-header">
+          <div class="card-bowl-name">Slingshot Bowl X</div>
+          <div class="card-year">2023</div>
+        </div>
+        <div class="matchup-block">
+          <div class="owner-side">
+            <img class="winner-trophy" src="images/trophy.png" alt="Champion" />
+            <div class="owner-photo-wrap">
+              <img src="images/alex.png" onerror="this.onerror=null;this.src='images/alex.jpg'" alt="Alex V." />
+            </div>
+            <div class="owner-name"><a href="profiles/alex.html">Alex V.</a></div>
+          </div>
+          <div class="vs-block"><div class="vs-label">vs</div></div>
+          <div class="owner-side">
+            <div class="winner-trophy-spacer"></div>
+            <div class="owner-photo-wrap loser-photo">
+              <img src="images/kyle.png" onerror="this.onerror=null;this.src='images/kyle.jpg'" alt="Kyle" />
+            </div>
+            <div class="owner-name loser-name"><a href="profiles/kyle.html" style="color:var(--muted);text-decoration:none;">Kyle</a></div>
+          </div>
+        </div>
+        <div class="score-block">
+          <div class="score-winner">97.86</div>
+          <div class="score-dash">–</div>
+          <div class="score-loser">65.68</div>
+        </div>
+        <div class="margin-tag"><div class="margin-pill">Won by 32.18</div></div>
+        <div class="asterisk-tag"><div class="asterisk-pill">⛓️ * Chain Hung · by Jack</div></div>
+        <div class="card-divider"></div>
+        <div class="narrative-block">
+          <div class="narrative-eyebrow">📖 Lore</div>
+          <p class="narrative-text">Kyle made his fourth Slingshot Bowl appearance and lost for the third time, his record in the championship game dropping to an uncomfortable 1-3. Alex V. — who had lost to Jack in Bowl VI — won easily this time, joining the #ChampsGang and closing the loop on years of near-misses. Derrick Henry, the league's adopted favorite son, earned his first Daddy. Jack hung the * Chain.</p>
+        </div>
+        <div class="key-players">
+          <div class="key-players-label">🏆 MVP</div>
+          <div class="players-row">
+            <div class="player-chip game-mvp">DJ Moore · WR · 21.9 pts</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ═══ BOWL IX — 2022 ═══ -->
+    <div class="bowl-card">
+      <div class="bowl-card-inner close-game" data-roman="IX">
+        <div class="card-header">
+          <div class="card-bowl-name">Slingshot Bowl IX</div>
+          <div class="card-year">2022</div>
+        </div>
+        <div class="matchup-block">
+          <div class="owner-side">
+            <img class="winner-trophy" src="images/trophy.png" alt="Champion" />
+            <div class="owner-photo-wrap">
+              <img src="images/kyle.png" onerror="this.onerror=null;this.src='images/kyle.jpg'" alt="Kyle" />
+            </div>
+            <div class="owner-name"><a href="profiles/kyle.html">Kyle</a></div>
+          </div>
+          <div class="vs-block"><div class="vs-label">vs</div></div>
+          <div class="owner-side">
+            <div class="winner-trophy-spacer"></div>
+            <div class="owner-photo-wrap loser-photo">
+              <img src="images/mike.png" onerror="this.onerror=null;this.src='images/mike.jpg'" alt="Mike" />
+            </div>
+            <div class="owner-name loser-name">Mike</div>
+          </div>
+        </div>
+        <div class="score-block">
+          <div class="score-winner">93.56</div>
+          <div class="score-dash">–</div>
+          <div class="score-loser">92.50</div>
+        </div>
+        <div class="margin-tag"><div class="margin-pill close">Won by 1.06 · Closest Ever</div></div>
+        <div class="asterisk-tag"><div class="asterisk-pill">⛓️ * Chain Hung · by Scott</div></div>
+        <div class="card-divider"></div>
+        <div class="narrative-block">
+          <div class="narrative-eyebrow">📖 Lore</div>
+          <p class="narrative-text">A rematch of Bowl VII, and this time Kyle got his title — by 1.06 points, the closest finish in league history. The final game of the weekend was Bills-Bengals on Monday Night Football. Mike needed Kyle's Gabe Davis to go negative. Then Damar Hamlin collapsed on the field, the game was canceled, and Davis finished with zero stats. Kyle won. We will never know what would have happened. Scott hung the * Chain.</p>
+        </div>
+        <div class="key-players">
+          <div class="key-players-label">🏆 MVP</div>
+          <div class="players-row">
+            <div class="player-chip game-mvp">Austin Ekeler · RB · 33.1 pts</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ═══ BOWL VIII — 2021 ═══ -->
+    <div class="bowl-card">
+      <div class="bowl-card-inner close-game" data-roman="VIII">
+        <div class="card-header">
+          <div class="card-bowl-name">Slingshot Bowl VIII</div>
+          <div class="card-year">2021</div>
+        </div>
+        <div class="matchup-block">
+          <div class="owner-side">
+            <img class="winner-trophy" src="images/trophy.png" alt="Champion" />
+            <div class="owner-photo-wrap">
+              <img src="images/dylan.png" onerror="this.onerror=null;this.src='images/dylan.jpg'" alt="Dylan" />
+            </div>
+            <div class="owner-name"><a href="profiles/dylan.html">Dylan</a></div>
+          </div>
+          <div class="vs-block"><div class="vs-label">vs</div></div>
+          <div class="owner-side">
+            <div class="winner-trophy-spacer"></div>
+            <div class="owner-photo-wrap loser-photo">
+              <div class="owner-initial loser">J</div>
+            </div>
+            <div class="owner-name retired-name">Jon</div>
+          </div>
+        </div>
+        <div class="score-block">
+          <div class="score-winner">106.26</div>
+          <div class="score-dash">–</div>
+          <div class="score-loser">103.80</div>
+        </div>
+        <div class="margin-tag"><div class="margin-pill close">Won by 2.46</div></div>
+        <div class="asterisk-tag"><div class="asterisk-pill">⛓️ * Chain Hung · by Jordan</div></div>
+        <div class="card-divider"></div>
+        <div class="narrative-block">
+          <div class="narrative-eyebrow">📖 Lore</div>
+          <p class="narrative-text">Dylan won his second title by 2.46 points, and nobody was happy about it. Jon was the league's sentimental favorite — beloved, overdue, going for his first championship — and he had the better team going into the final night game. Aaron Jones needed a few more yards, a touchdown that never came, a Packers offense that never fully delivered. Jon blames Kirk Cousins to this day. Cousins, unvaccinated, caught COVID and missed the Vikings-Packers game. Jon's argument is straightforward: Cousins plays, the game is closer, Jones gets more carries, Jon wins. Dylan got the Daddy. Jordan hung the * Chain. The debate never ended.</p>
+        </div>
+        <div class="key-players">
+          <div class="key-players-label">🏆 MVP</div>
+          <div class="players-row">
+            <div class="player-chip game-mvp">Kirk Cousins · DNP · ∞ pts</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ═══ BOWL VII — 2020 ═══ -->
+    <div class="bowl-card">
+      <div class="bowl-card-inner blowout-game" data-roman="VII">
+        <div class="card-header">
+          <div class="card-bowl-name">Slingshot Bowl VII</div>
+          <div class="card-year">2020</div>
+        </div>
+        <div class="matchup-block">
+          <div class="owner-side">
+            <img class="winner-trophy" src="images/trophy.png" alt="Champion" />
+            <div class="owner-photo-wrap">
+              <img src="images/mike.png" onerror="this.onerror=null;this.src='images/mike.jpg'" alt="Mike" />
+            </div>
+            <div class="owner-name"><a href="profiles/mike.html">Mike</a></div>
+          </div>
+          <div class="vs-block"><div class="vs-label">vs</div></div>
+          <div class="owner-side">
+            <div class="winner-trophy-spacer"></div>
+            <div class="owner-photo-wrap loser-photo">
+              <img src="images/kyle.png" onerror="this.onerror=null;this.src='images/kyle.jpg'" alt="Kyle" />
+            </div>
+            <div class="owner-name loser-name"><a href="profiles/kyle.html" style="color:var(--muted);text-decoration:none;">Kyle</a></div>
+          </div>
+        </div>
+        <div class="score-block">
+          <div class="score-winner">136.64</div>
+          <div class="score-dash">–</div>
+          <div class="score-loser">90.98</div>
+        </div>
+        <div class="margin-tag"><div class="margin-pill blowout">Won by 45.66 · Biggest Ever</div></div>
+        <div class="card-divider"></div>
+        <div class="narrative-block">
+          <div class="narrative-eyebrow">📖 Lore</div>
+          <p class="narrative-text">On Christmas Day, Alvin Kamara scored six touchdowns. Six. The game was effectively over after one player's performance, the Slingshot Bowl reduced to a formality before most of the league had finished opening presents. It was the COVID season, strange and disjointed, and it produced the most lopsided championship in league history. Mike — a founding owner — finally claimed his first Daddy. Kyle lost his second Bowl. Somewhere, his Christmas was ruined.</p>
+        </div>
+        <div class="key-players">
+          <div class="key-players-label">🏆 MVP</div>
+          <div class="players-row">
+            <div class="player-chip game-mvp">Alvin Kamara · RB · 56.2 pts</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ═══ BOWL VI — 2019 ═══ -->
+    <div class="bowl-card">
+      <div class="bowl-card-inner" data-roman="VI">
+        <div class="card-header">
+          <div class="card-bowl-name">Slingshot Bowl VI</div>
+          <div class="card-year">2019</div>
+        </div>
+        <div class="matchup-block">
+          <div class="owner-side">
+            <img class="winner-trophy" src="images/trophy.png" alt="Champion" />
+            <div class="owner-photo-wrap">
+              <img src="images/jack.png" onerror="this.onerror=null;this.src='images/jack.jpg'" alt="Jack" />
+            </div>
+            <div class="owner-name"><a href="profiles/jack.html">Jack</a></div>
+          </div>
+          <div class="vs-block"><div class="vs-label">vs</div></div>
+          <div class="owner-side">
+            <div class="winner-trophy-spacer"></div>
+            <div class="owner-photo-wrap loser-photo">
+              <img src="images/alex.png" onerror="this.onerror=null;this.src='images/alex.jpg'" alt="Alex V." />
+            </div>
+            <div class="owner-name loser-name"><a href="profiles/alex.html" style="color:var(--muted);text-decoration:none;">Alex V.</a></div>
+          </div>
+        </div>
+        <div class="score-block">
+          <div class="score-winner">98.32</div>
+          <div class="score-dash">–</div>
+          <div class="score-loser">89.06</div>
+        </div>
+        <div class="margin-tag"><div class="margin-pill">Won by 9.26</div></div>
+        <div class="card-divider"></div>
+        <div class="narrative-block">
+          <div class="narrative-eyebrow">📖 Lore</div>
+          <p class="narrative-text">Alex V. went 12-1 in the regular season, dubbed the Luck King for a campaign built more on favorable schedules than dominant performances. Jack's team was unspectacular by comparison — his MVP was DeVante Parker, a mid-season trade acquisition who had bounced through two other rosters before landing in Jack's lineup. Jack became the first back-to-back champion and the first owner to win two titles, while Alex V. pocketed the Luck King title and little else.</p>
+        </div>
+        <div class="key-players">
+          <div class="key-players-label">🏆 MVP</div>
+          <div class="players-row">
+            <div class="player-chip game-mvp">DeVante Parker · WR · 17.1 pts</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ═══ BOWL V — 2018 ═══ -->
+    <div class="bowl-card">
+      <div class="bowl-card-inner" data-roman="V">
+        <div class="card-header">
+          <div class="card-bowl-name">Slingshot Bowl V</div>
+          <div class="card-year">2018</div>
+        </div>
+        <div class="matchup-block">
+          <div class="owner-side">
+            <img class="winner-trophy" src="images/trophy.png" alt="Champion" />
+            <div class="owner-photo-wrap">
+              <img src="images/jack.png" onerror="this.onerror=null;this.src='images/jack.jpg'" alt="Jack" />
+            </div>
+            <div class="owner-name"><a href="profiles/jack.html">Jack</a></div>
+          </div>
+          <div class="vs-block"><div class="vs-label">vs</div></div>
+          <div class="owner-side">
+            <div class="winner-trophy-spacer"></div>
+            <div class="owner-photo-wrap loser-photo">
+              <img src="images/kyle.png" onerror="this.onerror=null;this.src='images/kyle.jpg'" alt="Kyle" />
+            </div>
+            <div class="owner-name loser-name"><a href="profiles/kyle.html" style="color:var(--muted);text-decoration:none;">Kyle</a></div>
+          </div>
+        </div>
+        <div class="score-block">
+          <div class="score-winner">142.00</div>
+          <div class="score-dash">–</div>
+          <div class="score-loser">124.20</div>
+        </div>
+        <div class="margin-tag"><div class="margin-pill">Won by 17.80</div></div>
+        <div class="card-divider"></div>
+        <div class="narrative-block">
+          <div class="narrative-eyebrow">📖 Lore</div>
+          <p class="narrative-text">The two highest-scoring teams in league history played each other in the same championship game. Those records still stand eight years later. Kyle's squad set the all-time scoring record; Jack's finished second all-time. Kyle was the heavy favorite. Jack had Aaron Rodgers — acquired at the trade deadline — and Rodgers' teammate Davante Adams, and that was enough. A 142-point performance gave Jack his second title and cemented Bowl V as the high-water mark of Slingshot football.</p>
+        </div>
+        <div class="key-players">
+          <div class="key-players-label">🏆 MVP</div>
+          <div class="players-row">
+            <div class="player-chip game-mvp">Aaron Rodgers · QB · 45.9 pts</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ═══ BOWL IV — 2017 ═══ -->
+    <div class="bowl-card">
+      <div class="bowl-card-inner" data-roman="IV">
+        <div class="card-header">
+          <div class="card-bowl-name">Slingshot Bowl IV</div>
+          <div class="card-year">2017</div>
+        </div>
+        <div class="matchup-block">
+          <div class="owner-side">
+            <img class="winner-trophy" src="images/trophy.png" alt="Champion" />
+            <div class="owner-photo-wrap">
+              <img src="images/dylan.png" onerror="this.onerror=null;this.src='images/dylan.jpg'" alt="Dylan" />
+            </div>
+            <div class="owner-name"><a href="profiles/dylan.html">Dylan</a></div>
+          </div>
+          <div class="vs-block"><div class="vs-label">vs</div></div>
+          <div class="owner-side">
+            <div class="winner-trophy-spacer"></div>
+            <div class="owner-photo-wrap loser-photo">
+              <div class="owner-initial loser small">MT</div>
+            </div>
+            <div class="owner-name retired-name">Michelle T.</div>
+          </div>
+        </div>
+        <div class="score-block">
+          <div class="score-winner">106.30</div>
+          <div class="score-dash">–</div>
+          <div class="score-loser">85.60</div>
+        </div>
+        <div class="margin-tag"><div class="margin-pill">Won by 20.70</div></div>
+        <div class="card-divider"></div>
+        <div class="narrative-block">
+          <div class="narrative-eyebrow">📖 Lore</div>
+          <p class="narrative-text">Dylan stopped Michelle T. from becoming the first two-time champion, and in doing so launched something nobody saw coming: back-to-back titles for two brothers. Michelle retired from the league after this loss, her bid for history ending permanently on the wrong side of the bracket. The brothers had taken the Daddy in consecutive years — a grip on the league's most coveted prize that felt less like coincidence and more like a warning.</p>
+        </div>
+        <div class="key-players">
+          <div class="key-players-label">🏆 MVP</div>
+          <div class="players-row">
+            <div class="player-chip game-mvp">Jared Goff · QB · 32.94 pts</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ═══ BOWL III — 2016 ═══ -->
+    <div class="bowl-card">
+      <div class="bowl-card-inner" data-roman="III">
+        <div class="card-header">
+          <div class="card-bowl-name">Slingshot Bowl III</div>
+          <div class="card-year">2016</div>
+        </div>
+        <div class="matchup-block">
+          <div class="owner-side">
+            <img class="winner-trophy" src="images/trophy.png" alt="Champion" />
+            <div class="owner-photo-wrap">
+              <img src="images/brian.png" onerror="this.onerror=null;this.src='images/brian.jpg'" alt="Brian" />
+            </div>
+            <div class="owner-name"><a href="profiles/brian.html">Brian</a></div>
+          </div>
+          <div class="vs-block"><div class="vs-label">vs</div></div>
+          <div class="owner-side">
+            <div class="winner-trophy-spacer"></div>
+            <div class="owner-photo-wrap loser-photo">
+              <img src="images/daniel.png" onerror="this.onerror=null;this.src='images/daniel.jpg'" alt="Daniel" />
+            </div>
+            <div class="owner-name loser-name"><a href="profiles/daniel.html" style="color:var(--muted);text-decoration:none;">Daniel</a></div>
+          </div>
+        </div>
+        <div class="score-block">
+          <div class="score-winner">122.30</div>
+          <div class="score-dash">–</div>
+          <div class="score-loser">107.30</div>
+        </div>
+        <div class="margin-tag"><div class="margin-pill">Won by 15.00</div></div>
+        <div class="card-divider"></div>
+        <div class="narrative-block">
+          <div class="narrative-eyebrow">📖 Lore</div>
+          <p class="narrative-text">Daniel's Naughty Men entered as the most dominant team the league had ever seen — loaded with rookies Dak Prescott and Ezekiel Elliott, the heavy favorite, the inevitable champion. Brian had other ideas. A middling regular season meant nothing once the bracket was set, and his squad dismantled Daniel's juggernaut to claim the first Daddy. Daniel still blames a Kirk Cousins blow-up game for the loss, conveniently overlooking that David Johnson was the MVP — not Cousins, not Prescott, not anyone on Daniel's roster.</p>
+        </div>
+        <div class="key-players">
+          <div class="key-players-label">🏆 MVP</div>
+          <div class="players-row">
+            <div class="player-chip game-mvp">David Johnson · RB · 31.6 pts</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ═══ BOWL II — 2015 ═══ -->
+    <div class="bowl-card">
+      <div class="bowl-card-inner" data-roman="II">
+        <div class="card-header">
+          <div class="card-bowl-name">Slingshot Bowl II</div>
+          <div class="card-year">2015</div>
+        </div>
+        <div class="matchup-block">
+          <div class="owner-side">
+            <img class="winner-trophy" src="images/trophy.png" alt="Champion" />
+            <div class="owner-photo-wrap">
+              <div class="owner-initial" style="font-size:1rem;">AM</div>
+            </div>
+            <div class="owner-name retired-name">Alex M.</div>
+          </div>
+          <div class="vs-block"><div class="vs-label">vs</div></div>
+          <div class="owner-side">
+            <div class="winner-trophy-spacer"></div>
+            <div class="owner-photo-wrap loser-photo">
+              <div class="owner-initial loser">T</div>
+            </div>
+            <div class="owner-name retired-name">Taylor</div>
+          </div>
+        </div>
+        <div class="score-block">
+          <div class="score-winner">92.50</div>
+          <div class="score-dash">–</div>
+          <div class="score-loser">81.18</div>
+        </div>
+        <div class="margin-tag"><div class="margin-pill">Won by 11.32</div></div>
+        <div class="card-divider"></div>
+        <div class="narrative-block">
+          <div class="narrative-eyebrow">📖 Lore</div>
+          <p class="narrative-text">The first championship played with 14 teams, and the one the league has mostly forgotten. Alex M. won it all, then walked away from the league almost immediately after. His opponent Taylor stuck around for just one more season. A champion who vanished and a runner-up who followed shortly after — Bowl II exists in the record more as a footnote than a celebration.</p>
+        </div>
+        <div class="key-players">
+          <div class="key-players-label">🏆 MVP</div>
+          <div class="players-row">
+            <div class="player-chip game-mvp">Frank Gore · RB · 23.5 pts</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ═══ BOWL I — 2014 ═══ -->
+    <div class="bowl-card">
+      <div class="bowl-card-inner" data-roman="I">
+        <div class="card-header">
+          <div class="card-bowl-name">Slingshot Bowl I</div>
+          <div class="card-year">2014</div>
+        </div>
+        <div class="matchup-block">
+          <div class="owner-side">
+            <img class="winner-trophy" src="images/trophy.png" alt="Champion" />
+            <div class="owner-photo-wrap">
+              <div class="owner-initial" style="font-size:1rem;">MT</div>
+            </div>
+            <div class="owner-name retired-name">Michelle T.</div>
+          </div>
+          <div class="vs-block"><div class="vs-label">vs</div></div>
+          <div class="owner-side">
+            <div class="winner-trophy-spacer"></div>
+            <div class="owner-photo-wrap loser-photo">
+              <img src="images/jack.png" onerror="this.onerror=null;this.src='images/jack.jpg'" alt="Jack" />
+            </div>
+            <div class="owner-name loser-name"><a href="profiles/jack.html" style="color:var(--muted);text-decoration:none;">Jack</a></div>
+          </div>
+        </div>
+        <div class="score-block">
+          <div class="score-winner">90.35</div>
+          <div class="score-dash">–</div>
+          <div class="score-loser">72.75</div>
+        </div>
+        <div class="margin-tag"><div class="margin-pill">Won by 17.60</div></div>
+        <div class="card-divider"></div>
+        <div class="narrative-block">
+          <div class="narrative-eyebrow">📖 Lore</div>
+          <p class="narrative-text">The league's first champion was a woman. Michelle T. defeated commissioner Jack — a Cowboys fan — using his own team's weapons against him. Dez Bryant and DeMarco Murray, both Dallas Cowboys, carried her to the title while Jack watched helplessly from the other sideline. It was the kind of origin story a league deserves: unexpected, a little embarrassing for the guy who runs the thing, and impossible to script.</p>
+        </div>
+        <div class="key-players">
+          <div class="key-players-label">🏆 MVP</div>
+          <div class="players-row">
+            <div class="player-chip game-mvp">Dez Bryant · WR · 21.9 pts</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div><!-- end track -->
+</div><!-- end track wrap -->
+
+<!-- NAV -->
+<div class="bowl-nav">
+  <button class="nav-arrow" id="prevBtn">← Prev</button>
+  <div class="nav-dots" id="navDots"></div>
+  <span class="nav-counter" id="navCounter"></span>
+  <button class="nav-arrow" id="nextBtn">Next →</button>
+</div>
+
+<!-- CHAMPION SUMMARY -->
+<div class="content">
+  <div class="section-title">All-Time Champions</div>
+  <div class="champ-grid">
+
+    <div class="champ-card multi">
+      <div class="champ-photo-wrap">
+        <img src="images/dylan.png" onerror="this.onerror=null;this.src='images/dylan.jpg'" alt="Dylan" />
+      </div>
+      <div class="champ-name">Dylan</div>
+      <div class="champ-years">2017 · 2021 · 2025</div>
+      <div class="champ-rings">🏆🏆🏆</div>
+    </div>
+
+    <div class="champ-card multi">
+      <div class="champ-photo-wrap">
+        <img src="images/jack.png" onerror="this.onerror=null;this.src='images/jack.jpg'" alt="Jack" />
+      </div>
+      <div class="champ-name">Jack</div>
+      <div class="champ-years">2018 · 2019</div>
+      <div class="champ-rings">🏆🏆</div>
+    </div>
+
+    <div class="champ-card multi">
+      <div class="champ-photo-wrap">
+        <img src="images/kyle.png" onerror="this.onerror=null;this.src='images/kyle.jpg'" alt="Kyle" />
+      </div>
+      <div class="champ-name">Kyle</div>
+      <div class="champ-years">2022 · 2024</div>
+      <div class="champ-rings">🏆🏆</div>
+    </div>
+
+    <div class="champ-card">
+      <div class="champ-photo-wrap">
+        <img src="images/alex.png" onerror="this.onerror=null;this.src='images/alex.jpg'" alt="Alex V." />
+      </div>
+      <div class="champ-name">Alex V.</div>
+      <div class="champ-years">2023</div>
+      <div class="champ-rings">🏆</div>
+    </div>
+
+    <div class="champ-card">
+      <div class="champ-photo-wrap">
+        <img src="images/mike.png" onerror="this.onerror=null;this.src='images/mike.jpg'" alt="Mike" />
+      </div>
+      <div class="champ-name">Mike</div>
+      <div class="champ-years">2020</div>
+      <div class="champ-rings">🏆</div>
+    </div>
+
+    <div class="champ-card">
+      <div class="champ-photo-wrap">
+        <img src="images/brian.png" onerror="this.onerror=null;this.src='images/brian.jpg'" alt="Brian" />
+      </div>
+      <div class="champ-name">Brian</div>
+      <div class="champ-years">2016</div>
+      <div class="champ-rings">🏆</div>
+    </div>
+
+    <div class="champ-card">
+      <div class="champ-photo-wrap">
+        <div class="champ-initial" style="font-size:0.95rem;">MT</div>
+      </div>
+      <div class="champ-name">Michelle T.</div>
+      <div class="champ-years">2014</div>
+      <div class="champ-rings">🏆</div>
+    </div>
+
+    <div class="champ-card">
+      <div class="champ-photo-wrap">
+        <div class="champ-initial" style="font-size:0.95rem;">AM</div>
+      </div>
+      <div class="champ-name">Alex M.</div>
+      <div class="champ-years">2015</div>
+      <div class="champ-rings">🏆</div>
+    </div>
+
+  </div>
+</div>
+
+<script>
+  // Last updated from JSON
+  fetch('profiles-data.json')
+    .then(r => r.json())
+    .then(data => {
+      const date = data.pageUpdates && data.pageUpdates['slingshot-bowl'];
+      if (date) document.getElementById('pageUpdated').textContent = 'Updated · ' + date;
+    })
+    .catch(() => {});
+
+  // Carousel
+  const track = document.getElementById('track');
+  const cards = Array.from(track.querySelectorAll('.bowl-card'));
+  const total = cards.length;
+  let current = 0;
+
+  const dotsWrap = document.getElementById('navDots');
+  cards.forEach((_, i) => {
+    const dot = document.createElement('button');
+    dot.className = 'nav-dot' + (i === 0 ? ' active' : '');
+    dot.setAttribute('aria-label', 'Bowl ' + (total - i));
+    dot.addEventListener('click', () => goTo(i));
+    dotsWrap.appendChild(dot);
+  });
+
+  function updateNav() {
+    dotsWrap.querySelectorAll('.nav-dot').forEach((d, i) => d.classList.toggle('active', i === current));
+    document.getElementById('navCounter').textContent = (current + 1) + ' / ' + total;
+    document.getElementById('prevBtn').disabled = current === 0;
+    document.getElementById('nextBtn').disabled = current === total - 1;
+    track.style.transform = 'translateX(-' + (current * 100) + 'vw)';
+  }
+
+  function goTo(i) {
+    current = Math.max(0, Math.min(total - 1, i));
+    updateNav();
+  }
+
+  document.getElementById('prevBtn').addEventListener('click', () => goTo(current - 1));
+  document.getElementById('nextBtn').addEventListener('click', () => goTo(current + 1));
+
+  // Touch swipe — horizontal only, doesn't block vertical scroll
+  let startX = 0, startY = 0, isHoriz = null;
+  const wrap = document.getElementById('trackWrap');
+  wrap.addEventListener('touchstart', e => {
+    startX = e.touches[0].clientX;
+    startY = e.touches[0].clientY;
+    isHoriz = null;
+  }, { passive: true });
+  wrap.addEventListener('touchmove', e => {
+    if (isHoriz === null) {
+      const dx = Math.abs(e.touches[0].clientX - startX);
+      const dy = Math.abs(e.touches[0].clientY - startY);
+      isHoriz = dx > dy;
+    }
+    if (isHoriz) e.preventDefault();
+  }, { passive: false });
+  wrap.addEventListener('touchend', e => {
+    if (!isHoriz) return;
+    const diff = startX - e.changedTouches[0].clientX;
+    if (Math.abs(diff) > 40) goTo(current + (diff > 0 ? 1 : -1));
+  });
+
+  updateNav();
+</script>
+
+</body>
+</html>
