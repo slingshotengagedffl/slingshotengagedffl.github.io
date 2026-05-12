@@ -34,6 +34,7 @@
         { label: 'The Intercontinental Championship', href: 'annals-intercontinental.html' },
         { label: 'Draft Position Success',           href: 'annals-draft-position-success.html' },
         { label: 'Playoff Odds Oracle (POO) 💩',     href: 'annals-playoff-odds.html' },
+        { label: 'Season Prediction Ballot 🗳️',      href: 'annals-prediction-ballot.html' },
       ]
     },
     { emoji: '📜', label: 'Constitution',            href: 'https://drive.google.com/file/d/1u5CjjgncTrwKSedc5rtYRhpPllhlc3w7/view?usp=drivesdk', external: true },

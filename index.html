@@ -236,6 +236,69 @@
     overflow: hidden;
   }
 
+  /* ── Season Prediction Ballot teaser ── */
+  .ballot-section {
+    padding: 30px 16px 10px;
+    max-width: 900px;
+    margin: 0 auto;
+    width: 100%;
+  }
+  .ballot-card {
+    display: block;
+    background: var(--bg3);
+    border: 1px solid var(--border);
+    border-left: 4px solid var(--gold);
+    border-radius: 6px;
+    padding: 20px 22px;
+    text-decoration: none;
+    color: var(--text);
+    transition: background 0.18s, transform 0.18s, border-left-color 0.18s;
+  }
+  .ballot-card:hover {
+    background: #1f1f1f;
+    transform: translateX(2px);
+    border-left-color: var(--red-bright);
+  }
+  .ballot-card.locked { border-left-color: var(--red-bright); }
+  .ballot-card.live { border-left-color: var(--gold); }
+  .ballot-card.complete { border-left-color: #FFD700; }
+  .ballot-eyebrow {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 0.95rem;
+    letter-spacing: 0.2em;
+    color: var(--label);
+    text-transform: uppercase;
+    margin-bottom: 6px;
+    font-weight: 700;
+  }
+  .ballot-title {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 1.6rem;
+    color: var(--text);
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    line-height: 1.1;
+  }
+  .ballot-sub {
+    font-family: 'Barlow', sans-serif;
+    font-size: 1rem;
+    color: var(--text-body);
+    margin-top: 8px;
+    line-height: 1.4;
+  }
+  .ballot-sub .accent {
+    color: var(--gold);
+    font-weight: 700;
+  }
+  .ballot-arrow {
+    float: right;
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 1.6rem;
+    color: var(--gold);
+    margin-top: 2px;
+    letter-spacing: 0.04em;
+  }
+
   /* The hog */
   .mood-hero {
     display: grid;
@@ -903,6 +966,18 @@
 
 
 
+<!-- SEASON PREDICTION BALLOT TEASER -->
+<div class="ballot-section" id="ballotTeaserSection" style="display:none;">
+  <a class="ballot-card" id="ballotTeaserCard" href="annals-prediction-ballot.html">
+    <span class="ballot-arrow">→</span>
+    <div class="ballot-eyebrow" id="ballotEyebrow">🗳️ Season Prediction Ballot</div>
+    <div class="ballot-title" id="ballotTitle">Submit Your Predictions</div>
+    <div class="ballot-sub" id="ballotSub">Loading…</div>
+  </a>
+</div>
+
+
+
 <!-- LEAGUE VIBE HOG -->
 <div class="mood-section">
   <div class="mood-header">
@@ -1320,6 +1395,97 @@
       resetBtn.disabled = false;
     }
   });
+
+  // ──────────────────────────────────────────────────────────
+  // Season Prediction Ballot teaser
+  // ──────────────────────────────────────────────────────────
+  (function() {
+    const BALLOT_SEASON = "2026";
+    const teaserSection = document.getElementById("ballotTeaserSection");
+    const teaserCard = document.getElementById("ballotTeaserCard");
+    const titleEl = document.getElementById("ballotTitle");
+    const subEl = document.getElementById("ballotSub");
+
+    if (!teaserSection) return;
+
+    const ballotRef = ref(db, `predictionBallot/${BALLOT_SEASON}`);
+    onValue(ballotRef, snap => {
+      const data = snap.val();
+      if (!data) {
+        // No ballot configured yet — hide the teaser
+        teaserSection.style.display = "none";
+        return;
+      }
+
+      const cfg = data.config || {};
+      const subs = data.submissions || {};
+      const subCount = Object.keys(subs).length;
+      const actuals = cfg.actualResults || {};
+      const regFin = cfg.regSeasonFinishes || {};
+      const TOTAL_CATEGORIES = 13;
+
+      // Count resolved categories
+      const CAT_KEYS = ["champion","secondPlace","finalFour","bronzeFranz","regSeasonChamp","ooty","hottestTeam","avlCup","rivalryWeek","intercontinental","ownFinish","asteriskHung","ryderCup"];
+      let resultsIn = 0;
+      CAT_KEYS.forEach(k => {
+        if (k === "ownFinish") {
+          if (Object.keys(regFin).length > 0) resultsIn++;
+        } else {
+          const v = actuals[k];
+          if (v !== undefined && v !== null && !(Array.isArray(v) && v.length === 0)) resultsIn++;
+        }
+      });
+
+      const deadline = cfg.deadline ? new Date(cfg.deadline).getTime() : null;
+      const now = Date.now();
+      const manualLocked = !!cfg.locked;
+      const locked = manualLocked || (deadline && now >= deadline);
+
+      // Decide state
+      teaserSection.style.display = "";
+      teaserCard.classList.remove("locked", "live", "complete");
+
+      if (!deadline && !locked && subCount === 0) {
+        // Ballot exists but nothing set up yet — show generic teaser
+        titleEl.textContent = "Submit Your Predictions";
+        subEl.innerHTML = `Predict how the season unfolds — League Champion, Bronze Franz, Final Four and more. <span class="accent">Pick your Moneyball.</span>`;
+      } else if (!locked) {
+        // Pre-deadline, open submissions
+        titleEl.textContent = "Submit Your Predictions";
+        let timeStr = "";
+        if (deadline) {
+          const ms = deadline - now;
+          if (ms > 0) {
+            const days = Math.floor(ms/86400000);
+            const hours = Math.floor((ms%86400000)/3600000);
+            if (days > 1) timeStr = `${days} days left`;
+            else if (days === 1) timeStr = `1 day left`;
+            else if (hours > 1) timeStr = `${hours} hours left`;
+            else timeStr = `Closing soon`;
+          }
+        }
+        subEl.innerHTML = `<span class="accent">${subCount} of 14</span> owners have submitted${timeStr ? ` · <span class="accent">${timeStr}</span>` : ""}`;
+      } else if (locked && resultsIn === 0) {
+        // Locked, season hasn't started yet
+        teaserCard.classList.add("locked");
+        titleEl.textContent = "Predictions Locked";
+        subEl.innerHTML = `All <span class="accent">${subCount}</span> ballots are visible. Leaderboard updates live as results come in.`;
+      } else if (locked && resultsIn < TOTAL_CATEGORIES) {
+        // In-season, partial results
+        teaserCard.classList.add("live");
+        titleEl.textContent = "Ballot Leaderboard — Live";
+        subEl.innerHTML = `<span class="accent">${resultsIn}</span> of 13 categories scored. See the standings.`;
+      } else {
+        // Season complete
+        teaserCard.classList.add("complete");
+        titleEl.textContent = "Final Standings";
+        subEl.innerHTML = `Season complete · all 13 categories scored. See who predicted best.`;
+      }
+    }, () => {
+      // Firebase error — hide quietly
+      teaserSection.style.display = "none";
+    });
+  })();
 </script>
 
 
