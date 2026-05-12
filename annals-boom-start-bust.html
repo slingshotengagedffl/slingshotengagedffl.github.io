@@ -216,12 +216,12 @@
       display: flex; align-items: center; justify-content: center; gap: 14px;
     }
     .card-photo-large {
-      width: 160px; height: 160px; border-radius: 50%;
+      width: min(160px, 42%); height: min(160px, 42%); border-radius: 50%;
       object-fit: cover; object-position: top;
       border: 3px solid var(--gold); flex-shrink: 0;
     }
-    .donut-container { position: relative; width: 160px; height: 160px; flex-shrink: 0; }
-    .donut-svg { width: 160px; height: 160px; transform: rotate(-90deg); }
+    .donut-container { position: relative; width: min(160px, 42%); height: min(160px, 42%); flex-shrink: 0; }
+    .donut-svg { width: 100%; height: 100%; transform: rotate(-90deg); }
     .donut-center {
       position: absolute; top: 50%; left: 50%;
       transform: translate(-50%, -50%); text-align: center; line-height: 1;

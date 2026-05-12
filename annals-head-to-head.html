@@ -1157,10 +1157,6 @@ function ownerPhoto(name, size, borderColor) {
 
 function resolvePhotos() { /* no-op — inline img used instead */ }
 
-// ── DATA (embedded from spreadsheet) ──
-const H2H = JSON.parse(document.getElementById('h2hDataScript').textContent);
-const OWNER_MATCHUPS = JSON.parse(document.getElementById('ownerMatchupsScript').textContent);
-
 // Pre-compute margin distribution for relative closeness scoring
 const ALL_MARGINS = []; // populated after fetch
 
@@ -1766,8 +1762,6 @@ function spotlightDive() {
   document.getElementById('diveResult').scrollIntoView({ behavior: 'smooth', block: 'start' });
 }
 
-// Load on page init (after ALL_RIVALRY_RANKINGS is ready)
-document.addEventListener('DOMContentLoaded', () => loadSpotlight());
 
 let logSortCol = 'year';
 let logSortDir = 'asc';
