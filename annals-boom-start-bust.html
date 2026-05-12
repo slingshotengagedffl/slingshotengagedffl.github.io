@@ -435,25 +435,6 @@ const ARCHETYPE_DEFS = {
 // ── RANKS (all-games, 4+ season owners, n=17) ─────────────────────────────────
 // bust rank: #1 = lowest bust rate (best)
 
-const RANKS = {
-  "Kyle":       { boom:1,  start:1  },
-  "Jack":       { boom:2,  start:2  },
-  "Dylan":      { boom:3,  start:3  },
-  "Mike":       { boom:7,  start:8  },
-  "Brian":      { boom:5,  start:7  },
-  "Daniel":     { boom:4,  start:6  },
-  "Andy":       { boom:6,  start:4  },
-  "Matt":       { boom:9,  start:10 },
-  "Scott":      { boom:11, start:11 },
-  "Alex V.":    { boom:8,  start:5  },
-  "Tim H.":     { boom:12, start:13 },
-  "Jordan":     { boom:10, start:9  },
-  "Wade":       { boom:13, start:12 },
-};
-const RANK_N = 13;
-
-// ── DATA ──────────────────────────────────────────────────────────────────────
-
 const ACTIVE_PROFILES = {
   'Kyle':'profiles/kyle.html','Jack':'profiles/jack.html','Dylan':'profiles/dylan.html',
   'Mike':'profiles/mike.html','Brian':'profiles/brian.html','Daniel':'profiles/daniel.html',
@@ -462,38 +443,23 @@ const ACTIVE_PROFILES = {
   'Wade':'profiles/wade.html','Luke':'profiles/luke.html',
 };
 
-const ACTIVE = {
-  "Kyle":   {archetype:"Outlier",        photoId:"kyle",   stats:{all:{games:125,boom_rate:0.32,start_rate:0.704,mid_rate:0.248,bust_rate:0.048},regular:{games:109,boom_rate:0.321,start_rate:0.706,mid_rate:0.257,bust_rate:0.037},playoff:{games:16,boom_rate:0.312,start_rate:0.688,mid_rate:0.188,bust_rate:0.125},consolation:null}},
-  "Jack":   {archetype:"Boom Machine",   photoId:"jack",   stats:{all:{games:179,boom_rate:0.291,start_rate:0.592,mid_rate:0.257,bust_rate:0.151},regular:{games:161,boom_rate:0.304,start_rate:0.602,mid_rate:0.261,bust_rate:0.137},playoff:{games:13,boom_rate:0.231,start_rate:0.615,mid_rate:0.231,bust_rate:0.154},consolation:{games:5,boom_rate:0.0,start_rate:0.2,mid_rate:0.2,bust_rate:0.6}}},
-  "Dylan":  {archetype:"Reliable",       photoId:"dylan",  stats:{all:{games:170,boom_rate:0.259,start_rate:0.553,mid_rate:0.3,bust_rate:0.147},regular:{games:148,boom_rate:0.25,start_rate:0.534,mid_rate:0.311,bust_rate:0.155},playoff:{games:13,boom_rate:0.385,start_rate:0.692,mid_rate:0.231,bust_rate:0.077},consolation:{games:9,boom_rate:0.222,start_rate:0.667,mid_rate:0.222,bust_rate:0.111}}},
-  "Mike":   {archetype:"Reliable",       photoId:"mike",   stats:{all:{games:183,boom_rate:0.197,start_rate:0.47,mid_rate:0.35,bust_rate:0.18},regular:{games:161,boom_rate:0.199,start_rate:0.46,mid_rate:0.354,bust_rate:0.186},playoff:{games:12,boom_rate:0.167,start_rate:0.667,mid_rate:0.333,bust_rate:0.0},consolation:{games:10,boom_rate:0.2,start_rate:0.4,mid_rate:0.3,bust_rate:0.3}}},
-  "Brian":  {archetype:"Reliable",       photoId:"brian",  stats:{all:{games:176,boom_rate:0.205,start_rate:0.477,mid_rate:0.29,bust_rate:0.233},regular:{games:161,boom_rate:0.199,start_rate:0.478,mid_rate:0.286,bust_rate:0.236},playoff:{games:5,boom_rate:0.4,start_rate:0.4,mid_rate:0.4,bust_rate:0.2},consolation:{games:10,boom_rate:0.2,start_rate:0.5,mid_rate:0.3,bust_rate:0.2}}},
-  "Daniel": {archetype:"High Variance",  photoId:"daniel", stats:{all:{games:180,boom_rate:0.222,start_rate:0.478,mid_rate:0.261,bust_rate:0.261},regular:{games:161,boom_rate:0.236,start_rate:0.472,mid_rate:0.261,bust_rate:0.267},playoff:{games:8,boom_rate:0.125,start_rate:0.625,mid_rate:0.125,bust_rate:0.25},consolation:{games:11,boom_rate:0.091,start_rate:0.455,mid_rate:0.364,bust_rate:0.182}}},
-  "Andy":   {archetype:"Reliable",       photoId:"andy",   stats:{all:{games:59,boom_rate:0.203,start_rate:0.525,mid_rate:0.305,bust_rate:0.169},regular:{games:56,boom_rate:0.214,start_rate:0.554,mid_rate:0.268,bust_rate:0.179},playoff:{games:1,boom_rate:0.0,start_rate:0.0,mid_rate:1.0,bust_rate:0.0},consolation:{games:2,boom_rate:0.0,start_rate:0.0,mid_rate:1.0,bust_rate:0.0}}},
-  "Matt":   {archetype:"Underperforming",photoId:"matt",   stats:{all:{games:165,boom_rate:0.176,start_rate:0.43,mid_rate:0.303,bust_rate:0.267},regular:{games:148,boom_rate:0.176,start_rate:0.439,mid_rate:0.291,bust_rate:0.27},playoff:{games:4,boom_rate:0.25,start_rate:0.75,mid_rate:0.25,bust_rate:0.0},consolation:{games:13,boom_rate:0.154,start_rate:0.231,mid_rate:0.462,bust_rate:0.308}}},
-  "Scott":  {archetype:"Underperforming",photoId:"scott",  stats:{all:{games:177,boom_rate:0.164,start_rate:0.401,mid_rate:0.339,bust_rate:0.26},regular:{games:161,boom_rate:0.149,start_rate:0.379,mid_rate:0.348,bust_rate:0.273},playoff:{games:4,boom_rate:0.25,start_rate:0.5,mid_rate:0.25,bust_rate:0.25},consolation:{games:12,boom_rate:0.333,start_rate:0.667,mid_rate:0.25,bust_rate:0.083}}},
-  "Alex V.":{archetype:"Reliable",       photoId:"alex",   stats:{all:{games:150,boom_rate:0.193,start_rate:0.487,mid_rate:0.293,bust_rate:0.22},regular:{games:135,boom_rate:0.193,start_rate:0.481,mid_rate:0.289,bust_rate:0.23},playoff:{games:10,boom_rate:0.2,start_rate:0.6,mid_rate:0.2,bust_rate:0.2},consolation:{games:5,boom_rate:0.2,start_rate:0.4,mid_rate:0.6,bust_rate:0.0}}},
-  "Tim H.": {archetype:"Underperforming",photoId:"tim",    stats:{all:{games:90,boom_rate:0.133,start_rate:0.389,mid_rate:0.267,bust_rate:0.344},regular:{games:83,boom_rate:0.145,start_rate:0.398,mid_rate:0.265,bust_rate:0.337},playoff:{games:3,boom_rate:0.0,start_rate:0.333,mid_rate:0.0,bust_rate:0.667},consolation:{games:4,boom_rate:0.0,start_rate:0.25,mid_rate:0.5,bust_rate:0.25}}},
-  "Jordan": {archetype:"Underperforming",photoId:"jordan", stats:{all:{games:97,boom_rate:0.175,start_rate:0.443,mid_rate:0.289,bust_rate:0.268},regular:{games:96,boom_rate:0.177,start_rate:0.448,mid_rate:0.292,bust_rate:0.26},playoff:{games:1,boom_rate:0.0,start_rate:0.0,mid_rate:0.0,bust_rate:1.0},consolation:null}},
-  "Wade":   {archetype:"Middling",       photoId:"wade",   stats:{all:{games:87,boom_rate:0.115,start_rate:0.391,mid_rate:0.391,bust_rate:0.218},regular:{games:83,boom_rate:0.12,start_rate:0.398,mid_rate:0.386,bust_rate:0.217},playoff:{games:3,boom_rate:0.0,start_rate:0.333,mid_rate:0.333,bust_rate:0.333},consolation:{games:1,boom_rate:0.0,start_rate:0.0,mid_rate:1.0,bust_rate:0.0}}},
-  "Luke":   {archetype:"Pending",        photoId:"luke",   stats:{all:null,regular:null,playoff:null,consolation:null}},
-};
+let ACTIVE = {};
+let HISTORICAL = {};
+let RANKS = {};
+let RANK_N = 0;
 
-const HISTORICAL = {
-  "Alex M.":   {stats:{all:{games:15,boom_rate:0.267,start_rate:0.4,mid_rate:0.133,bust_rate:0.2},regular:{games:13,boom_rate:0.231,start_rate:0.385,mid_rate:0.154,bust_rate:0.231},playoff:{games:2,boom_rate:0.5,start_rate:0.5,mid_rate:0.0,bust_rate:0.0},consolation:null}},
-  "Anthony":   {stats:{all:{games:58,boom_rate:0.034,start_rate:0.276,mid_rate:0.414,bust_rate:0.276},regular:{games:52,boom_rate:0.038,start_rate:0.288,mid_rate:0.404,bust_rate:0.269},playoff:null,consolation:{games:6,boom_rate:0.0,start_rate:0.167,mid_rate:0.5,bust_rate:0.333}}},
-  "Anthony B.":{stats:{all:{games:15,boom_rate:0.0,start_rate:0.133,mid_rate:0.333,bust_rate:0.533},regular:{games:13,boom_rate:0.0,start_rate:0.154,mid_rate:0.385,bust_rate:0.462},playoff:null,consolation:{games:2,boom_rate:0.0,start_rate:0.0,mid_rate:0.0,bust_rate:1.0}}},
-  "Christine": {stats:{all:{games:48,boom_rate:0.146,start_rate:0.292,mid_rate:0.396,bust_rate:0.167},regular:{games:39,boom_rate:0.179,start_rate:0.231,mid_rate:0.462,bust_rate:0.128},playoff:{games:2,boom_rate:0.0,start_rate:0.5,mid_rate:0.0,bust_rate:0.5},consolation:{games:7,boom_rate:0.0,start_rate:0.571,mid_rate:0.143,bust_rate:0.286}}},
-  "James":     {stats:{all:{games:15,boom_rate:0.0,start_rate:0.133,mid_rate:0.333,bust_rate:0.533},regular:{games:13,boom_rate:0.0,start_rate:0.077,mid_rate:0.385,bust_rate:0.538},playoff:null,consolation:{games:2,boom_rate:0.0,start_rate:0.5,mid_rate:0.0,bust_rate:0.5}}},
-  "Jon":       {stats:{all:{games:187,boom_rate:0.193,start_rate:0.305,mid_rate:0.257,bust_rate:0.246},regular:{games:161,boom_rate:0.199,start_rate:0.292,mid_rate:0.273,bust_rate:0.236},playoff:{games:9,boom_rate:0.222,start_rate:0.556,mid_rate:0.0,bust_rate:0.222},consolation:{games:17,boom_rate:0.118,start_rate:0.294,mid_rate:0.235,bust_rate:0.353}}},
-  "Michael V.":{stats:{all:{games:15,boom_rate:0.2,start_rate:0.2,mid_rate:0.4,bust_rate:0.2},regular:{games:14,boom_rate:0.214,start_rate:0.214,mid_rate:0.429,bust_rate:0.143},playoff:{games:1,boom_rate:0.0,start_rate:0.0,mid_rate:0.0,bust_rate:1.0},consolation:null}},
-  "Michelle C.":{stats:{all:{games:90,boom_rate:0.244,start_rate:0.233,mid_rate:0.333,bust_rate:0.189},regular:{games:78,boom_rate:0.244,start_rate:0.231,mid_rate:0.333,bust_rate:0.192},playoff:{games:1,boom_rate:0.0,start_rate:1.0,mid_rate:0.0,bust_rate:0.0},consolation:{games:11,boom_rate:0.273,start_rate:0.182,mid_rate:0.364,bust_rate:0.182}}},
-  "Michelle T.":{stats:{all:{games:46,boom_rate:0.348,start_rate:0.174,mid_rate:0.217,bust_rate:0.261},regular:{games:39,boom_rate:0.359,start_rate:0.205,mid_rate:0.179,bust_rate:0.256},playoff:{games:4,boom_rate:0.5,start_rate:0.0,mid_rate:0.5,bust_rate:0.0},consolation:{games:3,boom_rate:0.0,start_rate:0.0,mid_rate:0.333,bust_rate:0.667}}},
-  "Pauly":     {stats:{all:{games:16,boom_rate:0.125,start_rate:0.438,mid_rate:0.25,bust_rate:0.188},regular:{games:13,boom_rate:0.154,start_rate:0.385,mid_rate:0.308,bust_rate:0.154},playoff:null,consolation:{games:3,boom_rate:0.0,start_rate:0.667,mid_rate:0.0,bust_rate:0.333}}},
-  "Taylor":    {stats:{all:{games:46,boom_rate:0.196,start_rate:0.261,mid_rate:0.348,bust_rate:0.196},regular:{games:39,boom_rate:0.231,start_rate:0.179,mid_rate:0.359,bust_rate:0.231},playoff:{games:2,boom_rate:0.0,start_rate:0.5,mid_rate:0.5,bust_rate:0.0},consolation:{games:5,boom_rate:0.0,start_rate:0.8,mid_rate:0.2,bust_rate:0.0}}},
-  "Tim C.":    {stats:{all:{games:90,boom_rate:0.178,start_rate:0.311,mid_rate:0.278,bust_rate:0.233},regular:{games:78,boom_rate:0.167,start_rate:0.295,mid_rate:0.282,bust_rate:0.256},playoff:{games:4,boom_rate:0.5,start_rate:0.25,mid_rate:0.0,bust_rate:0.25},consolation:{games:8,boom_rate:0.125,start_rate:0.5,mid_rate:0.375,bust_rate:0.0}}},
-  "Tyler":     {stats:{all:{games:15,boom_rate:0.333,start_rate:0.267,mid_rate:0.267,bust_rate:0.133},regular:{games:13,boom_rate:0.308,start_rate:0.308,mid_rate:0.231,bust_rate:0.154},playoff:null,consolation:{games:2,boom_rate:0.5,start_rate:0.0,mid_rate:0.5,bust_rate:0.0}}},
-};
+function computeRanks() {
+  // Compute ranks for qualified owners (reg season games > 0, excludes Luke)
+  const qualified = Object.entries(ACTIVE)
+    .filter(([name, d]) => d.stats && d.stats.regular && d.stats.regular.games > 0 && name !== 'Luke')
+    .map(([name, d]) => ({ name, boom: d.stats.regular.boom_rate, start: d.stats.regular.start_rate }));
+
+  qualified.sort((a, b) => b.boom - a.boom);
+  qualified.forEach((o, i) => { RANKS[o.name] = RANKS[o.name] || {}; RANKS[o.name].boom = i + 1; });
+  qualified.sort((a, b) => b.start - a.start);
+  qualified.forEach((o, i) => { RANKS[o.name] = RANKS[o.name] || {}; RANKS[o.name].start = i + 1; });
+  RANK_N = qualified.length;
+}
 
 // ── HELPERS ───────────────────────────────────────────────────────────────────
 
@@ -925,16 +891,28 @@ document.querySelectorAll('.type-tab').forEach(btn => {
 
 // ── INIT ──────────────────────────────────────────────────────────────────────
 
-renderCards('all');
-renderTable('all');
-
 fetch('profiles-data.json')
   .then(r => r.json())
   .then(data => {
     const date = data.pageUpdates && data.pageUpdates['boom-start-bust'];
     if (date) document.getElementById('pageUpdated').textContent = 'Updated · ' + date;
+    const bb = data.boomBust || {};
+    // Build ACTIVE from JSON — convert from key-based to display-name-based
+    const activeRaw = bb.active || {};
+    ACTIVE = {};
+    for (const [key, val] of Object.entries(activeRaw)) {
+      ACTIVE[val.display] = {
+        archetype: val.archetype,
+        photoId: val.photoId,
+        stats: val.stats,
+      };
+    }
+    HISTORICAL = bb.historical || {};
+    computeRanks();
+    renderCards('all');
+    renderTable('all');
   })
-  .catch(() => {});
+  .catch(err => console.error('Failed to load boom/bust data:', err));
 </script>
 </body>
 </html>

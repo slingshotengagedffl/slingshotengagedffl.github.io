@@ -703,78 +703,9 @@ const PHOTOS = {
   'Wade':'images/wade.jpg','Luke':'images/luke.jpg','Jon':'images/jon.jpg',
 };
 
-const REIGNS = [
-  {num:1,  champ:'Michelle', full:'Michelle Corcoran',  year:2019, week:1,  weeks:1,  notes:'Inaugural champion. Won by posting the highest score in Week 1 — 156.2 pts.', defeated:[], sc:false},
-  {num:2,  champ:'Alex',     full:'Alex Vander Linden', year:2019, week:2,  weeks:12, notes:'Defended against every owner in the league. Never lost the belt.', defeated:['Meesh','Kyle','Jordan','Daniel','Brian','Dylan','Jack','Matt','Jon','Mike','Anthony','Tim'], sc:true},
-  {num:3,  champ:'Jack',     full:'Jack Corcoran',      year:2020, week:1,  weeks:2,  notes:'Defeated Alex, Dylan.', defeated:['Alex','Dylan'], sc:false},
-  {num:4,  champ:'Wade',     full:'Wade Alger',         year:2020, week:3,  weeks:2,  notes:'Defeated Jack, Alex.', defeated:['Jack','Alex'], sc:false},
-  {num:5,  champ:'Tim C',    full:'Timbē',              year:2020, week:5,  weeks:3,  notes:'Defeated Wade, Murph, Jack.', defeated:['Wade','Murph','Jack'], sc:false},
-  {num:6,  champ:'Matt',     full:'Matt Martinez',      year:2020, week:8,  weeks:3,  notes:'Defeated Timbē, Kyle, Jack.', defeated:['Timbē','Kyle','Jack'], sc:false},
-  {num:7,  champ:'Wade',     full:'Wade Alger',         year:2020, week:11, weeks:1,  notes:'Defeated Matt.', defeated:['Matt'], sc:false},
-  {num:8,  champ:'Jordan',   full:'Jordan Powell',      year:2020, week:12, weeks:1,  notes:'Defeated Wade.', defeated:['Wade'], sc:false},
-  {num:9,  champ:'Alex',     full:'Alex Vander Linden', year:2020, week:13, weeks:1,  notes:'Defeated Jordan. End of season champion.', defeated:['Jordan'], sc:true},
-  {num:10, champ:'Jack',     full:'Jack Corcoran',      year:2021, week:1,  weeks:1,  notes:'Defeated Alex.', defeated:['Alex'], sc:false},
-  {num:11, champ:'Mike V',   full:'Mike V',             year:2021, week:2,  weeks:1,  notes:'Defeated Jack.', defeated:['Jack'], sc:false},
-  {num:12, champ:'Daniel',   full:'Daniel Brenner',     year:2021, week:3,  weeks:1,  notes:'Defeated Mike V.', defeated:['Mike V'], sc:false},
-  {num:13, champ:'Wade',     full:'Wade Alger',         year:2021, week:4,  weeks:1,  notes:'Defeated Daniel.', defeated:['Daniel'], sc:false},
-  {num:14, champ:'Mike V',   full:'Mike V',             year:2021, week:5,  weeks:3,  notes:'Defeated Wade, Murph, Matt.', defeated:['Wade','Murph','Matt'], sc:false},
-  {num:15, champ:'Dylan',    full:'Dylan Thackston',    year:2021, week:8,  weeks:1,  notes:'Defeated Mike V.', defeated:['Mike V'], sc:false},
-  {num:16, champ:'Matt',     full:'Matt Martinez',      year:2021, week:9,  weeks:2,  notes:'Defeated Dylan, Wade.', defeated:['Dylan','Wade'], sc:false},
-  {num:17, champ:'Kyle',     full:'Kyle Gilbreath',     year:2021, week:11, weeks:4,  notes:'Defeated Matt, Daniel, Alex, Tim. End of season champion.', defeated:['Matt','Daniel','Alex','Tim'], sc:true},
-  {num:18, champ:'Mike',     full:'Mike Merrick',       year:2022, week:1,  weeks:4,  notes:'Defeated Kyle, Murph, Jordan, Jon.', defeated:['Kyle','Murph','Jordan','Jon'], sc:false},
-  {num:19, champ:'Daniel',   full:'Daniel Brenner',     year:2022, week:5,  weeks:1,  notes:'Defeated Merrick.', defeated:['Merrick'], sc:false},
-  {num:20, champ:'Wade',     full:'Wade Alger',         year:2022, week:6,  weeks:1,  notes:'Defeated Daniel.', defeated:['Daniel'], sc:false},
-  {num:21, champ:'Jack',     full:'Jack Corcoran',      year:2022, week:7,  weeks:5,  notes:'Defeated Wade, Jordan, Murph, Kyle, Tim.', defeated:['Wade','Jordan','Murph','Kyle','Tim'], sc:false},
-  {num:22, champ:'Mike',     full:'Mike Merrick',       year:2022, week:12, weeks:1,  notes:'Defeated Jack.', defeated:['Jack'], sc:false},
-  {num:23, champ:'Andy',     full:'Andy Jacobs',        year:2022, week:13, weeks:2,  notes:'Defeated Merrick, Merrick. End of season champion.', defeated:['Merrick','Merrick'], sc:true},
-  {num:24, champ:'Jack',     full:'Jack Corcoran',      year:2023, week:1,  weeks:1,  notes:'Defeated Andy.', defeated:['Andy'], sc:false},
-  {num:25, champ:'Dylan',    full:'Dylan Thackston',    year:2023, week:2,  weeks:1,  notes:'Defeated Jack.', defeated:['Jack'], sc:false},
-  {num:26, champ:'Tim',      full:'Tim Hermann',        year:2023, week:3,  weeks:2,  notes:'Defeated Dylan, Brian.', defeated:['Dylan','Brian'], sc:false},
-  {num:27, champ:'Jack',     full:'Jack Corcoran',      year:2023, week:5,  weeks:2,  notes:'Defeated Tim, Jordan.', defeated:['Tim','Jordan'], sc:false},
-  {num:28, champ:'Alex',     full:'Alex Vander Linden', year:2023, week:7,  weeks:2,  notes:'Defeated Jack, Andy.', defeated:['Jack','Andy'], sc:false},
-  {num:29, champ:'Wade',     full:'Wade Alger',         year:2023, week:9,  weeks:1,  notes:'Defeated Alex.', defeated:['Alex'], sc:false},
-  {num:30, champ:'Dylan',    full:'Dylan Thackston',    year:2023, week:10, weeks:4,  notes:'Defeated Wade, Jordan, Brian, Murph.', defeated:['Wade','Jordan','Brian','Murph'], sc:false},
-  {num:31, champ:'Alex',     full:'Alex Vander Linden', year:2023, week:14, weeks:1,  notes:'Defeated Dylan. End of season champion.', defeated:['Dylan'], sc:true},
-  {num:32, champ:'Jon',      full:'Jon Franks',         year:2024, week:1,  weeks:1,  notes:'Defeated Alex.', defeated:['Alex'], sc:false},
-  {num:33, champ:'Tim',      full:'Tim Hermann',        year:2024, week:2,  weeks:1,  notes:'Defeated Jon.', defeated:['Jon'], sc:false},
-  {num:34, champ:'Kyle',     full:'Kyle Gilbreath',     year:2024, week:3,  weeks:5,  notes:'Defeated Tim, Andy, Daniel, Matt, Scott.', defeated:['Tim','Andy','Daniel','Matt','Scott'], sc:false},
-  {num:35, champ:'Jon',      full:'Jon Franks',         year:2024, week:8,  weeks:1,  notes:'Defeated Kyle.', defeated:['Kyle'], sc:false},
-  {num:36, champ:'Brian',    full:'Brian Thackston',    year:2024, week:9,  weeks:2,  notes:'Defeated Jon, Kyle.', defeated:['Jon','Kyle'], sc:false},
-  {num:37, champ:'Andy',     full:'Andy Jacobs',        year:2024, week:11, weeks:2,  notes:'Defeated Brian, Alex.', defeated:['Brian','Alex'], sc:false},
-  {num:38, champ:'Tim',      full:'Tim Hermann',        year:2024, week:13, weeks:2,  notes:'Defeated Andy, Mike. End of season champion. Defeated Scott in Week 1 of 2025.', defeated:['Andy','Mike','Scott'], sc:true},
-  {num:39, champ:'Andy',     full:'Andy Jacobs',        year:2025, week:2,  weeks:1,  notes:'Defeated Tim.', defeated:['Tim'], sc:false},
-  {num:40, champ:'Kyle',     full:'Kyle Gilbreath',     year:2025, week:3,  weeks:1,  notes:'Defeated Andy.', defeated:['Andy'], sc:false},
-  {num:41, champ:'Mike',     full:'Mike Merrick',       year:2025, week:4,  weeks:1,  notes:'Defeated Kyle.', defeated:['Kyle'], sc:false},
-  {num:42, champ:'Matt',     full:'Matt Martinez',      year:2025, week:5,  weeks:3,  notes:'Defeated Mike, Brian, Wade.', defeated:['Mike','Brian','Wade'], sc:false},
-  {num:43, champ:'Alex',     full:'Alex Vander Linden', year:2025, week:8,  weeks:1,  notes:'Defeated Matt.', defeated:['Matt'], sc:false},
-  {num:44, champ:'Mike',     full:'Mike Merrick',       year:2025, week:9,  weeks:2,  notes:'Defeated Alex, Brian.', defeated:['Alex','Brian'], sc:false},
-  {num:45, champ:'Jack',     full:'Jack Corcoran',      year:2025, week:11, weeks:2,  notes:'Defeated Mike, Wade.', defeated:['Mike','Wade'], sc:false},
-  {num:46, champ:'Dylan',    full:'Dylan Thackston',    year:2025, week:13, weeks:2,  notes:'Defeated Jack, Alex. End of season champion.', defeated:['Jack','Alex'], sc:true},
-];
-
-const CAREER = [
-  {key:'Alex',    name:'Alex',    active:true,  reigns:5, wins:17, losses:9,  weeks:17, sc:true},
-  {key:'Jack',    name:'Jack',    active:true,  reigns:6, wins:13, losses:9,  weeks:13, sc:true},
-  {key:'Wade',    name:'Wade',    active:true,  reigns:5, wins:6,  losses:8,  weeks:6,  sc:false},
-  {key:'Kyle',    name:'Kyle',    active:true,  reigns:3, wins:10, losses:7,  weeks:10, sc:true},
-  {key:'Dylan',   name:'Dylan',   active:true,  reigns:4, wins:8,  losses:5,  weeks:8,  sc:true},
-  {key:'Mike',    name:'Mike M',  active:true,  reigns:4, wins:8,  losses:7,  weeks:8,  sc:false},
-  {key:'Matt',    name:'Matt',    active:true,  reigns:3, wins:8,  losses:6,  weeks:8,  sc:false},
-  {key:'Tim',     name:'Tim H',   active:true,  reigns:3, wins:6,  losses:5,  weeks:6,  sc:true},
-  {key:'Andy',    name:'Andy',    active:true,  reigns:3, wins:5,  losses:5,  weeks:5,  sc:true},
-  {key:'Jordan',  name:'Jordan',  active:true,  reigns:1, wins:1,  losses:6,  weeks:1,  sc:false},
-  {key:'Daniel',  name:'Daniel',  active:true,  reigns:2, wins:2,  losses:5,  weeks:2,  sc:false},
-  {key:'Brian',   name:'Brian',   active:true,  reigns:1, wins:2,  losses:6,  weeks:2,  sc:false},
-  {key:'Scott',   name:'Scott',   active:true,  reigns:0, wins:0,  losses:7,  weeks:0,  sc:false},
-  {key:'Luke',    name:'Luke',    active:true,  reigns:0, wins:0,  losses:0,  weeks:0,  sc:false},
-  {key:'Michelle',name:'Michelle C',active:false, reigns:1, wins:1,  losses:1,  weeks:1,  sc:false},
-  {key:'Mike V',  name:'Mike V',    active:false, reigns:2, wins:4,  losses:2,  weeks:4,  sc:false},
-  {key:'Tim C',   name:'Tim C',     active:false, reigns:1, wins:3,  losses:2,  weeks:3,  sc:false},
-  {key:'Jon',     name:'Jon',     active:false, reigns:2, wins:2,  losses:4,  weeks:2,  sc:false},
-];
-
-
-const SEASON_WEEKS = {2019:13, 2020:13, 2021:14, 2022:14, 2023:14, 2024:14, 2025:14};
+let REIGNS = [];
+let CAREER = [];
+let SEASON_WEEKS = {};
 
 function buildWeekMap(yr) {
   const totalWeeks = SEASON_WEEKS[yr];
@@ -938,15 +869,19 @@ function renderStats() {
   }).join('');
 }
 
-buildLineage();
-renderStats();
-
 fetch('profiles-data.json')
-  .then(r=>r.json())
-  .then(d=>{
+  .then(r => r.json())
+  .then(d => {
+    const ic = d.intercontinental || {};
+    REIGNS = ic.reigns || [];
+    CAREER = ic.career || [];
+    SEASON_WEEKS = ic.seasonWeeks || {};
     const date = d.pageUpdates && d.pageUpdates['intercontinental'];
-    if(date) document.getElementById('pageUpdated').textContent='Updated · '+date;
-  }).catch(()=>{});
+    if (date) document.getElementById('pageUpdated').textContent = 'Updated · ' + date;
+    buildLineage();
+    renderStats();
+  })
+  .catch(err => console.error('Failed to load intercontinental data:', err));
 </script>
 </body>
 </html>
