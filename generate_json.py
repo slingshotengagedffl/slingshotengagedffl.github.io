@@ -47,6 +47,11 @@ DISPLAY_NAMES = {
     'dylan': 'Dylan', 'jack': 'Jack', 'jordan': 'Jordan', 'kyle': 'Kyle',
     'luke': 'Luke', 'matt': 'Matt', 'mike': 'Mike M.', 'scott': 'Scott',
     'tim': 'Tim H.', 'wade': 'Wade',
+    'alex_m': 'Alex M.', 'anthony_b': 'Anthony B.', 'anthony_m': 'Anthony M.',
+    'christine': 'Christine', 'james': 'James', 'mike_v': 'Mike V.',
+    'michelle_c': 'Michelle C.', 'michelle_t': 'Michelle T.',
+    'pauly': 'Pauly', 'taylor': 'Taylor', 'tim_c': 'Tim C.', 'tyler': 'Tyler',
+    'jon': 'Jon',
 }
 
 # Display names for career records tables (matches what the HTML expects)

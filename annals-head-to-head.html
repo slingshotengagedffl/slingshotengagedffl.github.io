@@ -1058,9 +1058,13 @@ Promise.all([
   if (dateVal) document.getElementById('pageUpdated').textContent = 'Updated · ' + dateVal;
 
   // Translate h2h-data.json abbreviated fields → full field names the page expects
+  // Keys are rewritten from owner-key format (jack||jordan) to display-name format (Jack||Jordan)
+  // so getPairKey() lookups work correctly
   H2H = {};
   for (const [pairKey, pair] of Object.entries(h2hRaw)) {
-    H2H[pairKey] = {
+    // Build new key from display names, sorted alphabetically (same as getPairKey)
+    const displayKey = [pair.p0, pair.p1].sort().join('||');
+    H2H[displayKey] = {
       p0: pair.p0,
       p1: pair.p1,
       all: pair.all,
