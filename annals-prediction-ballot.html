@@ -334,6 +334,17 @@
     border: 1px solid var(--gold);
     font-weight: 700;
   }
+  .pts-tag {
+    display: inline-block;
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 0.95rem;
+    color: var(--gold);
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    font-weight: 700;
+    margin-left: 8px;
+    vertical-align: baseline;
+  }
   .form-help {
     display: block;
     font-family: 'Barlow', sans-serif;
@@ -724,16 +735,10 @@
       <div class="countdown" id="countdown"></div>
     </div>
 
-    <div class="counter-bar">
-      <span class="counter-text">Submissions In</span>
-      <span><span class="counter-num" id="submittedCount">0</span><span class="counter-text" style="margin-left:6px;"> / 14</span></span>
-    </div>
-    <div class="who-submitted" id="whoSubmitted"></div>
-
     <div class="section-title">Submit Your Predictions</div>
     <div class="form-card">
       <div class="form-field">
-        <label class="form-label" for="ownerSelect">Your Name</label>
+        <label class="form-label" for="ownerSelect">Choose Your Name</label>
         <select id="ownerSelect"><option value="">— Select your name —</option></select>
       </div>
 
@@ -743,6 +748,12 @@
 
       <div id="formMsg"></div>
     </div>
+
+    <div class="counter-bar">
+      <span class="counter-text">Submissions In</span>
+      <span><span class="counter-num" id="submittedCount">0</span><span class="counter-text" style="margin-left:6px;"> / 14</span></span>
+    </div>
+    <div class="who-submitted" id="whoSubmitted"></div>
 
     <div class="rules-card" id="rulesCard">
       <h3>How Scoring Works <span class="rules-chev">▼</span></h3>
@@ -903,13 +914,18 @@ function buildForm() {
   const ryderA = dbState?.config?.ryderCupMatchup?.teamA || "Team A";
   const ryderB = dbState?.config?.ryderCupMatchup?.teamB || "Team B";
 
+  // Build a "pts" descriptor for each category label
+  function ptsDesc(cat) {
+    if (cat.type === "ff") return `${cat.perHit} pts per hit · max ${cat.basePoints}`;
+    if (cat.type === "finish") return `5 / 3 / 1 pts (exact / ±1 / ±2)`;
+    return `${cat.basePoints} pts`;
+  }
+
   let html = '';
 
   CATEGORIES.forEach(cat => {
     html += `<div class="form-field" data-cat="${cat.key}">`;
-    html += `<label class="form-label">${escapeHTML(cat.label)}`;
-    if (cat.moneyball) html += `<span class="mb-marker" title="Moneyball-eligible">MB</span>`;
-    html += `</label>`;
+    html += `<label class="form-label">${escapeHTML(cat.label)} <span class="pts-tag">${ptsDesc(cat)}</span></label>`;
 
     if (cat.type === "owner") {
       const exclude = cat.exclude || [];
@@ -919,7 +935,7 @@ function buildForm() {
       html += `</select>`;
 
     } else if (cat.type === "ff") {
-      html += `<span class="form-help">Pick 4 owners you think will reach the playoff semifinals (no duplicates).</span>`;
+      html += `<span class="form-help">Pick 4 owners you think will reach the playoff semifinals.</span>`;
       html += `<div class="ff-grid">`;
       for (let i = 0; i < 4; i++) {
         html += `<select data-key="${cat.key}" data-slot="${i}" required>`;
@@ -930,8 +946,12 @@ function buildForm() {
       html += `</div>`;
 
     } else if (cat.type === "finish") {
-      html += `<span class="form-help">Where do you think you'll finish in the regular season (1 = first, 14 = last)?</span>`;
-      html += `<input type="number" min="1" max="14" step="1" data-key="${cat.key}" required />`;
+      html += `<span class="form-help">Where do you think you'll finish in the regular season?</span>`;
+      html += `<select data-key="${cat.key}" required><option value="">— Pick —</option>`;
+      for (let i = 1; i <= 14; i++) {
+        html += `<option value="${i}">${i}${getOrdinal(i)} place</option>`;
+      }
+      html += `</select>`;
 
     } else if (cat.type === "yn") {
       html += `<div class="radio-group" data-key="${cat.key}">`;
@@ -951,14 +971,13 @@ function buildForm() {
 
   // Moneyball selector
   const mbCats = CATEGORIES.filter(c => c.moneyball);
-  html += `<div class="form-field"><label class="form-label">Moneyball Pick <span class="mb-marker">+${MONEYBALL_BONUS} BONUS</span></label>`;
+  html += `<div class="form-field"><label class="form-label">Moneyball Pick <span class="pts-tag">+${MONEYBALL_BONUS} bonus</span></label>`;
   html += `<span class="form-help">Pick one category you're most confident in. If you nail it exactly, you earn ${MONEYBALL_BONUS} bonus points.</span>`;
   html += `<select data-key="moneyball" required><option value="">— Choose one category —</option>`;
   mbCats.forEach(c => html += `<option value="${c.key}">${escapeHTML(c.label)}</option>`);
   html += `</select></div>`;
 
   html += `<button type="button" class="submit-btn" id="submitBtn">Submit My Predictions</button>`;
-  html += `<button type="button" class="secondary-btn" id="switchOwnerBtn" style="margin-top:8px;">Switch to Different Owner</button>`;
 
   formBody.innerHTML = html;
 
@@ -978,13 +997,6 @@ function buildForm() {
   ffSelects.forEach(sel => sel.addEventListener("change", () => updateFFDupePrevention(ffSelects)));
 
   $("submitBtn").addEventListener("click", onSubmit);
-  $("switchOwnerBtn").addEventListener("click", () => {
-    myOwnerId = null;
-    $("ownerSelect").value = "";
-    $("formBody").classList.add("hidden");
-    $("formMsg").innerHTML = "";
-    window.scrollTo({ top: 0, behavior: "smooth" });
-  });
 }
 
 function updateFFDupePrevention(ffSelects) {
@@ -1015,8 +1027,8 @@ function prefillForm(picks) {
       });
       updateFFDupePrevention(formBody.querySelectorAll('select[data-key="finalFour"]'));
     } else if (cat.type === "finish") {
-      const inp = formBody.querySelector(`input[data-key="${cat.key}"]`);
-      if (inp) inp.value = val;
+      const sel = formBody.querySelector(`select[data-key="${cat.key}"]`);
+      if (sel) sel.value = val;
     } else if (cat.type === "yn" || cat.type === "ryder") {
       const group = formBody.querySelector(`.radio-group[data-key="${cat.key}"]`);
       if (group) {
@@ -1050,9 +1062,9 @@ function collectFormPicks() {
       if (new Set(arr).size !== 4) return { error: `Final Four picks must be 4 different owners.` };
       picks[cat.key] = arr;
     } else if (cat.type === "finish") {
-      const inp = formBody.querySelector(`input[data-key="${cat.key}"]`);
-      const n = parseInt(inp?.value, 10);
-      if (!n || n < 1 || n > 14) return { error: `Enter a finish position 1–14 for ${cat.label}.` };
+      const sel = formBody.querySelector(`select[data-key="${cat.key}"]`);
+      const n = parseInt(sel?.value, 10);
+      if (!n || n < 1 || n > 14) return { error: `Pick where you'll finish for ${cat.label}.` };
       picks[cat.key] = n;
     } else if (cat.type === "yn" || cat.type === "ryder") {
       const group = formBody.querySelector(`.radio-group[data-key="${cat.key}"]`);
