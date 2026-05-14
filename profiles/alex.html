@@ -1549,7 +1549,7 @@ function renderProfile(p) {
 
   const lastGame = p.currentSeason.lastGame;
   const nextGame = p.currentSeason.nextGame;
-  const resultClass = lastGame.result === 'W' ? 'win' : 'loss';
+  const resultClass = lastGame && lastGame.result === 'W' ? 'win' : 'loss';
 
   const traitsHTML = p.traits.map(t => `
     <div class="trait-item">
@@ -1581,7 +1581,7 @@ function renderProfile(p) {
 
   const nextGameHTML = `
       <div class="live-last-game" style="margin-top:10px; padding-top:10px; border-top:1px solid var(--border);">
-        <span class="last-game-label">Next Game</span>
+        <span class="last-game-label">Next Game${nextGame && nextGame.week ? ` · Week ${nextGame.week}` : ''}</span>
         <div class="last-game-result">
           <div class="last-game-detail">vs. ${d(nextGame && nextGame.opponent ? nextGame.opponent : null)}</div>
         </div>
@@ -1601,6 +1601,14 @@ function renderProfile(p) {
 
   const WIN_PCT_STATS = ['Win %'];
   const AVG_FINISH_STATS = ['Avg Finish'];
+
+  function ordinal(n) {
+    if (n == null || isNaN(parseInt(n))) return n;
+    const num = parseInt(n);
+    const s = ['th', 'st', 'nd', 'rd'];
+    const v = num % 100;
+    return num + (s[(v - 20) % 10] || s[v] || s[0]);
+  }
 
   function renderStatBucket(stats) {
     return stats.map(s => {
@@ -1629,7 +1637,7 @@ function renderProfile(p) {
         </div>
         <div class="stats-right">
           <span class="stats-val${s.isEarnings && displayVal !== '—' ? (parseFloat(String(displayVal).replace(/[^\d.-]/g,'')) >= 0 ? ' earnings' : ' luck-neg') : s.stat === 'Luck Rate' && displayVal !== '—' ? (parseFloat(displayVal) >= 0 ? ' luck-pos' : ' luck-neg') : ''}">${s.stat === 'Luck Rate' && displayVal !== '—' ? (parseFloat(displayVal) >= 0 ? '+' : '') + displayVal : displayVal}</span>
-          ${s.rank ? `<span class="stats-rank">(${s.rank})</span>` : ''}
+          ${s.rank ? `<span class="stats-rank">(${ordinal(s.rank)})</span>` : ''}
         </div>
       </div>`;
     }).join('');
@@ -1790,11 +1798,17 @@ function renderProfile(p) {
       </div>
       <div class="live-last-game">
         <span class="last-game-label">Last Game</span>
+        ${lastGame ? `
         <div class="last-game-result">
           <div class="result-pill ${resultClass}">${lastGame.result}</div>
           <div class="last-game-detail">vs. ${d(lastGame.opponent)} · ${d(lastGame.score)}</div>
         </div>
         <div class="last-game-record">Lifetime ${d(lastGame.lifetimeVsOpponent)}</div>
+        ` : `
+        <div class="last-game-result">
+          <div class="last-game-detail" style="color:var(--muted);">Season hasn't started</div>
+        </div>
+        `}
       </div>
       ${nextGameHTML}
     </div>
