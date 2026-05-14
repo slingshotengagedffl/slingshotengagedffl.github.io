@@ -367,9 +367,10 @@ def get_last_game(matchups, key, year):
         'result': result,
         'score': round(my_score, 2),
         'oppScore': round(opp_score, 2),
-        'opponent': DISPLAY_NAMES.get(opp_key, opp_key.capitalize()) if opp_key else '—',
+        'opponent': DISPLAY_NAMES.get(opp_key, opp_key) if opp_key else '—',
         'opponentKey': opp_key,
         'type': gtype,
+        'lifetimeVsOpponent': None,  # not computed; shown as — on profile
     }
 
 def rank_owners(stat_dict, reverse=True):
@@ -645,7 +646,18 @@ def build_profiles_data(matchups, season_stats, all_time_lucky, existing_json, n
     if next_game is None:
         next_game = {}
     today = date.today().isoformat()
+    # Use max year of COMPLETED games only (not blank-score upcoming rows)
     current_year = matchups['Year'].max()
+
+    # Build prestige lookup: owner display name -> {rank, points}
+    prestige_list = existing_json.get('prestige', [])
+    prestige_by_name = {}
+    for i, entry in enumerate(prestige_list):
+        prestige_by_name[entry['name']] = {
+            'rank': i + 1,
+            'outOf': len(prestige_list),
+            'points': entry.get('pts', 0),
+        }
 
     career_stats, season_avgs, weekly_highs = compute_career_stats(matchups)
     finals, final_fours, championships = compute_playoff_structure(matchups)
@@ -710,7 +722,16 @@ def build_profiles_data(matchups, season_stats, all_time_lucky, existing_json, n
         existing_owner = existing_json.get('owners', {}).get(key, {})
         s = career_stats.get(key, {})
         if not s:
-            owners_out[key] = existing_owner
+            # Owner has no game history (e.g. Luke) — preserve existing but update year
+            owner_stub = dict(existing_owner)
+            if 'currentSeason' in owner_stub:
+                owner_stub['currentSeason'] = dict(owner_stub['currentSeason'])
+                owner_stub['currentSeason']['year'] = int(current_year)
+            owner_stub['prestige'] = prestige_by_name.get(
+                DISPLAY_NAMES.get(key, key),
+                existing_owner.get('prestige', {'rank': None, 'outOf': 27, 'points': 0})
+            )
+            owners_out[key] = owner_stub
             continue
 
         reg_games = s['reg_games']
@@ -896,6 +917,10 @@ def build_profiles_data(matchups, season_stats, all_time_lucky, existing_json, n
             },
             'seasons': seasons_list,
             'headToHead': owner_h2h,
+            'prestige': prestige_by_name.get(
+                DISPLAY_NAMES.get(key, key),
+                existing_owner.get('prestige', {'rank': None, 'outOf': 27, 'points': 0})
+            ),
         }
 
         owners_out[key] = owner_out
