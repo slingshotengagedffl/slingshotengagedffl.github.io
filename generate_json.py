@@ -90,34 +90,43 @@ def load_xlsx(path):
     upcoming_raw['game_type'] = upcoming_raw['Regular/Playoff/Consolation'].str.strip()
 
     # Build nextGame lookup: owner_key -> {week, year, opponent, opponentKey, type}
+    # For each owner, pick their EARLIEST upcoming game (lowest year, then lowest week).
+    # Sort by year+week ascending so the first row encountered per owner is the earliest.
     next_game = {}
-    for _, row in upcoming_raw.iterrows():
-        ak = row['away_key']
-        hk = row['home_key']
-        yr = int(row['Year'])
-        wk = int(row['Week'])
-        gtype = row['game_type'] if isinstance(row['game_type'], str) else 'Regular'
-        if ak and hk:
-            next_game[ak] = {
-                'week': wk,
-                'year': yr,
-                'opponent': DISPLAY_NAMES.get(hk, hk),
-                'opponentKey': hk,
-                'type': gtype,
-            }
-            next_game[hk] = {
-                'week': wk,
-                'year': yr,
-                'opponent': DISPLAY_NAMES.get(ak, ak),
-                'opponentKey': ak,
-                'type': gtype,
-            }
+    if not upcoming_raw.empty:
+        upcoming_sorted = upcoming_raw.sort_values(['Year', 'Week'])
+        for _, row in upcoming_sorted.iterrows():
+            ak = row['away_key']
+            hk = row['home_key']
+            yr = int(row['Year'])
+            wk = int(row['Week'])
+            gtype = row['game_type'] if isinstance(row['game_type'], str) else 'Regular'
+            if ak and hk:
+                if ak not in next_game:
+                    next_game[ak] = {
+                        'week': wk,
+                        'year': yr,
+                        'opponent': DISPLAY_NAMES.get(hk, hk),
+                        'opponentKey': hk,
+                        'type': gtype,
+                    }
+                if hk not in next_game:
+                    next_game[hk] = {
+                        'week': wk,
+                        'year': yr,
+                        'opponent': DISPLAY_NAMES.get(ak, ak),
+                        'opponentKey': ak,
+                        'type': gtype,
+                    }
 
     matchups = matchups.dropna(subset=['Away Score','Home Score'])
     matchups['away_key'] = matchups['Away Owner'].apply(get_key)
     matchups['home_key'] = matchups['Home Owner'].apply(get_key)
     matchups['game_type'] = matchups['Regular/Playoff/Consolation'].str.strip()
-    return matchups, season_stats, all_time_lucky, next_game
+
+    # Max upcoming year across ALL upcoming rows (used by build_profiles_data for offseason detection)
+    max_upcoming_year = int(upcoming_raw['Year'].max()) if not upcoming_raw.empty else None
+    return matchups, season_stats, all_time_lucky, next_game, max_upcoming_year
 
 def compute_career_stats(matchups):
     stats = defaultdict(lambda: {
@@ -642,12 +651,26 @@ def build_h2h_data(matchups, h2h_logs):
         }
     return out
 
-def build_profiles_data(matchups, season_stats, all_time_lucky, existing_json, next_game=None):
+def build_profiles_data(matchups, season_stats, all_time_lucky, existing_json, next_game=None, max_upcoming_year=None):
     if next_game is None:
         next_game = {}
     today = date.today().isoformat()
-    # Use max year of COMPLETED games only (not blank-score upcoming rows)
-    current_year = matchups['Year'].max()
+    # max_completed_year: most recent year with any completed games
+    max_completed_year = int(matchups['Year'].max())
+
+    # Offseason rule: if blank-score rows exist for a future year (greater than the latest
+    # completed year), we are in the offseason. The "display year" becomes that future year,
+    # currentSeason resets to a blank shell, but all career stats still come from completed games.
+    if max_upcoming_year is not None and max_upcoming_year > max_completed_year:
+        display_year = max_upcoming_year
+        is_offseason = True
+    else:
+        display_year = max_completed_year
+        is_offseason = False
+
+    # current_year drives data lookups (season_records, standings, ss_lookup, last_game) —
+    # in offseason we still pull from max_completed_year (it's just not displayed).
+    current_year = max_completed_year
 
     # Build prestige lookup: owner display name -> {rank, points}
     prestige_list = existing_json.get('prestige', [])
@@ -726,7 +749,8 @@ def build_profiles_data(matchups, season_stats, all_time_lucky, existing_json, n
             owner_stub = dict(existing_owner)
             if 'currentSeason' in owner_stub:
                 owner_stub['currentSeason'] = dict(owner_stub['currentSeason'])
-                owner_stub['currentSeason']['year'] = int(current_year)
+                owner_stub['currentSeason']['year'] = int(display_year)
+                owner_stub['currentSeason']['nextGame'] = next_game.get(key) or None
             owner_stub['prestige'] = prestige_by_name.get(
                 DISPLAY_NAMES.get(key, key),
                 existing_owner.get('prestige', {'rank': None, 'outOf': 27, 'points': 0})
@@ -761,6 +785,20 @@ def build_profiles_data(matchups, season_stats, all_time_lucky, existing_json, n
         luck_curr = safe_round(ss_row.get('Lucky/Unlucky %'), 4) if hasattr(ss_row, 'get') else None
         prestige_curr = safe_round(ss_row.get('Prestige Earned'), 0) if hasattr(ss_row, 'get') else None
         net_earn_curr = safe_round(ss_row.get('Net Earnings'), 2) if hasattr(ss_row, 'get') else None
+
+        # Attach lifetime record vs upcoming opponent to nextGame, if applicable
+        owner_next_game = next_game.get(key)
+        if owner_next_game:
+            owner_next_game = dict(owner_next_game)  # don't mutate shared dict
+            opp_key = owner_next_game.get('opponentKey')
+            if opp_key:
+                opp_record = h2h_summary.get(key, {}).get(opp_key, {}).get('all')
+                if opp_record:
+                    owner_next_game['lifetimeVsOpponent'] = f"{opp_record.get('w0', 0)}-{opp_record.get('w1', 0)}"
+                else:
+                    owner_next_game['lifetimeVsOpponent'] = None
+            else:
+                owner_next_game['lifetimeVsOpponent'] = None
 
         lucky_row = lucky_lookup.get(key, {})
         career_luck = safe_round(lucky_row.get('Lucky/Unlucky %'), 4) if hasattr(lucky_row, 'get') else None
@@ -828,6 +866,18 @@ def build_profiles_data(matchups, season_stats, all_time_lucky, existing_json, n
 
         chart_years = sorted(s['seasons'])
         wins_chart = [season_records[key].get(yr, {}).get('wins', 0) for yr in chart_years]
+        # Finish chart: regular-season standing per year. Prefer the value stored in
+        # existing_owner.seasons[*].finish (editorial / historical), fall back to
+        # compute_standings(matchups, yr) so the chart still renders if seasons data is missing.
+        existing_seasons_by_year = {sn.get('year'): sn for sn in existing_owner.get('seasons', [])}
+        finish_chart = []
+        for yr in chart_years:
+            existing_yr_entry = existing_seasons_by_year.get(yr, {})
+            fin = existing_yr_entry.get('finish')
+            if fin is None:
+                yr_standings = compute_standings(matchups, yr)
+                fin = yr_standings.get(key)
+            finish_chart.append(fin)
         pt_share_chart = []
         for yr in chart_years:
             yr_all = matchups[matchups['Year'] == yr]
@@ -853,6 +903,48 @@ def build_profiles_data(matchups, season_stats, all_time_lucky, existing_json, n
                 'consolation': records['consolation'],
             }
 
+        # Build currentSeason: in offseason, all live stats reset; only year + teamName (if preset)
+        # + nextGame are populated. Career stats elsewhere are unaffected.
+        if is_offseason:
+            # Try to find a preset team name for the upcoming year in Season Stats; otherwise
+            # fall back to whatever is in the existing JSON's currentSeason.teamName (if any),
+            # otherwise null.
+            upcoming_ss_row = ss_lookup.get((key, display_year), {})
+            upcoming_team_name = upcoming_ss_row.get('Team Name', '') if hasattr(upcoming_ss_row, 'get') else ''
+            if not upcoming_team_name or str(upcoming_team_name) == 'nan':
+                existing_cs = existing_owner.get('currentSeason', {}) or {}
+                existing_team_name = existing_cs.get('teamName') if existing_cs.get('year') == display_year else None
+                upcoming_team_name = existing_team_name
+            current_season_block = {
+                'year': int(display_year),
+                'record': '0-0',
+                'standing': None,
+                'ptsPerGame': None,
+                'teamName': str(upcoming_team_name) if upcoming_team_name and str(upcoming_team_name) != 'nan' else None,
+                'powerScore': None,
+                'weeksAt1': 0,
+                'luckRate': None,
+                'prestigeEarned': 0,
+                'netEarnings': 0,
+                'lastGame': None,
+                'nextGame': owner_next_game or None,
+            }
+        else:
+            current_season_block = {
+                'year': int(display_year),
+                'record': f"{curr_wins}-{curr_losses}",
+                'standing': curr_standing,
+                'ptsPerGame': safe_round(curr_ppg),
+                'teamName': str(team_name_curr) if team_name_curr and str(team_name_curr) != 'nan' else None,
+                'powerScore': power_score_curr,
+                'weeksAt1': int(weeks_at_1_curr) if (weeks_at_1_curr and not pd.isna(weeks_at_1_curr)) else 0,
+                'luckRate': luck_curr,
+                'prestigeEarned': int(prestige_curr) if (prestige_curr and not pd.isna(prestige_curr)) else 0,
+                'netEarnings': net_earn_curr,
+                'lastGame': last_game,
+                'nextGame': owner_next_game or None,
+            }
+
         owner_out = {
             'name': existing_owner.get('name', key.capitalize()),
             'nickname': existing_owner.get('nickname'),
@@ -869,20 +961,7 @@ def build_profiles_data(matchups, season_stats, all_time_lucky, existing_json, n
             'rivalries': existing_owner.get('rivalries', {}),
             'trophies': existing_owner.get('trophies', []),
             'lastUpdated': existing_owner.get('lastUpdated'),
-            'currentSeason': {
-                'year': int(current_year),
-                'record': f"{curr_wins}-{curr_losses}",
-                'standing': curr_standing,
-                'ptsPerGame': safe_round(curr_ppg),
-                'teamName': str(team_name_curr) if team_name_curr and str(team_name_curr) != 'nan' else None,
-                'powerScore': power_score_curr,
-                'weeksAt1': int(weeks_at_1_curr) if (weeks_at_1_curr and not pd.isna(weeks_at_1_curr)) else 0,
-                'luckRate': luck_curr,
-                'prestigeEarned': int(prestige_curr) if (prestige_curr and not pd.isna(prestige_curr)) else 0,
-                'netEarnings': net_earn_curr,
-                'lastGame': last_game,
-                'nextGame': next_game.get(key) or None,
-            },
+            'currentSeason': current_season_block,
             'careerStats': {
                 'general': existing_owner.get('careerStats', {}).get('general', []),
                 'regularSeason': [
@@ -909,10 +988,13 @@ def build_profiles_data(matchups, season_stats, all_time_lucky, existing_json, n
                 ],
             },
             'charts': {
-                'years': chart_years,
-                'wins': {'values': wins_chart, 'label': 'Wins'},
+                'winsAndFinish': {
+                    'years': chart_years,
+                    'wins': wins_chart,
+                    'finish': finish_chart,
+                },
                 'pointShare': {'values': pt_share_chart, 'label': 'Point Share'},
-                'prestige': {'values': prestige_chart, 'label': 'Prestige'},
+                'prestigePerSeason': {'values': prestige_chart, 'label': 'Prestige'},
                 'winnings': {'values': winnings_chart, 'label': 'Net Earnings'},
             },
             'seasons': seasons_list,
@@ -929,7 +1011,7 @@ def build_profiles_data(matchups, season_stats, all_time_lucky, existing_json, n
 
 def main(xlsx_path, profiles_json_path, output_profiles_path, output_h2h_path):
     print("Loading data...")
-    matchups, season_stats, all_time_lucky, next_game = load_xlsx(xlsx_path)
+    matchups, season_stats, all_time_lucky, next_game, max_upcoming_year = load_xlsx(xlsx_path)
 
     with open(profiles_json_path) as f:
         existing_json = json.load(f)
@@ -956,7 +1038,7 @@ def main(xlsx_path, profiles_json_path, output_profiles_path, output_h2h_path):
                 career_power_scores[k].append(float(ps))
 
     print("Building profiles data...")
-    owners_out = build_profiles_data(matchups, season_stats, all_time_lucky, existing_json, next_game)
+    owners_out = build_profiles_data(matchups, season_stats, all_time_lucky, existing_json, next_game, max_upcoming_year)
 
     print("Building career records...")
     career_records = build_career_records(

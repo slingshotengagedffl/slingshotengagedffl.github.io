@@ -130,26 +130,17 @@
       ],
       "lastUpdated": null,
       "currentSeason": {
-        "year": 2025,
-        "record": "5-9",
-        "standing": 14,
-        "ptsPerGame": 82.69,
-        "teamName": "no such thing as halfway rooks",
-        "powerScore": 99.06,
+        "year": 2026,
+        "record": "0-0",
+        "standing": null,
+        "ptsPerGame": null,
+        "teamName": null,
+        "powerScore": null,
         "weeksAt1": 0,
-        "luckRate": -0.0055,
-        "prestigeEarned": 32,
-        "netEarnings": -15.0,
-        "lastGame": {
-          "week": 14,
-          "result": "L",
-          "score": 64.84,
-          "oppScore": 69.9,
-          "opponent": "Brian",
-          "opponentKey": "brian",
-          "type": "Regular",
-          "lifetimeVsOpponent": null
-        },
+        "luckRate": null,
+        "prestigeEarned": 0,
+        "netEarnings": 0,
+        "lastGame": null,
         "nextGame": null
       },
       "careerStats": {
@@ -291,17 +282,17 @@
         ]
       },
       "charts": {
-        "years": [
-          2019,
-          2020,
-          2021,
-          2022,
-          2023,
-          2024,
-          2025
-        ],
-        "wins": {
-          "values": [
+        "winsAndFinish": {
+          "years": [
+            2019,
+            2020,
+            2021,
+            2022,
+            2023,
+            2024,
+            2025
+          ],
+          "wins": [
             4,
             8,
             7,
@@ -310,7 +301,15 @@
             4,
             5
           ],
-          "label": "Wins"
+          "finish": [
+            13,
+            5,
+            7,
+            7,
+            10,
+            13,
+            14
+          ]
         },
         "pointShare": {
           "values": [
@@ -324,7 +323,7 @@
           ],
           "label": "Point Share"
         },
-        "prestige": {
+        "prestigePerSeason": {
           "values": [
             35,
             69,
@@ -883,26 +882,17 @@
       ],
       "lastUpdated": null,
       "currentSeason": {
-        "year": 2025,
-        "record": "9-5",
-        "standing": 4,
-        "ptsPerGame": 92.63,
-        "teamName": "\ud83e\udd77 RageCage \ud83e\udd77",
-        "powerScore": 126.68,
+        "year": 2026,
+        "record": "0-0",
+        "standing": null,
+        "ptsPerGame": null,
+        "teamName": null,
+        "powerScore": null,
         "weeksAt1": 0,
-        "luckRate": 0.1044,
-        "prestigeEarned": 510,
-        "netEarnings": 273.0,
-        "lastGame": {
-          "week": 17,
-          "result": "W",
-          "score": 142.12,
-          "oppScore": 109.88,
-          "opponent": "Mike M.",
-          "opponentKey": "mike",
-          "type": "Playoff",
-          "lifetimeVsOpponent": null
-        },
+        "luckRate": null,
+        "prestigeEarned": 0,
+        "netEarnings": 0,
+        "lastGame": null,
         "nextGame": null
       },
       "careerStats": {
@@ -1044,21 +1034,21 @@
         ]
       },
       "charts": {
-        "years": [
-          2015,
-          2016,
-          2017,
-          2018,
-          2019,
-          2020,
-          2021,
-          2022,
-          2023,
-          2024,
-          2025
-        ],
-        "wins": {
-          "values": [
+        "winsAndFinish": {
+          "years": [
+            2015,
+            2016,
+            2017,
+            2018,
+            2019,
+            2020,
+            2021,
+            2022,
+            2023,
+            2024,
+            2025
+          ],
+          "wins": [
             8,
             6,
             10,
@@ -1071,7 +1061,19 @@
             8,
             9
           ],
-          "label": "Wins"
+          "finish": [
+            4,
+            7,
+            1,
+            6,
+            3,
+            14,
+            2,
+            9,
+            2,
+            7,
+            4
+          ]
         },
         "pointShare": {
           "values": [
@@ -1089,7 +1091,7 @@
           ],
           "label": "Point Share"
         },
-        "prestige": {
+        "prestigePerSeason": {
           "values": [
             53,
             59,
@@ -1807,26 +1809,17 @@
       ],
       "lastUpdated": null,
       "currentSeason": {
-        "year": 2025,
-        "record": "8-6",
-        "standing": 5,
-        "ptsPerGame": 90.08,
-        "teamName": "Rookie Hazing Committee",
-        "powerScore": 115.85,
+        "year": 2026,
+        "record": "0-0",
+        "standing": null,
+        "ptsPerGame": null,
+        "teamName": null,
+        "powerScore": null,
         "weeksAt1": 0,
-        "luckRate": 0.0604,
-        "prestigeEarned": 192,
-        "netEarnings": 99.0,
-        "lastGame": {
-          "week": 17,
-          "result": "L",
-          "score": 109.88,
-          "oppScore": 142.12,
-          "opponent": "Dylan",
-          "opponentKey": "dylan",
-          "type": "Playoff",
-          "lifetimeVsOpponent": null
-        },
+        "luckRate": null,
+        "prestigeEarned": 0,
+        "netEarnings": 0,
+        "lastGame": null,
         "nextGame": null
       },
       "careerStats": {
@@ -1968,22 +1961,22 @@
         ]
       },
       "charts": {
-        "years": [
-          2014,
-          2015,
-          2016,
-          2017,
-          2018,
-          2019,
-          2020,
-          2021,
-          2022,
-          2023,
-          2024,
-          2025
-        ],
-        "wins": {
-          "values": [
+        "winsAndFinish": {
+          "years": [
+            2014,
+            2015,
+            2016,
+            2017,
+            2018,
+            2019,
+            2020,
+            2021,
+            2022,
+            2023,
+            2024,
+            2025
+          ],
+          "wins": [
             9,
             7,
             3,
@@ -1997,7 +1990,20 @@
             8,
             8
           ],
-          "label": "Wins"
+          "finish": [
+            3,
+            6,
+            14,
+            4,
+            11,
+            9,
+            1,
+            10,
+            2,
+            8,
+            5,
+            5
+          ]
         },
         "pointShare": {
           "values": [
@@ -2016,7 +2022,7 @@
           ],
           "label": "Point Share"
         },
-        "prestige": {
+        "prestigePerSeason": {
           "values": [
             119,
             52,
@@ -2788,26 +2794,17 @@
       ],
       "lastUpdated": null,
       "currentSeason": {
-        "year": 2025,
-        "record": "10-4",
-        "standing": 1,
-        "ptsPerGame": 104.98,
-        "teamName": "Proper Feck'n Eejits \u2618\ufe0f",
-        "powerScore": 146.38,
-        "weeksAt1": 5,
-        "luckRate": 0.0714,
-        "prestigeEarned": 191,
-        "netEarnings": 110.0,
-        "lastGame": {
-          "week": 17,
-          "result": "W",
-          "score": 92.38,
-          "oppScore": 66.98,
-          "opponent": "Jon",
-          "opponentKey": "jon",
-          "type": "Consolation",
-          "lifetimeVsOpponent": null
-        },
+        "year": 2026,
+        "record": "0-0",
+        "standing": null,
+        "ptsPerGame": null,
+        "teamName": null,
+        "powerScore": null,
+        "weeksAt1": 0,
+        "luckRate": null,
+        "prestigeEarned": 0,
+        "netEarnings": 0,
+        "lastGame": null,
         "nextGame": null
       },
       "careerStats": {
@@ -2949,22 +2946,22 @@
         ]
       },
       "charts": {
-        "years": [
-          2014,
-          2015,
-          2016,
-          2017,
-          2018,
-          2019,
-          2020,
-          2021,
-          2022,
-          2023,
-          2024,
-          2025
-        ],
-        "wins": {
-          "values": [
+        "winsAndFinish": {
+          "years": [
+            2014,
+            2015,
+            2016,
+            2017,
+            2018,
+            2019,
+            2020,
+            2021,
+            2022,
+            2023,
+            2024,
+            2025
+          ],
+          "wins": [
             10,
             7,
             7,
@@ -2978,7 +2975,20 @@
             6,
             10
           ],
-          "label": "Wins"
+          "finish": [
+            1,
+            5,
+            5,
+            5,
+            1,
+            2,
+            9,
+            8,
+            8,
+            3,
+            11,
+            1
+          ]
         },
         "pointShare": {
           "values": [
@@ -2997,7 +3007,7 @@
           ],
           "label": "Point Share"
         },
-        "prestige": {
+        "prestigePerSeason": {
           "values": [
             251,
             108,
@@ -3772,26 +3782,17 @@
       ],
       "lastUpdated": null,
       "currentSeason": {
-        "year": 2025,
-        "record": "5-9",
-        "standing": 13,
-        "ptsPerGame": 83.68,
-        "teamName": "Meat Raffle Musketeers",
-        "powerScore": 100.67,
+        "year": 2026,
+        "record": "0-0",
+        "standing": null,
+        "ptsPerGame": null,
+        "teamName": null,
+        "powerScore": null,
         "weeksAt1": 0,
-        "luckRate": -0.0495,
-        "prestigeEarned": 36,
-        "netEarnings": -77.0,
-        "lastGame": {
-          "week": 14,
-          "result": "L",
-          "score": 71.86,
-          "oppScore": 73.22,
-          "opponent": "Dylan",
-          "opponentKey": "dylan",
-          "type": "Regular",
-          "lifetimeVsOpponent": null
-        },
+        "luckRate": null,
+        "prestigeEarned": 0,
+        "netEarnings": 0,
+        "lastGame": null,
         "nextGame": null
       },
       "careerStats": {
@@ -3933,20 +3934,20 @@
         ]
       },
       "charts": {
-        "years": [
-          2016,
-          2017,
-          2018,
-          2019,
-          2020,
-          2021,
-          2022,
-          2023,
-          2024,
-          2025
-        ],
-        "wins": {
-          "values": [
+        "winsAndFinish": {
+          "years": [
+            2016,
+            2017,
+            2018,
+            2019,
+            2020,
+            2021,
+            2022,
+            2023,
+            2024,
+            2025
+          ],
+          "wins": [
             9,
             8,
             5,
@@ -3958,7 +3959,18 @@
             3,
             5
           ],
-          "label": "Wins"
+          "finish": [
+            3,
+            6,
+            10,
+            1,
+            3,
+            9,
+            10,
+            1,
+            14,
+            13
+          ]
         },
         "pointShare": {
           "values": [
@@ -3975,7 +3987,7 @@
           ],
           "label": "Point Share"
         },
-        "prestige": {
+        "prestigePerSeason": {
           "values": [
             145,
             107,
@@ -4540,20 +4552,18 @@
         }
       ],
       "currentSeason": {
-        "year": 2025,
-        "record": null,
+        "year": 2026,
+        "record": "0-0",
         "standing": null,
         "ptsPerGame": null,
-        "lastGame": {
-          "result": null,
-          "opponent": null,
-          "score": null,
-          "lifetimeVsOpponent": null
-        },
-        "nextGame": {
-          "opponent": null,
-          "lifetimeVsOpponent": null
-        }
+        "teamName": null,
+        "powerScore": null,
+        "weeksAt1": 0,
+        "luckRate": null,
+        "prestigeEarned": 0,
+        "netEarnings": 0,
+        "lastGame": null,
+        "nextGame": null
       },
       "rivalries": {
         "owns": [],
@@ -4788,7 +4798,7 @@
             null
           ]
         },
-        "winnings": {
+        "prestigePerSeason": {
           "years": [
             2014,
             2015,
@@ -4820,7 +4830,7 @@
             null
           ]
         },
-        "prestigePerSeason": {
+        "winnings": {
           "years": [
             2014,
             2015,
@@ -5057,26 +5067,17 @@
       ],
       "lastUpdated": null,
       "currentSeason": {
-        "year": 2025,
-        "record": "5-9",
-        "standing": 11,
-        "ptsPerGame": 85.91,
-        "teamName": "Bronco Boy",
-        "powerScore": 101.25,
+        "year": 2026,
+        "record": "0-0",
+        "standing": null,
+        "ptsPerGame": null,
+        "teamName": null,
+        "powerScore": null,
         "weeksAt1": 0,
-        "luckRate": -0.0824,
-        "prestigeEarned": 24,
-        "netEarnings": -110.0,
-        "lastGame": {
-          "week": 14,
-          "result": "L",
-          "score": 71.14,
-          "oppScore": 76.42,
-          "opponent": "Tim H.",
-          "opponentKey": "tim",
-          "type": "Regular",
-          "lifetimeVsOpponent": null
-        },
+        "luckRate": null,
+        "prestigeEarned": 0,
+        "netEarnings": 0,
+        "lastGame": null,
         "nextGame": null
       },
       "careerStats": {
@@ -5218,20 +5219,25 @@
         ]
       },
       "charts": {
-        "years": [
-          2022,
-          2023,
-          2024,
-          2025
-        ],
-        "wins": {
-          "values": [
+        "winsAndFinish": {
+          "years": [
+            2022,
+            2023,
+            2024,
+            2025
+          ],
+          "wins": [
             12,
             6,
             6,
             5
           ],
-          "label": "Wins"
+          "finish": [
+            1,
+            11,
+            9,
+            11
+          ]
         },
         "pointShare": {
           "values": [
@@ -5242,7 +5248,7 @@
           ],
           "label": "Point Share"
         },
-        "prestige": {
+        "prestigePerSeason": {
           "values": [
             198,
             43,
@@ -5690,26 +5696,17 @@
       ],
       "lastUpdated": null,
       "currentSeason": {
-        "year": 2025,
-        "record": "5-9",
-        "standing": 12,
-        "ptsPerGame": 85.69,
-        "teamName": "Mike \ud83d\udca9's standing up",
-        "powerScore": 103.0,
+        "year": 2026,
+        "record": "0-0",
+        "standing": null,
+        "ptsPerGame": null,
+        "teamName": null,
+        "powerScore": null,
         "weeksAt1": 0,
-        "luckRate": -0.0769,
-        "prestigeEarned": 29,
-        "netEarnings": -67.0,
-        "lastGame": {
-          "week": 17,
-          "result": "W",
-          "score": 80.26,
-          "oppScore": 68.98,
-          "opponent": "Daniel",
-          "opponentKey": "daniel",
-          "type": "Consolation",
-          "lifetimeVsOpponent": null
-        },
+        "luckRate": null,
+        "prestigeEarned": 0,
+        "netEarnings": 0,
+        "lastGame": null,
         "nextGame": null
       },
       "careerStats": {
@@ -5851,16 +5848,16 @@
         ]
       },
       "charts": {
-        "years": [
-          2020,
-          2021,
-          2022,
-          2023,
-          2024,
-          2025
-        ],
-        "wins": {
-          "values": [
+        "winsAndFinish": {
+          "years": [
+            2020,
+            2021,
+            2022,
+            2023,
+            2024,
+            2025
+          ],
+          "wins": [
             4,
             7,
             3,
@@ -5868,7 +5865,14 @@
             9,
             5
           ],
-          "label": "Wins"
+          "finish": [
+            12,
+            6,
+            13,
+            14,
+            3,
+            12
+          ]
         },
         "pointShare": {
           "values": [
@@ -5881,7 +5885,7 @@
           ],
           "label": "Point Share"
         },
-        "prestige": {
+        "prestigePerSeason": {
           "values": [
             19,
             114,
@@ -6390,26 +6394,17 @@
       ],
       "lastUpdated": null,
       "currentSeason": {
-        "year": 2025,
-        "record": "9-5",
-        "standing": 2,
-        "ptsPerGame": 99.06,
-        "teamName": "All Pain No Gain",
-        "powerScore": 133.92,
+        "year": 2026,
+        "record": "0-0",
+        "standing": null,
+        "ptsPerGame": null,
+        "teamName": null,
+        "powerScore": null,
         "weeksAt1": 0,
-        "luckRate": -0.0055,
-        "prestigeEarned": 99,
-        "netEarnings": 35.0,
-        "lastGame": {
-          "week": 15,
-          "result": "L",
-          "score": 78.8,
-          "oppScore": 101.26,
-          "opponent": "Mike M.",
-          "opponentKey": "mike",
-          "type": "Playoff",
-          "lifetimeVsOpponent": null
-        },
+        "luckRate": null,
+        "prestigeEarned": 0,
+        "netEarnings": 0,
+        "lastGame": null,
         "nextGame": null
       },
       "careerStats": {
@@ -6551,22 +6546,22 @@
         ]
       },
       "charts": {
-        "years": [
-          2014,
-          2015,
-          2016,
-          2017,
-          2018,
-          2019,
-          2020,
-          2021,
-          2022,
-          2023,
-          2024,
-          2025
-        ],
-        "wins": {
-          "values": [
+        "winsAndFinish": {
+          "years": [
+            2014,
+            2015,
+            2016,
+            2017,
+            2018,
+            2019,
+            2020,
+            2021,
+            2022,
+            2023,
+            2024,
+            2025
+          ],
+          "wins": [
             7,
             5,
             9,
@@ -6580,7 +6575,20 @@
             7,
             9
           ],
-          "label": "Wins"
+          "finish": [
+            5,
+            10,
+            2,
+            7,
+            4,
+            8,
+            13,
+            13,
+            6,
+            13,
+            8,
+            2
+          ]
         },
         "pointShare": {
           "values": [
@@ -6599,7 +6607,7 @@
           ],
           "label": "Point Share"
         },
-        "prestige": {
+        "prestigePerSeason": {
           "values": [
             60,
             34,
@@ -7376,26 +7384,17 @@
       ],
       "lastUpdated": null,
       "currentSeason": {
-        "year": 2025,
-        "record": "7-7",
-        "standing": 8,
-        "ptsPerGame": 94.36,
-        "teamName": "Wyfe Swappin Frogs",
-        "powerScore": 119.29,
+        "year": 2026,
+        "record": "0-0",
+        "standing": null,
+        "ptsPerGame": null,
+        "teamName": null,
+        "powerScore": null,
         "weeksAt1": 0,
-        "luckRate": 0.0165,
-        "prestigeEarned": 53,
-        "netEarnings": -75.0,
-        "lastGame": {
-          "week": 17,
-          "result": "L",
-          "score": 68.98,
-          "oppScore": 80.26,
-          "opponent": "Tim H.",
-          "opponentKey": "tim",
-          "type": "Consolation",
-          "lifetimeVsOpponent": null
-        },
+        "luckRate": null,
+        "prestigeEarned": 0,
+        "netEarnings": 0,
+        "lastGame": null,
         "nextGame": null
       },
       "careerStats": {
@@ -7537,22 +7536,22 @@
         ]
       },
       "charts": {
-        "years": [
-          2014,
-          2015,
-          2016,
-          2017,
-          2018,
-          2019,
-          2020,
-          2021,
-          2022,
-          2023,
-          2024,
-          2025
-        ],
-        "wins": {
-          "values": [
+        "winsAndFinish": {
+          "years": [
+            2014,
+            2015,
+            2016,
+            2017,
+            2018,
+            2019,
+            2020,
+            2021,
+            2022,
+            2023,
+            2024,
+            2025
+          ],
+          "wins": [
             8,
             5,
             10,
@@ -7566,7 +7565,20 @@
             10,
             7
           ],
-          "label": "Wins"
+          "finish": [
+            4,
+            11,
+            1,
+            10,
+            3,
+            14,
+            10,
+            14,
+            4,
+            9,
+            2,
+            8
+          ]
         },
         "pointShare": {
           "values": [
@@ -7585,7 +7597,7 @@
           ],
           "label": "Point Share"
         },
-        "prestige": {
+        "prestigePerSeason": {
           "values": [
             113,
             31,
@@ -8377,26 +8389,17 @@
       ],
       "lastUpdated": null,
       "currentSeason": {
-        "year": 2025,
-        "record": "7-7",
-        "standing": 6,
-        "ptsPerGame": 103.98,
-        "teamName": "72 inches of glizz",
-        "powerScore": 132.56,
-        "weeksAt1": 2,
-        "luckRate": -0.0769,
-        "prestigeEarned": 87,
-        "netEarnings": -75.0,
-        "lastGame": {
-          "week": 15,
-          "result": "L",
-          "score": 88.98,
-          "oppScore": 101.24,
-          "opponent": "Dylan",
-          "opponentKey": "dylan",
-          "type": "Playoff",
-          "lifetimeVsOpponent": null
-        },
+        "year": 2026,
+        "record": "0-0",
+        "standing": null,
+        "ptsPerGame": null,
+        "teamName": null,
+        "powerScore": null,
+        "weeksAt1": 0,
+        "luckRate": null,
+        "prestigeEarned": 0,
+        "netEarnings": 0,
+        "lastGame": null,
         "nextGame": null
       },
       "careerStats": {
@@ -8538,18 +8541,18 @@
         ]
       },
       "charts": {
-        "years": [
-          2018,
-          2019,
-          2020,
-          2021,
-          2022,
-          2023,
-          2024,
-          2025
-        ],
-        "wins": {
-          "values": [
+        "winsAndFinish": {
+          "years": [
+            2018,
+            2019,
+            2020,
+            2021,
+            2022,
+            2023,
+            2024,
+            2025
+          ],
+          "wins": [
             9,
             7,
             7,
@@ -8559,7 +8562,16 @@
             10,
             7
           ],
-          "label": "Wins"
+          "finish": [
+            2,
+            5,
+            6,
+            4,
+            3,
+            5,
+            1,
+            6
+          ]
         },
         "pointShare": {
           "values": [
@@ -8574,7 +8586,7 @@
           ],
           "label": "Point Share"
         },
-        "prestige": {
+        "prestigePerSeason": {
           "values": [
             258,
             65,
@@ -9181,26 +9193,17 @@
       ],
       "lastUpdated": null,
       "currentSeason": {
-        "year": 2025,
-        "record": "6-8",
-        "standing": 10,
-        "ptsPerGame": 83.01,
-        "teamName": "BellBrkzBgBodac BtfBncyBrzlnBty",
-        "powerScore": 105.52,
+        "year": 2026,
+        "record": "0-0",
+        "standing": null,
+        "ptsPerGame": null,
+        "teamName": null,
+        "powerScore": null,
         "weeksAt1": 0,
-        "luckRate": 0.044,
-        "prestigeEarned": 37,
-        "netEarnings": -55.0,
-        "lastGame": {
-          "week": 14,
-          "result": "L",
-          "score": 103.86,
-          "oppScore": 110.64,
-          "opponent": "Jon",
-          "opponentKey": "jon",
-          "type": "Regular",
-          "lifetimeVsOpponent": null
-        },
+        "luckRate": null,
+        "prestigeEarned": 0,
+        "netEarnings": 0,
+        "lastGame": null,
         "nextGame": null
       },
       "careerStats": {
@@ -9342,16 +9345,16 @@
         ]
       },
       "charts": {
-        "years": [
-          2020,
-          2021,
-          2022,
-          2023,
-          2024,
-          2025
-        ],
-        "wins": {
-          "values": [
+        "winsAndFinish": {
+          "years": [
+            2020,
+            2021,
+            2022,
+            2023,
+            2024,
+            2025
+          ],
+          "wins": [
             8,
             6,
             5,
@@ -9359,7 +9362,14 @@
             9,
             6
           ],
-          "label": "Wins"
+          "finish": [
+            4,
+            11,
+            12,
+            6,
+            4,
+            10
+          ]
         },
         "pointShare": {
           "values": [
@@ -9372,7 +9382,7 @@
           ],
           "label": "Point Share"
         },
-        "prestige": {
+        "prestigePerSeason": {
           "values": [
             65,
             29,
@@ -9870,26 +9880,17 @@
       ],
       "lastUpdated": null,
       "currentSeason": {
-        "year": 2025,
-        "record": "9-5",
-        "standing": 3,
-        "ptsPerGame": 93.48,
-        "teamName": "El Bod de Padre",
-        "powerScore": 126.65,
-        "weeksAt1": 7,
-        "luckRate": 0.1264,
-        "prestigeEarned": 134,
-        "netEarnings": 54.0,
-        "lastGame": {
-          "week": 15,
-          "result": "L",
-          "score": 105.06,
-          "oppScore": 156.54,
-          "opponent": "Jon",
-          "opponentKey": "jon",
-          "type": "Playoff",
-          "lifetimeVsOpponent": null
-        },
+        "year": 2026,
+        "record": "0-0",
+        "standing": null,
+        "ptsPerGame": null,
+        "teamName": null,
+        "powerScore": null,
+        "weeksAt1": 0,
+        "luckRate": null,
+        "prestigeEarned": 0,
+        "netEarnings": 0,
+        "lastGame": null,
         "nextGame": null
       },
       "careerStats": {
@@ -10031,21 +10032,21 @@
         ]
       },
       "charts": {
-        "years": [
-          2015,
-          2016,
-          2017,
-          2018,
-          2019,
-          2020,
-          2021,
-          2022,
-          2023,
-          2024,
-          2025
-        ],
-        "wins": {
-          "values": [
+        "winsAndFinish": {
+          "years": [
+            2015,
+            2016,
+            2017,
+            2018,
+            2019,
+            2020,
+            2021,
+            2022,
+            2023,
+            2024,
+            2025
+          ],
+          "wins": [
             7,
             3,
             4,
@@ -10058,7 +10059,19 @@
             4,
             9
           ],
-          "label": "Wins"
+          "finish": [
+            9,
+            13,
+            13,
+            13,
+            6,
+            7,
+            5,
+            11,
+            7,
+            12,
+            3
+          ]
         },
         "pointShare": {
           "values": [
@@ -10076,7 +10089,7 @@
           ],
           "label": "Point Share"
         },
-        "prestige": {
+        "prestigePerSeason": {
           "values": [
             50,
             29,
@@ -10783,26 +10796,17 @@
       ],
       "lastUpdated": null,
       "currentSeason": {
-        "year": 2025,
-        "record": "6-8",
-        "standing": 9,
-        "ptsPerGame": 90.43,
-        "teamName": "Gibbs Libs",
-        "powerScore": 110.57,
+        "year": 2026,
+        "record": "0-0",
+        "standing": null,
+        "ptsPerGame": null,
+        "teamName": null,
+        "powerScore": null,
         "weeksAt1": 0,
-        "luckRate": -0.022,
-        "prestigeEarned": 34,
-        "netEarnings": -90.0,
-        "lastGame": {
-          "week": 14,
-          "result": "W",
-          "score": 117.76,
-          "oppScore": 84.64,
-          "opponent": "Kyle",
-          "opponentKey": "kyle",
-          "type": "Regular",
-          "lifetimeVsOpponent": null
-        },
+        "luckRate": null,
+        "prestigeEarned": 0,
+        "netEarnings": 0,
+        "lastGame": null,
         "nextGame": null
       },
       "careerStats": {
@@ -10944,22 +10948,22 @@
         ]
       },
       "charts": {
-        "years": [
-          2014,
-          2015,
-          2016,
-          2017,
-          2018,
-          2019,
-          2020,
-          2021,
-          2022,
-          2023,
-          2024,
-          2025
-        ],
-        "wins": {
-          "values": [
+        "winsAndFinish": {
+          "years": [
+            2014,
+            2015,
+            2016,
+            2017,
+            2018,
+            2019,
+            2020,
+            2021,
+            2022,
+            2023,
+            2024,
+            2025
+          ],
+          "wins": [
             7,
             5,
             9,
@@ -10973,7 +10977,20 @@
             6,
             6
           ],
-          "label": "Wins"
+          "finish": [
+            6,
+            12,
+            4,
+            12,
+            8,
+            10,
+            8,
+            12,
+            14,
+            4,
+            10,
+            9
+          ]
         },
         "pointShare": {
           "values": [
@@ -10992,7 +11009,7 @@
           ],
           "label": "Point Share"
         },
-        "prestige": {
+        "prestigePerSeason": {
           "values": [
             30,
             28,
