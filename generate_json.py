@@ -43,10 +43,10 @@ NAME_TO_KEY = {
 ACTIVE_KEYS = {'alex','andy','brian','daniel','dylan','jack','jordan','kyle','luke','matt','mike','scott','tim','wade'}
 
 DISPLAY_NAMES = {
-    'alex': 'Alex', 'andy': 'Andy', 'brian': 'Brian', 'daniel': 'Daniel',
+    'alex': 'Alex V.', 'andy': 'Andy', 'brian': 'Brian', 'daniel': 'Daniel',
     'dylan': 'Dylan', 'jack': 'Jack', 'jordan': 'Jordan', 'kyle': 'Kyle',
-    'luke': 'Luke', 'matt': 'Matt', 'mike': 'Mike', 'scott': 'Scott',
-    'tim': 'Tim', 'wade': 'Wade',
+    'luke': 'Luke', 'matt': 'Matt', 'mike': 'Mike M.', 'scott': 'Scott',
+    'tim': 'Tim H.', 'wade': 'Wade',
     'alex_m': 'Alex M.', 'anthony_b': 'Anthony B.', 'anthony_m': 'Anthony M.',
     'christine': 'Christine', 'james': 'James', 'mike_v': 'Mike V.',
     'michelle_c': 'Michelle C.', 'michelle_t': 'Michelle T.',
