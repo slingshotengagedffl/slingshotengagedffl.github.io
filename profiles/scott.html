@@ -1601,6 +1601,7 @@ function renderProfile(p) {
 
   const WIN_PCT_STATS = ['Win %'];
   const AVG_FINISH_STATS = ['Avg Finish'];
+  const PERCENT_STATS = ['Point Share', 'Boom Rate', 'Start Rate', 'Luck Rate'];
 
   function ordinal(n) {
     if (n == null || isNaN(parseInt(n))) return n;
@@ -1608,6 +1609,15 @@ function renderProfile(p) {
     const s = ['th', 'st', 'nd', 'rd'];
     const v = num % 100;
     return num + (s[(v - 20) % 10] || s[v] || s[0]);
+  }
+
+  // Rank from script comes as '#1' or 'T-3' string; display as-is.
+  function formatRank(r) {
+    if (r == null) return '';
+    const str = String(r);
+    if (str.startsWith('#') || str.startsWith('T-')) return str;
+    if (!isNaN(parseInt(str))) return '#' + parseInt(str);
+    return str;
   }
 
   function renderStatBucket(stats) {
@@ -1620,6 +1630,13 @@ function renderProfile(p) {
       } else if (AVG_FINISH_STATS.includes(s.stat) && displayVal !== '—') {
         const num = parseFloat(displayVal);
         if (!isNaN(num)) displayVal = num.toFixed(1);
+      } else if (PERCENT_STATS.includes(s.stat) && displayVal !== '—') {
+        // Raw decimal (0.0341) or percent (3.41); normalize to "3.41%"
+        const num = parseFloat(displayVal);
+        if (!isNaN(num)) {
+          const asPct = (Math.abs(num) < 1) ? num * 100 : num;
+          displayVal = asPct.toFixed(2) + '%';
+        }
       } else if (s.isEarnings && displayVal !== '—') {
         const num = parseFloat(String(displayVal).replace(/[^\d.-]/g, ''));
         if (!isNaN(num)) {
@@ -1629,6 +1646,7 @@ function renderProfile(p) {
       } else if (typeof displayVal === 'number' && displayVal >= 1000) {
         displayVal = displayVal.toLocaleString('en-US');
       }
+      const luckPrefix = (s.stat === 'Luck Rate' && displayVal !== '—' && parseFloat(displayVal) >= 0) ? '+' : '';
       return `
       <div class="stats-row">
         <div class="stats-left">
@@ -1636,8 +1654,8 @@ function renderProfile(p) {
           ${explainer ? `<span class="stats-explainer">${explainer}</span>` : ''}
         </div>
         <div class="stats-right">
-          <span class="stats-val${s.isEarnings && displayVal !== '—' ? (parseFloat(String(displayVal).replace(/[^\d.-]/g,'')) >= 0 ? ' earnings' : ' luck-neg') : s.stat === 'Luck Rate' && displayVal !== '—' ? (parseFloat(displayVal) >= 0 ? ' luck-pos' : ' luck-neg') : ''}">${s.stat === 'Luck Rate' && displayVal !== '—' ? (parseFloat(displayVal) >= 0 ? '+' : '') + displayVal : displayVal}</span>
-          ${s.rank ? `<span class="stats-rank">(${ordinal(s.rank)})</span>` : ''}
+          <span class="stats-val${s.isEarnings && displayVal !== '—' ? (parseFloat(String(displayVal).replace(/[^\d.-]/g,'')) >= 0 ? ' earnings' : ' luck-neg') : s.stat === 'Luck Rate' && displayVal !== '—' ? (parseFloat(displayVal) >= 0 ? ' luck-pos' : ' luck-neg') : ''}">${luckPrefix}${displayVal}</span>
+          ${s.rank ? `<span class="stats-rank">(${formatRank(s.rank)})</span>` : ''}
         </div>
       </div>`;
     }).join('');
@@ -1663,17 +1681,18 @@ function renderProfile(p) {
 
   function seasonBadge(result) {
     const map = {
-      champion: ['badge-champion', 'Champion'],
-      finalist: ['badge-finalist', 'Finalist'],
-      playoff:  ['badge-playoff', 'Playoffs'],
-      missed:   ['badge-missed', 'Missed'],
-      bronze:   ['badge-bronze', 'Bronze Franz']
+      champion:  ['badge-champion', 'Champion'],
+      finalist:  ['badge-finalist', 'Finalist'],
+      semifinal: ['badge-playoff', 'Semifinals'],
+      playoff:   ['badge-playoff', 'Playoffs'],
+      missed:    ['badge-missed', 'Missed'],
+      bronze:    ['badge-bronze', 'Bronze Franz']
     };
     const [cls, label] = map[result] || ['badge-missed', 'Missed'];
     return `<span class="trigger-badge ${cls}">${label}</span>`;
   }
 
-  const seasonsHTML = p.seasons.map(s => {
+  const seasonsHTML = p.seasons.slice().reverse().map(s => {
     const badgeHTML = s.result ? seasonBadge(s.result) : '';
     const rec = d(s.record);
     const fin = s.finish != null ? s.finish + ' Place' : '—';
@@ -1699,7 +1718,13 @@ function renderProfile(p) {
           <div class="acc-row"><span class="acc-label">Finish</span><span class="acc-val">${s.finish != null ? s.finish + (s.finish === 1 ? "st" : s.finish === 2 ? "nd" : s.finish === 3 ? "rd" : "th") : "—"}</span></div>
           <div class="acc-row"><span class="acc-label">Record</span><span class="acc-val">${d(s.record)}</span></div>
           <div class="acc-row"><span class="acc-label">Points Per Game</span><span class="acc-val">${s.ptsPerGame != null ? parseFloat(s.ptsPerGame).toFixed(2) : "—"}</span></div>
-          <div class="acc-row"><span class="acc-label">Point Share</span><span class="acc-val">${d(s.pointShare)}</span></div>
+          <div class="acc-row"><span class="acc-label">Point Share</span><span class="acc-val">${(() => {
+            if (s.pointShare == null) return '—';
+            const n = parseFloat(String(s.pointShare).replace('%',''));
+            if (isNaN(n)) return '—';
+            const asPct = (Math.abs(n) < 1) ? n * 100 : n;
+            return asPct.toFixed(2) + '%';
+          })()}</span></div>
           <div class="acc-row"><span class="acc-label">Power Score</span><span class="acc-val">${s.powerScore != null ? parseFloat(s.powerScore).toFixed(1) : "—"}</span></div>
         </div>
         <div class="acc-bucket">
@@ -2081,7 +2106,14 @@ function renderCompare(ownerAId, ownerBId) {
       return parseFloat(v).toFixed(3);
     }
     if (label === 'Avg Finish') {
-      return parseFloat(v).toFixed(1);
+      return parseFloat(v).toFixed(2);
+    }
+    if (label === 'Point Share' || label === 'Boom Rate' || label === 'Start Rate' || label === 'Luck Rate') {
+      const n = parseFloat(v);
+      if (isNaN(n)) return '—';
+      const asPct = (Math.abs(n) < 1) ? n * 100 : n;
+      const prefix = (label === 'Luck Rate' && asPct >= 0) ? '+' : '';
+      return prefix + asPct.toFixed(2) + '%';
     }
     if (typeof v === 'number' && v >= 1000) {
       return v.toLocaleString('en-US');
@@ -2185,10 +2217,10 @@ function renderCompare(ownerAId, ownerBId) {
   const rsRows = [
     statRow('Wins', getStat(me,'regularSeason','Wins'), getStat(opp,'regularSeason','Wins')),
     statRow('Win %', getStat(me,'regularSeason','Win %'), getStat(opp,'regularSeason','Win %')),
-    statRow('Avg Finish', getStat(me,'regularSeason','Avg Finish'), getStat(opp,'regularSeason','Avg Finish'), true, 'lower is better'),
-    statRow('Pts / Game', getStat(me,'regularSeason','Pts Per Game'), getStat(opp,'regularSeason','Pts Per Game')),
+    statRow('Avg Finish', getStat(me,'general','Avg Finish'), getStat(opp,'general','Avg Finish'), true, 'lower is better'),
+    statRow('Pts / Game', getStat(me,'regularSeason','PPG'), getStat(opp,'regularSeason','PPG')),
     statRow('Point Share', getStat(me,'regularSeason','Point Share'), getStat(opp,'regularSeason','Point Share'), false, '% of total league points scored since joining the league'),
-    statRow('Career High', getStat(me,'regularSeason','Career High Score'), getStat(opp,'regularSeason','Career High Score')),
+    statRow('Career High', getStat(me,'regularSeason','High Score'), getStat(opp,'regularSeason','High Score')),
     statRow('Weekly High Scores', getStat(me,'regularSeason','Weekly High Scores'), getStat(opp,'regularSeason','Weekly High Scores')),
     statRow('Power Score', getStat(me,'regularSeason','Power Score'), getStat(opp,'regularSeason','Power Score')),
     statRow('Weeks at #1 in Power Score', getStat(me,'regularSeason','Weeks at #1'), getStat(opp,'regularSeason','Weeks at #1')),
@@ -2198,18 +2230,34 @@ function renderCompare(ownerAId, ownerBId) {
   ];
 
   const poRows = [
-    statRow('Appearances', getStat(me,'playoffs','Appearances'), getStat(opp,'playoffs','Appearances')),
-    statRow('Wins', getStat(me,'playoffs','Wins'), getStat(opp,'playoffs','Wins')),
-    statRow('Win %', getStat(me,'playoffs','Win %'), getStat(opp,'playoffs','Win %')),
+    statRow('Appearances', getStat(me,'playoffs','Playoff Appearances'), getStat(opp,'playoffs','Playoff Appearances')),
+    statRow('Wins', getStat(me,'playoffs','Playoff Wins'), getStat(opp,'playoffs','Playoff Wins')),
+    statRow('Final Fours', getStat(me,'playoffs','Final Fours'), getStat(opp,'playoffs','Final Fours')),
+    statRow('Finals', getStat(me,'playoffs','Finals'), getStat(opp,'playoffs','Finals')),
     statRow('Championships', getStat(me,'playoffs','Championships'), getStat(opp,'playoffs','Championships')),
   ];
 
   // ── CHARTS ──
-  const YEARS = [2014,2015,2016,2017,2018,2019,2020,2021,2022,2023,2024,2025,2026];
+  // Derive YEARS from whichever side has chart data — both sides should share the same x-axis
+  // since the script now outputs 2014→current_year with nulls for non-played years.
+  const meYears = (me && me.charts && me.charts.winsAndFinish && me.charts.winsAndFinish.years) || null;
+  const oppYears = (opp && opp.charts && opp.charts.winsAndFinish && opp.charts.winsAndFinish.years) || null;
+  const YEARS = meYears || oppYears || [2014,2015,2016,2017,2018,2019,2020,2021,2022,2023,2024,2025];
   const chartLabels = YEARS.map(y => "'" + String(y).slice(2));
 
   function getChartArr(owner, key, subkey) {
-    try { return owner.charts[key][subkey]; } catch(e) { return YEARS.map(() => null); }
+    try {
+      const arr = owner.charts[key][subkey];
+      // Pad/truncate to match YEARS length so two owners with different ranges still align.
+      if (arr.length === YEARS.length) return arr;
+      // If owner.charts[key].years exists, align by year
+      const ownerYears = (owner.charts.winsAndFinish && owner.charts.winsAndFinish.years) || YEARS;
+      const map = {};
+      ownerYears.forEach((y, i) => { map[y] = arr[i]; });
+      return YEARS.map(y => map[y] != null ? map[y] : null);
+    } catch(e) {
+      return YEARS.map(() => null);
+    }
   }
 
   const cmpTooltipDefaults = {
@@ -2935,10 +2983,10 @@ function initCharts(p) {
     const num = parseFloat(v);
     return parseFloat((num < 1 ? num * 100 : num).toFixed(2));
   });
-  const wData = c.winnings.values;
+  const wData = (c.grossEarnings && c.grossEarnings.values) ? c.grossEarnings.values : c.winnings.values;
   const prData = c.prestigePerSeason.values;
   const prAvg = (() => {
-    const valid = prData.filter(v => v != null && v > 0);
+    const valid = prData.filter(v => v != null && !isNaN(v) && v > 0);
     return valid.length ? parseFloat((valid.reduce((a,b) => a+b, 0) / valid.length).toFixed(1)) : 0;
   })();
 
@@ -2970,16 +3018,17 @@ function initCharts(p) {
   const interactionOpts = { mode: 'nearest', intersect: false, axis: 'x' };
 
   function trendLine(data) {
-    const clean = data.filter(v => v !== null);
-    if (clean.length < 2) return data.map(() => null);
-    const n = data.length;
-    const xMean = (n - 1) / 2;
-    const yMean = data.reduce((a, b) => a + (b || 0), 0) / n;
+    // Only use non-null values, but keep x-positions aligned with original array
+    const indices = data.map((y, x) => ({x, y})).filter(p => p.y != null && !isNaN(p.y));
+    if (indices.length < 2) return data.map(() => null);
+    const n = indices.length;
+    const xMean = indices.reduce((a, p) => a + p.x, 0) / n;
+    const yMean = indices.reduce((a, p) => a + p.y, 0) / n;
     let num = 0, den = 0;
-    data.forEach((y, x) => { if (y !== null) { num += (x - xMean) * (y - yMean); den += (x - xMean) ** 2; } });
+    indices.forEach(p => { num += (p.x - xMean) * (p.y - yMean); den += (p.x - xMean) ** 2; });
     const slope = den ? num / den : 0;
     const intercept = yMean - slope * xMean;
-    return data.map((_, x) => parseFloat((slope * x + intercept).toFixed(2)));
+    return data.map((y, x) => y == null ? null : parseFloat((slope * x + intercept).toFixed(2)));
   }
 
   const chartBuilders = {};
