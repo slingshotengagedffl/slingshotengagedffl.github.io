@@ -43,10 +43,10 @@ NAME_TO_KEY = {
 ACTIVE_KEYS = {'alex','andy','brian','daniel','dylan','jack','jordan','kyle','luke','matt','mike','scott','tim','wade'}
 
 DISPLAY_NAMES = {
-    'alex': 'Alex V.', 'andy': 'Andy', 'brian': 'Brian', 'daniel': 'Daniel',
+    'alex': 'Alex', 'andy': 'Andy', 'brian': 'Brian', 'daniel': 'Daniel',
     'dylan': 'Dylan', 'jack': 'Jack', 'jordan': 'Jordan', 'kyle': 'Kyle',
-    'luke': 'Luke', 'matt': 'Matt', 'mike': 'Mike M.', 'scott': 'Scott',
-    'tim': 'Tim H.', 'wade': 'Wade',
+    'luke': 'Luke', 'matt': 'Matt', 'mike': 'Mike', 'scott': 'Scott',
+    'tim': 'Tim', 'wade': 'Wade',
     'alex_m': 'Alex M.', 'anthony_b': 'Anthony B.', 'anthony_m': 'Anthony M.',
     'christine': 'Christine', 'james': 'James', 'mike_v': 'Mike V.',
     'michelle_c': 'Michelle C.', 'michelle_t': 'Michelle T.',
@@ -61,7 +61,7 @@ CAREER_DISPLAY_NAMES = {
     'luke': 'Luke', 'matt': 'Matt', 'mike': 'Mike M.', 'scott': 'Scott',
     'tim': 'Tim H.', 'wade': 'Wade',
     'alex_m': 'Alex M.', 'anthony_b': 'Anthony B.', 'anthony_m': 'Anthony M.',
-    'christine': 'Christine', 'james': 'James', 'mike_v': 'Michael V.',
+    'christine': 'Christine', 'james': 'James', 'mike_v': 'Mike V.',
     'michelle_c': 'Michelle C.', 'michelle_t': 'Michelle T.',
     'pauly': 'Pauly', 'taylor': 'Taylor', 'tim_c': 'Tim C.', 'tyler': 'Tyler',
     'jon': 'Jon',
@@ -142,6 +142,9 @@ def compute_career_stats(matchups):
         'high_score': 0.0,
         'weekly_highs': 0,
         'boom_games': 0, 'start_games': 0, 'bust_games': 0, 'mid_games': 0,
+        'reg_boom': 0, 'reg_start': 0, 'reg_mid': 0, 'reg_bust': 0,
+        'po_boom': 0, 'po_start': 0, 'po_mid': 0, 'po_bust': 0,
+        'con_boom': 0, 'con_start': 0, 'con_mid': 0, 'con_bust': 0,
         'playoff_apps': set(), 'playoff_wins': 0,
         'final_fours': set(), 'finals': set(), 'championships': set(),
         'consolation_wins': 0,
@@ -199,15 +202,22 @@ def compute_career_stats(matchups):
                     s['losses'] += 1
                     s['reg_losses'] += 1
                 avg = season_avgs.get(yr, 100.0)
+                # Boom = ≥120% (also counts as Start). Start = ≥100% (inclusive of Boom).
+                # Mid = >80% and <100%. Bust = ≤80%.
                 if score >= avg * 1.20:
                     s['boom_games'] += 1
                     s['start_games'] += 1
+                    s['reg_boom'] += 1
+                    s['reg_start'] += 1
                 elif score >= avg:
                     s['start_games'] += 1
+                    s['reg_start'] += 1
                 elif score <= avg * 0.80:
                     s['bust_games'] += 1
+                    s['reg_bust'] += 1
                 else:
                     s['mid_games'] += 1
+                    s['reg_mid'] += 1
                 if (yr, wk, key) in weekly_highs:
                     s['weekly_highs'] += 1
 
@@ -226,6 +236,16 @@ def compute_career_stats(matchups):
                     s['po_losses'] += 1
                 s['playoff_apps'].add(yr)
                 s['playoff_wins'] += 1 if won else 0
+                avg = season_avgs.get(yr, 100.0)
+                if score >= avg * 1.20:
+                    s['po_boom'] += 1
+                    s['po_start'] += 1
+                elif score >= avg:
+                    s['po_start'] += 1
+                elif score <= avg * 0.80:
+                    s['po_bust'] += 1
+                else:
+                    s['po_mid'] += 1
 
             elif gtype == 'Consolation':
                 s['con_games'] += 1
@@ -240,6 +260,16 @@ def compute_career_stats(matchups):
                 else:
                     s['losses'] += 1
                     s['con_losses'] += 1
+                avg = season_avgs.get(yr, 100.0)
+                if score >= avg * 1.20:
+                    s['con_boom'] += 1
+                    s['con_start'] += 1
+                elif score >= avg:
+                    s['con_start'] += 1
+                elif score <= avg * 0.80:
+                    s['con_bust'] += 1
+                else:
+                    s['con_mid'] += 1
 
     return stats, season_avgs, weekly_highs
 
@@ -383,12 +413,30 @@ def get_last_game(matchups, key, year):
     }
 
 def rank_owners(stat_dict, reverse=True):
-    active = {k: v for k, v in stat_dict.items() if k in ACTIVE_KEYS}
+    """Rank owners. Returns dict of key -> rank string like '#1' or 'T-3'.
+    Ties get T- prefix and the next rank skips appropriately."""
+    active = {k: v for k, v in stat_dict.items() if k in ACTIVE_KEYS and v is not None}
+    if not active:
+        return {}
     sorted_owners = sorted(active.items(), key=lambda x: x[1], reverse=reverse)
-    ranks = {}
-    for i, (k, v) in enumerate(sorted_owners):
-        ranks[k] = i + 1
-    return ranks
+    # Group by value to detect ties
+    raw_ranks = {}
+    i = 0
+    while i < len(sorted_owners):
+        # Find all entries with same value
+        same_val = [sorted_owners[i]]
+        j = i + 1
+        while j < len(sorted_owners) and sorted_owners[j][1] == sorted_owners[i][1]:
+            same_val.append(sorted_owners[j])
+            j += 1
+        rank_num = i + 1
+        if len(same_val) > 1:
+            for k, _ in same_val:
+                raw_ranks[k] = f'T-{rank_num}'
+        else:
+            raw_ranks[same_val[0][0]] = f'#{rank_num}'
+        i = j
+    return raw_ranks
 
 def safe_round(v, n=2):
     try:
@@ -490,9 +538,15 @@ def build_career_records(career_stats, finals, final_fours, championships, caree
                 'playoffWins':   s['playoff_wins'],
             }
         else:
-            # Historical: preserve frozen data from existing JSON, never overwrite
+            # Historical: preserve frozen data from existing JSON, never overwrite,
+            # but force the canonical display name from CAREER_DISPLAY_NAMES.
+            # Also strip stale careerPowerScore/careerLuckRate — those are active-only.
             if key in existing_cr:
-                records[key] = existing_cr[key]
+                preserved = dict(existing_cr[key])
+                preserved['display'] = display
+                preserved.pop('careerPowerScore', None)
+                preserved.pop('careerLuckRate', None)
+                records[key] = preserved
             # If not yet in existing JSON, leave absent (will be seeded manually)
 
     return records
@@ -534,39 +588,44 @@ def build_boom_bust(career_stats, existing_json):
     for key in ACTIVE_KEYS:
         s = career_stats.get(key, {})
         rg = s.get('reg_games', 0)
+        pg = s.get('po_games', 0)
+        cg = s.get('con_games', 0)
+        ag = rg + pg + cg
         seasons_count = len(s.get('seasons', set()))
 
-        def rate(n):
-            return safe_round(n / rg, 4) if rg else 0
+        def safe_rate(numer, denom):
+            return safe_round(numer / denom, 4) if denom else 0
 
-        boom_r  = rate(s.get('boom_games', 0))
-        start_r = rate(s.get('start_games', 0))
-        mid_r   = rate(s.get('mid_games', 0))
-        bust_r  = rate(s.get('bust_games', 0))
+        # Regular season
+        reg_boom_r  = safe_rate(s.get('reg_boom', 0), rg)
+        reg_start_r = safe_rate(s.get('reg_start', 0), rg)
+        reg_mid_r   = safe_rate(s.get('reg_mid', 0), rg)
+        reg_bust_r  = safe_rate(s.get('reg_bust', 0), rg)
 
-        def split_stats(gtype):
-            sg = s.get(f'{gtype}_games', 0)
-            if not sg:
-                return None
-            # Need per-gtype boom/bust — not tracked separately yet, use overall reg for now
-            return None  # placeholder; reg split is below
+        # Playoff
+        po_boom_r  = safe_rate(s.get('po_boom', 0), pg)
+        po_start_r = safe_rate(s.get('po_start', 0), pg)
+        po_mid_r   = safe_rate(s.get('po_mid', 0), pg)
+        po_bust_r  = safe_rate(s.get('po_bust', 0), pg)
 
-        # Regular season split (same as overall boom/bust since we only track reg)
-        reg_stats = {
-            'games': rg,
-            'boom_rate': boom_r,
-            'start_rate': start_r,
-            'mid_rate': mid_r,
-            'bust_rate': bust_r,
-        } if rg else None
+        # Consolation
+        con_boom_r  = safe_rate(s.get('con_boom', 0), cg)
+        con_start_r = safe_rate(s.get('con_start', 0), cg)
+        con_mid_r   = safe_rate(s.get('con_mid', 0), cg)
+        con_bust_r  = safe_rate(s.get('con_bust', 0), cg)
 
-        # Preserve existing playoff/consolation splits from existing JSON if present
-        existing_entry = existing_json.get('boomBust', {}).get('active', {}).get(
-            DISPLAY_NAMES.get(key, key), {}
-        )
-        ex_stats = existing_entry.get('stats', {})
+        # All games (regular + playoff + consolation combined)
+        all_boom  = s.get('reg_boom', 0) + s.get('po_boom', 0) + s.get('con_boom', 0)
+        all_start = s.get('reg_start', 0) + s.get('po_start', 0) + s.get('con_start', 0)
+        all_mid   = s.get('reg_mid', 0) + s.get('po_mid', 0) + s.get('con_mid', 0)
+        all_bust  = s.get('reg_bust', 0) + s.get('po_bust', 0) + s.get('con_bust', 0)
+        all_boom_r  = safe_rate(all_boom, ag)
+        all_start_r = safe_rate(all_start, ag)
+        all_mid_r   = safe_rate(all_mid, ag)
+        all_bust_r  = safe_rate(all_bust, ag)
 
-        arch = archetype(key, boom_r, start_r, bust_r, seasons_count)
+        # Archetype is based on all-games rates
+        arch = archetype(key, all_boom_r, all_start_r, all_bust_r, seasons_count)
 
         records[key] = {
             'display': DISPLAY_NAMES[key],
@@ -575,16 +634,33 @@ def build_boom_bust(career_stats, existing_json):
             'photoId': photo_id(key),
             'stats': {
                 'all': {
+                    'games': ag,
+                    'boom_rate': all_boom_r,
+                    'start_rate': all_start_r,
+                    'mid_rate': all_mid_r,
+                    'bust_rate': all_bust_r,
+                } if ag else None,
+                'regular': {
                     'games': rg,
-                    'boom_rate': boom_r,
-                    'start_rate': start_r,
-                    'mid_rate': mid_r,
-                    'bust_rate': bust_r,
+                    'boom_rate': reg_boom_r,
+                    'start_rate': reg_start_r,
+                    'mid_rate': reg_mid_r,
+                    'bust_rate': reg_bust_r,
                 } if rg else None,
-                'regular': reg_stats,
-                # Preserve existing playoff/consolation from prior JSON
-                'playoff':    ex_stats.get('playoff'),
-                'consolation': ex_stats.get('consolation'),
+                'playoff': {
+                    'games': pg,
+                    'boom_rate': po_boom_r,
+                    'start_rate': po_start_r,
+                    'mid_rate': po_mid_r,
+                    'bust_rate': po_bust_r,
+                } if pg else None,
+                'consolation': {
+                    'games': cg,
+                    'boom_rate': con_boom_r,
+                    'start_rate': con_start_r,
+                    'mid_rate': con_mid_r,
+                    'bust_rate': con_bust_r,
+                } if cg else None,
             }
         }
 
@@ -654,7 +730,7 @@ def build_h2h_data(matchups, h2h_logs):
 def build_profiles_data(matchups, season_stats, all_time_lucky, existing_json, next_game=None, max_upcoming_year=None):
     if next_game is None:
         next_game = {}
-    today = date.today().isoformat()
+    today = date.today().strftime('%B %-d, %Y')
     # max_completed_year: most recent year with any completed games
     max_completed_year = int(matchups['Year'].max())
 
@@ -673,14 +749,37 @@ def build_profiles_data(matchups, season_stats, all_time_lucky, existing_json, n
     current_year = max_completed_year
 
     # Build prestige lookup: owner display name -> {rank, points}
+    # Spreadsheet uses "Mike M", "Alex V", "Tim H" (disambiguation); script display names are
+    # plain first names for active 14. Map both directions.
     prestige_list = existing_json.get('prestige', [])
     prestige_by_name = {}
     for i, entry in enumerate(prestige_list):
-        prestige_by_name[entry['name']] = {
+        entry_data = {
             'rank': i + 1,
             'outOf': len(prestige_list),
             'points': entry.get('pts', 0),
         }
+        name = entry['name']
+        prestige_by_name[name] = entry_data
+        # Index "Mike M." form too
+        if not name.endswith('.'):
+            prestige_by_name[name + '.'] = entry_data
+        # And without trailing period if name ends in period
+        if name.endswith('.'):
+            prestige_by_name[name.rstrip('.')] = entry_data
+
+    # Also map the simple first-name DISPLAY_NAMES to their disambiguated prestige entries.
+    # 'Mike' -> entry for 'Mike M' (the active Mike Merrick), etc.
+    ACTIVE_PRESTIGE_ALIASES = {
+        'Mike': ['Mike M', 'Mike M.'],
+        'Tim':  ['Tim H', 'Tim H.'],
+        'Alex': ['Alex V', 'Alex V.'],
+    }
+    for simple, aliases in ACTIVE_PRESTIGE_ALIASES.items():
+        for alias in aliases:
+            if alias in prestige_by_name:
+                prestige_by_name[simple] = prestige_by_name[alias]
+                break
 
     career_stats, season_avgs, weekly_highs = compute_career_stats(matchups)
     finals, final_fours, championships = compute_playoff_structure(matchups)
@@ -697,8 +796,11 @@ def build_profiles_data(matchups, season_stats, all_time_lucky, existing_json, n
             ss_lookup[(key, yr)] = row
 
     lucky_lookup = {}
-    for _, row in all_time_lucky.head(20).iterrows():
-        key = get_key(str(row['Owner']))
+    for _, row in all_time_lucky.iterrows():
+        owner_name = row.get('Owner')
+        if not isinstance(owner_name, str):
+            continue
+        key = get_key(owner_name)
         if key and pd.notna(row.get('Lucky/Unlucky %')):
             lucky_lookup[key] = row
 
@@ -740,6 +842,21 @@ def build_profiles_data(matchups, season_stats, all_time_lucky, existing_json, n
     career_ps_ranks = rank_owners({k: sum(career_power_scores[k])/len(career_power_scores[k]) for k in ACTIVE_KEYS if career_power_scores.get(k)})
     weeks_at_1_ranks = rank_owners({k: career_weeks_at_1[k] for k in ACTIVE_KEYS})
 
+    # Editorial career Power Score / Luck Rate ranks pulled from existing careerRecords seeds.
+    existing_cr_seed = existing_json.get('careerRecords', {})
+    editorial_power_dict = {
+        k: existing_cr_seed.get(k, {}).get('careerPowerScore')
+        for k in ACTIVE_KEYS
+        if existing_cr_seed.get(k, {}).get('careerPowerScore') is not None
+    }
+    editorial_power_ranks = rank_owners(editorial_power_dict)
+    editorial_luck_dict = {
+        k: existing_cr_seed.get(k, {}).get('careerLuckRate')
+        for k in ACTIVE_KEYS
+        if existing_cr_seed.get(k, {}).get('careerLuckRate') is not None
+    }
+    luck_rate_ranks = rank_owners(editorial_luck_dict)
+
     owners_out = {}
     for key in ACTIVE_KEYS:
         existing_owner = existing_json.get('owners', {}).get(key, {})
@@ -755,6 +872,18 @@ def build_profiles_data(matchups, season_stats, all_time_lucky, existing_json, n
                 DISPLAY_NAMES.get(key, key),
                 existing_owner.get('prestige', {'rank': None, 'outOf': 27, 'points': 0})
             )
+            # Normalize chart range: 2014 → current_year with all-None series
+            stub_chart_max = current_year
+            stub_years = list(range(2014, int(stub_chart_max) + 1))
+            stub_nulls = [None] * len(stub_years)
+            owner_stub['charts'] = {
+                'winsAndFinish': {'years': stub_years, 'wins': list(stub_nulls), 'finish': list(stub_nulls)},
+                'pointShare':       {'values': list(stub_nulls), 'label': 'Point Share'},
+                'prestigePerSeason':{'values': list(stub_nulls), 'label': 'Prestige'},
+                'winnings':         {'values': list(stub_nulls), 'label': 'Net Earnings'},
+                'grossEarnings':    {'values': list(stub_nulls), 'label': 'Gross Earnings'},
+            }
+            owner_stub['lastUpdated'] = today
             owners_out[key] = owner_stub
             continue
 
@@ -802,6 +931,12 @@ def build_profiles_data(matchups, season_stats, all_time_lucky, existing_json, n
 
         lucky_row = lucky_lookup.get(key, {})
         career_luck = safe_round(lucky_row.get('Lucky/Unlucky %'), 4) if hasattr(lucky_row, 'get') else None
+
+        # Editorial career Power Score and Luck Rate live in existing careerRecords.
+        # If missing, fall back to None.
+        existing_cr_entry = existing_json.get('careerRecords', {}).get(key, {})
+        editorial_power_score = existing_cr_entry.get('careerPowerScore')
+        editorial_luck_rate = existing_cr_entry.get('careerLuckRate')
 
         all_seasons = sorted(s['seasons'])
         seasons_list = []
@@ -864,34 +999,168 @@ def build_profiles_data(matchups, season_stats, all_time_lucky, existing_json, n
                 'playoffResult': existing_yr.get('playoffResult'),
             })
 
-        chart_years = sorted(s['seasons'])
-        wins_chart = [season_records[key].get(yr, {}).get('wins', 0) for yr in chart_years]
-        # Finish chart: regular-season standing per year. Prefer the value stored in
-        # existing_owner.seasons[*].finish (editorial / historical), fall back to
-        # compute_standings(matchups, yr) so the chart still renders if seasons data is missing.
-        existing_seasons_by_year = {sn.get('year'): sn for sn in existing_owner.get('seasons', [])}
+        # Charts always span 2014 → display_year, with None for years owner didn't play.
+        # This keeps x-axis aligned across all owners.
+        chart_max_year = display_year if is_offseason else current_year
+        chart_years = list(range(2014, int(chart_max_year) + 1))
+        owner_seasons_set = set(s['seasons'])
+
+        # Wins chart: actual wins for played years, None for non-played
+        wins_chart = []
         finish_chart = []
+        existing_seasons_by_year = {sn.get('year'): sn for sn in existing_owner.get('seasons', [])}
         for yr in chart_years:
+            if yr in owner_seasons_set:
+                wins_chart.append(season_records[key].get(yr, {}).get('wins', 0))
+                # Finish: editorial value from existing seasons, fallback to compute_standings
+                existing_yr_entry = existing_seasons_by_year.get(yr, {})
+                fin = existing_yr_entry.get('finish')
+                if fin is None:
+                    yr_standings = compute_standings(matchups, yr)
+                    fin = yr_standings.get(key)
+                finish_chart.append(fin)
+            else:
+                wins_chart.append(None)
+                finish_chart.append(None)
+
+        # Point share chart: % for played years, None for non-played
+        # Cache per-year league totals to avoid O(n^2)
+        league_pts_by_year = {}
+        pt_share_chart = []
+        for yr in chart_years:
+            if yr not in owner_seasons_set:
+                pt_share_chart.append(None)
+                continue
+            if yr not in league_pts_by_year:
+                yr_all = matchups[matchups['Year'] == yr]
+                league_pts_by_year[yr] = sum(float(r['Away Score']) + float(r['Home Score']) for _, r in yr_all.iterrows())
+            total_league = league_pts_by_year[yr]
+            yr_all = matchups[matchups['Year'] == yr]
+            owner_games = yr_all[(yr_all['away_key'] == key) | (yr_all['home_key'] == key)]
+            owner_pts = sum(float(r['Away Score']) if r['away_key'] == key else float(r['Home Score']) for _, r in owner_games.iterrows())
+            pt_share_chart.append(safe_round(owner_pts / total_league if total_league else 0, 4))
+
+        # Per-year buy-in proxy: negate the min Net Earnings across all owners that year
+        # (the most-negative net earnings ~ buy-in). Used to compute gross earnings.
+        buyin_by_year = {}
+        for yr in chart_years:
+            yr_nets = []
+            for r in ss_valid.itertuples():
+                if int(r.Year) == yr:
+                    ne = getattr(r, '_asdict', lambda: {})().get('Net Earnings') if hasattr(r, '_asdict') else None
+                    if ne is None:
+                        try:
+                            ne = getattr(r, 'Net_Earnings', None)
+                        except Exception:
+                            ne = None
+                    if ne is None:
+                        continue
+                    try:
+                        if pd.notna(ne):
+                            yr_nets.append(float(ne))
+                    except Exception:
+                        pass
+            # Fallback: pull via direct DataFrame filter (more reliable)
+            if not yr_nets:
+                yr_rows = ss_valid[ss_valid['Year'] == yr]
+                for _, r in yr_rows.iterrows():
+                    ne = r.get('Net Earnings')
+                    if pd.notna(ne):
+                        yr_nets.append(float(ne))
+            if yr_nets:
+                min_net = min(yr_nets)
+                buyin_by_year[yr] = -min_net if min_net < 0 else 0
+            else:
+                buyin_by_year[yr] = 0
+
+        prestige_chart = []
+        winnings_chart = []
+        gross_earnings_chart = []
+        for yr in chart_years:
+            if yr not in owner_seasons_set:
+                prestige_chart.append(None)
+                winnings_chart.append(None)
+                gross_earnings_chart.append(None)
+                continue
+            yr_ss = ss_lookup.get((key, yr), {})
+            pr_val = yr_ss.get('Prestige Earned', 0) if hasattr(yr_ss, 'get') else 0
+            ne_val = yr_ss.get('Net Earnings') if hasattr(yr_ss, 'get') else None
+            prestige_chart.append(int(safe_round(pr_val, 0)) if pd.notna(pr_val) else None)
+            net_clean = safe_round(ne_val, 2) if pd.notna(ne_val) else None
+            winnings_chart.append(net_clean)
+            # Gross = net + buy-in (only positive; floor at 0)
+            if net_clean is not None:
+                gross = net_clean + buyin_by_year.get(yr, 0)
+                gross_earnings_chart.append(safe_round(max(0, gross), 2))
+            else:
+                gross_earnings_chart.append(None)
+
+        # Build careerStats.general fresh each run so Net Earnings stays accurate.
+        # Preserve rank style from existing ranks; ranks computed across active 14 only.
+        seasons_count_owner = len(s['seasons'])
+
+        # Average finish across played seasons (regular-season standing per year).
+        # Use editorial seasons[*].finish if set; else fall back to compute_standings.
+        avg_finish_per_year = []
+        for yr in s['seasons']:
             existing_yr_entry = existing_seasons_by_year.get(yr, {})
             fin = existing_yr_entry.get('finish')
             if fin is None:
                 yr_standings = compute_standings(matchups, yr)
                 fin = yr_standings.get(key)
-            finish_chart.append(fin)
-        pt_share_chart = []
-        for yr in chart_years:
-            yr_all = matchups[matchups['Year'] == yr]
-            total_league = sum(float(r['Away Score']) + float(r['Home Score']) for _, r in yr_all.iterrows())
-            owner_games = yr_all[(yr_all['away_key'] == key) | (yr_all['home_key'] == key)]
-            owner_pts = sum(float(r['Away Score']) if r['away_key'] == key else float(r['Home Score']) for _, r in owner_games.iterrows())
-            pt_share_chart.append(safe_round(owner_pts / total_league if total_league else 0, 4))
+            if fin is not None:
+                try:
+                    avg_finish_per_year.append(float(fin))
+                except (TypeError, ValueError):
+                    pass
+        career_avg_finish = (sum(avg_finish_per_year) / len(avg_finish_per_year)) if avg_finish_per_year else None
 
-        prestige_chart = []
-        winnings_chart = []
-        for yr in chart_years:
-            yr_ss = ss_lookup.get((key, yr), {})
-            prestige_chart.append(int(safe_round(yr_ss.get('Prestige Earned', 0), 0)) if hasattr(yr_ss, 'get') else None)
-            winnings_chart.append(safe_round(yr_ss.get('Net Earnings'), 2) if hasattr(yr_ss, 'get') else None)
+        # Build prestige_points value for general bucket from prestige_by_name
+        owner_display = DISPLAY_NAMES.get(key, key)
+        prestige_entry = prestige_by_name.get(owner_display, {})
+        prestige_pts_val = prestige_entry.get('points', 0)
+        prestige_rank_val = prestige_entry.get('rank')
+
+        # Build rank dicts for general bucket
+        seasons_played_dict = {k: len(career_stats[k]['seasons']) for k in ACTIVE_KEYS if k in career_stats}
+        seasons_played_ranks = rank_owners(seasons_played_dict)
+
+        # avg finish — lower is better, so reverse=False (ascending)
+        def _avg_finish_for(k):
+            stats_k = career_stats.get(k, {})
+            seasons_k = stats_k.get('seasons', set())
+            existing_k = existing_json.get('owners', {}).get(k, {}).get('seasons', [])
+            existing_k_by_yr = {sn.get('year'): sn for sn in existing_k}
+            vals = []
+            for yr in seasons_k:
+                fin = existing_k_by_yr.get(yr, {}).get('finish')
+                if fin is None:
+                    yr_st = compute_standings(matchups, yr)
+                    fin = yr_st.get(k)
+                if fin is not None:
+                    try:
+                        vals.append(float(fin))
+                    except (TypeError, ValueError):
+                        pass
+            return (sum(vals) / len(vals)) if vals else None
+
+        # avg finish ranks computed once per build; cached on owners_out via closure scope
+        if 'avg_finish_ranks' not in locals():
+            af_dict = {k: _avg_finish_for(k) for k in ACTIVE_KEYS}
+            af_dict = {k: v for k, v in af_dict.items() if v is not None}
+            avg_finish_ranks = rank_owners(af_dict, reverse=False)
+
+        prestige_rank_ranks = rank_owners({
+            k: prestige_by_name.get(DISPLAY_NAMES.get(k, k), {}).get('points', 0)
+            for k in ACTIVE_KEYS
+        })
+
+        general_bucket = [
+            {'stat': 'Seasons Played', 'value': seasons_count_owner, 'rank': seasons_played_ranks.get(key), 'explainer': None, 'isEarnings': False},
+            {'stat': 'Net Earnings', 'value': safe_round(career_earnings.get(key, 0), 2), 'rank': earnings_ranks.get(key), 'explainer': 'Total winnings minus entry fees', 'isEarnings': True},
+            {'stat': 'Prestige Points', 'value': int(prestige_pts_val) if prestige_pts_val is not None else 0, 'rank': f'#{prestige_rank_val}' if prestige_rank_val else None, 'explainer': None, 'isEarnings': False},
+            {'stat': 'Avg Finish', 'value': safe_round(career_avg_finish, 2) if career_avg_finish is not None else None, 'rank': avg_finish_ranks.get(key), 'explainer': 'Average regular-season standing across played seasons', 'isEarnings': False},
+        ]
 
         owner_h2h = {}
         for opp_key, records in h2h_summary.get(key, {}).items():
@@ -963,7 +1232,7 @@ def build_profiles_data(matchups, season_stats, all_time_lucky, existing_json, n
             'lastUpdated': existing_owner.get('lastUpdated'),
             'currentSeason': current_season_block,
             'careerStats': {
-                'general': existing_owner.get('careerStats', {}).get('general', []),
+                'general': general_bucket,
                 'regularSeason': [
                     {'stat': 'Wins', 'value': reg_wins, 'rank': reg_wins_ranks.get(key), 'explainer': 'Regular season wins only'},
                     {'stat': 'Win %', 'value': safe_round(win_pct, 4), 'rank': win_pct_ranks.get(key), 'explainer': 'Regular season win percentage'},
@@ -974,8 +1243,8 @@ def build_profiles_data(matchups, season_stats, all_time_lucky, existing_json, n
                     {'stat': 'Boom Rate', 'value': safe_round(boom_rate, 4), 'rank': boom_ranks.get(key), 'explainer': '% of weeks scoring 120%+ of league average'},
                     {'stat': 'Start Rate', 'value': safe_round(start_rate, 4), 'rank': start_ranks.get(key), 'explainer': '% of weeks scoring at or above league average'},
                     {'stat': 'Points Against/Game', 'value': safe_round(ppga, 2), 'rank': pts_against_ranks.get(key), 'explainer': 'Average points scored against per game'},
-                    {'stat': 'Luck Rate', 'value': career_luck, 'rank': None, 'explainer': 'Win rate vs expected all-play win rate'},
-                    {'stat': 'Power Score', 'value': safe_round(sum(career_power_scores[key])/len(career_power_scores[key])) if career_power_scores.get(key) else None, 'rank': career_ps_ranks.get(key), 'explainer': 'Career average power score'},
+                    {'stat': 'Luck Rate', 'value': editorial_luck_rate, 'rank': luck_rate_ranks.get(key), 'explainer': 'Win rate vs expected all-play win rate'},
+                    {'stat': 'Power Score', 'value': editorial_power_score, 'rank': editorial_power_ranks.get(key), 'explainer': 'Career power score'},
                     {'stat': 'Weeks at #1', 'value': career_weeks_at_1.get(key, 0), 'rank': weeks_at_1_ranks.get(key), 'explainer': 'Weeks ranked #1 in power score'},
                     {'stat': 'Net Earnings', 'value': safe_round(career_earnings.get(key, 0), 2), 'rank': earnings_ranks.get(key), 'explainer': 'Total career net earnings', 'isEarnings': True},
                 ],
@@ -996,6 +1265,7 @@ def build_profiles_data(matchups, season_stats, all_time_lucky, existing_json, n
                 'pointShare': {'values': pt_share_chart, 'label': 'Point Share'},
                 'prestigePerSeason': {'values': prestige_chart, 'label': 'Prestige'},
                 'winnings': {'values': winnings_chart, 'label': 'Net Earnings'},
+                'grossEarnings': {'values': gross_earnings_chart, 'label': 'Gross Earnings'},
             },
             'seasons': seasons_list,
             'headToHead': owner_h2h,
@@ -1068,8 +1338,8 @@ def main(xlsx_path, profiles_json_path, output_profiles_path, output_h2h_path):
         'prestige': existing_json.get('prestige', []),
     }
 
-    # Update page dates
-    today = date.today().isoformat()
+    # Update page dates — format as "May 18, 2026"
+    today = date.today().strftime('%B %-d, %Y')
     profiles_out['pageUpdates']['profiles'] = today
     profiles_out['pageUpdates']['head-to-head'] = today
     profiles_out['pageUpdates']['career-records'] = today
@@ -1077,6 +1347,10 @@ def main(xlsx_path, profiles_json_path, output_profiles_path, output_h2h_path):
     profiles_out['pageUpdates']['intercontinental'] = today
     profiles_out['pageUpdates']['prestige-rankings'] = today
     profiles_out['pageUpdates']['single-game-records'] = today
+
+    # Owner lastUpdated also bumped
+    for k in profiles_out.get('owners', {}):
+        profiles_out['owners'][k]['lastUpdated'] = today
 
     print(f"Writing {output_profiles_path}...")
     with open(output_profiles_path, 'w') as f:

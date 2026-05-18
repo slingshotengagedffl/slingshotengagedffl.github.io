@@ -401,6 +401,13 @@
   <script>
   let OWNERS = [];
 
+  // Toggle is called from inline onclick handlers, so it must be globally reachable.
+  function toggleRow(idx) {
+    const el = document.getElementById(`row-${idx}`);
+    if (el) el.classList.toggle('open');
+  }
+  window.toggleRow = toggleRow;
+
   fetch('profiles-data.json')
     .then(r => r.json())
     .then(data => {
@@ -464,10 +471,6 @@
     if (rc > 0)  return `<span class="rank-change up">▲${rc}</span>`;
     if (rc < 0)  return `<span class="rank-change down">▼${Math.abs(rc)}</span>`;
     return '<span class="rank-change same">—</span>';
-  }
-
-  function toggleRow(idx) {
-    document.getElementById(`row-${idx}`).classList.toggle('open');
   }
 
   const wrap = document.getElementById('rankingsWrap');

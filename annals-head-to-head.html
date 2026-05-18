@@ -1243,7 +1243,7 @@ function renderExplorer(owner) {
           ${photo}
           <div class="matchup-opp ${oppClass}">${oppHtml}</div>
           ${tagHtml}
-          <div class="matchup-games">${total} games</div>
+          <div class="matchup-games">${total} ${total === 1 ? 'game' : 'games'}</div>
           <div class="matchup-record ${recClass}">${recStr}</div>
         </div>`;
     }
