@@ -288,11 +288,12 @@
       text-align: center;
     }
     .back-circles {
-      display: flex; align-items: center; justify-content: center; gap: 16px;
+      display: flex; align-items: center; justify-content: center; gap: 14px;
+      width: 100%;
     }
     .rank-circle-wrap {
       display: flex; flex-direction: column; align-items: center; gap: 4px;
-      width: clamp(72px, 19vw, 96px);
+      width: min(160px, 42%); flex-shrink: 0;
     }
     .rank-circle-svg { display: block; width: 100%; height: auto; }
     .rank-circle-label {
@@ -484,13 +485,8 @@ function buildDonut(s, cardId) {
     segs.splice(1, 0, {key:'start-band', count:Math.round(s.start_rate * s.games), pct:remainder, color:'var(--start-color)'});
   }
   let offset=0,paths='';
-  for(let i=0;i<segs.length;i++){
-    const seg=segs[i];
-    // Tiny overlap with previous segment (0.5px) to eliminate sub-pixel gap that causes a "zigzag"
-    const prevOverlap = i > 0 ? 0.5 : 0;
-    const len=seg.pct*circ + prevOverlap;
-    const gap=circ-len;
-    const drawOffset = offset - prevOverlap;
+  for(const seg of segs){
+    const len=seg.pct*circ,gap=circ-len;
     paths+=`<circle
       class="donut-seg"
       data-stat="${seg.key}"
@@ -502,9 +498,9 @@ function buildDonut(s, cardId) {
       cx="${cx}" cy="${cy}" r="${R}" fill="none"
       stroke="${seg.color}" stroke-width="${sw}"
       stroke-dasharray="${len.toFixed(2)} ${gap.toFixed(2)}"
-      stroke-dashoffset="${(-drawOffset).toFixed(2)}"
+      stroke-dashoffset="${(-offset).toFixed(2)}"
       style="transition:stroke-width 0.2s,filter 0.2s,opacity 0.2s${seg.key==='start-band' ? ';opacity:0.35' : ''}"/>`;
-    offset+=seg.pct*circ;
+    offset+=len;
   }
   return `<svg class="donut-svg" viewBox="0 0 160 160" style="overflow:visible" shape-rendering="geometricPrecision">${paths}</svg>`;
 }

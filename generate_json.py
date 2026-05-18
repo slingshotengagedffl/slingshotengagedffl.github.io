@@ -564,19 +564,19 @@ def build_boom_bust(career_stats, existing_json):
             return 'Pending'
         if key == 'kyle':
             return 'Outlier'
-        if boom >= 0.28:
-            if bust >= 0.20:
-                return 'High Variance'
+        # Boom Machine: elite boom rate, low bust (Jack)
+        if boom >= 0.28 and bust < 0.20:
             return 'Boom Machine'
-        if start >= 0.55:
-            if bust <= 0.10:
-                return 'Reliable'
-        if bust >= 0.25 and boom <= 0.18:
-            return 'Underperforming'
-        if start >= 0.45:
+        # High Variance: meaningful boom + high bust (live by the sword) — Daniel, Brian, Alex
+        if boom >= 0.19 and bust >= 0.22:
+            return 'High Variance'
+        # Reliable: low bust + decent floor of start (Dylan, Andy, Mike)
+        if start >= 0.45 and bust <= 0.20:
             return 'Reliable'
-        if boom <= 0.18 and bust <= 0.20:
+        # Middling: low boom, low-to-moderate bust (lots of average weeks) — Wade
+        if boom <= 0.21 and bust <= 0.22:
             return 'Middling'
+        # Underperforming: everything else — low boom, high bust
         return 'Underperforming'
 
     def photo_id(key):
@@ -624,8 +624,9 @@ def build_boom_bust(career_stats, existing_json):
         all_mid_r   = safe_rate(all_mid, ag)
         all_bust_r  = safe_rate(all_bust, ag)
 
-        # Archetype is based on all-games rates
-        arch = archetype(key, all_boom_r, all_start_r, all_bust_r, seasons_count)
+        # Archetype is based on regular-season rates (consistent with prior site behavior).
+        # All Games / Playoffs / Consolation toggles still show their own splits below.
+        arch = archetype(key, reg_boom_r, reg_start_r, reg_bust_r, seasons_count)
 
         records[key] = {
             'display': DISPLAY_NAMES[key],
