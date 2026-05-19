@@ -796,6 +796,26 @@ def build_profiles_data(matchups, season_stats, all_time_lucky, existing_json, n
             yr = int(row['Year'])
             ss_lookup[(key, yr)] = row
 
+    # Per-year buy-in proxy: negate the min Net Earnings across all owners that year
+    # (the most-negative net earnings = the buy-in). Used to compute gross earnings.
+    buyin_by_year = {}
+    for yr in sorted(ss_valid['Year'].dropna().unique()):
+        yr_int = int(yr)
+        yr_rows = ss_valid[ss_valid['Year'] == yr]
+        yr_nets = []
+        for _, r in yr_rows.iterrows():
+            ne = r.get('Net Earnings')
+            if pd.notna(ne):
+                try:
+                    yr_nets.append(float(ne))
+                except Exception:
+                    pass
+        if yr_nets:
+            min_net = min(yr_nets)
+            buyin_by_year[yr_int] = -min_net if min_net < 0 else 0
+        else:
+            buyin_by_year[yr_int] = 0
+
     lucky_lookup = {}
     for _, row in all_time_lucky.iterrows():
         owner_name = row.get('Owner')
@@ -835,8 +855,32 @@ def build_profiles_data(matchups, season_stats, all_time_lucky, existing_json, n
     weekly_high_ranks = make_rank_dict(lambda s: s['weekly_highs'])
     boom_ranks = make_rank_dict(lambda s: s['boom_games']/s['reg_games'] if s['reg_games'] else 0)
     start_ranks = make_rank_dict(lambda s: s['start_games']/s['reg_games'] if s['reg_games'] else 0)
-    total_pts = sum(career_stats[k]['reg_pts_for'] for k in ACTIVE_KEYS if k in career_stats)
-    pt_share_ranks = rank_owners({k: career_stats[k]['reg_pts_for']/total_pts for k in ACTIVE_KEYS if k in career_stats})
+
+    # ── REGULAR-SEASON POINTS PER YEAR (per owner + league total) ──
+    # Used for accurate Point Share computation that only counts years the owner played.
+    reg_pts_by_owner_year = defaultdict(lambda: defaultdict(float))  # [key][year] -> reg pts
+    league_reg_pts_by_year = defaultdict(float)                      # [year] -> total reg pts league-wide
+    for _, row in matchups.iterrows():
+        if row['game_type'] != 'Regular':
+            continue
+        yr = int(row['Year'])
+        ak, hk = row['away_key'], row['home_key']
+        asc, hsc = float(row['Away Score']), float(row['Home Score'])
+        if ak:
+            reg_pts_by_owner_year[ak][yr] += asc
+            league_reg_pts_by_year[yr] += asc
+        if hk:
+            reg_pts_by_owner_year[hk][yr] += hsc
+            league_reg_pts_by_year[yr] += hsc
+
+    def career_pt_share(key):
+        """Owner's reg-season points / league reg-season points, summed only over years owner played."""
+        seasons = career_stats.get(key, {}).get('seasons', set())
+        owner_pts = sum(reg_pts_by_owner_year[key][yr] for yr in seasons)
+        league_pts = sum(league_reg_pts_by_year[yr] for yr in seasons)
+        return owner_pts / league_pts if league_pts else 0
+
+    pt_share_ranks = rank_owners({k: career_pt_share(k) for k in ACTIVE_KEYS if k in career_stats})
     playoff_app_ranks = make_rank_dict(lambda s: len(s['playoff_apps']))
     playoff_win_ranks = make_rank_dict(lambda s: s['playoff_wins'])
     earnings_ranks = rank_owners({k: career_earnings[k] for k in ACTIVE_KEYS if k in career_earnings})
@@ -898,7 +942,7 @@ def build_profiles_data(matchups, season_stats, all_time_lucky, existing_json, n
         win_pct = reg_wins / reg_games if reg_games else 0
         boom_rate = s['boom_games'] / reg_games if reg_games else 0
         start_rate = s['start_games'] / reg_games if reg_games else 0
-        pt_share = reg_pts / total_pts if total_pts else 0
+        pt_share = career_pt_share(key)
 
         curr = season_records[key].get(current_year, {})
         curr_wins = curr.get('wins', 0)
@@ -964,11 +1008,10 @@ def build_profiles_data(matchups, season_stats, all_time_lucky, existing_json, n
                 for _, r in all_yr_games.iterrows()
             )
             total_games_yr = len(all_yr_games)
-            total_league_pts = sum(
-                float(r['Away Score']) + float(r['Home Score'])
-                for _, r in matchups[matchups['Year'] == yr].iterrows()
-            )
-            pt_share_yr = total_pts_yr / total_league_pts if total_league_pts else 0
+            # Regular-season point share for this year (matches the all-time spreadsheet semantics)
+            yr_owner_reg = reg_pts_by_owner_year[key].get(yr, 0)
+            yr_league_reg = league_reg_pts_by_year.get(yr, 0)
+            pt_share_yr = yr_owner_reg / yr_league_reg if yr_league_reg else 0
 
             yr_finals = key in finals and yr in finals[key]
             yr_champion = key in championships and yr in championships[key]
@@ -986,6 +1029,13 @@ def build_profiles_data(matchups, season_stats, all_time_lucky, existing_json, n
             else:
                 result = existing_yr.get('result', 'missed')
 
+            # Winnings shown in season-by-season = gross earnings (matches analytics graph)
+            # Gross = max(0, net + buy-in)
+            if net_earnings is not None:
+                gross_winnings = safe_round(max(0, net_earnings + buyin_by_year.get(yr, 0)), 2)
+            else:
+                gross_winnings = None
+
             seasons_list.append({
                 'year': yr,
                 'teamName': str(team_name) if team_name and str(team_name) != 'nan' else None,
@@ -995,7 +1045,7 @@ def build_profiles_data(matchups, season_stats, all_time_lucky, existing_json, n
                 'pointShare': safe_round(pt_share_yr, 4),
                 'powerScore': power_score,
                 'prestigeEarned': int(prestige_earned) if prestige_earned is not None else None,
-                'winnings': net_earnings,
+                'winnings': gross_winnings,
                 'result': result,
                 'playoffResult': existing_yr.get('playoffResult'),
             })
@@ -1024,56 +1074,17 @@ def build_profiles_data(matchups, season_stats, all_time_lucky, existing_json, n
                 wins_chart.append(None)
                 finish_chart.append(None)
 
-        # Point share chart: % for played years, None for non-played
-        # Cache per-year league totals to avoid O(n^2)
-        league_pts_by_year = {}
+        # Point share chart: regular-season points only (consistent with career Point Share)
         pt_share_chart = []
         for yr in chart_years:
             if yr not in owner_seasons_set:
                 pt_share_chart.append(None)
                 continue
-            if yr not in league_pts_by_year:
-                yr_all = matchups[matchups['Year'] == yr]
-                league_pts_by_year[yr] = sum(float(r['Away Score']) + float(r['Home Score']) for _, r in yr_all.iterrows())
-            total_league = league_pts_by_year[yr]
-            yr_all = matchups[matchups['Year'] == yr]
-            owner_games = yr_all[(yr_all['away_key'] == key) | (yr_all['home_key'] == key)]
-            owner_pts = sum(float(r['Away Score']) if r['away_key'] == key else float(r['Home Score']) for _, r in owner_games.iterrows())
-            pt_share_chart.append(safe_round(owner_pts / total_league if total_league else 0, 4))
+            yr_owner_reg = reg_pts_by_owner_year[key].get(yr, 0)
+            yr_league_reg = league_reg_pts_by_year.get(yr, 0)
+            pt_share_chart.append(safe_round(yr_owner_reg / yr_league_reg if yr_league_reg else 0, 4))
 
-        # Per-year buy-in proxy: negate the min Net Earnings across all owners that year
-        # (the most-negative net earnings ~ buy-in). Used to compute gross earnings.
-        buyin_by_year = {}
-        for yr in chart_years:
-            yr_nets = []
-            for r in ss_valid.itertuples():
-                if int(r.Year) == yr:
-                    ne = getattr(r, '_asdict', lambda: {})().get('Net Earnings') if hasattr(r, '_asdict') else None
-                    if ne is None:
-                        try:
-                            ne = getattr(r, 'Net_Earnings', None)
-                        except Exception:
-                            ne = None
-                    if ne is None:
-                        continue
-                    try:
-                        if pd.notna(ne):
-                            yr_nets.append(float(ne))
-                    except Exception:
-                        pass
-            # Fallback: pull via direct DataFrame filter (more reliable)
-            if not yr_nets:
-                yr_rows = ss_valid[ss_valid['Year'] == yr]
-                for _, r in yr_rows.iterrows():
-                    ne = r.get('Net Earnings')
-                    if pd.notna(ne):
-                        yr_nets.append(float(ne))
-            if yr_nets:
-                min_net = min(yr_nets)
-                buyin_by_year[yr] = -min_net if min_net < 0 else 0
-            else:
-                buyin_by_year[yr] = 0
-
+        # Buy-in already computed above (hoisted out of per-owner loop) → use buyin_by_year
         prestige_chart = []
         winnings_chart = []
         gross_earnings_chart = []
