@@ -1,0 +1,1778 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-72LZJZ8DX1"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-72LZJZ8DX1');
+  gtag('event', 'page_view', {'page_type': 'annals'});
+</script>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>2026 Slingshot Entrance Survey · Slingshot Engaged</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Barlow+Condensed:wght@400;600;700&family=Barlow:wght@400;500;600&display=swap" rel="stylesheet" />
+<style>
+  :root {
+    --red: #c0392b;
+    --red-bright: #e74c3c;
+    --bg: #0a0a0a;
+    --surface: #141414;
+    --surface2: #1c1c1c;
+    --surface3: #242424;
+    --text: #f0f0f0;
+    --text-body: #e8e8e8;
+    --muted: #bbb;
+    --label: #d8d8d8;
+    --border: #2a2a2a;
+    --gold: #c9a84c;
+    --green: #2ecc71;
+    --green-dim: #1f7a44;
+  }
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: 'Barlow', sans-serif;
+    min-height: 100vh;
+    -webkit-text-size-adjust: 100%;
+  }
+
+  /* ── Page Header ── */
+  .page-header {
+    padding: 40px 20px 0;
+    text-align: center;
+  }
+  .page-supertitle {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 1rem;
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+    color: #d0d0d0;
+    margin-bottom: 6px;
+  }
+  .page-header h1 {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: clamp(2.8rem, 8vw, 5rem);
+    color: var(--red-bright);
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    line-height: 1;
+  }
+  .page-updated {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 0.82rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--muted);
+    margin-top: 8px;
+  }
+  .header-spacer { height: 20px; }
+
+  /* ── Content wrapper ── */
+  .content {
+    max-width: 680px;
+    margin: 0 auto;
+    padding: 0 16px 80px;
+  }
+
+  .intro {
+    font-family: 'Barlow', sans-serif;
+    font-size: 1.1rem;
+    color: var(--text-body);
+    line-height: 1.7;
+    margin: 12px 0 12px;
+    text-align: center;
+  }
+
+  /* ── State banner ── */
+  .state-banner {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-left: 4px solid var(--gold);
+    border-radius: 8px;
+    padding: 20px 22px;
+    margin: 20px 0;
+  }
+  .state-banner.locked { border-left-color: var(--red-bright); }
+  .state-banner.revealed { border-left-color: var(--green); }
+  .state-banner .state-title {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 1.4rem;
+    letter-spacing: 0.08em;
+    color: var(--text);
+    margin-bottom: 6px;
+  }
+  .state-banner .state-sub {
+    font-size: 1rem;
+    color: var(--text-body);
+    line-height: 1.5;
+  }
+  .state-banner .countdown {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 1.6rem;
+    color: var(--gold);
+    letter-spacing: 0.05em;
+    margin-top: 8px;
+  }
+
+  /* ── Section titles ── */
+  .section-title {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 1.6rem;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--text);
+    margin: 32px 0 12px;
+  }
+
+  /* ── LEADERBOARD ── */
+  .leaderboard {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    overflow: hidden;
+    margin-bottom: 8px;
+  }
+  .lb-row {
+    display: grid;
+    grid-template-columns: 44px 1fr auto auto;
+    gap: 12px;
+    align-items: center;
+    padding: 14px 16px;
+    border-bottom: 1px solid var(--border);
+    cursor: pointer;
+    transition: background 0.15s, transform 0.3s ease;
+    min-height: 56px;
+  }
+  .lb-row:last-child { border-bottom: none; }
+  .lb-row:hover { background: var(--surface2); }
+  .lb-row.expanded { background: var(--surface2); }
+  .lb-rank {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 1.4rem;
+    color: var(--gold);
+    text-align: center;
+    letter-spacing: 0.04em;
+  }
+  .lb-row[data-rank="1"] .lb-rank { color: #FFD700; }
+  .lb-row[data-rank="2"] .lb-rank { color: #C0C0C0; }
+  .lb-row[data-rank="3"] .lb-rank { color: #CD7F32; }
+  .lb-name {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 1.25rem;
+    color: var(--text);
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    line-height: 1.1;
+  }
+  .lb-mb-badge {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 0.85rem;
+    letter-spacing: 0.12em;
+    color: var(--gold);
+    text-transform: uppercase;
+    font-weight: 700;
+    margin-top: 2px;
+  }
+  .lb-points {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 1.6rem;
+    color: var(--gold);
+    letter-spacing: 0.04em;
+  }
+  .lb-points-label {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 0.85rem;
+    color: var(--label);
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    margin-left: 4px;
+  }
+  .lb-chevron {
+    color: var(--label);
+    font-size: 1.1rem;
+    transition: transform 0.2s;
+  }
+  .lb-row.expanded .lb-chevron { transform: rotate(180deg); }
+
+  /* ── Picks card (expanded) ── */
+  .picks-card {
+    display: none;
+    background: var(--surface2);
+    border-top: 1px solid var(--border);
+    padding: 16px;
+  }
+  .picks-card.open { display: block; }
+  .pick-row {
+    display: grid;
+    grid-template-columns: 1fr auto;
+    gap: 10px;
+    align-items: center;
+    padding: 12px 14px;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-left: 4px solid var(--border);
+    border-radius: 6px;
+    margin-bottom: 8px;
+  }
+  .pick-row.hit { border-left-color: var(--green); }
+  .pick-row.miss { border-left-color: var(--red-bright); }
+  .pick-row.partial { border-left-color: var(--gold); }
+  .pick-row.pending { border-left-color: var(--border); }
+  .pick-row.moneyball { box-shadow: inset 4px 0 0 var(--gold), inset -4px 0 0 var(--gold); }
+  .pick-cat {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 1.05rem;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--label);
+    font-weight: 700;
+  }
+  .pick-mb-tag {
+    display: inline-block;
+    background: var(--gold);
+    color: #000;
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 0.78rem;
+    letter-spacing: 0.12em;
+    padding: 2px 8px;
+    border-radius: 10px;
+    margin-left: 6px;
+    font-weight: 700;
+    vertical-align: middle;
+  }
+  .pick-value {
+    font-family: 'Barlow', sans-serif;
+    font-size: 1.05rem;
+    color: var(--text);
+    margin-top: 4px;
+    line-height: 1.4;
+  }
+  .pick-actual {
+    font-family: 'Barlow', sans-serif;
+    font-size: 1rem;
+    color: var(--text-body);
+    margin-top: 2px;
+    line-height: 1.4;
+  }
+  .pick-actual .label-x {
+    color: var(--label);
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 0.85rem;
+    margin-right: 6px;
+  }
+  .pick-result {
+    text-align: right;
+    min-width: 80px;
+  }
+  .pick-points {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 1.4rem;
+    letter-spacing: 0.04em;
+  }
+  .pick-row.hit .pick-points { color: var(--green); }
+  .pick-row.miss .pick-points { color: var(--red-bright); }
+  .pick-row.partial .pick-points { color: var(--gold); }
+  .pick-row.pending .pick-points { color: var(--muted); }
+  .pick-status {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 0.82rem;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--label);
+  }
+
+  /* ── Submission form ── */
+  .form-card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 22px 20px;
+    margin: 20px 0;
+  }
+  .form-section-title {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 1.4rem;
+    color: var(--red-bright);
+    letter-spacing: 0.08em;
+    margin-bottom: 12px;
+    text-transform: uppercase;
+  }
+  .form-field {
+    margin-bottom: 18px;
+  }
+  .form-label {
+    display: block;
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 1.05rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--label);
+    font-weight: 700;
+    margin-bottom: 8px;
+    line-height: 1.3;
+  }
+  .form-label .mb-marker {
+    display: inline-block;
+    background: var(--surface3);
+    color: var(--gold);
+    font-size: 0.82rem;
+    padding: 2px 7px;
+    border-radius: 10px;
+    margin-left: 6px;
+    letter-spacing: 0.12em;
+    vertical-align: middle;
+    border: 1px solid var(--gold);
+    font-weight: 700;
+  }
+  .pts-tag {
+    display: inline-block;
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 0.95rem;
+    color: var(--gold);
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    font-weight: 700;
+    margin-left: 8px;
+    vertical-align: baseline;
+  }
+  .form-help {
+    display: block;
+    font-family: 'Barlow', sans-serif;
+    font-size: 1rem;
+    color: var(--label);
+    margin-bottom: 8px;
+    line-height: 1.4;
+  }
+  select, input[type="number"], input[type="text"], input[type="datetime-local"] {
+    width: 100%;
+    background: var(--surface3);
+    border: 1px solid var(--border);
+    color: var(--text);
+    font-family: 'Barlow', sans-serif;
+    font-size: 1.05rem;
+    padding: 14px 14px;
+    border-radius: 6px;
+    min-height: 48px;
+    appearance: none;
+    -webkit-appearance: none;
+  }
+  select {
+    background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='14' height='14' viewBox='0 0 24 24' fill='none' stroke='%23d8d8d8' stroke-width='2'><polyline points='6 9 12 15 18 9'></polyline></svg>");
+    background-repeat: no-repeat;
+    background-position: right 14px center;
+    padding-right: 40px;
+  }
+  select:focus, input:focus { outline: 2px solid var(--gold); outline-offset: -1px; }
+
+  .radio-group {
+    display: flex;
+    gap: 10px;
+  }
+  .radio-btn {
+    flex: 1;
+    background: var(--surface3);
+    border: 1px solid var(--border);
+    color: var(--text);
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 1.05rem;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    padding: 14px 12px;
+    border-radius: 6px;
+    cursor: pointer;
+    min-height: 48px;
+    font-weight: 700;
+    transition: background 0.15s, border-color 0.15s, color 0.15s;
+  }
+  .radio-btn.selected {
+    background: var(--gold);
+    border-color: var(--gold);
+    color: #000;
+  }
+
+  .ff-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 8px;
+  }
+  @media (min-width: 480px) {
+    .ff-grid { grid-template-columns: 1fr 1fr; }
+  }
+
+  .submit-btn {
+    width: 100%;
+    background: var(--gold);
+    color: #000;
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 1.5rem;
+    letter-spacing: 0.1em;
+    border: none;
+    padding: 18px 20px;
+    border-radius: 6px;
+    cursor: pointer;
+    text-transform: uppercase;
+    margin-top: 10px;
+    min-height: 56px;
+    font-weight: 700;
+  }
+  .submit-btn:hover { filter: brightness(1.1); }
+  .submit-btn:disabled { opacity: 0.5; cursor: not-allowed; }
+
+  .secondary-btn {
+    width: 100%;
+    background: var(--surface3);
+    color: var(--text);
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 1rem;
+    letter-spacing: 0.14em;
+    border: 1px solid var(--border);
+    padding: 12px 16px;
+    border-radius: 6px;
+    cursor: pointer;
+    text-transform: uppercase;
+    min-height: 44px;
+    font-weight: 700;
+  }
+  .secondary-btn:hover { background: var(--surface2); }
+
+  .form-msg {
+    padding: 12px 14px;
+    margin-top: 12px;
+    border-radius: 6px;
+    font-size: 1rem;
+    line-height: 1.4;
+  }
+  .form-msg.error {
+    background: rgba(231,76,60,0.12);
+    border: 1px solid var(--red-bright);
+    color: var(--text);
+  }
+  .form-msg.success {
+    background: rgba(46,204,113,0.12);
+    border: 1px solid var(--green);
+    color: var(--text);
+  }
+
+  /* ── Most-Wrong / Highlights callout ── */
+  .roast-card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 16px 18px;
+    margin-bottom: 12px;
+  }
+  .roast-eyebrow {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 0.95rem;
+    color: var(--label);
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    margin-bottom: 6px;
+    font-weight: 700;
+  }
+  .roast-line {
+    font-family: 'Barlow', sans-serif;
+    font-size: 1.05rem;
+    color: var(--text-body);
+    line-height: 1.5;
+  }
+  .roast-line strong { color: var(--text); font-weight: 700; }
+  .roast-line .stinger { color: var(--red-bright); font-weight: 700; }
+
+  /* ── Submission counter ── */
+  .counter-bar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: var(--surface2);
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    padding: 12px 14px;
+    margin-top: 10px;
+  }
+  .counter-text {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 1rem;
+    letter-spacing: 0.1em;
+    color: var(--label);
+    text-transform: uppercase;
+    font-weight: 700;
+  }
+  .counter-num {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 1.5rem;
+    color: var(--gold);
+    letter-spacing: 0.04em;
+  }
+
+  /* ── Submitted-list (post-lock view) ── */
+  .who-submitted {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+    margin-top: 10px;
+  }
+  .who-pill {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 0.95rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    padding: 6px 12px;
+    border-radius: 16px;
+    border: 1px solid var(--border);
+    background: var(--surface3);
+    color: var(--label);
+    font-weight: 700;
+  }
+  .who-pill.submitted {
+    background: var(--surface);
+    border-color: var(--gold);
+    color: var(--text);
+  }
+  .who-pill .check { color: var(--gold); margin-right: 4px; }
+
+  /* ── Commissioner panel ── */
+  .commish-gear {
+    position: fixed;
+    bottom: 16px;
+    right: 16px;
+    width: 48px;
+    height: 48px;
+    background: var(--surface2);
+    border: 1px solid var(--border);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    color: var(--label);
+    font-size: 1.3rem;
+    z-index: 50;
+  }
+  .commish-gear:hover { background: var(--surface3); color: var(--text); }
+
+  .modal-overlay {
+    position: fixed;
+    inset: 0;
+    background: rgba(0,0,0,0.75);
+    z-index: 400;
+    display: none;
+    align-items: flex-start;
+    justify-content: center;
+    overflow-y: auto;
+    padding: 20px 12px;
+  }
+  .modal-overlay.open { display: flex; }
+  .modal {
+    width: 100%;
+    max-width: 600px;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 24px 20px;
+    margin: auto;
+  }
+  .modal-title {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 1.6rem;
+    color: var(--red-bright);
+    letter-spacing: 0.08em;
+    margin-bottom: 4px;
+  }
+  .modal-sub {
+    font-size: 0.95rem;
+    color: var(--label);
+    margin-bottom: 18px;
+  }
+  .modal-close {
+    background: none;
+    border: none;
+    color: var(--label);
+    font-size: 1.4rem;
+    cursor: pointer;
+    float: right;
+    padding: 0 4px;
+  }
+  .commish-section {
+    margin-top: 18px;
+    padding-top: 16px;
+    border-top: 1px solid var(--border);
+  }
+  .commish-section h3 {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 1.2rem;
+    color: var(--text);
+    letter-spacing: 0.06em;
+    margin-bottom: 8px;
+    text-transform: uppercase;
+  }
+  .commish-row {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 8px;
+    margin-bottom: 12px;
+  }
+  @media (min-width: 480px) {
+    .commish-row.two-col { grid-template-columns: 1fr 1fr; }
+  }
+  .danger-btn {
+    background: var(--red);
+    color: #fff;
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 1rem;
+    border: none;
+    padding: 12px 16px;
+    border-radius: 6px;
+    cursor: pointer;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    min-height: 44px;
+    font-weight: 700;
+  }
+
+  /* ── How scoring works ── */
+  .rules-card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 18px 20px;
+    margin: 20px 0;
+  }
+  .rules-card h3 {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 1.4rem;
+    color: var(--text);
+    letter-spacing: 0.06em;
+    margin-bottom: 10px;
+    cursor: pointer;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    text-transform: uppercase;
+  }
+  .rules-card.open h3 .rules-chev { transform: rotate(180deg); }
+  .rules-chev { color: var(--label); font-size: 1rem; transition: transform 0.2s; }
+  .rules-content {
+    display: none;
+    font-size: 1rem;
+    color: var(--text-body);
+    line-height: 1.55;
+  }
+  .rules-card.open .rules-content { display: block; }
+  .rules-content table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 10px 0;
+    font-size: 1rem;
+  }
+  .rules-content th, .rules-content td {
+    border-bottom: 1px solid var(--border);
+    padding: 8px 10px;
+    text-align: left;
+    color: var(--text-body);
+  }
+  .rules-content th {
+    color: var(--label);
+    font-family: 'Barlow Condensed', sans-serif;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    font-size: 0.95rem;
+  }
+  .rules-content td.pts {
+    color: var(--gold);
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 1.15rem;
+    text-align: right;
+    white-space: nowrap;
+  }
+
+  /* ── Hidden state ── */
+  .hidden { display: none !important; }
+
+  /* ── Loading ── */
+  .loading {
+    text-align: center;
+    padding: 40px 20px;
+    color: var(--label);
+    font-family: 'Barlow Condensed', sans-serif;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    font-size: 1rem;
+  }
+</style>
+</head>
+<body>
+<script src="nav.js"></script>
+
+<div class="page-header">
+  <div class="page-supertitle">The Annals of History</div>
+  <h1>2026 Slingshot Entrance Survey</h1>
+  <p class="page-updated" id="pageUpdated"></p>
+</div>
+
+<div class="header-spacer"></div>
+
+<div class="content">
+  <p class="intro">Every owner submits their predictions for how the season will unfold. Submissions lock at the commissioner-set deadline. As results come in throughout the season, the leaderboard updates live.</p>
+
+  <div id="loadingPanel" class="loading">Loading survey…</div>
+
+  <!-- STATE: PRE-DEADLINE -->
+  <div id="stateOpen" class="hidden">
+    <div class="state-banner">
+      <div class="state-title">Submissions Open</div>
+      <div class="state-sub" id="openSub">Pick your owner from the dropdown and fill out all 13 categories. You can come back and edit your picks any time before the deadline.</div>
+      <div class="countdown" id="countdown"></div>
+    </div>
+
+    <div class="section-title">Submit Your Predictions</div>
+    <div class="form-card">
+      <div class="form-field">
+        <label class="form-label" for="ownerSelect">Choose Your Name</label>
+        <select id="ownerSelect"><option value="">— Select your name —</option></select>
+      </div>
+
+      <div id="formBody" class="hidden">
+        <!-- Form fields injected here -->
+      </div>
+
+      <div id="formMsg"></div>
+    </div>
+
+    <div class="counter-bar">
+      <span class="counter-text">Submissions In</span>
+      <span><span class="counter-num" id="submittedCount">0</span><span class="counter-text" style="margin-left:6px;"> / 14</span></span>
+    </div>
+    <div class="who-submitted" id="whoSubmitted"></div>
+
+    <div class="rules-card" id="rulesCard">
+      <h3>How Scoring Works <span class="rules-chev">▼</span></h3>
+      <div class="rules-content" id="rulesContent"></div>
+    </div>
+  </div>
+
+  <!-- STATE: LOCKED / IN-SEASON / REVEALED -->
+  <div id="stateLocked" class="hidden">
+    <div class="state-banner locked" id="lockedBanner">
+      <div class="state-title" id="lockedTitle">Predictions Locked</div>
+      <div class="state-sub" id="lockedSub">Submissions are closed. As results come in this season, the leaderboard will update live.</div>
+    </div>
+
+    <div class="section-title">Leaderboard</div>
+    <div class="leaderboard" id="leaderboard"></div>
+
+    <div id="roastSection" class="hidden">
+      <div class="section-title">Notable Picks</div>
+      <div id="roastList"></div>
+    </div>
+
+    <div class="rules-card" id="rulesCard2">
+      <h3>How Scoring Works <span class="rules-chev">▼</span></h3>
+      <div class="rules-content" id="rulesContent2"></div>
+    </div>
+  </div>
+</div>
+
+<!-- Commissioner gear -->
+<button class="commish-gear" id="commishGear" aria-label="Commissioner panel">⚙</button>
+
+<!-- Commissioner modal -->
+<div class="modal-overlay" id="commishOverlay">
+  <div class="modal">
+    <button class="modal-close" id="commishClose">✕</button>
+    <div class="modal-title">Commissioner Panel</div>
+    <div class="modal-sub">Restricted access. All changes save immediately.</div>
+
+    <div id="commishLocked">
+      <div class="form-field">
+        <label class="form-label" for="commishPass">Passcode</label>
+        <input type="password" id="commishPass" placeholder="Enter passcode" />
+      </div>
+      <button class="submit-btn" id="commishUnlock">Unlock</button>
+      <div id="commishMsg"></div>
+    </div>
+
+    <div id="commishContent" class="hidden">
+      <!-- Commissioner panel injected -->
+    </div>
+  </div>
+</div>
+
+<!-- Firebase + main script -->
+<script type="module">
+import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
+import { getDatabase, ref, onValue, set, update, remove }
+  from "https://www.gstatic.com/firebasejs/10.12.2/firebase-database.js";
+
+// ==================== CONFIG ====================
+
+const firebaseConfig = {
+  databaseURL: "https://slingshot-engaged-default-rtdb.firebaseio.com"
+};
+const app = initializeApp(firebaseConfig);
+const db = getDatabase(app);
+
+const SEASON = "2026";  // Change to roll over to new season; commissioner panel can reset
+const COMMISH_PASSCODE = "slingshot";
+
+// Active owners (id, display name). OOTY excludes Jack.
+const OWNERS = [
+  { id: "alex",   name: "Alex" },
+  { id: "andy",   name: "Andy" },
+  { id: "brian",  name: "Brian" },
+  { id: "daniel", name: "Daniel" },
+  { id: "dylan",  name: "Dylan" },
+  { id: "jack",   name: "Jack" },
+  { id: "jordan", name: "Jordan" },
+  { id: "kyle",   name: "Kyle" },
+  { id: "luke",   name: "Luke" },
+  { id: "matt",   name: "Matt" },
+  { id: "mike",   name: "Mike" },
+  { id: "scott",  name: "Scott" },
+  { id: "tim",    name: "Tim" },
+  { id: "wade",   name: "Wade" },
+];
+const OOTY_INELIGIBLE = ["jack"];
+const OWNER_COUNT = OWNERS.length;
+const ownerName = id => (OWNERS.find(o => o.id === id) || { name: "—" }).name;
+
+// Categories — single source of truth for the entire page
+const CATEGORIES = [
+  { key: "champion",       label: "League Champion",           type: "owner",  basePoints: 10, moneyball: true },
+  { key: "secondPlace",    label: "2nd Place",                 type: "owner",  basePoints: 6,  moneyball: true },
+  { key: "finalFour",      label: "Final Four",                type: "ff",     basePoints: 12, moneyball: false, perHit: 3 },
+  { key: "bronzeFranz",    label: "Bronze Franz (Last Place)", type: "owner",  basePoints: 8,  moneyball: true },
+  { key: "regSeasonChamp", label: "Regular Season Champion",   type: "owner",  basePoints: 6,  moneyball: true },
+  { key: "ooty",           label: "Owner of the Year",         type: "owner",  basePoints: 5,  moneyball: true, exclude: OOTY_INELIGIBLE },
+  { key: "hottestTeam",    label: "Hottest Team in Sports Bowl", type: "owner", basePoints: 4, moneyball: true },
+  { key: "avlCup",         label: "AVL Memorial Cup",          type: "owner",  basePoints: 4,  moneyball: true },
+  { key: "rivalryWeek",    label: "Rivalry Week",              type: "owner",  basePoints: 4,  moneyball: true },
+  { key: "intercontinental", label: "Intercontinental Champ",  type: "owner",  basePoints: 4,  moneyball: true },
+  { key: "ownFinish",      label: "Your Own Regular Season Finish", type: "finish", basePoints: 5, moneyball: true },
+  { key: "asteriskHung",   label: "Will the Asterisk Chain Be Hung?", type: "yn", basePoints: 4, moneyball: false },
+  { key: "ryderCup",       label: "Ryder Cup Winner",          type: "ryder",  basePoints: 5,  moneyball: false },
+];
+const MONEYBALL_BONUS = 5;
+
+// ==================== STATE ====================
+
+let dbState = null;     // Holds { config, submissions } for current season
+let myOwnerId = null;   // Selected owner in the form session
+let isCommish = false;
+let countdownInterval = null;
+
+// ==================== UTILITIES ====================
+
+const $ = id => document.getElementById(id);
+const escapeHTML = s => String(s ?? "").replace(/[&<>"']/g, c => ({
+  "&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"
+}[c]));
+
+function nowMs() { return Date.now(); }
+function deadlineMs() {
+  const d = dbState?.config?.deadline;
+  return d ? new Date(d).getTime() : null;
+}
+function isManualLocked() { return !!dbState?.config?.locked; }
+function isLocked() {
+  if (isManualLocked()) return true;
+  const dl = deadlineMs();
+  return dl != null && nowMs() >= dl;
+}
+
+function formatCountdown(ms) {
+  if (ms <= 0) return "DEADLINE PASSED";
+  const s = Math.floor(ms/1000);
+  const days = Math.floor(s/86400);
+  const hours = Math.floor((s%86400)/3600);
+  const mins = Math.floor((s%3600)/60);
+  if (days > 0) return `${days}d ${hours}h ${mins}m`;
+  if (hours > 0) return `${hours}h ${mins}m`;
+  return `${mins}m`;
+}
+
+function formatDate(iso) {
+  if (!iso) return "—";
+  const d = new Date(iso);
+  return d.toLocaleString(undefined, { dateStyle: "long", timeStyle: "short" });
+}
+
+// ==================== FORM BUILD ====================
+
+function buildForm() {
+  const formBody = $("formBody");
+  const ryderA = dbState?.config?.ryderCupMatchup?.teamA || "Team A";
+  const ryderB = dbState?.config?.ryderCupMatchup?.teamB || "Team B";
+
+  // Build a "pts" descriptor for each category label
+  function ptsDesc(cat) {
+    if (cat.type === "ff") return `${cat.perHit} pts per hit · max ${cat.basePoints}`;
+    if (cat.type === "finish") return `5 / 3 / 1 pts (exact / ±1 / ±2)`;
+    return `${cat.basePoints} pts`;
+  }
+
+  let html = '';
+
+  CATEGORIES.forEach(cat => {
+    html += `<div class="form-field" data-cat="${cat.key}">`;
+    html += `<label class="form-label">${escapeHTML(cat.label)} <span class="pts-tag">${ptsDesc(cat)}</span></label>`;
+
+    if (cat.type === "owner") {
+      const exclude = cat.exclude || [];
+      const opts = OWNERS.filter(o => !exclude.includes(o.id));
+      html += `<select data-key="${cat.key}" required><option value="">— Pick —</option>`;
+      opts.forEach(o => html += `<option value="${o.id}">${escapeHTML(o.name)}</option>`);
+      html += `</select>`;
+
+    } else if (cat.type === "ff") {
+      html += `<span class="form-help">Pick 4 owners you think will reach the playoff semifinals.</span>`;
+      html += `<div class="ff-grid">`;
+      for (let i = 0; i < 4; i++) {
+        html += `<select data-key="${cat.key}" data-slot="${i}" required>`;
+        html += `<option value="">— Pick #${i+1} —</option>`;
+        OWNERS.forEach(o => html += `<option value="${o.id}">${escapeHTML(o.name)}</option>`);
+        html += `</select>`;
+      }
+      html += `</div>`;
+
+    } else if (cat.type === "finish") {
+      html += `<span class="form-help">Where do you think you'll finish in the regular season?</span>`;
+      html += `<select data-key="${cat.key}" required><option value="">— Pick —</option>`;
+      for (let i = 1; i <= 14; i++) {
+        html += `<option value="${i}">${i}${getOrdinal(i)} place</option>`;
+      }
+      html += `</select>`;
+
+    } else if (cat.type === "yn") {
+      html += `<div class="radio-group" data-key="${cat.key}">`;
+      html += `<button type="button" class="radio-btn" data-val="yes">Yes</button>`;
+      html += `<button type="button" class="radio-btn" data-val="no">No</button>`;
+      html += `</div>`;
+
+    } else if (cat.type === "ryder") {
+      html += `<div class="radio-group" data-key="${cat.key}">`;
+      html += `<button type="button" class="radio-btn" data-val="teamA">${escapeHTML(ryderA)}</button>`;
+      html += `<button type="button" class="radio-btn" data-val="teamB">${escapeHTML(ryderB)}</button>`;
+      html += `</div>`;
+    }
+
+    html += `</div>`;
+  });
+
+  // Moneyball selector
+  const mbCats = CATEGORIES.filter(c => c.moneyball);
+  html += `<div class="form-field"><label class="form-label">Moneyball Pick <span class="pts-tag">+${MONEYBALL_BONUS} bonus</span></label>`;
+  html += `<span class="form-help">Pick one category you're most confident in. If you nail it exactly, you earn ${MONEYBALL_BONUS} bonus points.</span>`;
+  html += `<select data-key="moneyball" required><option value="">— Choose one category —</option>`;
+  mbCats.forEach(c => html += `<option value="${c.key}">${escapeHTML(c.label)}</option>`);
+  html += `</select></div>`;
+
+  html += `<button type="button" class="submit-btn" id="submitBtn">Submit My Predictions</button>`;
+
+  formBody.innerHTML = html;
+
+  // Wire up radio buttons
+  formBody.querySelectorAll(".radio-group").forEach(group => {
+    group.querySelectorAll(".radio-btn").forEach(btn => {
+      btn.addEventListener("click", () => {
+        group.querySelectorAll(".radio-btn").forEach(b => b.classList.remove("selected"));
+        btn.classList.add("selected");
+        group.dataset.value = btn.dataset.val;
+      });
+    });
+  });
+
+  // Final Four duplicate prevention
+  const ffSelects = formBody.querySelectorAll('select[data-key="finalFour"]');
+  ffSelects.forEach(sel => sel.addEventListener("change", () => updateFFDupePrevention(ffSelects)));
+
+  $("submitBtn").addEventListener("click", onSubmit);
+}
+
+function updateFFDupePrevention(ffSelects) {
+  const used = new Set();
+  ffSelects.forEach(s => { if (s.value) used.add(s.value); });
+  ffSelects.forEach(s => {
+    Array.from(s.options).forEach(opt => {
+      if (!opt.value) { opt.disabled = false; return; }
+      opt.disabled = used.has(opt.value) && opt.value !== s.value;
+    });
+  });
+}
+
+function prefillForm(picks) {
+  const formBody = $("formBody");
+  if (!picks) return;
+  CATEGORIES.forEach(cat => {
+    const val = picks[cat.key];
+    if (val === undefined || val === null) return;
+
+    if (cat.type === "owner") {
+      const sel = formBody.querySelector(`select[data-key="${cat.key}"]`);
+      if (sel) sel.value = val;
+    } else if (cat.type === "ff" && Array.isArray(val)) {
+      val.forEach((id, i) => {
+        const sel = formBody.querySelector(`select[data-key="${cat.key}"][data-slot="${i}"]`);
+        if (sel) sel.value = id;
+      });
+      updateFFDupePrevention(formBody.querySelectorAll('select[data-key="finalFour"]'));
+    } else if (cat.type === "finish") {
+      const sel = formBody.querySelector(`select[data-key="${cat.key}"]`);
+      if (sel) sel.value = val;
+    } else if (cat.type === "yn" || cat.type === "ryder") {
+      const group = formBody.querySelector(`.radio-group[data-key="${cat.key}"]`);
+      if (group) {
+        group.querySelectorAll(".radio-btn").forEach(b => {
+          if (b.dataset.val === val) { b.classList.add("selected"); }
+        });
+        group.dataset.value = val;
+      }
+    }
+  });
+  if (picks.moneyball) {
+    const sel = formBody.querySelector('select[data-key="moneyball"]');
+    if (sel) sel.value = picks.moneyball;
+  }
+}
+
+function collectFormPicks() {
+  const formBody = $("formBody");
+  const picks = {};
+
+  for (const cat of CATEGORIES) {
+    if (cat.type === "owner") {
+      const sel = formBody.querySelector(`select[data-key="${cat.key}"]`);
+      const v = sel?.value;
+      if (!v) return { error: `Pick a name for ${cat.label}.` };
+      picks[cat.key] = v;
+    } else if (cat.type === "ff") {
+      const sels = formBody.querySelectorAll('select[data-key="finalFour"]');
+      const arr = Array.from(sels).map(s => s.value);
+      if (arr.some(v => !v)) return { error: `Pick all four for Final Four.` };
+      if (new Set(arr).size !== 4) return { error: `Final Four picks must be 4 different owners.` };
+      picks[cat.key] = arr;
+    } else if (cat.type === "finish") {
+      const sel = formBody.querySelector(`select[data-key="${cat.key}"]`);
+      const n = parseInt(sel?.value, 10);
+      if (!n || n < 1 || n > 14) return { error: `Pick where you'll finish for ${cat.label}.` };
+      picks[cat.key] = n;
+    } else if (cat.type === "yn" || cat.type === "ryder") {
+      const group = formBody.querySelector(`.radio-group[data-key="${cat.key}"]`);
+      const v = group?.dataset?.value;
+      if (!v) return { error: `Pick an option for ${cat.label}.` };
+      picks[cat.key] = v;
+    }
+  }
+  const mbSel = formBody.querySelector('select[data-key="moneyball"]');
+  if (!mbSel?.value) return { error: `Choose a Moneyball category.` };
+  picks.moneyball = mbSel.value;
+
+  return { picks };
+}
+
+async function onSubmit() {
+  if (!myOwnerId) { showFormMsg("Pick your name first.", "error"); return; }
+  if (isLocked()) { showFormMsg("Submissions are locked — deadline has passed.", "error"); return; }
+
+  const result = collectFormPicks();
+  if (result.error) { showFormMsg(result.error, "error"); return; }
+
+  try {
+    await set(ref(db, `predictionBallot/${SEASON}/submissions/${myOwnerId}`), {
+      submittedAt: new Date().toISOString(),
+      picks: result.picks
+    });
+    showFormMsg("Predictions saved. You can come back and edit any time before the deadline.", "success");
+    window.scrollTo({ top: 0, behavior: "smooth" });
+  } catch (e) {
+    showFormMsg("Save failed: " + (e?.message || e), "error");
+  }
+}
+
+function showFormMsg(text, type) {
+  $("formMsg").innerHTML = `<div class="form-msg ${type}">${escapeHTML(text)}</div>`;
+  if (type === "success") setTimeout(() => { $("formMsg").innerHTML = ""; }, 5000);
+}
+
+// ==================== SCORING ENGINE ====================
+
+function scoreOnePick(catKey, pickValue, actualValue) {
+  // Returns { earned, max, status: 'hit'|'miss'|'partial'|'pending', detail? }
+  const cat = CATEGORIES.find(c => c.key === catKey);
+  if (!cat) return { earned: 0, max: 0, status: "pending" };
+
+  if (actualValue === undefined || actualValue === null ||
+      (Array.isArray(actualValue) && actualValue.length === 0)) {
+    return { earned: 0, max: cat.basePoints, status: "pending" };
+  }
+
+  if (cat.type === "owner" || cat.type === "yn" || cat.type === "ryder") {
+    if (pickValue === actualValue) return { earned: cat.basePoints, max: cat.basePoints, status: "hit" };
+    return { earned: 0, max: cat.basePoints, status: "miss" };
+  }
+
+  if (cat.type === "ff") {
+    if (!Array.isArray(pickValue) || !Array.isArray(actualValue)) {
+      return { earned: 0, max: cat.basePoints, status: "miss" };
+    }
+    const actualSet = new Set(actualValue);
+    const hits = pickValue.filter(v => actualSet.has(v)).length;
+    const earned = hits * cat.perHit;
+    let status = "miss";
+    if (hits === 4) status = "hit";
+    else if (hits > 0) status = "partial";
+    return { earned, max: cat.basePoints, status, hits };
+  }
+
+  if (cat.type === "finish") {
+    const p = parseInt(pickValue, 10);
+    const a = parseInt(actualValue, 10);
+    if (!p || !a) return { earned: 0, max: cat.basePoints, status: "miss" };
+    const diff = Math.abs(p - a);
+    let earned = 0, status = "miss";
+    if (diff === 0) { earned = 5; status = "hit"; }
+    else if (diff === 1) { earned = 3; status = "partial"; }
+    else if (diff === 2) { earned = 1; status = "partial"; }
+    return { earned, max: cat.basePoints, status, diff };
+  }
+
+  return { earned: 0, max: cat.basePoints, status: "pending" };
+}
+
+function isMoneyballHit(catKey, pickValue, actualValue) {
+  const r = scoreOnePick(catKey, pickValue, actualValue);
+  // Moneyball requires "fully correct"
+  if (r.status === "pending") return null;
+  if (r.status === "hit") return true;
+  return false;
+}
+
+function actualForCategory(catKey, actuals, ownerId, regSeasonFinishes) {
+  // Special-case Your Own Regular Season Finish: each owner has their own actual,
+  // pulled from config.regSeasonFinishes[ownerId].
+  if (catKey === "ownFinish") {
+    if (ownerId && regSeasonFinishes && regSeasonFinishes[ownerId] != null) {
+      return regSeasonFinishes[ownerId];
+    }
+    return null;
+  }
+  return actuals?.[catKey];
+}
+
+function scoreSubmission(submission, actuals, ownerId, regSeasonFinishes) {
+  // Returns { total, perCat: { key: {earned, max, status, mb?} }, mbBonus, mbCategory, mbStatus }
+  const picks = submission.picks || {};
+  const perCat = {};
+  let total = 0;
+
+  for (const cat of CATEGORIES) {
+    const actualVal = actualForCategory(cat.key, actuals, ownerId, regSeasonFinishes);
+    const r = scoreOnePick(cat.key, picks[cat.key], actualVal);
+    perCat[cat.key] = r;
+    total += r.earned;
+  }
+
+  const mbKey = picks.moneyball;
+  let mbBonus = 0;
+  let mbStatus = "pending";
+  if (mbKey) {
+    const mbActual = actualForCategory(mbKey, actuals, ownerId, regSeasonFinishes);
+    const hit = isMoneyballHit(mbKey, picks[mbKey], mbActual);
+    if (hit === true) { mbBonus = MONEYBALL_BONUS; mbStatus = "hit"; }
+    else if (hit === false) { mbStatus = "miss"; }
+    else { mbStatus = "pending"; }
+  }
+  total += mbBonus;
+
+  return { total, perCat, mbBonus, mbCategory: mbKey, mbStatus };
+}
+
+// ==================== RENDER: PRE-DEADLINE ====================
+
+function renderOpenState() {
+  $("loadingPanel").classList.add("hidden");
+  $("stateLocked").classList.add("hidden");
+  $("stateOpen").classList.remove("hidden");
+
+  // Owner select (only owners not yet locked-in submitted appear differently)
+  const subs = dbState?.submissions || {};
+  const select = $("ownerSelect");
+  select.innerHTML = '<option value="">— Select your name —</option>';
+  OWNERS.forEach(o => {
+    const submitted = !!subs[o.id];
+    const opt = document.createElement("option");
+    opt.value = o.id;
+    opt.textContent = submitted ? `${o.name}  ✓ (submitted — tap to edit)` : o.name;
+    select.appendChild(opt);
+  });
+  if (myOwnerId) select.value = myOwnerId;
+
+  // Counter + who-submitted pills
+  const submittedIds = Object.keys(subs);
+  $("submittedCount").textContent = submittedIds.length;
+  const wrap = $("whoSubmitted");
+  wrap.innerHTML = OWNERS.map(o => {
+    const submitted = submittedIds.includes(o.id);
+    return `<span class="who-pill ${submitted ? "submitted" : ""}">${submitted ? '<span class="check">✓</span>' : ''}${escapeHTML(o.name)}</span>`;
+  }).join("");
+
+  // Countdown
+  const dl = deadlineMs();
+  const cd = $("countdown");
+  const openSub = $("openSub");
+  if (dl) {
+    openSub.innerHTML = `Pick your owner from the dropdown and fill out all 13 categories. You can come back and edit your picks any time before the deadline.<br><span style="color:var(--label); font-size:0.95rem; letter-spacing:0.1em;">Deadline: ${escapeHTML(formatDate(dbState.config.deadline))}</span>`;
+    if (countdownInterval) clearInterval(countdownInterval);
+    const update = () => {
+      const remaining = dl - nowMs();
+      cd.textContent = formatCountdown(remaining);
+      if (remaining <= 0) { clearInterval(countdownInterval); render(); }
+    };
+    update();
+    countdownInterval = setInterval(update, 30000);
+  } else {
+    cd.textContent = "Deadline not yet set";
+    openSub.innerHTML = `The commissioner hasn't set a deadline yet. Once they do, submissions will open here.`;
+  }
+
+  // Build form (idempotent)
+  buildForm();
+  renderRulesContent("rulesContent");
+
+  // Owner select handler
+  select.onchange = () => {
+    const id = select.value;
+    if (!id) {
+      $("formBody").classList.add("hidden");
+      myOwnerId = null;
+      return;
+    }
+    myOwnerId = id;
+    $("formBody").classList.remove("hidden");
+    $("formMsg").innerHTML = "";
+    // Reset form to blank then prefill if existing submission
+    buildForm();
+    const existing = subs[id]?.picks;
+    if (existing) {
+      prefillForm(existing);
+      const submittedAt = subs[id].submittedAt;
+      showFormMsg(`Your previous predictions are loaded. Last edited ${submittedAt ? new Date(submittedAt).toLocaleString() : "previously"}. Edit and resubmit to update.`, "success");
+    }
+  };
+}
+
+// ==================== RENDER: LOCKED / IN-SEASON / REVEALED ====================
+
+function renderLockedState() {
+  $("loadingPanel").classList.add("hidden");
+  $("stateOpen").classList.add("hidden");
+  $("stateLocked").classList.remove("hidden");
+
+  const actuals = dbState?.config?.actualResults || {};
+  const subs = dbState?.submissions || {};
+  const regSeasonFinishes = dbState?.config?.regSeasonFinishes || {};
+  const resultsEntered = CATEGORIES.filter(c => {
+    if (c.key === "ownFinish") {
+      // "Entered" means regSeasonFinishes has at least one owner filled in
+      return Object.keys(regSeasonFinishes).length > 0;
+    }
+    const v = actuals[c.key];
+    if (v === undefined || v === null) return false;
+    if (Array.isArray(v) && v.length === 0) return false;
+    return true;
+  }).length;
+  const allResultsIn = resultsEntered === CATEGORIES.length;
+
+  // Banner messaging
+  if (resultsEntered === 0) {
+    $("lockedTitle").textContent = "Predictions Locked";
+    $("lockedSub").textContent = `All ${Object.keys(subs).length} submissions are visible below. The leaderboard will start updating as results come in this season.`;
+  } else if (allResultsIn) {
+    $("lockedTitle").textContent = "Season Complete";
+    $("lockedSub").textContent = `All 13 categories scored. Final standings below.`;
+  } else {
+    $("lockedTitle").textContent = `${resultsEntered} of 13 Results In`;
+    $("lockedSub").textContent = `Leaderboard updates live as results come in. Tap any name to see their picks.`;
+  }
+
+  // Build leaderboard data
+  const submitterIds = Object.keys(subs);
+  if (submitterIds.length === 0) {
+    $("leaderboard").innerHTML = `<div style="padding:24px; text-align:center; color:var(--label);">No submissions were made before the deadline.</div>`;
+    $("roastSection").classList.add("hidden");
+    return;
+  }
+
+  const scored = submitterIds.map(id => ({
+    id,
+    name: ownerName(id),
+    submission: subs[id],
+    score: scoreSubmission(subs[id], actuals, id, dbState?.config?.regSeasonFinishes)
+  }));
+  scored.sort((a, b) => b.score.total - a.score.total || a.name.localeCompare(b.name));
+
+  // Render leaderboard rows
+  const lb = $("leaderboard");
+  lb.innerHTML = scored.map((row, idx) => {
+    const rank = idx + 1;
+    const mbHit = row.score.mbStatus === "hit";
+    const mbLine = mbHit ? `<div class="lb-mb-badge">🏆 Moneyball +${MONEYBALL_BONUS}</div>` : "";
+    return `
+      <div class="lb-row" data-id="${row.id}" data-rank="${rank}">
+        <div class="lb-rank">${rank}</div>
+        <div>
+          <div class="lb-name">${escapeHTML(row.name)}</div>
+          ${mbLine}
+        </div>
+        <div><span class="lb-points">${row.score.total}</span><span class="lb-points-label">pts</span></div>
+        <div class="lb-chevron">▼</div>
+      </div>
+      <div class="picks-card" id="picks-${row.id}"></div>
+    `;
+  }).join("");
+
+  // Wire up click handlers for expansion
+  lb.querySelectorAll(".lb-row").forEach(rowEl => {
+    rowEl.addEventListener("click", () => {
+      const id = rowEl.dataset.id;
+      const card = document.getElementById(`picks-${id}`);
+      const opening = !card.classList.contains("open");
+      if (opening) {
+        const row = scored.find(r => r.id === id);
+        renderPicksCard(card, row, actuals);
+      }
+      card.classList.toggle("open");
+      rowEl.classList.toggle("expanded");
+    });
+  });
+
+  // Roast section (only when at least one category is resolved AND there are interesting picks to call out)
+  renderRoasts(scored, actuals, resultsEntered);
+
+  // Rules
+  renderRulesContent("rulesContent2");
+}
+
+function renderPicksCard(cardEl, row, actuals) {
+  const picks = row.submission.picks || {};
+  const submittedAt = row.submission.submittedAt;
+  const subTime = submittedAt ? new Date(submittedAt).toLocaleString() : "";
+  const mbCat = picks.moneyball;
+
+  let html = `<div style="font-family:'Barlow Condensed', sans-serif; font-size:0.95rem; color:var(--label); letter-spacing:0.1em; text-transform:uppercase; margin-bottom:10px;">Submitted ${escapeHTML(subTime)} · Moneyball: <strong style="color:var(--gold);">${escapeHTML(CATEGORIES.find(c => c.key === mbCat)?.label || "—")}</strong></div>`;
+
+  for (const cat of CATEGORIES) {
+    const pick = picks[cat.key];
+    const actual = actualForCategory(cat.key, actuals, row.id, dbState?.config?.regSeasonFinishes);
+    const r = scoreOnePick(cat.key, pick, actual);
+    const isMb = mbCat === cat.key;
+    const mbHitOnThis = isMb && r.status === "hit";
+    const rowClass = `pick-row ${r.status}${isMb ? " moneyball" : ""}`;
+
+    let pickDisplay = "";
+    let actualDisplay = "";
+    let pointsDisplay = "";
+
+    if (cat.type === "owner") {
+      pickDisplay = pick ? ownerName(pick) : "—";
+      actualDisplay = actual ? ownerName(actual) : "TBD";
+    } else if (cat.type === "ff") {
+      pickDisplay = Array.isArray(pick) ? pick.map(ownerName).join(", ") : "—";
+      actualDisplay = Array.isArray(actual) && actual.length > 0 ? actual.map(ownerName).join(", ") : "TBD";
+    } else if (cat.type === "finish") {
+      pickDisplay = pick != null ? `${pick}${getOrdinal(pick)} place` : "—";
+      actualDisplay = actual != null ? `${actual}${getOrdinal(actual)} place` : "TBD";
+    } else if (cat.type === "yn") {
+      pickDisplay = pick === "yes" ? "Yes" : pick === "no" ? "No" : "—";
+      actualDisplay = actual === "yes" ? "Yes" : actual === "no" ? "No" : "TBD";
+    } else if (cat.type === "ryder") {
+      const ryderA = dbState?.config?.ryderCupMatchup?.teamA || "Team A";
+      const ryderB = dbState?.config?.ryderCupMatchup?.teamB || "Team B";
+      pickDisplay = pick === "teamA" ? ryderA : pick === "teamB" ? ryderB : "—";
+      actualDisplay = actual === "teamA" ? ryderA : actual === "teamB" ? ryderB : "TBD";
+    }
+
+    if (r.status === "pending") {
+      pointsDisplay = `<div class="pick-points">—</div><div class="pick-status">Pending</div>`;
+    } else {
+      let earnedDisplay = r.earned;
+      if (mbHitOnThis) earnedDisplay = `${r.earned}+${MONEYBALL_BONUS}`;
+      const statusText = r.status === "hit" ? "Hit" :
+                        r.status === "partial" ? (cat.type === "ff" ? `${r.hits} of 4` : "Close") :
+                        "Miss";
+      pointsDisplay = `<div class="pick-points">${earnedDisplay}</div><div class="pick-status">${statusText}</div>`;
+    }
+
+    html += `
+      <div class="${rowClass}">
+        <div>
+          <div class="pick-cat">${escapeHTML(cat.label)}${isMb ? '<span class="pick-mb-tag">MB</span>' : ''}</div>
+          <div class="pick-value"><span class="label-x">Picked</span>${escapeHTML(pickDisplay)}</div>
+          <div class="pick-actual"><span class="label-x">Actual</span>${escapeHTML(actualDisplay)}</div>
+        </div>
+        <div class="pick-result">${pointsDisplay}</div>
+      </div>
+    `;
+  }
+
+  cardEl.innerHTML = html;
+}
+
+function getOrdinal(n) {
+  const s = ["th","st","nd","rd"], v = n % 100;
+  return s[(v-20)%10] || s[v] || s[0];
+}
+
+function renderRoasts(scored, actuals, resultsEntered) {
+  // Show roast section only if at least 1 result has been entered AND we can find at least 1 notable pick
+  if (resultsEntered === 0) {
+    $("roastSection").classList.add("hidden");
+    return;
+  }
+
+  const roasts = [];
+
+  // For each resolved category, find the most-wrong picks
+  for (const cat of CATEGORIES) {
+    // Skip ownFinish — it's per-owner, not a single global truth, so "lonely genius"
+    // and "whiff" framings don't apply meaningfully.
+    if (cat.key === "ownFinish") continue;
+
+    const actual = actuals[cat.key];
+    if (actual === undefined || actual === null) continue;
+    if (cat.type === "ff" && Array.isArray(actual) && actual.length === 0) continue;
+
+    // Count how many got it right
+    const got = scored.filter(s => {
+      const r = scoreOnePick(cat.key, s.submission.picks?.[cat.key], actual);
+      return r.status === "hit";
+    });
+
+    // "Hot take" — exactly 1 owner got it right (lonely correct pick)
+    if (got.length === 1) {
+      let actualDisplay = describeActual(cat, actual);
+      roasts.push({
+        eyebrow: "🔥 Lonely Genius",
+        line: `<strong>${escapeHTML(got[0].name)}</strong> was the only one who picked <strong>${escapeHTML(actualDisplay)}</strong> for ${escapeHTML(cat.label)}.`
+      });
+    }
+    // "Whiff" — 0 got it right and it's a high-value category
+    if (got.length === 0 && cat.basePoints >= 6) {
+      let actualDisplay = describeActual(cat, actual);
+      roasts.push({
+        eyebrow: "💀 Whiff Of The League",
+        line: `Nobody picked <strong>${escapeHTML(actualDisplay)}</strong> for ${escapeHTML(cat.label)}.`
+      });
+    }
+  }
+
+  // Find Moneyball hits — those are always notable
+  scored.forEach(s => {
+    if (s.score.mbStatus === "hit") {
+      const cat = CATEGORIES.find(c => c.key === s.score.mbCategory);
+      roasts.push({
+        eyebrow: "🏆 Moneyball Hit",
+        line: `<strong>${escapeHTML(s.name)}</strong> Moneyball-picked <strong>${escapeHTML(cat?.label || "")}</strong> and nailed it. <span class="stinger">+${MONEYBALL_BONUS} bonus.</span>`
+      });
+    }
+  });
+
+  if (roasts.length === 0) {
+    $("roastSection").classList.add("hidden");
+    return;
+  }
+
+  $("roastSection").classList.remove("hidden");
+  $("roastList").innerHTML = roasts.map(r => `
+    <div class="roast-card">
+      <div class="roast-eyebrow">${r.eyebrow}</div>
+      <div class="roast-line">${r.line}</div>
+    </div>
+  `).join("");
+}
+
+function describeActual(cat, actual) {
+  if (cat.type === "owner") return ownerName(actual);
+  if (cat.type === "ff") return Array.isArray(actual) ? actual.map(ownerName).join(", ") : "—";
+  if (cat.type === "finish") return `${actual}${getOrdinal(actual)} place`;
+  if (cat.type === "yn") return actual === "yes" ? "Yes" : "No";
+  if (cat.type === "ryder") {
+    const ryderA = dbState?.config?.ryderCupMatchup?.teamA || "Team A";
+    const ryderB = dbState?.config?.ryderCupMatchup?.teamB || "Team B";
+    return actual === "teamA" ? ryderA : ryderB;
+  }
+  return String(actual);
+}
+
+// ==================== RULES TABLE ====================
+
+function renderRulesContent(targetId) {
+  const target = $(targetId);
+  if (!target) return;
+  let html = `<p style="margin-bottom:10px;">Each correct pick earns points. Add up your earned points across all 13 categories, plus a +${MONEYBALL_BONUS} Moneyball bonus if your designated category is fully correct.</p>`;
+  html += `<table><thead><tr><th>Category</th><th style="text-align:right;">Points</th></tr></thead><tbody>`;
+  CATEGORIES.forEach(cat => {
+    let ptDesc = "";
+    if (cat.type === "ff") ptDesc = `${cat.perHit}/hit (max ${cat.basePoints})`;
+    else if (cat.type === "finish") ptDesc = `5 / 3 / 1 (exact / ±1 / ±2)`;
+    else ptDesc = String(cat.basePoints);
+    html += `<tr><td>${escapeHTML(cat.label)}${cat.moneyball ? '<span class="pick-mb-tag" style="margin-left:6px;">MB</span>' : ''}</td><td class="pts">${ptDesc}</td></tr>`;
+  });
+  html += `<tr><td><strong>Moneyball Bonus</strong> (if your picked category is fully correct)</td><td class="pts">+${MONEYBALL_BONUS}</td></tr>`;
+  html += `</tbody></table>`;
+  html += `<p style="margin-top:8px;"><strong>MB</strong> = Moneyball-eligible. Pick the one category you're most confident in. The bonus only triggers if you nail your pick exactly — for Your Own Regular Season Finish, that means landing on the exact position (not ±1 or ±2). Final Four, Asterisk Chain, and Ryder Cup are not Moneyball-eligible.</p>`;
+  target.innerHTML = html;
+}
+
+// Rules expand/collapse
+document.addEventListener("click", e => {
+  if (e.target.closest(".rules-card h3")) {
+    e.target.closest(".rules-card").classList.toggle("open");
+  }
+});
+
+// ==================== TOP-LEVEL RENDER ====================
+
+function render() {
+  if (!dbState) {
+    $("loadingPanel").classList.remove("hidden");
+    return;
+  }
+  if (isLocked()) {
+    renderLockedState();
+  } else {
+    renderOpenState();
+  }
+}
+
+// ==================== FIREBASE LISTENER ====================
+
+const seasonRef = ref(db, `predictionBallot/${SEASON}`);
+onValue(seasonRef, snap => {
+  dbState = snap.val() || { config: {}, submissions: {} };
+  if (!dbState.config) dbState.config = {};
+  if (!dbState.submissions) dbState.submissions = {};
+  render();
+}, err => {
+  $("loadingPanel").innerHTML = `<div style="color:var(--red-bright);">Couldn't connect to Firebase. ${escapeHTML(err.message || "")}</div>`;
+});
+
+// ==================== COMMISSIONER PANEL ====================
+
+$("commishGear").addEventListener("click", () => {
+  $("commishOverlay").classList.add("open");
+});
+$("commishClose").addEventListener("click", () => {
+  $("commishOverlay").classList.remove("open");
+});
+$("commishOverlay").addEventListener("click", e => {
+  if (e.target === $("commishOverlay")) $("commishOverlay").classList.remove("open");
+});
+
+$("commishUnlock").addEventListener("click", () => {
+  const pass = $("commishPass").value;
+  if (pass === COMMISH_PASSCODE) {
+    isCommish = true;
+    $("commishLocked").classList.add("hidden");
+    $("commishContent").classList.remove("hidden");
+    renderCommishPanel();
+  } else {
+    $("commishMsg").innerHTML = `<div class="form-msg error">Wrong passcode.</div>`;
+  }
+});
+
+function renderCommishPanel() {
+  const cfg = dbState?.config || {};
+  const actuals = cfg.actualResults || {};
+  const subs = dbState?.submissions || {};
+  const ryderA = cfg.ryderCupMatchup?.teamA || "";
+  const ryderB = cfg.ryderCupMatchup?.teamB || "";
+
+  let html = '';
+
+  // Deadline + Lock
+  html += `<div class="commish-section"><h3>Submissions Control</h3>`;
+  const dlValue = cfg.deadline ? toLocalInputFmt(cfg.deadline) : "";
+  html += `<div class="form-field"><label class="form-label">Submission Deadline</label>`;
+  html += `<input type="datetime-local" id="cDeadline" value="${escapeHTML(dlValue)}" />`;
+  html += `<button class="secondary-btn" id="cSaveDeadline" style="margin-top:8px;">Save Deadline</button></div>`;
+  html += `<div class="commish-row two-col">`;
+  html += `<button class="danger-btn" id="cForceLock">${isManualLocked() ? "Unlock Submissions" : "Force-Lock Now"}</button>`;
+  html += `<button class="secondary-btn" id="cClearAll">Clear All Submissions</button>`;
+  html += `</div></div>`;
+
+  // Ryder Cup
+  html += `<div class="commish-section"><h3>Ryder Cup Matchup</h3>`;
+  html += `<div class="commish-row two-col">`;
+  html += `<div><label class="form-label">Team A Name</label><input type="text" id="cRyderA" value="${escapeHTML(ryderA)}" placeholder="e.g. Tall Team" /></div>`;
+  html += `<div><label class="form-label">Team B Name</label><input type="text" id="cRyderB" value="${escapeHTML(ryderB)}" placeholder="e.g. Short Team" /></div>`;
+  html += `</div>`;
+  html += `<button class="secondary-btn" id="cSaveRyder">Save Matchup</button></div>`;
+
+  // Actual results
+  html += `<div class="commish-section"><h3>Actual Results</h3>`;
+  html += `<p style="font-size:0.95rem; color:var(--label); margin-bottom:14px;">Enter results as they come in. The page updates live for everyone.</p>`;
+  CATEGORIES.forEach(cat => {
+    html += `<div class="form-field"><label class="form-label">${escapeHTML(cat.label)}</label>`;
+    if (cat.type === "owner") {
+      const exclude = cat.exclude || [];
+      const v = actuals[cat.key] || "";
+      html += `<select data-akey="${cat.key}"><option value="">— Not yet —</option>`;
+      OWNERS.filter(o => !exclude.includes(o.id)).forEach(o => {
+        html += `<option value="${o.id}" ${o.id === v ? "selected" : ""}>${escapeHTML(o.name)}</option>`;
+      });
+      html += `</select>`;
+    } else if (cat.type === "ff") {
+      const v = Array.isArray(actuals[cat.key]) ? actuals[cat.key] : ["", "", "", ""];
+      html += `<div class="ff-grid">`;
+      for (let i = 0; i < 4; i++) {
+        html += `<select data-akey="${cat.key}" data-aslot="${i}"><option value="">— Pick #${i+1} —</option>`;
+        OWNERS.forEach(o => {
+          html += `<option value="${o.id}" ${o.id === v[i] ? "selected" : ""}>${escapeHTML(o.name)}</option>`;
+        });
+        html += `</select>`;
+      }
+      html += `</div>`;
+    } else if (cat.type === "finish") {
+      // For "your own finish", the actuals are per-owner — handled below
+      html += `<p style="font-size:0.95rem; color:var(--label);">Per-owner regular season finish set below (each owner needs their actual finish).</p>`;
+    } else if (cat.type === "yn") {
+      const v = actuals[cat.key];
+      html += `<div class="radio-group" data-akey="${cat.key}">`;
+      html += `<button type="button" class="radio-btn ${v === "yes" ? "selected" : ""}" data-aval="yes">Yes</button>`;
+      html += `<button type="button" class="radio-btn ${v === "no" ? "selected" : ""}" data-aval="no">No</button>`;
+      html += `</div>`;
+    } else if (cat.type === "ryder") {
+      const v = actuals[cat.key];
+      html += `<div class="radio-group" data-akey="${cat.key}">`;
+      html += `<button type="button" class="radio-btn ${v === "teamA" ? "selected" : ""}" data-aval="teamA">${escapeHTML(ryderA || "Team A")}</button>`;
+      html += `<button type="button" class="radio-btn ${v === "teamB" ? "selected" : ""}" data-aval="teamB">${escapeHTML(ryderB || "Team B")}</button>`;
+      html += `</div>`;
+    }
+    html += `</div>`;
+  });
+
+  // Per-owner finish actuals — needed for "Your Own Finish" scoring
+  html += `<h3 style="margin-top:16px;">Per-Owner Regular Season Finish</h3>`;
+  html += `<p style="font-size:0.95rem; color:var(--label); margin-bottom:10px;">Used to score each owner's "Your Own Regular Season Finish" pick. Enter where each owner actually finished.</p>`;
+  const finishes = cfg.regSeasonFinishes || {};
+  OWNERS.forEach(o => {
+    html += `<div class="form-field" style="display:grid; grid-template-columns: 1fr 100px; gap:10px; align-items:center; margin-bottom:8px;">`;
+    html += `<label class="form-label" style="margin:0;">${escapeHTML(o.name)}</label>`;
+    html += `<input type="number" min="1" max="14" data-finish-id="${o.id}" value="${finishes[o.id] ?? ""}" placeholder="—" />`;
+    html += `</div>`;
+  });
+
+  html += `<button class="submit-btn" id="cSaveActuals" style="margin-top:14px;">Save All Results</button>`;
+  html += `</div>`;
+
+  // Season reset
+  html += `<div class="commish-section"><h3>Season Rollover</h3>`;
+  html += `<p style="font-size:0.95rem; color:var(--label); margin-bottom:10px;">Current season key: <strong>${escapeHTML(SEASON)}</strong>. Past seasons remain archived in Firebase. To start a new season, edit the <code>SEASON</code> constant at the top of this page's script.</p>`;
+  html += `</div>`;
+
+  $("commishContent").innerHTML = html;
+
+  // Wire commissioner actions
+  $("cSaveDeadline").addEventListener("click", async () => {
+    const val = $("cDeadline").value;
+    if (!val) return;
+    const iso = new Date(val).toISOString();
+    await update(ref(db, `predictionBallot/${SEASON}/config`), { deadline: iso });
+    flashCommishMsg("Deadline saved.");
+  });
+
+  $("cForceLock").addEventListener("click", async () => {
+    const willLock = !isManualLocked();
+    if (willLock && !confirm("Force-lock submissions now? Owners won't be able to edit.")) return;
+    await update(ref(db, `predictionBallot/${SEASON}/config`), { locked: willLock });
+    flashCommishMsg(willLock ? "Submissions locked." : "Submissions unlocked.");
+  });
+
+  $("cClearAll").addEventListener("click", async () => {
+    if (!confirm("Delete ALL submissions for this season? This cannot be undone.")) return;
+    await remove(ref(db, `predictionBallot/${SEASON}/submissions`));
+    flashCommishMsg("All submissions cleared.");
+  });
+
+  $("cSaveRyder").addEventListener("click", async () => {
+    const a = $("cRyderA").value.trim();
+    const b = $("cRyderB").value.trim();
+    if (!a || !b) { flashCommishMsg("Both team names required.", "error"); return; }
+    await update(ref(db, `predictionBallot/${SEASON}/config`), {
+      ryderCupMatchup: { teamA: a, teamB: b }
+    });
+    flashCommishMsg("Ryder Cup matchup saved.");
+  });
+
+  // Radio toggles in actuals
+  $("commishContent").querySelectorAll(".radio-group[data-akey]").forEach(group => {
+    group.querySelectorAll(".radio-btn").forEach(btn => {
+      btn.addEventListener("click", () => {
+        group.querySelectorAll(".radio-btn").forEach(b => b.classList.remove("selected"));
+        btn.classList.add("selected");
+        group.dataset.aval = btn.dataset.aval;
+      });
+    });
+  });
+
+  $("cSaveActuals").addEventListener("click", async () => {
+    const newActuals = { ...(actuals || {}) };
+    // Single-select dropdowns
+    $("commishContent").querySelectorAll('select[data-akey]:not([data-aslot])').forEach(sel => {
+      const key = sel.dataset.akey;
+      newActuals[key] = sel.value || null;
+    });
+    // Final Four
+    const ffSels = $("commishContent").querySelectorAll('select[data-akey="finalFour"][data-aslot]');
+    const ffArr = Array.from(ffSels).map(s => s.value).filter(v => v);
+    newActuals.finalFour = ffArr.length === 4 ? ffArr : null;
+    // Radio groups
+    $("commishContent").querySelectorAll(".radio-group[data-akey]").forEach(group => {
+      const key = group.dataset.akey;
+      const val = group.dataset.aval || null;
+      newActuals[key] = val;
+    });
+
+    // Per-owner finish
+    const newFinishes = {};
+    $("commishContent").querySelectorAll('input[data-finish-id]').forEach(inp => {
+      const id = inp.dataset.finishId;
+      const v = parseInt(inp.value, 10);
+      if (v >= 1 && v <= 14) newFinishes[id] = v;
+    });
+
+    await update(ref(db, `predictionBallot/${SEASON}/config`), {
+      actualResults: newActuals,
+      regSeasonFinishes: newFinishes
+    });
+    flashCommishMsg("Results saved.");
+  });
+}
+
+function toLocalInputFmt(iso) {
+  // datetime-local expects "YYYY-MM-DDTHH:MM" in local time
+  const d = new Date(iso);
+  if (isNaN(d.getTime())) return "";
+  const pad = n => String(n).padStart(2, "0");
+  return `${d.getFullYear()}-${pad(d.getMonth()+1)}-${pad(d.getDate())}T${pad(d.getHours())}:${pad(d.getMinutes())}`;
+}
+
+function flashCommishMsg(text, type = "success") {
+  $("commishMsg").innerHTML = `<div class="form-msg ${type}">${escapeHTML(text)}</div>`;
+  setTimeout(() => { $("commishMsg").innerHTML = ""; }, 3000);
+}
+</script>
+
+</body>
+</html>
