@@ -1713,10 +1713,9 @@
 
     const html = all.map((item, i) => {
       const pct = Math.max(6, Math.round(((item.elo - minElo) / range) * 94 + 6));
-      const rank = totalNames - i;
       const lastClass = i === 0 ? ' medal-last' : '';
       return `<div class="gon-rank-row${lastClass}">
-        <div class="gon-rank-num">${rank}</div>
+        <div class="gon-rank-num">${i + 1}</div>
         <div class="gon-rank-name">${item.name}</div>
         <div class="gon-rank-bar-wrap">
           <div class="gon-rank-bar-outer"><div class="gon-rank-bar-inner" style="width:${pct}%;background:#666;"></div></div>
