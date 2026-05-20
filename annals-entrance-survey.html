@@ -308,25 +308,25 @@
     text-transform: uppercase;
   }
   .form-field {
-    margin-bottom: 18px;
+    margin-bottom: 22px;
   }
   .form-label {
     display: block;
     font-family: 'Barlow Condensed', sans-serif;
-    font-size: 1.05rem;
+    font-size: 1.2rem;
     letter-spacing: 0.1em;
     text-transform: uppercase;
     color: var(--label);
     font-weight: 700;
-    margin-bottom: 8px;
+    margin-bottom: 10px;
     line-height: 1.3;
   }
   .form-label .mb-marker {
     display: inline-block;
     background: var(--surface3);
     color: var(--gold);
-    font-size: 0.82rem;
-    padding: 2px 7px;
+    font-size: 0.95rem;
+    padding: 2px 8px;
     border-radius: 10px;
     margin-left: 6px;
     letter-spacing: 0.12em;
@@ -334,10 +334,16 @@
     border: 1px solid var(--gold);
     font-weight: 700;
   }
+  .mb-pill {
+    display: inline-block;
+    font-size: 1.1rem;
+    margin-left: 4px;
+    vertical-align: middle;
+  }
   .pts-tag {
     display: inline-block;
     font-family: 'Barlow Condensed', sans-serif;
-    font-size: 0.95rem;
+    font-size: 1.05rem;
     color: var(--gold);
     letter-spacing: 0.08em;
     text-transform: uppercase;
@@ -348,21 +354,21 @@
   .form-help {
     display: block;
     font-family: 'Barlow', sans-serif;
-    font-size: 1rem;
+    font-size: 1.05rem;
     color: var(--label);
-    margin-bottom: 8px;
-    line-height: 1.4;
+    margin-bottom: 10px;
+    line-height: 1.45;
   }
-  select, input[type="number"], input[type="text"], input[type="datetime-local"] {
+  select, input[type="number"], input[type="text"], input[type="datetime-local"], input[type="password"] {
     width: 100%;
     background: var(--surface3);
     border: 1px solid var(--border);
     color: var(--text);
     font-family: 'Barlow', sans-serif;
-    font-size: 1.05rem;
-    padding: 14px 14px;
+    font-size: 1.15rem;
+    padding: 15px 14px;
     border-radius: 6px;
-    min-height: 48px;
+    min-height: 52px;
     appearance: none;
     -webkit-appearance: none;
   }
@@ -374,6 +380,26 @@
   }
   select:focus, input:focus { outline: 2px solid var(--gold); outline-offset: -1px; }
 
+  /* Owner name selector — make it pop */
+  .name-select-block {
+    background: var(--surface2);
+    border: 2px solid var(--gold);
+    border-radius: 10px;
+    padding: 20px 18px;
+    margin-bottom: 24px;
+    box-shadow: 0 0 0 4px rgba(201,168,76,0.12);
+  }
+  .name-select-block .form-label {
+    font-size: 1.3rem;
+    color: var(--gold);
+    margin-bottom: 12px;
+  }
+  .name-select-block select {
+    border: 1px solid var(--gold);
+    font-size: 1.2rem;
+    min-height: 56px;
+  }
+
   .radio-group {
     display: flex;
     gap: 10px;
@@ -384,13 +410,13 @@
     border: 1px solid var(--border);
     color: var(--text);
     font-family: 'Barlow Condensed', sans-serif;
-    font-size: 1.05rem;
+    font-size: 1.2rem;
     letter-spacing: 0.12em;
     text-transform: uppercase;
-    padding: 14px 12px;
+    padding: 15px 12px;
     border-radius: 6px;
     cursor: pointer;
-    min-height: 48px;
+    min-height: 52px;
     font-weight: 700;
     transition: background 0.15s, border-color 0.15s, color 0.15s;
   }
@@ -409,20 +435,83 @@
     .ff-grid { grid-template-columns: 1fr 1fr; }
   }
 
+  /* Moneyball intro card (top of form) */
+  .mb-intro-card {
+    background: linear-gradient(135deg, rgba(201,168,76,0.18), rgba(201,168,76,0.05));
+    border: 1px solid var(--gold);
+    border-radius: 8px;
+    padding: 16px 18px;
+    margin-bottom: 24px;
+  }
+  .mb-intro-eyebrow {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 1.4rem;
+    color: var(--gold);
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    margin-bottom: 6px;
+  }
+  .mb-intro-body {
+    font-family: 'Barlow', sans-serif;
+    font-size: 1.05rem;
+    color: var(--text-body);
+    line-height: 1.5;
+  }
+  .mb-intro-body strong { color: var(--gold); font-weight: 700; }
+
+  /* Moneyball dedicated section (bottom of form) */
+  .mb-section {
+    background: var(--surface2);
+    border: 2px solid var(--gold);
+    border-radius: 10px;
+    padding: 20px 18px;
+    margin: 28px 0 18px;
+  }
+  .mb-section-title {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 1.6rem;
+    color: var(--gold);
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    margin-bottom: 10px;
+  }
+  .mb-section-body {
+    font-family: 'Barlow', sans-serif;
+    font-size: 1.1rem;
+    color: var(--text-body);
+    line-height: 1.55;
+    margin-bottom: 6px;
+  }
+  .mb-section-body strong { color: var(--gold); font-weight: 700; }
+  .mb-section select {
+    border: 1px solid var(--gold);
+    font-size: 1.15rem;
+    min-height: 54px;
+  }
+  .mb-ineligible-note {
+    font-family: 'Barlow', sans-serif;
+    font-size: 1rem;
+    color: var(--label);
+    line-height: 1.5;
+    margin-top: 12px;
+    padding-top: 12px;
+    border-top: 1px solid var(--border);
+  }
+
   .submit-btn {
     width: 100%;
     background: var(--gold);
     color: #000;
     font-family: 'Bebas Neue', sans-serif;
-    font-size: 1.5rem;
+    font-size: 1.7rem;
     letter-spacing: 0.1em;
     border: none;
-    padding: 18px 20px;
+    padding: 20px 20px;
     border-radius: 6px;
     cursor: pointer;
     text-transform: uppercase;
-    margin-top: 10px;
-    min-height: 56px;
+    margin-top: 14px;
+    min-height: 60px;
     font-weight: 700;
   }
   .submit-btn:hover { filter: brightness(1.1); }
@@ -584,21 +673,22 @@
   }
   .modal-title {
     font-family: 'Bebas Neue', sans-serif;
-    font-size: 1.6rem;
+    font-size: 1.9rem;
     color: var(--red-bright);
     letter-spacing: 0.08em;
-    margin-bottom: 4px;
+    margin-bottom: 6px;
   }
   .modal-sub {
-    font-size: 0.95rem;
+    font-size: 1.1rem;
     color: var(--label);
     margin-bottom: 18px;
+    line-height: 1.5;
   }
   .modal-close {
     background: none;
     border: none;
     color: var(--label);
-    font-size: 1.4rem;
+    font-size: 1.6rem;
     cursor: pointer;
     float: right;
     padding: 0 4px;
@@ -610,11 +700,15 @@
   }
   .commish-section h3 {
     font-family: 'Bebas Neue', sans-serif;
-    font-size: 1.2rem;
+    font-size: 1.5rem;
     color: var(--text);
     letter-spacing: 0.06em;
-    margin-bottom: 8px;
+    margin-bottom: 10px;
     text-transform: uppercase;
+  }
+  .commish-section p {
+    font-size: 1.05rem !important;
+    line-height: 1.5;
   }
   .commish-row {
     display: grid;
@@ -697,6 +791,174 @@
   }
 
   /* ── Hidden state ── */
+  /* ── View toggle (By Owner / By Contest) ── */
+  .view-toggle {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 4px;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 4px;
+    margin: 16px 0 4px;
+  }
+  .view-toggle button {
+    background: none;
+    border: none;
+    color: var(--label);
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 1.15rem;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    font-weight: 700;
+    padding: 14px;
+    border-radius: 6px;
+    cursor: pointer;
+    min-height: 48px;
+  }
+  .view-toggle button.active {
+    background: var(--gold);
+    color: #000;
+  }
+
+  /* ── Contest picker (By Contest mode) ── */
+  .contest-picker {
+    margin: 20px 0 16px;
+  }
+  .contest-picker-label {
+    display: block;
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 1.15rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--label);
+    font-weight: 700;
+    margin-bottom: 10px;
+  }
+
+  /* ── Contest detail card ── */
+  .contest-card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 20px;
+    margin-bottom: 12px;
+  }
+  .contest-title {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 1.7rem;
+    color: var(--text);
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    line-height: 1.1;
+    margin-bottom: 8px;
+  }
+  .contest-pts {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 1.05rem;
+    color: var(--gold);
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    font-weight: 700;
+    margin-bottom: 14px;
+  }
+  .contest-result-block {
+    background: var(--surface2);
+    border: 1px solid var(--border);
+    border-left: 4px solid var(--gold);
+    padding: 14px 16px;
+    border-radius: 6px;
+    margin-bottom: 16px;
+  }
+  .contest-result-block.resolved { border-left-color: var(--green); }
+  .contest-result-label {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 1rem;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: var(--label);
+    font-weight: 700;
+    margin-bottom: 4px;
+  }
+  .contest-result-value {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 1.7rem;
+    color: var(--green);
+    letter-spacing: 0.05em;
+  }
+  .contest-result-value.tbd { color: var(--gold); }
+  .contest-pick-count {
+    font-family: 'Barlow', sans-serif;
+    font-size: 1.05rem;
+    color: var(--text-body);
+    margin-bottom: 12px;
+    line-height: 1.4;
+  }
+  .contest-pick-count strong { color: var(--gold); font-weight: 700; }
+
+  /* ── Pick list rows ── */
+  .pick-list {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+  }
+  .pick-list-row {
+    display: grid;
+    grid-template-columns: 1fr auto;
+    gap: 10px;
+    align-items: center;
+    padding: 12px 14px;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-left: 4px solid var(--border);
+    border-radius: 6px;
+  }
+  .pick-list-row.hit { border-left-color: var(--green); }
+  .pick-list-row.miss { border-left-color: var(--red-bright); }
+  .pick-list-row.partial { border-left-color: var(--gold); }
+  .pick-list-row.pending { border-left-color: var(--border); }
+  .pick-list-row.moneyball { box-shadow: inset 4px 0 0 var(--gold), inset -4px 0 0 var(--gold); }
+  .pick-list-owner {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 1.25rem;
+    color: var(--text);
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    line-height: 1.1;
+  }
+  .pick-list-pick {
+    font-family: 'Barlow', sans-serif;
+    font-size: 1.05rem;
+    color: var(--text);
+    line-height: 1.3;
+    margin-top: 4px;
+  }
+  .pick-list-status {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 1rem;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    font-weight: 700;
+    text-align: right;
+  }
+  .pick-list-row.hit .pick-list-status { color: var(--green); }
+  .pick-list-row.miss .pick-list-status { color: var(--red-bright); }
+  .pick-list-row.partial .pick-list-status { color: var(--gold); }
+  .pick-list-row.pending .pick-list-status { color: var(--label); }
+  .pick-list-mb-tag {
+    display: inline-block;
+    background: var(--gold);
+    color: #000;
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 0.85rem;
+    letter-spacing: 0.12em;
+    padding: 2px 8px;
+    border-radius: 10px;
+    margin-left: 6px;
+    font-weight: 700;
+    vertical-align: middle;
+  }
+
   .hidden { display: none !important; }
 
   /* ── Loading ── */
@@ -750,9 +1012,9 @@
 
     <div class="section-title">Submit Your Predictions</div>
     <div class="form-card">
-      <div class="form-field">
-        <label class="form-label" for="ownerSelect">Choose Your Name</label>
-        <select id="ownerSelect"><option value="">— Select your name —</option></select>
+      <div class="name-select-block">
+        <label class="form-label" for="ownerSelect">👋 Who Are You?</label>
+        <select id="ownerSelect"><option value="">— Tap to choose —</option></select>
       </div>
 
       <div id="formBody" class="hidden">
@@ -781,8 +1043,23 @@
       <div class="state-sub" id="lockedSub">Submissions are closed. As results come in this season, the leaderboard will update live.</div>
     </div>
 
-    <div class="section-title">Leaderboard</div>
-    <div class="leaderboard" id="leaderboard"></div>
+    <div class="view-toggle" id="viewToggle">
+      <button class="active" data-view="owner">By Owner</button>
+      <button data-view="contest">By Contest</button>
+    </div>
+
+    <div id="ownerView">
+      <div class="section-title">Leaderboard</div>
+      <div class="leaderboard" id="leaderboard"></div>
+    </div>
+
+    <div id="contestView" class="hidden">
+      <div class="contest-picker">
+        <label class="contest-picker-label" for="contestSelect">Choose a Contest</label>
+        <select id="contestSelect"></select>
+      </div>
+      <div id="contestDetail"></div>
+    </div>
 
     <div id="roastSection" class="hidden">
       <div class="section-title">Notable Picks</div>
@@ -871,9 +1148,9 @@ const CATEGORIES = [
   { key: "avlCup",         label: "AVL Memorial Cup",          type: "owner",  basePoints: 4,  moneyball: true },
   { key: "rivalryWeek",    label: "Rivalry Week",              type: "owner",  basePoints: 4,  moneyball: true },
   { key: "intercontinental", label: "Intercontinental Champ",  type: "owner",  basePoints: 4,  moneyball: true },
-  { key: "ownFinish",      label: "Your Own Regular Season Finish", type: "finish", basePoints: 5, moneyball: true },
   { key: "asteriskHung",   label: "Will the Asterisk Chain Be Hung?", type: "yn", basePoints: 4, moneyball: false },
   { key: "ryderCup",       label: "Ryder Cup Winner",          type: "ryder",  basePoints: 5,  moneyball: false },
+  { key: "ownFinish",      label: "Your Own Regular Season Finish", type: "finish", basePoints: 5, moneyball: true },
 ];
 const MONEYBALL_BONUS = 5;
 
@@ -883,6 +1160,8 @@ let dbState = null;     // Holds { config, submissions } for current season
 let myOwnerId = null;   // Selected owner in the form session
 let isCommish = false;
 let countdownInterval = null;
+let currentView = "owner";          // "owner" or "contest"
+let currentContestKey = "champion"; // Selected contest for By Contest view
 
 // ==================== UTILITIES ====================
 
@@ -930,15 +1209,23 @@ function buildForm() {
   // Build a "pts" descriptor for each category label
   function ptsDesc(cat) {
     if (cat.type === "ff") return `${cat.perHit} pts per hit · max ${cat.basePoints}`;
-    if (cat.type === "finish") return `5 / 3 / 1 pts (exact / ±1 / ±2)`;
+    if (cat.type === "finish") return `5 pts (exact only)`;
     return `${cat.basePoints} pts`;
   }
 
   let html = '';
 
+  // ── Moneyball intro at TOP of form ──
+  html += `<div class="mb-intro-card">`;
+  html += `<div class="mb-intro-eyebrow">🏀 The Moneyball</div>`;
+  html += `<div class="mb-intro-body">After your picks, you'll choose ONE category as your Moneyball bet. If you nail it exactly, you earn <strong>+${MONEYBALL_BONUS} bonus points</strong>. Look for the 🏀 next to each eligible question.</div>`;
+  html += `</div>`;
+
+  // ── 13 category questions ──
   CATEGORIES.forEach(cat => {
+    const mbBadge = cat.moneyball ? `<span class="mb-pill" title="Moneyball-eligible">🏀</span>` : '';
     html += `<div class="form-field" data-cat="${cat.key}">`;
-    html += `<label class="form-label">${escapeHTML(cat.label)} <span class="pts-tag">${ptsDesc(cat)}</span></label>`;
+    html += `<label class="form-label">${escapeHTML(cat.label)}${mbBadge} <span class="pts-tag">${ptsDesc(cat)}</span></label>`;
 
     if (cat.type === "owner") {
       const exclude = cat.exclude || [];
@@ -982,13 +1269,18 @@ function buildForm() {
     html += `</div>`;
   });
 
-  // Moneyball selector
+  // ── Dedicated Moneyball section at BOTTOM ──
   const mbCats = CATEGORIES.filter(c => c.moneyball);
-  html += `<div class="form-field"><label class="form-label">Moneyball Pick <span class="pts-tag">+${MONEYBALL_BONUS} bonus</span></label>`;
-  html += `<span class="form-help">Pick one category you're most confident in. If you nail it exactly, you earn ${MONEYBALL_BONUS} bonus points.</span>`;
-  html += `<select data-key="moneyball" required><option value="">— Choose one category —</option>`;
+  const ineligibleCats = CATEGORIES.filter(c => !c.moneyball);
+  html += `<div class="mb-section">`;
+  html += `<div class="mb-section-title">🏀 Your Moneyball Bet</div>`;
+  html += `<div class="mb-section-body">Pick the ONE category above you're most confident in. If your pick hits exactly, you earn <strong>+${MONEYBALL_BONUS} bonus points</strong> on top of the regular points for that category.</div>`;
+  html += `<label class="form-label" for="moneyballSelect" style="margin-top:14px;">Your Moneyball Pick</label>`;
+  html += `<select id="moneyballSelect" data-key="moneyball" required><option value="">— Choose one category —</option>`;
   mbCats.forEach(c => html += `<option value="${c.key}">${escapeHTML(c.label)}</option>`);
-  html += `</select></div>`;
+  html += `</select>`;
+  html += `<div class="mb-ineligible-note">Not eligible for Moneyball: ${ineligibleCats.map(c => escapeHTML(c.label)).join(", ")}.</div>`;
+  html += `</div>`;
 
   html += `<button type="button" class="submit-btn" id="submitBtn">Submit My Predictions</button>`;
 
@@ -1008,6 +1300,22 @@ function buildForm() {
   // Final Four duplicate prevention
   const ffSelects = formBody.querySelectorAll('select[data-key="finalFour"]');
   ffSelects.forEach(sel => sel.addEventListener("change", () => updateFFDupePrevention(ffSelects)));
+
+  // Auto-populate Final Four slots 1 and 2 from Champion + 2nd Place picks.
+  // Only fills slots that are currently empty — doesn't overwrite user edits.
+  function autoFillFinalFour() {
+    const champSel = formBody.querySelector('select[data-key="champion"]');
+    const secondSel = formBody.querySelector('select[data-key="secondPlace"]');
+    const ff0 = formBody.querySelector('select[data-key="finalFour"][data-slot="0"]');
+    const ff1 = formBody.querySelector('select[data-key="finalFour"][data-slot="1"]');
+    if (champSel?.value && ff0 && !ff0.value) ff0.value = champSel.value;
+    if (secondSel?.value && ff1 && !ff1.value && secondSel.value !== ff0?.value) ff1.value = secondSel.value;
+    updateFFDupePrevention(ffSelects);
+  }
+  const champSel = formBody.querySelector('select[data-key="champion"]');
+  const secondSel = formBody.querySelector('select[data-key="secondPlace"]');
+  if (champSel) champSel.addEventListener("change", autoFillFinalFour);
+  if (secondSel) secondSel.addEventListener("change", autoFillFinalFour);
 
   $("submitBtn").addEventListener("click", onSubmit);
 }
@@ -1113,9 +1421,41 @@ async function onSubmit() {
   }
 }
 
-function showFormMsg(text, type) {
+function showIdentityConfirm(name, when, onConfirm, onCancel) {
+  // Reuse the modal-overlay pattern. Build a one-off modal inline.
+  let overlay = document.getElementById("identityConfirmOverlay");
+  if (!overlay) {
+    overlay = document.createElement("div");
+    overlay.id = "identityConfirmOverlay";
+    overlay.className = "modal-overlay";
+    document.body.appendChild(overlay);
+  }
+  overlay.innerHTML = `
+    <div class="modal" style="max-width:440px;">
+      <div class="modal-title">Are you ${escapeHTML(name)}?</div>
+      <div style="font-size:1.1rem; color:var(--text-body); line-height:1.5; margin:14px 0 22px;">
+        ${escapeHTML(name)} already submitted predictions on <strong style="color:var(--gold);">${escapeHTML(when)}</strong>. Continuing will load those picks for editing.
+        <br><br>
+        If you're not ${escapeHTML(name)}, choose your own name instead.
+      </div>
+      <button class="submit-btn" id="icYes">Yes, I'm ${escapeHTML(name)}</button>
+      <button class="secondary-btn" id="icNo" style="margin-top:10px;">Oops, Wrong Name</button>
+    </div>
+  `;
+  overlay.classList.add("open");
+  document.getElementById("icYes").addEventListener("click", () => {
+    overlay.classList.remove("open");
+    onConfirm();
+  });
+  document.getElementById("icNo").addEventListener("click", () => {
+    overlay.classList.remove("open");
+    onCancel();
+  });
+}
+
+function showFormMsg(text, type, autoClear = true) {
   $("formMsg").innerHTML = `<div class="form-msg ${type}">${escapeHTML(text)}</div>`;
-  if (type === "success") setTimeout(() => { $("formMsg").innerHTML = ""; }, 5000);
+  if (autoClear && type === "success") setTimeout(() => { $("formMsg").innerHTML = ""; }, 5000);
 }
 
 // ==================== SCORING ENGINE ====================
@@ -1152,12 +1492,8 @@ function scoreOnePick(catKey, pickValue, actualValue) {
     const p = parseInt(pickValue, 10);
     const a = parseInt(actualValue, 10);
     if (!p || !a) return { earned: 0, max: cat.basePoints, status: "miss" };
-    const diff = Math.abs(p - a);
-    let earned = 0, status = "miss";
-    if (diff === 0) { earned = 5; status = "hit"; }
-    else if (diff === 1) { earned = 3; status = "partial"; }
-    else if (diff === 2) { earned = 1; status = "partial"; }
-    return { earned, max: cat.basePoints, status, diff };
+    if (p === a) return { earned: 5, max: cat.basePoints, status: "hit", diff: 0 };
+    return { earned: 0, max: cat.basePoints, status: "miss", diff: Math.abs(p - a) };
   }
 
   return { earned: 0, max: cat.basePoints, status: "pending" };
@@ -1245,7 +1581,7 @@ function renderOpenState() {
   const cd = $("countdown");
   const openSub = $("openSub");
   if (dl) {
-    openSub.innerHTML = `Pick your owner from the dropdown and fill out all 13 categories. You can come back and edit your picks any time before the deadline.<br><span style="color:var(--label); font-size:0.95rem; letter-spacing:0.1em;">Deadline: ${escapeHTML(formatDate(dbState.config.deadline))}</span>`;
+    openSub.innerHTML = `Pick your owner from the dropdown and fill out all 13 categories. You can come back and edit your picks any time before the deadline.<br><span style="color:var(--label); font-size:1.05rem; letter-spacing:0.08em; display:inline-block; margin-top:6px;">Deadline: ${escapeHTML(formatDate(dbState.config.deadline))}</span>`;
     if (countdownInterval) clearInterval(countdownInterval);
     const update = () => {
       const remaining = dl - nowMs();
@@ -1268,21 +1604,38 @@ function renderOpenState() {
     const id = select.value;
     if (!id) {
       $("formBody").classList.add("hidden");
+      $("formMsg").innerHTML = "";
       myOwnerId = null;
       return;
     }
+    const existing = subs[id]?.picks;
+    if (existing) {
+      // Show confirmation modal first — "Are you really X?"
+      const owner = OWNERS.find(o => o.id === id);
+      const submittedAt = subs[id].submittedAt;
+      const when = submittedAt ? new Date(submittedAt).toLocaleString() : "earlier";
+      showIdentityConfirm(owner.name, when,
+        () => proceedAsOwner(id),
+        () => { select.value = ""; }
+      );
+    } else {
+      proceedAsOwner(id);
+    }
+  };
+
+  function proceedAsOwner(id) {
     myOwnerId = id;
     $("formBody").classList.remove("hidden");
     $("formMsg").innerHTML = "";
-    // Reset form to blank then prefill if existing submission
     buildForm();
     const existing = subs[id]?.picks;
     if (existing) {
       prefillForm(existing);
       const submittedAt = subs[id].submittedAt;
-      showFormMsg(`Your previous predictions are loaded. Last edited ${submittedAt ? new Date(submittedAt).toLocaleString() : "previously"}. Edit and resubmit to update.`, "success");
+      // Persistent (no auto-clear) — user wants to keep seeing this
+      showFormMsg(`Your previous predictions are loaded. Last edited ${submittedAt ? new Date(submittedAt).toLocaleString() : "previously"}. Edit and resubmit to update.`, "success", false);
     }
-  };
+  }
 }
 
 // ==================== RENDER: LOCKED / IN-SEASON / REVEALED ====================
@@ -1323,7 +1676,9 @@ function renderLockedState() {
   const submitterIds = Object.keys(subs);
   if (submitterIds.length === 0) {
     $("leaderboard").innerHTML = `<div style="padding:24px; text-align:center; color:var(--label);">No submissions were made before the deadline.</div>`;
+    $("contestDetail").innerHTML = "";
     $("roastSection").classList.add("hidden");
+    populateContestDropdown();  // still populate so it's available if data appears
     return;
   }
 
@@ -1331,16 +1686,37 @@ function renderLockedState() {
     id,
     name: ownerName(id),
     submission: subs[id],
-    score: scoreSubmission(subs[id], actuals, id, dbState?.config?.regSeasonFinishes)
+    score: scoreSubmission(subs[id], actuals, id, regSeasonFinishes)
   }));
   scored.sort((a, b) => b.score.total - a.score.total || a.name.localeCompare(b.name));
 
-  // Render leaderboard rows
+  // Populate contest dropdown (idempotent)
+  populateContestDropdown();
+
+  // Switch view
+  if (currentView === "owner") {
+    $("ownerView").classList.remove("hidden");
+    $("contestView").classList.add("hidden");
+    renderLeaderboard(scored, actuals);
+  } else {
+    $("ownerView").classList.add("hidden");
+    $("contestView").classList.remove("hidden");
+    renderContestView(scored, actuals, regSeasonFinishes);
+  }
+
+  // Roast section (only when at least one category is resolved)
+  renderRoasts(scored, actuals, resultsEntered);
+
+  // Rules
+  renderRulesContent("rulesContent2");
+}
+
+function renderLeaderboard(scored, actuals) {
   const lb = $("leaderboard");
   lb.innerHTML = scored.map((row, idx) => {
     const rank = idx + 1;
     const mbHit = row.score.mbStatus === "hit";
-    const mbLine = mbHit ? `<div class="lb-mb-badge">🏆 Moneyball +${MONEYBALL_BONUS}</div>` : "";
+    const mbLine = mbHit ? `<div class="lb-mb-badge">🏀 Moneyball +${MONEYBALL_BONUS}</div>` : "";
     return `
       <div class="lb-row" data-id="${row.id}" data-rank="${rank}">
         <div class="lb-rank">${rank}</div>
@@ -1355,7 +1731,6 @@ function renderLockedState() {
     `;
   }).join("");
 
-  // Wire up click handlers for expansion
   lb.querySelectorAll(".lb-row").forEach(rowEl => {
     rowEl.addEventListener("click", () => {
       const id = rowEl.dataset.id;
@@ -1369,12 +1744,160 @@ function renderLockedState() {
       rowEl.classList.toggle("expanded");
     });
   });
+}
 
-  // Roast section (only when at least one category is resolved AND there are interesting picks to call out)
-  renderRoasts(scored, actuals, resultsEntered);
+function populateContestDropdown() {
+  const sel = $("contestSelect");
+  if (!sel) return;
+  if (sel.options.length > 1) return;  // Already populated
+  sel.innerHTML = "";
+  CATEGORIES.forEach(cat => {
+    const opt = document.createElement("option");
+    opt.value = cat.key;
+    opt.textContent = cat.label;
+    sel.appendChild(opt);
+  });
+  sel.value = currentContestKey;
+}
 
-  // Rules
-  renderRulesContent("rulesContent2");
+function renderContestView(scored, actuals, regFin) {
+  const cat = CATEGORIES.find(c => c.key === currentContestKey);
+  if (!cat) return;
+  const isOwnFinish = cat.key === "ownFinish";
+  const detail = $("contestDetail");
+
+  // Result block
+  const actual = isOwnFinish ? null : actuals[cat.key];
+  const isResolved = isOwnFinish
+    ? Object.keys(regFin).length > 0
+    : (actual != null && !(Array.isArray(actual) && !actual.length));
+
+  let resultHTML = `<div class="contest-result-block${isResolved ? " resolved" : ""}">`;
+  resultHTML += `<div class="contest-result-label">${isResolved ? "Result" : "Awaiting Result"}</div>`;
+  if (isOwnFinish) {
+    if (isResolved) {
+      resultHTML += `<div class="contest-result-value">Regular season standings entered (per owner below)</div>`;
+    } else {
+      resultHTML += `<div class="contest-result-value tbd">TBD</div>`;
+    }
+  } else {
+    resultHTML += `<div class="contest-result-value${isResolved ? "" : " tbd"}">${escapeHTML(describeActual(cat, actual))}</div>`;
+  }
+  resultHTML += `</div>`;
+
+  // Pick count summary (most popular pick across all owners)
+  let pickCountHTML = "";
+  if (!isOwnFinish) {
+    const subs = dbState?.submissions || {};
+    const pickCounts = {};
+    Object.keys(subs).forEach(ownerId => {
+      const pick = subs[ownerId].picks?.[cat.key];
+      if (pick == null) return;
+      const k = Array.isArray(pick) ? pick.slice().sort().join(",") : pick;
+      pickCounts[k] = (pickCounts[k] || 0) + 1;
+    });
+    const sortedCounts = Object.entries(pickCounts).sort((a, b) => b[1] - a[1]);
+    const top = sortedCounts[0];
+    if (top) {
+      let topLabel;
+      if (cat.type === "owner") topLabel = ownerName(top[0]);
+      else if (cat.type === "yn") topLabel = top[0] === "yes" ? "Yes" : "No";
+      else if (cat.type === "ryder") {
+        const ryderA = dbState?.config?.ryderCupMatchup?.teamA || "Team A";
+        const ryderB = dbState?.config?.ryderCupMatchup?.teamB || "Team B";
+        topLabel = top[0] === "teamA" ? ryderA : ryderB;
+      } else if (cat.type === "ff") {
+        topLabel = top[0].split(",").map(ownerName).join(", ");
+      } else {
+        topLabel = top[0];
+      }
+      const subCount = Object.keys(subs).length;
+      pickCountHTML = `<div class="contest-pick-count">Most popular pick: <strong>${escapeHTML(topLabel)}</strong> (${top[1]} of ${subCount} owners)</div>`;
+    }
+  }
+
+  // List of all owners' picks, sorted: hits → partials → misses → pending
+  const subs = dbState?.submissions || {};
+  const submitterIds = Object.keys(subs);
+  const rows = submitterIds.map(ownerId => {
+    const sub = subs[ownerId];
+    const pick = sub.picks?.[cat.key];
+    const ownerActual = isOwnFinish ? regFin[ownerId] : actual;
+    const r = scoreOnePick(cat.key, pick, ownerActual);
+    const isMb = sub.picks?.moneyball === cat.key;
+    return {
+      ownerId,
+      name: ownerName(ownerId),
+      pick,
+      r,
+      isMb,
+      ownerActual
+    };
+  });
+
+  const sortOrder = { hit: 0, partial: 1, miss: 2, pending: 3 };
+  rows.sort((a, b) => {
+    const diff = sortOrder[a.r.status] - sortOrder[b.r.status];
+    if (diff !== 0) return diff;
+    return a.name.localeCompare(b.name);
+  });
+
+  let listHTML = `<div class="pick-list">`;
+  rows.forEach(row => {
+    const r = row.r;
+    const rowClass = `pick-list-row ${r.status}${row.isMb ? " moneyball" : ""}`;
+    const pickDisp = describePick(cat, row.pick);
+    let actualAddon = "";
+    if (isOwnFinish && row.ownerActual != null) {
+      actualAddon = ` <span style="color:var(--label); font-size:0.95rem;">(actual: ${row.ownerActual}${getOrdinal(row.ownerActual)})</span>`;
+    }
+    let statusText;
+    if (r.status === "pending") statusText = "Pending";
+    else if (r.status === "hit") statusText = row.isMb ? `Hit +${MONEYBALL_BONUS} 🏀` : "Hit";
+    else if (r.status === "partial") statusText = cat.type === "ff" ? `${r.hits} of 4` : "Close";
+    else statusText = "Miss";
+
+    listHTML += `
+      <div class="${rowClass}">
+        <div>
+          <div class="pick-list-owner">${escapeHTML(row.name)}${row.isMb ? '<span class="pick-list-mb-tag">🏀 MB</span>' : ''}</div>
+          <div class="pick-list-pick">${escapeHTML(pickDisp)}${actualAddon}</div>
+        </div>
+        <div class="pick-list-status">${statusText}</div>
+      </div>
+    `;
+  });
+  listHTML += `</div>`;
+
+  detail.innerHTML = `
+    <div class="contest-card">
+      <div class="contest-title">${escapeHTML(cat.label)}</div>
+      <div class="contest-pts">${pointsDescriptorFor(cat)}</div>
+      ${resultHTML}
+      ${pickCountHTML}
+      ${listHTML}
+    </div>
+  `;
+}
+
+function describePick(cat, pick) {
+  if (pick == null) return "—";
+  if (cat.type === "owner") return ownerName(pick);
+  if (cat.type === "ff") return Array.isArray(pick) ? pick.map(ownerName).join(", ") : "—";
+  if (cat.type === "finish") return `${pick}${getOrdinal(pick)} place`;
+  if (cat.type === "yn") return pick === "yes" ? "Yes" : pick === "no" ? "No" : "—";
+  if (cat.type === "ryder") {
+    const ryderA = dbState?.config?.ryderCupMatchup?.teamA || "Team A";
+    const ryderB = dbState?.config?.ryderCupMatchup?.teamB || "Team B";
+    return pick === "teamA" ? ryderA : pick === "teamB" ? ryderB : "—";
+  }
+  return String(pick);
+}
+
+function pointsDescriptorFor(cat) {
+  if (cat.type === "ff") return `${cat.perHit} pts per hit · max ${cat.basePoints}`;
+  if (cat.type === "finish") return `5 pts (exact only)`;
+  return `${cat.basePoints} pts`;
 }
 
 function renderPicksCard(cardEl, row, actuals) {
@@ -1430,7 +1953,7 @@ function renderPicksCard(cardEl, row, actuals) {
     html += `
       <div class="${rowClass}">
         <div>
-          <div class="pick-cat">${escapeHTML(cat.label)}${isMb ? '<span class="pick-mb-tag">MB</span>' : ''}</div>
+          <div class="pick-cat">${escapeHTML(cat.label)}${isMb ? '<span class="pick-mb-tag">🏀 MONEYBALL</span>' : ''}</div>
           <div class="pick-value"><span class="label-x">Picked</span>${escapeHTML(pickDisplay)}</div>
           <div class="pick-actual"><span class="label-x">Actual</span>${escapeHTML(actualDisplay)}</div>
         </div>
@@ -1480,8 +2003,9 @@ function renderRoasts(scored, actuals, resultsEntered) {
         line: `<strong>${escapeHTML(got[0].name)}</strong> was the only one who picked <strong>${escapeHTML(actualDisplay)}</strong> for ${escapeHTML(cat.label)}.`
       });
     }
-    // "Whiff" — 0 got it right and it's a high-value category
-    if (got.length === 0 && cat.basePoints >= 6) {
+    // "Whiff" — 0 got it right and it's a high-value category.
+    // Final Four excluded — it's expected nobody gets all 4 right, so a whiff there isn't notable.
+    if (got.length === 0 && cat.basePoints >= 6 && cat.key !== "finalFour") {
       let actualDisplay = describeActual(cat, actual);
       roasts.push({
         eyebrow: "💀 Whiff Of The League",
@@ -1495,7 +2019,7 @@ function renderRoasts(scored, actuals, resultsEntered) {
     if (s.score.mbStatus === "hit") {
       const cat = CATEGORIES.find(c => c.key === s.score.mbCategory);
       roasts.push({
-        eyebrow: "🏆 Moneyball Hit",
+        eyebrow: "🏀 Moneyball Hit",
         line: `<strong>${escapeHTML(s.name)}</strong> Moneyball-picked <strong>${escapeHTML(cat?.label || "")}</strong> and nailed it. <span class="stinger">+${MONEYBALL_BONUS} bonus.</span>`
       });
     }
@@ -1506,11 +2030,10 @@ function renderRoasts(scored, actuals, resultsEntered) {
     return;
   }
 
-  // Prioritize for variety: keep all Whiffs and Lonely Geniuses (they're rare and dramatic),
-  // cap Moneyball Hits at 3 (they can multiply with popular MB picks)
+  // Display order: Whiffs first (most dramatic), then Lonely Geniuses, then all Moneyball Hits — no caps.
   const whiffs = roasts.filter(r => r.eyebrow.includes("Whiff"));
   const lonelies = roasts.filter(r => r.eyebrow.includes("Lonely"));
-  const mbHits = roasts.filter(r => r.eyebrow.includes("Moneyball")).slice(0, 3);
+  const mbHits = roasts.filter(r => r.eyebrow.includes("Moneyball"));
   const finalList = [...whiffs, ...lonelies, ...mbHits];
 
   $("roastSection").classList.remove("hidden");
@@ -1540,18 +2063,19 @@ function describeActual(cat, actual) {
 function renderRulesContent(targetId) {
   const target = $(targetId);
   if (!target) return;
-  let html = `<p style="margin-bottom:10px;">Each correct pick earns points. Add up your earned points across all 13 categories, plus a +${MONEYBALL_BONUS} Moneyball bonus if your designated category is fully correct.</p>`;
+  let html = `<p style="margin-bottom:12px;">Each correct pick earns points. Final score is the sum of all earned points across the 13 categories plus the Moneyball bonus if your Moneyball pick is correct.</p>`;
   html += `<table><thead><tr><th>Category</th><th style="text-align:right;">Points</th></tr></thead><tbody>`;
   CATEGORIES.forEach(cat => {
     let ptDesc = "";
     if (cat.type === "ff") ptDesc = `${cat.perHit}/hit (max ${cat.basePoints})`;
-    else if (cat.type === "finish") ptDesc = `5 / 3 / 1 (exact / ±1 / ±2)`;
+    else if (cat.type === "finish") ptDesc = `5 pts (exact)`;
     else ptDesc = String(cat.basePoints);
-    html += `<tr><td>${escapeHTML(cat.label)}${cat.moneyball ? '<span class="pick-mb-tag" style="margin-left:6px;">MB</span>' : ''}</td><td class="pts">${ptDesc}</td></tr>`;
+    const mbMark = cat.moneyball ? ' 🏀' : '';
+    html += `<tr><td>${escapeHTML(cat.label)}${mbMark}</td><td class="pts">${ptDesc}</td></tr>`;
   });
-  html += `<tr><td><strong>Moneyball Bonus</strong> (if your picked category is fully correct)</td><td class="pts">+${MONEYBALL_BONUS}</td></tr>`;
+  html += `<tr><td><strong>🏀 Moneyball Bonus</strong></td><td class="pts">+${MONEYBALL_BONUS}</td></tr>`;
   html += `</tbody></table>`;
-  html += `<p style="margin-top:8px;"><strong>MB</strong> = Moneyball-eligible. Pick the one category you're most confident in. The bonus only triggers if you nail your pick exactly. Final Four, Asterisk Chain, and Ryder Cup are not Moneyball-eligible.</p>`;
+  html += `<p style="margin-top:12px;">🏀 = Moneyball-eligible. See the Moneyball section on the form for full details.</p>`;
   target.innerHTML = html;
 }
 
@@ -1785,6 +2309,25 @@ function attemptResultsPreviewUnlock() {
   });
 }
 
+// ==================== VIEW TOGGLE (By Owner / By Contest) ====================
+
+document.querySelectorAll("#viewToggle button").forEach(btn => {
+  btn.addEventListener("click", () => {
+    document.querySelectorAll("#viewToggle button").forEach(b => b.classList.remove("active"));
+    btn.classList.add("active");
+    currentView = btn.dataset.view;
+    if (dbState) renderLockedState();
+  });
+});
+
+const contestSelectEl = $("contestSelect");
+if (contestSelectEl) {
+  contestSelectEl.addEventListener("change", () => {
+    currentContestKey = contestSelectEl.value;
+    if (dbState) renderLockedState();
+  });
+}
+
 // ==================== COMMISSIONER PANEL ====================
 
 $("commishGear").addEventListener("click", () => {
@@ -1928,13 +2471,19 @@ function renderCommishPanel() {
 
   $("cForceLock").addEventListener("click", async () => {
     const willLock = !isManualLocked();
-    if (willLock && !confirm("Force-lock submissions now? Owners won't be able to edit.")) return;
+    if (willLock) {
+      if (!confirm("Force-lock submissions now?\n\nOwners won't be able to edit their picks. You can unlock later if needed.")) return;
+    } else {
+      if (!confirm("Unlock submissions?\n\nOwners will be able to edit their picks again. Only do this if you really need to reopen the survey.")) return;
+    }
     await update(ref(db, `predictionBallot/${SEASON}/config`), { locked: willLock });
     flashCommishMsg(willLock ? "Submissions locked." : "Submissions unlocked.");
   });
 
   $("cClearAll").addEventListener("click", async () => {
-    if (!confirm("Delete ALL submissions for this season? This cannot be undone.")) return;
+    const subCount = Object.keys(dbState?.submissions || {}).length;
+    if (!confirm(`Delete ALL ${subCount} submissions for ${SEASON}?\n\nThis cannot be undone. Every owner's predictions will be wiped.`)) return;
+    if (!confirm("Are you absolutely sure? Type-in confirmation not required, but this is your last chance to back out.")) return;
     await remove(ref(db, `predictionBallot/${SEASON}/submissions`));
     flashCommishMsg("All submissions cleared.");
   });
