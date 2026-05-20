@@ -968,9 +968,9 @@
 
 <!-- SEASON PREDICTION BALLOT TEASER -->
 <div class="ballot-section" id="ballotTeaserSection" style="display:none;">
-  <a class="ballot-card" id="ballotTeaserCard" href="annals-prediction-ballot.html">
+  <a class="ballot-card" id="ballotTeaserCard" href="annals-entrance-survey.html">
     <span class="ballot-arrow">→</span>
-    <div class="ballot-eyebrow" id="ballotEyebrow">🗳️ Season Prediction Ballot</div>
+    <div class="ballot-eyebrow" id="ballotEyebrow">🗳️ 2026 Slingshot Entrance Survey</div>
     <div class="ballot-title" id="ballotTitle">Submit Your Predictions</div>
     <div class="ballot-sub" id="ballotSub">Loading…</div>
   </a>
@@ -1464,7 +1464,7 @@
         // Locked, season hasn't started yet
         teaserCard.classList.add("locked");
         titleEl.textContent = "Predictions Locked";
-        subEl.innerHTML = `All <span class="accent">${subCount}</span> ballots are visible. Leaderboard updates live as results come in.`;
+        subEl.innerHTML = `All <span class="accent">${subCount}</span> submissions are visible. Leaderboard updates live as results come in.`;
       } else if (locked && resultsIn < TOTAL_CATEGORIES) {
         // In-season, partial results
         teaserCard.classList.add("live");
