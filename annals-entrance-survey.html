@@ -823,7 +823,7 @@ const app = initializeApp(firebaseConfig);
 const db = getDatabase(app);
 
 const SEASON = "2026";  // Change to roll over to new season; commissioner panel can reset
-const COMMISH_PASSCODE = "slingshot";
+const COMMISH_PASSCODE = "TheRodge";
 
 // Active owners (id, display name). OOTY excludes Jack.
 const OWNERS = [
@@ -1082,6 +1082,7 @@ function collectFormPicks() {
 
 async function onSubmit() {
   if (!myOwnerId) { showFormMsg("Pick your name first.", "error"); return; }
+  if (IS_PREVIEW) { showFormMsg("Preview mode — submissions disabled. Exit preview to make real changes.", "error"); return; }
   if (isLocked()) { showFormMsg("Submissions are locked — deadline has passed.", "error"); return; }
 
   const result = collectFormPicks();
@@ -1492,8 +1493,15 @@ function renderRoasts(scored, actuals, resultsEntered) {
     return;
   }
 
+  // Prioritize for variety: keep all Whiffs and Lonely Geniuses (they're rare and dramatic),
+  // cap Moneyball Hits at 3 (they can multiply with popular MB picks)
+  const whiffs = roasts.filter(r => r.eyebrow.includes("Whiff"));
+  const lonelies = roasts.filter(r => r.eyebrow.includes("Lonely"));
+  const mbHits = roasts.filter(r => r.eyebrow.includes("Moneyball")).slice(0, 3);
+  const finalList = [...whiffs, ...lonelies, ...mbHits];
+
   $("roastSection").classList.remove("hidden");
-  $("roastList").innerHTML = roasts.map(r => `
+  $("roastList").innerHTML = finalList.map(r => `
     <div class="roast-card">
       <div class="roast-eyebrow">${r.eyebrow}</div>
       <div class="roast-line">${r.line}</div>
@@ -1548,6 +1556,11 @@ function render() {
     $("loadingPanel").classList.remove("hidden");
     return;
   }
+  if (IS_RESULTS_PREVIEW && resultsPreviewUnlocked) {
+    // Force the post-deadline view regardless of actual deadline state
+    renderLockedState();
+    return;
+  }
   if (isLocked()) {
     renderLockedState();
   } else {
@@ -1555,17 +1568,194 @@ function render() {
   }
 }
 
-// ==================== FIREBASE LISTENER ====================
+// ==================== PREVIEW MODE ====================
 
-const seasonRef = ref(db, `predictionBallot/${SEASON}`);
-onValue(seasonRef, snap => {
-  dbState = snap.val() || { config: {}, submissions: {} };
-  if (!dbState.config) dbState.config = {};
-  if (!dbState.submissions) dbState.submissions = {};
+const urlParams = new URLSearchParams(location.search);
+const PREVIEW_MODE = urlParams.get("preview");  // "open" | "locked" | "live" | "complete" | "results" | null
+const IS_FAKE_PREVIEW = ["open", "locked", "live", "complete"].includes(PREVIEW_MODE);
+const IS_RESULTS_PREVIEW = PREVIEW_MODE === "results";
+const IS_PREVIEW = IS_FAKE_PREVIEW || IS_RESULTS_PREVIEW;
+let resultsPreviewUnlocked = false;
+
+function buildFakeState(mode) {
+  // Realistic-ish picks: most owners pick favorites, with a few hot takes for narrative
+  // owners: alex(0), andy(1), brian(2), daniel(3), dylan(4), jack(5), jordan(6),
+  //         kyle(7), luke(8), matt(9), mike(10), scott(11), tim(12), wade(13)
+  const ownerList = ["alex","andy","brian","daniel","dylan","jack","jordan","kyle","luke","matt","mike","scott","tim","wade"];
+
+  // Hand-crafted picks per owner — designed to produce interesting roast scenarios
+  const fakePicks = [
+    // alex
+    { champion:"dylan", secondPlace:"jack", finalFour:["dylan","jack","kyle","brian"], bronzeFranz:"luke", regSeasonChamp:"dylan", ooty:"matt", hottestTeam:"mike", avlCup:"wade", rivalryWeek:"alex", intercontinental:"tim", ownFinish:6, asteriskHung:"no", ryderCup:"teamA", moneyball:"champion" },
+    // andy
+    { champion:"dylan", secondPlace:"kyle", finalFour:["dylan","kyle","jack","mike"], bronzeFranz:"luke", regSeasonChamp:"jack", ooty:"brian", hottestTeam:"matt", avlCup:"tim", rivalryWeek:"scott", intercontinental:"dylan", ownFinish:9, asteriskHung:"no", ryderCup:"teamB", moneyball:"bronzeFranz" },
+    // brian
+    { champion:"jack", secondPlace:"dylan", finalFour:["dylan","jack","kyle","brian"], bronzeFranz:"andy", regSeasonChamp:"dylan", ooty:"wade", hottestTeam:"wade", avlCup:"scott", rivalryWeek:"jack", intercontinental:"tim", ownFinish:4, asteriskHung:"yes", ryderCup:"teamA", moneyball:"regSeasonChamp" },
+    // daniel
+    { champion:"kyle", secondPlace:"jack", finalFour:["dylan","kyle","jack","daniel"], bronzeFranz:"luke", regSeasonChamp:"kyle", ooty:"mike", hottestTeam:"matt", avlCup:"mike", rivalryWeek:"brian", intercontinental:"kyle", ownFinish:5, asteriskHung:"no", ryderCup:"teamB", moneyball:"champion" },
+    // dylan
+    { champion:"dylan", secondPlace:"jack", finalFour:["dylan","jack","kyle","brian"], bronzeFranz:"jordan", regSeasonChamp:"dylan", ooty:"matt", hottestTeam:"dylan", avlCup:"dylan", rivalryWeek:"kyle", intercontinental:"dylan", ownFinish:1, asteriskHung:"yes", ryderCup:"teamA", moneyball:"champion" },
+    // jack
+    { champion:"jack", secondPlace:"dylan", finalFour:["jack","dylan","kyle","matt"], bronzeFranz:"luke", regSeasonChamp:"jack", ooty:"brian", hottestTeam:"mike", avlCup:"wade", rivalryWeek:"scott", intercontinental:"tim", ownFinish:2, asteriskHung:"yes", ryderCup:"teamA", moneyball:"champion" },
+    // jordan
+    { champion:"matt", secondPlace:"kyle", finalFour:["dylan","matt","jack","kyle"], bronzeFranz:"andy", regSeasonChamp:"matt", ooty:"matt", hottestTeam:"jordan", avlCup:"tim", rivalryWeek:"alex", intercontinental:"matt", ownFinish:8, asteriskHung:"no", ryderCup:"teamB", moneyball:"hottestTeam" },
+    // kyle
+    { champion:"kyle", secondPlace:"dylan", finalFour:["kyle","dylan","jack","brian"], bronzeFranz:"luke", regSeasonChamp:"kyle", ooty:"matt", hottestTeam:"mike", avlCup:"wade", rivalryWeek:"scott", intercontinental:"kyle", ownFinish:1, asteriskHung:"no", ryderCup:"teamA", moneyball:"champion" },
+    // luke (the rookie — optimistic)
+    { champion:"luke", secondPlace:"dylan", finalFour:["luke","dylan","jack","kyle"], bronzeFranz:"andy", regSeasonChamp:"luke", ooty:"luke", hottestTeam:"luke", avlCup:"luke", rivalryWeek:"luke", intercontinental:"luke", ownFinish:3, asteriskHung:"yes", ryderCup:"teamB", moneyball:"champion" },
+    // matt
+    { champion:"dylan", secondPlace:"matt", finalFour:["dylan","matt","jack","kyle"], bronzeFranz:"scott", regSeasonChamp:"matt", ooty:"matt", hottestTeam:"matt", avlCup:"matt", rivalryWeek:"matt", intercontinental:"matt", ownFinish:3, asteriskHung:"yes", ryderCup:"teamA", moneyball:"ooty" },
+    // mike
+    { champion:"dylan", secondPlace:"jack", finalFour:["dylan","jack","kyle","mike"], bronzeFranz:"luke", regSeasonChamp:"dylan", ooty:"mike", hottestTeam:"mike", avlCup:"tim", rivalryWeek:"jack", intercontinental:"mike", ownFinish:5, asteriskHung:"no", ryderCup:"teamA", moneyball:"hottestTeam" },
+    // scott
+    { champion:"dylan", secondPlace:"kyle", finalFour:["dylan","kyle","jack","scott"], bronzeFranz:"jordan", regSeasonChamp:"dylan", ooty:"brian", hottestTeam:"scott", avlCup:"scott", rivalryWeek:"scott", intercontinental:"scott", ownFinish:7, asteriskHung:"no", ryderCup:"teamB", moneyball:"regSeasonChamp" },
+    // tim
+    { champion:"jack", secondPlace:"dylan", finalFour:["dylan","jack","kyle","tim"], bronzeFranz:"luke", regSeasonChamp:"jack", ooty:"matt", hottestTeam:"tim", avlCup:"tim", rivalryWeek:"alex", intercontinental:"tim", ownFinish:6, asteriskHung:"yes", ryderCup:"teamA", moneyball:"intercontinental" },
+    // wade
+    { champion:"dylan", secondPlace:"jack", finalFour:["dylan","jack","kyle","wade"], bronzeFranz:"andy", regSeasonChamp:"dylan", ooty:"wade", hottestTeam:"wade", avlCup:"wade", rivalryWeek:"wade", intercontinental:"wade", ownFinish:7, asteriskHung:"no", ryderCup:"teamA", moneyball:"avlCup" },
+  ];
+
+  const submissions = {};
+  // For "open" mode, only seed ~6 submissions to show in-progress state
+  const submitterCount = mode === "open" ? 6 : ownerList.length;
+  ownerList.slice(0, submitterCount).forEach((id, i) => {
+    submissions[id] = {
+      submittedAt: new Date(Date.now() - (submitterCount - i) * 86400000).toISOString(),
+      picks: fakePicks[i]
+    };
+  });
+
+  const config = {
+    deadline: mode === "open"
+      ? new Date(Date.now() + 5 * 86400000).toISOString()   // 5 days in future
+      : new Date(Date.now() - 7 * 86400000).toISOString(),  // 7 days ago
+    locked: false,
+    ryderCupMatchup: { teamA: "Team Tall", teamB: "Team Short" }
+  };
+
+  if (mode === "live") {
+    // Partial results — AVL, Hottest Team, and Rivalry Week resolved
+    // AVL=wade: picked by alex, jack, kyle, wade → 4 hits (normal cluster)
+    // Hottest=mike: picked by alex, jack, mike → 3 hits (normal)
+    // Rivalry=brian: picked by daniel only → "Lonely Genius" (1 hit)
+    // — plus matt Moneyballed OOTY=matt; if we resolve OOTY=brian, matt's MB MISSES.
+    //   If we resolve OOTY later as "matt", he'd hit. Don't resolve OOTY yet to keep live.
+    config.actualResults = {
+      avlCup: "wade",
+      hottestTeam: "mike",
+      rivalryWeek: "brian"
+    };
+  } else if (mode === "complete") {
+    config.actualResults = {
+      champion: "dylan",     // picked by alex, andy, daniel, dylan, jack(no — jack picked jack), kyle(no — kyle picked kyle), matt, mike, scott, wade = 7 hits
+      secondPlace: "jack",   // picked by alex, dylan, mike, wade = 4 hits
+      finalFour: ["dylan","jack","kyle","brian"],  // 4 picks
+      bronzeFranz: "luke",   // picked by alex, andy, brian (no), daniel, jack, kyle, matt(no — matt picked scott), mike, tim = many hits
+      regSeasonChamp: "dylan", // picked by alex, brian, daniel(no), dylan, mike, scott, wade = many
+      ooty: "matt",          // picked by alex, jack(no), kyle, jordan, matt, tim = 5 hits; matt MB MISSES (he picked OOTY)
+      hottestTeam: "mike",   // picked by alex, jack, mike = 3 hits
+      avlCup: "wade",        // wade picked self and Moneyballed it → MB HIT for wade!
+      rivalryWeek: "zzz_nobody",  // Make it someone nobody picked — but it has to be valid owner ID. Use "andy" — andy picked self for nothing in rivalry slot... let me check.
+      // rivalry picks: alex=alex, andy=scott, brian=jack, daniel=brian, dylan=kyle, jack=scott, jordan=alex, kyle=scott, luke=luke, matt=matt, mike=jack, scott=scott, tim=alex, wade=wade
+      // Nobody picked "daniel" for rivalry → WHIFF!
+      intercontinental: "tim",  // picked by alex, brian, jack, tim = 4 hits
+      asteriskHung: "yes",      // picked by brian, dylan, jack, luke, matt, tim = 6 hits
+      ryderCup: "teamA"         // picked by 8 owners
+    };
+    config.actualResults.rivalryWeek = "daniel";  // Override — nobody picked Daniel for Rivalry → WHIFF
+    config.regSeasonFinishes = {
+      dylan: 1, kyle: 2, jack: 3, brian: 4, mike: 5, matt: 6,
+      daniel: 7, tim: 8, wade: 9, alex: 10, scott: 11, jordan: 12,
+      andy: 13, luke: 14
+    };
+  }
+
+  return { config, submissions };
+}
+
+function renderPreviewBanner() {
+  if (!IS_PREVIEW) return;
+  const banner = document.createElement("div");
+  banner.style.cssText = `
+    position: sticky;
+    top: 60px;
+    z-index: 90;
+    background: var(--gold);
+    color: #000;
+    padding: 10px 16px;
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 1rem;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    text-align: center;
+    font-weight: 700;
+    border-bottom: 2px solid var(--red);
+  `;
+  if (IS_RESULTS_PREVIEW) {
+    banner.innerHTML = `🔒 Commissioner Results Preview · Real submissions · Read-only · <a href="?" style="color:#000; text-decoration:underline;">Exit Preview</a>`;
+  } else {
+    banner.innerHTML = `⚠ Preview Mode (${PREVIEW_MODE.toUpperCase()}) · Fake data · No saves · <a href="?" style="color:#000; text-decoration:underline;">Exit Preview</a> · Try <a href="?preview=open" style="color:#000;">open</a> · <a href="?preview=locked" style="color:#000;">locked</a> · <a href="?preview=live" style="color:#000;">live</a> · <a href="?preview=complete" style="color:#000;">complete</a>`;
+  }
+  document.body.insertBefore(banner, document.body.firstChild.nextSibling);
+}
+
+// ==================== FIREBASE LISTENER (or preview shim) ====================
+
+if (IS_FAKE_PREVIEW) {
+  // Fake data preview — no Firebase, locked writes
+  renderPreviewBanner();
+  dbState = buildFakeState(PREVIEW_MODE);
   render();
-}, err => {
-  $("loadingPanel").innerHTML = `<div style="color:var(--red-bright);">Couldn't connect to Firebase. ${escapeHTML(err.message || "")}</div>`;
-});
+} else if (IS_RESULTS_PREVIEW) {
+  // Real data, gated by passcode prompt, force locked-view rendering
+  renderPreviewBanner();
+  renderResultsPreviewGate();
+} else {
+  const seasonRef = ref(db, `predictionBallot/${SEASON}`);
+  onValue(seasonRef, snap => {
+    dbState = snap.val() || { config: {}, submissions: {} };
+    if (!dbState.config) dbState.config = {};
+    if (!dbState.submissions) dbState.submissions = {};
+    render();
+  }, err => {
+    $("loadingPanel").innerHTML = `<div style="color:var(--red-bright);">Couldn't connect to Firebase. ${escapeHTML(err.message || "")}</div>`;
+  });
+}
+
+function renderResultsPreviewGate() {
+  // Show a passcode prompt; only after correct passcode do we listen to Firebase
+  $("loadingPanel").innerHTML = `
+    <div style="max-width:380px; margin:40px auto; background:var(--surface); border:1px solid var(--border); border-radius:8px; padding:24px 22px;">
+      <div style="font-family:'Bebas Neue',sans-serif; font-size:1.4rem; letter-spacing:0.08em; color:var(--red-bright); text-transform:uppercase; margin-bottom:6px;">Commissioner Preview</div>
+      <div style="font-size:1rem; color:var(--text-body); line-height:1.5; margin-bottom:18px;">Enter the commissioner passcode to view the live results page with real submissions.</div>
+      <input type="password" id="rpPass" placeholder="Passcode" style="width:100%; background:var(--surface3); border:1px solid var(--border); color:var(--text); font-family:'Barlow',sans-serif; font-size:1.05rem; padding:14px; border-radius:6px; min-height:48px; margin-bottom:10px;" />
+      <button id="rpUnlock" style="width:100%; background:var(--gold); color:#000; font-family:'Bebas Neue',sans-serif; font-size:1.3rem; letter-spacing:0.1em; border:none; padding:14px; border-radius:6px; cursor:pointer; text-transform:uppercase; min-height:52px; font-weight:700;">Unlock</button>
+      <div id="rpMsg" style="margin-top:10px;"></div>
+    </div>
+  `;
+  $("loadingPanel").classList.remove("hidden");
+  $("rpUnlock").addEventListener("click", attemptResultsPreviewUnlock);
+  $("rpPass").addEventListener("keydown", e => { if (e.key === "Enter") attemptResultsPreviewUnlock(); });
+}
+
+function attemptResultsPreviewUnlock() {
+  const v = $("rpPass").value;
+  if (v !== COMMISH_PASSCODE) {
+    $("rpMsg").innerHTML = `<div class="form-msg error">Wrong passcode.</div>`;
+    return;
+  }
+  resultsPreviewUnlocked = true;
+  // Now listen to Firebase for real data
+  const seasonRef = ref(db, `predictionBallot/${SEASON}`);
+  onValue(seasonRef, snap => {
+    dbState = snap.val() || { config: {}, submissions: {} };
+    if (!dbState.config) dbState.config = {};
+    if (!dbState.submissions) dbState.submissions = {};
+    render();
+  }, err => {
+    $("loadingPanel").innerHTML = `<div style="color:var(--red-bright);">Couldn't connect to Firebase. ${escapeHTML(err.message || "")}</div>`;
+  });
+}
 
 // ==================== COMMISSIONER PANEL ====================
 
@@ -1580,6 +1770,10 @@ $("commishOverlay").addEventListener("click", e => {
 });
 
 $("commishUnlock").addEventListener("click", () => {
+  if (IS_FAKE_PREVIEW) {
+    $("commishMsg").innerHTML = `<div class="form-msg error">Preview mode — commissioner panel disabled. Exit preview to make real changes.</div>`;
+    return;
+  }
   const pass = $("commishPass").value;
   if (pass === COMMISH_PASSCODE) {
     isCommish = true;
