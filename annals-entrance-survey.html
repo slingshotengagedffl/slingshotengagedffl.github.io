@@ -714,6 +714,19 @@
 <body>
 <script src="nav.js"></script>
 
+<script>
+  // Populate "Updated · [date]" from profiles-data.json
+  fetch('profiles-data.json')
+    .then(r => r.json())
+    .then(data => {
+      const date = data.pageUpdates && data.pageUpdates['entrance-survey'];
+      if (date) {
+        document.getElementById('pageUpdated').textContent = 'Updated · ' + date;
+      }
+    })
+    .catch(() => {});
+</script>
+
 <div class="page-header">
   <div class="page-supertitle">The Annals of History</div>
   <h1>2026 Slingshot Entrance Survey</h1>
@@ -1709,7 +1722,22 @@ if (IS_FAKE_PREVIEW) {
 } else if (IS_RESULTS_PREVIEW) {
   // Real data, gated by passcode prompt, force locked-view rendering
   renderPreviewBanner();
-  renderResultsPreviewGate();
+  // If we came from the commissioner panel just now, skip the passcode prompt
+  if (sessionStorage.getItem("rpAuth") === "1") {
+    sessionStorage.removeItem("rpAuth");
+    resultsPreviewUnlocked = true;
+    const seasonRef = ref(db, `predictionBallot/${SEASON}`);
+    onValue(seasonRef, snap => {
+      dbState = snap.val() || { config: {}, submissions: {} };
+      if (!dbState.config) dbState.config = {};
+      if (!dbState.submissions) dbState.submissions = {};
+      render();
+    }, err => {
+      $("loadingPanel").innerHTML = `<div style="color:var(--red-bright);">Couldn't connect to Firebase. ${escapeHTML(err.message || "")}</div>`;
+    });
+  } else {
+    renderResultsPreviewGate();
+  }
 } else {
   const seasonRef = ref(db, `predictionBallot/${SEASON}`);
   onValue(seasonRef, snap => {
@@ -1793,6 +1821,12 @@ function renderCommishPanel() {
   const ryderB = cfg.ryderCupMatchup?.teamB || "";
 
   let html = '';
+
+  // Preview Results (most useful action — put first)
+  html += `<div class="commish-section"><h3>Preview Results Page</h3>`;
+  html += `<p style="font-size:0.95rem; color:var(--label); margin-bottom:10px; line-height:1.45;">See the live results page exactly as it will look once the deadline passes. Uses real submissions. Read-only view — your existing gear-panel access stays intact.</p>`;
+  html += `<button class="submit-btn" id="cPreviewResults" style="background:var(--gold); color:#000;">Open Results Preview</button>`;
+  html += `</div>`;
 
   // Deadline + Lock
   html += `<div class="commish-section"><h3>Submissions Control</h3>`;
@@ -1878,6 +1912,12 @@ function renderCommishPanel() {
   $("commishContent").innerHTML = html;
 
   // Wire commissioner actions
+  $("cPreviewResults").addEventListener("click", () => {
+    // Pre-authorize so the gate doesn't ask for the passcode again
+    sessionStorage.setItem("rpAuth", "1");
+    location.search = "?preview=results";
+  });
+
   $("cSaveDeadline").addEventListener("click", async () => {
     const val = $("cDeadline").value;
     if (!val) return;
