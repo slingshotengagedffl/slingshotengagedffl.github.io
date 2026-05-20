@@ -1007,7 +1007,7 @@
   <div id="stateOpen" class="hidden">
     <div class="state-banner">
       <div class="state-title">Submissions Open</div>
-      <div class="state-sub" id="openSub">Pick your owner from the dropdown and fill out all 13 categories. You can come back and edit your picks any time before the deadline.</div>
+      <div class="state-sub" id="openSub">Pick your owner from the dropdown and fill out all 12 categories. You can come back and edit your picks any time before the deadline.</div>
       <div class="countdown" id="countdown"></div>
     </div>
 
@@ -1151,7 +1151,6 @@ const CATEGORIES = [
   { key: "intercontinental", label: "Intercontinental Champ",  type: "owner",  basePoints: 4,  moneyball: true },
   { key: "asteriskHung",   label: "Will the Asterisk Chain Be Hung?", type: "yn", basePoints: 4, moneyball: false },
   { key: "ryderCup",       label: "Ryder Cup Winner",          type: "ryder",  basePoints: 5,  moneyball: false },
-  { key: "ownFinish",      label: "Your Own Regular Season Finish", type: "finish", basePoints: 5, moneyball: true },
 ];
 const MONEYBALL_BONUS = 5;
 
@@ -1508,15 +1507,9 @@ function isMoneyballHit(catKey, pickValue, actualValue) {
   return false;
 }
 
-function actualForCategory(catKey, actuals, ownerId, regSeasonFinishes) {
-  // Special-case Your Own Regular Season Finish: each owner has their own actual,
-  // pulled from config.regSeasonFinishes[ownerId].
-  if (catKey === "ownFinish") {
-    if (ownerId && regSeasonFinishes && regSeasonFinishes[ownerId] != null) {
-      return regSeasonFinishes[ownerId];
-    }
-    return null;
-  }
+function actualForCategory(catKey, actuals /*, ownerId, regSeasonFinishes */) {
+  // (ownerId and regSeasonFinishes parameters retained for backward compatibility
+  //  with older Firebase data; no per-owner categories currently exist.)
   return actuals?.[catKey];
 }
 
@@ -1582,7 +1575,7 @@ function renderOpenState() {
   const cd = $("countdown");
   const openSub = $("openSub");
   if (dl) {
-    openSub.innerHTML = `Pick your owner from the dropdown and fill out all 13 categories. You can come back and edit your picks any time before the deadline.<br><span style="color:var(--label); font-size:1.05rem; letter-spacing:0.08em; display:inline-block; margin-top:6px;">Deadline: ${escapeHTML(formatDate(dbState.config.deadline))}</span>`;
+    openSub.innerHTML = `Pick your owner from the dropdown and fill out all ${CATEGORIES.length} categories. You can come back and edit your picks any time before the deadline.<br><span style="color:var(--label); font-size:1.05rem; letter-spacing:0.08em; display:inline-block; margin-top:6px;">Deadline: ${escapeHTML(formatDate(dbState.config.deadline))}</span>`;
     if (countdownInterval) clearInterval(countdownInterval);
     const update = () => {
       const remaining = dl - nowMs();
@@ -1667,9 +1660,9 @@ function renderLockedState() {
     $("lockedSub").textContent = `All ${Object.keys(subs).length} submissions are visible below. The leaderboard will start updating as results come in this season.`;
   } else if (allResultsIn) {
     $("lockedTitle").textContent = "Season Complete";
-    $("lockedSub").textContent = `All 13 categories scored. Final standings below.`;
+    $("lockedSub").textContent = `All ${CATEGORIES.length} categories scored. Final standings below.`;
   } else {
-    $("lockedTitle").textContent = `${resultsEntered} of 13 Results In`;
+    $("lockedTitle").textContent = `${resultsEntered} of ${CATEGORIES.length} Results In`;
     $("lockedSub").textContent = `Leaderboard updates live as results come in. Tap any name to see their picks.`;
   }
 
@@ -2064,7 +2057,7 @@ function describeActual(cat, actual) {
 function renderRulesContent(targetId) {
   const target = $(targetId);
   if (!target) return;
-  let html = `<p style="margin-bottom:12px;">Each correct pick earns points. Final score is the sum of all earned points across the 13 categories plus the Moneyball bonus if your Moneyball pick is correct.</p>`;
+  let html = `<p style="margin-bottom:12px;">Each correct pick earns points. Final score is the sum of all earned points across the ${CATEGORIES.length} categories plus the Moneyball bonus if your Moneyball pick is correct.</p>`;
   html += `<table><thead><tr><th>Category</th><th style="text-align:right;">Points</th></tr></thead><tbody>`;
   CATEGORIES.forEach(cat => {
     let ptDesc = "";
@@ -2434,17 +2427,6 @@ function renderCommishPanel() {
     html += `</div>`;
   });
 
-  // Per-owner finish actuals — needed for "Your Own Finish" scoring
-  html += `<h3 style="margin-top:16px;">Per-Owner Regular Season Finish</h3>`;
-  html += `<p style="font-size:0.95rem; color:var(--label); margin-bottom:10px;">Used to score each owner's "Your Own Regular Season Finish" pick. Enter where each owner actually finished.</p>`;
-  const finishes = cfg.regSeasonFinishes || {};
-  OWNERS.forEach(o => {
-    html += `<div class="form-field" style="display:grid; grid-template-columns: 1fr 100px; gap:10px; align-items:center; margin-bottom:8px;">`;
-    html += `<label class="form-label" style="margin:0;">${escapeHTML(o.name)}</label>`;
-    html += `<input type="number" min="1" max="14" data-finish-id="${o.id}" value="${finishes[o.id] ?? ""}" placeholder="—" />`;
-    html += `</div>`;
-  });
-
   html += `<button class="submit-btn" id="cSaveActuals" style="margin-top:14px;">Save All Results</button>`;
   html += `</div>`;
 
@@ -2528,17 +2510,8 @@ function renderCommishPanel() {
       newActuals[key] = val;
     });
 
-    // Per-owner finish
-    const newFinishes = {};
-    $("commishContent").querySelectorAll('input[data-finish-id]').forEach(inp => {
-      const id = inp.dataset.finishId;
-      const v = parseInt(inp.value, 10);
-      if (v >= 1 && v <= 14) newFinishes[id] = v;
-    });
-
     await update(ref(db, `predictionBallot/${SEASON}/config`), {
-      actualResults: newActuals,
-      regSeasonFinishes: newFinishes
+      actualResults: newActuals
     });
     flashCommishMsg("Results saved.");
   });
