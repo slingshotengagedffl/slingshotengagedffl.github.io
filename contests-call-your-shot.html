@@ -67,9 +67,9 @@
   /* ── INTRO ── */
   .intro {
     font-family: 'Barlow', sans-serif;
-    font-size: 1.1rem;
+    font-size: 1.2rem;
     color: var(--text-body);
-    line-height: 1.7;
+    line-height: 1.65;
     margin: 12px 0 12px;
     text-align: left;
   }
@@ -79,27 +79,27 @@
     border: 1px solid var(--border);
     border-left: 4px solid var(--gold);
     border-radius: 8px;
-    padding: 16px 18px;
+    padding: 18px 20px;
     margin: 8px 0 20px;
     display: grid;
     grid-template-columns: 1fr 1fr;
-    gap: 12px;
+    gap: 14px;
   }
   .stakes-cell {
     display: flex;
     flex-direction: column;
-    gap: 4px;
+    gap: 6px;
   }
   .stakes-label {
     font-family: 'Barlow Condensed', sans-serif;
-    font-size: 0.78rem;
+    font-size: 0.88rem;
     letter-spacing: 0.2em;
     text-transform: uppercase;
     color: var(--label);
   }
   .stakes-value {
     font-family: 'Bebas Neue', sans-serif;
-    font-size: 1.2rem;
+    font-size: 1.4rem;
     letter-spacing: 0.06em;
     color: var(--text);
   }
@@ -109,44 +109,44 @@
   /* ── SECTION HEADER ── */
   .section-title {
     font-family: 'Bebas Neue', sans-serif;
-    font-size: 1.6rem;
+    font-size: 1.85rem;
     letter-spacing: 0.08em;
     text-transform: uppercase;
     color: var(--text);
-    margin: 28px 0 10px;
+    margin: 32px 0 10px;
   }
   .section-sub {
     font-family: 'Barlow Condensed', sans-serif;
-    font-size: 0.92rem;
-    letter-spacing: 0.14em;
+    font-size: 1rem;
+    letter-spacing: 0.12em;
     text-transform: uppercase;
     color: var(--label);
-    margin-bottom: 14px;
+    margin-bottom: 16px;
   }
 
   /* ── OWNER BARS (full width, 14 rows) ── */
   .owner-bars {
     display: flex;
     flex-direction: column;
-    gap: 8px;
+    gap: 10px;
   }
 
   .owner-bar {
     background: var(--surface);
     border: 1px solid var(--border);
     border-radius: 10px;
-    padding: 12px 14px;
+    padding: 14px 14px 14px 18px;
     display: grid;
-    grid-template-columns: 56px 1fr auto;
-    gap: 14px;
+    grid-template-columns: auto 1fr auto;
+    gap: 12px;
     align-items: center;
-    min-height: 78px;
+    min-height: 100px;
     transition: border-color 0.15s, background 0.15s, box-shadow 0.15s;
     position: relative;
     overflow: hidden;
   }
 
-  /* Left accent bar */
+  /* Left accent stripe */
   .owner-bar::before {
     content: '';
     position: absolute;
@@ -161,99 +161,79 @@
   .owner-bar.won::before       { background: var(--gold); }
   .owner-bar.lost::before      { background: var(--red-bright); }
 
-  /* Caller photo (left) */
+  /* Photo + name unit (used for caller on left and opponent on right) */
+  .bar-person {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 5px;
+    width: 78px;
+    flex-shrink: 0;
+  }
   .bar-photo {
-    width: 56px;
-    height: 56px;
+    width: 70px;
+    height: 70px;
     border-radius: 50%;
     background: var(--surface3);
     border: 2px solid var(--border);
     overflow: hidden;
-    flex-shrink: 0;
     display: flex;
     align-items: center;
     justify-content: center;
     font-family: 'Bebas Neue', sans-serif;
-    font-size: 1.4rem;
+    font-size: 1.8rem;
     color: var(--muted);
     letter-spacing: 0.02em;
   }
   .bar-photo img { width: 100%; height: 100%; object-fit: cover; display: block; }
-  .owner-bar.called .bar-photo,
-  .owner-bar.won .bar-photo    { border-color: var(--gold); }
-  .owner-bar.lost .bar-photo   { border-color: var(--red-bright); }
-
-  /* Center: name + state */
-  .bar-body {
-    display: flex;
-    flex-direction: column;
-    gap: 4px;
-    min-width: 0;
-  }
-  .bar-name {
+  .bar-person-name {
     font-family: 'Bebas Neue', sans-serif;
-    font-size: 1.5rem;
-    letter-spacing: 0.05em;
+    font-size: 1.05rem;
+    letter-spacing: 0.06em;
     color: var(--text);
     line-height: 1;
+    text-align: center;
+    max-width: 78px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+  .bar-person.opp .bar-person-name { color: var(--label); font-size: 0.95rem; }
+  .owner-bar.called .bar-person.caller .bar-photo,
+  .owner-bar.won    .bar-person.caller .bar-photo { border-color: var(--gold); }
+  .owner-bar.lost   .bar-person.caller .bar-photo { border-color: var(--red-bright); }
+  .owner-bar.called .bar-person.opp .bar-photo,
+  .owner-bar.won    .bar-person.opp .bar-photo,
+  .owner-bar.lost   .bar-person.opp .bar-photo   { border-color: var(--border); }
+
+  /* Center column: state line + outcome tag */
+  .bar-center {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    min-width: 0;
+    align-items: center;
+    text-align: center;
   }
   .bar-state {
     font-family: 'Barlow Condensed', sans-serif;
-    font-size: 0.95rem;
+    font-size: 1.05rem;
     letter-spacing: 0.08em;
     color: var(--label);
-    line-height: 1.3;
-    display: flex;
-    align-items: center;
-    flex-wrap: wrap;
-    gap: 6px;
+    line-height: 1.2;
   }
   .bar-state .accent { color: var(--gold); font-weight: 700; }
   .bar-state .red    { color: var(--red-bright); font-weight: 700; }
   .bar-state .muted  { color: var(--muted); }
 
-  /* Right: opponent photo + outcome tag (for called/won/lost) */
-  .bar-right {
-    display: flex;
-    align-items: center;
-    gap: 10px;
-    flex-shrink: 0;
-  }
-  .bar-vs {
-    font-family: 'Barlow Condensed', sans-serif;
-    font-size: 0.78rem;
-    letter-spacing: 0.18em;
-    text-transform: uppercase;
-    color: var(--muted);
-    font-weight: 700;
-  }
-  .bar-opp-photo {
-    width: 44px;
-    height: 44px;
-    border-radius: 50%;
-    background: var(--surface3);
-    border: 2px solid var(--border);
-    overflow: hidden;
-    flex-shrink: 0;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-family: 'Bebas Neue', sans-serif;
-    font-size: 1.05rem;
-    color: var(--muted);
-    letter-spacing: 0.02em;
-  }
-  .bar-opp-photo img { width: 100%; height: 100%; object-fit: cover; display: block; }
-
-  /* Outcome tag — visible on won/lost states */
   .bar-outcome-tag {
     display: inline-block;
     font-family: 'Barlow Condensed', sans-serif;
-    font-size: 0.78rem;
+    font-size: 0.85rem;
     letter-spacing: 0.16em;
     text-transform: uppercase;
     font-weight: 700;
-    padding: 3px 9px;
+    padding: 4px 10px;
     border-radius: 4px;
     white-space: nowrap;
   }
@@ -264,40 +244,42 @@
     color: var(--gold);
     border: 1px solid var(--gold);
   }
+  .bar-outcome-tag.loaded {
+    background: rgba(216,216,216,0.08);
+    color: var(--label);
+    border: 1px solid var(--border);
+  }
+
+  /* Hide caller-side bar-person when no one to render opposite (available state still shows caller, just no opponent) */
 
   /* State variants */
   .owner-bar.called {
     border-color: var(--gold);
-    background: linear-gradient(90deg, rgba(201,168,76,0.10), var(--surface) 50%);
+    background: linear-gradient(90deg, rgba(201,168,76,0.10), var(--surface) 50%, rgba(201,168,76,0.05));
     box-shadow: 0 0 18px rgba(201,168,76,0.18);
   }
   .owner-bar.won {
     border-color: var(--gold);
-    background: linear-gradient(90deg, rgba(201,168,76,0.06), var(--surface) 60%);
+    background: linear-gradient(90deg, rgba(201,168,76,0.08), var(--surface) 50%, rgba(201,168,76,0.04));
   }
   .owner-bar.lost {
     border-color: var(--red);
-    background: linear-gradient(90deg, rgba(192,57,43,0.10), var(--surface) 60%);
+    background: linear-gradient(90deg, rgba(192,57,43,0.10), var(--surface) 50%, rgba(192,57,43,0.05));
   }
 
-  /* Mobile: stack the right cluster underneath */
-  @media (max-width: 480px) {
+  /* Tight mobile sizing — keep photos on same line, just shrink */
+  @media (max-width: 420px) {
     .owner-bar {
-      grid-template-columns: 48px 1fr;
-      gap: 12px;
-      padding: 12px 12px;
-    }
-    .bar-photo { width: 48px; height: 48px; font-size: 1.2rem; }
-    .bar-right {
-      grid-column: 1 / -1;
-      justify-content: flex-end;
-      padding-top: 6px;
-      border-top: 1px solid var(--border);
-      margin-top: 2px;
+      padding: 12px 10px 12px 14px;
       gap: 8px;
+      grid-template-columns: auto 1fr auto;
     }
-    .owner-bar.available .bar-right { display: none; }
-    .bar-name { font-size: 1.4rem; }
+    .bar-person { width: 64px; gap: 4px; }
+    .bar-photo { width: 58px; height: 58px; font-size: 1.5rem; }
+    .bar-person-name { font-size: 0.9rem; max-width: 64px; }
+    .bar-person.opp .bar-person-name { font-size: 0.82rem; }
+    .bar-state { font-size: 0.95rem; }
+    .bar-outcome-tag { font-size: 0.78rem; padding: 3px 8px; }
   }
 
   /* ── SUBMIT BLOCK ── */
@@ -310,7 +292,7 @@
   }
   .submit-eyebrow {
     font-family: 'Barlow Condensed', sans-serif;
-    font-size: 0.82rem;
+    font-size: 0.92rem;
     letter-spacing: 0.2em;
     text-transform: uppercase;
     color: var(--gold);
@@ -319,18 +301,18 @@
   }
   .submit-headline {
     font-family: 'Bebas Neue', sans-serif;
-    font-size: 1.9rem;
+    font-size: 2.2rem;
     letter-spacing: 0.05em;
     color: var(--text);
-    margin-bottom: 4px;
+    margin-bottom: 6px;
     line-height: 1.05;
   }
   .submit-helper {
     font-family: 'Barlow', sans-serif;
-    font-size: 1rem;
+    font-size: 1.1rem;
     color: var(--text-body);
-    margin-bottom: 18px;
-    line-height: 1.5;
+    margin-bottom: 20px;
+    line-height: 1.55;
   }
 
   .form-row {
@@ -517,10 +499,10 @@
     background: var(--surface);
     border: 1px solid var(--border);
     border-radius: 10px;
-    padding: 12px 14px;
+    padding: 14px 16px;
     display: grid;
-    grid-template-columns: 48px 1fr auto;
-    gap: 12px;
+    grid-template-columns: 56px 1fr auto;
+    gap: 14px;
     align-items: center;
     position: relative;
     overflow: hidden;
@@ -534,10 +516,9 @@
     width: 4px;
     background: var(--gold);
   }
-  .defender-row.weak::before { background: var(--red-bright); }
   .defender-photo {
-    width: 48px;
-    height: 48px;
+    width: 56px;
+    height: 56px;
     border-radius: 50%;
     background: var(--surface3);
     border: 2px solid var(--gold);
@@ -546,32 +527,32 @@
     align-items: center;
     justify-content: center;
     font-family: 'Bebas Neue', sans-serif;
-    font-size: 1.2rem;
+    font-size: 1.4rem;
     color: var(--gold);
   }
-  .defender-row.weak .defender-photo { border-color: var(--red-bright); color: var(--red-bright); }
   .defender-photo img { width: 100%; height: 100%; object-fit: cover; display: block; }
   .defender-body { min-width: 0; }
   .defender-name {
     font-family: 'Bebas Neue', sans-serif;
-    font-size: 1.4rem;
+    font-size: 1.6rem;
     letter-spacing: 0.05em;
     color: var(--text);
     line-height: 1;
-    margin-bottom: 4px;
+    margin-bottom: 5px;
   }
   .defender-detail {
     font-family: 'Barlow Condensed', sans-serif;
-    font-size: 0.92rem;
+    font-size: 1rem;
     letter-spacing: 0.06em;
     color: var(--label);
     line-height: 1.3;
   }
   .defender-detail .accent { color: var(--gold); font-weight: 700; }
   .defender-detail .red    { color: var(--red-bright); font-weight: 700; }
+  .defender-detail .muted  { color: var(--muted); }
   .defender-record {
     font-family: 'Bebas Neue', sans-serif;
-    font-size: 1.5rem;
+    font-size: 1.7rem;
     letter-spacing: 0.04em;
     color: var(--gold);
     line-height: 1;
@@ -580,14 +561,13 @@
   }
   .defender-record .small {
     font-family: 'Barlow Condensed', sans-serif;
-    font-size: 0.7rem;
+    font-size: 0.78rem;
     letter-spacing: 0.16em;
     color: var(--muted);
     display: block;
     margin-top: 4px;
     font-weight: 700;
   }
-  .defender-row.weak .defender-record { color: var(--red-bright); }
 
   /* ── COMMISH GEAR + PANEL ── */
   .commish-gear {
@@ -996,28 +976,28 @@
   }
   .how-list li {
     position: relative;
-    padding: 8px 0 8px 26px;
+    padding: 10px 0 10px 28px;
     font-family: 'Barlow', sans-serif;
-    font-size: 1rem;
+    font-size: 1.1rem;
     color: var(--text-body);
-    line-height: 1.55;
+    line-height: 1.6;
   }
   .how-list li + li {
     border-top: 1px solid var(--border);
     margin-top: 4px;
-    padding-top: 14px;
+    padding-top: 16px;
   }
   .how-list li::before {
     content: '→';
     position: absolute;
     left: 0;
-    top: 8px;
+    top: 10px;
     color: var(--gold);
     font-weight: 700;
     font-family: 'Bebas Neue', sans-serif;
-    font-size: 1.1rem;
+    font-size: 1.25rem;
   }
-  .how-list li + li::before { top: 14px; }
+  .how-list li + li::before { top: 16px; }
   .how-list li strong { color: var(--text); font-weight: 700; }
 </style>
 </head>
@@ -1032,7 +1012,7 @@
 
 <div class="content">
 
-  <p class="intro">Once per season, each owner can call their shot — a public, irrevocable declaration of victory for a specific week. Win it, collect <strong>$5</strong> from the league pot. Lose it, your opponent collects the $5 instead. No backing out. No re-rolls. Everyone watches.</p>
+  <p class="intro">Once per season, each owner <strong>must</strong> call their shot — a public, irrevocable guarantee of victory for a specific week. Back it up and you collect <strong>$5</strong> from the league pot. Whiff and your opponent walks with the $5 instead. No backing out. No re-rolls. Everyone watches.</p>
 
   <div class="stakes-card">
     <div class="stakes-cell">
@@ -1082,11 +1062,11 @@
   <div class="section-sub" id="seasonSummary">Loading…</div>
   <div class="owner-bars" id="ownerBars"></div>
 
-  <!-- Defenders -->
-  <div class="history-section" id="defendersSection">
-    <div class="section-title">Who Stepped Up</div>
-    <div class="section-sub">Owners who got called against — and made the caller regret it</div>
-    <div id="defendersList"></div>
+  <!-- The Ledger -->
+  <div class="history-section" id="ledgerSection">
+    <div class="section-title">The Ledger</div>
+    <div class="section-sub">Everyone's record and earnings from Call Your Shot games</div>
+    <div id="ledgerList"></div>
   </div>
 
   <!-- Full history -->
@@ -1113,9 +1093,9 @@
   <div class="section-title">How It Works</div>
   <div class="how-it-works">
     <ul class="how-list">
-      <li>You get <strong>one shot</strong> per season. Use it on a week you're confident — or a week you need to make a statement.</li>
-      <li>Once you call it, the page locks for you. Everyone in the league sees your call on the home page in real time.</li>
-      <li>Win that week's matchup and you collect an extra <strong>$5</strong> from the league pot. Lose it and your opponent gets the $5 instead. The $5 is already baked into the buy-in — no one is settling up directly.</li>
+      <li>Every owner <strong>must</strong> call their shot once per season. Pick a week you're confident — or a week you need to make a statement — and guarantee the win.</li>
+      <li>Once you call it, the page locks for you. No backing out.</li>
+      <li>Back up your guarantee and you collect an extra <strong>$5</strong> from the league pot. Whiff and your opponent gets the $5 instead. The $5 is already baked into the buy-in — no one is settling up directly.</li>
     </ul>
   </div>
 
@@ -1431,48 +1411,50 @@ function render() {
     if (!shot) {
       bar.classList.add("available");
       bar.innerHTML = `
-        ${renderOwnerPhoto(o.id, "bar-photo")}
-        <div class="bar-body">
-          <div class="bar-name">${escapeHTML(o.display)}</div>
+        <div class="bar-person caller">
+          ${renderOwnerPhoto(o.id, "bar-photo")}
+          <div class="bar-person-name">${escapeHTML(o.display)}</div>
+        </div>
+        <div class="bar-center">
           <div class="bar-state"><span class="muted">Shot not called yet</span></div>
+          <span class="bar-outcome-tag loaded">Loaded</span>
         </div>
-        <div class="bar-right">
-          <span class="bar-vs">Loaded</span>
-        </div>
+        <div class="bar-person opp" style="visibility:hidden;"></div>
       `;
     } else {
       const opp = OWNERS_BY_ID[shot.opponentId];
       const oppName = opp?.display || shot.opponentId;
-      const oppPhoto = renderOwnerPhoto(shot.opponentId, "bar-opp-photo");
       let stateClass, stateLine, tag;
 
       if (shot.outcome === "pending") {
         calledCount++;
         stateClass = "called";
-        stateLine = `Wk <span class="accent">${shot.week}</span> · vs. <span class="accent">${escapeHTML(oppName)}</span>`;
+        stateLine = `Week <span class="accent">${shot.week}</span>`;
         tag = `<span class="bar-outcome-tag pending">⚡ Pending</span>`;
       } else if (shot.outcome === "won") {
         wonCount++;
         stateClass = "won";
-        stateLine = `Wk ${shot.week} · beat <span class="accent">${escapeHTML(oppName)}</span>`;
+        stateLine = `Week ${shot.week} · <span class="accent">beat them</span>`;
         tag = `<span class="bar-outcome-tag won">✓ Won +$5</span>`;
       } else {
         lostCount++;
         stateClass = "lost";
-        stateLine = `Wk ${shot.week} · lost to <span class="red">${escapeHTML(oppName)}</span>`;
+        stateLine = `Week ${shot.week} · <span class="red">lost</span>`;
         tag = `<span class="bar-outcome-tag lost">✗ Lost</span>`;
       }
       bar.classList.add(stateClass);
       bar.innerHTML = `
-        ${renderOwnerPhoto(o.id, "bar-photo")}
-        <div class="bar-body">
-          <div class="bar-name">${escapeHTML(o.display)}</div>
-          <div class="bar-state">${stateLine}</div>
+        <div class="bar-person caller">
+          ${renderOwnerPhoto(o.id, "bar-photo")}
+          <div class="bar-person-name">${escapeHTML(o.display)}</div>
         </div>
-        <div class="bar-right">
-          <span class="bar-vs">VS</span>
-          ${oppPhoto}
+        <div class="bar-center">
+          <div class="bar-state">${stateLine}</div>
           ${tag}
+        </div>
+        <div class="bar-person opp">
+          ${renderOwnerPhoto(shot.opponentId, "bar-photo")}
+          <div class="bar-person-name">${escapeHTML(oppName)}</div>
         </div>
       `;
     }
@@ -1487,7 +1469,7 @@ function render() {
     `${total} of ${OWNERS.length} owners have used their shot · ${remaining} still loaded` +
     (calledCount ? ` · ${calledCount} pending outcome` : "");
 
-  renderDefenders();
+  renderLedger();
   renderFullHistory();
   if ($("ownerSelect").value) {
     showAlreadyUsedIfAny();
@@ -1508,80 +1490,80 @@ function renderOwnerPhoto(ownerId, className) {
   return `<div class="${className}"><img src="${src}" alt="${escapeHTML(owner?.display || "")}" onerror="if(this.src.endsWith('.${ext}')){this.src='${fallback}';}else{this.style.display='none';this.parentNode.textContent='${initial}';}"></div>`;
 }
 
-function getCalledAgainstStats(ownerId) {
-  // Across current season + archive
-  let timesCalled = 0, callerWon = 0, callerLost = 0;
-  // Current season
-  Object.values(dbState.shots || {}).forEach(s => {
-    if (s.opponentId === ownerId) {
-      timesCalled++;
-      if (s.outcome === "won") callerWon++;
-      else if (s.outcome === "lost") callerLost++;
+function getLedgerStats(ownerId) {
+  // Combine current season + archive into a single per-owner record.
+  // For each shot, this owner participated if they're the caller OR the opponent.
+  // - Caller's outcome "won"  → caller +1W, opponent +1L
+  // - Caller's outcome "lost" → caller +1L, opponent +1W
+  // - "pending" → counts toward gamesPending, not W/L
+  // Money: $5 per game won.
+  let wins = 0, losses = 0, pending = 0;
+  const allShots = [
+    ...Object.values(dbState.shots || {}),
+    ...Object.values(archive || {}).flatMap(yd => Object.values((yd && yd.shots) || {}))
+  ];
+  allShots.forEach(s => {
+    const isCaller = s.ownerId === ownerId;
+    const isOpp = s.opponentId === ownerId;
+    if (!isCaller && !isOpp) return;
+    if (s.outcome === "pending") { pending++; return; }
+    if (s.outcome === "won") {
+      if (isCaller) wins++; else losses++;
+    } else if (s.outcome === "lost") {
+      if (isCaller) losses++; else wins++;
     }
   });
-  // Archive
-  Object.values(archive || {}).forEach(yearData => {
-    Object.values((yearData && yearData.shots) || {}).forEach(s => {
-      if (s.opponentId === ownerId) {
-        timesCalled++;
-        if (s.outcome === "won") callerWon++;
-        else if (s.outcome === "lost") callerLost++;
-      }
-    });
-  });
-  return { timesCalled, callerWon, callerLost };
+  const games = wins + losses + pending;
+  const moneyWon = wins * 5;
+  return { wins, losses, pending, games, moneyWon };
 }
 
-function renderDefenders() {
-  const list = $("defendersList");
-  const section = $("defendersSection");
+function renderLedger() {
+  const list = $("ledgerList");
   list.innerHTML = "";
 
-  // Build stats; only include owners who've actually been called against with a resolved outcome
-  const all = OWNERS.map(o => ({ o, ...getCalledAgainstStats(o.id) }))
-    .filter(r => r.timesCalled > 0);
+  // Build stats; only include owners who've participated in at least one game
+  const all = OWNERS.map(o => ({ o, ...getLedgerStats(o.id) }))
+    .filter(r => r.games > 0);
 
   if (all.length === 0) {
     list.innerHTML = `
       <div class="defenders-empty">
-        No one has been called against yet this season. As shots get called and games get played, this fills up with the owners who refused to be easy money.
+        No shots have been called yet this season. Once games start resolving, everyone's record and earnings will show up here.
       </div>
     `;
     return;
   }
 
-  // Sort: most stops first (defender wins = callerLost), then by times called desc, then by name
-  all.sort((a, b) => b.callerLost - a.callerLost || b.timesCalled - a.timesCalled || a.o.display.localeCompare(b.o.display));
+  // Sort by money won desc → wins desc → fewer losses → alpha
+  all.sort((a, b) =>
+    b.moneyWon - a.moneyWon ||
+    b.wins - a.wins ||
+    a.losses - b.losses ||
+    a.o.display.localeCompare(b.o.display)
+  );
 
   all.forEach(r => {
-    const defenderWins = r.callerLost; // caller LOST = defender WON
-    const defenderLosses = r.callerWon;
-    const pending = r.timesCalled - defenderWins - defenderLosses;
-
-    // "Stepped up" angle: defenderWins is the headline. defender record W–L from the defender's POV.
     const row = document.createElement("div");
-    row.className = "defender-row" + (defenderWins === 0 && defenderLosses > 0 ? " weak" : "");
+    row.className = "defender-row";
 
-    let detailLine;
-    if (defenderWins > 0 && defenderLosses === 0) {
-      detailLine = `Called against <span class="accent">${r.timesCalled}×</span> · undefeated when targeted${pending ? ` · ${pending} pending` : ""}`;
-    } else if (defenderWins > 0) {
-      detailLine = `Called against <span class="accent">${r.timesCalled}×</span> · made the caller pay ${defenderWins} time${defenderWins === 1 ? "" : "s"}${pending ? ` · ${pending} pending` : ""}`;
-    } else if (defenderLosses > 0) {
-      detailLine = `Called against <span class="red">${r.timesCalled}×</span> · caller cashed every time${pending ? ` · ${pending} pending` : ""}`;
-    } else {
-      detailLine = `Called against <span class="accent">${r.timesCalled}×</span> · ${pending} pending`;
-    }
+    const pluralGames = r.games === 1 ? "game" : "games";
+    let detailLine = `<span class="accent">${r.games}</span> ${pluralGames}`;
+    if (r.pending > 0) detailLine += ` · <span class="muted">${r.pending} pending</span>`;
+
+    const moneyDisplay = r.moneyWon > 0
+      ? `<span style="color:var(--gold);">+$${r.moneyWon}</span>`
+      : `<span style="color:var(--muted);">$0</span>`;
 
     row.innerHTML = `
       ${renderOwnerPhoto(r.o.id, "defender-photo")}
       <div class="defender-body">
         <div class="defender-name">${escapeHTML(r.o.display)}</div>
-        <div class="defender-detail">${detailLine}</div>
+        <div class="defender-detail">${r.wins}–${r.losses} · ${detailLine}</div>
       </div>
       <div class="defender-record">
-        ${defenderWins}–${defenderLosses}
-        <span class="small">As Defender</span>
+        ${moneyDisplay}
+        <span class="small">Won</span>
       </div>
     `;
     list.appendChild(row);
