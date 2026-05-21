@@ -1,0 +1,1570 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-72LZJZ8DX1"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-72LZJZ8DX1');
+  gtag('event', 'page_view', {'page_type': 'call_your_shot'});
+</script>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Call Your Shot · Slingshot Engaged</title>
+<link rel="icon" type="image/png" href="/images/icon.png">
+<link rel="apple-touch-icon" href="/images/icon.png">
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Barlow+Condensed:wght@400;600;700;800;900&family=Barlow:wght@400;500;600&display=swap');
+
+  :root {
+    --red: #c0392b;
+    --red-bright: #e74c3c;
+    --bg: #0a0a0a;
+    --border: #2a2a2a;
+    --text: #f0f0f0;
+    --text-body: #e8e8e8;
+    --muted: #bbb;
+    --label: #d8d8d8;
+    --surface: #141414;
+    --surface2: #1c1c1c;
+    --surface3: #242424;
+    --gold: #c9a84c;
+  }
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: 'Barlow', sans-serif;
+    min-height: 100vh;
+  }
+
+  /* ── PAGE HEADER ── */
+  .page-header {
+    text-align: center;
+    padding: 24px 16px 8px;
+  }
+  .page-header h1 {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: clamp(2.6rem, 9vw, 3.8rem);
+    letter-spacing: 0.06em;
+    color: var(--text);
+    margin: 6px 0 4px;
+    line-height: 1;
+  }
+
+  .header-spacer { height: 20px; }
+
+  .content {
+    max-width: 680px;
+    margin: 0 auto;
+    padding: 0 16px 80px;
+  }
+
+  /* ── INTRO ── */
+  .intro {
+    font-family: 'Barlow', sans-serif;
+    font-size: 1.1rem;
+    color: var(--text-body);
+    line-height: 1.7;
+    margin: 12px 0 12px;
+    text-align: left;
+  }
+
+  .stakes-card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-left: 4px solid var(--gold);
+    border-radius: 8px;
+    padding: 16px 18px;
+    margin: 8px 0 20px;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 12px;
+  }
+  .stakes-cell {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+  }
+  .stakes-label {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 0.78rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--label);
+  }
+  .stakes-value {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 1.2rem;
+    letter-spacing: 0.06em;
+    color: var(--text);
+  }
+  .stakes-value .gold { color: var(--gold); }
+  .stakes-value .red { color: var(--red-bright); }
+
+  /* ── SECTION HEADER ── */
+  .section-title {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 1.6rem;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--text);
+    margin: 28px 0 10px;
+  }
+  .section-sub {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 0.92rem;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--label);
+    margin-bottom: 14px;
+  }
+
+  /* ── OWNER GRID ── */
+  .owner-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 10px;
+  }
+  @media (min-width: 560px) {
+    .owner-grid { grid-template-columns: 1fr 1fr 1fr; }
+  }
+
+  .owner-card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 14px 12px;
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    min-height: 110px;
+    position: relative;
+    transition: border-color 0.15s, background 0.15s;
+  }
+  .owner-card .owner-name {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 1.4rem;
+    letter-spacing: 0.06em;
+    color: var(--text);
+    line-height: 1;
+  }
+  .owner-card .state-tag {
+    display: inline-block;
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 0.74rem;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    padding: 3px 8px;
+    border-radius: 4px;
+    width: fit-content;
+    font-weight: 700;
+  }
+  .owner-card.available { }
+  .owner-card.available .state-tag {
+    background: rgba(216,216,216,0.08);
+    color: var(--label);
+    border: 1px solid var(--border);
+  }
+  .owner-card.called {
+    border-color: var(--gold);
+    box-shadow: 0 0 0 1px var(--gold), 0 0 22px rgba(201,168,76,0.32);
+    background: linear-gradient(180deg, rgba(201,168,76,0.10), var(--surface) 70%);
+  }
+  .owner-card.called .state-tag {
+    background: var(--gold);
+    color: #000;
+  }
+  .owner-card.won {
+    border-color: var(--gold);
+    background: linear-gradient(180deg, rgba(201,168,76,0.06), var(--surface) 70%);
+  }
+  .owner-card.won .state-tag {
+    background: var(--gold);
+    color: #000;
+  }
+  .owner-card.lost {
+    border-color: var(--red);
+    background: linear-gradient(180deg, rgba(192,57,43,0.08), var(--surface) 70%);
+  }
+  .owner-card.lost .state-tag {
+    background: var(--red);
+    color: #fff;
+  }
+  .owner-card .state-detail {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 0.86rem;
+    letter-spacing: 0.08em;
+    color: var(--label);
+    line-height: 1.3;
+  }
+  .owner-card .state-detail .accent { color: var(--gold); font-weight: 700; }
+  .owner-card .state-detail .red { color: var(--red-bright); font-weight: 700; }
+  .owner-card .called-against {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 0.75rem;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--muted);
+    margin-top: auto;
+    padding-top: 6px;
+    border-top: 1px solid var(--border);
+  }
+  .owner-card .called-against .num { color: var(--label); font-weight: 700; }
+
+  /* ── SUBMIT BLOCK ── */
+  .submit-block {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 20px 18px;
+    margin: 28px 0 8px;
+  }
+  .submit-eyebrow {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 0.82rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--gold);
+    font-weight: 700;
+    margin-bottom: 6px;
+  }
+  .submit-headline {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 1.9rem;
+    letter-spacing: 0.05em;
+    color: var(--text);
+    margin-bottom: 4px;
+    line-height: 1.05;
+  }
+  .submit-helper {
+    font-family: 'Barlow', sans-serif;
+    font-size: 1rem;
+    color: var(--text-body);
+    margin-bottom: 18px;
+    line-height: 1.5;
+  }
+
+  .form-row {
+    margin-bottom: 14px;
+  }
+  .form-label {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 1.05rem;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: var(--label);
+    font-weight: 700;
+    display: block;
+    margin-bottom: 6px;
+  }
+  .name-select-block {
+    background: var(--surface2);
+    border: 2px solid var(--gold);
+    border-radius: 10px;
+    padding: 16px 14px;
+    margin-bottom: 16px;
+    box-shadow: 0 0 0 4px rgba(201,168,76,0.12);
+  }
+  .name-select-block .form-label {
+    color: var(--gold);
+  }
+  select {
+    width: 100%;
+    background: var(--surface3);
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    color: var(--text);
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 1.15rem;
+    letter-spacing: 0.06em;
+    padding: 14px 12px;
+    appearance: none;
+    cursor: pointer;
+    min-height: 52px;
+    transition: border-color 0.15s;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='14' height='8' viewBox='0 0 14 8'%3E%3Cpath fill='%23d8d8d8' d='M0 0l7 8 7-8z'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right 14px center;
+    padding-right: 38px;
+  }
+  select:hover, select:focus {
+    border-color: var(--gold);
+    outline: none;
+  }
+  select:disabled {
+    opacity: 0.45;
+    cursor: not-allowed;
+  }
+
+  .submit-btn {
+    width: 100%;
+    background: var(--gold);
+    color: #000;
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 1.7rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    border: none;
+    border-radius: 8px;
+    padding: 18px 16px;
+    cursor: pointer;
+    min-height: 60px;
+    transition: filter 0.15s, transform 0.15s;
+    margin-top: 8px;
+  }
+  .submit-btn:hover:not(:disabled) { filter: brightness(1.1); }
+  .submit-btn:active:not(:disabled) { transform: translateY(1px); }
+  .submit-btn:disabled {
+    background: var(--surface3);
+    color: var(--muted);
+    cursor: not-allowed;
+  }
+
+  .form-msg {
+    margin-top: 12px;
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 0.95rem;
+    letter-spacing: 0.1em;
+    text-align: center;
+    min-height: 18px;
+  }
+  .form-msg.error { color: var(--red-bright); }
+  .form-msg.success { color: var(--gold); }
+
+  /* ── ALREADY USED MESSAGE ── */
+  .already-used {
+    background: var(--surface2);
+    border: 1px solid var(--border);
+    border-left: 4px solid var(--red-bright);
+    border-radius: 8px;
+    padding: 16px 18px;
+    margin-top: 16px;
+  }
+  .already-used .headline {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 1.5rem;
+    color: var(--red-bright);
+    letter-spacing: 0.06em;
+    margin-bottom: 6px;
+  }
+  .already-used .detail {
+    font-family: 'Barlow', sans-serif;
+    font-size: 1rem;
+    color: var(--text-body);
+    line-height: 1.5;
+  }
+
+  /* ── HISTORICAL TABLE ── */
+  .history-section {
+    margin-top: 36px;
+  }
+  .table-wrap {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+  }
+  table {
+    width: 100%;
+    border-collapse: collapse;
+  }
+  thead th {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 0.82rem;
+    font-weight: 700;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--label);
+    background: var(--surface2);
+    padding: 10px 12px;
+    text-align: left;
+    border-bottom: 1px solid var(--border);
+    white-space: nowrap;
+  }
+  tbody td {
+    padding: 10px 12px;
+    border-bottom: 1px solid var(--border);
+    color: var(--text);
+    font-size: 0.9rem;
+    font-family: 'Barlow', sans-serif;
+  }
+  tbody tr:last-child td { border-bottom: none; }
+  td.year { font-family: 'Barlow Condensed', sans-serif; font-weight: 700; color: var(--label); white-space: nowrap; }
+  td.week-cell { font-family: 'Barlow Condensed', sans-serif; color: var(--label); white-space: nowrap; }
+  td.caller { font-family: 'Barlow Condensed', sans-serif; font-weight: 700; color: var(--text); }
+  td.opp { color: var(--text-body); }
+  td.outcome { font-family: 'Barlow Condensed', sans-serif; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; white-space: nowrap; }
+  td.outcome.won { color: var(--gold); }
+  td.outcome.lost { color: var(--red-bright); }
+  td.outcome.pending { color: var(--muted); }
+
+  .history-empty {
+    font-family: 'Barlow', sans-serif;
+    font-size: 1.05rem;
+    color: var(--muted);
+    text-align: center;
+    padding: 28px 16px;
+  }
+
+  /* ── COMMISH GEAR + PANEL ── */
+  .commish-gear {
+    position: fixed;
+    bottom: 16px;
+    right: 16px;
+    width: 48px;
+    height: 48px;
+    background: var(--surface2);
+    border: 1px solid var(--border);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    color: var(--label);
+    font-size: 1.3rem;
+    z-index: 50;
+  }
+  .commish-gear:hover { background: var(--surface3); color: var(--text); }
+
+  .modal-overlay {
+    position: fixed;
+    inset: 0;
+    background: rgba(0,0,0,0.78);
+    z-index: 400;
+    display: none;
+    align-items: flex-start;
+    justify-content: center;
+    padding: 60px 16px 40px;
+    overflow-y: auto;
+  }
+  .modal-overlay.open { display: flex; }
+  .modal {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    width: 100%;
+    max-width: 560px;
+    padding: 22px 20px 24px;
+    position: relative;
+  }
+  .modal-close {
+    position: absolute;
+    top: 10px;
+    right: 12px;
+    background: none;
+    border: none;
+    color: var(--muted);
+    font-size: 1.3rem;
+    cursor: pointer;
+    padding: 6px 8px;
+  }
+  .modal-close:hover { color: var(--text); }
+  .modal h2 {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 1.8rem;
+    color: var(--text);
+    letter-spacing: 0.06em;
+    margin-bottom: 4px;
+    padding-right: 30px;
+  }
+  .modal-sub {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 0.9rem;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--muted);
+    margin-bottom: 14px;
+  }
+
+  .pass-row { display: flex; gap: 8px; }
+  .pass-row input {
+    flex: 1;
+    background: var(--surface3);
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    color: var(--text);
+    font-family: 'Barlow', sans-serif;
+    font-size: 1rem;
+    padding: 12px 12px;
+    min-height: 48px;
+  }
+  .pass-row input:focus { border-color: var(--gold); outline: none; }
+  .pass-btn {
+    background: var(--gold);
+    color: #000;
+    border: none;
+    border-radius: 6px;
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 1rem;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    padding: 12px 18px;
+    cursor: pointer;
+  }
+  .pass-err {
+    color: var(--red-bright);
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 0.88rem;
+    margin-top: 8px;
+    letter-spacing: 0.08em;
+    min-height: 14px;
+  }
+
+  .commish-section {
+    margin-top: 18px;
+    padding-top: 16px;
+    border-top: 1px solid var(--border);
+  }
+  .commish-section h3 {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 1.4rem;
+    color: var(--text);
+    letter-spacing: 0.06em;
+    margin-bottom: 10px;
+    text-transform: uppercase;
+  }
+  .commish-row {
+    background: var(--surface2);
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    padding: 12px;
+    margin-bottom: 10px;
+  }
+  .commish-row .who {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 1rem;
+    letter-spacing: 0.06em;
+    color: var(--text);
+    margin-bottom: 8px;
+  }
+  .commish-row .who .accent { color: var(--gold); font-weight: 700; }
+  .commish-row-actions {
+    display: flex;
+    gap: 8px;
+    flex-wrap: wrap;
+  }
+  .commish-btn {
+    flex: 1 1 auto;
+    background: var(--surface3);
+    color: var(--text);
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    padding: 10px 12px;
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 0.95rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    font-weight: 700;
+    cursor: pointer;
+    min-height: 44px;
+  }
+  .commish-btn:hover { border-color: var(--gold); color: var(--gold); }
+  .commish-btn.win { background: var(--gold); color: #000; border-color: var(--gold); }
+  .commish-btn.win:hover { filter: brightness(1.1); }
+  .commish-btn.loss { background: var(--red); color: #fff; border-color: var(--red); }
+  .commish-btn.loss:hover { filter: brightness(1.1); }
+  .commish-empty {
+    font-family: 'Barlow', sans-serif;
+    color: var(--muted);
+    font-size: 0.95rem;
+    padding: 8px 0;
+  }
+  .danger-btn {
+    width: 100%;
+    background: var(--red);
+    color: #fff;
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 1rem;
+    border: none;
+    padding: 14px 16px;
+    border-radius: 6px;
+    cursor: pointer;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    min-height: 48px;
+    font-weight: 700;
+  }
+  .danger-btn:hover { filter: brightness(1.1); }
+  .danger-note {
+    font-family: 'Barlow', sans-serif;
+    font-size: 0.85rem;
+    color: var(--muted);
+    margin-top: 8px;
+    line-height: 1.4;
+  }
+
+  /* ── CONFIRMATION MODAL ── */
+  .confirm-modal {
+    background: var(--surface);
+    border: 2px solid var(--gold);
+    border-radius: 12px;
+    width: 100%;
+    max-width: 480px;
+    padding: 24px 22px;
+    box-shadow: 0 0 0 6px rgba(201,168,76,0.12), 0 20px 60px rgba(0,0,0,0.6);
+    text-align: center;
+  }
+  .confirm-eyebrow {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 0.85rem;
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+    color: var(--gold);
+    font-weight: 700;
+    margin-bottom: 6px;
+  }
+  .confirm-headline {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: clamp(2rem, 7vw, 2.6rem);
+    color: var(--text);
+    letter-spacing: 0.05em;
+    line-height: 1.05;
+    margin-bottom: 14px;
+  }
+  .confirm-detail {
+    font-family: 'Barlow', sans-serif;
+    font-size: 1.05rem;
+    color: var(--text-body);
+    line-height: 1.55;
+    margin-bottom: 14px;
+  }
+  .confirm-detail .gold { color: var(--gold); font-weight: 700; }
+  .confirm-detail .red { color: var(--red-bright); font-weight: 700; }
+  .confirm-warn {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 0.85rem;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: var(--red-bright);
+    margin-bottom: 18px;
+    font-weight: 700;
+  }
+  .confirm-btns {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 10px;
+  }
+  .confirm-btn {
+    border: none;
+    border-radius: 8px;
+    padding: 16px 12px;
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 1.3rem;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    cursor: pointer;
+    min-height: 56px;
+  }
+  .confirm-btn.yes {
+    background: var(--gold);
+    color: #000;
+  }
+  .confirm-btn.yes:hover { filter: brightness(1.1); }
+  .confirm-btn.no {
+    background: var(--surface3);
+    color: var(--text);
+    border: 1px solid var(--border);
+  }
+  .confirm-btn.no:hover { border-color: var(--muted); }
+
+  /* ── DRAMATIC TAKEOVER (post-submit) ── */
+  .takeover {
+    position: fixed;
+    inset: 0;
+    background: radial-gradient(ellipse at center, #1a1208 0%, #0a0a0a 70%);
+    z-index: 500;
+    display: none;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    padding: 24px;
+    text-align: center;
+    overflow: hidden;
+  }
+  .takeover.open { display: flex; }
+  .takeover-burst {
+    position: absolute;
+    inset: 0;
+    background:
+      radial-gradient(circle at 50% 50%, rgba(201,168,76,0.45) 0%, rgba(201,168,76,0) 50%),
+      radial-gradient(circle at 50% 50%, rgba(231,76,60,0.18) 0%, rgba(231,76,60,0) 60%);
+    animation: burst 2.2s ease-out both;
+    pointer-events: none;
+  }
+  @keyframes burst {
+    0%   { opacity: 0; transform: scale(0.5); }
+    20%  { opacity: 1; transform: scale(1.1); }
+    100% { opacity: 0.4; transform: scale(1.4); }
+  }
+  .takeover-eyebrow {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 1.1rem;
+    letter-spacing: 0.4em;
+    text-transform: uppercase;
+    color: var(--gold);
+    font-weight: 700;
+    opacity: 0;
+    animation: fadeUp 0.5s ease-out 0.3s forwards;
+    margin-bottom: 10px;
+    z-index: 1;
+  }
+  .takeover-name {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: clamp(3.5rem, 16vw, 7rem);
+    color: var(--gold);
+    letter-spacing: 0.04em;
+    line-height: 0.95;
+    text-shadow: 0 0 30px rgba(201,168,76,0.6);
+    opacity: 0;
+    animation: fadeUp 0.6s ease-out 0.55s forwards;
+    z-index: 1;
+  }
+  .takeover-mid {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: clamp(1.6rem, 5vw, 2.2rem);
+    color: var(--text);
+    letter-spacing: 0.1em;
+    margin: 12px 0 6px;
+    opacity: 0;
+    animation: fadeUp 0.5s ease-out 0.95s forwards;
+    z-index: 1;
+  }
+  .takeover-vs {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: clamp(2.2rem, 8vw, 3.5rem);
+    color: var(--red-bright);
+    letter-spacing: 0.06em;
+    margin: 6px 0 16px;
+    opacity: 0;
+    animation: fadeUp 0.5s ease-out 1.2s forwards;
+    z-index: 1;
+  }
+  .takeover-week {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 1.2rem;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    color: var(--label);
+    opacity: 0;
+    animation: fadeUp 0.5s ease-out 1.45s forwards;
+    z-index: 1;
+    margin-bottom: 30px;
+  }
+  .takeover-stakes {
+    font-family: 'Barlow', sans-serif;
+    font-size: 1.05rem;
+    color: var(--text-body);
+    letter-spacing: 0.02em;
+    opacity: 0;
+    animation: fadeUp 0.5s ease-out 1.7s forwards;
+    z-index: 1;
+    max-width: 480px;
+    line-height: 1.5;
+  }
+  .takeover-stakes .gold { color: var(--gold); font-weight: 700; }
+  .takeover-dismiss {
+    margin-top: 28px;
+    background: transparent;
+    border: 1px solid var(--gold);
+    color: var(--gold);
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 0.95rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    padding: 12px 22px;
+    border-radius: 6px;
+    cursor: pointer;
+    opacity: 0;
+    animation: fadeUp 0.5s ease-out 2.1s forwards;
+    z-index: 1;
+    font-weight: 700;
+  }
+  .takeover-dismiss:hover { background: var(--gold); color: #000; }
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(14px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+
+  /* ── LOADING ── */
+  .loading-banner {
+    text-align: center;
+    padding: 40px 20px;
+    font-family: 'Barlow Condensed', sans-serif;
+    color: var(--muted);
+    font-size: 1rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+  }
+  .loading-banner.error { color: var(--red-bright); }
+
+  /* ── HOW IT WORKS ── */
+  .how-it-works {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 16px 18px;
+    margin-top: 14px;
+  }
+  .how-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+  .how-list li {
+    display: flex;
+    align-items: flex-start;
+    gap: 10px;
+    font-family: 'Barlow', sans-serif;
+    font-size: 1rem;
+    color: var(--text-body);
+    line-height: 1.5;
+    padding: 6px 0;
+  }
+  .how-list li::before {
+    content: '→';
+    color: var(--gold);
+    font-weight: 700;
+    flex-shrink: 0;
+    margin-top: 1px;
+  }
+</style>
+</head>
+<body>
+<script src="nav.js"></script>
+
+<div class="page-header">
+  <h1>🎯 Call Your Shot</h1>
+</div>
+
+<div class="header-spacer"></div>
+
+<div class="content">
+
+  <p class="intro">Once per season, each owner can call their shot — a public, irrevocable declaration of victory for a specific week. Win it, collect <strong>$5</strong> from your opponent. Lose it, you pay them <strong>$5</strong>. No backing out. No re-rolls. Everyone watches.</p>
+
+  <div class="stakes-card">
+    <div class="stakes-cell">
+      <div class="stakes-label">Win your shot</div>
+      <div class="stakes-value"><span class="gold">+$5</span> from your opponent</div>
+    </div>
+    <div class="stakes-cell">
+      <div class="stakes-label">Lose your shot</div>
+      <div class="stakes-value"><span class="red">−$5</span> to your opponent</div>
+    </div>
+  </div>
+
+  <!-- Submit block -->
+  <div class="submit-block" id="submitBlock">
+    <div class="submit-eyebrow">⚡ Your turn</div>
+    <div class="submit-headline">Make the Call</div>
+    <p class="submit-helper">Pick your name, the week, and your opponent. Once you confirm, everyone sees it — and you can't take it back.</p>
+
+    <div class="name-select-block">
+      <label class="form-label" for="ownerSelect">Who are you?</label>
+      <select id="ownerSelect">
+        <option value="">— Select your name —</option>
+      </select>
+    </div>
+
+    <div class="form-row">
+      <label class="form-label" for="weekSelect">What week?</label>
+      <select id="weekSelect" disabled>
+        <option value="">— Select your name first —</option>
+      </select>
+    </div>
+
+    <div class="form-row">
+      <label class="form-label" for="oppSelect">Who's your opponent?</label>
+      <select id="oppSelect" disabled>
+        <option value="">— Select your name first —</option>
+      </select>
+    </div>
+
+    <button class="submit-btn" id="submitBtn" disabled>🎯 Call Your Shot</button>
+
+    <div class="form-msg" id="formMsg"></div>
+  </div>
+
+  <!-- Active calls -->
+  <div class="section-title">This Season's Shots</div>
+  <div class="section-sub" id="seasonSummary">Loading…</div>
+  <div class="owner-grid" id="ownerGrid"></div>
+
+  <!-- History -->
+  <div class="history-section">
+    <div class="section-title">Called Against Them</div>
+    <div class="section-sub">When opponents call their shot against this owner, here's the tally</div>
+    <div class="table-wrap">
+      <table>
+        <thead>
+          <tr>
+            <th>Owner</th>
+            <th>Times Called Against</th>
+            <th>Caller W / L</th>
+          </tr>
+        </thead>
+        <tbody id="calledAgainstBody"></tbody>
+      </table>
+    </div>
+  </div>
+
+  <!-- Full history -->
+  <div class="history-section" id="fullHistorySection" style="display:none;">
+    <div class="section-title">All Shots Called</div>
+    <div class="section-sub">Most recent first</div>
+    <div class="table-wrap">
+      <table>
+        <thead>
+          <tr>
+            <th>Year</th>
+            <th>Wk</th>
+            <th>Caller</th>
+            <th>Opponent</th>
+            <th>Outcome</th>
+          </tr>
+        </thead>
+        <tbody id="fullHistoryBody"></tbody>
+      </table>
+    </div>
+  </div>
+
+  <!-- How it works -->
+  <div class="section-title">How It Works</div>
+  <div class="how-it-works">
+    <ul class="how-list">
+      <li>You get <strong>one shot</strong> per season. Use it on a week you're confident — or a week you need to make a statement.</li>
+      <li>Once you call it, the page locks for you. Everyone in the league can see your call on the home page.</li>
+      <li>If you win that week's matchup, your opponent owes you <strong>$5</strong>. If you lose, you owe them <strong>$5</strong>. The commissioner settles it.</li>
+      <li>Mistakes happen. The commissioner can undo a call if needed — message Jack.</li>
+    </ul>
+  </div>
+
+</div>
+
+<!-- Commish gear -->
+<button class="commish-gear" id="commishGear" aria-label="Commissioner panel">⚙</button>
+
+<!-- Commish modal -->
+<div class="modal-overlay" id="commishOverlay">
+  <div class="modal">
+    <button class="modal-close" id="commishClose" aria-label="Close">✕</button>
+    <h2>Commissioner Panel</h2>
+    <div class="modal-sub">Call Your Shot · Season <span id="commishSeasonLabel"></span></div>
+
+    <div id="commishGate">
+      <div class="form-label" style="margin-bottom:8px;">Passcode</div>
+      <div class="pass-row">
+        <input id="commishPass" type="password" placeholder="Passcode" autocomplete="off">
+        <button class="pass-btn" id="commishPassBtn">Unlock</button>
+      </div>
+      <div class="pass-err" id="commishPassErr"></div>
+    </div>
+
+    <div id="commishBody" style="display:none;">
+
+      <div class="commish-section">
+        <h3>Active Calls — Enter Outcome</h3>
+        <div id="commishActiveList"></div>
+      </div>
+
+      <div class="commish-section">
+        <h3>Undo a Call</h3>
+        <div id="commishUndoList"></div>
+      </div>
+
+      <div class="commish-section">
+        <h3>Reset Season</h3>
+        <button class="danger-btn" id="resetSeasonBtn">⚠ Reset All Shots for This Season</button>
+        <div class="danger-note">Archives the current season under <code>callYourShot/&lt;year&gt;</code> and clears active shots. Use this once the season is over and outcomes are settled.</div>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+<!-- Confirmation modal -->
+<div class="modal-overlay" id="confirmOverlay">
+  <div class="confirm-modal">
+    <div class="confirm-eyebrow">⚡ Final Check</div>
+    <div class="confirm-headline" id="confirmHeadline"></div>
+    <div class="confirm-detail" id="confirmDetail"></div>
+    <div class="confirm-warn">This cannot be undone by you</div>
+    <div class="confirm-btns">
+      <button class="confirm-btn no" id="confirmNo">Back Out</button>
+      <button class="confirm-btn yes" id="confirmYes">Call It</button>
+    </div>
+  </div>
+</div>
+
+<!-- Takeover -->
+<div class="takeover" id="takeover">
+  <div class="takeover-burst"></div>
+  <div class="takeover-eyebrow">Shot Called</div>
+  <div class="takeover-name" id="takeoverName"></div>
+  <div class="takeover-mid">vs.</div>
+  <div class="takeover-vs" id="takeoverOpp"></div>
+  <div class="takeover-week" id="takeoverWeek"></div>
+  <div class="takeover-stakes" id="takeoverStakes"></div>
+  <button class="takeover-dismiss" id="takeoverDismiss">Tap to dismiss</button>
+</div>
+
+<script type="module">
+import { initializeApp, getApps } from 'https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js';
+import { getDatabase, ref, onValue, set, remove, get, update } from 'https://www.gstatic.com/firebasejs/10.7.1/firebase-database.js';
+
+const firebaseConfig = {
+  apiKey: "AIzaSyDJHrXrUx3d4nKcoDarbT3So4-WCJopiss",
+  authDomain: "slingshot-engaged.firebaseapp.com",
+  databaseURL: "https://slingshot-engaged-default-rtdb.firebaseio.com",
+  projectId: "slingshot-engaged",
+  storageBucket: "slingshot-engaged.firebasestorage.app",
+  messagingSenderId: "391315870953",
+  appId: "1:391315870953:web:daf00bdb40ee414f564c78"
+};
+const app = getApps().length ? getApps()[0] : initializeApp(firebaseConfig);
+const db = getDatabase(app);
+
+// ── Config ────────────────────────────────────────────────
+const SEASON = "2026";
+const COMMISH_PASSCODE = "TheRodge";
+
+// Active owners — 14 — in alphabetical order by display
+const OWNERS = [
+  { id: "alex",   name: "Alex",   display: "Alex"   },
+  { id: "andy",   name: "Andy",   display: "Andy"   },
+  { id: "brian",  name: "Brian",  display: "Brian"  },
+  { id: "daniel", name: "Daniel", display: "Daniel" },
+  { id: "dylan",  name: "Dylan",  display: "Dylan"  },
+  { id: "jack",   name: "Jack",   display: "Jack"   },
+  { id: "jordan", name: "Jordan", display: "Jordan" },
+  { id: "kyle",   name: "Kyle",   display: "Kyle"   },
+  { id: "luke",   name: "Luke",   display: "Luke"   },
+  { id: "matt",   name: "Matt",   display: "Matt"   },
+  { id: "mike",   name: "Mike",   display: "Mike"   },
+  { id: "scott",  name: "Scott",  display: "Scott"  },
+  { id: "tim",    name: "Tim",    display: "Tim"    },
+  { id: "wade",   name: "Wade",   display: "Wade"   }
+];
+const OWNERS_BY_ID = Object.fromEntries(OWNERS.map(o => [o.id, o]));
+
+// Regular season only — weeks 1–14
+const WEEKS = Array.from({ length: 14 }, (_, i) => i + 1);
+
+// ── State ─────────────────────────────────────────────────
+let dbState = { shots: {}, _meta: {} };
+let archive = {}; // { year: { shots: {…} } }
+let commishUnlocked = false;
+
+// ── DOM helpers ───────────────────────────────────────────
+const $ = id => document.getElementById(id);
+const escapeHTML = s => String(s ?? "").replace(/[&<>"']/g, c => ({
+  "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;"
+}[c]));
+
+// ── Populate selects ──────────────────────────────────────
+(function populateSelects() {
+  const ownerSelect = $("ownerSelect");
+  OWNERS.forEach(o => {
+    const opt = document.createElement("option");
+    opt.value = o.id;
+    opt.textContent = o.display;
+    ownerSelect.appendChild(opt);
+  });
+
+  const weekSelect = $("weekSelect");
+  WEEKS.forEach(w => {
+    const opt = document.createElement("option");
+    opt.value = w;
+    opt.textContent = "Week " + w;
+    weekSelect.appendChild(opt);
+  });
+})();
+
+// ── Wire selects ──────────────────────────────────────────
+$("ownerSelect").addEventListener("change", () => {
+  const ownerId = $("ownerSelect").value;
+  const weekSel = $("weekSelect");
+  const oppSel = $("oppSelect");
+
+  if (!ownerId) {
+    weekSel.disabled = true;
+    weekSel.innerHTML = '<option value="">— Select your name first —</option>';
+    WEEKS.forEach(w => weekSel.innerHTML += `<option value="${w}">Week ${w}</option>`);
+    oppSel.disabled = true;
+    oppSel.innerHTML = '<option value="">— Select your name first —</option>';
+    updateSubmitState();
+    showAlreadyUsedIfAny();
+    return;
+  }
+
+  weekSel.disabled = false;
+  // Rebuild opponents excluding self
+  oppSel.disabled = false;
+  oppSel.innerHTML = '<option value="">— Select opponent —</option>';
+  OWNERS.filter(o => o.id !== ownerId).forEach(o => {
+    oppSel.innerHTML += `<option value="${o.id}">${o.display}</option>`;
+  });
+
+  showAlreadyUsedIfAny();
+  updateSubmitState();
+});
+
+$("weekSelect").addEventListener("change", updateSubmitState);
+$("oppSelect").addEventListener("change", updateSubmitState);
+
+function updateSubmitState() {
+  const ownerId = $("ownerSelect").value;
+  const week = $("weekSelect").value;
+  const oppId = $("oppSelect").value;
+  const btn = $("submitBtn");
+
+  // If owner already used their shot, lock everything
+  if (ownerId && dbState.shots[ownerId]) {
+    btn.disabled = true;
+    btn.textContent = "🔒 Shot already called";
+    return;
+  }
+
+  btn.disabled = !(ownerId && week && oppId);
+  btn.textContent = "🎯 Call Your Shot";
+  $("formMsg").textContent = "";
+  $("formMsg").className = "form-msg";
+}
+
+function showAlreadyUsedIfAny() {
+  const ownerId = $("ownerSelect").value;
+  // Remove any previous already-used block
+  const old = document.getElementById("alreadyUsedBlock");
+  if (old) old.remove();
+  if (!ownerId) return;
+  const shot = dbState.shots[ownerId];
+  if (!shot) return;
+
+  const oppName = OWNERS_BY_ID[shot.opponentId]?.display || shot.opponentId;
+  const status = shot.outcome === "won"
+    ? `<span style="color:var(--gold);font-weight:700;">WON — collect $5 from ${escapeHTML(oppName)}</span>`
+    : shot.outcome === "lost"
+    ? `<span style="color:var(--red-bright);font-weight:700;">LOST — pay $5 to ${escapeHTML(oppName)}</span>`
+    : `<span style="color:var(--gold);font-weight:700;">PENDING outcome</span>`;
+
+  const div = document.createElement("div");
+  div.id = "alreadyUsedBlock";
+  div.className = "already-used";
+  div.innerHTML = `
+    <div class="headline">You've already called your shot</div>
+    <div class="detail">Week ${shot.week} vs. <strong>${escapeHTML(oppName)}</strong> · ${status}</div>
+  `;
+  $("submitBlock").appendChild(div);
+}
+
+// ── Submit handler ────────────────────────────────────────
+$("submitBtn").addEventListener("click", () => {
+  const ownerId = $("ownerSelect").value;
+  const week = parseInt($("weekSelect").value, 10);
+  const oppId = $("oppSelect").value;
+
+  if (!ownerId || !week || !oppId) return;
+  if (dbState.shots[ownerId]) {
+    showFormMsg("You've already called your shot this season.", "error");
+    return;
+  }
+
+  // Show confirmation modal
+  const owner = OWNERS_BY_ID[ownerId];
+  const opp = OWNERS_BY_ID[oppId];
+
+  $("confirmHeadline").innerHTML = `${escapeHTML(owner.display)} vs.<br>${escapeHTML(opp.display)} · Week ${week}`;
+  $("confirmDetail").innerHTML = `If you win, <span class="gold">${escapeHTML(opp.display)} owes you $5</span>. If you lose, <span class="red">you owe ${escapeHTML(opp.display)} $5</span>. Everyone sees this on the home page the moment you confirm.`;
+  openConfirm();
+});
+
+$("confirmNo").addEventListener("click", closeConfirm);
+$("confirmYes").addEventListener("click", async () => {
+  const ownerId = $("ownerSelect").value;
+  const week = parseInt($("weekSelect").value, 10);
+  const oppId = $("oppSelect").value;
+
+  closeConfirm();
+
+  try {
+    const shot = {
+      ownerId,
+      opponentId: oppId,
+      week,
+      calledAt: Date.now(),
+      outcome: "pending" // "pending" | "won" | "lost"
+    };
+    await set(ref(db, `callYourShot/${SEASON}/shots/${ownerId}`), shot);
+    showTakeover(ownerId, oppId, week);
+    showFormMsg("Locked in. Good luck.", "success");
+  } catch (err) {
+    showFormMsg("Couldn't save: " + (err.message || err), "error");
+  }
+});
+
+function openConfirm() { $("confirmOverlay").classList.add("open"); }
+function closeConfirm() { $("confirmOverlay").classList.remove("open"); }
+
+function showFormMsg(msg, type) {
+  const el = $("formMsg");
+  el.textContent = msg;
+  el.className = "form-msg " + (type || "");
+}
+
+// ── Takeover animation ────────────────────────────────────
+function showTakeover(ownerId, oppId, week) {
+  const owner = OWNERS_BY_ID[ownerId];
+  const opp = OWNERS_BY_ID[oppId];
+  $("takeoverName").textContent = owner.display.toUpperCase();
+  $("takeoverOpp").textContent = opp.display.toUpperCase();
+  $("takeoverWeek").textContent = "Week " + week + " · " + SEASON;
+  $("takeoverStakes").innerHTML = `<span class="gold">$5</span> on the line. The whole league is watching.`;
+  $("takeover").classList.add("open");
+}
+$("takeoverDismiss").addEventListener("click", () => {
+  $("takeover").classList.remove("open");
+});
+
+// ── Render owner grid ─────────────────────────────────────
+function render() {
+  const grid = $("ownerGrid");
+  grid.innerHTML = "";
+
+  let calledCount = 0, wonCount = 0, lostCount = 0;
+
+  OWNERS.forEach(o => {
+    const shot = dbState.shots[o.id];
+    const card = document.createElement("div");
+    card.className = "owner-card";
+
+    if (!shot) {
+      card.classList.add("available");
+      card.innerHTML = `
+        <div class="owner-name">${escapeHTML(o.display)}</div>
+        <div class="state-tag">Available</div>
+        <div class="state-detail">Shot not yet called</div>
+        ${renderCalledAgainstInline(o.id)}
+      `;
+    } else if (shot.outcome === "pending") {
+      calledCount++;
+      const opp = OWNERS_BY_ID[shot.opponentId]?.display || shot.opponentId;
+      card.classList.add("called");
+      card.innerHTML = `
+        <div class="owner-name">${escapeHTML(o.display)}</div>
+        <div class="state-tag">⚡ Shot Called</div>
+        <div class="state-detail">Wk <span class="accent">${shot.week}</span> vs. <span class="accent">${escapeHTML(opp)}</span></div>
+        ${renderCalledAgainstInline(o.id)}
+      `;
+    } else if (shot.outcome === "won") {
+      wonCount++;
+      const opp = OWNERS_BY_ID[shot.opponentId]?.display || shot.opponentId;
+      card.classList.add("won");
+      card.innerHTML = `
+        <div class="owner-name">${escapeHTML(o.display)}</div>
+        <div class="state-tag">✓ Won (+$5)</div>
+        <div class="state-detail">Wk ${shot.week} vs. <span class="accent">${escapeHTML(opp)}</span></div>
+        ${renderCalledAgainstInline(o.id)}
+      `;
+    } else if (shot.outcome === "lost") {
+      lostCount++;
+      const opp = OWNERS_BY_ID[shot.opponentId]?.display || shot.opponentId;
+      card.classList.add("lost");
+      card.innerHTML = `
+        <div class="owner-name">${escapeHTML(o.display)}</div>
+        <div class="state-tag">✗ Lost (−$5)</div>
+        <div class="state-detail">Wk ${shot.week} vs. <span class="red">${escapeHTML(opp)}</span></div>
+        ${renderCalledAgainstInline(o.id)}
+      `;
+    }
+
+    grid.appendChild(card);
+  });
+
+  // Summary
+  const total = calledCount + wonCount + lostCount;
+  const remaining = OWNERS.length - total;
+  $("seasonSummary").textContent =
+    `${total} of ${OWNERS.length} owners have used their shot · ${remaining} remaining` +
+    (calledCount ? ` · ${calledCount} pending outcome` : "");
+
+  renderCalledAgainstTable();
+  renderFullHistory();
+  if ($("ownerSelect").value) {
+    showAlreadyUsedIfAny();
+    updateSubmitState();
+  }
+}
+
+function getCalledAgainstStats(ownerId) {
+  // Across current season + archive
+  let timesCalled = 0, callerWon = 0, callerLost = 0;
+  // Current season
+  Object.values(dbState.shots || {}).forEach(s => {
+    if (s.opponentId === ownerId) {
+      timesCalled++;
+      if (s.outcome === "won") callerWon++;
+      else if (s.outcome === "lost") callerLost++;
+    }
+  });
+  // Archive
+  Object.values(archive || {}).forEach(yearData => {
+    Object.values((yearData && yearData.shots) || {}).forEach(s => {
+      if (s.opponentId === ownerId) {
+        timesCalled++;
+        if (s.outcome === "won") callerWon++;
+        else if (s.outcome === "lost") callerLost++;
+      }
+    });
+  });
+  return { timesCalled, callerWon, callerLost };
+}
+
+function renderCalledAgainstInline(ownerId) {
+  const { timesCalled, callerWon, callerLost } = getCalledAgainstStats(ownerId);
+  if (timesCalled === 0) {
+    return `<div class="called-against">Called against: <span class="num">0×</span></div>`;
+  }
+  return `<div class="called-against">Called against: <span class="num">${timesCalled}×</span> · W ${callerWon}–L ${callerLost}</div>`;
+}
+
+function renderCalledAgainstTable() {
+  const body = $("calledAgainstBody");
+  body.innerHTML = "";
+  // Sort by times called against, desc; then by caller W desc
+  const rows = OWNERS.map(o => ({ o, ...getCalledAgainstStats(o.id) }));
+  rows.sort((a, b) => b.timesCalled - a.timesCalled || b.callerWon - a.callerWon || a.o.display.localeCompare(b.o.display));
+
+  rows.forEach(r => {
+    const tr = document.createElement("tr");
+    tr.innerHTML = `
+      <td class="caller">${escapeHTML(r.o.display)}</td>
+      <td>${r.timesCalled}</td>
+      <td>${r.callerWon} – ${r.callerLost}${r.timesCalled > r.callerWon + r.callerLost ? ` <span style="color:var(--muted);font-size:0.85em;">(${r.timesCalled - r.callerWon - r.callerLost} pending)</span>` : ""}</td>
+    `;
+    body.appendChild(tr);
+  });
+}
+
+function renderFullHistory() {
+  const section = $("fullHistorySection");
+  const body = $("fullHistoryBody");
+  body.innerHTML = "";
+
+  const all = [];
+  Object.entries(dbState.shots || {}).forEach(([id, s]) => {
+    all.push({ year: SEASON, ...s });
+  });
+  Object.entries(archive || {}).forEach(([year, yearData]) => {
+    Object.entries((yearData && yearData.shots) || {}).forEach(([id, s]) => {
+      all.push({ year, ...s });
+    });
+  });
+
+  if (all.length === 0) {
+    section.style.display = "none";
+    return;
+  }
+  section.style.display = "";
+
+  all.sort((a, b) => {
+    if (a.year !== b.year) return b.year.localeCompare(a.year);
+    return (b.calledAt || 0) - (a.calledAt || 0);
+  });
+
+  all.forEach(s => {
+    const caller = OWNERS_BY_ID[s.ownerId]?.display || s.ownerId;
+    const opp = OWNERS_BY_ID[s.opponentId]?.display || s.opponentId;
+    const outcomeClass = s.outcome === "won" ? "won" : s.outcome === "lost" ? "lost" : "pending";
+    const outcomeText = s.outcome === "won" ? "Won (+$5)" : s.outcome === "lost" ? "Lost (−$5)" : "Pending";
+    const tr = document.createElement("tr");
+    tr.innerHTML = `
+      <td class="year">${escapeHTML(s.year)}</td>
+      <td class="week-cell">Wk ${s.week}</td>
+      <td class="caller">${escapeHTML(caller)}</td>
+      <td class="opp">${escapeHTML(opp)}</td>
+      <td class="outcome ${outcomeClass}">${outcomeText}</td>
+    `;
+    body.appendChild(tr);
+  });
+}
+
+// ── Firebase listeners ────────────────────────────────────
+onValue(ref(db, `callYourShot/${SEASON}`), snap => {
+  const v = snap.val() || {};
+  dbState = {
+    shots: v.shots || {},
+    _meta: v._meta || {}
+  };
+  render();
+  if (commishUnlocked) renderCommishBody();
+}, err => {
+  $("seasonSummary").innerHTML = `<span style="color:var(--red-bright);">Couldn't connect to Firebase: ${escapeHTML(err.message || "")}</span>`;
+});
+
+// Listen to archive (all years except current)
+onValue(ref(db, `callYourShot`), snap => {
+  const v = snap.val() || {};
+  const arch = {};
+  Object.entries(v).forEach(([year, data]) => {
+    if (year === SEASON) return;
+    if (/^\d{4}$/.test(year)) arch[year] = data;
+  });
+  archive = arch;
+  render();
+}, () => { /* ignore */ });
+
+// ── Commissioner panel ────────────────────────────────────
+$("commishGear").addEventListener("click", () => {
+  $("commishOverlay").classList.add("open");
+  $("commishSeasonLabel").textContent = SEASON;
+  if (commishUnlocked) {
+    $("commishGate").style.display = "none";
+    $("commishBody").style.display = "";
+    renderCommishBody();
+  } else {
+    $("commishGate").style.display = "";
+    $("commishBody").style.display = "none";
+    $("commishPass").value = "";
+    $("commishPassErr").textContent = "";
+    setTimeout(() => $("commishPass").focus(), 50);
+  }
+});
+$("commishClose").addEventListener("click", () => {
+  $("commishOverlay").classList.remove("open");
+});
+$("commishPassBtn").addEventListener("click", tryUnlock);
+$("commishPass").addEventListener("keydown", e => { if (e.key === "Enter") tryUnlock(); });
+
+function tryUnlock() {
+  const v = $("commishPass").value.trim();
+  if (v === COMMISH_PASSCODE) {
+    commishUnlocked = true;
+    $("commishGate").style.display = "none";
+    $("commishBody").style.display = "";
+    $("commishPassErr").textContent = "";
+    renderCommishBody();
+  } else {
+    $("commishPassErr").textContent = "Wrong passcode.";
+  }
+}
+
+function renderCommishBody() {
+  // Active calls (pending outcome)
+  const active = $("commishActiveList");
+  active.innerHTML = "";
+  const pending = Object.entries(dbState.shots).filter(([_, s]) => s.outcome === "pending");
+  if (pending.length === 0) {
+    active.innerHTML = `<div class="commish-empty">No pending outcomes.</div>`;
+  } else {
+    pending.forEach(([id, s]) => {
+      const owner = OWNERS_BY_ID[s.ownerId]?.display || s.ownerId;
+      const opp = OWNERS_BY_ID[s.opponentId]?.display || s.opponentId;
+      const row = document.createElement("div");
+      row.className = "commish-row";
+      row.innerHTML = `
+        <div class="who"><span class="accent">${escapeHTML(owner)}</span> called week ${s.week} vs. <span class="accent">${escapeHTML(opp)}</span></div>
+        <div class="commish-row-actions">
+          <button class="commish-btn win" data-set-win="${id}">${escapeHTML(owner)} Won (+$5)</button>
+          <button class="commish-btn loss" data-set-loss="${id}">${escapeHTML(owner)} Lost (−$5)</button>
+        </div>
+      `;
+      active.appendChild(row);
+    });
+    active.querySelectorAll("[data-set-win]").forEach(btn => {
+      btn.addEventListener("click", () => setOutcome(btn.getAttribute("data-set-win"), "won"));
+    });
+    active.querySelectorAll("[data-set-loss]").forEach(btn => {
+      btn.addEventListener("click", () => setOutcome(btn.getAttribute("data-set-loss"), "lost"));
+    });
+  }
+
+  // Undo list — every shot in current season
+  const undo = $("commishUndoList");
+  undo.innerHTML = "";
+  const allShots = Object.entries(dbState.shots);
+  if (allShots.length === 0) {
+    undo.innerHTML = `<div class="commish-empty">No shots called yet.</div>`;
+  } else {
+    allShots.forEach(([id, s]) => {
+      const owner = OWNERS_BY_ID[s.ownerId]?.display || s.ownerId;
+      const opp = OWNERS_BY_ID[s.opponentId]?.display || s.opponentId;
+      const status = s.outcome === "won" ? "Won (+$5)" : s.outcome === "lost" ? "Lost (−$5)" : "Pending";
+      const row = document.createElement("div");
+      row.className = "commish-row";
+      row.innerHTML = `
+        <div class="who"><span class="accent">${escapeHTML(owner)}</span> · Wk ${s.week} vs. ${escapeHTML(opp)} · ${status}</div>
+        <div class="commish-row-actions">
+          <button class="commish-btn" data-undo="${id}">Undo Call</button>
+          ${s.outcome !== "pending" ? `<button class="commish-btn" data-clear-outcome="${id}">Clear Outcome</button>` : ""}
+        </div>
+      `;
+      undo.appendChild(row);
+    });
+    undo.querySelectorAll("[data-undo]").forEach(btn => {
+      btn.addEventListener("click", () => undoCall(btn.getAttribute("data-undo")));
+    });
+    undo.querySelectorAll("[data-clear-outcome]").forEach(btn => {
+      btn.addEventListener("click", () => clearOutcome(btn.getAttribute("data-clear-outcome")));
+    });
+  }
+}
+
+async function setOutcome(ownerId, outcome) {
+  if (!confirm(`Set ${OWNERS_BY_ID[ownerId]?.display}'s call to "${outcome}"?\n\nThis updates the public record everyone sees.`)) return;
+  try {
+    await update(ref(db, `callYourShot/${SEASON}/shots/${ownerId}`), { outcome, resolvedAt: Date.now() });
+  } catch (err) {
+    alert("Save failed: " + (err.message || err));
+  }
+}
+
+async function undoCall(ownerId) {
+  const s = dbState.shots[ownerId];
+  if (!s) return;
+  const owner = OWNERS_BY_ID[ownerId]?.display || ownerId;
+  if (!confirm(`Undo ${owner}'s call entirely?\n\nThis lets them call again. The record will be erased.`)) return;
+  try {
+    await remove(ref(db, `callYourShot/${SEASON}/shots/${ownerId}`));
+  } catch (err) {
+    alert("Undo failed: " + (err.message || err));
+  }
+}
+
+async function clearOutcome(ownerId) {
+  if (!confirm("Clear the win/loss outcome and reset to pending?")) return;
+  try {
+    await update(ref(db, `callYourShot/${SEASON}/shots/${ownerId}`), { outcome: "pending", resolvedAt: null });
+  } catch (err) {
+    alert("Clear failed: " + (err.message || err));
+  }
+}
+
+$("resetSeasonBtn").addEventListener("click", async () => {
+  if (!confirm(`Reset ALL shots for ${SEASON}?\n\nAll active calls and outcomes for this season will be wiped. The season's record stays archived under callYourShot/${SEASON} only if you've already moved SEASON forward in the code.`)) return;
+  if (!confirm("Are you absolutely sure? Last chance.")) return;
+  try {
+    await remove(ref(db, `callYourShot/${SEASON}/shots`));
+  } catch (err) {
+    alert("Reset failed: " + (err.message || err));
+  }
+});
+
+// Close overlays on backdrop click
+$("commishOverlay").addEventListener("click", e => {
+  if (e.target === $("commishOverlay")) $("commishOverlay").classList.remove("open");
+});
+$("confirmOverlay").addEventListener("click", e => {
+  if (e.target === $("confirmOverlay")) closeConfirm();
+});
+
+</script>
+
+</body>
+</html>

@@ -954,10 +954,10 @@
     <span class="action-btn-emoji">🧠</span>
     <span class="action-btn-label">Dad Bod's Preseason Rankings</span>
   </span>
-  <span class="action-btn red">
+  <a class="action-btn red" href="contests-call-your-shot.html">
     <span class="action-btn-emoji">🎯</span>
     <span class="action-btn-label">Call Your Shot</span>
-  </span>
+  </a>
   <span class="action-btn dark">
     <span class="action-btn-emoji">🪙</span>
     <span class="action-btn-label">Log a Side Bet</span>
@@ -973,6 +973,16 @@
     <div class="ballot-eyebrow" id="ballotEyebrow">🗳️ 2026 Slingshot Entrance Survey</div>
     <div class="ballot-title" id="ballotTitle">Submit Your Predictions</div>
     <div class="ballot-sub" id="ballotSub">Loading…</div>
+  </a>
+</div>
+
+<!-- CALL YOUR SHOT TEASER -->
+<div class="ballot-section" id="cysTeaserSection" style="display:none;">
+  <a class="ballot-card" id="cysTeaserCard" href="contests-call-your-shot.html">
+    <span class="ballot-arrow">→</span>
+    <div class="ballot-eyebrow">🎯 Call Your Shot</div>
+    <div class="ballot-title" id="cysTitle">No Shots Called Yet</div>
+    <div class="ballot-sub" id="cysSub">Loading…</div>
   </a>
 </div>
 
@@ -1478,6 +1488,67 @@
       }
     }, () => {
       // Firebase error — hide quietly
+      teaserSection.style.display = "none";
+    });
+  })();
+
+  // ──────────────────────────────────────────────────────────
+  // Call Your Shot teaser
+  // ──────────────────────────────────────────────────────────
+  (function() {
+    const CYS_SEASON = "2026";
+    const TOTAL_OWNERS = 14;
+    const teaserSection = document.getElementById("cysTeaserSection");
+    const teaserCard = document.getElementById("cysTeaserCard");
+    const titleEl = document.getElementById("cysTitle");
+    const subEl = document.getElementById("cysSub");
+    if (!teaserSection) return;
+
+    // Owner display map (active 14, alpha)
+    const OWNER_NAMES = {
+      alex: "Alex", andy: "Andy", brian: "Brian", daniel: "Daniel",
+      dylan: "Dylan", jack: "Jack", jordan: "Jordan", kyle: "Kyle",
+      luke: "Luke", matt: "Matt", mike: "Mike", scott: "Scott",
+      tim: "Tim", wade: "Wade"
+    };
+
+    const cysRef = ref(db, `callYourShot/${CYS_SEASON}/shots`);
+    onValue(cysRef, snap => {
+      const shots = snap.val() || {};
+      const all = Object.values(shots);
+      teaserSection.style.display = "";
+      teaserCard.classList.remove("locked", "live", "complete");
+
+      if (all.length === 0) {
+        // No one has called yet
+        titleEl.textContent = "No Shots Called Yet";
+        subEl.innerHTML = `<span class="accent">Each owner</span> gets one shot per season · $5 on the line · Be the first.`;
+        return;
+      }
+
+      // Find most-recent pending call (preferred), else most-recent overall
+      const sorted = all.slice().sort((a, b) => (b.calledAt || 0) - (a.calledAt || 0));
+      const pending = sorted.find(s => s.outcome === "pending");
+      const featured = pending || sorted[0];
+
+      const callerName = OWNER_NAMES[featured.ownerId] || featured.ownerId;
+      const oppName = OWNER_NAMES[featured.opponentId] || featured.opponentId;
+      const used = all.length;
+      const remaining = TOTAL_OWNERS - used;
+
+      if (pending) {
+        teaserCard.classList.add("live");
+        titleEl.textContent = `${callerName.toUpperCase()} vs. ${oppName.toUpperCase()}`;
+        subEl.innerHTML = `<span class="accent">⚡ Shot called</span> for Week ${featured.week}${remaining > 0 ? ` · ${remaining} owner${remaining === 1 ? "" : "s"} still loaded` : " · all shots used"}`;
+      } else {
+        // No pending — show summary with most-recent resolved as headline
+        const wonCount = all.filter(s => s.outcome === "won").length;
+        const lostCount = all.filter(s => s.outcome === "lost").length;
+        teaserCard.classList.add("complete");
+        titleEl.textContent = `${used} of ${TOTAL_OWNERS} Shots Used`;
+        subEl.innerHTML = `<span class="accent">${wonCount} won</span> · <span class="accent">${lostCount} lost</span>${remaining > 0 ? ` · ${remaining} still loaded` : ""}`;
+      }
+    }, () => {
       teaserSection.style.display = "none";
     });
   })();
