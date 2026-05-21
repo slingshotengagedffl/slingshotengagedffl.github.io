@@ -135,12 +135,12 @@
     background: var(--surface);
     border: 1px solid var(--border);
     border-radius: 10px;
-    padding: 14px 14px 14px 18px;
+    padding: 12px 14px 12px 18px;
     display: grid;
     grid-template-columns: auto 1fr auto;
-    gap: 12px;
+    gap: 10px;
     align-items: center;
-    min-height: 100px;
+    min-height: 0;
     transition: border-color 0.15s, background 0.15s, box-shadow 0.15s;
     position: relative;
     overflow: hidden;
@@ -166,13 +166,27 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    gap: 5px;
-    width: 78px;
+    gap: 4px;
+    width: 92px;
     flex-shrink: 0;
   }
+  .bar-person-role {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 0.72rem;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: var(--muted);
+    font-weight: 700;
+    line-height: 1;
+    margin-bottom: 2px;
+    white-space: nowrap;
+  }
+  .bar-person-role.caller-role {
+    color: var(--gold);
+  }
   .bar-photo {
-    width: 70px;
-    height: 70px;
+    width: 84px;
+    height: 84px;
     border-radius: 50%;
     background: var(--surface3);
     border: 2px solid var(--border);
@@ -181,32 +195,32 @@
     align-items: center;
     justify-content: center;
     font-family: 'Bebas Neue', sans-serif;
-    font-size: 1.8rem;
+    font-size: 2rem;
     color: var(--muted);
     letter-spacing: 0.02em;
   }
   .bar-photo img { width: 100%; height: 100%; object-fit: cover; display: block; }
   .bar-person-name {
     font-family: 'Bebas Neue', sans-serif;
-    font-size: 1.05rem;
+    font-size: 1.15rem;
     letter-spacing: 0.06em;
     color: var(--text);
     line-height: 1;
     text-align: center;
-    max-width: 78px;
+    max-width: 92px;
     overflow: hidden;
     text-overflow: ellipsis;
     white-space: nowrap;
   }
-  .bar-person.opp .bar-person-name { color: var(--label); font-size: 0.95rem; }
+  .bar-person.opp .bar-person-name { color: var(--label); font-size: 1.05rem; }
   .owner-bar.called .bar-person.caller .bar-photo,
-  .owner-bar.won    .bar-person.caller .bar-photo { border-color: var(--gold); }
-  .owner-bar.lost   .bar-person.caller .bar-photo { border-color: var(--red-bright); }
+  .owner-bar.won    .bar-person.caller .bar-photo { border-color: var(--gold); border-width: 3px; }
+  .owner-bar.lost   .bar-person.caller .bar-photo { border-color: var(--red-bright); border-width: 3px; }
   .owner-bar.called .bar-person.opp .bar-photo,
   .owner-bar.won    .bar-person.opp .bar-photo,
   .owner-bar.lost   .bar-person.opp .bar-photo   { border-color: var(--border); }
 
-  /* Center column: state line + outcome tag */
+  /* Center column: week + outcome tag */
   .bar-center {
     display: flex;
     flex-direction: column;
@@ -215,16 +229,21 @@
     align-items: center;
     text-align: center;
   }
-  .bar-state {
-    font-family: 'Barlow Condensed', sans-serif;
-    font-size: 1.05rem;
-    letter-spacing: 0.08em;
+  .bar-week {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 1.5rem;
+    letter-spacing: 0.06em;
     color: var(--label);
-    line-height: 1.2;
+    line-height: 1;
+    text-transform: uppercase;
   }
-  .bar-state .accent { color: var(--gold); font-weight: 700; }
-  .bar-state .red    { color: var(--red-bright); font-weight: 700; }
-  .bar-state .muted  { color: var(--muted); }
+  .bar-week .num {
+    color: var(--gold);
+    font-size: 2.4rem;
+    letter-spacing: 0.02em;
+    margin-left: 2px;
+  }
+  .owner-bar.lost .bar-week .num { color: var(--red-bright); }
 
   .bar-outcome-tag {
     display: inline-block;
@@ -250,8 +269,6 @@
     border: 1px solid var(--border);
   }
 
-  /* Hide caller-side bar-person when no one to render opposite (available state still shows caller, just no opponent) */
-
   /* State variants */
   .owner-bar.called {
     border-color: var(--gold);
@@ -270,15 +287,17 @@
   /* Tight mobile sizing — keep photos on same line, just shrink */
   @media (max-width: 420px) {
     .owner-bar {
-      padding: 12px 10px 12px 14px;
-      gap: 8px;
+      padding: 10px 8px 10px 14px;
+      gap: 6px;
       grid-template-columns: auto 1fr auto;
     }
-    .bar-person { width: 64px; gap: 4px; }
-    .bar-photo { width: 58px; height: 58px; font-size: 1.5rem; }
-    .bar-person-name { font-size: 0.9rem; max-width: 64px; }
-    .bar-person.opp .bar-person-name { font-size: 0.82rem; }
-    .bar-state { font-size: 0.95rem; }
+    .bar-person { width: 72px; gap: 3px; }
+    .bar-photo { width: 64px; height: 64px; font-size: 1.6rem; }
+    .bar-person-name { font-size: 0.95rem; max-width: 72px; }
+    .bar-person.opp .bar-person-name { font-size: 0.88rem; }
+    .bar-person-role { font-size: 0.66rem; letter-spacing: 0.16em; }
+    .bar-week { font-size: 1.2rem; }
+    .bar-week .num { font-size: 2rem; }
     .bar-outcome-tag { font-size: 0.78rem; padding: 3px 8px; }
   }
 
@@ -569,6 +588,44 @@
     font-weight: 700;
   }
 
+  /* Ledger stat grid — caller / target / overall */
+  .ledger-stats {
+    display: grid;
+    grid-template-columns: repeat(3, auto);
+    gap: 14px;
+    margin-top: 8px;
+  }
+  .ledger-stat {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+    min-width: 0;
+  }
+  .ledger-stat-label {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 0.74rem;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: var(--muted);
+    font-weight: 700;
+    line-height: 1;
+  }
+  .ledger-stat-value {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 1.2rem;
+    letter-spacing: 0.04em;
+    color: var(--label);
+    line-height: 1;
+  }
+  .ledger-stat.overall .ledger-stat-label { color: var(--gold); }
+  .ledger-stat.overall .ledger-stat-value { color: var(--text); }
+  .ledger-stat.empty .ledger-stat-value { color: var(--muted); opacity: 0.6; }
+
+  @media (max-width: 420px) {
+    .ledger-stats { gap: 10px; }
+    .ledger-stat-label { font-size: 0.7rem; letter-spacing: 0.12em; }
+    .ledger-stat-value { font-size: 1.1rem; }
+  }
   /* ── COMMISH GEAR + PANEL ── */
   .commish-gear {
     position: fixed;
@@ -1416,43 +1473,41 @@ function render() {
           <div class="bar-person-name">${escapeHTML(o.display)}</div>
         </div>
         <div class="bar-center">
-          <div class="bar-state"><span class="muted">Shot not called yet</span></div>
-          <span class="bar-outcome-tag loaded">Loaded</span>
+          <span class="bar-outcome-tag loaded">Shot not called yet</span>
         </div>
         <div class="bar-person opp" style="visibility:hidden;"></div>
       `;
     } else {
       const opp = OWNERS_BY_ID[shot.opponentId];
       const oppName = opp?.display || shot.opponentId;
-      let stateClass, stateLine, tag;
+      let stateClass, tag;
 
       if (shot.outcome === "pending") {
         calledCount++;
         stateClass = "called";
-        stateLine = `Week <span class="accent">${shot.week}</span>`;
         tag = `<span class="bar-outcome-tag pending">⚡ Pending</span>`;
       } else if (shot.outcome === "won") {
         wonCount++;
         stateClass = "won";
-        stateLine = `Week ${shot.week} · <span class="accent">beat them</span>`;
         tag = `<span class="bar-outcome-tag won">✓ Won +$5</span>`;
       } else {
         lostCount++;
         stateClass = "lost";
-        stateLine = `Week ${shot.week} · <span class="red">lost</span>`;
         tag = `<span class="bar-outcome-tag lost">✗ Lost</span>`;
       }
       bar.classList.add(stateClass);
       bar.innerHTML = `
         <div class="bar-person caller">
+          <div class="bar-person-role caller-role">Shot Caller</div>
           ${renderOwnerPhoto(o.id, "bar-photo")}
           <div class="bar-person-name">${escapeHTML(o.display)}</div>
         </div>
         <div class="bar-center">
-          <div class="bar-state">${stateLine}</div>
+          <div class="bar-week">Wk <span class="num">${shot.week}</span></div>
           ${tag}
         </div>
         <div class="bar-person opp">
+          <div class="bar-person-role">Target</div>
           ${renderOwnerPhoto(shot.opponentId, "bar-photo")}
           <div class="bar-person-name">${escapeHTML(oppName)}</div>
         </div>
@@ -1491,40 +1546,49 @@ function renderOwnerPhoto(ownerId, className) {
 }
 
 function getLedgerStats(ownerId) {
-  // Combine current season + archive into a single per-owner record.
-  // For each shot, this owner participated if they're the caller OR the opponent.
-  // - Caller's outcome "won"  → caller +1W, opponent +1L
-  // - Caller's outcome "lost" → caller +1L, opponent +1W
-  // - "pending" → counts toward gamesPending, not W/L
-  // Money: $5 per game won.
-  let wins = 0, losses = 0, pending = 0;
+  // Tracks two buckets — as-caller and as-target — across current season + archive.
+  // Overall is the sum. Money: $5 per game won (caller-wins + target-wins, since
+  // each game pays $5 to the winner regardless of which side they were on).
+  let cW = 0, cL = 0, cP = 0;   // caller bucket
+  let tW = 0, tL = 0, tP = 0;   // target bucket
+
   const allShots = [
     ...Object.values(dbState.shots || {}),
     ...Object.values(archive || {}).flatMap(yd => Object.values((yd && yd.shots) || {}))
   ];
   allShots.forEach(s => {
-    const isCaller = s.ownerId === ownerId;
-    const isOpp = s.opponentId === ownerId;
-    if (!isCaller && !isOpp) return;
-    if (s.outcome === "pending") { pending++; return; }
-    if (s.outcome === "won") {
-      if (isCaller) wins++; else losses++;
-    } else if (s.outcome === "lost") {
-      if (isCaller) losses++; else wins++;
+    if (s.ownerId === ownerId) {
+      // as caller: their own shot
+      if (s.outcome === "pending") cP++;
+      else if (s.outcome === "won") cW++;
+      else if (s.outcome === "lost") cL++;
+    } else if (s.opponentId === ownerId) {
+      // as target: someone called against them
+      if (s.outcome === "pending") tP++;
+      else if (s.outcome === "won") tL++;  // caller won = target lost
+      else if (s.outcome === "lost") tW++; // caller lost = target won
     }
   });
-  const games = wins + losses + pending;
-  const moneyWon = wins * 5;
-  return { wins, losses, pending, games, moneyWon };
+
+  const caller   = { w: cW, l: cL, pending: cP, games: cW + cL + cP };
+  const target   = { w: tW, l: tL, pending: tP, games: tW + tL + tP };
+  const overall  = {
+    w: cW + tW,
+    l: cL + tL,
+    pending: cP + tP,
+    games: caller.games + target.games
+  };
+  const moneyWon = overall.w * 5;
+  return { caller, target, overall, moneyWon };
 }
 
 function renderLedger() {
   const list = $("ledgerList");
   list.innerHTML = "";
 
-  // Build stats; only include owners who've participated in at least one game
+  // Include any owner who's been in at least one game
   const all = OWNERS.map(o => ({ o, ...getLedgerStats(o.id) }))
-    .filter(r => r.games > 0);
+    .filter(r => r.overall.games > 0);
 
   if (all.length === 0) {
     list.innerHTML = `
@@ -1535,21 +1599,29 @@ function renderLedger() {
     return;
   }
 
-  // Sort by money won desc → wins desc → fewer losses → alpha
+  // Sort: money won desc → overall wins desc → fewer losses → alpha
   all.sort((a, b) =>
     b.moneyWon - a.moneyWon ||
-    b.wins - a.wins ||
-    a.losses - b.losses ||
+    b.overall.w - a.overall.w ||
+    a.overall.l - b.overall.l ||
     a.o.display.localeCompare(b.o.display)
   );
+
+  const cellHTML = (label, rec, modifier) => {
+    const isEmpty = rec.games === 0;
+    const cls = "ledger-stat" + (modifier ? " " + modifier : "") + (isEmpty ? " empty" : "");
+    const value = isEmpty ? "—" : `${rec.w}–${rec.l}`;
+    return `
+      <div class="${cls}">
+        <div class="ledger-stat-label">${label}</div>
+        <div class="ledger-stat-value">${value}</div>
+      </div>
+    `;
+  };
 
   all.forEach(r => {
     const row = document.createElement("div");
     row.className = "defender-row";
-
-    const pluralGames = r.games === 1 ? "game" : "games";
-    let detailLine = `<span class="accent">${r.games}</span> ${pluralGames}`;
-    if (r.pending > 0) detailLine += ` · <span class="muted">${r.pending} pending</span>`;
 
     const moneyDisplay = r.moneyWon > 0
       ? `<span style="color:var(--gold);">+$${r.moneyWon}</span>`
@@ -1559,7 +1631,11 @@ function renderLedger() {
       ${renderOwnerPhoto(r.o.id, "defender-photo")}
       <div class="defender-body">
         <div class="defender-name">${escapeHTML(r.o.display)}</div>
-        <div class="defender-detail">${r.wins}–${r.losses} · ${detailLine}</div>
+        <div class="ledger-stats">
+          ${cellHTML("Their Shot", r.caller)}
+          ${cellHTML("As Target", r.target)}
+          ${cellHTML("Overall", r.overall, "overall")}
+        </div>
       </div>
       <div class="defender-record">
         ${moneyDisplay}
