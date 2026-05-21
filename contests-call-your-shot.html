@@ -1126,26 +1126,6 @@
     <div id="ledgerList"></div>
   </div>
 
-  <!-- Full history -->
-  <div class="history-section" id="fullHistorySection" style="display:none;">
-    <div class="section-title">All Shots Called</div>
-    <div class="section-sub">Most recent first</div>
-    <div class="table-wrap">
-      <table>
-        <thead>
-          <tr>
-            <th>Year</th>
-            <th>Wk</th>
-            <th>Caller</th>
-            <th>Opponent</th>
-            <th>Outcome</th>
-          </tr>
-        </thead>
-        <tbody id="fullHistoryBody"></tbody>
-      </table>
-    </div>
-  </div>
-
   <!-- How it works -->
   <div class="section-title">How It Works</div>
   <div class="how-it-works">
@@ -1449,15 +1429,18 @@ function render() {
 
   let calledCount = 0, wonCount = 0, lostCount = 0;
 
-  // Sort: pending first (most-recent first), then resolved (most-recent first), then available (alpha)
+  // Sort: all called shots interleaved chronologically by week (resolved + pending mixed),
+  // then available owners alphabetical at the bottom
   const ordered = OWNERS.slice().sort((a, b) => {
     const sa = dbState.shots[a.id];
     const sb = dbState.shots[b.id];
-    const rank = s => !s ? 3 : s.outcome === "pending" ? 0 : 1;
-    const ra = rank(sa), rb = rank(sb);
-    if (ra !== rb) return ra - rb;
-    if (sa && sb) return (sb.calledAt || 0) - (sa.calledAt || 0);
-    return a.display.localeCompare(b.display);
+    // Available owners go last
+    if (!sa && !sb) return a.display.localeCompare(b.display);
+    if (!sa) return 1;
+    if (!sb) return -1;
+    // Both called — week ascending, then calledAt as tiebreak
+    if (sa.week !== sb.week) return sa.week - sb.week;
+    return (sa.calledAt || 0) - (sb.calledAt || 0);
   });
 
   ordered.forEach(o => {
@@ -1525,7 +1508,6 @@ function render() {
     (calledCount ? ` · ${calledCount} pending outcome` : "");
 
   renderLedger();
-  renderFullHistory();
   if ($("ownerSelect").value) {
     showAlreadyUsedIfAny();
     updateSubmitState();
@@ -1643,49 +1625,6 @@ function renderLedger() {
       </div>
     `;
     list.appendChild(row);
-  });
-}
-
-function renderFullHistory() {
-  const section = $("fullHistorySection");
-  const body = $("fullHistoryBody");
-  body.innerHTML = "";
-
-  const all = [];
-  Object.entries(dbState.shots || {}).forEach(([id, s]) => {
-    all.push({ year: SEASON, ...s });
-  });
-  Object.entries(archive || {}).forEach(([year, yearData]) => {
-    Object.entries((yearData && yearData.shots) || {}).forEach(([id, s]) => {
-      all.push({ year, ...s });
-    });
-  });
-
-  if (all.length === 0) {
-    section.style.display = "none";
-    return;
-  }
-  section.style.display = "";
-
-  all.sort((a, b) => {
-    if (a.year !== b.year) return b.year.localeCompare(a.year);
-    return (b.calledAt || 0) - (a.calledAt || 0);
-  });
-
-  all.forEach(s => {
-    const caller = OWNERS_BY_ID[s.ownerId]?.display || s.ownerId;
-    const opp = OWNERS_BY_ID[s.opponentId]?.display || s.opponentId;
-    const outcomeClass = s.outcome === "won" ? "won" : s.outcome === "lost" ? "lost" : "pending";
-    const outcomeText = s.outcome === "won" ? "Won (+$5)" : s.outcome === "lost" ? "Lost (−$5)" : "Pending";
-    const tr = document.createElement("tr");
-    tr.innerHTML = `
-      <td class="year">${escapeHTML(s.year)}</td>
-      <td class="week-cell">Wk ${s.week}</td>
-      <td class="caller">${escapeHTML(caller)}</td>
-      <td class="opp">${escapeHTML(opp)}</td>
-      <td class="outcome ${outcomeClass}">${outcomeText}</td>
-    `;
-    body.appendChild(tr);
   });
 }
 
