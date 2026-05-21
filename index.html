@@ -954,10 +954,10 @@
     <span class="action-btn-emoji">🧠</span>
     <span class="action-btn-label">Dad Bod's Preseason Rankings</span>
   </span>
-  <a class="action-btn red" href="contests-call-your-shot.html">
+  <span class="action-btn red">
     <span class="action-btn-emoji">🎯</span>
     <span class="action-btn-label">Call Your Shot</span>
-  </a>
+  </span>
   <span class="action-btn dark">
     <span class="action-btn-emoji">🪙</span>
     <span class="action-btn-label">Log a Side Bet</span>
@@ -975,8 +975,6 @@
     <div class="ballot-sub" id="ballotSub">Loading…</div>
   </a>
 </div>
-
-
 
 
 
@@ -1423,10 +1421,10 @@
       const subs = data.submissions || {};
       const subCount = Object.keys(subs).length;
       const actuals = cfg.actualResults || {};
-      const TOTAL_CATEGORIES = 12;
+      const TOTAL_CATEGORIES = 13;
 
       // Count resolved categories
-      const CAT_KEYS = ["champion","secondPlace","finalFour","bronzeFranz","regSeasonChamp","ooty","hottestTeam","avlCup","rivalryWeek","intercontinental","asteriskHung","ryderCup"];
+      const CAT_KEYS = ["champion","secondPlace","finalFour","bronzeFranz","regSeasonChamp","highestSingle","hottestTeam","avlCup","rivalryWeek","intercontinental","ryderCup","badBeat","asteriskHung"];
       let resultsIn = 0;
       CAT_KEYS.forEach(k => {
         const v = actuals[k];
@@ -1466,7 +1464,7 @@
         // Locked, season hasn't started yet
         teaserCard.classList.add("locked");
         titleEl.textContent = "Predictions Locked";
-        subEl.innerHTML = `All <span class="accent">${subCount}</span> submissions are visible. Leaderboard updates live as results come in.`;
+        subEl.innerHTML = `All <span class="accent">${subCount}</span> ballots are visible. Leaderboard updates live as results come in.`;
       } else if (locked && resultsIn < TOTAL_CATEGORIES) {
         // In-season, partial results
         teaserCard.classList.add("live");
@@ -1483,7 +1481,6 @@
       teaserSection.style.display = "none";
     });
   })();
-
 </script>
 
 

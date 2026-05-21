@@ -1007,7 +1007,7 @@
   <div id="stateOpen" class="hidden">
     <div class="state-banner">
       <div class="state-title">Submissions Open</div>
-      <div class="state-sub" id="openSub">Pick your owner from the dropdown and fill out all 12 categories. You can come back and edit your picks any time before the deadline.</div>
+      <div class="state-sub" id="openSub">Pick your owner from the dropdown and fill out all 13 categories. You can come back and edit your picks any time before the deadline.</div>
       <div class="countdown" id="countdown"></div>
     </div>
 
@@ -1133,7 +1133,6 @@ const OWNERS = [
   { id: "tim",    name: "Tim" },
   { id: "wade",   name: "Wade" },
 ];
-const OOTY_INELIGIBLE = ["jack"];
 const OWNER_COUNT = OWNERS.length;
 const ownerName = id => (OWNERS.find(o => o.id === id) || { name: "—" }).name;
 
@@ -1144,13 +1143,14 @@ const CATEGORIES = [
   { key: "finalFour",      label: "Final Four",                type: "ff",     basePoints: 12, moneyball: false, perHit: 3 },
   { key: "bronzeFranz",    label: "Bronze Franz (Last Place)", type: "owner",  basePoints: 8,  moneyball: true },
   { key: "regSeasonChamp", label: "Regular Season Champion",   type: "owner",  basePoints: 6,  moneyball: true },
-  { key: "ooty",           label: "Owner of the Year",         type: "owner",  basePoints: 5,  moneyball: true, exclude: OOTY_INELIGIBLE },
+  { key: "highestSingle",  label: "Highest Single-Game Scorer", type: "owner", basePoints: 5,  moneyball: true },
   { key: "hottestTeam",    label: "Hottest Team in Sports Bowl", type: "owner", basePoints: 4, moneyball: true },
   { key: "avlCup",         label: "AVL Memorial Cup",          type: "owner",  basePoints: 4,  moneyball: true },
   { key: "rivalryWeek",    label: "Rivalry Week",              type: "owner",  basePoints: 4,  moneyball: true },
   { key: "intercontinental", label: "Intercontinental Champ",  type: "owner",  basePoints: 4,  moneyball: true },
-  { key: "asteriskHung",   label: "Will the Asterisk Chain Be Hung?", type: "yn", basePoints: 4, moneyball: false },
   { key: "ryderCup",       label: "Ryder Cup Winner",          type: "ryder",  basePoints: 5,  moneyball: false },
+  { key: "badBeat",        label: "Bad Beats — Over/Under 1.5", type: "overunder", basePoints: 4, moneyball: false },
+  { key: "asteriskHung",   label: "Will the Asterisk Chain Be Hung?", type: "yn", basePoints: 4, moneyball: false },
 ];
 const MONEYBALL_BONUS = 5;
 
@@ -1264,6 +1264,13 @@ function buildForm() {
       html += `<button type="button" class="radio-btn" data-val="teamA">${escapeHTML(ryderA)}</button>`;
       html += `<button type="button" class="radio-btn" data-val="teamB">${escapeHTML(ryderB)}</button>`;
       html += `</div>`;
+
+    } else if (cat.type === "overunder") {
+      html += `<span class="form-help">A Bad Beat = the 2nd-highest scorer of the week loses to the highest scorer. Will it happen 2+ times this season?</span>`;
+      html += `<div class="radio-group" data-key="${cat.key}">`;
+      html += `<button type="button" class="radio-btn" data-val="over">Over (2 or more)</button>`;
+      html += `<button type="button" class="radio-btn" data-val="under">Under (0 or 1)</button>`;
+      html += `</div>`;
     }
 
     html += `</div>`;
@@ -1350,7 +1357,7 @@ function prefillForm(picks) {
     } else if (cat.type === "finish") {
       const sel = formBody.querySelector(`select[data-key="${cat.key}"]`);
       if (sel) sel.value = val;
-    } else if (cat.type === "yn" || cat.type === "ryder") {
+    } else if (cat.type === "yn" || cat.type === "ryder" || cat.type === "overunder") {
       const group = formBody.querySelector(`.radio-group[data-key="${cat.key}"]`);
       if (group) {
         group.querySelectorAll(".radio-btn").forEach(b => {
@@ -1387,7 +1394,7 @@ function collectFormPicks() {
       const n = parseInt(sel?.value, 10);
       if (!n || n < 1 || n > 14) return { error: `Pick where you'll finish for ${cat.label}.` };
       picks[cat.key] = n;
-    } else if (cat.type === "yn" || cat.type === "ryder") {
+    } else if (cat.type === "yn" || cat.type === "ryder" || cat.type === "overunder") {
       const group = formBody.querySelector(`.radio-group[data-key="${cat.key}"]`);
       const v = group?.dataset?.value;
       if (!v) return { error: `Pick an option for ${cat.label}.` };
@@ -1470,7 +1477,7 @@ function scoreOnePick(catKey, pickValue, actualValue) {
     return { earned: 0, max: cat.basePoints, status: "pending" };
   }
 
-  if (cat.type === "owner" || cat.type === "yn" || cat.type === "ryder") {
+  if (cat.type === "owner" || cat.type === "yn" || cat.type === "ryder" || cat.type === "overunder") {
     if (pickValue === actualValue) return { earned: cat.basePoints, max: cat.basePoints, status: "hit" };
     return { earned: 0, max: cat.basePoints, status: "miss" };
   }
@@ -1796,6 +1803,7 @@ function renderContestView(scored, actuals, regFin) {
       let topLabel;
       if (cat.type === "owner") topLabel = ownerName(top[0]);
       else if (cat.type === "yn") topLabel = top[0] === "yes" ? "Yes" : "No";
+      else if (cat.type === "overunder") topLabel = top[0] === "over" ? "Over (2+)" : "Under (0–1)";
       else if (cat.type === "ryder") {
         const ryderA = dbState?.config?.ryderCupMatchup?.teamA || "Team A";
         const ryderB = dbState?.config?.ryderCupMatchup?.teamB || "Team B";
@@ -1880,6 +1888,7 @@ function describePick(cat, pick) {
   if (cat.type === "ff") return Array.isArray(pick) ? pick.map(ownerName).join(", ") : "—";
   if (cat.type === "finish") return `${pick}${getOrdinal(pick)} place`;
   if (cat.type === "yn") return pick === "yes" ? "Yes" : pick === "no" ? "No" : "—";
+  if (cat.type === "overunder") return pick === "over" ? "Over (2+)" : pick === "under" ? "Under (0–1)" : "—";
   if (cat.type === "ryder") {
     const ryderA = dbState?.config?.ryderCupMatchup?.teamA || "Team A";
     const ryderB = dbState?.config?.ryderCupMatchup?.teamB || "Team B";
@@ -1926,6 +1935,9 @@ function renderPicksCard(cardEl, row, actuals) {
     } else if (cat.type === "yn") {
       pickDisplay = pick === "yes" ? "Yes" : pick === "no" ? "No" : "—";
       actualDisplay = actual === "yes" ? "Yes" : actual === "no" ? "No" : "TBD";
+    } else if (cat.type === "overunder") {
+      pickDisplay = pick === "over" ? "Over (2+)" : pick === "under" ? "Under (0–1)" : "—";
+      actualDisplay = actual === "over" ? "Over (2+)" : actual === "under" ? "Under (0–1)" : "TBD";
     } else if (cat.type === "ryder") {
       const ryderA = dbState?.config?.ryderCupMatchup?.teamA || "Team A";
       const ryderB = dbState?.config?.ryderCupMatchup?.teamB || "Team B";
@@ -2044,6 +2056,7 @@ function describeActual(cat, actual) {
   if (cat.type === "ff") return Array.isArray(actual) ? actual.map(ownerName).join(", ") : "—";
   if (cat.type === "finish") return `${actual}${getOrdinal(actual)} place`;
   if (cat.type === "yn") return actual === "yes" ? "Yes" : "No";
+  if (cat.type === "overunder") return actual === "over" ? "Over (2+)" : "Under (0–1)";
   if (cat.type === "ryder") {
     const ryderA = dbState?.config?.ryderCupMatchup?.teamA || "Team A";
     const ryderB = dbState?.config?.ryderCupMatchup?.teamB || "Team B";
@@ -2117,33 +2130,33 @@ function buildFakeState(mode) {
   // Hand-crafted picks per owner — designed to produce interesting roast scenarios
   const fakePicks = [
     // alex
-    { champion:"dylan", secondPlace:"jack", finalFour:["dylan","jack","kyle","brian"], bronzeFranz:"luke", regSeasonChamp:"dylan", ooty:"matt", hottestTeam:"mike", avlCup:"wade", rivalryWeek:"alex", intercontinental:"tim", ownFinish:6, asteriskHung:"no", ryderCup:"teamA", moneyball:"champion" },
+    { champion:"dylan", secondPlace:"jack", finalFour:["dylan","jack","kyle","brian"], bronzeFranz:"luke", regSeasonChamp:"dylan", highestSingle:"matt", hottestTeam:"mike", avlCup:"wade", rivalryWeek:"alex", intercontinental:"tim", badBeat:"under", asteriskHung:"no", ryderCup:"teamA", moneyball:"champion" },
     // andy
-    { champion:"dylan", secondPlace:"kyle", finalFour:["dylan","kyle","jack","mike"], bronzeFranz:"luke", regSeasonChamp:"jack", ooty:"brian", hottestTeam:"matt", avlCup:"tim", rivalryWeek:"scott", intercontinental:"dylan", ownFinish:9, asteriskHung:"no", ryderCup:"teamB", moneyball:"bronzeFranz" },
+    { champion:"dylan", secondPlace:"kyle", finalFour:["dylan","kyle","jack","mike"], bronzeFranz:"luke", regSeasonChamp:"jack", highestSingle:"brian", hottestTeam:"matt", avlCup:"tim", rivalryWeek:"scott", intercontinental:"dylan", badBeat:"over", asteriskHung:"no", ryderCup:"teamB", moneyball:"bronzeFranz" },
     // brian
-    { champion:"jack", secondPlace:"dylan", finalFour:["dylan","jack","kyle","brian"], bronzeFranz:"andy", regSeasonChamp:"dylan", ooty:"wade", hottestTeam:"wade", avlCup:"scott", rivalryWeek:"jack", intercontinental:"tim", ownFinish:4, asteriskHung:"yes", ryderCup:"teamA", moneyball:"regSeasonChamp" },
+    { champion:"jack", secondPlace:"dylan", finalFour:["dylan","jack","kyle","brian"], bronzeFranz:"andy", regSeasonChamp:"dylan", highestSingle:"wade", hottestTeam:"wade", avlCup:"scott", rivalryWeek:"jack", intercontinental:"tim", badBeat:"under", asteriskHung:"yes", ryderCup:"teamA", moneyball:"regSeasonChamp" },
     // daniel
-    { champion:"kyle", secondPlace:"jack", finalFour:["dylan","kyle","jack","daniel"], bronzeFranz:"luke", regSeasonChamp:"kyle", ooty:"mike", hottestTeam:"matt", avlCup:"mike", rivalryWeek:"brian", intercontinental:"kyle", ownFinish:5, asteriskHung:"no", ryderCup:"teamB", moneyball:"champion" },
+    { champion:"kyle", secondPlace:"jack", finalFour:["dylan","kyle","jack","daniel"], bronzeFranz:"luke", regSeasonChamp:"kyle", highestSingle:"mike", hottestTeam:"matt", avlCup:"mike", rivalryWeek:"brian", intercontinental:"kyle", badBeat:"over", asteriskHung:"no", ryderCup:"teamB", moneyball:"champion" },
     // dylan
-    { champion:"dylan", secondPlace:"jack", finalFour:["dylan","jack","kyle","brian"], bronzeFranz:"jordan", regSeasonChamp:"dylan", ooty:"matt", hottestTeam:"dylan", avlCup:"dylan", rivalryWeek:"kyle", intercontinental:"dylan", ownFinish:1, asteriskHung:"yes", ryderCup:"teamA", moneyball:"champion" },
+    { champion:"dylan", secondPlace:"jack", finalFour:["dylan","jack","kyle","brian"], bronzeFranz:"jordan", regSeasonChamp:"dylan", highestSingle:"matt", hottestTeam:"dylan", avlCup:"dylan", rivalryWeek:"kyle", intercontinental:"dylan", badBeat:"over", asteriskHung:"yes", ryderCup:"teamA", moneyball:"champion" },
     // jack
-    { champion:"jack", secondPlace:"dylan", finalFour:["jack","dylan","kyle","matt"], bronzeFranz:"luke", regSeasonChamp:"jack", ooty:"brian", hottestTeam:"mike", avlCup:"wade", rivalryWeek:"scott", intercontinental:"tim", ownFinish:2, asteriskHung:"yes", ryderCup:"teamA", moneyball:"champion" },
+    { champion:"jack", secondPlace:"dylan", finalFour:["jack","dylan","kyle","matt"], bronzeFranz:"luke", regSeasonChamp:"jack", highestSingle:"brian", hottestTeam:"mike", avlCup:"wade", rivalryWeek:"scott", intercontinental:"tim", badBeat:"under", asteriskHung:"yes", ryderCup:"teamA", moneyball:"champion" },
     // jordan
-    { champion:"matt", secondPlace:"kyle", finalFour:["dylan","matt","jack","kyle"], bronzeFranz:"andy", regSeasonChamp:"matt", ooty:"matt", hottestTeam:"jordan", avlCup:"tim", rivalryWeek:"alex", intercontinental:"matt", ownFinish:8, asteriskHung:"no", ryderCup:"teamB", moneyball:"hottestTeam" },
+    { champion:"matt", secondPlace:"kyle", finalFour:["dylan","matt","jack","kyle"], bronzeFranz:"andy", regSeasonChamp:"matt", highestSingle:"matt", hottestTeam:"jordan", avlCup:"tim", rivalryWeek:"alex", intercontinental:"matt", badBeat:"under", asteriskHung:"no", ryderCup:"teamB", moneyball:"hottestTeam" },
     // kyle
-    { champion:"kyle", secondPlace:"dylan", finalFour:["kyle","dylan","jack","brian"], bronzeFranz:"luke", regSeasonChamp:"kyle", ooty:"matt", hottestTeam:"mike", avlCup:"wade", rivalryWeek:"scott", intercontinental:"kyle", ownFinish:1, asteriskHung:"no", ryderCup:"teamA", moneyball:"champion" },
+    { champion:"kyle", secondPlace:"dylan", finalFour:["kyle","dylan","jack","brian"], bronzeFranz:"luke", regSeasonChamp:"kyle", highestSingle:"matt", hottestTeam:"mike", avlCup:"wade", rivalryWeek:"scott", intercontinental:"kyle", badBeat:"over", asteriskHung:"no", ryderCup:"teamA", moneyball:"champion" },
     // luke (the rookie — optimistic)
-    { champion:"luke", secondPlace:"dylan", finalFour:["luke","dylan","jack","kyle"], bronzeFranz:"andy", regSeasonChamp:"luke", ooty:"luke", hottestTeam:"luke", avlCup:"luke", rivalryWeek:"luke", intercontinental:"luke", ownFinish:3, asteriskHung:"yes", ryderCup:"teamB", moneyball:"champion" },
+    { champion:"luke", secondPlace:"dylan", finalFour:["luke","dylan","jack","kyle"], bronzeFranz:"andy", regSeasonChamp:"luke", highestSingle:"luke", hottestTeam:"luke", avlCup:"luke", rivalryWeek:"luke", intercontinental:"luke", badBeat:"over", asteriskHung:"yes", ryderCup:"teamB", moneyball:"champion" },
     // matt
-    { champion:"dylan", secondPlace:"matt", finalFour:["dylan","matt","jack","kyle"], bronzeFranz:"scott", regSeasonChamp:"matt", ooty:"matt", hottestTeam:"matt", avlCup:"matt", rivalryWeek:"matt", intercontinental:"matt", ownFinish:3, asteriskHung:"yes", ryderCup:"teamA", moneyball:"ooty" },
+    { champion:"dylan", secondPlace:"matt", finalFour:["dylan","matt","jack","kyle"], bronzeFranz:"scott", regSeasonChamp:"matt", highestSingle:"matt", hottestTeam:"matt", avlCup:"matt", rivalryWeek:"matt", intercontinental:"matt", badBeat:"over", asteriskHung:"yes", ryderCup:"teamA", moneyball:"ooty" },
     // mike
-    { champion:"dylan", secondPlace:"jack", finalFour:["dylan","jack","kyle","mike"], bronzeFranz:"luke", regSeasonChamp:"dylan", ooty:"mike", hottestTeam:"mike", avlCup:"tim", rivalryWeek:"jack", intercontinental:"mike", ownFinish:5, asteriskHung:"no", ryderCup:"teamA", moneyball:"hottestTeam" },
+    { champion:"dylan", secondPlace:"jack", finalFour:["dylan","jack","kyle","mike"], bronzeFranz:"luke", regSeasonChamp:"dylan", highestSingle:"mike", hottestTeam:"mike", avlCup:"tim", rivalryWeek:"jack", intercontinental:"mike", badBeat:"over", asteriskHung:"no", ryderCup:"teamA", moneyball:"hottestTeam" },
     // scott
-    { champion:"dylan", secondPlace:"kyle", finalFour:["dylan","kyle","jack","scott"], bronzeFranz:"jordan", regSeasonChamp:"dylan", ooty:"brian", hottestTeam:"scott", avlCup:"scott", rivalryWeek:"scott", intercontinental:"scott", ownFinish:7, asteriskHung:"no", ryderCup:"teamB", moneyball:"regSeasonChamp" },
+    { champion:"dylan", secondPlace:"kyle", finalFour:["dylan","kyle","jack","scott"], bronzeFranz:"jordan", regSeasonChamp:"dylan", highestSingle:"brian", hottestTeam:"scott", avlCup:"scott", rivalryWeek:"scott", intercontinental:"scott", badBeat:"over", asteriskHung:"no", ryderCup:"teamB", moneyball:"regSeasonChamp" },
     // tim
-    { champion:"jack", secondPlace:"dylan", finalFour:["dylan","jack","kyle","tim"], bronzeFranz:"luke", regSeasonChamp:"jack", ooty:"matt", hottestTeam:"tim", avlCup:"tim", rivalryWeek:"alex", intercontinental:"tim", ownFinish:6, asteriskHung:"yes", ryderCup:"teamA", moneyball:"intercontinental" },
+    { champion:"jack", secondPlace:"dylan", finalFour:["dylan","jack","kyle","tim"], bronzeFranz:"luke", regSeasonChamp:"jack", highestSingle:"matt", hottestTeam:"tim", avlCup:"tim", rivalryWeek:"alex", intercontinental:"tim", badBeat:"under", asteriskHung:"yes", ryderCup:"teamA", moneyball:"intercontinental" },
     // wade
-    { champion:"dylan", secondPlace:"jack", finalFour:["dylan","jack","kyle","wade"], bronzeFranz:"andy", regSeasonChamp:"dylan", ooty:"wade", hottestTeam:"wade", avlCup:"wade", rivalryWeek:"wade", intercontinental:"wade", ownFinish:7, asteriskHung:"no", ryderCup:"teamA", moneyball:"avlCup" },
+    { champion:"dylan", secondPlace:"jack", finalFour:["dylan","jack","kyle","wade"], bronzeFranz:"andy", regSeasonChamp:"dylan", highestSingle:"wade", hottestTeam:"wade", avlCup:"wade", rivalryWeek:"wade", intercontinental:"wade", badBeat:"over", asteriskHung:"no", ryderCup:"teamA", moneyball:"avlCup" },
   ];
 
   const submissions = {};
@@ -2183,13 +2196,15 @@ function buildFakeState(mode) {
       finalFour: ["dylan","jack","kyle","brian"],  // 4 picks
       bronzeFranz: "luke",   // picked by alex, andy, brian (no), daniel, jack, kyle, matt(no — matt picked scott), mike, tim = many hits
       regSeasonChamp: "dylan", // picked by alex, brian, daniel(no), dylan, mike, scott, wade = many
-      ooty: "matt",          // picked by alex, jack(no), kyle, jordan, matt, tim = 5 hits; matt MB MISSES (he picked OOTY)
+      ooty_DEAD: null,  // (OOTY removed from survey — kept as placeholder)
+      highestSingle: "matt",   // picked by alex, jack(no), kyle, jordan, matt, tim = 5 hits
       hottestTeam: "mike",   // picked by alex, jack, mike = 3 hits
       avlCup: "wade",        // wade picked self and Moneyballed it → MB HIT for wade!
       rivalryWeek: "zzz_nobody",  // Make it someone nobody picked — but it has to be valid owner ID. Use "andy" — andy picked self for nothing in rivalry slot... let me check.
       // rivalry picks: alex=alex, andy=scott, brian=jack, daniel=brian, dylan=kyle, jack=scott, jordan=alex, kyle=scott, luke=luke, matt=matt, mike=jack, scott=scott, tim=alex, wade=wade
       // Nobody picked "daniel" for rivalry → WHIFF!
       intercontinental: "tim",  // picked by alex, brian, jack, tim = 4 hits
+      badBeat: "over",          // approx half the league picked over per the fake data
       asteriskHung: "yes",      // picked by brian, dylan, jack, luke, matt, tim = 6 hits
       ryderCup: "teamA"         // picked by 8 owners
     };
@@ -2422,6 +2437,12 @@ function renderCommishPanel() {
       html += `<div class="radio-group" data-akey="${cat.key}">`;
       html += `<button type="button" class="radio-btn ${v === "teamA" ? "selected" : ""}" data-aval="teamA">${escapeHTML(ryderA || "Team A")}</button>`;
       html += `<button type="button" class="radio-btn ${v === "teamB" ? "selected" : ""}" data-aval="teamB">${escapeHTML(ryderB || "Team B")}</button>`;
+      html += `</div>`;
+    } else if (cat.type === "overunder") {
+      const v = actuals[cat.key];
+      html += `<div class="radio-group" data-akey="${cat.key}">`;
+      html += `<button type="button" class="radio-btn ${v === "over" ? "selected" : ""}" data-aval="over">Over (2+)</button>`;
+      html += `<button type="button" class="radio-btn ${v === "under" ? "selected" : ""}" data-aval="under">Under (0–1)</button>`;
       html += `</div>`;
     }
     html += `</div>`;
