@@ -940,6 +940,9 @@ textarea:hover, textarea:focus {
           </div>
         </div>
 
+        <label class="form-label">Season</label>
+        <select id="sbSeason"></select>
+
         <label class="form-label">Week of the Game</label>
         <select id="sbWeek"></select>
 
@@ -971,6 +974,9 @@ textarea:hover, textarea:focus {
 
       <!-- ===== WILDCARD FIELDS ===== -->
       <div id="wildcardFields" class="field-hidden">
+        <label class="form-label">Season</label>
+        <select id="wcSeason"></select>
+
         <label class="form-label">Who's In?</label>
         <label class="form-help">Select every owner involved in the bet.</label>
         <div class="owner-grid" id="wcOwnerGrid"></div>
@@ -1264,7 +1270,10 @@ function debtCardHTML(d, mode) {
     } else {
       headline = `Bet's locked in — winner to be decided.`;
     }
-    if (d.week) metaLine = `Week ${escapeHTML(d.week)} matchup`;
+    const sbBits = [];
+    if (d.season) sbBits.push(`${escapeHTML(d.season)} season`);
+    if (d.week) sbBits.push(`Week ${escapeHTML(d.week)}`);
+    metaLine = sbBits.join(" · ");
 
   } else if (d.type === "allstar") {
     const id = debtors[0];
@@ -1288,6 +1297,7 @@ function debtCardHTML(d, mode) {
     } else {
       headline = `Wager's live — outcome to be decided.`;
     }
+    if (d.season) metaLine = `${escapeHTML(d.season)} season`;
   }
 
   /* footer per mode */
@@ -1375,10 +1385,20 @@ function ownerOptions(includeBlank, blankLabel) {
   return o;
 }
 
+/* season options 2025–2030, current year pre-selected */
+const SEASON_YEARS = [2025, 2026, 2027, 2028, 2029, 2030];
+function seasonOptions() {
+  const cur = new Date().getFullYear();
+  return SEASON_YEARS
+    .map(y => `<option value="${y}"${y === cur ? " selected" : ""}>${y}</option>`)
+    .join("");
+}
+
 function buildLogForm() {
   /* side bet */
   $("sbOwnerA").innerHTML = ownerOptions(true, "Owner A…");
   $("sbOwnerB").innerHTML = ownerOptions(true, "Owner B…");
+  $("sbSeason").innerHTML = seasonOptions();
   $("sbWeek").innerHTML = `<option value="">Select week…</option>` +
     Array.from({ length: 18 }, (_, i) => `<option value="${i + 1}">Week ${i + 1}</option>`).join("");
   refreshSidebetLoser();
@@ -1386,10 +1406,7 @@ function buildLogForm() {
   $("sbOwnerB").addEventListener("change", () => { refreshSidebetLoser(); refreshSbFace("B"); });
 
   /* all-star — seasons 2025 through 2030 */
-  const curYr = new Date().getFullYear();
-  const years = [2025, 2026, 2027, 2028, 2029, 2030];
-  $("asSeason").innerHTML = years
-    .map(y => `<option value="${y}"${y === curYr ? " selected" : ""}>${y}</option>`).join("");
+  $("asSeason").innerHTML = seasonOptions();
   $("asOwnerGrid").innerHTML = OWNERS.map(o => ownerPickHTML(o, "as")).join("");
   $("asOwnerGrid").querySelectorAll(".owner-pick").forEach(p => {
     p.addEventListener("click", () => {
@@ -1401,6 +1418,7 @@ function buildLogForm() {
   });
 
   /* wildcard */
+  $("wcSeason").innerHTML = seasonOptions();
   $("wcOwnerGrid").innerHTML = OWNERS.map(o => ownerPickHTML(o, "wc")).join("");
   $("wcOwnerGrid").querySelectorAll(".owner-pick").forEach(p => {
     p.addEventListener("click", () => {
@@ -1482,6 +1500,10 @@ function resetLogForm() {
   $("sidebetFields").classList.add("field-hidden");
   $("allstarFields").classList.add("field-hidden");
   $("wildcardFields").classList.add("field-hidden");
+  const curYr = String(new Date().getFullYear());
+  ["sbSeason", "asSeason", "wcSeason"].forEach(id => {
+    if (SEASON_YEARS.map(String).includes(curYr)) $(id).value = curYr;
+  });
   $("sbOwnerA").value = ""; $("sbOwnerB").value = "";
   $("sbWeek").value = ""; $("sbStakes").value = "";
   $("sbOwnerA_face").innerHTML = ""; $("sbOwnerB_face").innerHTML = "";
@@ -1519,6 +1541,7 @@ async function submitWager() {
   if (currentType === "sidebet") {
     const a = $("sbOwnerA").value, b = $("sbOwnerB").value;
     const loser = $("sbLoser").value;
+    const season = $("sbSeason").value;
     const week = $("sbWeek").value;
     const stakes = $("sbStakes").value.trim();
     if (!a || !b) { showFormMsg("Pick both owners.", "error"); return; }
@@ -1530,6 +1553,7 @@ async function submitWager() {
       type: "sidebet",
       owners: [a, b],
       debtors, winners,
+      season: season || "",
       week: week || "",
       stakes,
       created: nowISO(),
@@ -1564,6 +1588,7 @@ async function submitWager() {
     });
 
   } else { /* wildcard */
+    const season = $("wcSeason").value;
     const stakes = $("wcStakes").value.trim();
     const involved = [...$("wcOwnerGrid").querySelectorAll(".owner-pick.checked")]
       .map(p => p.getAttribute("data-id"));
@@ -1577,6 +1602,7 @@ async function submitWager() {
       type: "wildcard",
       owners: involved,
       debtors, winners,
+      season: season || "",
       stakes,
       created: nowISO(),
       settled: false
@@ -1629,11 +1655,12 @@ function debtSummaryText(d) {
   }
   if (d.type === "sidebet") {
     const pair = joinNames((d.owners || []).map(ownerName)) || "TBD";
-    return `Side Bet — ${pair}${d.week ? " (Wk " + d.week + ")" : ""}`;
+    const tag = [d.season, d.week ? "Wk " + d.week : ""].filter(Boolean).join(" ");
+    return `Side Bet — ${pair}${tag ? " (" + tag + ")" : ""}`;
   }
   /* wildcard */
   const who = joinNames((d.owners || []).map(ownerName)) || "TBD";
-  return `Wildcard — ${who}`;
+  return `Wildcard — ${who}${d.season ? " (" + d.season + ")" : ""}`;
 }
 
 function renderCommishPanel() {
