@@ -37,6 +37,7 @@
         { label: '2026 Slingshot Entrance Survey 🗳️', href: 'annals-entrance-survey.html' },
       ]
     },
+    { emoji: '🤝', label: 'Wager Wall',              href: 'wager-wall.html',   external: false },
     { emoji: '📜', label: 'Constitution',            href: 'https://drive.google.com/file/d/1u5CjjgncTrwKSedc5rtYRhpPllhlc3w7/view?usp=drivesdk', external: true },
     { emoji: '📸', label: 'Album',                   href: 'https://photos.app.goo.gl/B97a54JNwhCwhof39', external: true },
     { emoji: '🌍', label: "Franks 'Round the World", href: 'https://maps.app.goo.gl/jM1vFzPdmUkwxZN57?g_st=ac', external: true },

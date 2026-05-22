@@ -1,0 +1,1794 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Wager Wall — Slingshot Engaged FFL</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Barlow+Condensed:wght@400;600;700&family=Barlow:wght@400;500;600&display=swap" rel="stylesheet" />
+<style>
+:root {
+  --red: #c0392b;
+  --red-bright: #e74c3c;
+  --bg: #0a0a0a;
+  --surface: #141414;
+  --surface2: #1c1c1c;
+  --surface3: #242424;
+  --text: #f0f0f0;
+  --text-body: #e8e8e8;
+  --muted: #bbb;
+  --label: #d8d8d8;
+  --border: #2a2a2a;
+  --gold: #c9a84c;
+}
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+body {
+  background: var(--bg);
+  color: var(--text);
+  font-family: 'Barlow', sans-serif;
+  min-height: 100vh;
+}
+
+/* ============ HEADER ============ */
+.page-header {
+  padding: 40px 20px 0;
+  text-align: center;
+}
+.page-supertitle {
+  font-family: 'Barlow Condensed', sans-serif;
+  font-size: 1rem;
+  letter-spacing: 0.25em;
+  text-transform: uppercase;
+  color: #d0d0d0;
+  margin-bottom: 6px;
+}
+.page-header h1 {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: clamp(2.8rem, 8vw, 5rem);
+  color: var(--red-bright);
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  line-height: 1;
+}
+.header-spacer { height: 20px; }
+
+/* ============ CONTENT ============ */
+.content {
+  max-width: 680px;
+  margin: 0 auto;
+  padding: 0 16px 90px;
+}
+.intro {
+  font-family: 'Barlow', sans-serif;
+  font-size: 1.1rem;
+  color: var(--text-body);
+  line-height: 1.7;
+  margin: 12px 0 12px;
+  text-align: center;
+}
+
+/* ============ STATE BANNERS ============ */
+.connect-msg {
+  font-family: 'Barlow', sans-serif;
+  font-size: 1.13rem;
+  color: var(--muted);
+  text-align: center;
+  padding: 40px 20px;
+}
+.connect-err {
+  color: var(--red-bright);
+  text-align: center;
+  padding: 24px 16px;
+  font-size: 1.05rem;
+  line-height: 1.5;
+}
+
+/* ============ HALL OF SHAME CALLOUT ============ */
+.shame-card {
+  background: linear-gradient(160deg, #1a0e0e 0%, var(--surface2) 70%);
+  border: 2px solid var(--red);
+  border-radius: 10px;
+  padding: 22px 18px;
+  margin: 18px 0 8px;
+  text-align: center;
+  box-shadow: 0 0 0 4px rgba(192,57,43,0.10);
+}
+.shame-eyebrow {
+  font-family: 'Barlow Condensed', sans-serif;
+  font-size: 0.95rem;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--label);
+  margin-bottom: 12px;
+}
+.shame-photo-wrap {
+  display: flex;
+  justify-content: center;
+  gap: 14px;
+  flex-wrap: wrap;
+  margin-bottom: 12px;
+}
+.shame-photo {
+  width: clamp(78px, 20vw, 104px);
+  height: clamp(78px, 20vw, 104px);
+  border-radius: 50%;
+  border: 3px solid var(--red-bright);
+  object-fit: cover;
+  filter: grayscale(0.35);
+  box-shadow: 0 0 18px rgba(231,76,60,0.35);
+}
+.shame-initials {
+  width: clamp(78px, 20vw, 104px);
+  height: clamp(78px, 20vw, 104px);
+  border-radius: 50%;
+  border: 3px solid var(--red-bright);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--surface3);
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 2rem;
+  color: var(--red-bright);
+}
+.shame-name {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: clamp(2.2rem, 8vw, 3rem);
+  color: var(--red-bright);
+  letter-spacing: 0.04em;
+  line-height: 1;
+}
+.shame-sub {
+  font-family: 'Barlow Condensed', sans-serif;
+  font-size: 1.1rem;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--label);
+  margin-top: 6px;
+}
+
+/* ============ SECTION TITLES ============ */
+.section-block { margin-top: 36px; }
+.section-title {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 1.6rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--text);
+  margin-bottom: 4px;
+}
+.section-count {
+  font-family: 'Barlow Condensed', sans-serif;
+  font-size: 0.95rem;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: var(--label);
+  margin-bottom: 14px;
+}
+
+/* ============ DEBT CARD ============ */
+.debt-card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-left: 4px solid var(--red);
+  border-radius: 8px;
+  padding: 18px 16px;
+  margin-bottom: 16px;
+}
+.debt-card.settled {
+  border-left-color: var(--gold);
+  opacity: 0.92;
+}
+.debt-card.pending {
+  border-left-color: var(--muted);
+}
+.pending-pill {
+  font-family: 'Barlow Condensed', sans-serif;
+  font-size: 0.86rem;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--label);
+  background: var(--surface3);
+  border: 1px dashed var(--muted);
+  border-radius: 999px;
+  padding: 5px 12px;
+  display: inline-block;
+  margin-top: 10px;
+}
+.debt-type-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+  margin-bottom: 14px;
+}
+.debt-type-tag {
+  font-family: 'Barlow Condensed', sans-serif;
+  font-size: 0.86rem;
+  font-weight: 700;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--label);
+  background: var(--surface3);
+  border: 1px solid var(--border);
+  border-radius: 999px;
+  padding: 5px 12px;
+  white-space: nowrap;
+}
+.debt-date {
+  font-family: 'Barlow Condensed', sans-serif;
+  font-size: 0.82rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--muted);
+  white-space: nowrap;
+}
+
+/* owner block inside a card */
+.owners-strip {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 14px;
+  margin-bottom: 14px;
+}
+.owner-chip {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 6px;
+  width: 84px;
+}
+.owner-chip-photo {
+  width: 72px;
+  height: 72px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 3px solid var(--border);
+}
+.owner-chip-initials {
+  width: 72px;
+  height: 72px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--surface3);
+  border: 3px solid var(--border);
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 1.7rem;
+  color: var(--label);
+}
+.owner-chip.loser .owner-chip-photo,
+.owner-chip.loser .owner-chip-initials {
+  border-color: var(--red-bright);
+  box-shadow: 0 0 12px rgba(231,76,60,0.4);
+}
+.owner-chip.winner .owner-chip-photo,
+.owner-chip.winner .owner-chip-initials {
+  border-color: var(--gold);
+}
+.owner-chip-name {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 1.25rem;
+  letter-spacing: 0.04em;
+  color: var(--text);
+  text-align: center;
+  line-height: 1;
+}
+.owner-chip-role {
+  font-family: 'Barlow Condensed', sans-serif;
+  font-size: 0.8rem;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  line-height: 1;
+}
+.owner-chip.loser .owner-chip-role { color: var(--red-bright); }
+.owner-chip.winner .owner-chip-role { color: var(--gold); }
+.owner-chip.neutral .owner-chip-role { color: var(--muted); }
+
+/* debt body text */
+.debt-headline {
+  font-family: 'Barlow', sans-serif;
+  font-size: 1.2rem;
+  font-weight: 600;
+  color: var(--text);
+  line-height: 1.4;
+  margin-bottom: 6px;
+}
+.debt-headline .owe-name { color: var(--red-bright); font-weight: 700; }
+.debt-stakes {
+  font-family: 'Barlow', sans-serif;
+  font-size: 1.12rem;
+  color: var(--text-body);
+  line-height: 1.55;
+  margin-bottom: 6px;
+}
+.debt-stakes-label {
+  font-family: 'Barlow Condensed', sans-serif;
+  font-size: 0.86rem;
+  font-weight: 700;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--label);
+  display: block;
+  margin-bottom: 2px;
+}
+.debt-meta {
+  font-family: 'Barlow Condensed', sans-serif;
+  font-size: 0.92rem;
+  letter-spacing: 0.06em;
+  color: var(--muted);
+  margin-top: 8px;
+}
+
+/* settled stamp */
+.settled-stamp {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-top: 12px;
+  padding-top: 12px;
+  border-top: 1px solid var(--border);
+}
+.settled-badge {
+  font-family: 'Barlow Condensed', sans-serif;
+  font-size: 0.92rem;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--gold);
+}
+.settled-when {
+  font-family: 'Barlow Condensed', sans-serif;
+  font-size: 0.82rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+
+/* commish settle button on a card */
+.card-settle-btn {
+  width: 100%;
+  margin-top: 12px;
+  background: var(--surface3);
+  border: 1px solid var(--gold);
+  color: var(--gold);
+  font-family: 'Barlow Condensed', sans-serif;
+  font-size: 1rem;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  padding: 12px;
+  border-radius: 6px;
+  cursor: pointer;
+  min-height: 48px;
+  transition: background 0.15s, color 0.15s;
+}
+.card-settle-btn:hover { background: var(--gold); color: #000; }
+
+.empty-state {
+  font-family: 'Barlow', sans-serif;
+  font-size: 1.13rem;
+  font-style: italic;
+  color: var(--muted);
+  text-align: center;
+  padding: 36px 20px;
+}
+
+/* ============ LOG-A-WAGER BUTTON ============ */
+.log-cta {
+  width: 100%;
+  background: var(--red);
+  color: #fff;
+  font-family: 'Barlow Condensed', sans-serif;
+  font-size: 1.5rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  border: none;
+  border-radius: 8px;
+  padding: 18px;
+  min-height: 60px;
+  cursor: pointer;
+  margin: 8px 0 4px;
+  transition: background 0.15s;
+}
+.log-cta:hover { background: var(--red-bright); }
+
+/* ============ COLLAPSIBLE SETTLED HISTORY ============ */
+.collapse-toggle {
+  width: 100%;
+  background: var(--surface2);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 16px 18px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  min-height: 56px;
+}
+.collapse-toggle-label {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 1.5rem;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--text);
+}
+.collapse-chevron {
+  font-size: 0.95rem;
+  color: var(--muted);
+  transition: transform 0.2s;
+}
+.collapse-toggle.open .collapse-chevron { transform: rotate(180deg); }
+.collapse-body { display: none; margin-top: 16px; }
+.collapse-body.open { display: block; }
+
+/* ============ MODAL ============ */
+.modal-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 1000;
+  background: rgba(0,0,0,0.85);
+  overflow-y: auto;
+  display: none;
+}
+.modal-overlay.open { display: block; }
+.modal {
+  max-width: 680px;
+  margin: 0 auto;
+  padding: 20px 16px 60px;
+}
+.modal-card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  padding: 24px 20px;
+  margin-top: 24px;
+}
+.modal-head {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 12px;
+  margin-bottom: 6px;
+}
+.modal-title {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 2rem;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  color: var(--text);
+  line-height: 1;
+}
+.modal-close {
+  background: none;
+  border: none;
+  color: var(--muted);
+  font-size: 1.6rem;
+  line-height: 1;
+  cursor: pointer;
+  padding: 2px 4px;
+}
+.modal-close:hover { color: #fff; }
+.modal-sub {
+  font-family: 'Barlow', sans-serif;
+  font-size: 1rem;
+  color: var(--text-body);
+  line-height: 1.5;
+  margin-bottom: 18px;
+}
+
+/* ============ FORM ELEMENTS ============ */
+.form-label {
+  display: block;
+  font-family: 'Barlow Condensed', sans-serif;
+  font-size: 1.2rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--label);
+  margin: 18px 0 8px;
+}
+.form-help {
+  font-family: 'Barlow', sans-serif;
+  font-size: 1rem;
+  color: var(--muted);
+  line-height: 1.45;
+  margin: -4px 0 8px;
+}
+select, input[type="text"], textarea {
+  width: 100%;
+  background: var(--surface3);
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  color: var(--text);
+  font-family: 'Barlow Condensed', sans-serif;
+  font-size: 1.15rem;
+  letter-spacing: 0.04em;
+  padding: 14px 14px;
+  min-height: 52px;
+  appearance: none;
+  transition: border-color 0.15s;
+}
+textarea {
+  font-family: 'Barlow', sans-serif;
+  letter-spacing: 0;
+  line-height: 1.5;
+  min-height: 90px;
+  resize: vertical;
+}
+select:hover, select:focus,
+input[type="text"]:hover, input[type="text"]:focus,
+textarea:hover, textarea:focus {
+  border-color: var(--red);
+  outline: none;
+}
+
+/* bet type selector */
+.type-picker {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin-bottom: 4px;
+}
+.type-option {
+  background: var(--surface2);
+  border: 2px solid var(--border);
+  border-radius: 8px;
+  padding: 16px 16px;
+  cursor: pointer;
+  text-align: left;
+  transition: border-color 0.15s, background 0.15s;
+}
+.type-option:hover { border-color: var(--muted); }
+.type-option.active {
+  border-color: var(--gold);
+  background: var(--surface3);
+}
+.type-option-name {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 1.5rem;
+  letter-spacing: 0.05em;
+  color: var(--text);
+  line-height: 1;
+  margin-bottom: 4px;
+}
+.type-option.active .type-option-name { color: var(--gold); }
+.type-option-desc {
+  font-family: 'Barlow', sans-serif;
+  font-size: 1rem;
+  color: var(--label);
+  line-height: 1.4;
+}
+
+/* multi-owner checkbox grid */
+.owner-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 8px;
+}
+.owner-pick {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  background: var(--surface2);
+  border: 2px solid var(--border);
+  border-radius: 8px;
+  padding: 10px 12px;
+  cursor: pointer;
+  min-height: 56px;
+  transition: border-color 0.15s, background 0.15s;
+}
+.owner-pick:hover { border-color: var(--muted); }
+.owner-pick.checked {
+  border-color: var(--gold);
+  background: var(--surface3);
+}
+.owner-pick-photo {
+  width: 38px;
+  height: 38px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 2px solid var(--border);
+  flex-shrink: 0;
+}
+.owner-pick-initials {
+  width: 38px;
+  height: 38px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--surface3);
+  border: 2px solid var(--border);
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 1.1rem;
+  color: var(--label);
+  flex-shrink: 0;
+}
+.owner-pick-name {
+  font-family: 'Barlow Condensed', sans-serif;
+  font-size: 1.15rem;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  color: var(--text);
+}
+
+/* loser tagging row inside wildcard/sidebet */
+.loser-tag-help {
+  font-family: 'Barlow', sans-serif;
+  font-size: 1rem;
+  color: var(--muted);
+  margin: 6px 0 8px;
+  line-height: 1.45;
+}
+.loser-grid {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+.loser-row {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  background: var(--surface2);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 8px 12px;
+}
+.loser-row-photo {
+  width: 40px; height: 40px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 2px solid var(--border);
+  flex-shrink: 0;
+}
+.loser-row-initials {
+  width: 40px; height: 40px;
+  border-radius: 50%;
+  display: flex; align-items: center; justify-content: center;
+  background: var(--surface3);
+  border: 2px solid var(--border);
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 1.15rem;
+  color: var(--label);
+  flex-shrink: 0;
+}
+.loser-row-name {
+  font-family: 'Barlow Condensed', sans-serif;
+  font-size: 1.15rem;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  color: var(--text);
+  flex: 1;
+}
+.loser-toggle {
+  background: var(--surface3);
+  border: 2px solid var(--border);
+  border-radius: 6px;
+  color: var(--label);
+  font-family: 'Barlow Condensed', sans-serif;
+  font-size: 0.95rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  padding: 8px 12px;
+  min-height: 44px;
+  cursor: pointer;
+  white-space: nowrap;
+  transition: all 0.15s;
+}
+.loser-toggle.is-loser {
+  background: var(--red);
+  border-color: var(--red);
+  color: #fff;
+}
+.loser-toggle.is-winner {
+  background: var(--surface3);
+  border-color: var(--gold);
+  color: var(--gold);
+}
+
+/* submit */
+.form-submit {
+  width: 100%;
+  background: var(--red);
+  color: #fff;
+  font-family: 'Barlow Condensed', sans-serif;
+  font-size: 1.7rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  border: none;
+  border-radius: 8px;
+  padding: 18px;
+  min-height: 60px;
+  cursor: pointer;
+  margin-top: 24px;
+  transition: background 0.15s;
+}
+.form-submit:hover { background: var(--red-bright); }
+.form-submit:disabled { opacity: 0.5; cursor: not-allowed; }
+
+.form-msg {
+  font-family: 'Barlow', sans-serif;
+  font-size: 1.05rem;
+  line-height: 1.5;
+  text-align: center;
+  margin-top: 14px;
+  padding: 12px;
+  border-radius: 6px;
+  display: none;
+}
+.form-msg.show { display: block; }
+.form-msg.error { background: rgba(231,76,60,0.12); color: var(--red-bright); }
+.form-msg.success { background: rgba(201,168,76,0.12); color: var(--gold); }
+
+.field-hidden { display: none; }
+
+/* ============ COMMISH GEAR + PANEL ============ */
+.commish-gear {
+  position: fixed;
+  bottom: 16px;
+  right: 16px;
+  width: 48px;
+  height: 48px;
+  background: var(--surface2);
+  border: 1px solid var(--border);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  color: var(--label);
+  font-size: 1.3rem;
+  z-index: 50;
+}
+.commish-gear:hover { background: var(--surface3); color: var(--text); }
+
+.passcode-row {
+  display: flex;
+  gap: 8px;
+  margin-top: 8px;
+}
+.passcode-row input { flex: 1; }
+.passcode-btn {
+  background: var(--gold);
+  color: #000;
+  border: none;
+  border-radius: 6px;
+  font-family: 'Barlow Condensed', sans-serif;
+  font-size: 1.05rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  padding: 0 18px;
+  min-height: 52px;
+  cursor: pointer;
+}
+.commish-section {
+  margin-top: 18px;
+  padding-top: 16px;
+  border-top: 1px solid var(--border);
+}
+.commish-section h3 {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 1.5rem;
+  color: var(--text);
+  letter-spacing: 0.06em;
+  margin-bottom: 10px;
+  text-transform: uppercase;
+}
+.commish-note {
+  font-family: 'Barlow', sans-serif;
+  font-size: 1rem;
+  color: var(--label);
+  line-height: 1.5;
+  margin-bottom: 12px;
+}
+.commish-debt-row {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  background: var(--surface2);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 12px;
+  margin-bottom: 8px;
+}
+.commish-debt-info { flex: 1; }
+.commish-debt-who {
+  font-family: 'Barlow Condensed', sans-serif;
+  font-size: 1.1rem;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  color: var(--text);
+}
+.commish-debt-what {
+  font-family: 'Barlow', sans-serif;
+  font-size: 0.95rem;
+  color: var(--label);
+  line-height: 1.4;
+}
+.mini-settle-btn {
+  background: var(--gold);
+  color: #000;
+  border: none;
+  border-radius: 6px;
+  font-family: 'Barlow Condensed', sans-serif;
+  font-size: 0.92rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  padding: 10px 12px;
+  min-height: 44px;
+  cursor: pointer;
+  white-space: nowrap;
+}
+.mini-unsettle-btn {
+  background: var(--surface3);
+  color: var(--label);
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  font-family: 'Barlow Condensed', sans-serif;
+  font-size: 0.92rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  padding: 10px 12px;
+  min-height: 44px;
+  cursor: pointer;
+  white-space: nowrap;
+}
+.danger-btn {
+  background: var(--red);
+  color: #fff;
+  font-family: 'Barlow Condensed', sans-serif;
+  font-size: 1rem;
+  border: none;
+  padding: 12px 16px;
+  border-radius: 6px;
+  cursor: pointer;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  min-height: 44px;
+  font-weight: 700;
+}
+.commish-mini-empty {
+  font-family: 'Barlow', sans-serif;
+  font-style: italic;
+  font-size: 1rem;
+  color: var(--muted);
+  padding: 8px 0;
+}
+.resolve-block {
+  background: var(--surface2);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 12px;
+  margin-bottom: 10px;
+}
+.resolve-block .commish-debt-who { margin-bottom: 2px; }
+
+@media (max-width: 380px) {
+  .owner-grid { grid-template-columns: 1fr; }
+}
+</style>
+</head>
+<body>
+
+<div class="page-header">
+  <div class="page-supertitle">Slingshot Engaged</div>
+  <h1>Wager Wall</h1>
+</div>
+<div class="header-spacer"></div>
+
+<div class="content">
+  <p class="intro">Every side bet, every All-Star Game punishment, every harebrained league-wide wager — logged in public. A debt on this wall is a debt the whole league can see. Pay up.</p>
+
+  <button class="log-cta" id="openLogBtn">＋ Log a Wager</button>
+
+  <div id="boardArea">
+    <div class="connect-msg" id="loadingMsg">Loading the wall…</div>
+  </div>
+</div>
+
+<div class="commish-gear" id="commishGear" title="Commissioner">⚙</div>
+
+<!-- ============ LOG A WAGER MODAL ============ -->
+<div class="modal-overlay" id="logModal">
+  <div class="modal">
+    <div class="modal-card">
+      <div class="modal-head">
+        <div class="modal-title">Log a Wager</div>
+        <button class="modal-close" id="logClose">✕</button>
+      </div>
+      <p class="modal-sub">Anyone can log a wager — no passcode needed. Only the commissioner can mark a debt paid.</p>
+
+      <label class="form-label">Wager Type</label>
+      <div class="type-picker" id="typePicker">
+        <button class="type-option" data-type="sidebet">
+          <div class="type-option-name">🤝 Side Bet</div>
+          <div class="type-option-desc">Two owners, one matchup. Loser owes the winner.</div>
+        </button>
+        <button class="type-option" data-type="allstar">
+          <div class="type-option-name">⭐ All-Star Game</div>
+          <div class="type-option-desc">Week 18 losing squad — all seven owe entertainment at League Weekend.</div>
+        </button>
+        <button class="type-option" data-type="wildcard">
+          <div class="type-option-name">🎲 Wildcard</div>
+          <div class="type-option-desc">Any group, any stakes. Tag who's on the hook.</div>
+        </button>
+      </div>
+
+      <!-- ===== SIDE BET FIELDS ===== -->
+      <div id="sidebetFields" class="field-hidden">
+        <label class="form-label">The Two Owners</label>
+        <label class="form-help" style="display:block;">Pick the two owners in the bet.</label>
+        <div class="loser-grid">
+          <div class="loser-row">
+            <span id="sbOwnerA_face"></span>
+            <select id="sbOwnerA" style="flex:1;"></select>
+          </div>
+          <div class="loser-row">
+            <span id="sbOwnerB_face"></span>
+            <select id="sbOwnerB" style="flex:1;"></select>
+          </div>
+        </div>
+
+        <label class="form-label">Week of the Game</label>
+        <select id="sbWeek"></select>
+
+        <label class="form-label">The Stakes</label>
+        <label class="form-help">What does the loser owe? e.g. "Buys the winner a steak dinner at League Weekend."</label>
+        <textarea id="sbStakes" placeholder="Loser owes…"></textarea>
+
+        <label class="form-label">Outcome — Optional</label>
+        <label class="form-help">Logging before the game? Leave this on "Pending" — the commissioner sets the loser once the matchup is decided.</label>
+        <select id="sbLoser">
+          <option value="">Pending — winner not decided yet</option>
+        </select>
+      </div>
+
+      <!-- ===== ALL-STAR FIELDS ===== -->
+      <div id="allstarFields" class="field-hidden">
+        <label class="form-label">Season</label>
+        <select id="asSeason"></select>
+
+        <label class="form-label">The Losing Squad — Pick 7</label>
+        <label class="form-help">Select the seven owners on the losing All-Star team. Each gets their own card on the wall.</label>
+        <div class="owner-grid" id="asOwnerGrid"></div>
+        <div class="loser-tag-help" id="asCountNote">0 of 7 selected.</div>
+
+        <label class="form-label">The Punishment</label>
+        <label class="form-help">What entertainment do they owe at the next League Weekend?</label>
+        <textarea id="asStakes" placeholder="The losing squad owes…">Entertain the league at the next League Weekend.</textarea>
+      </div>
+
+      <!-- ===== WILDCARD FIELDS ===== -->
+      <div id="wildcardFields" class="field-hidden">
+        <label class="form-label">Name the Wager</label>
+        <label class="form-help">A short title. e.g. "Brees outscores Burrow, rest of season."</label>
+        <input type="text" id="wcTitle" placeholder="Wager title…" />
+
+        <label class="form-label">Who's In?</label>
+        <label class="form-help">Select every owner involved in the bet.</label>
+        <div class="owner-grid" id="wcOwnerGrid"></div>
+
+        <label class="form-label">Outcome — Optional</label>
+        <label class="loser-tag-help">If the bet's already decided, tap to tag losers (they owe). Logging early? Leave everyone as Winner — the commissioner resolves it later.</label>
+        <div class="loser-grid" id="wcLoserGrid">
+          <div class="commish-mini-empty">Select owners above first.</div>
+        </div>
+
+        <label class="form-label">The Stakes</label>
+        <label class="form-help">What do the losers owe? e.g. "Perform a song at League Weekend."</label>
+        <textarea id="wcStakes" placeholder="Losers owe…"></textarea>
+      </div>
+
+      <button class="form-submit" id="submitWager">Post to the Wall</button>
+      <div class="form-msg" id="logFormMsg"></div>
+    </div>
+  </div>
+</div>
+
+<!-- ============ COMMISH MODAL ============ -->
+<div class="modal-overlay" id="commishModal">
+  <div class="modal">
+    <div class="modal-card">
+      <div class="modal-head">
+        <div class="modal-title">Commissioner</div>
+        <button class="modal-close" id="commishClose">✕</button>
+      </div>
+
+      <div id="commishGate">
+        <p class="modal-sub">Enter the commissioner passcode to settle debts.</p>
+        <div class="passcode-row">
+          <input type="password" id="passcodeInput" placeholder="Passcode" />
+          <button class="passcode-btn" id="passcodeBtn">Unlock</button>
+        </div>
+        <div class="form-msg error" id="passcodeMsg">Wrong passcode.</div>
+      </div>
+
+      <div id="commishPanel" style="display:none;">
+        <div class="commish-section">
+          <h3>Resolve Pending</h3>
+          <p class="commish-note">A wager was logged before the result was known. Pick who lost — it moves to the active wall as a debt.</p>
+          <div id="commishPending"></div>
+        </div>
+        <div class="commish-section">
+          <h3>Active Debts</h3>
+          <p class="commish-note">Mark a debt paid once the wager has been honored. It moves to the settled history.</p>
+          <div id="commishOutstanding"></div>
+        </div>
+        <div class="commish-section">
+          <h3>Settled — Undo</h3>
+          <p class="commish-note">Marked something paid by mistake? Send it back to the active wall.</p>
+          <div id="commishSettled"></div>
+        </div>
+        <div class="commish-section">
+          <h3>Danger Zone</h3>
+          <p class="commish-note">Permanently delete a wager from the wall. There is no undo.</p>
+          <div id="commishDelete"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script type="module">
+import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
+import { getDatabase, ref, onValue, push, update, remove }
+  from "https://www.gstatic.com/firebasejs/10.12.2/firebase-database.js";
+
+/* ---------- config ---------- */
+const COMMISH_PASSCODE = "TheRodge";
+const firebaseConfig = {
+  databaseURL: "https://slingshot-engaged-default-rtdb.firebaseio.com"
+};
+const app = initializeApp(firebaseConfig);
+const db = getDatabase(app);
+const wallRef = ref(db, "wagerWall");
+
+/* ---------- owners ---------- */
+/* id -> display name. png: kyle, brian. all others jpg. */
+const OWNERS = [
+  { id: "alex",   name: "Alex"   },
+  { id: "andy",   name: "Andy"   },
+  { id: "brian",  name: "Brian"  },
+  { id: "daniel", name: "Daniel" },
+  { id: "dylan",  name: "Dylan"  },
+  { id: "jack",   name: "Jack"   },
+  { id: "jordan", name: "Jordan" },
+  { id: "kyle",   name: "Kyle"   },
+  { id: "luke",   name: "Luke"   },
+  { id: "matt",   name: "Matt"   },
+  { id: "mike",   name: "Mike"   },
+  { id: "scott",  name: "Scott"  },
+  { id: "tim",    name: "Tim"    },
+  { id: "wade",   name: "Wade"   },
+];
+const PNG_OWNERS = ["kyle", "brian"];
+const ownerById = Object.fromEntries(OWNERS.map(o => [o.id, o]));
+function ownerName(id) { return (ownerById[id] && ownerById[id].name) || id; }
+function ownerPhoto(id) {
+  const ext = PNG_OWNERS.includes(id) ? "png" : "jpg";
+  return `images/${id}.${ext}`;
+}
+function ownerInitials(id) {
+  return ownerName(id).slice(0, 1).toUpperCase();
+}
+
+/* ---------- helpers ---------- */
+const $ = id => document.getElementById(id);
+function escapeHTML(s) {
+  return String(s == null ? "" : s)
+    .replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;")
+    .replace(/"/g, "&quot;").replace(/'/g, "&#39;");
+}
+function fmtDate(iso) {
+  if (!iso) return "";
+  const d = new Date(iso);
+  if (isNaN(d)) return "";
+  return d.toLocaleDateString("en-US", { month: "short", day: "numeric", year: "numeric" });
+}
+function nowISO() { return new Date().toISOString(); }
+
+/* photo element with initials fallback.
+   On image load failure, swap the <img> for an initials <span>. */
+window.__wwPhotoFail = function (img) {
+  const span = document.createElement("span");
+  span.className = img.dataset.fallbackClass || "";
+  span.textContent = img.dataset.initials || "?";
+  if (img.parentNode) img.parentNode.replaceChild(span, img);
+};
+function photoHTML(id, photoClass, initialsClass) {
+  return `<img class="${photoClass}" src="${ownerPhoto(id)}" alt="${escapeHTML(ownerName(id))}"` +
+    ` data-fallback-class="${initialsClass}" data-initials="${ownerInitials(id)}"` +
+    ` onerror="window.__wwPhotoFail(this)">`;
+}
+
+/* ---------- state ---------- */
+let wallData = {};   // key -> debt object
+
+/* =========================================================
+   FIREBASE LISTENER
+   ========================================================= */
+onValue(wallRef, snap => {
+  wallData = snap.val() || {};
+  renderBoard();
+  if (commishUnlocked) renderCommishPanel();
+}, err => {
+  $("boardArea").innerHTML =
+    `<div class="connect-err">Couldn't connect to the Wager Wall.<br>${escapeHTML(err.message || "")}</div>`;
+});
+
+/* =========================================================
+   RENDER — PUBLIC BOARD
+   ========================================================= */
+function debtList() {
+  return Object.entries(wallData).map(([key, d]) => ({ key, ...d }));
+}
+
+/* a wager is "pending" if it's not settled, can have an outcome,
+   and no debtors have been assigned yet. All-Star debts are never pending. */
+function isPending(d) {
+  if (d.settled) return false;
+  if (d.type === "allstar") return false;
+  return !(d.debtors && d.debtors.length);
+}
+
+function renderBoard() {
+  const all = debtList();
+  const pending = all.filter(d => isPending(d))
+                     .sort((a, b) => (b.created || "").localeCompare(a.created || ""));
+  const active = all.filter(d => !d.settled && !isPending(d))
+                    .sort((a, b) => (b.created || "").localeCompare(a.created || ""));
+  const settled = all.filter(d => d.settled)
+                     .sort((a, b) => (b.settledAt || "").localeCompare(a.settledAt || ""));
+
+  let html = "";
+
+  /* ----- Hall of Shame ----- */
+  html += renderShame(active);
+
+  /* ----- Pending outcomes ----- */
+  if (pending.length > 0) {
+    html += `<div class="section-block">
+      <div class="section-title">Pending Outcomes</div>
+      <div class="section-count">${pending.length} ${pending.length === 1 ? "wager" : "wagers"} awaiting a result</div>`;
+    html += pending.map(d => debtCardHTML(d, "pending")).join("");
+    html += `</div>`;
+  }
+
+  /* ----- Active debts ----- */
+  html += `<div class="section-block">
+    <div class="section-title">On the Hook</div>
+    <div class="section-count">${active.length} active ${active.length === 1 ? "debt" : "debts"}</div>`;
+  if (active.length === 0) {
+    html += `<div class="empty-state">The wall is clean. Nobody owes anybody anything. Suspicious.</div>`;
+  } else {
+    html += active.map(d => debtCardHTML(d, "active")).join("");
+  }
+  html += `</div>`;
+
+  /* ----- Settled history (collapsible) ----- */
+  html += `<div class="section-block">
+    <div class="collapse-toggle" id="settledToggle">
+      <span class="collapse-toggle-label">Settled History · ${settled.length}</span>
+      <span class="collapse-chevron">▼</span>
+    </div>
+    <div class="collapse-body" id="settledBody">`;
+  if (settled.length === 0) {
+    html += `<div class="empty-state">No debts have been paid yet.</div>`;
+  } else {
+    html += settled.map(d => debtCardHTML(d, "settled")).join("");
+  }
+  html += `</div></div>`;
+
+  $("boardArea").innerHTML = html;
+
+  /* wire collapse */
+  const tog = $("settledToggle");
+  if (tog) {
+    tog.addEventListener("click", () => {
+      tog.classList.toggle("open");
+      $("settledBody").classList.toggle("open");
+    });
+  }
+}
+
+/* ----- Hall of Shame: owner(s) with the most active debts ----- */
+function renderShame(active) {
+  if (active.length === 0) return "";
+  const tally = {};
+  active.forEach(d => {
+    (d.debtors || []).forEach(id => { tally[id] = (tally[id] || 0) + 1; });
+  });
+  const ids = Object.keys(tally);
+  if (ids.length === 0) return "";
+  const max = Math.max(...ids.map(id => tally[id]));
+  if (max < 1) return "";
+  const worst = ids.filter(id => tally[id] === max);
+
+  const faces = worst.map(id => photoHTML(id, "shame-photo", "shame-initials")).join("");
+  const names = worst.map(id => escapeHTML(ownerName(id))).join(" & ");
+  const debtWord = max === 1 ? "debt" : "debts";
+
+  return `<div class="shame-card">
+    <div class="shame-eyebrow">💀 Deepest in the Hole</div>
+    <div class="shame-photo-wrap">${faces}</div>
+    <div class="shame-name">${names}</div>
+    <div class="shame-sub">${max} unpaid ${debtWord} on the wall</div>
+  </div>`;
+}
+
+/* ----- one debt card. mode = "pending" | "active" | "settled" ----- */
+function debtCardHTML(d, mode) {
+  const typeLabel = {
+    sidebet:  "🤝 Side Bet",
+    allstar:  "⭐ All-Star Game",
+    wildcard: "🎲 Wildcard"
+  }[d.type] || "Wager";
+
+  const pending = mode === "pending";
+  const settled = mode === "settled";
+
+  let chips = "";
+  let headline = "";
+  let metaLine = "";
+
+  const debtors = d.debtors || [];
+  const winners = d.winners || [];
+
+  if (d.type === "sidebet") {
+    const pair = d.owners || [];
+    chips = `<div class="owners-strip">` + pair.map(id => {
+      let role = "neutral", roleLabel = pending ? "In the bet" : "";
+      if (debtors.includes(id)) { role = "loser"; roleLabel = "Owes"; }
+      else if (winners.includes(id)) { role = "winner"; roleLabel = "Owed"; }
+      return ownerChipHTML(id, role, roleLabel);
+    }).join("") + `</div>`;
+    if (debtors.length) {
+      headline = `<span class="owe-name">${escapeHTML(ownerName(debtors[0]))}</span> owes up.`;
+    } else {
+      headline = `Bet's locked in — winner to be decided.`;
+    }
+    if (d.week) metaLine = `Week ${escapeHTML(d.week)} matchup`;
+
+  } else if (d.type === "allstar") {
+    const id = debtors[0];
+    chips = `<div class="owners-strip">${ownerChipHTML(id, "loser", "Owes")}</div>`;
+    headline = `<span class="owe-name">${escapeHTML(ownerName(id))}</span> lost the All-Star Game.`;
+    metaLine = d.season ? `${escapeHTML(d.season)} All-Star Game · losing squad` : "All-Star Game · losing squad";
+
+  } else { /* wildcard */
+    const involved = d.owners || [];
+    chips = `<div class="owners-strip">` + involved.map(id => {
+      let role = "neutral", roleLabel = pending ? "In the bet" : "In";
+      if (debtors.includes(id)) { role = "loser"; roleLabel = "Owes"; }
+      else if (winners.includes(id)) { role = "winner"; roleLabel = "Owed"; }
+      return ownerChipHTML(id, role, roleLabel);
+    }).join("") + `</div>`;
+    const loserNames = debtors.map(id => escapeHTML(ownerName(id)));
+    if (loserNames.length === 1) {
+      headline = `<span class="owe-name">${loserNames[0]}</span> is on the hook.`;
+    } else if (loserNames.length > 1) {
+      headline = `<span class="owe-name">${loserNames.join(", ")}</span> are on the hook.`;
+    } else {
+      headline = `Wager's live — outcome to be decided.`;
+    }
+    if (d.title) metaLine = escapeHTML(d.title);
+  }
+
+  /* footer per mode */
+  let footer = "";
+  if (settled) {
+    footer = `<div class="settled-stamp">
+      <span class="settled-badge">✓ Paid</span>
+      <span class="settled-when">Settled ${escapeHTML(fmtDate(d.settledAt))}</span>
+    </div>`;
+  } else if (pending) {
+    footer = `<div class="pending-pill">⏳ Awaiting Outcome</div>`;
+  } else if (commishUnlocked) {
+    footer = `<button class="card-settle-btn" data-settle="${escapeHTML(d.key)}">Mark Paid</button>`;
+  }
+
+  return `<div class="debt-card ${mode}">
+    <div class="debt-type-row">
+      <span class="debt-type-tag">${typeLabel}</span>
+      <span class="debt-date">${escapeHTML(fmtDate(d.created))}</span>
+    </div>
+    ${chips}
+    <div class="debt-headline">${headline}</div>
+    <div class="debt-stakes">
+      <span class="debt-stakes-label">The Stakes</span>
+      ${escapeHTML(d.stakes || "—")}
+    </div>
+    ${metaLine ? `<div class="debt-meta">${metaLine}</div>` : ""}
+    ${footer}
+  </div>`;
+}
+
+function ownerChipHTML(id, role, roleLabel) {
+  return `<div class="owner-chip ${role}">
+    ${photoHTML(id, "owner-chip-photo", "owner-chip-initials")}
+    <span class="owner-chip-name">${escapeHTML(ownerName(id))}</span>
+    ${roleLabel ? `<span class="owner-chip-role">${roleLabel}</span>` : ""}
+  </div>`;
+}
+
+/* settle buttons on cards (delegated) */
+$("boardArea").addEventListener("click", e => {
+  const btn = e.target.closest("[data-settle]");
+  if (btn) settleDebt(btn.getAttribute("data-settle"));
+});
+
+/* =========================================================
+   LOG A WAGER — MODAL
+   ========================================================= */
+let currentType = null;
+
+function openModal(el) {
+  el.classList.add("open");
+  document.body.style.overflow = "hidden";
+}
+function closeModal(el) {
+  el.classList.remove("open");
+  document.body.style.overflow = "";
+}
+
+$("openLogBtn").addEventListener("click", () => {
+  resetLogForm();
+  openModal($("logModal"));
+});
+$("logClose").addEventListener("click", () => closeModal($("logModal")));
+$("logModal").addEventListener("click", e => {
+  if (e.target === $("logModal")) closeModal($("logModal"));
+});
+
+/* type picker */
+$("typePicker").querySelectorAll(".type-option").forEach(opt => {
+  opt.addEventListener("click", () => {
+    currentType = opt.getAttribute("data-type");
+    $("typePicker").querySelectorAll(".type-option")
+      .forEach(o => o.classList.toggle("active", o === opt));
+    $("sidebetFields").classList.toggle("field-hidden", currentType !== "sidebet");
+    $("allstarFields").classList.toggle("field-hidden", currentType !== "allstar");
+    $("wildcardFields").classList.toggle("field-hidden", currentType !== "wildcard");
+  });
+});
+
+/* ---- populate selects / grids ---- */
+function ownerOptions(includeBlank, blankLabel) {
+  let o = includeBlank ? `<option value="">${blankLabel || "Select owner…"}</option>` : "";
+  o += OWNERS.map(ow => `<option value="${ow.id}">${escapeHTML(ow.name)}</option>`).join("");
+  return o;
+}
+
+function buildLogForm() {
+  /* side bet */
+  $("sbOwnerA").innerHTML = ownerOptions(true, "Owner A…");
+  $("sbOwnerB").innerHTML = ownerOptions(true, "Owner B…");
+  $("sbWeek").innerHTML = `<option value="">Select week…</option>` +
+    Array.from({ length: 18 }, (_, i) => `<option value="${i + 1}">Week ${i + 1}</option>`).join("");
+  refreshSidebetLoser();
+  $("sbOwnerA").addEventListener("change", () => { refreshSidebetLoser(); refreshSbFace("A"); });
+  $("sbOwnerB").addEventListener("change", () => { refreshSidebetLoser(); refreshSbFace("B"); });
+
+  /* all-star */
+  const yr = new Date().getFullYear();
+  $("asSeason").innerHTML = [yr, yr - 1, yr - 2, yr - 3]
+    .map(y => `<option value="${y}">${y}</option>`).join("");
+  $("asOwnerGrid").innerHTML = OWNERS.map(o => ownerPickHTML(o, "as")).join("");
+  $("asOwnerGrid").querySelectorAll(".owner-pick").forEach(p => {
+    p.addEventListener("click", () => {
+      const checked = $("asOwnerGrid").querySelectorAll(".owner-pick.checked").length;
+      if (!p.classList.contains("checked") && checked >= 7) return; // cap at 7
+      p.classList.toggle("checked");
+      updateAsCount();
+    });
+  });
+
+  /* wildcard */
+  $("wcOwnerGrid").innerHTML = OWNERS.map(o => ownerPickHTML(o, "wc")).join("");
+  $("wcOwnerGrid").querySelectorAll(".owner-pick").forEach(p => {
+    p.addEventListener("click", () => {
+      p.classList.toggle("checked");
+      refreshWildcardLosers();
+    });
+  });
+}
+
+function ownerPickHTML(o, prefix) {
+  return `<div class="owner-pick" data-id="${o.id}" data-prefix="${prefix}">
+    ${photoHTML(o.id, "owner-pick-photo", "owner-pick-initials")}
+    <span class="owner-pick-name">${escapeHTML(o.name)}</span>
+  </div>`;
+}
+
+function refreshSbFace(which) {
+  const sel = $(which === "A" ? "sbOwnerA" : "sbOwnerB");
+  const face = $(which === "A" ? "sbOwnerA_face" : "sbOwnerB_face");
+  if (sel.value) {
+    face.innerHTML = photoHTML(sel.value, "loser-row-photo", "loser-row-initials");
+  } else {
+    face.innerHTML = `<span class="loser-row-initials">?</span>`;
+  }
+}
+
+function refreshSidebetLoser() {
+  const a = $("sbOwnerA").value, b = $("sbOwnerB").value;
+  const prev = $("sbLoser").value;
+  let html = `<option value="">Pending — winner not decided yet</option>`;
+  [a, b].forEach(id => {
+    if (id) html += `<option value="${id}">${escapeHTML(ownerName(id))}</option>`;
+  });
+  $("sbLoser").innerHTML = html;
+  if ([a, b].includes(prev)) $("sbLoser").value = prev;
+}
+
+function updateAsCount() {
+  const n = $("asOwnerGrid").querySelectorAll(".owner-pick.checked").length;
+  $("asCountNote").textContent = `${n} of 7 selected.`;
+}
+
+function refreshWildcardLosers() {
+  const picked = [...$("wcOwnerGrid").querySelectorAll(".owner-pick.checked")]
+    .map(p => p.getAttribute("data-id"));
+  const grid = $("wcLoserGrid");
+  if (picked.length === 0) {
+    grid.innerHTML = `<div class="commish-mini-empty">Select owners above first.</div>`;
+    return;
+  }
+  /* preserve existing loser/winner toggle states */
+  const prevState = {};
+  grid.querySelectorAll(".loser-row").forEach(r => {
+    prevState[r.getAttribute("data-id")] =
+      r.querySelector(".loser-toggle").classList.contains("is-loser");
+  });
+  grid.innerHTML = picked.map(id => {
+    const isLoser = prevState[id] === true;
+    return `<div class="loser-row" data-id="${id}">
+      ${photoHTML(id, "loser-row-photo", "loser-row-initials")}
+      <span class="loser-row-name">${escapeHTML(ownerName(id))}</span>
+      <button type="button" class="loser-toggle ${isLoser ? "is-loser" : "is-winner"}">
+        ${isLoser ? "Loser — Owes" : "Winner"}
+      </button>
+    </div>`;
+  }).join("");
+  grid.querySelectorAll(".loser-toggle").forEach(btn => {
+    btn.addEventListener("click", () => {
+      const loser = btn.classList.toggle("is-loser");
+      btn.classList.toggle("is-winner", !loser);
+      btn.textContent = loser ? "Loser — Owes" : "Winner";
+    });
+  });
+}
+
+function resetLogForm() {
+  currentType = null;
+  $("typePicker").querySelectorAll(".type-option").forEach(o => o.classList.remove("active"));
+  $("sidebetFields").classList.add("field-hidden");
+  $("allstarFields").classList.add("field-hidden");
+  $("wildcardFields").classList.add("field-hidden");
+  $("sbOwnerA").value = ""; $("sbOwnerB").value = "";
+  $("sbWeek").value = ""; $("sbStakes").value = "";
+  $("sbOwnerA_face").innerHTML = ""; $("sbOwnerB_face").innerHTML = "";
+  refreshSidebetLoser();
+  $("asStakes").value = "Entertain the league at the next League Weekend.";
+  $("asOwnerGrid").querySelectorAll(".owner-pick").forEach(p => p.classList.remove("checked"));
+  updateAsCount();
+  $("wcTitle").value = ""; $("wcStakes").value = "";
+  $("wcOwnerGrid").querySelectorAll(".owner-pick").forEach(p => p.classList.remove("checked"));
+  refreshWildcardLosers();
+  hideFormMsg();
+}
+
+function showFormMsg(text, kind) {
+  const el = $("logFormMsg");
+  el.textContent = text;
+  el.className = "form-msg show " + kind;
+}
+function hideFormMsg() {
+  $("logFormMsg").className = "form-msg";
+}
+
+/* ---- submit ---- */
+$("submitWager").addEventListener("click", submitWager);
+
+async function submitWager() {
+  hideFormMsg();
+  if (!currentType) {
+    showFormMsg("Pick a wager type first.", "error");
+    return;
+  }
+
+  let records = []; // one or more debt objects to push
+
+  if (currentType === "sidebet") {
+    const a = $("sbOwnerA").value, b = $("sbOwnerB").value;
+    const loser = $("sbLoser").value;
+    const week = $("sbWeek").value;
+    const stakes = $("sbStakes").value.trim();
+    if (!a || !b) { showFormMsg("Pick both owners.", "error"); return; }
+    if (a === b) { showFormMsg("Pick two different owners.", "error"); return; }
+    if (!stakes) { showFormMsg("Describe the stakes.", "error"); return; }
+    const debtors = loser ? [loser] : [];
+    const winners = loser ? [a, b].filter(id => id !== loser) : [];
+    records.push({
+      type: "sidebet",
+      owners: [a, b],
+      debtors, winners,
+      week: week || "",
+      stakes,
+      created: nowISO(),
+      settled: false
+    });
+
+  } else if (currentType === "allstar") {
+    const season = $("asSeason").value;
+    const stakes = $("asStakes").value.trim();
+    const losers = [...$("asOwnerGrid").querySelectorAll(".owner-pick.checked")]
+      .map(p => p.getAttribute("data-id"));
+    if (losers.length !== 7) {
+      showFormMsg(`Pick exactly 7 owners — you have ${losers.length}.`, "error");
+      return;
+    }
+    if (!stakes) { showFormMsg("Describe the punishment.", "error"); return; }
+    const eventId = "asg" + Date.now();
+    const created = nowISO();
+    /* one card per losing owner, linked by eventId */
+    losers.forEach(id => {
+      records.push({
+        type: "allstar",
+        eventId,
+        season,
+        owners: [id],
+        debtors: [id],
+        winners: [],
+        stakes,
+        created,
+        settled: false
+      });
+    });
+
+  } else { /* wildcard */
+    const title = $("wcTitle").value.trim();
+    const stakes = $("wcStakes").value.trim();
+    const involved = [...$("wcOwnerGrid").querySelectorAll(".owner-pick.checked")]
+      .map(p => p.getAttribute("data-id"));
+    if (involved.length < 2) { showFormMsg("Pick at least two owners.", "error"); return; }
+    if (!title) { showFormMsg("Give the wager a title.", "error"); return; }
+    if (!stakes) { showFormMsg("Describe the stakes.", "error"); return; }
+    const debtors = [...$("wcLoserGrid").querySelectorAll(".loser-row")]
+      .filter(r => r.querySelector(".loser-toggle").classList.contains("is-loser"))
+      .map(r => r.getAttribute("data-id"));
+    const winners = involved.filter(id => !debtors.includes(id));
+    records.push({
+      type: "wildcard",
+      title,
+      owners: involved,
+      debtors, winners,
+      stakes,
+      created: nowISO(),
+      settled: false
+    });
+  }
+
+  $("submitWager").disabled = true;
+  try {
+    for (const rec of records) {
+      await push(wallRef, rec);
+    }
+    closeModal($("logModal"));
+    resetLogForm();
+  } catch (err) {
+    showFormMsg("Couldn't post — " + (err.message || "try again."), "error");
+  } finally {
+    $("submitWager").disabled = false;
+  }
+}
+
+/* =========================================================
+   COMMISSIONER
+   ========================================================= */
+let commishUnlocked = false;
+
+$("commishGear").addEventListener("click", () => openModal($("commishModal")));
+$("commishClose").addEventListener("click", () => closeModal($("commishModal")));
+$("commishModal").addEventListener("click", e => {
+  if (e.target === $("commishModal")) closeModal($("commishModal"));
+});
+
+$("passcodeBtn").addEventListener("click", tryUnlock);
+$("passcodeInput").addEventListener("keydown", e => { if (e.key === "Enter") tryUnlock(); });
+
+function tryUnlock() {
+  if ($("passcodeInput").value === COMMISH_PASSCODE) {
+    commishUnlocked = true;
+    $("commishGate").style.display = "none";
+    $("commishPanel").style.display = "block";
+    renderCommishPanel();
+    renderBoard(); // re-render so card "Mark Paid" buttons appear
+  } else {
+    $("passcodeMsg").classList.add("show");
+  }
+}
+
+function debtSummaryText(d) {
+  if (d.type === "allstar") {
+    return `${ownerName((d.debtors || [])[0])} — ${d.season || ""} All-Star Game`;
+  }
+  if (d.type === "sidebet") {
+    const who = (d.debtors || []).map(ownerName).join(", ") || "TBD";
+    return `Side Bet — ${who}${d.week ? " (Wk " + d.week + ")" : ""}`;
+  }
+  return `Wildcard — ${d.title || "untitled"}`;
+}
+
+function renderCommishPanel() {
+  const all = debtList();
+  const pending = all.filter(d => isPending(d))
+                     .sort((a, b) => (b.created || "").localeCompare(a.created || ""));
+  const active = all.filter(d => !d.settled && !isPending(d))
+                    .sort((a, b) => (b.created || "").localeCompare(a.created || ""));
+  const settled = all.filter(d => d.settled)
+                     .sort((a, b) => (b.settledAt || "").localeCompare(a.settledAt || ""));
+
+  /* pending -> resolve outcome */
+  $("commishPending").innerHTML = pending.length === 0
+    ? `<div class="commish-mini-empty">No wagers awaiting an outcome.</div>`
+    : pending.map(d => {
+        const owners = d.owners || [];
+        const toggles = owners.map(id => `
+          <div class="loser-row" data-id="${id}">
+            ${photoHTML(id, "loser-row-photo", "loser-row-initials")}
+            <span class="loser-row-name">${escapeHTML(ownerName(id))}</span>
+            <button type="button" class="loser-toggle is-winner" data-rtoggle>Winner</button>
+          </div>`).join("");
+        return `<div class="resolve-block" data-resolve="${escapeHTML(d.key)}">
+          <div class="commish-debt-who">${escapeHTML(debtSummaryText(d))}</div>
+          <div class="commish-debt-what">${escapeHTML(d.stakes || "")}</div>
+          <div class="loser-grid" style="margin-top:8px;">${toggles}</div>
+          <button class="mini-settle-btn" data-rconfirm="${escapeHTML(d.key)}"
+            style="width:100%;margin-top:8px;">Confirm Result</button>
+        </div>`;
+      }).join("");
+
+  /* active -> settle */
+  $("commishOutstanding").innerHTML = active.length === 0
+    ? `<div class="commish-mini-empty">No active debts.</div>`
+    : active.map(d => `
+      <div class="commish-debt-row">
+        <div class="commish-debt-info">
+          <div class="commish-debt-who">${escapeHTML(debtSummaryText(d))}</div>
+          <div class="commish-debt-what">${escapeHTML(d.stakes || "")}</div>
+        </div>
+        <button class="mini-settle-btn" data-csettle="${escapeHTML(d.key)}">Mark Paid</button>
+      </div>`).join("");
+
+  /* settled -> undo */
+  $("commishSettled").innerHTML = settled.length === 0
+    ? `<div class="commish-mini-empty">Nothing settled yet.</div>`
+    : settled.map(d => `
+      <div class="commish-debt-row">
+        <div class="commish-debt-info">
+          <div class="commish-debt-who">${escapeHTML(debtSummaryText(d))}</div>
+          <div class="commish-debt-what">Settled ${escapeHTML(fmtDate(d.settledAt))}</div>
+        </div>
+        <button class="mini-unsettle-btn" data-cunsettle="${escapeHTML(d.key)}">Undo</button>
+      </div>`).join("");
+
+  /* delete */
+  $("commishDelete").innerHTML = all.length === 0
+    ? `<div class="commish-mini-empty">Nothing to delete.</div>`
+    : all.sort((a, b) => (b.created || "").localeCompare(a.created || ""))
+        .map(d => `
+      <div class="commish-debt-row">
+        <div class="commish-debt-info">
+          <div class="commish-debt-who">${escapeHTML(debtSummaryText(d))}</div>
+          <div class="commish-debt-what">${escapeHTML(d.stakes || "")}</div>
+        </div>
+        <button class="danger-btn" data-cdelete="${escapeHTML(d.key)}">Delete</button>
+      </div>`).join("");
+}
+
+/* resolve a pending wager: assign losers/winners, drop into active wall */
+async function resolvePending(key) {
+  if (!commishUnlocked) return;
+  const d = wallData[key];
+  if (!d) return;
+  const block = document.querySelector(`.resolve-block[data-resolve="${cssEsc(key)}"]`);
+  if (!block) return;
+  const debtors = [...block.querySelectorAll(".loser-row")]
+    .filter(r => r.querySelector(".loser-toggle").classList.contains("is-loser"))
+    .map(r => r.getAttribute("data-id"));
+  if (debtors.length === 0) {
+    alert("Tag at least one owner as the loser before confirming.");
+    return;
+  }
+  const winners = (d.owners || []).filter(id => !debtors.includes(id));
+  const loserNames = debtors.map(ownerName).join(", ");
+  if (!confirm(`Confirm result?\n\n${debtSummaryText(d)}\n\nOn the hook: ${loserNames}\n\nThis moves to the active wall as a debt.`)) return;
+  try {
+    await update(ref(db, `wagerWall/${key}`), { debtors, winners });
+  } catch (err) {
+    alert("Couldn't update — " + (err.message || ""));
+  }
+}
+
+/* escape a string for use inside a CSS attribute selector */
+function cssEsc(s) {
+  return String(s).replace(/["\\]/g, "\\$&");
+}
+
+/* commish panel delegated clicks */
+$("commishPanel").addEventListener("click", e => {
+  const rtoggle = e.target.closest("[data-rtoggle]");
+  if (rtoggle) {
+    const loser = rtoggle.classList.toggle("is-loser");
+    rtoggle.classList.toggle("is-winner", !loser);
+    rtoggle.textContent = loser ? "Loser — Owes" : "Winner";
+    return;
+  }
+  const rconfirm = e.target.closest("[data-rconfirm]");
+  if (rconfirm) { resolvePending(rconfirm.getAttribute("data-rconfirm")); return; }
+
+  const s = e.target.closest("[data-csettle]");
+  const u = e.target.closest("[data-cunsettle]");
+  const x = e.target.closest("[data-cdelete]");
+  if (s) settleDebt(s.getAttribute("data-csettle"));
+  else if (u) unsettleDebt(u.getAttribute("data-cunsettle"));
+  else if (x) deleteDebt(x.getAttribute("data-cdelete"));
+});
+
+async function settleDebt(key) {
+  if (!commishUnlocked) return;
+  const d = wallData[key];
+  if (!d) return;
+  if (!confirm(`Mark this debt paid?\n\n${debtSummaryText(d)}\n\nIt moves to the settled history.`)) return;
+  try {
+    await update(ref(db, `wagerWall/${key}`), { settled: true, settledAt: nowISO() });
+  } catch (err) {
+    alert("Couldn't update — " + (err.message || ""));
+  }
+}
+
+async function unsettleDebt(key) {
+  if (!commishUnlocked) return;
+  const d = wallData[key];
+  if (!d) return;
+  if (!confirm(`Send this debt back to the active wall?\n\n${debtSummaryText(d)}`)) return;
+  try {
+    await update(ref(db, `wagerWall/${key}`), { settled: false, settledAt: null });
+  } catch (err) {
+    alert("Couldn't update — " + (err.message || ""));
+  }
+}
+
+async function deleteDebt(key) {
+  if (!commishUnlocked) return;
+  const d = wallData[key];
+  if (!d) return;
+  if (!confirm(`Permanently delete this wager?\n\n${debtSummaryText(d)}\n\nThis cannot be undone.`)) return;
+  if (!confirm("Are you absolutely sure? Last chance to back out.")) return;
+  try {
+    await remove(ref(db, `wagerWall/${key}`));
+  } catch (err) {
+    alert("Couldn't delete — " + (err.message || ""));
+  }
+}
+
+/* =========================================================
+   INIT
+   ========================================================= */
+buildLogForm();
+</script>
+</body>
+</html>
