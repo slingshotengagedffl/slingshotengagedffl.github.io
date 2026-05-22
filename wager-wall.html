@@ -177,8 +177,12 @@ body {
   padding: 18px 16px;
   margin-bottom: 16px;
 }
-.debt-card.settled {
+.debt-card.closed {
   border-left-color: var(--gold);
+  opacity: 0.92;
+}
+.debt-card.reneged {
+  border-left-color: var(--red-bright);
   opacity: 0.92;
 }
 .debt-card.pending {
@@ -349,6 +353,15 @@ body {
   text-transform: uppercase;
   color: var(--muted);
 }
+.settled-badge.reneged { color: var(--red-bright); }
+.renege-reason {
+  font-family: 'Barlow', sans-serif;
+  font-size: 1rem;
+  font-style: italic;
+  color: var(--label);
+  line-height: 1.5;
+  margin-top: 8px;
+}
 
 /* commish settle button on a card */
 .card-settle-btn {
@@ -369,6 +382,24 @@ body {
   transition: background 0.15s, color 0.15s;
 }
 .card-settle-btn:hover { background: var(--gold); color: #000; }
+.card-renege-btn {
+  width: 100%;
+  margin-top: 8px;
+  background: var(--surface3);
+  border: 1px solid var(--red);
+  color: var(--red-bright);
+  font-family: 'Barlow Condensed', sans-serif;
+  font-size: 1rem;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  padding: 12px;
+  border-radius: 6px;
+  cursor: pointer;
+  min-height: 48px;
+  transition: background 0.15s, color 0.15s;
+}
+.card-renege-btn:hover { background: var(--red); color: #fff; }
 
 .empty-state {
   font-family: 'Barlow', sans-serif;
@@ -830,6 +861,28 @@ textarea:hover, textarea:focus {
   cursor: pointer;
   white-space: nowrap;
 }
+.mini-renege-btn {
+  background: var(--surface3);
+  color: var(--red-bright);
+  border: 1px solid var(--red);
+  border-radius: 6px;
+  font-family: 'Barlow Condensed', sans-serif;
+  font-size: 0.92rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  padding: 10px 12px;
+  min-height: 44px;
+  cursor: pointer;
+  white-space: nowrap;
+}
+.mini-renege-btn:hover { background: var(--red); color: #fff; }
+.commish-btn-pair {
+  display: flex;
+  gap: 6px;
+  flex-shrink: 0;
+}
+.commish-debt-stacked .commish-btn-pair { flex-direction: column; }
 .mini-unsettle-btn {
   background: var(--surface3);
   color: var(--label);
@@ -1028,8 +1081,8 @@ textarea:hover, textarea:focus {
           <div id="commishOutstanding"></div>
         </div>
         <div class="commish-section">
-          <h3>Settled — Undo</h3>
-          <p class="commish-note">Marked something paid by mistake? Send it back to the active wall.</p>
+          <h3>Reopen a Wager</h3>
+          <p class="commish-note">Marked something paid or reneged by mistake? Send it back to the active wall.</p>
           <div id="commishSettled"></div>
         </div>
         <div class="commish-section">
@@ -1146,10 +1199,15 @@ function debtList() {
   return Object.entries(wallData).map(([key, d]) => ({ key, ...d }));
 }
 
-/* a wager is "pending" if it's not settled, can have an outcome,
+/* a wager is "closed" once it's resolved one way or the other:
+   paid (settled) or backed out of (reneged). */
+function isClosed(d) { return !!(d.settled || d.reneged); }
+function closedAt(d) { return d.settledAt || d.renegedAt || ""; }
+
+/* a wager is "pending" if it's open, can have an outcome,
    and no debtors have been assigned yet. All-Star debts are never pending. */
 function isPending(d) {
-  if (d.settled) return false;
+  if (isClosed(d)) return false;
   if (d.type === "allstar") return false;
   return !(d.debtors && d.debtors.length);
 }
@@ -1158,10 +1216,10 @@ function renderBoard() {
   const all = debtList();
   const pending = all.filter(d => isPending(d))
                      .sort((a, b) => (b.created || "").localeCompare(a.created || ""));
-  const active = all.filter(d => !d.settled && !isPending(d))
+  const active = all.filter(d => !isClosed(d) && !isPending(d))
                     .sort((a, b) => (b.created || "").localeCompare(a.created || ""));
-  const settled = all.filter(d => d.settled)
-                     .sort((a, b) => (b.settledAt || "").localeCompare(a.settledAt || ""));
+  const closed = all.filter(d => isClosed(d))
+                     .sort((a, b) => closedAt(b).localeCompare(closedAt(a)));
 
   let html = "";
 
@@ -1188,17 +1246,17 @@ function renderBoard() {
   }
   html += `</div>`;
 
-  /* ----- Settled history (collapsible) ----- */
+  /* ----- Settled history (collapsible) — includes paid and reneged ----- */
   html += `<div class="section-block">
     <div class="collapse-toggle" id="settledToggle">
-      <span class="collapse-toggle-label">Settled History · ${settled.length}</span>
+      <span class="collapse-toggle-label">Settled History · ${closed.length}</span>
       <span class="collapse-chevron">▼</span>
     </div>
     <div class="collapse-body" id="settledBody">`;
-  if (settled.length === 0) {
-    html += `<div class="empty-state">No debts have been paid yet.</div>`;
+  if (closed.length === 0) {
+    html += `<div class="empty-state">Nothing's been settled yet — no debts paid, none reneged on.</div>`;
   } else {
-    html += settled.map(d => debtCardHTML(d, "settled")).join("");
+    html += closed.map(d => debtCardHTML(d, "closed")).join("");
   }
   html += `</div></div>`;
 
@@ -1239,7 +1297,7 @@ function renderShame(active) {
   </div>`;
 }
 
-/* ----- one debt card. mode = "pending" | "active" | "settled" ----- */
+/* ----- one debt card. mode = "pending" | "active" | "closed" ----- */
 function debtCardHTML(d, mode) {
   const typeLabel = {
     sidebet:  "🤝 Side Bet",
@@ -1248,7 +1306,9 @@ function debtCardHTML(d, mode) {
   }[d.type] || "Wager";
 
   const pending = mode === "pending";
-  const settled = mode === "settled";
+  const closed = mode === "closed";
+  const reneged = closed && !!d.reneged;
+  const settled = closed && !reneged;
 
   let chips = "";
   let headline = "";
@@ -1302,7 +1362,15 @@ function debtCardHTML(d, mode) {
 
   /* footer per mode */
   let footer = "";
-  if (settled) {
+  if (reneged) {
+    footer = `<div class="settled-stamp reneged">
+      <span class="settled-badge reneged">✗ Reneged</span>
+      <span class="settled-when">Backed out ${escapeHTML(fmtDate(d.renegedAt))}</span>
+    </div>`;
+    if (d.renegeReason) {
+      footer += `<div class="renege-reason">"${escapeHTML(d.renegeReason)}"</div>`;
+    }
+  } else if (settled) {
     footer = `<div class="settled-stamp">
       <span class="settled-badge">✓ Paid</span>
       <span class="settled-when">Settled ${escapeHTML(fmtDate(d.settledAt))}</span>
@@ -1310,10 +1378,13 @@ function debtCardHTML(d, mode) {
   } else if (pending) {
     footer = `<div class="pending-pill">⏳ Awaiting Outcome</div>`;
   } else if (commishUnlocked) {
-    footer = `<button class="card-settle-btn" data-settle="${escapeHTML(d.key)}">Mark Paid</button>`;
+    footer = `<button class="card-settle-btn" data-settle="${escapeHTML(d.key)}">Mark Paid</button>
+      <button class="card-renege-btn" data-renege="${escapeHTML(d.key)}">Mark Reneged</button>`;
   }
 
-  return `<div class="debt-card ${mode}">
+  const cardClass = reneged ? "closed reneged" : mode;
+
+  return `<div class="debt-card ${cardClass}">
     <div class="debt-type-row">
       <span class="debt-type-tag">${typeLabel}</span>
       <span class="debt-date">${escapeHTML(fmtDate(d.created))}</span>
@@ -1337,10 +1408,12 @@ function ownerChipHTML(id, role, roleLabel) {
   </div>`;
 }
 
-/* settle buttons on cards (delegated) */
+/* settle / renege buttons on cards (delegated) */
 $("boardArea").addEventListener("click", e => {
-  const btn = e.target.closest("[data-settle]");
-  if (btn) settleDebt(btn.getAttribute("data-settle"));
+  const s = e.target.closest("[data-settle]");
+  if (s) { settleDebt(s.getAttribute("data-settle")); return; }
+  const r = e.target.closest("[data-renege]");
+  if (r) { renegeDebt(r.getAttribute("data-renege")); return; }
 });
 
 /* =========================================================
@@ -1667,10 +1740,10 @@ function renderCommishPanel() {
   const all = debtList();
   const pending = all.filter(d => isPending(d))
                      .sort((a, b) => (b.created || "").localeCompare(a.created || ""));
-  const active = all.filter(d => !d.settled && !isPending(d))
+  const active = all.filter(d => !isClosed(d) && !isPending(d))
                     .sort((a, b) => (b.created || "").localeCompare(a.created || ""));
-  const settled = all.filter(d => d.settled)
-                     .sort((a, b) => (b.settledAt || "").localeCompare(a.settledAt || ""));
+  const closed = all.filter(d => isClosed(d))
+                    .sort((a, b) => closedAt(b).localeCompare(closedAt(a)));
 
   /* pending -> resolve outcome */
   $("commishPending").innerHTML = pending.length === 0
@@ -1692,29 +1765,36 @@ function renderCommishPanel() {
         </div>`;
       }).join("");
 
-  /* active -> settle */
+  /* active -> settle or renege */
   $("commishOutstanding").innerHTML = active.length === 0
     ? `<div class="commish-mini-empty">No active debts.</div>`
     : active.map(d => `
-      <div class="commish-debt-row">
+      <div class="commish-debt-row commish-debt-stacked">
         <div class="commish-debt-info">
           <div class="commish-debt-who">${escapeHTML(debtSummaryText(d))}</div>
           <div class="commish-debt-what">${escapeHTML(d.stakes || "")}</div>
         </div>
-        <button class="mini-settle-btn" data-csettle="${escapeHTML(d.key)}">Mark Paid</button>
+        <div class="commish-btn-pair">
+          <button class="mini-settle-btn" data-csettle="${escapeHTML(d.key)}">Mark Paid</button>
+          <button class="mini-renege-btn" data-crenege="${escapeHTML(d.key)}">Reneged</button>
+        </div>
       </div>`).join("");
 
-  /* settled -> undo */
-  $("commishSettled").innerHTML = settled.length === 0
+  /* closed -> undo (paid or reneged) */
+  $("commishSettled").innerHTML = closed.length === 0
     ? `<div class="commish-mini-empty">Nothing settled yet.</div>`
-    : settled.map(d => `
-      <div class="commish-debt-row">
-        <div class="commish-debt-info">
-          <div class="commish-debt-who">${escapeHTML(debtSummaryText(d))}</div>
-          <div class="commish-debt-what">Settled ${escapeHTML(fmtDate(d.settledAt))}</div>
-        </div>
-        <button class="mini-unsettle-btn" data-cunsettle="${escapeHTML(d.key)}">Undo</button>
-      </div>`).join("");
+    : closed.map(d => {
+        const status = d.reneged
+          ? `Reneged ${escapeHTML(fmtDate(d.renegedAt))}`
+          : `Settled ${escapeHTML(fmtDate(d.settledAt))}`;
+        return `<div class="commish-debt-row">
+          <div class="commish-debt-info">
+            <div class="commish-debt-who">${escapeHTML(debtSummaryText(d))}</div>
+            <div class="commish-debt-what">${status}</div>
+          </div>
+          <button class="mini-unsettle-btn" data-cunsettle="${escapeHTML(d.key)}">Undo</button>
+        </div>`;
+      }).join("");
 
   /* delete */
   $("commishDelete").innerHTML = all.length === 0
@@ -1772,9 +1852,11 @@ $("commishPanel").addEventListener("click", e => {
   if (rconfirm) { resolvePending(rconfirm.getAttribute("data-rconfirm")); return; }
 
   const s = e.target.closest("[data-csettle]");
+  const cr = e.target.closest("[data-crenege]");
   const u = e.target.closest("[data-cunsettle]");
   const x = e.target.closest("[data-cdelete]");
   if (s) settleDebt(s.getAttribute("data-csettle"));
+  else if (cr) renegeDebt(cr.getAttribute("data-crenege"));
   else if (u) unsettleDebt(u.getAttribute("data-cunsettle"));
   else if (x) deleteDebt(x.getAttribute("data-cdelete"));
 });
@@ -1785,7 +1867,28 @@ async function settleDebt(key) {
   if (!d) return;
   if (!confirm(`Mark this debt paid?\n\n${debtSummaryText(d)}\n\nIt moves to the settled history.`)) return;
   try {
-    await update(ref(db, `wagerWall/${key}`), { settled: true, settledAt: nowISO() });
+    await update(ref(db, `wagerWall/${key}`), {
+      settled: true, settledAt: nowISO(),
+      reneged: false, renegedAt: null, renegeReason: null
+    });
+  } catch (err) {
+    alert("Couldn't update — " + (err.message || ""));
+  }
+}
+
+async function renegeDebt(key) {
+  if (!commishUnlocked) return;
+  const d = wallData[key];
+  if (!d) return;
+  if (!confirm(`Mark this debt as reneged?\n\n${debtSummaryText(d)}\n\nThis records that the wager was backed out of — not honored. It moves to the settled history with a Reneged stamp.`)) return;
+  let reason = prompt("Optional — what happened? (e.g. \"Daniel refused to make the video.\")\n\nLeave blank to skip.", "");
+  if (reason === null) return; // user cancelled the prompt
+  reason = reason.trim();
+  try {
+    await update(ref(db, `wagerWall/${key}`), {
+      reneged: true, renegedAt: nowISO(), renegeReason: reason || null,
+      settled: false, settledAt: null
+    });
   } catch (err) {
     alert("Couldn't update — " + (err.message || ""));
   }
@@ -1795,9 +1898,12 @@ async function unsettleDebt(key) {
   if (!commishUnlocked) return;
   const d = wallData[key];
   if (!d) return;
-  if (!confirm(`Send this debt back to the active wall?\n\n${debtSummaryText(d)}`)) return;
+  if (!confirm(`Send this wager back to the active wall?\n\n${debtSummaryText(d)}`)) return;
   try {
-    await update(ref(db, `wagerWall/${key}`), { settled: false, settledAt: null });
+    await update(ref(db, `wagerWall/${key}`), {
+      settled: false, settledAt: null,
+      reneged: false, renegedAt: null, renegeReason: null
+    });
   } catch (err) {
     alert("Couldn't update — " + (err.message || ""));
   }
