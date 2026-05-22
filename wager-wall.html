@@ -673,12 +673,12 @@ textarea:hover, textarea:focus {
   border-radius: 6px;
   color: var(--label);
   font-family: 'Barlow Condensed', sans-serif;
-  font-size: 0.95rem;
+  font-size: 1.1rem;
   font-weight: 700;
   letter-spacing: 0.1em;
   text-transform: uppercase;
-  padding: 8px 12px;
-  min-height: 44px;
+  padding: 10px 14px;
+  min-height: 52px;
   cursor: pointer;
   white-space: nowrap;
   transition: all 0.15s;
@@ -881,6 +881,7 @@ textarea:hover, textarea:focus {
 </style>
 </head>
 <body>
+<script src="nav.js"></script>
 
 <div class="page-header">
   <div class="page-supertitle">Slingshot Engaged</div>
@@ -908,21 +909,19 @@ textarea:hover, textarea:focus {
         <div class="modal-title">Log a Wager</div>
         <button class="modal-close" id="logClose">✕</button>
       </div>
-      <p class="modal-sub">Anyone can log a wager — no passcode needed. Only the commissioner can mark a debt paid.</p>
-
       <label class="form-label">Wager Type</label>
       <div class="type-picker" id="typePicker">
         <button class="type-option" data-type="sidebet">
           <div class="type-option-name">🤝 Side Bet</div>
           <div class="type-option-desc">Two owners, one matchup. Loser owes the winner.</div>
         </button>
-        <button class="type-option" data-type="allstar">
-          <div class="type-option-name">⭐ All-Star Game</div>
-          <div class="type-option-desc">Week 18 losing squad — all seven owe entertainment at League Weekend.</div>
-        </button>
         <button class="type-option" data-type="wildcard">
           <div class="type-option-name">🎲 Wildcard</div>
           <div class="type-option-desc">Any group, any stakes. Tag who's on the hook.</div>
+        </button>
+        <button class="type-option" data-type="allstar">
+          <div class="type-option-name">⭐ All-Star Game</div>
+          <div class="type-option-desc">Week 18 losing squad — all seven owe entertainment at League Weekend.</div>
         </button>
       </div>
 
@@ -944,11 +943,11 @@ textarea:hover, textarea:focus {
         <label class="form-label">Week of the Game</label>
         <select id="sbWeek"></select>
 
-        <label class="form-label">The Stakes</label>
+        <label class="form-label">Terms of the Bet</label>
         <label class="form-help">What does the loser owe? e.g. "Buys the winner a steak dinner at League Weekend."</label>
         <textarea id="sbStakes" placeholder="Loser owes…"></textarea>
 
-        <label class="form-label">Outcome — Optional</label>
+        <label class="form-label">Outcome (Optional)</label>
         <label class="form-help">Logging before the game? Leave this on "Pending" — the commissioner sets the loser once the matchup is decided.</label>
         <select id="sbLoser">
           <option value="">Pending — winner not decided yet</option>
@@ -972,23 +971,19 @@ textarea:hover, textarea:focus {
 
       <!-- ===== WILDCARD FIELDS ===== -->
       <div id="wildcardFields" class="field-hidden">
-        <label class="form-label">Name the Wager</label>
-        <label class="form-help">A short title. e.g. "Brees outscores Burrow, rest of season."</label>
-        <input type="text" id="wcTitle" placeholder="Wager title…" />
-
         <label class="form-label">Who's In?</label>
         <label class="form-help">Select every owner involved in the bet.</label>
         <div class="owner-grid" id="wcOwnerGrid"></div>
 
-        <label class="form-label">Outcome — Optional</label>
+        <label class="form-label">Terms of the Bet</label>
+        <label class="form-help">Describe the wager and what the losers owe. e.g. "Brees outscores Burrow rest of season — losers perform a song at League Weekend."</label>
+        <textarea id="wcStakes" placeholder="The bet is…"></textarea>
+
+        <label class="form-label">Outcome (Optional)</label>
         <label class="loser-tag-help">If the bet's already decided, tap to tag losers (they owe). Logging early? Leave everyone as Winner — the commissioner resolves it later.</label>
         <div class="loser-grid" id="wcLoserGrid">
           <div class="commish-mini-empty">Select owners above first.</div>
         </div>
-
-        <label class="form-label">The Stakes</label>
-        <label class="form-help">What do the losers owe? e.g. "Perform a song at League Weekend."</label>
-        <textarea id="wcStakes" placeholder="Losers owe…"></textarea>
       </div>
 
       <button class="form-submit" id="submitWager">Post to the Wall</button>
@@ -1098,6 +1093,16 @@ function fmtDate(iso) {
   return d.toLocaleDateString("en-US", { month: "short", day: "numeric", year: "numeric" });
 }
 function nowISO() { return new Date().toISOString(); }
+
+/* join a list of names grammatically:
+   ["A"] -> "A"; ["A","B"] -> "A & B"; ["A","B","C"] -> "A, B & C" */
+function joinNames(names) {
+  const arr = names.filter(Boolean);
+  if (arr.length === 0) return "";
+  if (arr.length === 1) return arr[0];
+  if (arr.length === 2) return arr[0] + " & " + arr[1];
+  return arr.slice(0, -1).join(", ") + " & " + arr[arr.length - 1];
+}
 
 /* photo element with initials fallback.
    On image load failure, swap the <img> for an initials <span>. */
@@ -1217,7 +1222,7 @@ function renderShame(active) {
   const worst = ids.filter(id => tally[id] === max);
 
   const faces = worst.map(id => photoHTML(id, "shame-photo", "shame-initials")).join("");
-  const names = worst.map(id => escapeHTML(ownerName(id))).join(" & ");
+  const names = joinNames(worst.map(id => escapeHTML(ownerName(id))));
   const debtWord = max === 1 ? "debt" : "debts";
 
   return `<div class="shame-card">
@@ -1279,11 +1284,10 @@ function debtCardHTML(d, mode) {
     if (loserNames.length === 1) {
       headline = `<span class="owe-name">${loserNames[0]}</span> is on the hook.`;
     } else if (loserNames.length > 1) {
-      headline = `<span class="owe-name">${loserNames.join(", ")}</span> are on the hook.`;
+      headline = `<span class="owe-name">${joinNames(loserNames)}</span> are on the hook.`;
     } else {
       headline = `Wager's live — outcome to be decided.`;
     }
-    if (d.title) metaLine = escapeHTML(d.title);
   }
 
   /* footer per mode */
@@ -1381,10 +1385,11 @@ function buildLogForm() {
   $("sbOwnerA").addEventListener("change", () => { refreshSidebetLoser(); refreshSbFace("A"); });
   $("sbOwnerB").addEventListener("change", () => { refreshSidebetLoser(); refreshSbFace("B"); });
 
-  /* all-star */
-  const yr = new Date().getFullYear();
-  $("asSeason").innerHTML = [yr, yr - 1, yr - 2, yr - 3]
-    .map(y => `<option value="${y}">${y}</option>`).join("");
+  /* all-star — seasons 2025 through 2030 */
+  const curYr = new Date().getFullYear();
+  const years = [2025, 2026, 2027, 2028, 2029, 2030];
+  $("asSeason").innerHTML = years
+    .map(y => `<option value="${y}"${y === curYr ? " selected" : ""}>${y}</option>`).join("");
   $("asOwnerGrid").innerHTML = OWNERS.map(o => ownerPickHTML(o, "as")).join("");
   $("asOwnerGrid").querySelectorAll(".owner-pick").forEach(p => {
     p.addEventListener("click", () => {
@@ -1427,7 +1432,7 @@ function refreshSidebetLoser() {
   const prev = $("sbLoser").value;
   let html = `<option value="">Pending — winner not decided yet</option>`;
   [a, b].forEach(id => {
-    if (id) html += `<option value="${id}">${escapeHTML(ownerName(id))}</option>`;
+    if (id) html += `<option value="${id}">${escapeHTML(ownerName(id))} lost — owes the debt</option>`;
   });
   $("sbLoser").innerHTML = html;
   if ([a, b].includes(prev)) $("sbLoser").value = prev;
@@ -1484,7 +1489,7 @@ function resetLogForm() {
   $("asStakes").value = "Entertain the league at the next League Weekend.";
   $("asOwnerGrid").querySelectorAll(".owner-pick").forEach(p => p.classList.remove("checked"));
   updateAsCount();
-  $("wcTitle").value = ""; $("wcStakes").value = "";
+  $("wcStakes").value = "";
   $("wcOwnerGrid").querySelectorAll(".owner-pick").forEach(p => p.classList.remove("checked"));
   refreshWildcardLosers();
   hideFormMsg();
@@ -1559,20 +1564,17 @@ async function submitWager() {
     });
 
   } else { /* wildcard */
-    const title = $("wcTitle").value.trim();
     const stakes = $("wcStakes").value.trim();
     const involved = [...$("wcOwnerGrid").querySelectorAll(".owner-pick.checked")]
       .map(p => p.getAttribute("data-id"));
     if (involved.length < 2) { showFormMsg("Pick at least two owners.", "error"); return; }
-    if (!title) { showFormMsg("Give the wager a title.", "error"); return; }
-    if (!stakes) { showFormMsg("Describe the stakes.", "error"); return; }
+    if (!stakes) { showFormMsg("Describe the terms of the bet.", "error"); return; }
     const debtors = [...$("wcLoserGrid").querySelectorAll(".loser-row")]
       .filter(r => r.querySelector(".loser-toggle").classList.contains("is-loser"))
       .map(r => r.getAttribute("data-id"));
     const winners = involved.filter(id => !debtors.includes(id));
     records.push({
       type: "wildcard",
-      title,
       owners: involved,
       debtors, winners,
       stakes,
@@ -1626,10 +1628,12 @@ function debtSummaryText(d) {
     return `${ownerName((d.debtors || [])[0])} — ${d.season || ""} All-Star Game`;
   }
   if (d.type === "sidebet") {
-    const who = (d.debtors || []).map(ownerName).join(", ") || "TBD";
-    return `Side Bet — ${who}${d.week ? " (Wk " + d.week + ")" : ""}`;
+    const pair = joinNames((d.owners || []).map(ownerName)) || "TBD";
+    return `Side Bet — ${pair}${d.week ? " (Wk " + d.week + ")" : ""}`;
   }
-  return `Wildcard — ${d.title || "untitled"}`;
+  /* wildcard */
+  const who = joinNames((d.owners || []).map(ownerName)) || "TBD";
+  return `Wildcard — ${who}`;
 }
 
 function renderCommishPanel() {
