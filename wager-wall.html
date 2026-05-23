@@ -140,6 +140,40 @@ body {
   letter-spacing: 0.04em;
   line-height: 1;
 }
+
+/* ============ DEBTOR ROSTER ============ */
+.roster-card { margin-bottom: 8px; }
+.roster-grid {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 18px 14px;
+  margin-bottom: 12px;
+}
+.roster-member {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 6px;
+  width: clamp(96px, 28vw, 120px);
+}
+.roster-name {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 1.7rem;
+  color: var(--red-bright);
+  letter-spacing: 0.04em;
+  line-height: 1;
+  text-align: center;
+}
+.roster-count {
+  font-family: 'Barlow Condensed', sans-serif;
+  font-size: 0.92rem;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--label);
+  line-height: 1;
+}
 .shame-sub {
   font-family: 'Barlow Condensed', sans-serif;
   font-size: 1.1rem;
@@ -1274,6 +1308,9 @@ function renderBoard() {
   /* ----- Hall of Shame (always league-wide, never filtered) ----- */
   html += renderShame(activeAll);
 
+  /* ----- Debtor roster — everyone with an active debt ----- */
+  html += renderDebtorRoster(activeAll);
+
   /* ----- Owner filter ----- */
   html += `<div class="wall-filter">
     <label class="wall-filter-label" for="ownerFilter">Show wagers for</label>
@@ -1368,6 +1405,36 @@ function renderShame(active) {
     <div class="shame-photo-wrap">${faces}</div>
     <div class="shame-name">${names}</div>
     <div class="shame-sub">${max} unpaid ${debtWord} on the wall</div>
+  </div>`;
+}
+
+/* ----- The Roster of the Indebted: every owner with one or more active debts ----- */
+function renderDebtorRoster(active) {
+  if (active.length === 0) return "";
+  const tally = {};
+  active.forEach(d => {
+    (d.debtors || []).forEach(id => { tally[id] = (tally[id] || 0) + 1; });
+  });
+  /* order by most debts first, then alphabetically by name */
+  const ids = Object.keys(tally).sort((a, b) => {
+    if (tally[b] !== tally[a]) return tally[b] - tally[a];
+    return ownerName(a).localeCompare(ownerName(b));
+  });
+  if (ids.length === 0) return "";
+
+  const members = ids.map(id => {
+    const n = tally[id];
+    return `<div class="roster-member">
+      ${photoHTML(id, "shame-photo", "shame-initials")}
+      <div class="roster-name">${escapeHTML(ownerName(id))}</div>
+      <div class="roster-count">${n} ${n === 1 ? "debt" : "debts"}</div>
+    </div>`;
+  }).join("");
+
+  return `<div class="shame-card roster-card">
+    <div class="shame-eyebrow">🪏 In the Hole</div>
+    <div class="roster-grid">${members}</div>
+    <div class="shame-sub">${ids.length} ${ids.length === 1 ? "owner owes" : "owners owe"} the league</div>
   </div>`;
 }
 
