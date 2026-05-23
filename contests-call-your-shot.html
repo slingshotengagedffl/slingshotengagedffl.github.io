@@ -81,30 +81,16 @@
     border-radius: 8px;
     padding: 18px 20px;
     margin: 8px 0 20px;
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 14px;
   }
-  .stakes-cell {
-    display: flex;
-    flex-direction: column;
-    gap: 6px;
+  .stakes-text {
+    font-family: 'Barlow', sans-serif;
+    font-size: 1.2rem;
+    line-height: 1.6;
+    color: var(--text-body);
+    margin: 0;
   }
-  .stakes-label {
-    font-family: 'Barlow Condensed', sans-serif;
-    font-size: 0.88rem;
-    letter-spacing: 0.2em;
-    text-transform: uppercase;
-    color: var(--label);
-  }
-  .stakes-value {
-    font-family: 'Bebas Neue', sans-serif;
-    font-size: 1.4rem;
-    letter-spacing: 0.06em;
-    color: var(--text);
-  }
-  .stakes-value .gold { color: var(--gold); }
-  .stakes-value .red { color: var(--red-bright); }
+  .stakes-text .gold { color: var(--gold); font-weight: 600; }
+  .stakes-text .red { color: var(--red-bright); font-weight: 600; }
 
   /* ── SECTION HEADER ── */
   .section-title {
@@ -323,7 +309,7 @@
     font-size: 2.2rem;
     letter-spacing: 0.05em;
     color: var(--text);
-    margin-bottom: 6px;
+    margin-bottom: 18px;
     line-height: 1.05;
   }
   .submit-helper {
@@ -1069,24 +1055,13 @@
 
 <div class="content">
 
-  <p class="intro">Once per season, each owner <strong>must</strong> call their shot — a public, irrevocable guarantee of victory for a specific week. Back it up and you collect <strong>$5</strong> from the league pot. Whiff and your opponent walks with the $5 instead. No backing out. No re-rolls. Everyone watches.</p>
-
   <div class="stakes-card">
-    <div class="stakes-cell">
-      <div class="stakes-label">Win your shot</div>
-      <div class="stakes-value"><span class="gold">+$5</span> from the pot</div>
-    </div>
-    <div class="stakes-cell">
-      <div class="stakes-label">Lose your shot</div>
-      <div class="stakes-value"><span class="red">−$5</span> to your opponent</div>
-    </div>
+    <p class="stakes-text">Ready to guarantee a win? Back it up and earn <span class="gold">$5</span>. Fail and your opponent gets the <span class="red">$5</span>.</p>
   </div>
 
   <!-- Submit block -->
   <div class="submit-block" id="submitBlock">
-    <div class="submit-eyebrow">⚡ Your turn</div>
     <div class="submit-headline">Make the Call</div>
-    <p class="submit-helper">Pick your name, the week, and your opponent. Once you confirm, everyone sees it — and you can't take it back.</p>
 
     <div class="name-select-block">
       <label class="form-label" for="ownerSelect">Who are you?</label>
