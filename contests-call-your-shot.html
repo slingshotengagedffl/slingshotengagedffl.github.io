@@ -1346,7 +1346,7 @@ $("submitBtn").addEventListener("click", () => {
   const opp = OWNERS_BY_ID[oppId];
 
   $("confirmHeadline").innerHTML = `${escapeHTML(owner.display)} vs.<br>${escapeHTML(opp.display)} · Week ${week}`;
-  $("confirmDetail").innerHTML = `Win and you collect an extra <span class="gold">$5 from the league pot</span>. Lose and <span class="red">${escapeHTML(opp.display)} takes the $5</span>. Everyone sees this on the home page the moment you confirm.`;
+  $("confirmDetail").innerHTML = `Win and you collect an extra <span class="gold">$5 from the league pot</span>. Lose and <span class="red">${escapeHTML(opp.display)} takes the $5</span>. Once you confirm, your call is locked and public.`;
   openConfirm();
 });
 
