@@ -149,6 +149,40 @@ body {
   margin-top: 6px;
 }
 
+/* ============ OWNER FILTER ============ */
+.wall-filter {
+  margin: 20px 0 4px;
+}
+.wall-filter-label {
+  display: block;
+  font-family: 'Barlow Condensed', sans-serif;
+  font-size: 1rem;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--label);
+  margin-bottom: 8px;
+}
+.wall-filter select {
+  width: 100%;
+  background: var(--surface3);
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  color: var(--text);
+  font-family: 'Barlow Condensed', sans-serif;
+  font-size: 1.15rem;
+  letter-spacing: 0.04em;
+  padding: 14px;
+  min-height: 52px;
+  appearance: none;
+  cursor: pointer;
+  transition: border-color 0.15s;
+}
+.wall-filter select:hover, .wall-filter select:focus {
+  border-color: var(--red);
+  outline: none;
+}
+
 /* ============ SECTION TITLES ============ */
 .section-block { margin-top: 36px; }
 .section-title {
@@ -1212,19 +1246,42 @@ function isPending(d) {
   return !(d.debtors && d.debtors.length);
 }
 
+/* currently selected owner filter — "" means All Owners */
+let filterOwner = "";
+
+/* does this wager involve the given owner in any role? */
+function wagerInvolves(d, ownerId) {
+  return (d.owners || []).includes(ownerId);
+}
+
 function renderBoard() {
   const all = debtList();
-  const pending = all.filter(d => isPending(d))
-                     .sort((a, b) => (b.created || "").localeCompare(a.created || ""));
-  const active = all.filter(d => !isClosed(d) && !isPending(d))
-                    .sort((a, b) => (b.created || "").localeCompare(a.created || ""));
-  const closed = all.filter(d => isClosed(d))
-                     .sort((a, b) => closedAt(b).localeCompare(closedAt(a)));
+  const pendingAll = all.filter(d => isPending(d))
+                        .sort((a, b) => (b.created || "").localeCompare(a.created || ""));
+  const activeAll = all.filter(d => !isClosed(d) && !isPending(d))
+                       .sort((a, b) => (b.created || "").localeCompare(a.created || ""));
+  const closedAll = all.filter(d => isClosed(d))
+                       .sort((a, b) => closedAt(b).localeCompare(closedAt(a)));
+
+  /* apply owner filter */
+  const f = filterOwner;
+  const pending = f ? pendingAll.filter(d => wagerInvolves(d, f)) : pendingAll;
+  const active  = f ? activeAll.filter(d => wagerInvolves(d, f))  : activeAll;
+  const closed  = f ? closedAll.filter(d => wagerInvolves(d, f))  : closedAll;
 
   let html = "";
 
-  /* ----- Hall of Shame ----- */
-  html += renderShame(active);
+  /* ----- Hall of Shame (always league-wide, never filtered) ----- */
+  html += renderShame(activeAll);
+
+  /* ----- Owner filter ----- */
+  html += `<div class="wall-filter">
+    <label class="wall-filter-label" for="ownerFilter">Show wagers for</label>
+    <select id="ownerFilter">
+      <option value=""${f ? "" : " selected"}>All Owners</option>
+      ${OWNERS.map(o => `<option value="${o.id}"${o.id === f ? " selected" : ""}>${escapeHTML(o.name)}</option>`).join("")}
+    </select>
+  </div>`;
 
   /* ----- Pending outcomes ----- */
   if (pending.length > 0) {
@@ -1238,9 +1295,11 @@ function renderBoard() {
   /* ----- Active debts ----- */
   html += `<div class="section-block">
     <div class="section-title">On the Hook</div>
-    <div class="section-count">${active.length} active ${active.length === 1 ? "debt" : "debts"}</div>`;
+    <div class="section-count">${active.length} active ${active.length === 1 ? "debt" : "debts"}${f ? " · " + escapeHTML(ownerName(f)) : ""}</div>`;
   if (active.length === 0) {
-    html += `<div class="empty-state">The wall is clean. Nobody owes anybody anything. Suspicious.</div>`;
+    html += `<div class="empty-state">${f
+      ? escapeHTML(ownerName(f)) + " is square — no active debts."
+      : "The wall is clean. Nobody owes anybody anything. Suspicious."}</div>`;
   } else {
     html += active.map(d => debtCardHTML(d, "active")).join("");
   }
@@ -1254,7 +1313,9 @@ function renderBoard() {
     </div>
     <div class="collapse-body" id="settledBody">`;
   if (closed.length === 0) {
-    html += `<div class="empty-state">Nothing's been settled yet — no debts paid, none reneged on.</div>`;
+    html += `<div class="empty-state">${f
+      ? "Nothing settled for " + escapeHTML(ownerName(f)) + " yet."
+      : "Nothing's been settled yet — no debts paid, none reneged on."}</div>`;
   } else {
     html += closed.map(d => debtCardHTML(d, "closed")).join("");
   }
@@ -1262,9 +1323,22 @@ function renderBoard() {
 
   $("boardArea").innerHTML = html;
 
-  /* wire collapse */
+  /* wire owner filter */
+  const fSel = $("ownerFilter");
+  if (fSel) {
+    fSel.addEventListener("change", () => {
+      filterOwner = fSel.value;
+      renderBoard();
+    });
+  }
+
+  /* wire collapse — keep open if filtering (so filtered settled bets are visible) */
   const tog = $("settledToggle");
   if (tog) {
+    if (filterOwner) {
+      tog.classList.add("open");
+      $("settledBody").classList.add("open");
+    }
     tog.addEventListener("click", () => {
       tog.classList.toggle("open");
       $("settledBody").classList.toggle("open");
@@ -1317,8 +1391,15 @@ function debtCardHTML(d, mode) {
   const debtors = d.debtors || [];
   const winners = d.winners || [];
 
+  /* always render the owner who owes first, so "leftmost = on the hook"
+     holds across every card regardless of entry order */
+  function orderedOwners(ids) {
+    const rank = id => debtors.includes(id) ? 0 : (winners.includes(id) ? 1 : 2);
+    return [...ids].sort((a, b) => rank(a) - rank(b));
+  }
+
   if (d.type === "sidebet") {
-    const pair = d.owners || [];
+    const pair = orderedOwners(d.owners || []);
     chips = `<div class="owners-strip">` + pair.map(id => {
       let role = "neutral", roleLabel = pending ? "In the bet" : "";
       if (debtors.includes(id)) { role = "loser"; roleLabel = "Owes"; }
@@ -1342,7 +1423,7 @@ function debtCardHTML(d, mode) {
     metaLine = d.season ? `${escapeHTML(d.season)} All-Star Game · losing squad` : "All-Star Game · losing squad";
 
   } else { /* wildcard */
-    const involved = d.owners || [];
+    const involved = orderedOwners(d.owners || []);
     chips = `<div class="owners-strip">` + involved.map(id => {
       let role = "neutral", roleLabel = pending ? "In the bet" : "In";
       if (debtors.includes(id)) { role = "loser"; roleLabel = "Owes"; }
