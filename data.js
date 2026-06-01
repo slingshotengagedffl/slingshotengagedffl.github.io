@@ -3,7 +3,7 @@ const leagueNote = {
   year: "2026",
   text: `<p><font size="4">Gents, the time is nigh. The league's most treasured tradition, The Draft Draft, takes place this Saturday, June 6. To help you prepare for your season-deciding choice of draft position, consider your 2026 Keeper options below. Huge thank you to Alex for putting this together. It's a huge lift and is the one place where I kind of feel like we need to make this league a little less complex. Please note, ultimately you're responsible for your keeper options, so if you disagree with any of these costs or think a player is missing, let us know.</font></p>
 <p><font size="4"><br></font></p>
-<p><font size="4">In addition to your keeper options, be sure to check out the <a href="https://slingshotengagedffl.github.io/annals-draft-position-success.html" target="_blank">Draft Position Success</a> page to use undeniable data in your selection process.</font></p>
+<p><font size="4">In addition to your keeper options, be sure to check out the <a href="https://slingshotengagedffl.github.io/annals-draft-position-success.html" target="_blank" style="color:#e74c3c;">Draft Position Success</a> page to use undeniable data in your selection process.</font></p>
 <p><font size="4"><br></font></p>
 <p><font size="4">Finally, before getting to the keepers, here is The Draft Draft order:</font></p>
 <p><font size="4"><br></font></p>
@@ -23,7 +23,7 @@ const leagueNote = {
 14. Luke</font></p>
 <p><font size="4"><br></font></p>
 <p><font size="4"><b>2026 Keeper Eligible Players</b></font></p>
-<p><font size="4">All keepable players heading into the 2026 season. Each owner may keep one. Cost = round sacrificed.</font></p>
+<p><font size="4">All keepable players heading into the 2026 season. Each owner may keep one. The round listed is what it will cost you in this year's draft.</font></p>
 <p><font size="4"><br></font></p>
 <p><font size="4"><strong>Andy</strong></font></p>
 <p><font size="4">Baker Mayfield — Rd 1 · Draft (kept '25)<br>
