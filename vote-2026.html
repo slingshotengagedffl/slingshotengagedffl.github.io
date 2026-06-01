@@ -656,6 +656,83 @@ body {
   margin-bottom: 16px;
 }
 
+/* ── COMMISH GEAR + MODAL ── */
+.commish-gear {
+  position: fixed;
+  bottom: 16px;
+  right: 16px;
+  width: 48px;
+  height: 48px;
+  background: var(--surface2);
+  border: 1px solid var(--border);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  color: var(--label);
+  font-size: 1.3rem;
+  z-index: 50;
+}
+.commish-gear:hover { background: var(--surface3); color: var(--text); }
+.commish-overlay {
+  display: none;
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.7);
+  z-index: 100;
+  align-items: flex-start;
+  justify-content: center;
+  overflow-y: auto;
+  padding: 40px 16px;
+}
+.commish-overlay.open { display: flex; }
+.commish-modal {
+  background: var(--surface);
+  border: 1px solid rgba(201,168,76,0.35);
+  border-radius: 8px;
+  max-width: 520px;
+  width: 100%;
+  padding: 24px 22px;
+  margin: auto;
+}
+.commish-modal-close {
+  float: right;
+  background: none;
+  border: none;
+  color: var(--muted);
+  font-size: 1.4rem;
+  cursor: pointer;
+  line-height: 1;
+}
+.commish-modal-close:hover { color: var(--text); }
+.commish-gate label {
+  display: block;
+  font-size: 0.8rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--label);
+  margin-bottom: 6px;
+}
+.commish-gate input {
+  width: 100%;
+  background: var(--surface2);
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  color: var(--text);
+  font-family: 'Barlow Condensed', sans-serif;
+  font-size: 1rem;
+  padding: 10px 12px;
+  min-height: 44px;
+}
+.commish-gate input:focus { outline: none; border-color: var(--red); }
+.commish-gate-error {
+  font-size: 0.82rem;
+  color: var(--red-bright);
+  margin-top: 8px;
+  min-height: 18px;
+}
+
 /* ── LOADING ── */
 #loadingState {
   text-align: center;
@@ -683,46 +760,6 @@ body {
   <hr class="intro-divider">
 
   <div id="loadingState">Loading…</div>
-
-  <!-- Commissioner Panel -->
-  <div id="commissionerPanel">
-    <div class="comm-header">
-      <span class="comm-badge">⚙ Commissioner</span>
-      <h2>Vote Dashboard</h2>
-    </div>
-    <div class="comm-stats">
-      <div class="comm-stat">
-        <div class="comm-stat-val" id="totalVotes">—</div>
-        <div class="comm-stat-label">Votes In</div>
-      </div>
-      <div class="comm-stat">
-        <div class="comm-stat-val" id="remainingVotes">—</div>
-        <div class="comm-stat-label">Remaining</div>
-      </div>
-    </div>
-    <div class="comm-unlock-row">
-      <span class="comm-unlock-label">Reveal results early (before all 14 are in):</span>
-      <div class="toggle-wrap">
-        <div class="toggle" id="resultsToggle" onclick="toggleResults()">
-          <div class="toggle-knob"></div>
-        </div>
-        <span class="toggle-status" id="toggleStatus">Off</span>
-      </div>
-    </div>
-    <div class="who-voted">
-      <div class="who-voted-title">Who's voted</div>
-      <div class="voter-chips" id="voterChips"></div>
-    </div>
-    <div class="comm-preview-row">
-      <button class="comm-preview-btn" id="previewBtn" onclick="togglePreview()">👁 Preview results with sample data</button>
-      <span class="comm-preview-note" id="previewNote"></span>
-    </div>
-    <div class="comm-danger-zone">
-      <div class="danger-title">⚠ Danger Zone</div>
-      <button class="comm-danger-btn" onclick="resetAllBallots()">Erase All Ballots</button>
-      <div class="danger-note">Permanently deletes every submitted vote and resets the reveal. Use to clear test data before launch.</div>
-    </div>
-  </div>
 
   <!-- Auth Panel -->
   <div id="authPanel">
@@ -776,6 +813,67 @@ body {
     <div id="resultsPanel2"></div>
   </div>
 
+</div>
+
+<!-- Commissioner gear -->
+<div class="commish-gear" onclick="openCommish()" title="Commissioner">⚙</div>
+
+<!-- Commissioner modal -->
+<div class="commish-overlay" id="commishOverlay">
+  <div class="commish-modal">
+    <button class="commish-modal-close" onclick="closeCommish()">✕</button>
+
+    <!-- Passcode gate -->
+    <div class="commish-gate" id="commishGate">
+      <div class="comm-header" style="border:none;padding:0;margin-bottom:16px;">
+        <span class="comm-badge">⚙ Commissioner</span>
+      </div>
+      <label for="commishPass">Passcode</label>
+      <input type="password" id="commishPass" autocomplete="off" placeholder="Enter passcode">
+      <div class="commish-gate-error" id="commishGateError"></div>
+      <button class="btn-primary" onclick="unlockCommish()" style="margin-top:12px;">Unlock</button>
+    </div>
+
+    <!-- Commissioner content (revealed after passcode) -->
+    <div id="commissionerPanel" style="display:none;">
+      <div class="comm-header">
+        <span class="comm-badge">⚙ Commissioner</span>
+        <h2>Vote Dashboard</h2>
+      </div>
+      <div class="comm-stats">
+        <div class="comm-stat">
+          <div class="comm-stat-val" id="totalVotes">—</div>
+          <div class="comm-stat-label">Votes In</div>
+        </div>
+        <div class="comm-stat">
+          <div class="comm-stat-val" id="remainingVotes">—</div>
+          <div class="comm-stat-label">Remaining</div>
+        </div>
+      </div>
+      <div class="comm-unlock-row">
+        <span class="comm-unlock-label">Reveal results early (before all 14 are in):</span>
+        <div class="toggle-wrap">
+          <div class="toggle" id="resultsToggle" onclick="toggleResults()">
+            <div class="toggle-knob"></div>
+          </div>
+          <span class="toggle-status" id="toggleStatus">Off</span>
+        </div>
+      </div>
+      <div class="who-voted">
+        <div class="who-voted-title">Who's voted</div>
+        <div class="voter-chips" id="voterChips"></div>
+      </div>
+      <div class="comm-preview-row">
+        <button class="comm-preview-btn" id="previewBtn" onclick="togglePreview()">👁 Preview results with sample data</button>
+        <span class="comm-preview-note" id="previewNote"></span>
+      </div>
+      <div class="comm-danger-zone">
+        <div class="danger-title">⚠ Danger Zone</div>
+        <button class="comm-danger-btn" onclick="resetAllBallots()">Erase All Ballots</button>
+        <div class="danger-note">Permanently deletes every submitted vote and resets the reveal. Use to clear test data before launch.</div>
+      </div>
+    </div>
+  </div>
 </div>
 
 <script>
@@ -871,7 +969,7 @@ const PROPOSALS = [
   {
     id: "p8",
     num: "Proposal #8",
-    title: "IC Championship Bounty",
+    title: "Intercontinental Belt Bounty",
     current: "The Intercontinental Championship belt transfers on H2H losses throughout the season. Holding the belt after Week 14 is a matter of prestige — no cash prize.",
     proposed: "$5 is added to a bounty pot each week. If the champion loses their H2H matchup, their opponent collects the full accumulated pot and the bounty resets. If the champion never loses the belt, they collect whatever has built up by end of Week 14. Total pool: $70 over 14 weeks.",
     note: "This requires a $5 buy-in increase from $80 to $85 for the 2026 season."
@@ -890,11 +988,6 @@ let allVotesData = {};
 // ── INIT ─────────────────────────────────────────────────────────────────────
 
 window.addEventListener('DOMContentLoaded', () => {
-  const params = new URLSearchParams(window.location.search);
-  if (params.get('commissioner') === COMMISSIONER_PASS) {
-    isCommissioner = true;
-  }
-
   try {
     firebase.initializeApp(FIREBASE_CONFIG);
     db = firebase.database();
@@ -920,6 +1013,16 @@ function init() {
     if (e.key === 'Enter') authenticate();
   });
 
+  // Allow Enter key on commissioner passcode field
+  document.getElementById('commishPass').addEventListener('keydown', e => {
+    if (e.key === 'Enter') unlockCommish();
+  });
+
+  // Close modal when clicking the dark backdrop (not the modal box)
+  document.getElementById('commishOverlay').addEventListener('click', e => {
+    if (e.target.id === 'commishOverlay') closeCommish();
+  });
+
   // Build proposals
   buildProposals();
 
@@ -943,7 +1046,7 @@ function onDataUpdate() {
   document.getElementById('loadingState').style.display = 'none';
 
   if (isCommissioner) {
-    showCommissionerPanel();
+    refreshCommissionerPanel();
   }
 
   if (currentOwner) {
@@ -1160,7 +1263,33 @@ function renderResults(containerId) {
 
 // ── COMMISSIONER ──────────────────────────────────────────────────────────────
 
-function showCommissionerPanel() {
+function openCommish() {
+  document.getElementById('commishOverlay').classList.add('open');
+  if (!isCommissioner) {
+    document.getElementById('commishPass').focus();
+  }
+}
+
+function closeCommish() {
+  document.getElementById('commishOverlay').classList.remove('open');
+}
+
+function unlockCommish() {
+  const pass = document.getElementById('commishPass').value;
+  const err = document.getElementById('commishGateError');
+  if (pass !== COMMISSIONER_PASS) {
+    err.textContent = 'Incorrect passcode.';
+    return;
+  }
+  err.textContent = '';
+  isCommissioner = true;
+  document.getElementById('commishGate').style.display = 'none';
+  document.getElementById('commissionerPanel').style.display = 'block';
+  refreshCommissionerPanel();
+}
+
+function refreshCommissionerPanel() {
+  if (!isCommissioner) return;
   const panel = document.getElementById('commissionerPanel');
   panel.style.display = 'block';
 
