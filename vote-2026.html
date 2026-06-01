@@ -1,0 +1,1351 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Slingshot Engaged — 2026 Ballot</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Barlow+Condensed:wght@400;500;600;700&display=swap" rel="stylesheet">
+<script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-app-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-database-compat.js"></script>
+<style>
+:root {
+  --red: #c0392b;
+  --red-bright: #e74c3c;
+  --bg: #0a0a0a;
+  --surface: #141414;
+  --surface2: #1c1c1c;
+  --surface3: #242424;
+  --text: #f0f0f0;
+  --text-body: #e8e8e8;
+  --muted: #bbb;
+  --label: #d8d8d8;
+  --border: #2a2a2a;
+  --gold: #c9a84c;
+  --yes: #22c55e;
+  --no: #e74c3c;
+}
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body {
+  background: var(--bg);
+  color: var(--text-body);
+  font-family: 'Barlow Condensed', sans-serif;
+  font-size: 1rem;
+  line-height: 1.5;
+  min-height: 100vh;
+}
+.page-wrap {
+  max-width: 780px;
+  margin: 0 auto;
+  padding: 0 16px 60px;
+}
+
+/* ── HEADER (standard convention) ── */
+.page-header {
+  padding: 40px 20px 0;
+  text-align: center;
+}
+.page-supertitle {
+  font-family: 'Barlow Condensed', sans-serif;
+  font-size: 1rem;
+  letter-spacing: 0.25em;
+  text-transform: uppercase;
+  color: #d0d0d0;
+  margin-bottom: 6px;
+}
+.page-header h1 {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: clamp(2.8rem, 8vw, 5rem);
+  color: var(--red-bright);
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  line-height: 1;
+}
+.page-updated {
+  font-family: 'Barlow Condensed', sans-serif;
+  font-size: 0.72rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--muted);
+  margin-top: 6px;
+}
+.page-intro {
+  font-size: 1.1rem;
+  color: var(--text-body);
+  text-align: center;
+  max-width: 520px;
+  margin: 12px auto 0;
+  line-height: 1.5;
+}
+.page-intro strong {
+  color: var(--text);
+  font-weight: 500;
+}
+.intro-divider {
+  border: none;
+  border-bottom: 1px solid var(--border);
+  margin: 28px 0 32px;
+}
+
+/* ── AUTH PANEL ── */
+#authPanel {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 28px 24px;
+  max-width: 400px;
+  margin: 0 auto 32px;
+}
+#authPanel h2 {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 1.5rem;
+  color: var(--text);
+  margin-bottom: 4px;
+  letter-spacing: 0.05em;
+}
+#authPanel p {
+  font-size: 0.9rem;
+  color: var(--muted);
+  margin-bottom: 20px;
+}
+.auth-field {
+  margin-bottom: 14px;
+}
+.auth-field label {
+  display: block;
+  font-size: 0.8rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--label);
+  margin-bottom: 6px;
+}
+.auth-field select,
+.auth-field input {
+  width: 100%;
+  background: var(--surface2);
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  color: var(--text);
+  font-family: 'Barlow Condensed', sans-serif;
+  font-size: 1rem;
+  padding: 10px 12px;
+  appearance: none;
+  -webkit-appearance: none;
+  min-height: 44px;
+}
+.auth-field select:focus,
+.auth-field input:focus {
+  outline: none;
+  border-color: var(--red);
+}
+.auth-error {
+  font-size: 0.82rem;
+  color: var(--red-bright);
+  margin-top: 8px;
+  min-height: 18px;
+}
+.btn-primary {
+  width: 100%;
+  background: var(--red);
+  border: none;
+  border-radius: 6px;
+  color: #fff;
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 1.2rem;
+  letter-spacing: 0.08em;
+  padding: 12px;
+  cursor: pointer;
+  min-height: 48px;
+  transition: background 0.15s;
+  margin-top: 8px;
+}
+.btn-primary:hover { background: var(--red-bright); }
+.btn-primary:disabled { background: #444; cursor: not-allowed; }
+
+/* ── ALREADY VOTED ── */
+#alreadyVoted {
+  display: none;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 32px 24px;
+  text-align: center;
+  max-width: 480px;
+  margin: 0 auto 32px;
+}
+#alreadyVoted .av-icon { font-size: 2.5rem; margin-bottom: 12px; }
+#alreadyVoted h2 {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 1.8rem;
+  color: var(--text);
+  margin-bottom: 8px;
+}
+#alreadyVoted p { font-size: 0.95rem; color: var(--muted); line-height: 1.6; }
+.av-summary {
+  margin-top: 20px;
+  text-align: left;
+  background: var(--surface2);
+  border-radius: 6px;
+  padding: 14px 16px;
+}
+.av-summary-title {
+  font-size: 0.78rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--muted);
+  margin-bottom: 10px;
+}
+.av-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 5px 0;
+  border-bottom: 1px solid var(--border);
+  font-size: 0.88rem;
+}
+.av-row:last-child { border-bottom: none; }
+.av-prop-name { color: var(--label); flex: 1; padding-right: 8px; }
+.av-vote-yes { color: var(--yes); font-weight: 600; }
+.av-vote-no { color: var(--no); font-weight: 600; }
+
+/* ── BALLOT ── */
+#ballotPanel { display: none; }
+.ballot-intro {
+  font-size: 0.95rem;
+  color: var(--muted);
+  margin-bottom: 24px;
+  padding-bottom: 16px;
+  border-bottom: 1px solid var(--border);
+}
+.ballot-intro strong { color: var(--text); }
+
+.proposal-card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 22px 20px 18px;
+  margin-bottom: 16px;
+  transition: border-color 0.15s;
+}
+.proposal-card.voted-yes { border-color: rgba(34,197,94,0.4); }
+.proposal-card.voted-no { border-color: rgba(231,76,60,0.35); }
+
+.proposal-num {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 0.78rem;
+  letter-spacing: 0.15em;
+  color: var(--red);
+  margin-bottom: 4px;
+}
+.proposal-title {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 1.45rem;
+  color: var(--text);
+  letter-spacing: 0.04em;
+  line-height: 1.1;
+  margin-bottom: 10px;
+}
+.proposal-body {
+  font-size: 0.9rem;
+  color: var(--label);
+  line-height: 1.55;
+  margin-bottom: 14px;
+}
+.proposal-body .rule-label {
+  font-size: 0.75rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--muted);
+  display: block;
+  margin-top: 8px;
+  margin-bottom: 2px;
+}
+.proposal-note {
+  font-size: 0.82rem;
+  color: var(--muted);
+  font-style: italic;
+  margin-top: 8px;
+  padding-top: 8px;
+  border-top: 1px solid var(--border);
+  line-height: 1.5;
+}
+
+.vote-row {
+  display: flex;
+  gap: 10px;
+  margin-top: 4px;
+}
+.vote-btn {
+  flex: 1;
+  background: var(--surface2);
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  color: var(--label);
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 1.2rem;
+  letter-spacing: 0.1em;
+  padding: 10px;
+  cursor: pointer;
+  min-height: 48px;
+  transition: all 0.15s;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+}
+.vote-btn:hover { border-color: var(--muted); color: var(--text); }
+.vote-btn.active-yes {
+  background: rgba(34,197,94,0.12);
+  border-color: var(--yes);
+  color: var(--yes);
+}
+.vote-btn.active-no {
+  background: rgba(231,76,60,0.1);
+  border-color: var(--red-bright);
+  color: var(--red-bright);
+}
+.vote-dot {
+  width: 8px; height: 8px;
+  border-radius: 50%;
+  background: currentColor;
+  display: none;
+}
+.vote-btn.active-yes .vote-dot,
+.vote-btn.active-no .vote-dot { display: block; }
+
+/* ── SUBMIT AREA ── */
+.submit-area {
+  margin-top: 28px;
+  padding-top: 24px;
+  border-top: 1px solid var(--border);
+}
+.submit-progress {
+  font-size: 0.82rem;
+  color: var(--muted);
+  margin-bottom: 12px;
+  text-align: center;
+}
+.submit-progress strong { color: var(--label); }
+.btn-submit {
+  width: 100%;
+  background: var(--red);
+  border: none;
+  border-radius: 6px;
+  color: #fff;
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 1.4rem;
+  letter-spacing: 0.1em;
+  padding: 14px;
+  cursor: pointer;
+  min-height: 52px;
+  transition: background 0.15s;
+}
+.btn-submit:hover:not(:disabled) { background: var(--red-bright); }
+.btn-submit:disabled { background: #333; color: #555; cursor: not-allowed; }
+.submit-note {
+  font-size: 0.8rem;
+  color: var(--muted);
+  text-align: center;
+  margin-top: 10px;
+}
+
+/* ── SUCCESS ── */
+#successPanel {
+  display: none;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 36px 24px;
+  text-align: center;
+  max-width: 500px;
+  margin: 0 auto;
+}
+#successPanel .s-icon { font-size: 3rem; margin-bottom: 14px; }
+#successPanel h2 {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 2rem;
+  color: var(--text);
+  margin-bottom: 8px;
+}
+#successPanel p { font-size: 0.95rem; color: var(--muted); line-height: 1.6; }
+.results-locked {
+  margin-top: 20px;
+  background: var(--surface2);
+  border-radius: 6px;
+  padding: 14px;
+  font-size: 0.85rem;
+  color: var(--muted);
+}
+.results-locked strong { color: var(--label); display: block; margin-bottom: 4px; }
+
+/* ── RESULTS PANEL (post-unlock) ── */
+#resultsPanel { display: none; margin-top: 24px; }
+.results-title {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 1.4rem;
+  color: var(--text);
+  letter-spacing: 0.05em;
+  margin-bottom: 16px;
+  border-bottom: 1px solid var(--border);
+  padding-bottom: 10px;
+}
+.result-item {
+  background: var(--surface2);
+  border-radius: 6px;
+  padding: 14px 16px;
+  margin-bottom: 10px;
+}
+.result-item-title {
+  font-size: 0.88rem;
+  color: var(--label);
+  margin-bottom: 10px;
+  font-weight: 600;
+  letter-spacing: 0.02em;
+}
+.result-bar-wrap {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 6px;
+}
+.result-bar-label {
+  font-size: 0.8rem;
+  width: 28px;
+  color: var(--muted);
+  text-align: right;
+  flex-shrink: 0;
+}
+.result-bar-track {
+  flex: 1;
+  background: var(--surface3);
+  border-radius: 4px;
+  height: 20px;
+  overflow: hidden;
+  position: relative;
+}
+.result-bar-fill-yes {
+  height: 100%;
+  background: rgba(34,197,94,0.25);
+  border-right: 2px solid var(--yes);
+  border-radius: 4px;
+  transition: width 0.5s ease;
+  min-width: 0;
+}
+.result-bar-fill-no {
+  height: 100%;
+  background: rgba(231,76,60,0.18);
+  border-right: 2px solid var(--red-bright);
+  border-radius: 4px;
+  transition: width 0.5s ease;
+  min-width: 0;
+}
+.result-bar-count {
+  font-size: 0.82rem;
+  width: 48px;
+  color: var(--label);
+  flex-shrink: 0;
+}
+.result-verdict {
+  font-size: 0.78rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  margin-top: 6px;
+}
+.verdict-pass { color: var(--yes); }
+.verdict-fail { color: var(--red-bright); }
+.verdict-tie { color: var(--gold); }
+
+/* ── COMMISSIONER PANEL ── */
+#commissionerPanel {
+  display: none;
+  background: var(--surface);
+  border: 1px solid rgba(201,168,76,0.35);
+  border-radius: 8px;
+  padding: 24px 20px;
+  margin-bottom: 32px;
+}
+.comm-header {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 16px;
+  padding-bottom: 12px;
+  border-bottom: 1px solid var(--border);
+}
+.comm-badge {
+  background: rgba(201,168,76,0.15);
+  border: 1px solid rgba(201,168,76,0.4);
+  border-radius: 4px;
+  color: var(--gold);
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 0.78rem;
+  letter-spacing: 0.12em;
+  padding: 3px 8px;
+}
+.comm-header h2 {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 1.3rem;
+  color: var(--gold);
+  letter-spacing: 0.05em;
+}
+.comm-stats {
+  display: flex;
+  gap: 20px;
+  margin-bottom: 16px;
+  flex-wrap: wrap;
+}
+.comm-stat {
+  background: var(--surface2);
+  border-radius: 6px;
+  padding: 10px 14px;
+  min-width: 80px;
+}
+.comm-stat-val {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 1.8rem;
+  color: var(--text);
+  line-height: 1;
+  margin-bottom: 2px;
+}
+.comm-stat-label {
+  font-size: 0.75rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+.comm-unlock-row {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+.comm-unlock-label {
+  font-size: 0.88rem;
+  color: var(--label);
+}
+.toggle-wrap {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+.toggle {
+  width: 44px; height: 24px;
+  background: var(--surface3);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  cursor: pointer;
+  position: relative;
+  transition: background 0.2s;
+  flex-shrink: 0;
+}
+.toggle.on { background: var(--red); border-color: var(--red); }
+.toggle-knob {
+  width: 18px; height: 18px;
+  background: #fff;
+  border-radius: 50%;
+  position: absolute;
+  top: 2px; left: 3px;
+  transition: left 0.2s;
+}
+.toggle.on .toggle-knob { left: 23px; }
+.toggle-status { font-size: 0.82rem; color: var(--muted); }
+.toggle-status.on { color: var(--yes); }
+.who-voted {
+  margin-top: 16px;
+  padding-top: 14px;
+  border-top: 1px solid var(--border);
+}
+.who-voted-title {
+  font-size: 0.78rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--muted);
+  margin-bottom: 10px;
+}
+.voter-chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+.voter-chip {
+  background: var(--surface2);
+  border: 1px solid var(--border);
+  border-radius: 4px;
+  color: var(--label);
+  font-size: 0.8rem;
+  padding: 4px 10px;
+}
+.voter-chip.voted { border-color: rgba(34,197,94,0.4); color: var(--yes); }
+.voter-chip.not-voted { opacity: 0.5; }
+
+.comm-preview-row {
+  margin-top: 16px;
+  padding-top: 14px;
+  border-top: 1px solid var(--border);
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+.comm-preview-btn {
+  background: var(--surface2);
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  color: var(--label);
+  font-family: 'Barlow Condensed', sans-serif;
+  font-size: 0.92rem;
+  padding: 9px 14px;
+  cursor: pointer;
+  min-height: 44px;
+  transition: all 0.15s;
+}
+.comm-preview-btn:hover { border-color: var(--muted); color: var(--text); }
+.comm-preview-btn.active {
+  border-color: var(--gold);
+  color: var(--gold);
+  background: rgba(201,168,76,0.1);
+}
+.comm-preview-note {
+  font-size: 0.82rem;
+  color: var(--muted);
+  font-style: italic;
+}
+.comm-danger-zone {
+  margin-top: 16px;
+  padding: 14px 16px;
+  border: 1px solid rgba(231,76,60,0.3);
+  border-radius: 6px;
+  background: rgba(231,76,60,0.04);
+}
+.danger-title {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 0.95rem;
+  letter-spacing: 0.08em;
+  color: var(--red-bright);
+  margin-bottom: 10px;
+}
+.comm-danger-btn {
+  background: transparent;
+  border: 1px solid var(--red);
+  border-radius: 6px;
+  color: var(--red-bright);
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 1rem;
+  letter-spacing: 0.06em;
+  padding: 9px 16px;
+  cursor: pointer;
+  min-height: 44px;
+  transition: all 0.15s;
+}
+.comm-danger-btn:hover { background: var(--red); color: #fff; }
+.danger-note {
+  font-size: 0.8rem;
+  color: var(--muted);
+  margin-top: 8px;
+  line-height: 1.4;
+}
+.preview-banner {
+  background: rgba(201,168,76,0.12);
+  border: 1px solid var(--gold);
+  border-radius: 6px;
+  color: var(--gold);
+  font-size: 0.88rem;
+  text-align: center;
+  padding: 10px 14px;
+  margin-bottom: 16px;
+}
+
+/* ── LOADING ── */
+#loadingState {
+  text-align: center;
+  padding: 60px 20px;
+  color: var(--muted);
+  font-size: 0.9rem;
+}
+
+@media (max-width: 480px) {
+  .page-header { padding: 28px 0 20px; }
+  .proposal-card { padding: 18px 16px 14px; }
+  .comm-stats { gap: 10px; }
+}
+</style>
+</head>
+<body>
+<div class="page-wrap">
+
+  <div class="page-header">
+    <div class="page-supertitle">Slingshot Engaged</div>
+    <h1>2026 Ballot</h1>
+    <p class="page-updated">Updated May 20, 2026</p>
+  </div>
+  <p class="page-intro">Eight proposals are on the ballot. One vote per owner, and a proposal needs <strong>9 YES votes</strong> to pass. Results are revealed once all 14 votes are cast.</p>
+  <hr class="intro-divider">
+
+  <div id="loadingState">Loading…</div>
+
+  <!-- Commissioner Panel -->
+  <div id="commissionerPanel">
+    <div class="comm-header">
+      <span class="comm-badge">⚙ Commissioner</span>
+      <h2>Vote Dashboard</h2>
+    </div>
+    <div class="comm-stats">
+      <div class="comm-stat">
+        <div class="comm-stat-val" id="totalVotes">—</div>
+        <div class="comm-stat-label">Votes In</div>
+      </div>
+      <div class="comm-stat">
+        <div class="comm-stat-val" id="remainingVotes">—</div>
+        <div class="comm-stat-label">Remaining</div>
+      </div>
+    </div>
+    <div class="comm-unlock-row">
+      <span class="comm-unlock-label">Reveal results early (before all 14 are in):</span>
+      <div class="toggle-wrap">
+        <div class="toggle" id="resultsToggle" onclick="toggleResults()">
+          <div class="toggle-knob"></div>
+        </div>
+        <span class="toggle-status" id="toggleStatus">Off</span>
+      </div>
+    </div>
+    <div class="who-voted">
+      <div class="who-voted-title">Who's voted</div>
+      <div class="voter-chips" id="voterChips"></div>
+    </div>
+    <div class="comm-preview-row">
+      <button class="comm-preview-btn" id="previewBtn" onclick="togglePreview()">👁 Preview results with sample data</button>
+      <span class="comm-preview-note" id="previewNote"></span>
+    </div>
+    <div class="comm-danger-zone">
+      <div class="danger-title">⚠ Danger Zone</div>
+      <button class="comm-danger-btn" onclick="resetAllBallots()">Erase All Ballots</button>
+      <div class="danger-note">Permanently deletes every submitted vote and resets the reveal. Use to clear test data before launch.</div>
+    </div>
+  </div>
+
+  <!-- Auth Panel -->
+  <div id="authPanel">
+    <h2>Cast Your Vote</h2>
+    <p>Select your name and enter your PIN to unlock the ballot.</p>
+    <div class="auth-field">
+      <label for="ownerSelect">Your Name</label>
+      <select id="ownerSelect">
+        <option value="">— Select owner —</option>
+      </select>
+    </div>
+    <div class="auth-field">
+      <label for="pinInput">Your PIN</label>
+      <input type="password" id="pinInput" inputmode="numeric" maxlength="4" placeholder="4-digit PIN" autocomplete="off">
+    </div>
+    <div class="auth-error" id="authError"></div>
+    <button class="btn-primary" id="authBtn" onclick="authenticate()">Unlock Ballot</button>
+  </div>
+
+  <!-- Already Voted -->
+  <div id="alreadyVoted">
+    <div class="av-icon">🗳️</div>
+    <h2>Already Voted</h2>
+    <p>Your vote has been recorded, <strong id="avOwnerName"></strong>. Results will be revealed once all 14 votes are cast.</p>
+    <div class="av-summary" id="avSummary">
+      <div class="av-summary-title">Your Votes</div>
+    </div>
+    <div id="resultsPanel"></div>
+  </div>
+
+  <!-- Ballot -->
+  <div id="ballotPanel">
+    <p class="ballot-intro">Voting as <strong id="ballotOwnerName"></strong> — cast your vote on each proposal below. All eight required before submitting.</p>
+    <div id="proposalList"></div>
+    <div class="submit-area">
+      <div class="submit-progress" id="submitProgress">0 of 8 proposals answered</div>
+      <button class="btn-submit" id="submitBtn" disabled onclick="submitVotes()">Submit All Votes</button>
+      <div class="submit-note">Votes are final. You cannot change them after submitting.</div>
+    </div>
+  </div>
+
+  <!-- Success -->
+  <div id="successPanel">
+    <div class="s-icon">✅</div>
+    <h2>Votes Recorded</h2>
+    <p>Your ballot has been submitted, <strong id="successOwnerName"></strong>. Results will be revealed automatically once all 14 votes are cast.</p>
+    <div class="results-locked">
+      <strong>Results Locked</strong>
+      This page updates automatically — results appear the moment the final vote is in.
+    </div>
+    <div id="resultsPanel2"></div>
+  </div>
+
+</div>
+
+<script>
+// ── CONFIG ──────────────────────────────────────────────────────────────────
+
+const FIREBASE_CONFIG = {
+  apiKey: "AIzaSyAzMvwsRBzne1VxGJr9-0tccCmG9KSlSo8",
+  authDomain: "slingshot-engaged.firebaseapp.com",
+  databaseURL: "https://slingshot-engaged-default-rtdb.firebaseio.com",
+  projectId: "slingshot-engaged",
+  storageBucket: "slingshot-engaged.firebasestorage.app",
+  messagingSenderId: "391315870953",
+  appId: "1:391315870953:web:daf00bdb40ee414f564c78"
+};
+
+const VOTE_YEAR = "2026";
+const COMMISSIONER_PASS = "TheRodge";
+const PASS_THRESHOLD = 9; // YES votes required for a proposal to pass
+
+// Owner name → PIN (change PINs before sharing the page)
+const OWNER_PINS = {
+  "Kyle":    "4378",
+  "Jack":    "3138",
+  "Dylan":   "2127",
+  "Mike":    "4932",
+  "Brian":   "9834",
+  "Daniel":  "1800",
+  "Andy":    "7800",
+  "Matt":    "8731",
+  "Scott":   "6058",
+  "Alex V.": "8184",
+  "Tim H.":  "1252",
+  "Jordan":  "6713",
+  "Wade":    "6950",
+  "Luke":    "1545"
+};
+
+const ALL_OWNERS = Object.keys(OWNER_PINS);
+
+const PROPOSALS = [
+  {
+    id: "p1",
+    num: "Proposal #1",
+    title: "Seven-Team Playoff Field",
+    current: "Seven of 14 teams made the 2025 playoffs — a one-year departure from our traditional six. #1 seed had a first-round bye.",
+    proposed: "Adopt the seven-team playoff field as the new permanent standard going forward."
+  },
+  {
+    id: "p2",
+    num: "Proposal #2",
+    title: "Bonus Wins & Losses",
+    current: "Owners earn exactly one win or one loss each week against their designated H2H opponent.",
+    proposed: "Enable ESPN's Bonus Wins & Losses feature. Each week, teams in the top half of league scoring get an extra win; bottom half get an extra loss. This balances schedule luck — going 1-1 instead of 0-1 if you had the week's second-best score. Bonus W/L counts toward playoff standings only, not league records. Trial run for one year.",
+    note: "This is a Fantasy Classic season, so playoff seeding is win/loss first, total points as tiebreaker — making this a natural fit."
+  },
+  {
+    id: "p3",
+    num: "Proposal #3",
+    title: "Lineup Protection",
+    current: "Players lock at kickoff of their individual game.",
+    proposed: "Enable ESPN's Lineup Protection feature — automatically replaces players listed as Out or IR in your starting lineup with the highest-ranked eligible bench player who hasn't yet played. Addresses situations like Kamaragate (London game late scratch).",
+    note: "ESPN selects by ranking, not projected points."
+  },
+  {
+    id: "p4",
+    num: "Proposal #4",
+    title: "Bench Size: 5 → 4",
+    current: "Five bench spots plus one IR slot.",
+    proposed: "Reduce to four bench spots (keep one IR slot)."
+  },
+  {
+    id: "p5",
+    num: "Proposal #5",
+    title: "Waiver Tiebreaker: Never Reset",
+    current: "FAAB tiebreaker resets to reverse standings order each week. Tied bids go to the team lower in standings.",
+    proposed: "Switch to Move to Last After Claim, Never Reset Order. Win a claim → you go to the bottom. Simple, persistent, no weekly reset."
+  },
+  {
+    id: "p6",
+    num: "Proposal #6",
+    title: "FAAB Boost for Playoff Teams",
+    current: "Everyone starts with $100 FAAB. Half the league earns $20 FAAB for winning the Ryder Cup. FAAB is tradeable.",
+    proposed: "In addition to the above, playoff teams receive a $20 FAAB bonus at the end of the regular season."
+  },
+  {
+    id: "p7",
+    num: "Proposal #7",
+    title: "Money in the Bank",
+    current: "AVLMCT winner earns Prestige and a cash prize.",
+    proposed: "The AVLMCT winner also gets one Money in the Bank steal: once during the regular season, they can claim a waiver player someone else won — provided they bid at least $1 on that player and pay the winning bid + $1. The original winner gets their FAAB refunded. Must be cashed in by noon Pacific on waiver clear day.",
+    note: "The winner's FAAB total becomes a must-watch number on waiver day."
+  },
+  {
+    id: "p8",
+    num: "Proposal #8",
+    title: "IC Championship Bounty",
+    current: "The Intercontinental Championship belt transfers on H2H losses throughout the season. Holding the belt after Week 14 is a matter of prestige — no cash prize.",
+    proposed: "$5 is added to a bounty pot each week. If the champion loses their H2H matchup, their opponent collects the full accumulated pot and the bounty resets. If the champion never loses the belt, they collect whatever has built up by end of Week 14. Total pool: $70 over 14 weeks.",
+    note: "This requires a $5 buy-in increase from $80 to $85 for the 2026 season."
+  }
+];
+
+// ── STATE ───────────────────────────────────────────────────────────────────
+
+let db, dbRef;
+let currentOwner = null;
+let votes = {};
+let isCommissioner = false;
+let resultsUnlocked = false;
+let allVotesData = {};
+
+// ── INIT ─────────────────────────────────────────────────────────────────────
+
+window.addEventListener('DOMContentLoaded', () => {
+  const params = new URLSearchParams(window.location.search);
+  if (params.get('commissioner') === COMMISSIONER_PASS) {
+    isCommissioner = true;
+  }
+
+  try {
+    firebase.initializeApp(FIREBASE_CONFIG);
+    db = firebase.database();
+    dbRef = db.ref(`votes/${VOTE_YEAR}`);
+    init();
+  } catch(e) {
+    document.getElementById('loadingState').textContent = 'Error connecting to database.';
+  }
+});
+
+function init() {
+  // Populate owner select
+  const sel = document.getElementById('ownerSelect');
+  ALL_OWNERS.forEach(name => {
+    const opt = document.createElement('option');
+    opt.value = name;
+    opt.textContent = name;
+    sel.appendChild(opt);
+  });
+
+  // Allow Enter key on PIN field
+  document.getElementById('pinInput').addEventListener('keydown', e => {
+    if (e.key === 'Enter') authenticate();
+  });
+
+  // Build proposals
+  buildProposals();
+
+  // Listen to Firebase
+  dbRef.on('value', snap => {
+    allVotesData = snap.val() || {};
+    onDataUpdate();
+  });
+}
+
+function onDataUpdate() {
+  // Count submitted votes
+  let submittedCount = 0;
+  Object.entries(allVotesData).forEach(([key, val]) => {
+    if (key.startsWith('_') || !val.submitted) return;
+    submittedCount++;
+  });
+
+  // Results unlock automatically once all 14 are in, OR if commissioner manually overrides
+  resultsUnlocked = submittedCount >= ALL_OWNERS.length || allVotesData._resultsUnlocked === true;
+  document.getElementById('loadingState').style.display = 'none';
+
+  if (isCommissioner) {
+    showCommissionerPanel();
+  }
+
+  if (currentOwner) {
+    // Already authenticated — check if they voted
+    const ownerVote = allVotesData[ownerKey(currentOwner)];
+    if (ownerVote && ownerVote.submitted) {
+      showAlreadyVoted(currentOwner, ownerVote.votes);
+    }
+    // If results just unlocked, update results panels
+    if (resultsUnlocked) {
+      renderResults('resultsPanel');
+      renderResults('resultsPanel2');
+    }
+  } else {
+    // Show auth
+    document.getElementById('authPanel').style.display = 'block';
+  }
+}
+
+// ── AUTH ─────────────────────────────────────────────────────────────────────
+
+function ownerKey(name) {
+  return name.toLowerCase().replace(/[^a-z0-9]/g, '_');
+}
+
+function authenticate() {
+  const owner = document.getElementById('ownerSelect').value;
+  const pin = document.getElementById('pinInput').value;
+  const err = document.getElementById('authError');
+
+  if (!owner) { err.textContent = 'Please select your name.'; return; }
+  if (!pin) { err.textContent = 'Please enter your PIN.'; return; }
+  if (OWNER_PINS[owner] !== pin) { err.textContent = 'Incorrect PIN. Try again.'; return; }
+
+  err.textContent = '';
+  currentOwner = owner;
+
+  const ownerVote = allVotesData[ownerKey(owner)];
+  if (ownerVote && ownerVote.submitted) {
+    showAlreadyVoted(owner, ownerVote.votes);
+  } else {
+    showBallot(owner);
+  }
+}
+
+// ── BALLOT ───────────────────────────────────────────────────────────────────
+
+function buildProposals() {
+  const list = document.getElementById('proposalList');
+  PROPOSALS.forEach(p => {
+    const card = document.createElement('div');
+    card.className = 'proposal-card';
+    card.id = `card-${p.id}`;
+    card.innerHTML = `
+      <div class="proposal-num">${p.num}</div>
+      <div class="proposal-title">${p.title}</div>
+      <div class="proposal-body">
+        <span class="rule-label">Current Rule</span>
+        ${p.current}
+        <span class="rule-label">Proposal</span>
+        ${p.proposed}
+        ${p.note ? `<div class="proposal-note">${p.note}</div>` : ''}
+      </div>
+      <div class="vote-row">
+        <button class="vote-btn" id="yes-${p.id}" onclick="castVote('${p.id}','yes')">
+          <span class="vote-dot"></span> ✓ YES
+        </button>
+        <button class="vote-btn" id="no-${p.id}" onclick="castVote('${p.id}','no')">
+          <span class="vote-dot"></span> ✗ NO
+        </button>
+      </div>
+    `;
+    list.appendChild(card);
+  });
+}
+
+function showBallot(owner) {
+  document.getElementById('authPanel').style.display = 'none';
+  document.getElementById('ballotOwnerName').textContent = owner;
+  document.getElementById('ballotPanel').style.display = 'block';
+}
+
+function castVote(proposalId, choice) {
+  votes[proposalId] = choice;
+
+  const yesBtn = document.getElementById(`yes-${proposalId}`);
+  const noBtn = document.getElementById(`no-${proposalId}`);
+  const card = document.getElementById(`card-${proposalId}`);
+
+  yesBtn.className = 'vote-btn' + (choice === 'yes' ? ' active-yes' : '');
+  noBtn.className = 'vote-btn' + (choice === 'no' ? ' active-no' : '');
+  card.className = 'proposal-card voted-' + choice;
+
+  updateProgress();
+}
+
+function updateProgress() {
+  const answered = Object.keys(votes).length;
+  const total = PROPOSALS.length;
+  document.getElementById('submitProgress').innerHTML = `<strong>${answered} of ${total}</strong> proposals answered`;
+  document.getElementById('submitBtn').disabled = answered < total;
+}
+
+async function submitVotes() {
+  const btn = document.getElementById('submitBtn');
+  btn.disabled = true;
+  btn.textContent = 'Submitting…';
+
+  try {
+    await dbRef.child(ownerKey(currentOwner)).set({
+      owner: currentOwner,
+      votes: votes,
+      submitted: true,
+      submittedAt: Date.now()
+    });
+
+    document.getElementById('ballotPanel').style.display = 'none';
+    document.getElementById('successPanel').style.display = 'block';
+    document.getElementById('successOwnerName').textContent = currentOwner;
+    if (resultsUnlocked) renderResults('resultsPanel2');
+  } catch(e) {
+    btn.disabled = false;
+    btn.textContent = 'Submit All Votes';
+    alert('Error submitting votes. Please try again.');
+  }
+}
+
+// ── ALREADY VOTED ─────────────────────────────────────────────────────────────
+
+function showAlreadyVoted(owner, ownerVotes) {
+  document.getElementById('authPanel').style.display = 'none';
+  document.getElementById('ballotPanel').style.display = 'none';
+  document.getElementById('successPanel').style.display = 'none';
+
+  document.getElementById('avOwnerName').textContent = owner;
+
+  // Show their vote summary
+  const summary = document.getElementById('avSummary');
+  // Clear existing rows
+  const existingRows = summary.querySelectorAll('.av-row');
+  existingRows.forEach(r => r.remove());
+
+  PROPOSALS.forEach(p => {
+    const v = ownerVotes ? ownerVotes[p.id] : null;
+    const row = document.createElement('div');
+    row.className = 'av-row';
+    row.innerHTML = `
+      <span class="av-prop-name">${p.title}</span>
+      ${v === 'yes' ? '<span class="av-vote-yes">YES</span>' :
+        v === 'no' ? '<span class="av-vote-no">NO</span>' : '<span style="color:var(--muted)">—</span>'}
+    `;
+    summary.appendChild(row);
+  });
+
+  document.getElementById('alreadyVoted').style.display = 'block';
+
+  if (resultsUnlocked) renderResults('resultsPanel');
+}
+
+// ── RESULTS ──────────────────────────────────────────────────────────────────
+
+function renderResults(containerId) {
+  const container = document.getElementById(containerId);
+  if (!container) return;
+  container.style.display = 'block';
+  container.innerHTML = '<div class="results-title">Aggregate Results</div>';
+
+  const totals = {};
+  PROPOSALS.forEach(p => totals[p.id] = { yes: 0, no: 0 });
+
+  let voterCount = 0;
+  Object.entries(allVotesData).forEach(([key, val]) => {
+    if (key.startsWith('_') || !val.submitted || !val.votes) return;
+    voterCount++;
+    PROPOSALS.forEach(p => {
+      const v = val.votes[p.id];
+      if (v === 'yes') totals[p.id].yes++;
+      else if (v === 'no') totals[p.id].no++;
+    });
+  });
+
+  PROPOSALS.forEach(p => {
+    const t = totals[p.id];
+    const total = t.yes + t.no;
+    const yesPct = total ? Math.round((t.yes / total) * 100) : 0;
+    const noPct = total ? Math.round((t.no / total) * 100) : 0;
+    let verdict = '', vClass = '';
+    if (t.yes >= PASS_THRESHOLD) { verdict = `PASSES · ${t.yes}/${PASS_THRESHOLD} needed`; vClass = 'verdict-pass'; }
+    else { verdict = `FAILS · ${t.yes}/${PASS_THRESHOLD} needed`; vClass = 'verdict-fail'; }
+
+    const item = document.createElement('div');
+    item.className = 'result-item';
+    item.innerHTML = `
+      <div class="result-item-title">${p.title}</div>
+      <div class="result-bar-wrap">
+        <span class="result-bar-label" style="color:var(--yes)">YES</span>
+        <div class="result-bar-track">
+          <div class="result-bar-fill-yes" style="width:${yesPct}%"></div>
+        </div>
+        <span class="result-bar-count" style="color:var(--yes)">${t.yes} vote${t.yes !== 1 ? 's' : ''} (${yesPct}%)</span>
+      </div>
+      <div class="result-bar-wrap">
+        <span class="result-bar-label" style="color:var(--red-bright)">NO</span>
+        <div class="result-bar-track">
+          <div class="result-bar-fill-no" style="width:${noPct}%"></div>
+        </div>
+        <span class="result-bar-count" style="color:var(--red-bright)">${t.no} vote${t.no !== 1 ? 's' : ''} (${noPct}%)</span>
+      </div>
+      <div class="result-verdict ${vClass}">${verdict}</div>
+    `;
+    container.appendChild(item);
+  });
+}
+
+// ── COMMISSIONER ──────────────────────────────────────────────────────────────
+
+function showCommissionerPanel() {
+  const panel = document.getElementById('commissionerPanel');
+  panel.style.display = 'block';
+
+  // Count votes
+  let voted = 0;
+  const votedOwners = new Set();
+  Object.entries(allVotesData).forEach(([key, val]) => {
+    if (key.startsWith('_') || !val.submitted) return;
+    voted++;
+    votedOwners.add(val.owner);
+  });
+
+  document.getElementById('totalVotes').textContent = voted;
+  document.getElementById('remainingVotes').textContent = ALL_OWNERS.length - voted;
+
+  // Toggle state
+  const allIn = voted >= ALL_OWNERS.length;
+  const toggle = document.getElementById('resultsToggle');
+  const status = document.getElementById('toggleStatus');
+  if (resultsUnlocked) {
+    toggle.classList.add('on');
+    status.textContent = allIn ? 'Live (all 14 in)' : 'On (early reveal)';
+    status.classList.add('on');
+  } else {
+    toggle.classList.remove('on');
+    status.textContent = 'Off';
+    status.classList.remove('on');
+  }
+
+  // Who voted chips
+  const chips = document.getElementById('voterChips');
+  chips.innerHTML = '';
+  ALL_OWNERS.forEach(name => {
+    const chip = document.createElement('span');
+    const hasVoted = votedOwners.has(name);
+    chip.className = 'voter-chip ' + (hasVoted ? 'voted' : 'not-voted');
+    chip.textContent = (hasVoted ? '✓ ' : '') + name;
+    chips.appendChild(chip);
+  });
+
+  // Commissioner results always visible below panel
+  renderCommResults();
+}
+
+function renderCommResults(force) {
+  if (previewActive && !force) return; // preview owns the render until exited
+  // Show full results in commissioner panel always
+  let existing = document.getElementById('commResultsArea');
+  if (!existing) {
+    existing = document.createElement('div');
+    existing.id = 'commResultsArea';
+    existing.style.marginTop = '20px';
+    existing.style.paddingTop = '16px';
+    existing.style.borderTop = '1px solid var(--border)';
+    document.getElementById('commissionerPanel').appendChild(existing);
+  }
+  existing.innerHTML = '<div class="results-title">Live Tally</div>';
+
+  const totals = {};
+  PROPOSALS.forEach(p => totals[p.id] = { yes: 0, no: 0 });
+
+  Object.entries(allVotesData).forEach(([key, val]) => {
+    if (key.startsWith('_') || !val.submitted || !val.votes) return;
+    PROPOSALS.forEach(p => {
+      const v = val.votes[p.id];
+      if (v === 'yes') totals[p.id].yes++;
+      else if (v === 'no') totals[p.id].no++;
+    });
+  });
+
+  PROPOSALS.forEach(p => {
+    const t = totals[p.id];
+    const total = t.yes + t.no;
+    const yesPct = total ? Math.round((t.yes / total) * 100) : 0;
+    const noPct = total ? Math.round((t.no / total) * 100) : 0;
+    let verdict = '', vClass = '';
+    if (t.yes >= PASS_THRESHOLD) { verdict = `PASSES · ${t.yes}/${PASS_THRESHOLD} needed`; vClass = 'verdict-pass'; }
+    else if (total === 0) { verdict = 'No votes yet'; vClass = ''; }
+    else { verdict = `${t.yes}/${PASS_THRESHOLD} needed to pass`; vClass = 'verdict-fail'; }
+
+    const item = document.createElement('div');
+    item.className = 'result-item';
+    item.innerHTML = `
+      <div class="result-item-title">${p.title}</div>
+      <div class="result-bar-wrap">
+        <span class="result-bar-label" style="color:var(--yes)">YES</span>
+        <div class="result-bar-track">
+          <div class="result-bar-fill-yes" style="width:${yesPct}%"></div>
+        </div>
+        <span class="result-bar-count" style="color:var(--yes)">${t.yes} (${yesPct}%)</span>
+      </div>
+      <div class="result-bar-wrap">
+        <span class="result-bar-label" style="color:var(--red-bright)">NO</span>
+        <div class="result-bar-track">
+          <div class="result-bar-fill-no" style="width:${noPct}%"></div>
+        </div>
+        <span class="result-bar-count" style="color:var(--red-bright)">${t.no} (${noPct}%)</span>
+      </div>
+      <div class="result-verdict ${vClass}">${verdict}</div>
+    `;
+    existing.appendChild(item);
+  });
+}
+
+function toggleResults() {
+  const newState = !resultsUnlocked;
+  const confirmMsg = newState
+    ? 'Unlock results for all voters? They will see aggregate tallies immediately.'
+    : 'Hide results from voters?';
+  if (!confirm(confirmMsg)) return;
+  dbRef.child('_resultsUnlocked').set(newState);
+}
+
+// ── PREVIEW (sample data, no DB writes) ────────────────────────────────────────
+
+let previewActive = false;
+
+function buildSampleData() {
+  // Deterministic-ish spread so the preview shows a mix of PASS and FAIL
+  const yesCounts = [11, 14, 6, 9, 7, 13, 8, 10]; // one per proposal, out of 14
+  const sample = { _resultsUnlocked: true };
+  ALL_OWNERS.forEach((owner, i) => {
+    const votes = {};
+    PROPOSALS.forEach((p, pi) => {
+      // owner i votes YES on proposal pi if their index is within the yes-count
+      votes[p.id] = (i < yesCounts[pi]) ? 'yes' : 'no';
+    });
+    sample[ownerKey(owner)] = { owner, votes, submitted: true, submittedAt: Date.now() };
+  });
+  return sample;
+}
+
+function togglePreview() {
+  previewActive = !previewActive;
+  const btn = document.getElementById('previewBtn');
+  const note = document.getElementById('previewNote');
+
+  if (previewActive) {
+    btn.classList.add('active');
+    btn.textContent = '👁 Exit preview';
+    note.textContent = 'Showing fake data — nothing is saved.';
+    // Render results with sample data
+    const realData = allVotesData;
+    allVotesData = buildSampleData();
+    renderCommResults(true);
+    showPreviewBanner(true);
+    allVotesData = realData; // restore so nothing else is affected
+  } else {
+    btn.classList.remove('active');
+    btn.textContent = '👁 Preview results with sample data';
+    note.textContent = '';
+    showPreviewBanner(false);
+    renderCommResults(true); // back to real data
+  }
+}
+
+function showPreviewBanner(show) {
+  let banner = document.getElementById('previewBanner');
+  if (show) {
+    if (!banner) {
+      banner = document.createElement('div');
+      banner.id = 'previewBanner';
+      banner.className = 'preview-banner';
+      banner.textContent = '👁 PREVIEW MODE — this is sample data to show what results look like. No real votes are affected.';
+      const panel = document.getElementById('commissionerPanel');
+      panel.parentNode.insertBefore(banner, panel);
+    }
+  } else if (banner) {
+    banner.remove();
+  }
+}
+
+// ── RESET (destructive — clears all ballots) ────────────────────────────────────
+
+async function resetAllBallots() {
+  if (!confirm('Erase all ballots? This permanently deletes every submitted vote and cannot be undone.')) return;
+  if (!confirm('Are you absolutely sure? Every vote will be permanently deleted.')) return;
+  try {
+    await dbRef.remove();
+    alert('All ballots erased. The board is clean.');
+  } catch(e) {
+    alert('Error erasing ballots. Please try again.');
+  }
+}
+
+</script>
+</body>
+</html>
