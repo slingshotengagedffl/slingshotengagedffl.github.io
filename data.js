@@ -26,7 +26,7 @@ const leagueNote = {
 <p><font size="4">All keepable players heading into the 2026 season. Each owner may keep one. The round listed is what it will cost you in this year's draft.</font></p>
 <p><font size="4"><br></font></p>
 <p><font size="4"><strong>Andy</strong></font></p>
-<p><font size="4">Baker Mayfield — Rd 1 · Draft (kept '25)<br>
+<p><font size="4">Baker Mayfield — Rd 1 · kept '25<br>
 Isiah Pacheco — Rd 2 · Draft<br>
 D'Andre Swift — Rd 3 · Draft<br>
 Matthew Stafford — Rd 4 · FA<br>
@@ -36,14 +36,14 @@ Jerry Jeudy — Rd 5 · Trade<br>
 Quinshon Judkins — Rd 7 · Draft</font></p>
 <p><font size="4"><br></font></p>
 <p><font size="4"><strong>Alex</strong></font></p>
-<p><font size="4">Brian Thomas Jr. — Rd 1 · Draft (kept '25)<br>
+<p><font size="4">Brian Thomas Jr. — Rd 1 · kept '25<br>
 DJ Moore — Rd 2 · Draft<br>
 Sam Darnold — Rd 4 · FA<br>
 Jordan Addison — Rd 5 · Draft</font></p>
 <p><font size="4"><br></font></p>
 <p><font size="4"><strong>Brian</strong></font></p>
 <p><font size="4">Jalen Hurts — Rd 1 · Draft<br>
-Chase Brown — Rd 1 · Draft (kept '25)<br>
+Chase Brown — Rd 1 · kept '25<br>
 Mark Andrews — Rd 3 · FA<br>
 Chris Boswell — Rd 4 · FA<br>
 Travis Kelce — Rd 4 · Draft<br>
@@ -83,9 +83,9 @@ Broncos D/ST — Rd 7 · Trade</font></p>
 <p><font size="4"><br></font></p>
 <p><font size="4"><strong>Jordan</strong></font></p>
 <p><font size="4">Terry McLaurin — Rd 1 · Draft<br>
-Chuba Hubbard — Rd 1 · Draft (kept '25)<br>
+Chuba Hubbard — Rd 1 · kept '25<br>
 TreVeyon Henderson — Rd 1 · FA<br>
-Ladd McConkey — Rd 1 · Trade (kept '25)<br>
+Ladd McConkey — Rd 1 · kept '25<br>
 Tetairoa McMillan — Rd 2 · Draft<br>
 Blake Corum — Rd 4 · FA<br>
 Jason Myers — Rd 4 · FA<br>
@@ -109,7 +109,7 @@ Caleb Williams — Rd 9 · Draft</font></p>
 Jacoby Brissett — Rd 4 · FA<br>
 Quentin Johnston — Rd 4 · FA<br>
 Cam Little — Rd 4 · FA<br>
-Travis Etienne Jr. — Rd 5 · FA<br>
+Travis Etienne Jr. — Rd 5 · Draft<br>
 Jakobi Meyers — Rd 6 · Draft<br>
 Tyler Allgeier — Rd 7 · Trade<br>
 Dalton Kincaid — Rd 7 · Draft</font></p>
@@ -124,7 +124,7 @@ Cam Skattebo — Rd 5 · Draft<br>
 Patrick Mahomes — Rd 6 · Draft</font></p>
 <p><font size="4"><br></font></p>
 <p><font size="4"><strong>Mike</strong></font></p>
-<p><font size="4">Bucky Irving — Rd 1 · Draft (kept '25)<br>
+<p><font size="4">Bucky Irving — Rd 1 · kept '25<br>
 Trey McBride — Rd 1 · Draft<br>
 Alec Pierce — Rd 4 · FA<br>
 Rams D/ST — Rd 4 · FA<br>
@@ -133,7 +133,7 @@ Michael Wilson — Rd 4 · FA<br>
 Dak Prescott — Rd 4 · Draft</font></p>
 <p><font size="4"><br></font></p>
 <p><font size="4"><strong>Scott</strong></font></p>
-<p><font size="4">Rome Odunze — Rd 1 · Draft (kept '25)<br>
+<p><font size="4">Rome Odunze — Rd 1 · kept '25<br>
 Theo Johnson — Rd 4 · FA<br>
 Justin Herbert — Rd 5 · Draft<br>
 Keenan Allen — Rd 6 · Draft<br>
@@ -142,8 +142,8 @@ Jake Bates — Rd 11 · Draft<br>
 Patriots D/ST — Rd 12 · Draft</font></p>
 <p><font size="4"><br></font></p>
 <p><font size="4"><strong>Tim</strong></font></p>
-<p><font size="4">Courtland Sutton — Rd 1 · Trade (kept '25)<br>
-Brock Bowers — Rd 1 · Draft (kept '25)<br>
+<p><font size="4">Courtland Sutton — Rd 1 · kept '25<br>
+Brock Bowers — Rd 1 · kept '25<br>
 Tony Pollard — Rd 2 · Trade<br>
 Xavier Worthy — Rd 2 · Draft<br>
 Kyle Monangai — Rd 4 · FA<br>
@@ -153,7 +153,7 @@ Bhayshul Tuten — Rd 10 · Trade<br>
 Romeo Doubs — Rd 12 · Draft</font></p>
 <p><font size="4"><br></font></p>
 <p><font size="4"><strong>Wade</strong></font></p>
-<p><font size="4">Jaylen Warren — Rd 1 · Trade (kept '25)<br>
+<p><font size="4">Jaylen Warren — Rd 1 · kept '25<br>
 Joe Burrow — Rd 2 · Draft<br>
 Marvin Harrison Jr. — Rd 4 · FA<br>
 Steelers D/ST — Rd 4 · FA<br>
