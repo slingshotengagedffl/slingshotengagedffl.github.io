@@ -1,17 +1,166 @@
 const leagueNote = {
   week: "0",
   year: "2026",
-  text: `<p><font size="4"><b style="">The Wix site is dead.&nbsp;</b>RIP tightmanbuns.com.</font></p><p><font size="4"><br></font></p>
-<p><font size="4">After years of tolerating a website that was built during the Obama administration, Slingshot Engaged now has a home worthy of its history.&nbsp;</font></p><p><font size="4"><br></font></p><p><font size="4">With the dawn of vibe coding upon us, I was able to create this new site through ceaseless attention to detail and passion for minutiae.&nbsp;</font></p><p><font size="4"><br></font></p>
-<p><font size="4">Here's what you'll find on the new site.</font></p><p><font size="4">__________</font></p>
-<p><font size="4"><strong>The Annals</strong> is the full statistical record of this league — career records, single-game records, prestige rankings, head-to-head history, boom/bust rates, playoff odds, the Intercontinental Championship lineage, and more. I think you'll find The Annals far superior to the old site's screenshots of Excel tables.&nbsp;</font></p><p><font size="4">__________</font></p>
-<p><font size="4"><strong>Beefcakes</strong> is the owner directory — 14 profile pages, one per manager, with career stats, trophy cases, head-to-head breakdowns, and performance charts going back to 2014.</font></p><p><font size="4">__________</font></p>
-<p><font size="4"><strong>The Scouting Report</strong> is the wildcard nestled in the Beefcake profiles. Pull up any owner's profile and hit the button — an AI reads their full statistical history and delivers a scouting report on their playstyle, tendencies, and weaknesses in the unique style of author and cultural critic Chuck Klosterman. Choose from an Analytical, Eulogy, or Ruthless approach to Chuck's style. Some of them are uncomfortably accurate.</font></p><p><font size="4">__________</font></p>
-<p><font size="4"><strong>Owner Comparison</strong>, also within the Beefcake profiles, lets you put any two managers side by side — stats, charts, H2H record — in a full overlay. Great for settling arguments.</font></p><p><font size="4">__________</font></p>
-<p><font size="4"><strong>League Weekend Memories</strong> is a community board where anyone can post a memory from a league weekend. Post something. Shout-out to Daniel for this idea.</font></p><p><font size="4">__________</font></p>
-<p><font size="4"><strong>Game of Names</strong> is on the homepage just above this league note and it does exactly what it sounds like. Two of the 522 all-time Slingshot team names show up. You pick the one you like the most. Every&nbsp;vote shapes the all-time rankings. It's stupid and you will spend more time on it than you expect.</font></p><p><font size="4">__________</font></p>
-<p><font size="4"><strong>Side Hustles</strong>&nbsp;buttons are located above and will be the first thing you see on the new site during the season. They will be updated before kickoff.&nbsp;</font></p><p><font size="4">__________</font></p>
-<p><font size="4">The <strong>League Note</strong> will live here during the season. Every week, the note goes up. Bookmark this page.</font></p><p><font size="4">__________</font></p>
-<p><font size="4">I spent a lot of time on this over the last couple months. It was wild to see what technology can do and honestly pretty fun to feel in my flow state - when you're doing something you enjoy and you lose track of time - for the first time in a while. I hope you enjoy it.&nbsp; Let me know if you see any issues or bugs or if you have any other ideas to improve the site. From what I learned, these LLMs will never say no to a web design idea...if you can imagine it, it can build it.</font></p>
-<p><font size="4">— Jack</font></p>`
+  text: `<p><font size="4">Gents, the time is nigh. The league's most treasured tradition, The Draft Draft, takes place this Saturday, June 6. To help you prepare for your season-deciding choice of draft position, consider your 2026 Keeper options below. Huge thank you to Alex for putting this together. It's a huge lift and is the one place where I kind of feel like we need to make this league a little less complex. Please note, ultimately you're responsible for your keeper options, so if you disagree with any of these costs or think a player is missing, let us know.</font></p>
+<p><font size="4"><br></font></p>
+<p><font size="4">In addition to your keeper options, be sure to check out the <a href="https://slingshotengagedffl.github.io/annals-draft-position-success.html" target="_blank">Draft Position Success</a> page to use undeniable data in your selection process.</font></p>
+<p><font size="4"><br></font></p>
+<p><font size="4">Finally, before getting to the keepers, here is The Draft Draft order:</font></p>
+<p><font size="4"><br></font></p>
+<p><font size="4">1. Tim<br>
+2. Wade<br>
+3. Jordan<br>
+4. Alex<br>
+5. Brian<br>
+6. Andy<br>
+7. Kyle<br>
+8. Scott<br>
+9. Matt<br>
+10. Daniel<br>
+11. Jack<br>
+12. Mike<br>
+13. Dylan<br>
+14. Luke</font></p>
+<p><font size="4"><br></font></p>
+<p><font size="4"><b>2026 Keeper Eligible Players</b></font></p>
+<p><font size="4">All keepable players heading into the 2026 season. Each owner may keep one. Cost = round sacrificed.</font></p>
+<p><font size="4"><br></font></p>
+<p><font size="4"><strong>Andy</strong></font></p>
+<p><font size="4">Baker Mayfield — Rd 1 · Draft (kept '25)<br>
+Isiah Pacheco — Rd 2 · Draft<br>
+D'Andre Swift — Rd 3 · Draft<br>
+Matthew Stafford — Rd 4 · FA<br>
+Jake Elliott — Rd 4 · FA<br>
+Juwan Johnson — Rd 4 · FA<br>
+Jerry Jeudy — Rd 5 · Trade<br>
+Quinshon Judkins — Rd 7 · Draft</font></p>
+<p><font size="4"><br></font></p>
+<p><font size="4"><strong>Alex</strong></font></p>
+<p><font size="4">Brian Thomas Jr. — Rd 1 · Draft (kept '25)<br>
+DJ Moore — Rd 2 · Draft<br>
+Sam Darnold — Rd 4 · FA<br>
+Jordan Addison — Rd 5 · Draft</font></p>
+<p><font size="4"><br></font></p>
+<p><font size="4"><strong>Brian</strong></font></p>
+<p><font size="4">Jalen Hurts — Rd 1 · Draft<br>
+Chase Brown — Rd 1 · Draft (kept '25)<br>
+Mark Andrews — Rd 3 · FA<br>
+Chris Boswell — Rd 4 · FA<br>
+Travis Kelce — Rd 4 · Draft<br>
+Deebo Samuel — Rd 5 · Draft<br>
+Khalil Shakir — Rd 6 · Draft<br>
+Rashid Shaheed — Rd 8 · Draft<br>
+Seahawks D/ST — Rd 12 · Draft</font></p>
+<p><font size="4"><br></font></p>
+<p><font size="4"><strong>Daniel</strong></font></p>
+<p><font size="4">Zay Flowers — Rd 1 · Draft<br>
+Davante Adams — Rd 1 · Draft<br>
+Bo Nix — Rd 3 · Draft<br>
+Troy Franklin — Rd 4 · FA<br>
+Josh Downs — Rd 4 · FA<br>
+Rashee Rice — Rd 4 · Draft<br>
+Andy Borregales — Rd 4 · FA<br>
+Kayshon Boutte — Rd 4 · FA<br>
+Texans D/ST — Rd 4 · FA<br>
+Kareem Hunt — Rd 4 · FA</font></p>
+<p><font size="4"><br></font></p>
+<p><font size="4"><strong>Dylan</strong></font></p>
+<p><font size="4">Jameson Williams — Rd 1 · Trade<br>
+George Pickens — Rd 2 · Draft<br>
+DK Metcalf — Rd 2 · Trade<br>
+Brock Purdy — Rd 4 · FA<br>
+Chase McLaughlin — Rd 4 · FA<br>
+Emari Demercado — Rd 4 · FA<br>
+Tyjae Spears — Rd 8 · Trade<br>
+Rico Dowdle — Rd 11 · Trade</font></p>
+<p><font size="4"><br></font></p>
+<p><font size="4"><strong>Jack</strong></font></p>
+<p><font size="4">David Montgomery — Rd 1 · Trade<br>
+Tyler Warren — Rd 5 · Draft<br>
+Zach Charbonnet — Rd 5 · Trade<br>
+Rhamondre Stevenson — Rd 7 · Trade<br>
+Broncos D/ST — Rd 7 · Trade</font></p>
+<p><font size="4"><br></font></p>
+<p><font size="4"><strong>Jordan</strong></font></p>
+<p><font size="4">Terry McLaurin — Rd 1 · Draft<br>
+Chuba Hubbard — Rd 1 · Draft (kept '25)<br>
+TreVeyon Henderson — Rd 1 · FA<br>
+Ladd McConkey — Rd 1 · Trade (kept '25)<br>
+Tetairoa McMillan — Rd 2 · Draft<br>
+Blake Corum — Rd 4 · FA<br>
+Jason Myers — Rd 4 · FA<br>
+Drake Maye — Rd 6 · Draft<br>
+Hunter Henry — Rd 12 · Draft</font></p>
+<p><font size="4"><br></font></p>
+<p><font size="4"><strong>Kyle</strong></font></p>
+<p><font size="4">George Kittle — Rd 1 · Draft<br>
+DeVonta Smith — Rd 2 · Draft<br>
+Jaylen Waddle — Rd 3 · Draft<br>
+Emanuel Wilson — Rd 4 · FA<br>
+Bills D/ST — Rd 4 · FA<br>
+Woody Marks — Rd 4 · FA<br>
+Jake Ferguson — Rd 4 · FA<br>
+Tyler Loop — Rd 4 · FA<br>
+Emeka Egbuka — Rd 4 · Draft<br>
+Caleb Williams — Rd 9 · Draft</font></p>
+<p><font size="4"><br></font></p>
+<p><font size="4"><strong>Luke</strong></font></p>
+<p><font size="4">Dalton Schultz — Rd 4 · FA<br>
+Jacoby Brissett — Rd 4 · FA<br>
+Quentin Johnston — Rd 4 · FA<br>
+Cam Little — Rd 4 · FA<br>
+Travis Etienne Jr. — Rd 5 · FA<br>
+Jakobi Meyers — Rd 6 · Draft<br>
+Tyler Allgeier — Rd 7 · Trade<br>
+Dalton Kincaid — Rd 7 · Draft</font></p>
+<p><font size="4"><br></font></p>
+<p><font size="4"><strong>Matt</strong></font></p>
+<p><font size="4">Alvin Kamara — Rd 1 · Trade<br>
+RJ Harvey — Rd 2 · Draft<br>
+Michael Pittman Jr. — Rd 4 · FA<br>
+Jordan Mason — Rd 4 · Draft<br>
+Christian Watson — Rd 4 · FA<br>
+Cam Skattebo — Rd 5 · Draft<br>
+Patrick Mahomes — Rd 6 · Draft</font></p>
+<p><font size="4"><br></font></p>
+<p><font size="4"><strong>Mike</strong></font></p>
+<p><font size="4">Bucky Irving — Rd 1 · Draft (kept '25)<br>
+Trey McBride — Rd 1 · Draft<br>
+Alec Pierce — Rd 4 · FA<br>
+Rams D/ST — Rd 4 · FA<br>
+Stefon Diggs — Rd 4 · Trade<br>
+Michael Wilson — Rd 4 · FA<br>
+Dak Prescott — Rd 4 · Draft</font></p>
+<p><font size="4"><br></font></p>
+<p><font size="4"><strong>Scott</strong></font></p>
+<p><font size="4">Rome Odunze — Rd 1 · Draft (kept '25)<br>
+Theo Johnson — Rd 4 · FA<br>
+Justin Herbert — Rd 5 · Draft<br>
+Keenan Allen — Rd 6 · Draft<br>
+Wan'Dale Robinson — Rd 8 · Draft<br>
+Jake Bates — Rd 11 · Draft<br>
+Patriots D/ST — Rd 12 · Draft</font></p>
+<p><font size="4"><br></font></p>
+<p><font size="4"><strong>Tim</strong></font></p>
+<p><font size="4">Courtland Sutton — Rd 1 · Trade (kept '25)<br>
+Brock Bowers — Rd 1 · Draft (kept '25)<br>
+Tony Pollard — Rd 2 · Trade<br>
+Xavier Worthy — Rd 2 · Draft<br>
+Kyle Monangai — Rd 4 · FA<br>
+Javonte Williams — Rd 5 · Trade<br>
+Brandon Aubrey — Rd 10 · Draft<br>
+Bhayshul Tuten — Rd 10 · Trade<br>
+Romeo Doubs — Rd 12 · Draft</font></p>
+<p><font size="4"><br></font></p>
+<p><font size="4"><strong>Wade</strong></font></p>
+<p><font size="4">Jaylen Warren — Rd 1 · Trade (kept '25)<br>
+Joe Burrow — Rd 2 · Draft<br>
+Marvin Harrison Jr. — Rd 4 · FA<br>
+Steelers D/ST — Rd 4 · FA<br>
+Kimani Vidal — Rd 4 · FA<br>
+Colston Loveland — Rd 4 · FA<br>
+Harold Fannin Jr. — Rd 4 · FA<br>
+Chris Olave — Rd 4 · Trade<br>
+Jauan Jennings — Rd 6 · Trade<br>
+Jared Goff — Rd 8 · Draft</font></p>`
 };
