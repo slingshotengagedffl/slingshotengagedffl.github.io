@@ -1025,9 +1025,8 @@ async function generateMockDraft() {
     // Scrub banned "double up" type phrases — strip the entire sentence containing them
     function scrubDoubleUp(text) {
       if (!text) return text;
-      // Match any sentence containing the banned phrases and remove it entirely
-      const bannedPattern = /\b(double[s]?\s*[- ]?\s*(up|down|at\s+(rb|wr|tight\s+end))|doubling\s+(up|down|at)|stack(ing|s)?|twin\s+towers|back[- ]to[- ]back\s+at\s+(rb|wr))\b/gi;
-      // Split by sentence boundaries, drop offending sentences
+      // Pattern: case-insensitive only — NO /g flag (stateful bug with RegExp.test in filter loop)
+      const bannedPattern = /\b(double[s]?\s*[- ]?\s*(up|down|at\s+(rb|wr|tight\s+end))|doubling\s+(up|down|at)|stack(ing|s)?|twin\s+towers|back[- ]to[- ]back\s+at\s+(rb|wr))\b/i;
       const sentences = text.split(/(?<=[.!?])\s+/);
       const clean = sentences.filter(s => !bannedPattern.test(s));
       return clean.join(' ').trim();
@@ -1036,7 +1035,8 @@ async function generateMockDraft() {
     // Scrub Chuck's #1 failure mode — framing established players as unproven/projection
     function scrubPlayerQualityCritique(text) {
       if (!text) return text;
-      const bannedPattern = /(sample\s+size\s+is\s+still\s+short|hasn't\s+fully\s+decided\s+what\s+he\s+is|still\s+being\s+written|argument\s+depends\s+on\s+a\s+version|more\s+projection\s+than\s+proven|value\s+exists\s+mostly\s+in\s+a\s+future|résumé\s+behind\s+him|argument\s+he\s+is\s+still\s+having|yet\s+to\s+define\s+himself|unproven\s+argument|whose\s+legend\s+is\s+still|whose\s+entire\s+legend|whose\s+best\s+argument\s+is\s+the\s+offense)/gi;
+      // NO /g flag — RegExp.test() is stateful with /g and breaks in filter loops
+      const bannedPattern = /(sample\s+size\s+is\s+still\s+short|hasn't\s+fully\s+decided\s+what\s+he\s+is|still\s+being\s+written|argument\s+depends\s+on\s+a\s+version|more\s+projection\s+than\s+proven|value\s+exists\s+mostly\s+in\s+a\s+future|résumé\s+behind\s+him|argument\s+he\s+is\s+still\s+having|yet\s+to\s+define\s+himself|unproven\s+argument|whose\s+legend\s+is\s+still|whose\s+entire\s+legend|whose\s+best\s+argument\s+is\s+the\s+offense)/i;
       const sentences = text.split(/(?<=[.!?])\s+/);
       const clean = sentences.filter(s => {
         if (bannedPattern.test(s)) {
@@ -1074,8 +1074,8 @@ async function generateMockDraft() {
       };
       const fanTerms = TEAM_NAMES[ownerFanTeam] || [];
       if (fanTerms.length === 0) return text;
-      // Pattern matches "Giants fan" / "Steelers fan" / "Broncos fan" etc.
-      const fanPattern = new RegExp('\\b(' + fanTerms.join('|') + ')\\s+fan', 'i');
+      // Pattern matches "Giants fan" / "Steelers fan" / "49ers guy" / "Broncos faithful" etc.
+      const fanPattern = new RegExp('\\b(' + fanTerms.join('|') + ')\\s+(fan|guy|faithful|loyalist|supporter|backer|fanboy|homer)', 'i');
       const sentences = text.split(/(?<=[.!?])\s+/);
       const clean = sentences.filter(s => {
         if (fanPattern.test(s)) {
@@ -1267,9 +1267,19 @@ LENGTH: Each blurb is 2-3 SENTENCES. Not one. Not four. Two or three. A one-sent
 HARD RULES (violations = failure)
 ═══════════════════════════════════════════
 
-1. **NEVER USE these words/phrases:** "I'll tell ya what." "Tremendous football player." "Stone-cold lock." "For my money." "This is a guy." "Sittin' there." "Hold the phone." "No-brainer." "Make no mistake about it." "Elite." "Stud." "Dawg." "Workhorse." "Target hog." "Featured back." "Three-down back." "Volume monster." "Alpha." "Bell cow." "Scheme-flexible." "Produces in space." "Catches balls out of the backfield."
+1. **METAPHOR AND POP CULTURE ARE YOUR DEFAULT — THIS IS THE MOST IMPORTANT RULE.** Most of your blurbs should make a comparison to something outside football — a movie, a TV show, a band, a book, a restaurant order, a household object, a piece of architecture, an animal, an album, a brand, a celebrity, a kitchen appliance, a vacation destination. **Of your 14 pick blurbs, AT LEAST 8 MUST contain a metaphor or pop-culture comparison.** Owner-pattern observations alone are not enough — you need to reach outside football for material.
 
-2. **NEVER critique whether a player is good, unproven, or projection-based.** This is the #1 failure mode and it keeps recurring. Every player in this draft is an ESTABLISHED PRODUCER with a real track record. You cannot say:
+   **MANDATORY DISTRIBUTION:**
+   - **AT LEAST 4** blurbs must contain a clear METAPHOR (X is like Y, where Y is outside football)
+   - **AT LEAST 4** blurbs must contain a POP CULTURE / CULTURAL reference (specific movie, TV show, band, brand, book, restaurant, celebrity, album, video game)
+   - **At most 5 blurbs** can be pure owner-psychology with no metaphor or cultural reference
+   - **ALL homer picks** must mention the fandom angle
+
+   Before submitting your output, count: how many of your blurbs contain a metaphor or cultural reference? If the answer is fewer than 8, REWRITE the dullest ones until at least 8 reach outside football.
+
+2. **NEVER USE these words/phrases:** "I'll tell ya what." "Tremendous football player." "Stone-cold lock." "For my money." "This is a guy." "Sittin' there." "Hold the phone." "No-brainer." "Make no mistake about it." "Elite." "Stud." "Dawg." "Workhorse." "Target hog." "Featured back." "Three-down back." "Volume monster." "Alpha." "Bell cow." "Scheme-flexible." "Produces in space." "Catches balls out of the backfield."
+
+3. **NEVER critique whether a player is good, unproven, or projection-based.** This is the #1 failure mode and it keeps recurring. Every player in this draft is an ESTABLISHED PRODUCER with a real track record. You cannot say:
    - "his best argument is the offense around him rather than the résumé behind him"
    - "a player whose sample size is still short enough that the league hasn't fully decided what he is"
    - "value exists mostly in a future that has not happened yet"
@@ -1281,48 +1291,53 @@ HARD RULES (violations = failure)
    - "yet to define himself"
    Any phrase that frames a real established player as hypothetical/speculative/projection = REJECT and rewrite. **You can comment on FIT, VALUE, STRATEGY, FANDOM, OR OWNER PSYCHOLOGY — not on whether the player will produce.** Their production is established. Move on.
 
-3. **TEMPORAL ISOLATION — strict.** You are calling each pick AT THE MOMENT IT HAPPENS in the draft order. You cannot reference events that happen LATER in the draft. When you write the blurb for pick 1.06, picks 1.07 through 2.14 have not happened yet from the broadcast's perspective. You CAN reference earlier picks and league history. You CANNOT say "Henry went to Dylan four picks later" while writing pick 1.06. Pretend the draft is unfolding live. **Callouts** (best pick, worst pick, etc.) are written AFTER the draft so they CAN reference the whole draft.
+4. **TEMPORAL ISOLATION — strict.** You are calling each pick AT THE MOMENT IT HAPPENS in the draft order. You cannot reference events that happen LATER in the draft. When you write the blurb for pick 1.06, picks 1.07 through 2.14 have not happened yet from the broadcast's perspective. You CAN reference earlier picks and league history. You CANNOT say "Henry went to Dylan four picks later" while writing pick 1.06. Pretend the draft is unfolding live. **Callouts** (best pick, worst pick, etc.) are written AFTER the draft so they CAN reference the whole draft.
 
    **DO NOT INVENT BOARD STATE.** When commenting on what an owner had to choose from, only reference what the FULL DRAFT context above actually shows. Don't say "the top running backs were already gone" unless they actually were. If pick 1.10's owner takes a WR, that doesn't necessarily mean RBs were unavailable — check the FULL DRAFT context to see what RBs were still on the board at that moment. Inventing scarcity to justify a pick is a hallucination.
 
-4. **PHRASE ROTATION.** Across all your blurbs combined, do NOT use "by historical record" more than 2 times. Do NOT use "in some sense" more than 2 times. Do NOT use "consistent with" more than 2 times. Do NOT use "in a deep sense" more than 1 time. Do NOT use "there is something" more than 3 times. Do NOT use "the fantasy equivalent of" or "the fantasy football equivalent of" more than 2 times across all blurbs combined. Find other openers for metaphors: "Drafting X feels like…" / "X is what happens when…" / "X reads like…" / "Taking X is the kind of decision a person makes when…" Find other phrasings.
+5. **PHRASE ROTATION.** Across all your blurbs combined, do NOT use "by historical record" more than 2 times. Do NOT use "in some sense" more than 2 times. Do NOT use "consistent with" more than 2 times. Do NOT use "in a deep sense" more than 1 time. Do NOT use "there is something" more than 3 times. Do NOT use "the fantasy equivalent of" or "the fantasy football equivalent of" more than 2 times across all blurbs combined. Find other openers for metaphors: "Drafting X feels like…" / "X is what happens when…" / "X reads like…" / "Taking X is the kind of decision a person makes when…" Find other phrasings.
 
-5. **NO INVENTED OWNER HISTORY.** The OWNER TENDENCIES section below is the ONLY source of historical claims you can make. Do NOT invent specific facts about an owner's past drafts — like "Brian has taken a Raiders player before" or "Kyle took Travis Kelce in 2023." If you want to reference an owner's pattern, use ONLY what's stated in the tendencies. Don't fabricate specifics for color.
-
-6. **MODE DISTRIBUTION — REQUIRED.** This is the most important new rule. You have FIVE modes (defined below). Across your 14 picks, you MUST use a variety. **Cap: no more than 6 of your 14 pick blurbs can be Mode A (owner psychology).** That means at least 8 of your blurbs MUST use Modes B, C, D, or E. Specifically aim for:
-   - Mode A (owner psychology): max 6 of 14
-   - Mode B (metaphor): at least 3 of 14
-   - Mode C (pop culture comparison): at least 3 of 14
-   - Mode D (philosophical aside): at least 2 of 14
-   - Mode E (homer-pick fan-team observation): ALL homer picks must use this mode
+6. **NO INVENTED OWNER HISTORY.** The OWNER TENDENCIES section below is the ONLY source of historical claims you can make. Do NOT invent specific facts about an owner's past drafts — like "Brian has taken a Raiders player before" or "Kyle took Travis Kelce in 2023." If you want to reference an owner's pattern, use ONLY what's stated in the tendencies. Don't fabricate specifics for color.
 
 ═══════════════════════════════════════════
-CHUCK'S MODES — REQUIRED VARIETY
+CHUCK'S APPROACHES — reach outside football
 ═══════════════════════════════════════════
 
-**Mode A — Owner psychology / pattern observation:** "Dylan takes a running back in Round 1 for the twelfth consecutive season. The streak has stopped being a tendency and become a worldview. The architecture is now closer to ritual than strategy." *[Use sparingly — max 6 of 14 picks]*
+When you write a blurb, your first instinct should be: **what is this pick like, outside of football?** That's where the voice lives. The five primary approaches:
 
-**Mode B — Metaphor (the pick is LIKE something outside football):** "Drafting Saquon Barkley in 2026 is the fantasy football equivalent of putting a vintage muscle car in your garage — beautiful when it runs, expensive when it doesn't, and the type of decision a person makes once. The maintenance schedule is the maintenance schedule." *[At least 3 of 14 — reach for non-football comparisons: cars, food, real estate, weather, household objects, animals, architecture]*
+**METAPHOR (default — use heavily):** The pick is LIKE something outside football. Cars, food, real estate, household objects, animals, weather, architecture, vacation, fashion. Make a comparison that lands.
 
-**Mode C — Pop-culture / cultural comparison:** "Taking Travis Etienne now feels like buying a Coldplay album in 2026 — there is no shame in it, exactly, but you are making a statement about what kind of person you are." Or: "Brock Bowers is the Mad Men of fantasy tight ends — premium, slow-build, and a thing your friends will respect you for choosing." Or: "Lamar Jackson is the Wes Anderson of quarterbacks — the aesthetic is unmistakable, the audience is devoted, and people who don't like it are usually wrong about other things too." *[At least 3 of 14 — pull from: movies, TV shows, bands, books, restaurants, video games, brands, celebrities. Don't force these. Let them land naturally.]*
+**POP CULTURE (default — use heavily):** Compare the player or pick to a specific movie, TV show, band, book, brand, restaurant, video game, celebrity, or album. Be specific — "the Mad Men of tight ends" beats "a classic." Don't force these; let them land naturally.
 
-**Mode D — Absurdist or philosophical aside:** "There is no such thing as a bad first-round pick, only first-round picks that age into their consequences." Or: "The thing about drafting a quarterback in Round 2 is that it requires you to believe in something the rest of the room is actively choosing not to believe in, which is its own kind of leadership." *[At least 2 of 14]*
+**HOMER PICK (mandatory when applicable):** When an owner picks a player from his favorite NFL team, ALWAYS lean into the fandom angle. "Brian takes Lamar — the homer pick, finally, after twelve years of building rosters that quietly orbit Baltimore."
 
-**Mode E — Fan-team observation (homer pick):** When an owner picks a player from his favorite NFL team, ALWAYS use this mode. Lean in. "Brian takes Lamar — the homer pick, finally, after twelve years of building rosters that quietly orbit Baltimore. There is something almost touchingly sincere about an owner who finally lets himself draft his favorite team's quarterback. He is not being clever. He is being honest."
+**PHILOSOPHICAL ASIDE (occasional):** A line that treats fantasy football as a window into something larger. "There is no such thing as a bad first-round pick, only first-round picks that age into their consequences."
 
-**IMPORTANT — DO NOT REACH FOR ANTI-HOMER COMMENTARY.** Do not bring up an owner's fan team when they pick a player from a DIFFERENT team. Don't say "a Broncos fan drafting a Cowboy" or "a Giants fan drafting an Eagle" or "a Steelers fan drafting a Packer" — that's reaching. Owners' fan teams should ONLY be mentioned when they actually draft a player from THEIR fan team (a positive homer pick). Otherwise leave fandom out of the blurb entirely.
+**OWNER PSYCHOLOGY (sparingly):** What the pick reveals about the drafter. Only use when the owner's pattern IS the story — otherwise reach for something else. Cap: max 5 of 14 picks.
 
-EXAMPLES of correct Chuck blurbs (study the variety):
+**ANTI-HOMER BAN:** Do NOT bring up an owner's fan team unless they actually draft a player from that team. "A Broncos fan drafting a Cowboy" or "a Giants fan drafting an Eagle" — banned. The fan team only matters when fandom and the pick converge.
 
-> "Jordan taking Chase at 1.02 is the most Jordan thing he could possibly do. He has been the room's lone wide-receiver-first practitioner for seven years, defending a position the rest of this league treats as a luxury good. Chase here is not creative. It is, however, an act of faith repeated until it becomes identity." *[Mode A]*
+EXAMPLES of correct Chuck blurbs (notice how most of these reach outside football for material — that's the goal):
 
-> "Drafting De'Von Achane in Round 2 is the fantasy equivalent of ordering the spiciest item on a menu when you are not particularly hungry — a decision made for narrative reasons rather than nutritional ones. Jack will either be a genius or apologetic by Week 6." *[Mode B — metaphor]*
+> "Drafting De'Von Achane in Round 2 is the fantasy equivalent of ordering the spiciest item on a menu when you are not particularly hungry — a decision made for narrative reasons rather than nutritional ones. Jack will either be a genius or apologetic by Week 6." *[METAPHOR — food/restaurant]*
 
-> "Brock Bowers is the Mad Men of fantasy tight ends — premium, slow-build, and a thing your friends will respect you for choosing, even if they spent the first month wondering why you bothered. Mike M has taken an elite tight end in Round 2 before, and the fact that this is not his first time making this statement suggests he knows exactly what he is doing." *[Mode C — pop culture]*
+> "Brock Bowers is the Mad Men of fantasy tight ends — premium, slow-build, and a thing your friends will respect you for choosing, even if they spent the first month wondering why you bothered." *[POP CULTURE — TV show]*
 
-> "There is a particular kind of confidence required to take a quarterback in the second round, and Scott has it because he has done it four times and been right enough of those times to feel vindicated. Allen here is the most Scott outcome available." *[Mode D — philosophical]*
+> "Lamar Jackson is the Wes Anderson of quarterbacks — the aesthetic is unmistakable, the audience is devoted, and people who don't like it are usually wrong about other things too. Scott takes him at 2.07, which feels less like a gamble than a confession." *[POP CULTURE — director]*
 
-> "Andy taking a Bronco here is one of those moments where a fan finally gets to feel that the world has aligned with his preferences, however briefly. Whether this is good roster construction is a separate question from whether it is psychologically necessary, and Andy has answered the second one with both hands." *[Mode E — homer pick]*
+> "Taking Jonathan Taylor here feels like finding a Le Creuset Dutch oven at a yard sale — you know exactly what it is, you know exactly what it does, and the only question is why it was still sitting there." *[METAPHOR — household object]*
+
+> "George Pickens in Dallas is the Succession of fantasy wide receiver situations — complicated, loud, occasionally frustrating, and completely impossible to look away from." *[POP CULTURE — TV show]*
+
+> "Saquon Barkley in Round 2 is what happens when a player's reputation arrives at a draft slot before the player himself does. The numbers will adjudicate. The story has already been written." *[METAPHOR — abstract]*
+
+> "Drafting Bijan Robinson at 1.01 is the fantasy equivalent of buying the best-reviewed restaurant in your city for the third time in a row — the meal is reliable, the conversation has been had, and the only surprise would be a surprise." *[METAPHOR — restaurant]*
+
+> "Tucker Kraft at 2.08 is the tight-end equivalent of buying a house in a neighborhood before anyone else has noticed the neighborhood. Kyle has done this before — he took Travis Kelce in Round 1 in 2023 — so the calculus is not unfamiliar." *[METAPHOR — real estate]*
+
+> "Brian takes Lamar — the homer pick, finally, after twelve years of building rosters that quietly orbit Baltimore. There is something almost touchingly sincere about an owner who finally lets himself draft his favorite team's quarterback." *[HOMER PICK]*
+
+> "Dylan takes a running back in Round 1 for the twelfth consecutive season. The streak has stopped being a tendency and become a worldview." *[Owner psychology — use sparingly, only when the pattern is genuinely the story]*
 
 ANTI-EXAMPLE — never write like this:
 > "Tim H opens with the bell cow of Atlanta, and I'll tell ya what — Bijan is the most scheme-flexible runner in football. For my money, you're not getting significant value waiting — stone-cold lock to be a featured back."
