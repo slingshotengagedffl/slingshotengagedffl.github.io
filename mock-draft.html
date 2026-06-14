@@ -774,6 +774,8 @@ OWNER FAN TEAMS — when an owner picks a player from THEIR favorite team, this 
 
 When a fan-team pick happens, lean into it: Mel can call it "the homer pick" or note the owner finally getting his guy; Chuck can find the meta-narrative about fandom intersecting with roster construction.
 
+**IMPORTANT:** Only bring up an owner's fan team when they ACTUALLY draft a player from their fan team (a homer pick). Do NOT reach for anti-homer commentary like "a Broncos fan drafting a Cowboy" or "a Giants fan drafting an Eagle" — those connections are not interesting and feel forced. Fandom is only relevant when it intersects with the actual pick.
+
 2026 RANKINGS:
 ${rankingsText}
 
@@ -827,7 +829,9 @@ RULES:
 
 12. **GRADE FAIRNESS.** Letter grades must reflect actual roster construction quality based on the two picks each owner made. Consider: did they get value at their slot, did they follow their pattern profitably, do their two picks fit together positionally, do they have a path to a starting lineup?
 
-13. **CALLOUT ACCURACY.** The bestPick, worstPick, sleeperPick, draftWinner, and draftLoser callouts MUST reference actual picks from this draft. Name the owner AND the player AND the pick number — and verify all three match an entry in the picks array.
+13. **CALLOUT ACCURACY — CRITICAL.** The bestPick, worstPick, sleeperPick, draftWinner, and draftLoser callouts MUST reference actual picks from this draft. Name the owner AND the player AND the pick number — and verify all three match an entry in the picks array.
+
+   **Common failure mode:** When discussing a draftWinner or draftLoser, do NOT attribute players to that owner that were actually drafted by OTHER owners. Before writing the callout, look at the owner's TWO picks in the picks array. Those are the ONLY players you can attribute to them. For example: if Scott took only McCaffrey and Allen, do not write "Scott's strong Bijan-McCaffrey foundation" — Bijan went to a different owner. Reread the picks array before writing each callout.
 
 OUTPUT — return ONLY this JSON, no fences, no preamble:
 
@@ -1014,9 +1018,50 @@ async function generateMockDraft() {
       return clean.join(' ').trim();
     }
 
+    // Scrub anti-homer fan-team reaching — sentences that pair an owner's fan team
+    // with a non-matching team for cheap color (e.g. "a Broncos fan drafting a Cowboy")
+    function scrubAntiHomer(text, pickOwner, pickTeam) {
+      if (!text || !pickOwner) return text;
+      const ownerFanTeam = FAN_TEAMS[pickOwner];
+      if (!ownerFanTeam || ownerFanTeam === pickTeam) return text;
+      // Only scrub if Chuck/Mel actually paired the fan team with a non-matching team
+      const TEAM_NAMES = {
+        SF: ['49er', '49ers', 'San Francisco'], BAL: ['Raven', 'Ravens', 'Baltimore'],
+        DEN: ['Bronco', 'Broncos', 'Denver'], PHI: ['Eagle', 'Eagles', 'Philadelphia'],
+        NYG: ['Giant', 'Giants', 'New York Giants'], PIT: ['Steeler', 'Steelers', 'Pittsburgh'],
+        MIN: ['Viking', 'Vikings', 'Minnesota'], DAL: ['Cowboy', 'Cowboys', 'Dallas'],
+        NE: ['Patriot', 'Patriots', 'New England'], CIN: ['Bengal', 'Bengals', 'Cincinnati'],
+        DET: ['Lion', 'Lions', 'Detroit'], LAR: ['Ram', 'Rams', 'Los Angeles Ram'],
+        SEA: ['Seahawk', 'Seahawks', 'Seattle'], ATL: ['Falcon', 'Falcons', 'Atlanta'],
+        IND: ['Colt', 'Colts', 'Indianapolis'], BUF: ['Bill', 'Bills', 'Buffalo'],
+        MIA: ['Dolphin', 'Dolphins', 'Miami'], LV: ['Raider', 'Raiders', 'Las Vegas'],
+        KC: ['Chief', 'Chiefs', 'Kansas City'], CHI: ['Bear', 'Bears', 'Chicago'],
+        GB: ['Packer', 'Packers', 'Green Bay'], LAC: ['Charger', 'Chargers', 'Los Angeles Charger'],
+        HOU: ['Texan', 'Texans', 'Houston'], NO: ['Saint', 'Saints', 'New Orleans'],
+        WAS: ['Commander', 'Commanders', 'Washington'], NYJ: ['Jet', 'Jets', 'New York Jet'],
+        ARI: ['Cardinal', 'Cardinals', 'Arizona'], CAR: ['Panther', 'Panthers', 'Carolina'],
+        TB: ['Buccaneer', 'Buccaneers', 'Tampa Bay']
+      };
+      const fanTerms = TEAM_NAMES[ownerFanTeam] || [];
+      const pickTerms = TEAM_NAMES[pickTeam] || [];
+      if (fanTerms.length === 0 || pickTerms.length === 0) return text;
+      const fanPattern = new RegExp('\\b(' + fanTerms.join('|') + ')\\b\\s+fan', 'i');
+      const sentences = text.split(/(?<=[.!?])\s+/);
+      const clean = sentences.filter(s => {
+        const mentionsFanTeam = fanPattern.test(s);
+        const mentionsPickTeam = pickTerms.some(t => new RegExp('\\b' + t + '\\b', 'i').test(s));
+        if (mentionsFanTeam && mentionsPickTeam) {
+          console.warn('[anti-homer scrubber] Stripped sentence:', s.slice(0, 120));
+          return false;
+        }
+        return true;
+      });
+      return clean.join(' ').trim();
+    }
+
     // Apply sanitizers
     parsed.picks.forEach(p => {
-      if (p.blurb) p.blurb = sanitizeLastNames(scrubDoubleUp(scrubPlayerQualityCritique(scrubCorrections(p.blurb))));
+      if (p.blurb) p.blurb = sanitizeLastNames(scrubAntiHomer(scrubDoubleUp(scrubPlayerQualityCritique(scrubCorrections(p.blurb))), p.owner, p.team));
     });
     ['bestPick', 'worstPick', 'sleeperPick'].forEach(k => {
       if (parsed[k] && parsed[k].blurb) parsed[k].blurb = sanitizeLastNames(scrubDoubleUp(scrubPlayerQualityCritique(scrubCorrections(parsed[k].blurb))));
@@ -1192,9 +1237,13 @@ HARD RULES (violations = failure)
 
 3. **TEMPORAL ISOLATION — strict.** You are calling each pick AT THE MOMENT IT HAPPENS in the draft order. You cannot reference events that happen LATER in the draft. When you write the blurb for pick 1.06, picks 1.07 through 2.14 have not happened yet from the broadcast's perspective. You CAN reference earlier picks and league history. You CANNOT say "Henry went to Dylan four picks later" while writing pick 1.06. Pretend the draft is unfolding live. **Callouts** (best pick, worst pick, etc.) are written AFTER the draft so they CAN reference the whole draft.
 
-4. **PHRASE ROTATION.** Across all your blurbs combined, do NOT use "by historical record" more than 2 times. Do NOT use "in some sense" more than 2 times. Do NOT use "consistent with" more than 2 times. Do NOT use "in a deep sense" more than 1 time. Do NOT use "there is something" more than 3 times. Find other phrasings.
+   **DO NOT INVENT BOARD STATE.** When commenting on what an owner had to choose from, only reference what the FULL DRAFT context above actually shows. Don't say "the top running backs were already gone" unless they actually were. If pick 1.10's owner takes a WR, that doesn't necessarily mean RBs were unavailable — check the FULL DRAFT context to see what RBs were still on the board at that moment. Inventing scarcity to justify a pick is a hallucination.
 
-5. **MODE DISTRIBUTION — REQUIRED.** This is the most important new rule. You have FIVE modes (defined below). Across your 14 picks, you MUST use a variety. **Cap: no more than 6 of your 14 pick blurbs can be Mode A (owner psychology).** That means at least 8 of your blurbs MUST use Modes B, C, D, or E. Specifically aim for:
+4. **PHRASE ROTATION.** Across all your blurbs combined, do NOT use "by historical record" more than 2 times. Do NOT use "in some sense" more than 2 times. Do NOT use "consistent with" more than 2 times. Do NOT use "in a deep sense" more than 1 time. Do NOT use "there is something" more than 3 times. Do NOT use "the fantasy equivalent of" or "the fantasy football equivalent of" more than 2 times across all blurbs combined. Find other openers for metaphors: "Drafting X feels like…" / "X is what happens when…" / "X reads like…" / "Taking X is the kind of decision a person makes when…" Find other phrasings.
+
+5. **NO INVENTED OWNER HISTORY.** The OWNER TENDENCIES section below is the ONLY source of historical claims you can make. Do NOT invent specific facts about an owner's past drafts — like "Brian has taken a Raiders player before" or "Kyle took Travis Kelce in 2023." If you want to reference an owner's pattern, use ONLY what's stated in the tendencies. Don't fabricate specifics for color.
+
+6. **MODE DISTRIBUTION — REQUIRED.** This is the most important new rule. You have FIVE modes (defined below). Across your 14 picks, you MUST use a variety. **Cap: no more than 6 of your 14 pick blurbs can be Mode A (owner psychology).** That means at least 8 of your blurbs MUST use Modes B, C, D, or E. Specifically aim for:
    - Mode A (owner psychology): max 6 of 14
    - Mode B (metaphor): at least 3 of 14
    - Mode C (pop culture comparison): at least 3 of 14
@@ -1214,6 +1263,8 @@ CHUCK'S MODES — REQUIRED VARIETY
 **Mode D — Absurdist or philosophical aside:** "There is no such thing as a bad first-round pick, only first-round picks that age into their consequences." Or: "The thing about drafting a quarterback in Round 2 is that it requires you to believe in something the rest of the room is actively choosing not to believe in, which is its own kind of leadership." *[At least 2 of 14]*
 
 **Mode E — Fan-team observation (homer pick):** When an owner picks a player from his favorite NFL team, ALWAYS use this mode. Lean in. "Brian takes Lamar — the homer pick, finally, after twelve years of building rosters that quietly orbit Baltimore. There is something almost touchingly sincere about an owner who finally lets himself draft his favorite team's quarterback. He is not being clever. He is being honest."
+
+**IMPORTANT — DO NOT REACH FOR ANTI-HOMER COMMENTARY.** Do not bring up an owner's fan team when they pick a player from a DIFFERENT team. Don't say "a Broncos fan drafting a Cowboy" or "a Giants fan drafting an Eagle" or "a Steelers fan drafting a Packer" — that's reaching. Owners' fan teams should ONLY be mentioned when they actually draft a player from THEIR fan team (a positive homer pick). Otherwise leave fandom out of the blurb entirely.
 
 EXAMPLES of correct Chuck blurbs (study the variety):
 
@@ -1289,7 +1340,7 @@ OUTPUT — return ONLY this JSON, no fences:
           sonnetParsed.picks.forEach(cp => { chuckBlurbMap[cp.pickNum] = cp.blurb; });
           parsed.picks.forEach(p => {
             if (p.voice === 'chuck' && chuckBlurbMap[p.pickNum]) {
-              p.blurb = sanitizeLastNames(scrubDoubleUp(scrubPlayerQualityCritique(scrubCorrections(chuckBlurbMap[p.pickNum]))));
+              p.blurb = sanitizeLastNames(scrubAntiHomer(scrubDoubleUp(scrubPlayerQualityCritique(scrubCorrections(chuckBlurbMap[p.pickNum]))), p.owner, p.team));
             }
           });
         }
