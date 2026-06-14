@@ -938,30 +938,59 @@ async function generateMockDraft() {
   try {
     // ── CALL 1: Haiku — generates ALL picks, ALL Mel blurbs, ALL callouts, AND grades
     //    Chuck blurbs are intentionally left null in this call — Sonnet fills them in Call 2
-    loadingStatus.textContent = 'Mel is on the clock…';
-    const response = await fetch('https://slinshot-dossier.jack-b-corcoran.workers.dev', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({
-        model: 'claude-haiku-4-5-20251001',
-        max_tokens: 7500,
-        system: [
-          {
-            type: 'text',
-            text: buildSystemPrompt(),
-            cache_control: { type: 'ephemeral' }
-          }
-        ],
-        messages: [{ role: 'user', content: buildUserPrompt(startWithMel) }]
-      })
-    });
+    // Retry up to once if completeness check fails (an owner missing a pick)
+    let parsed = null;
+    let attemptCount = 0;
+    let missingOwnersFromLastAttempt = [];
 
-    const data = await response.json();
-    const raw = data.content && data.content[0] && data.content[0].text;
-    if (!raw) throw new Error('No response content');
+    while (attemptCount < 2) {
+      attemptCount++;
+      loadingStatus.textContent = attemptCount === 1 ? 'Mel is on the clock…' : 'Mel is fixing a mistake…';
 
-    const clean = raw.replace(/```json|```/g, '').trim();
-    const parsed = JSON.parse(clean);
+      const userPromptContent = attemptCount === 1
+        ? buildUserPrompt(startWithMel)
+        : buildUserPrompt(startWithMel) + `\n\n⚠️ CRITICAL: Your previous attempt SKIPPED the following owner(s): ${missingOwnersFromLastAttempt.join(', ')}. Each owner MUST get exactly 2 picks (one in Round 1, one in Round 2). Recount before returning. ALL 14 owners appear in the picks array exactly twice. No exceptions.`;
+
+      const response = await fetch('https://slinshot-dossier.jack-b-corcoran.workers.dev', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          model: 'claude-haiku-4-5-20251001',
+          max_tokens: 7500,
+          system: [
+            {
+              type: 'text',
+              text: buildSystemPrompt(),
+              cache_control: { type: 'ephemeral' }
+            }
+          ],
+          messages: [{ role: 'user', content: userPromptContent }]
+        })
+      });
+
+      const data = await response.json();
+      const raw = data.content && data.content[0] && data.content[0].text;
+      if (!raw) throw new Error('No response content');
+      const clean = raw.replace(/```json|```/g, '').trim();
+      parsed = JSON.parse(clean);
+
+      // Quick completeness pre-check (before full validator) to decide if we retry
+      const ownerCountQuick = {};
+      (parsed.picks || []).forEach(p => {
+        ownerCountQuick[p.owner] = (ownerCountQuick[p.owner] || 0) + 1;
+      });
+      missingOwnersFromLastAttempt = DRAFT_ORDER.filter(o => (ownerCountQuick[o] || 0) < 2);
+
+      if (missingOwnersFromLastAttempt.length === 0) {
+        // Complete draft, break out
+        break;
+      } else if (attemptCount < 2) {
+        console.warn(`[retry] Attempt ${attemptCount} missing owners: ${missingOwnersFromLastAttempt.join(', ')}. Retrying...`);
+      } else {
+        console.warn(`[retry] Attempt 2 STILL missing owners: ${missingOwnersFromLastAttempt.join(', ')}. Surfacing error.`);
+        throw new Error(`Draft is missing picks for: ${missingOwnersFromLastAttempt.join(', ')}. Please regenerate.`);
+      }
+    }
 
     // Sanitizer for last names
     function sanitizeLastNames(text) {
@@ -989,6 +1018,7 @@ async function generateMockDraft() {
         .replace(/Let me correct[^.!?]*[.!?]\s*/gi, '')
         .replace(/wait,?\s+that'?s\s+(reversed|taken|wrong|not right)[^.!?]*[.!?]\s*/gi, ' ')
         .replace(/[—-]\s*(actually|wait,?\s+that)[^.!?]*[.!?]\s*/gi, ' ')
+        .replace(/\bfoosball\b/gi, 'football')
         .trim();
     }
 
@@ -1018,13 +1048,13 @@ async function generateMockDraft() {
       return clean.join(' ').trim();
     }
 
-    // Scrub anti-homer fan-team reaching — sentences that pair an owner's fan team
-    // with a non-matching team for cheap color (e.g. "a Broncos fan drafting a Cowboy")
+    // Scrub anti-homer fan-team reaching — sentences that mention an owner's fan team
+    // for a NON-homer pick (where pick team != fan team). Fan team should only be
+    // referenced when the owner actually drafts a player from that team.
     function scrubAntiHomer(text, pickOwner, pickTeam) {
       if (!text || !pickOwner) return text;
       const ownerFanTeam = FAN_TEAMS[pickOwner];
       if (!ownerFanTeam || ownerFanTeam === pickTeam) return text;
-      // Only scrub if Chuck/Mel actually paired the fan team with a non-matching team
       const TEAM_NAMES = {
         SF: ['49er', '49ers', 'San Francisco'], BAL: ['Raven', 'Ravens', 'Baltimore'],
         DEN: ['Bronco', 'Broncos', 'Denver'], PHI: ['Eagle', 'Eagles', 'Philadelphia'],
@@ -1043,15 +1073,13 @@ async function generateMockDraft() {
         TB: ['Buccaneer', 'Buccaneers', 'Tampa Bay']
       };
       const fanTerms = TEAM_NAMES[ownerFanTeam] || [];
-      const pickTerms = TEAM_NAMES[pickTeam] || [];
-      if (fanTerms.length === 0 || pickTerms.length === 0) return text;
-      const fanPattern = new RegExp('\\b(' + fanTerms.join('|') + ')\\b\\s+fan', 'i');
+      if (fanTerms.length === 0) return text;
+      // Pattern matches "Giants fan" / "Steelers fan" / "Broncos fan" etc.
+      const fanPattern = new RegExp('\\b(' + fanTerms.join('|') + ')\\s+fan', 'i');
       const sentences = text.split(/(?<=[.!?])\s+/);
       const clean = sentences.filter(s => {
-        const mentionsFanTeam = fanPattern.test(s);
-        const mentionsPickTeam = pickTerms.some(t => new RegExp('\\b' + t + '\\b', 'i').test(s));
-        if (mentionsFanTeam && mentionsPickTeam) {
-          console.warn('[anti-homer scrubber] Stripped sentence:', s.slice(0, 120));
+        if (fanPattern.test(s)) {
+          console.warn('[anti-homer scrubber] Stripped sentence (fan-team mention on non-homer pick):', s.slice(0, 120));
           return false;
         }
         return true;
@@ -1061,7 +1089,7 @@ async function generateMockDraft() {
 
     // Apply sanitizers
     parsed.picks.forEach(p => {
-      if (p.blurb) p.blurb = sanitizeLastNames(scrubAntiHomer(scrubDoubleUp(scrubPlayerQualityCritique(scrubCorrections(p.blurb))), p.owner, p.team));
+      if (p.blurb) p.blurb = sanitizeLastNames(scrubAntiHomer(scrubDoubleUp(scrubPlayerQualityCritique(scrubVoiceLeaks(scrubCorrections(p.blurb), p.voice))), p.owner, p.team));
     });
     ['bestPick', 'worstPick', 'sleeperPick'].forEach(k => {
       if (parsed[k] && parsed[k].blurb) parsed[k].blurb = sanitizeLastNames(scrubDoubleUp(scrubPlayerQualityCritique(scrubCorrections(parsed[k].blurb))));
@@ -1170,6 +1198,24 @@ async function generateMockDraft() {
       if (hits.length > 0) {
         console.warn(`[voice contamination] ${label} tagged ${intendedVoice} contains opposing voice phrases:`, hits.map(r => r.source), '\n→', text.slice(0, 120));
       }
+    }
+
+    // Strip the most egregious Chuck signature phrases from Mel blurbs (and vice versa).
+    // Conservative — only catches the worst tells that are unambiguous voice leaks.
+    function scrubVoiceLeaks(text, intendedVoice) {
+      if (!text) return text;
+      const melLeakPattern = /\b(almost touchingly|by historical record|in some sense|there is something quietly|preordained|in a deep sense|a kind of integrity)\b/i;
+      const chuckLeakPattern = /\b(i'll tell ya what|hold the phone|stone-cold lock|for my money|no-brainer|tremendous football player|make no mistake about it|sittin'? there)\b/i;
+      const pattern = intendedVoice === 'mel' ? melLeakPattern : chuckLeakPattern;
+      const sentences = text.split(/(?<=[.!?])\s+/);
+      const clean = sentences.filter(s => {
+        if (pattern.test(s)) {
+          console.warn(`[voice-leak scrubber] Stripped ${intendedVoice}-tagged sentence containing opposing voice phrase:`, s.slice(0, 100));
+          return false;
+        }
+        return true;
+      });
+      return clean.join(' ').trim();
     }
     parsed.picks.forEach(p => checkContamination(p.blurb, p.voice, `Pick ${p.pickNum} (${p.owner})`));
     ['bestPick', 'worstPick', 'sleeperPick'].forEach(k => {
