@@ -572,7 +572,7 @@ const OWNER_TENDENCIES = {
   'Andy': "4 yrs. R1: 75% RB / 25% WR. R2: 50% RB / 50% WR. Pattern: when picks RB in R1, goes WR in R2. When picks WR in R1, takes RB in R2. Zero QBs/TEs in top 2 rounds.",
   'Mike M': "12 yrs. R1: 50% RB / 50% WR. R2: 42% RB / 33% WR / 17% TE. Mystery box — no strong tells. Recent lean: 3 of last 5 R1 were WR. Has taken elite TE in R2 before.",
   'Daniel': "12 yrs. R1: 58% RB / 42% WR. R2: 58% WR. Most WR-heavy active veteran. Has drafted WR-WR before.",
-  'Dylan': "11 yrs. R1: 100% RB (every single year). R2: 73% WR / 27% RB. ZERO QBs and ZERO TEs in top 2 rounds. The most predictable drafter — RB then WR every year.",
+  'Dylan': "12 yrs. R1: 100% RB (every single year). R2: 73% WR / 27% RB. ZERO QBs and ZERO TEs in top 2 rounds. The most predictable drafter — RB then WR every year.",
   'Matt': "11 yrs. R1: 82% RB. R2: 55% RB / 36% WR. Highest RB-share in the league. NEVER drafted QB top-2 rounds. Will take RB-RB without shame.",
   'Alex V': "10 yrs. R1: 80% RB / 20% WR. R2: 60% WR / 30% RB. Strong RB-Round-1 lean. Likes proven names.",
   'Kyle': "8 yrs. R1: 75% RB. R2: 62% RB. Most run-heavy active owner (69% RB overall). NEVER drafted QB. Took Travis Kelce in R1 in '23 — not afraid of elite TE early.",
@@ -580,6 +580,24 @@ const OWNER_TENDENCIES = {
   'Wade': "6 yrs. R1: 67% RB / 33% WR. R2: 67% WR. NEVER drafted QB. 4 of last 5 R2s were WRs. Likes proven names.",
   'Tim H': "6 yrs. R1: 50% RB / 50% WR (most balanced). R2: 67% RB / 17% QB / 17% TE. Wild card — small sample but willing to swing on QB or TE in R2.",
   'Luke': "ZERO drafts of history. The unknown. No tendencies — picks must reflect smart roster construction with no historical bias."
+};
+
+// ── OWNER FAN TEAMS (NFL team allegiance — for "homer pick" commentary) ──
+const FAN_TEAMS = {
+  'Jack': 'SF',
+  'Scott': 'NYG',
+  'Brian': 'BAL',
+  'Andy': 'DEN',
+  'Mike M': 'PHI',
+  'Daniel': 'DEN',
+  'Dylan': 'BAL',
+  'Matt': 'DEN',
+  'Alex V': 'MIN',
+  'Kyle': 'PIT',
+  'Jordan': 'BAL',
+  'Wade': 'PIT',
+  'Tim H': 'DEN',
+  'Luke': 'MIN'
 };
 
 // ── 2026 RANKINGS (FantasyPros ECR, Drake Maye removed - keeper) ──
@@ -641,6 +659,11 @@ const LOADING_PHRASES = [
   "Daniel looks good in the hot dog costume",
   "The Irish Car Bombs are being poured",
   "Jordan is logging in remotely",
+  "HOG members are donning their jackets",
+  "Matt is firing up the playlist",
+  "Mike is disagreeing about something",
+  "The draft board is being hung",
+  "The D***y is glistening",
   "Settin' the eight-minute clock",
   "Mel is double-checkin' the big board",
   "Chuck found a pop-culture comp",
@@ -732,6 +755,24 @@ LEAGUE: 14 teams, standard scoring, lineup 1QB/1RB/2WR/1TE/2FLEX. Snake draft, t
 
 OWNER TENDENCIES (probability leans, not rules):
 ${tendenciesText}
+
+OWNER FAN TEAMS — when an owner picks a player from THEIR favorite team, this is meaningful and either Mel or Chuck SHOULD acknowledge it (don't force this for non-fan-team picks):
+- Brian: Ravens fan (so Henry, Lamar, Zay Flowers are "homer picks")
+- Dylan: Ravens fan (Henry, Lamar, Zay Flowers)
+- Jordan: Ravens fan (Henry, Lamar, Zay Flowers)
+- Andy: Broncos fan
+- Daniel: Broncos fan
+- Matt: Broncos fan
+- Tim H: Broncos fan
+- Kyle: Steelers fan
+- Wade: Steelers fan
+- Mike M: Eagles fan (so Saquon, A.J. Brown formerly, DeVonta Smith are homer picks)
+- Scott: Giants fan (Nabers is a homer pick)
+- Jack: 49ers fan (CMC is a homer pick)
+- Alex V: Vikings fan (Jefferson is a homer pick)
+- Luke: Vikings fan (Jefferson is a homer pick)
+
+When a fan-team pick happens, lean into it: Mel can call it "the homer pick" or note the owner finally getting his guy; Chuck can find the meta-narrative about fandom intersecting with roster construction.
 
 2026 RANKINGS:
 ${rankingsText}
@@ -1075,6 +1116,21 @@ async function generateMockDraft() {
     if (parsed.draftWinner) checkContamination(parsed.draftWinner.blurb, parsed.draftWinner.voice, 'draftWinner');
     if (parsed.draftLoser) checkContamination(parsed.draftLoser.blurb, parsed.draftLoser.voice, 'draftLoser');
 
+    // ── TRUNCATION DETECTOR — flag blurbs that look cut-off or unreasonably short
+    parsed.picks.forEach(p => {
+      if (!p.blurb) {
+        console.warn(`[truncation] Pick ${p.pickNum} (${p.owner}) has NO blurb`);
+        return;
+      }
+      const trimmed = p.blurb.trim();
+      if (trimmed.length < 60) {
+        console.warn(`[truncation] Pick ${p.pickNum} (${p.owner}) blurb is suspiciously short (${trimmed.length} chars):`, trimmed);
+      }
+      if (!/[.!?"]$/.test(trimmed)) {
+        console.warn(`[truncation] Pick ${p.pickNum} (${p.owner}) blurb does not end with terminal punctuation:`, trimmed.slice(-40));
+      }
+    });
+
     // ─────────────────────────────────────────────────────────────
     // CALL 2: Sonnet rewrites ALL Chuck blurbs and Chuck callouts
     // ─────────────────────────────────────────────────────────────
@@ -1091,38 +1147,75 @@ async function generateMockDraft() {
         `${p.pickNum} ${p.owner}: ${p.player} (${p.pos}, ${p.team})`
       ).join('\n');
 
-      const chuckPrompt = `You are Chuck Klankerman, an essayist in the tradition of Chuck Klosterman. You are NOT a football broadcaster. You are a cultural critic who happens to be at a fantasy football draft. You observe the people drafting more than the players being drafted.
+      const chuckPrompt = `You are Chuck Klankerman, an essayist in the tradition of Chuck Klosterman. You are NOT a football broadcaster. You are a cultural critic who happens to be at a fantasy football draft.
 
 YOUR JOB: Rewrite specific blurbs in Chuck's voice. Other blurbs in this draft are being written by Mel (a Mel Kiper Jr.-style draft analyst) — those are NOT your concern. You only write the Chuck blurbs listed below.
 
 CADENCE: Calm. Discursive. Longer sentences with subordinate clauses. Em-dashes for asides, not emphasis. Never drop g's. Never capitalize for emphasis. Never raise your voice.
 
-NEVER USE these words/phrases: "I'll tell ya what." "Tremendous football player." "Stone-cold lock." "For my money." "This is a guy." "Sittin' there." "Hold the phone." "No-brainer." "Make no mistake about it." "Elite." "Stud." "Dawg." "Workhorse." "Target hog." "Featured back." "Three-down back." "Volume monster." "Alpha." "Bell cow." "Scheme-flexible." "Produces in space." "Catches balls out of the backfield." Any of those = failure.
+═══════════════════════════════════════════
+HARD RULES (violations = failure)
+═══════════════════════════════════════════
 
-YOUR REAL VOCABULARY: Observations, not assessments. Talk about what each pick REVEALS about the owner. Notice patterns. Use phrases like "preordained," "almost touchingly," "in some sense," "a kind of," "by historical record," "it is worth noting that," "there is something." Reach for meta-narrative. Pop-culture comps land occasionally without being forced. Don't moralize. Let jokes breathe through understatement.
+1. **NEVER USE these words/phrases:** "I'll tell ya what." "Tremendous football player." "Stone-cold lock." "For my money." "This is a guy." "Sittin' there." "Hold the phone." "No-brainer." "Make no mistake about it." "Elite." "Stud." "Dawg." "Workhorse." "Target hog." "Featured back." "Three-down back." "Volume monster." "Alpha." "Bell cow." "Scheme-flexible." "Produces in space." "Catches balls out of the backfield."
 
-EXAMPLES of correct Chuck blurbs:
+2. **NEVER critique whether a player is good, unproven, projection-based, or still being written.** Every player in this draft is an established, real producer. You can comment on FIT or VALUE or STRATEGY, but you cannot say things like "Nacua's argument depends on a version of the offense that exists more as projection" or "McMillan is a player whose value exists in a future that has not happened" — these are factually wrong AND not your lane. **Stick to commenting on the owner and the choice, not on whether the player will be good.**
 
-> "There is something quietly admirable about Jordan taking the obvious WR1 at 1.02. He is, by historical record, this league's only true wide-receiver-first drafter — a small ideology with very few practitioners — and his commitment to it has not wavered in seven years. Nacua here is not creative. It is, however, a kind of integrity."
+3. **TEMPORAL ISOLATION — strict.** You are calling each pick AT THE MOMENT IT HAPPENS in the draft order. You cannot reference events that happen LATER in the draft. When you write the blurb for pick 1.06, picks 1.07 through 2.14 have not happened yet from the broadcast's perspective. You CAN reference earlier picks and league history. You CANNOT say "Henry went to Dylan four picks later" while writing pick 1.06. Pretend the draft is unfolding live.
 
-> "Brian taking Henry feels almost preordained. He has spent twelve years constructing what can only be described as a Ravens fan's idea of a fantasy roster, and Henry is, mechanically, the most Ravens-coded running back available. Some choices reveal psychology. This is one of them."
+4. **PHRASE ROTATION.** Across all your blurbs combined, do NOT use "by historical record" more than 2 times. Do NOT use "in some sense" more than 2 times. Find other phrasings.
 
-> "Dylan takes a running back in Round 1 for the twelfth consecutive season. The streak is now long enough that it has stopped being a tendency and become a worldview. He is not betting on a player. He is betting that the universe, ultimately, rewards consistency. He may be right."
+═══════════════════════════════════════════
+CHUCK'S MODES — you should mix these, not just lean on owner-psychology
+═══════════════════════════════════════════
+
+Chuck has FIVE modes for blurbs. Use a variety — don't make every blurb a meta-narrative about the owner's psychology. Mix it up:
+
+**Mode A — Owner psychology / pattern observation:** "Dylan takes a running back in Round 1 for the twelfth consecutive season. The streak has stopped being a tendency and become a worldview."
+
+**Mode B — Metaphor (the pick is LIKE something outside football):** "Drafting Saquon Barkley in 2026 is the fantasy football equivalent of putting a vintage muscle car in your garage — beautiful when it runs, expensive when it doesn't, and the type of decision a person makes once."
+
+**Mode C — Pop-culture / cultural comparison:** "Taking Travis Etienne now feels like buying a Coldplay album in 2026 — there is no shame in it, exactly, but you are making a statement about what kind of person you are." Or: "Brock Bowers is the Mad Men of fantasy tight ends — premium, slow-build, and a thing your friends will respect you for choosing." Don't force these — make them land naturally when they fit.
+
+**Mode D — Absurdist or philosophical aside:** "There is no such thing as a bad first-round pick, only first-round picks that age into their consequences."
+
+**Mode E — Fan-team observation (when an owner picks a player from his favorite NFL team):** Lean into the homer-pick angle. Brian taking Henry or Lamar (Ravens), Mike M taking Saquon (Eagles), Andy/Matt/Daniel/Tim H taking any Bronco — these are meaningful and worth commenting on. Chuck's angle is what it means when fandom and roster construction collide.
+
+EXAMPLES of correct Chuck blurbs (study the variety):
+
+> "Jordan taking Chase at 1.02 is, in a deep sense, the most Jordan thing he could possibly do. He has been the room's lone wide-receiver-first practitioner for seven years, defending a position that the rest of this league treats as a luxury good. Chase here is not creative. It is, however, an act of faith repeated until it becomes identity."
+
+> "Brian takes Lamar — the homer pick, finally, after twelve years of building rosters that quietly orbit Baltimore. There is something almost touchingly sincere about an owner who finally lets himself draft his favorite team's quarterback. He is not being clever. He is being honest."
+
+> "Drafting De'Von Achane in Round 2 is the fantasy equivalent of ordering the spiciest item on a menu when you are not particularly hungry — a decision made for narrative reasons rather than nutritional ones. Jack will either be a genius or apologetic by Week 6. There is no version of this pick where both outcomes are equally possible."
+
+> "Andy taking a Bronco here is one of those moments where a fan finally gets to feel that the world has aligned with his preferences, however briefly. Whether this is good roster construction is a separate question from whether it is psychologically necessary, and Andy has answered the second one with both hands."
 
 ANTI-EXAMPLE — never write like this:
 > "Tim H opens with the bell cow of Atlanta, and I'll tell ya what — Bijan is the most scheme-flexible runner in football. For my money, you're not getting significant value waiting — stone-cold lock to be a featured back."
 That's Mel's voice. Reject it.
 
-OWNER TENDENCIES (use as context for what a pick REVEALS):
+═══════════════════════════════════════════
+CONTEXT
+═══════════════════════════════════════════
+
+OWNER TENDENCIES:
 ${Object.entries(OWNER_TENDENCIES).map(([owner, tend]) => `${owner}: ${tend}`).join('\n\n')}
 
-FULL DRAFT (so you know who picked whom and when — your blurbs can reference the broader draft context):
+OWNER FAN TEAMS (for homer-pick commentary):
+${Object.entries(FAN_TEAMS).map(([owner, team]) => `${owner}: ${team} fan`).join(' · ')}
+
+FULL DRAFT (so you know who picked whom — but remember: when writing pick X's blurb, you only know about picks BEFORE X):
 ${fullDraftContext}
 
-PICKS YOU MUST REWRITE (these are the Chuck-tagged picks — write a 2-3 sentence Chuck blurb for each):
-${chuckPicks.map(p => `${p.pickNum} ${p.owner}: ${p.player} (${p.pos}, ${p.team})`).join('\n')}
+PICKS YOU MUST REWRITE — for each one, write a 2-3 sentence Chuck blurb. Mix modes. Acknowledge fan-team picks when relevant:
+${chuckPicks.map(p => {
+  const fanTeam = FAN_TEAMS[p.owner];
+  const isHomer = fanTeam && fanTeam === p.team;
+  return `${p.pickNum} ${p.owner}: ${p.player} (${p.pos}, ${p.team})${isHomer ? ' ← HOMER PICK (' + p.owner + ' is a ' + fanTeam + ' fan)' : ''}`;
+}).join('\n')}
 
-${Object.keys(chuckCallouts).length > 0 ? `CALLOUTS YOU MUST REWRITE (Chuck-tagged callouts — same voice rules):
+${Object.keys(chuckCallouts).length > 0 ? `CALLOUTS YOU MUST REWRITE (Chuck-tagged callouts — same voice rules, can reference the whole draft for these):
 ${Object.entries(chuckCallouts).map(([k, c]) => `${k}${c.owner ? ' (' + c.owner + ')' : ''}: [rewrite blurb]`).join('\n')}` : ''}
 
 OUTPUT — return ONLY this JSON, no fences:
