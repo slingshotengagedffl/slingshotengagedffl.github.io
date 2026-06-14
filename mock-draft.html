@@ -501,8 +501,8 @@ body {
 <script src="nav.js"></script>
 
 <div class="page-header">
-  <div class="page-supertitle">Slingshot 2026</div>
-  <h1>Mock Draft</h1>
+  <div class="page-supertitle">Slingshot Engaged</div>
+  <h1>2026 Mock Draft</h1>
   <p class="page-updated" id="pageUpdated"></p>
 </div>
 
@@ -662,9 +662,6 @@ fetch('profiles-data.json?v=' + Date.now())
 
 // ── PROMPTS ──
 function buildSystemPrompt() {
-  const orderText = DRAFT_ORDER.map((o, i) => `Pick 1.${String(i+1).padStart(2,'0')}: ${o}`).join('\n')
-    + '\n' + DRAFT_ORDER.slice().reverse().map((o, i) => `Pick 2.${String(i+1).padStart(2,'0')}: ${o}`).join('\n');
-
   const tendenciesText = Object.entries(OWNER_TENDENCIES)
     .map(([owner, tend]) => `${owner}: ${tend}`)
     .join('\n\n');
@@ -673,41 +670,65 @@ function buildSystemPrompt() {
     `${p.rank}. ${p.name} (${p.pos}, ${p.team})`
   ).join('\n');
 
-  return `You are calling a 2026 fantasy football mock draft for the Slingshot Engaged league. There are TWO voices alternating, one per pick.
+  return `You are calling a 2026 fantasy football mock draft for the Slingshot Engaged league. There are TWO voices alternating, one per pick. **The voice for each pick is explicitly assigned in the DRAFT ORDER (which you will receive in the user message) — you do not choose; you obey the tag.** The two voices must sound so completely different that a reader could identify which one is speaking with the speaker label hidden.
 
 ═══════════════════════════════════════════
 VOICE 1 — MEL KLANKER JR. (the Big Board Guy)
 ═══════════════════════════════════════════
-Style: Mel Kiper-Jr.-style draft analyst. Measured but authoritative, knows every owner's history, references ADP and value, talks about board state. Catchphrases used naturally (not every blurb): "I'll tell ya what," "this is a guy," "make no mistake about it," "tremendous football player," "stone-cold lock," "for my money." Mostly measured — but DIALS IT UP on chaos picks (reaches, slides, position runs) where the energy genuinely rises. Football brain through and through. Talks about workhorse touches, target share, snap counts, schedule, division matchups.
+WHO: A draft analyst in the Mel Kiper Jr. tradition. Football brain. Loud broadcaster energy. Talks about workhorse touches, target share, schemes, division matchups, ADP value.
 
-EXAMPLE MEL BLURBS (study the voice, do not copy):
+CADENCE: Punchy. Lots of dashes. Short hammer sentences mixed with longer analytical sweeps. Drops g's sometimes ("sittin'," "talkin'"). Capitalizes for emphasis ("STONE-COLD lock").
 
-Example A (chalk pick): "Tim H takes the consensus 1.01 — and I'll tell ya what, you don't get fancy at the top of the board. Gibbs is a stone-cold lock to be the most efficient back in football. The workload, the offense, the matchups — everything checks out. No-brainer."
+REQUIRED MEL VOCABULARY (use 1-2 per blurb, naturally): "I'll tell ya what," "this is a guy," "make no mistake about it," "tremendous football player," "stone-cold lock," "for my money," "sittin' there," "you don't get fancy here," "no-brainer," "hold the phone," "let me tell ya somethin'."
 
-Example B (value pick): "Now THIS is where it gets interesting, folks. Henry sittin' there at 1.07 for Kyle — that's a guy Slingshot has historically taken in the top 8 every single year, and Kyle's the most run-heavy drafter in the league. This is a guy who pounds the rock and Kyle is exactly the kind of owner who values that. Tremendous football player landing exactly where he should."
+EXAMPLE MEL BLURBS:
 
-Example C (reach): "Hold the phone — Tim H goin' off-board for the wideout at 1.01?? Make no mistake about it, this is bold. Bold with a capital B. But I'll tell ya, when you look at the target share, when you look at the offense around him, the case is there. Aggressive open."
+> "Tim H takes the consensus 1.01 — and I'll tell ya what, you don't get fancy at the top of the board. Gibbs is a stone-cold lock to be the most efficient back in football. No-brainer."
+
+> "Now THIS is where it gets interesting, folks. Henry sittin' there at 1.07 for Kyle — that's a guy Slingshot has historically taken in the top 8 every single year. Tremendous football player landing exactly where he should."
+
+> "Hold the phone — Tim H goin' off-board for the wideout at 1.01?? Make no mistake about it, this is bold. Bold with a capital B. For my money, the case is there."
 
 ═══════════════════════════════════════════
 VOICE 2 — CHUCK KLANKERMAN (the Color Guy)
 ═══════════════════════════════════════════
-Style: Chuck Klosterman-style essayist/cultural critic. Treats trivial things with outsized analytical gravity. Finds unexpected meaning in mundane patterns. Detached ironic confidence. Essayistic prose with dry asides. The voice is detached observation, not hype — like an essay paragraph dropped into a draft broadcast. Honest but never cruel. Lets jokes breathe through understatement. Pop-culture comparisons land occasionally but never feel forced. **Never uses Mel's catchphrases. Never says "I'll tell ya what" or "tremendous football player" or "stone-cold lock."** Never says "elite" or "stud" or "dawg." Chuck speaks in observations, not assessments. Chuck is more interested in what the pick reveals about the OWNER than about the player.
+WHO: An essayist in the Chuck Klosterman tradition. NOT a football broadcaster. He is a cultural critic who happens to be at a draft. He observes the people drafting more than the players being drafted. His voice is detached, ironic, occasionally philosophical. He reads like an essay paragraph dropped mid-broadcast.
 
-EXAMPLE CHUCK BLURBS (study the voice, do not copy):
+CADENCE: Calm. Discursive. Longer sentences. Subordinate clauses. Em-dashes used for asides, not emphasis. Never drops g's. Never capitalizes for emphasis. Never raises his voice on the page.
 
-Example A (chalk pick): "There is something quietly admirable about Jordan taking the obvious WR1 at 1.02. He is, by historical record, this league's only true wide-receiver-first drafter — a small ideology with very few practitioners — and his commitment to it has not wavered in seven years. Nacua here is not creative. It is, however, a kind of integrity."
+CHUCK NEVER USES: "I'll tell ya what." "Tremendous football player." "Stone-cold lock." "For my money." "This is a guy." "Sittin' there." "Hold the phone." "No-brainer." "Make no mistake about it." "Elite." "Stud." "Dawg." "Workhorse." "Target hog." "Featured back." "Three-down back." "Volume monster." "Alpha." If you see any of these in a Chuck blurb, you have failed.
 
-Example B (value pick): "Brian taking Henry feels almost preordained. He has spent twelve years constructing what can only be described as a Ravens fan's idea of a fantasy roster, and Henry is, mechanically, the most Ravens-coded running back available. Some choices reveal psychology. This is one of them."
+CHUCK SOUNDS LIKE: Observations, not assessments. Talks about what a pick reveals about the OWNER. Notices patterns. Uses words like "preordained," "almost touchingly," "in some sense," "a kind of," "by historical record," "it is worth noting that," "there is something." Reaches for the meta-narrative. Occasionally drops a pop-culture comp that lands without being forced.
 
-Example C (predictable pick): "Dylan takes a running back in Round 1 for the twelfth consecutive season. The streak is now long enough that it has stopped being a tendency and become a worldview. He is not betting on a player. He is betting that the universe, ultimately, rewards consistency. He may be right."
+EXAMPLE CHUCK BLURBS:
+
+> "There is something quietly admirable about Jordan taking the obvious WR1 at 1.02. He is, by historical record, this league's only true wide-receiver-first drafter — a small ideology with very few practitioners — and his commitment to it has not wavered in seven years. Nacua here is not creative. It is, however, a kind of integrity."
+
+> "Brian taking Henry feels almost preordained. He has spent twelve years constructing what can only be described as a Ravens fan's idea of a fantasy roster, and Henry is, mechanically, the most Ravens-coded running back available. Some choices reveal psychology. This is one of them."
+
+> "Dylan takes a running back in Round 1 for the twelfth consecutive season. The streak is now long enough that it has stopped being a tendency and become a worldview. He is not betting on a player. He is betting that the universe, ultimately, rewards consistency. He may be right."
 
 ═══════════════════════════════════════════
-VOICES ALTERNATE STRICTLY pick by pick — Mel/Chuck/Mel/Chuck/... or Chuck/Mel/Chuck/Mel/... (use the random seed below — odd seed = Mel opens, even seed = Chuck opens). Each blurb is 2-3 sentences. **The two voices must sound DRAMATICALLY different — if Mel and Chuck blurbs are interchangeable, you have failed. A reader should be able to tell instantly who is talking without the speaker tag.**
+CRITICAL — ANTI-EXAMPLES (what FAILURE looks like)
+═══════════════════════════════════════════
+
+FAILURE MODE: Writing a Mel-voiced blurb and labeling it Chuck. This is the most common mistake. Here is exactly what NOT to do:
+
+BAD (Mel pretending to be Chuck) — DO NOT WRITE BLURBS LIKE THIS:
+> "Tim H opens with the bell cow of Atlanta, and I'll tell ya what — Bijan is the most scheme-flexible runner in football. This is a guy who produces in space, produces between the tackles, catches balls out of the backfield. For my money, you're not getting significant value waiting — stone-cold lock to be a featured back."
+
+Why this fails: "I'll tell ya what," "this is a guy," "for my money," "stone-cold lock," "featured back" — these are MEL phrases. The voice is football-broadcaster, not cultural-essayist. If you find yourself writing a Chuck blurb that contains workhorse-touches language, STOP and rewrite. Chuck does not talk about the player's skills. Chuck talks about what the pick MEANS.
+
+GOOD (actual Chuck for the same pick):
+> "Tim H takes Bijan. There is, of course, no real decision being made here — the running back is the consensus first overall, and Tim is the kind of drafter who treats the 1.01 the way one treats a stop sign. The interesting question is not what he picked. It is whether he ever considered doing otherwise."
+
+═══════════════════════════════════════════
+MECHANICAL RULE: VOICE ASSIGNMENTS ARE LOCKED
+═══════════════════════════════════════════
+
+In the DRAFT ORDER (provided in the user message), every single pick has its voice tagged in brackets. You will see entries like "Pick 1.01 [MEL VOICE]: Tim H" or "Pick 1.02 [CHUCK VOICE]: Jordan" — whichever voice the tag says, write THAT voice for THAT pick. You do not choose. You do not alternate freely. You read the tag, then write the assigned voice.
 
 LEAGUE: 14 teams, standard scoring, lineup 1QB/1RB/2WR/1TE/2FLEX. Snake draft, two rounds.
-
-DRAFT ORDER:
-${orderText}
 
 OWNER TENDENCIES (probability leans, not rules):
 ${tendenciesText}
@@ -781,7 +802,17 @@ OUTPUT — return ONLY this JSON, no fences, no preamble:
 }`;
 }
 
-function buildUserPrompt() {
+function buildUserPrompt(startWithMel) {
+  // Build the draft order with EXPLICIT voice tags per slot — this forces the AI to mode-switch
+  const slots = [];
+  DRAFT_ORDER.forEach((o, i) => slots.push({ slot: `1.${String(i+1).padStart(2,'0')}`, owner: o }));
+  DRAFT_ORDER.slice().reverse().forEach((o, i) => slots.push({ slot: `2.${String(i+1).padStart(2,'0')}`, owner: o }));
+  const orderText = slots.map((s, idx) => {
+    const isMel = startWithMel ? (idx % 2 === 0) : (idx % 2 === 1);
+    const voice = isMel ? 'MEL' : 'CHUCK';
+    return `Pick ${s.slot} [${voice} VOICE]: ${s.owner}`;
+  }).join('\n');
+
   const SCENARIO_HINTS = [
     "An EARLY WR RUN happens — 3+ wideouts come off the board in the top 6 picks.",
     "An EARLY RB RUN happens — 5+ running backs come off the board in the top 7 picks.",
@@ -806,7 +837,10 @@ function buildUserPrompt() {
   const chosenScenarios = shuffled.slice(0, 2).map(s => `- ${s}`).join('\n');
   const seed = Math.floor(Math.random() * 100000);
 
-  return `Generate the mock draft now.
+  return `Generate the mock draft now. The voice for each pick is locked — obey the [MEL VOICE] / [CHUCK VOICE] tag on every slot.
+
+DRAFT ORDER (voice for each pick is in brackets — OBEY THE TAG):
+${orderText}
 
 THIS GENERATION'S SCENARIO HINTS (shape THIS specific draft):
 ${chosenScenarios}
@@ -821,6 +855,9 @@ async function generateMockDraft() {
   const loadingPanel = document.getElementById('loadingPanel');
   const loadingStatus = document.getElementById('loadingStatus');
   const results = document.getElementById('resultsArea');
+
+  // Coin flip for voice opener — same value used in prompt AND validator
+  const startWithMel = Math.random() < 0.5;
 
   btn.disabled = true;
   btn.textContent = 'Generating...';
@@ -861,7 +898,7 @@ async function generateMockDraft() {
             cache_control: { type: 'ephemeral' }
           }
         ],
-        messages: [{ role: 'user', content: buildUserPrompt() }]
+        messages: [{ role: 'user', content: buildUserPrompt(startWithMel) }]
       })
     });
 
@@ -965,13 +1002,43 @@ async function generateMockDraft() {
       parsed.picks = cleanPicks;
       if (droppedAny) console.warn('Validator dropped picks. Final count:', cleanPicks.length);
 
-      // Force voice alternation — coin flip for opener, strict alternation from there
-      const startWithMel = Math.random() < 0.5;
+      // Force voice alternation using the SAME coin flip used in the prompt — ensures
+      // rendered voice tag exactly matches the voice the AI was told to write
       parsed.picks.forEach((pick, idx) => {
         const isMel = startWithMel ? (idx % 2 === 0) : (idx % 2 === 1);
         pick.voice = isMel ? 'mel' : 'chuck';
       });
     }
+
+    // ── VOICE CONTAMINATION DETECTOR ──
+    // Logs warnings if a blurb's actual content doesn't match its assigned voice.
+    // Mel phrases in a Chuck blurb (or vice versa) means the model wrote the wrong voice.
+    const MEL_PHRASES = [
+      /i'?ll tell ya/i, /tremendous football player/i, /stone[- ]cold lock/i,
+      /for my money/i, /this is a guy/i, /sittin'? there/i, /hold the phone/i,
+      /no[- ]brainer/i, /make no mistake/i, /featured back/i, /workhorse/i,
+      /target hog/i, /three[- ]down back/i, /alpha/i, /let me tell ya/i
+    ];
+    const CHUCK_PHRASES = [
+      /there is something/i, /by historical record/i, /almost touchingly/i,
+      /it is worth noting/i, /a kind of/i, /preordained/i, /in some sense/i
+    ];
+
+    function checkContamination(text, intendedVoice, label) {
+      if (!text) return;
+      const isMel = intendedVoice === 'mel';
+      const wrongPhrases = isMel ? CHUCK_PHRASES : MEL_PHRASES;
+      const hits = wrongPhrases.filter(re => re.test(text));
+      if (hits.length > 0) {
+        console.warn(`[voice contamination] ${label} tagged ${intendedVoice} contains opposing voice phrases:`, hits.map(r => r.source), '\n→', text.slice(0, 120));
+      }
+    }
+    parsed.picks.forEach(p => checkContamination(p.blurb, p.voice, `Pick ${p.pickNum} (${p.owner})`));
+    ['bestPick', 'worstPick', 'sleeperPick'].forEach(k => {
+      if (parsed[k]) checkContamination(parsed[k].blurb, parsed[k].voice, k);
+    });
+    if (parsed.draftWinner) checkContamination(parsed.draftWinner.blurb, parsed.draftWinner.voice, 'draftWinner');
+    if (parsed.draftLoser) checkContamination(parsed.draftLoser.blurb, parsed.draftLoser.voice, 'draftLoser');
 
     clearInterval(loadingInterval);
     barFill.style.transition = 'width 0.3s ease';
