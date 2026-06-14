@@ -418,6 +418,20 @@ body {
   color: var(--gold);
   flex-shrink: 0;
 }
+.grade-picks {
+  font-family: 'Barlow', sans-serif;
+  font-size: 0.92rem;
+  color: var(--text-body);
+  line-height: 1.35;
+  margin-top: 3px;
+}
+.grade-picks-pos {
+  font-family: 'Barlow Condensed', sans-serif;
+  color: var(--muted);
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  font-size: 0.78rem;
+}
 .grade-comment {
   font-size: 1rem;
   line-height: 1.5;
@@ -596,28 +610,27 @@ const PLAYER_RANKINGS = [
   { rank: 24, name: 'Kenneth Walker III', pos: 'RB', team: 'KC' },
   { rank: 25, name: 'Malik Nabers', pos: 'WR', team: 'NYG' },
   { rank: 26, name: 'Chase Brown', pos: 'RB', team: 'CIN' },
-  { rank: 27, name: 'Rashee Rice', pos: 'WR', team: 'KC' },
-  { rank: 28, name: 'Tee Higgins', pos: 'WR', team: 'CIN' },
-  { rank: 29, name: 'Lamar Jackson', pos: 'QB', team: 'BAL' },
-  { rank: 30, name: 'Tetairoa McMillan', pos: 'WR', team: 'CAR' },
-  { rank: 31, name: 'Kyren Williams', pos: 'RB', team: 'LAR' },
-  { rank: 32, name: 'Josh Jacobs', pos: 'RB', team: 'GB' },
-  { rank: 33, name: 'Jeremiyah Love', pos: 'RB', team: 'ARI' },
-  { rank: 34, name: 'Zay Flowers', pos: 'WR', team: 'BAL' },
-  { rank: 35, name: 'Javonte Williams', pos: 'RB', team: 'DAL' },
-  { rank: 36, name: 'Davante Adams', pos: 'WR', team: 'LAR' },
-  { rank: 37, name: 'Joe Burrow', pos: 'QB', team: 'CIN' },
-  { rank: 38, name: 'DeVonta Smith', pos: 'WR', team: 'PHI' },
-  { rank: 39, name: 'Colston Loveland', pos: 'TE', team: 'CHI' },
-  { rank: 40, name: 'Emeka Egbuka', pos: 'WR', team: 'TB' },
-  { rank: 41, name: 'Breece Hall', pos: 'RB', team: 'NYJ' },
-  { rank: 42, name: 'Terry McLaurin', pos: 'WR', team: 'WAS' },
-  { rank: 43, name: 'Ladd McConkey', pos: 'WR', team: 'LAC' },
-  { rank: 44, name: 'Jameson Williams', pos: 'WR', team: 'DET' },
-  { rank: 45, name: 'Travis Etienne Jr.', pos: 'RB', team: 'NO' },
-  { rank: 46, name: 'Christian Watson', pos: 'WR', team: 'GB' },
-  { rank: 47, name: 'Tucker Kraft', pos: 'TE', team: 'GB' },
-  { rank: 48, name: 'Garrett Wilson', pos: 'WR', team: 'NYJ' }
+  { rank: 27, name: 'Tee Higgins', pos: 'WR', team: 'CIN' },
+  { rank: 28, name: 'Lamar Jackson', pos: 'QB', team: 'BAL' },
+  { rank: 29, name: 'Tetairoa McMillan', pos: 'WR', team: 'CAR' },
+  { rank: 30, name: 'Kyren Williams', pos: 'RB', team: 'LAR' },
+  { rank: 31, name: 'Josh Jacobs', pos: 'RB', team: 'GB' },
+  { rank: 32, name: 'Jeremiyah Love', pos: 'RB', team: 'ARI' },
+  { rank: 33, name: 'Zay Flowers', pos: 'WR', team: 'BAL' },
+  { rank: 34, name: 'Javonte Williams', pos: 'RB', team: 'DAL' },
+  { rank: 35, name: 'Davante Adams', pos: 'WR', team: 'LAR' },
+  { rank: 36, name: 'Joe Burrow', pos: 'QB', team: 'CIN' },
+  { rank: 37, name: 'DeVonta Smith', pos: 'WR', team: 'PHI' },
+  { rank: 38, name: 'Colston Loveland', pos: 'TE', team: 'CHI' },
+  { rank: 39, name: 'Emeka Egbuka', pos: 'WR', team: 'TB' },
+  { rank: 40, name: 'Breece Hall', pos: 'RB', team: 'NYJ' },
+  { rank: 41, name: 'Terry McLaurin', pos: 'WR', team: 'WAS' },
+  { rank: 42, name: 'Ladd McConkey', pos: 'WR', team: 'LAC' },
+  { rank: 43, name: 'Jameson Williams', pos: 'WR', team: 'DET' },
+  { rank: 44, name: 'Travis Etienne Jr.', pos: 'RB', team: 'NO' },
+  { rank: 45, name: 'Christian Watson', pos: 'WR', team: 'GB' },
+  { rank: 46, name: 'Tucker Kraft', pos: 'TE', team: 'GB' },
+  { rank: 47, name: 'Garrett Wilson', pos: 'WR', team: 'NYJ' }
 ];
 
 // ── LOADING PHRASES ──
@@ -719,7 +732,18 @@ RULES:
 
 4. NO same-team-same-position rosters (no CeeDee + Pickens both DAL WRs). Different positions same team is fine.
 
-5. **NO mid-blurb flubs. NO self-correction in writing. NO duplicate picks.** If you catch a mistake, silently re-output the entire entry correctly. Do NOT write "WAIT," "Let me correct," "wait, that's reversed," or "actually." Each owner gets exactly ONE pick per round. NEVER the same player twice. **ALSO: Do NOT use language like "doubles up," "doubling down," "goes double at RB," "stacking," etc. in ROUND 1 blurbs. Each owner has only ONE Round 1 pick — there is nothing to double yet. "Doubling up at RB" or "stacking WRs" is only valid language for ROUND 2 blurbs (referring to the owner's R1 + R2 picks combined).**
+5. **NO mid-blurb flubs. NO self-correction in writing. NO duplicate picks.** If you catch a mistake, silently re-output the entire entry correctly. Do NOT write "WAIT," "Let me correct," "wait, that's reversed," or "actually." Each owner gets exactly ONE pick per round. NEVER the same player twice.
+
+   **HARD BAN on the following phrases ANYWHERE (Round 1, Round 2, callouts, anywhere):** "doubles up," "doubling up," "doubling down," "double-up," "double down," "goes double at RB," "goes double at WR," "stacks," "stacking," "twin towers," "back-to-back at RB," "back-to-back at WR." These phrases are CONSTANTLY used incorrectly by the model — they get applied to a single Round 2 pick even when the owner took a different position in Round 1. The result is a blurb that says "Andy doubles up at RB" right after Andy took a WR in Round 1.
+
+   If you want to describe an owner's two-pick roster shape, use precise, position-aware language instead:
+   - GOOD: "Andy pairs his Round 1 RB with another runner here" (works ONLY if Andy actually took an RB in R1)
+   - GOOD: "After taking a wideout to open the draft, Andy pivots to the backfield"
+   - GOOD: "His second WR in as many rounds"
+   - GOOD: "An RB-RB start for Matt"
+   - BAD: any form of "doubles up" or "doubling down" — banned outright.
+
+   Before writing any Round 2 blurb, mentally check what position the SAME owner took in Round 1, and only describe the pair correctly.
 
 6. **BLURB FORMAT.** 2-3 sentences. Punchy. Reference owner tendency, value, board context, or league lore. Vary your descriptors — don't lean on "elite" (limit to 5 uses across the ENTIRE response). Use "alpha," "stud," "workhorse," "matchup nightmare," "target hog," "the guy," "volume monster," "tremendous football player," "stone-cold lock," etc.
 
@@ -804,11 +828,15 @@ async function generateMockDraft() {
   results.classList.remove('visible');
   results.innerHTML = '';
 
-  let phraseIdx = 0;
-  loadingStatus.textContent = LOADING_PHRASES[0];
+  let phraseIdx = Math.floor(Math.random() * LOADING_PHRASES.length);
+  loadingStatus.textContent = LOADING_PHRASES[phraseIdx];
   clearInterval(loadingInterval);
   loadingInterval = setInterval(() => {
-    phraseIdx = (phraseIdx + 1) % LOADING_PHRASES.length;
+    let nextIdx;
+    do {
+      nextIdx = Math.floor(Math.random() * LOADING_PHRASES.length);
+    } while (nextIdx === phraseIdx && LOADING_PHRASES.length > 1);
+    phraseIdx = nextIdx;
     loadingStatus.textContent = LOADING_PHRASES[phraseIdx];
   }, 2800);
 
@@ -873,15 +901,26 @@ async function generateMockDraft() {
         .trim();
     }
 
+    // Scrub banned "double up" type phrases — strip the entire sentence containing them
+    function scrubDoubleUp(text) {
+      if (!text) return text;
+      // Match any sentence containing the banned phrases and remove it entirely
+      const bannedPattern = /\b(double[s]?\s*[- ]?\s*(up|down|at\s+(rb|wr|tight\s+end))|doubling\s+(up|down|at)|stack(ing|s)?|twin\s+towers|back[- ]to[- ]back\s+at\s+(rb|wr))\b/gi;
+      // Split by sentence boundaries, drop offending sentences
+      const sentences = text.split(/(?<=[.!?])\s+/);
+      const clean = sentences.filter(s => !bannedPattern.test(s));
+      return clean.join(' ').trim();
+    }
+
     // Apply sanitizers
     parsed.picks.forEach(p => {
-      if (p.blurb) p.blurb = sanitizeLastNames(scrubCorrections(p.blurb));
+      if (p.blurb) p.blurb = sanitizeLastNames(scrubDoubleUp(scrubCorrections(p.blurb)));
     });
     ['bestPick', 'worstPick', 'sleeperPick'].forEach(k => {
-      if (parsed[k] && parsed[k].blurb) parsed[k].blurb = sanitizeLastNames(scrubCorrections(parsed[k].blurb));
+      if (parsed[k] && parsed[k].blurb) parsed[k].blurb = sanitizeLastNames(scrubDoubleUp(scrubCorrections(parsed[k].blurb)));
     });
-    if (parsed.draftWinner && parsed.draftWinner.blurb) parsed.draftWinner.blurb = sanitizeLastNames(scrubCorrections(parsed.draftWinner.blurb));
-    if (parsed.draftLoser && parsed.draftLoser.blurb) parsed.draftLoser.blurb = sanitizeLastNames(scrubCorrections(parsed.draftLoser.blurb));
+    if (parsed.draftWinner && parsed.draftWinner.blurb) parsed.draftWinner.blurb = sanitizeLastNames(scrubDoubleUp(scrubCorrections(parsed.draftWinner.blurb)));
+    if (parsed.draftLoser && parsed.draftLoser.blurb) parsed.draftLoser.blurb = sanitizeLastNames(scrubDoubleUp(scrubCorrections(parsed.draftLoser.blurb)));
 
     // ── PICK VALIDATOR ──
     if (parsed.picks && Array.isArray(parsed.picks)) {
@@ -1015,6 +1054,12 @@ function renderMockDraft(data) {
 
   // Owner-by-owner grades (sorted A-to-F)
   html += `<div class="section-label" style="margin-top: 22px;">Owner-by-Owner Grades</div>`;
+  // Build a lookup so grade cards can reference each owner's two picks
+  const picksByOwner = {};
+  (data.picks || []).forEach(p => {
+    if (!picksByOwner[p.owner]) picksByOwner[p.owner] = [];
+    picksByOwner[p.owner].push(p);
+  });
   const gradeRank = { 'A+': 0, 'A': 1, 'A-': 2, 'B+': 3, 'B': 4, 'B-': 5, 'C+': 6, 'C': 7, 'C-': 8, 'D+': 9, 'D': 10, 'D-': 11, 'F': 12 };
   const sortedGrades = [...(data.grades || [])].sort((a, b) => {
     const ra = gradeRank[a.letter] ?? 99;
@@ -1022,7 +1067,7 @@ function renderMockDraft(data) {
     return ra - rb;
   });
   sortedGrades.forEach(g => {
-    html += renderGradeCard(g);
+    html += renderGradeCard(g, picksByOwner);
   });
 
   // Regen footer
@@ -1061,8 +1106,11 @@ function renderPickCard(pick, idx) {
   </div>`;
 }
 
-function renderGradeCard(g) {
+function renderGradeCard(g, picksByOwner) {
   const ownerImg = OWNER_IMAGES[g.owner] || '';
+  const ownerPicks = picksByOwner[g.owner] || [];
+  const picksLine = ownerPicks.map(p => `${p.player} <span class="grade-picks-pos">${p.pos}</span>`).join(' · ');
+
   return `<div class="grade-card">
     <img class="grade-img" src="${ownerImg}" alt="${g.owner}" onerror="this.style.display='none'">
     <div class="grade-content">
@@ -1070,6 +1118,7 @@ function renderGradeCard(g) {
         <div class="grade-owner">${g.owner}</div>
         <div class="grade-letter">${g.letter}</div>
       </div>
+      <div class="grade-picks">${picksLine}</div>
     </div>
   </div>`;
 }
