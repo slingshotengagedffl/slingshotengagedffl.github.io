@@ -132,37 +132,10 @@ body {
   margin-top: 2px;
 }
 
-/* TRIGGER CARD */
-.trigger-section { margin-top: 28px; }
-.trigger-card {
-  background: var(--surface);
-  border: 1px solid var(--border);
-  border-radius: 8px;
-  padding: 22px 20px;
+/* GENERATE BUTTON ROW */
+.generate-row {
+  margin-top: 22px;
   text-align: center;
-}
-.trigger-eyebrow {
-  font-family: 'Barlow Condensed', sans-serif;
-  font-size: 0.86rem;
-  letter-spacing: 0.18em;
-  text-transform: uppercase;
-  color: var(--gold);
-  margin-bottom: 8px;
-}
-.trigger-headline {
-  font-family: 'Bebas Neue', sans-serif;
-  font-size: 1.8rem;
-  letter-spacing: 0.04em;
-  color: var(--text);
-  margin-bottom: 6px;
-  line-height: 1.05;
-}
-.trigger-subline {
-  font-size: 0.94rem;
-  line-height: 1.5;
-  color: var(--text-body);
-  max-width: 540px;
-  margin: 0 auto 18px;
 }
 .trigger-btn {
   display: inline-flex;
@@ -327,8 +300,32 @@ body {
   font-weight: 700;
   color: var(--mel-blue);
   margin-bottom: 5px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
 }
 .blurb-speaker.chuck { color: var(--chuck-amber); }
+.blurb-speaker-pic {
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 1.5px solid var(--mel-blue);
+  background: var(--surface3);
+  flex-shrink: 0;
+}
+.blurb-speaker.chuck .blurb-speaker-pic { border-color: var(--chuck-amber); }
+/* Inline variant for callouts and grades */
+.blurb-speaker.inline {
+  display: inline-flex;
+  vertical-align: middle;
+  margin-bottom: 0;
+  gap: 6px;
+}
+.blurb-speaker.inline .blurb-speaker-pic {
+  width: 22px;
+  height: 22px;
+}
 .blurb-text {
   font-size: 1.05rem;
   line-height: 1.55;
@@ -388,8 +385,8 @@ body {
   background: var(--surface);
   border: 1px solid var(--border);
   border-radius: 8px;
-  padding: 12px 14px;
-  margin-bottom: 10px;
+  padding: 10px 14px;
+  margin-bottom: 8px;
 }
 .grade-img {
   width: 48px;
@@ -515,13 +512,8 @@ body {
     </div>
   </div>
 
-  <div class="trigger-section">
-    <div class="trigger-card">
-      <div class="trigger-eyebrow">◆ Fresh Draft · Generated on Demand</div>
-      <div class="trigger-headline">Run the Mock</div>
-      <div class="trigger-subline">Two rounds. 28 picks. Mel and Chuck alternate, owner by owner. Hit Generate as many times as you want — every draft shakes out differently.</div>
-      <button class="trigger-btn" id="generateBtn" onclick="generateMockDraft()">▶ Generate Mock Draft</button>
-    </div>
+  <div class="generate-row">
+    <button class="trigger-btn" id="generateBtn" onclick="generateMockDraft()">▶ Generate Mock Draft</button>
   </div>
 
   <div class="loading-panel" id="loadingPanel">
@@ -632,20 +624,15 @@ const PLAYER_RANKINGS = [
 const LOADING_PHRASES = [
   "Mel is studyin' the tape",
   "Chuck is workshoppin' a metaphor",
-  "The big board is bein' assembled",
-  "Mel just spilled coffee on the dossier",
-  "Chuck is finding the meta-narrative",
+  "Scott is taking off his shirt",
+  "Daniel looks good in the hot dog costume",
+  "The Irish Car Bombs are being poured",
+  "Jordan is logging in remotely",
   "Settin' the eight-minute clock",
-  "We are LIVE from Slingshot HQ",
-  "Mel is double-checkin' his rankings",
-  "Chuck is rereading the owner notes",
-  "Mel says this draft has SURPRISES",
-  "Chuck is taking notes in the margins",
-  "Crunchin' the ADP one more time",
-  "Mel's rankings just got UPDATED",
-  "Chuck is sippin' his coffee, observing",
-  "Coach in the war room",
-  "Chuck found a pop-culture comp"
+  "Mel is double-checkin' the big board",
+  "Chuck found a pop-culture comp",
+  "Mel says this one's a stone-cold lock",
+  "We are LIVE from Slingshot HQ"
 ];
 let loadingInterval = null;
 
@@ -673,15 +660,36 @@ function buildSystemPrompt() {
     `${p.rank}. ${p.name} (${p.pos}, ${p.team})`
   ).join('\n');
 
-  return `You are calling a 2026 fantasy football mock draft for the Slingshot Engaged league. There are TWO voices alternating, one per pick:
+  return `You are calling a 2026 fantasy football mock draft for the Slingshot Engaged league. There are TWO voices alternating, one per pick.
 
-VOICE 1 — MEL KLANKER JR. (the Big Board Guy):
-Mel Kiper-Jr.-style: measured but authoritative draft analyst. Knows every owner's history, knows value, knows patterns. Catchphrases: "I'll tell ya what," "this is a guy," "make no mistake about it," "let me tell ya somethin'," "tremendous football player," "stone-cold lock." Mostly measured — but DIALS IT UP on chaos picks. When somebody reaches, when there's a slide, when a position run snowballs, Mel gets genuinely excited. Mix the analysis with peaks of energy. Some short hammer sentences. Some longer analytical sweeps. Football brain through and through.
+═══════════════════════════════════════════
+VOICE 1 — MEL KLANKER JR. (the Big Board Guy)
+═══════════════════════════════════════════
+Style: Mel Kiper-Jr.-style draft analyst. Measured but authoritative, knows every owner's history, references ADP and value, talks about board state. Catchphrases used naturally (not every blurb): "I'll tell ya what," "this is a guy," "make no mistake about it," "tremendous football player," "stone-cold lock," "for my money." Mostly measured — but DIALS IT UP on chaos picks (reaches, slides, position runs) where the energy genuinely rises. Football brain through and through. Talks about workhorse touches, target share, snap counts, schedule, division matchups.
 
-VOICE 2 — CHUCK KLANKERMAN (the Color Guy):
-Chuck Klosterman-style essayist/cultural-critic. Treats trivial things with outsized analytical gravity, finds unexpected meaning in mundane patterns, detached ironic confidence, essayistic prose with dry asides. Pop-culture comparisons land occasionally. Honest but never cruel. Finds the meta-narrative — what does this pick SAY about the owner as a person? What does the value cost reveal about their psychology? Not "this guy is a stud" — more "there is something almost touchingly predictable about Dylan's relationship with the running back position; it is a kind of refusal to evolve that feels, in 2026, almost noble." Doesn't moralize. Lets jokes breathe. Doesn't use Mel's draft-broadcaster vocabulary.
+EXAMPLE MEL BLURBS (study the voice, do not copy):
 
-VOICES ALTERNATE STRICTLY pick by pick — Mel, then Chuck, then Mel, then Chuck. Pick 1.01 = Mel. Pick 1.02 = Chuck. Pick 1.03 = Mel. And so on through Pick 2.14. Each blurb is 2-3 sentences. Mel's are punchier. Chuck's read like polished one-paragraph essays.
+Example A (chalk pick): "Tim H takes the consensus 1.01 — and I'll tell ya what, you don't get fancy at the top of the board. Gibbs is a stone-cold lock to be the most efficient back in football. The workload, the offense, the matchups — everything checks out. No-brainer."
+
+Example B (value pick): "Now THIS is where it gets interesting, folks. Henry sittin' there at 1.07 for Kyle — that's a guy Slingshot has historically taken in the top 8 every single year, and Kyle's the most run-heavy drafter in the league. This is a guy who pounds the rock and Kyle is exactly the kind of owner who values that. Tremendous football player landing exactly where he should."
+
+Example C (reach): "Hold the phone — Tim H goin' off-board for the wideout at 1.01?? Make no mistake about it, this is bold. Bold with a capital B. But I'll tell ya, when you look at the target share, when you look at the offense around him, the case is there. Aggressive open."
+
+═══════════════════════════════════════════
+VOICE 2 — CHUCK KLANKERMAN (the Color Guy)
+═══════════════════════════════════════════
+Style: Chuck Klosterman-style essayist/cultural critic. Treats trivial things with outsized analytical gravity. Finds unexpected meaning in mundane patterns. Detached ironic confidence. Essayistic prose with dry asides. The voice is detached observation, not hype — like an essay paragraph dropped into a draft broadcast. Honest but never cruel. Lets jokes breathe through understatement. Pop-culture comparisons land occasionally but never feel forced. **Never uses Mel's catchphrases. Never says "I'll tell ya what" or "tremendous football player" or "stone-cold lock."** Never says "elite" or "stud" or "dawg." Chuck speaks in observations, not assessments. Chuck is more interested in what the pick reveals about the OWNER than about the player.
+
+EXAMPLE CHUCK BLURBS (study the voice, do not copy):
+
+Example A (chalk pick): "There is something quietly admirable about Jordan taking the obvious WR1 at 1.02. He is, by historical record, this league's only true wide-receiver-first drafter — a small ideology with very few practitioners — and his commitment to it has not wavered in seven years. Nacua here is not creative. It is, however, a kind of integrity."
+
+Example B (value pick): "Brian taking Henry feels almost preordained. He has spent twelve years constructing what can only be described as a Ravens fan's idea of a fantasy roster, and Henry is, mechanically, the most Ravens-coded running back available. Some choices reveal psychology. This is one of them."
+
+Example C (predictable pick): "Dylan takes a running back in Round 1 for the twelfth consecutive season. The streak is now long enough that it has stopped being a tendency and become a worldview. He is not betting on a player. He is betting that the universe, ultimately, rewards consistency. He may be right."
+
+═══════════════════════════════════════════
+VOICES ALTERNATE STRICTLY pick by pick — Mel/Chuck/Mel/Chuck/... or Chuck/Mel/Chuck/Mel/... (use the random seed below — odd seed = Mel opens, even seed = Chuck opens). Each blurb is 2-3 sentences. **The two voices must sound DRAMATICALLY different — if Mel and Chuck blurbs are interchangeable, you have failed. A reader should be able to tell instantly who is talking without the speaker tag.**
 
 LEAGUE: 14 teams, standard scoring, lineup 1QB/1RB/2WR/1TE/2FLEX. Snake draft, two rounds.
 
@@ -725,7 +733,7 @@ RULES:
 
 11. GRADE DISTRIBUTION: Use the FULL range. Median grade should be B/B+/B-. Include at least one A or A- for the standout, at least one C+/C/C- for the worst. F is rare. Grades reflect actual roster construction quality — value at each pick, position balance, ceiling vs. floor.
 
-12. **GRADE ACCURACY — CRITICAL.** Each grade comment MUST only reference the TWO players that specific owner actually drafted. Do NOT mention players drafted by other owners. Before writing each grade comment, confirm which two players that owner has.
+12. **GRADE FAIRNESS.** Letter grades must reflect actual roster construction quality based on the two picks each owner made. Consider: did they get value at their slot, did they follow their pattern profitably, do their two picks fit together positionally, do they have a path to a starting lineup?
 
 13. **CALLOUT ACCURACY.** The bestPick, worstPick, sleeperPick, draftWinner, and draftLoser callouts MUST reference actual picks from this draft. Name the owner AND the player AND the pick number — and verify all three match an entry in the picks array.
 
@@ -743,8 +751,8 @@ OUTPUT — return ONLY this JSON, no fences, no preamble:
   "draftWinner": { "owner": "...", "voice": "mel" or "chuck", "blurb": "..." },
   "draftLoser": { "owner": "...", "voice": "mel" or "chuck", "blurb": "..." },
   "grades": [
-    { "owner": "Tim H", "letter": "B+", "voice": "mel" or "chuck", "comment": "..." },
-    ... 14 total, full A-D range used. Distribute Mel and Chuck roughly 7/7 across grades. NOTE: the field is named "comment" (NOT "blurb"). EVERY grade entry must have owner, letter, voice, and comment.
+    { "owner": "Tim H", "letter": "B+" },
+    ... 14 total. ONLY owner and letter — NO voice, NO comment, NO blurb. Use the FULL A-to-D range. Median around B/B+/B-. At least one A or A- for the standout. At least one C+/C/C- for the worst. F is rare. Don't grade-inflate. Grades must reflect the actual quality of the two picks each owner made — value at the slot, position balance, ceiling vs. floor — and stand on their own without explanation.
   ]
 }`;
 }
@@ -817,7 +825,7 @@ async function generateMockDraft() {
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({
         model: 'claude-haiku-4-5-20251001',
-        max_tokens: 6500,
+        max_tokens: 5500,
         system: [
           {
             type: 'text',
@@ -874,10 +882,6 @@ async function generateMockDraft() {
     });
     if (parsed.draftWinner && parsed.draftWinner.blurb) parsed.draftWinner.blurb = sanitizeLastNames(scrubCorrections(parsed.draftWinner.blurb));
     if (parsed.draftLoser && parsed.draftLoser.blurb) parsed.draftLoser.blurb = sanitizeLastNames(scrubCorrections(parsed.draftLoser.blurb));
-    if (parsed.grades) parsed.grades.forEach(g => {
-      if (!g.comment) g.comment = g.blurb || g.text || '';
-      g.comment = sanitizeLastNames(scrubCorrections(g.comment));
-    });
 
     // ── PICK VALIDATOR ──
     if (parsed.picks && Array.isArray(parsed.picks)) {
@@ -974,8 +978,9 @@ function renderMockDraft(data) {
   function speakerTag(voice) {
     const isChuck = voice === 'chuck';
     const cls = isChuck ? 'chuck' : '';
-    const lbl = isChuck ? '📓 Chuck' : '🎙️ Mel';
-    return `<span class="blurb-speaker ${cls}" style="display:inline; font-size:0.82rem; margin-right:6px;">${lbl}</span>`;
+    const pic = isChuck ? 'images/chuck.jpg' : 'images/mel.jpg';
+    const lbl = isChuck ? 'Chuck' : 'Mel';
+    return `<span class="blurb-speaker inline ${cls}"><img class="blurb-speaker-pic" src="${pic}" alt="${lbl}" onerror="this.style.display='none'"><span>${lbl}</span></span> `;
   }
 
   // Best pick
@@ -1034,7 +1039,8 @@ function renderPickCard(pick, idx) {
   const isChuck = pick.voice === 'chuck';
   const voiceClass = isChuck ? 'chuck-pick' : '';
   const speakerClass = isChuck ? 'chuck' : '';
-  const speakerLabel = isChuck ? '📓 Chuck Klankerman' : '🎙️ Mel Klanker Jr.';
+  const speakerPic = isChuck ? 'images/chuck.jpg' : 'images/mel.jpg';
+  const speakerLabel = isChuck ? 'Chuck Klankerman' : 'Mel Klanker Jr.';
 
   return `<div class="pick-card ${voiceClass}" style="animation-delay: ${idx * 0.04}s">
     <div class="pick-head">
@@ -1046,7 +1052,10 @@ function renderPickCard(pick, idx) {
       </div>
     </div>
     <div class="blurb-box">
-      <div class="blurb-speaker ${speakerClass}">${speakerLabel}</div>
+      <div class="blurb-speaker ${speakerClass}">
+        <img class="blurb-speaker-pic" src="${speakerPic}" alt="${speakerLabel}" onerror="this.style.display='none'">
+        <span>${speakerLabel}</span>
+      </div>
       <div class="blurb-text">${pick.blurb || ''}</div>
     </div>
   </div>`;
@@ -1054,10 +1063,6 @@ function renderPickCard(pick, idx) {
 
 function renderGradeCard(g) {
   const ownerImg = OWNER_IMAGES[g.owner] || '';
-  const isChuck = g.voice === 'chuck';
-  const speakerClass = isChuck ? 'chuck' : '';
-  const speakerLabel = isChuck ? '📓 Chuck' : '🎙️ Mel';
-
   return `<div class="grade-card">
     <img class="grade-img" src="${ownerImg}" alt="${g.owner}" onerror="this.style.display='none'">
     <div class="grade-content">
@@ -1065,7 +1070,6 @@ function renderGradeCard(g) {
         <div class="grade-owner">${g.owner}</div>
         <div class="grade-letter">${g.letter}</div>
       </div>
-      <div class="grade-comment"><span class="blurb-speaker ${speakerClass}" style="display:inline; font-size: 0.78rem; margin-right: 6px;">${speakerLabel}</span>${g.comment || ''}</div>
     </div>
   </div>`;
 }
