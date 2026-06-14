@@ -36,6 +36,7 @@
   --border: #2a2a2a;
   --gold: #c9a84c;
   --mel-blue: #4a9eda;
+  --chuck-amber: #d4a44c;
 }
 
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
@@ -95,31 +96,35 @@ body {
 .announcer-bar {
   display: flex;
   justify-content: center;
+  gap: 24px;
   margin: 22px 0 6px;
+  flex-wrap: wrap;
 }
 .announcer {
   display: flex;
   align-items: center;
-  gap: 12px;
+  gap: 10px;
 }
 .announcer-pic {
-  width: 56px;
-  height: 56px;
+  width: 48px;
+  height: 48px;
   border-radius: 50%;
   object-fit: cover;
-  border: 2px solid var(--mel-blue);
+  border: 2px solid var(--border);
   background: var(--surface3);
 }
+.announcer-pic.mel { border-color: var(--mel-blue); }
+.announcer-pic.chuck { border-color: var(--chuck-amber); }
 .announcer-name {
   font-family: 'Bebas Neue', sans-serif;
-  font-size: 1.4rem;
+  font-size: 1.2rem;
   letter-spacing: 0.06em;
   color: var(--text);
   line-height: 1;
 }
 .announcer-tag {
   font-family: 'Barlow Condensed', sans-serif;
-  font-size: 0.72rem;
+  font-size: 0.7rem;
   letter-spacing: 0.18em;
   text-transform: uppercase;
   color: var(--muted);
@@ -246,6 +251,7 @@ body {
   border-left: 4px solid var(--mel-blue);
   animation: fadeIn 0.4s ease both;
 }
+.pick-card.chuck-pick { border-left-color: var(--chuck-amber); }
 
 @keyframes fadeIn {
   from { opacity: 0; transform: translateY(8px); }
@@ -322,6 +328,7 @@ body {
   color: var(--mel-blue);
   margin-bottom: 5px;
 }
+.blurb-speaker.chuck { color: var(--chuck-amber); }
 .blurb-text {
   font-size: 1.05rem;
   line-height: 1.55;
@@ -489,14 +496,21 @@ body {
 </div>
 
 <div class="content">
-  <p class="intro">Mel Klanker Jr. breaks down a 14-team Slingshot mock draft, pick by pick, two rounds deep. Every generation is a fresh take on how the board might shake out.</p>
+  <p class="intro">Mel Klanker Jr. and Chuck Klankerman break down a 14-team Slingshot mock draft, pick by pick, two rounds deep. Every generation is a fresh take on how the board might shake out.</p>
 
   <div class="announcer-bar">
     <div class="announcer">
-      <img src="images/mel.jpg" alt="Mel Klanker Jr." class="announcer-pic" onerror="this.style.background='#4a9eda';this.removeAttribute('src');">
+      <img src="images/mel.jpg" alt="Mel Klanker Jr." class="announcer-pic mel" onerror="this.style.background='#4a9eda';this.removeAttribute('src');">
       <div>
         <div class="announcer-name">Mel Klanker Jr.</div>
         <span class="announcer-tag">The Big Board Guy</span>
+      </div>
+    </div>
+    <div class="announcer">
+      <img src="images/chuck.jpg" alt="Chuck Klankerman" class="announcer-pic chuck" onerror="this.style.background='#d4a44c';this.removeAttribute('src');">
+      <div>
+        <div class="announcer-name">Chuck Klankerman</div>
+        <span class="announcer-tag">The Color Guy</span>
       </div>
     </div>
   </div>
@@ -505,7 +519,7 @@ body {
     <div class="trigger-card">
       <div class="trigger-eyebrow">◆ Fresh Draft · Generated on Demand</div>
       <div class="trigger-headline">Run the Mock</div>
-      <div class="trigger-subline">Two rounds. 28 picks. Mel calls every selection. Hit Generate as many times as you want — every draft shakes out differently.</div>
+      <div class="trigger-subline">Two rounds. 28 picks. Mel and Chuck alternate, owner by owner. Hit Generate as many times as you want — every draft shakes out differently.</div>
       <button class="trigger-btn" id="generateBtn" onclick="generateMockDraft()">▶ Generate Mock Draft</button>
     </div>
   </div>
@@ -549,7 +563,7 @@ const OWNER_TENDENCIES = {
   'Jack': "12 yrs. R1: 75% RB / 25% WR. R2: 58% WR / 33% RB. NEVER drafted QB top-2 rounds. Value drafter — pivots to BPA when his preferred RB tier is gone.",
   'Scott': "12 yrs. R1: 83% RB. R2: 58% QB (most QB-heavy active owner). Drafted Mahomes in R2 four times. Most likely owner to spend an early-Round-2 pick on an elite QB.",
   'Brian': "12 yrs. R1: 75% RB / 17% WR / 8% QB. R2: 42% WR / 33% QB. Has historically loved Ravens (drafted 4 of them) and proven veteran QBs. Likely takes Henry in R1 if available. Ravens stack with Lamar in R2 happens ~30-40% of the time, not automatic.",
-  'Andy': "4 yrs. R1: 75% RB / 25% WR. R2: 50% RB / 50% WR. Pattern: when picks RB early, goes WR R2. When picks WR early, doubles up RB R2. Zero QBs/TEs in top 2 rounds.",
+  'Andy': "4 yrs. R1: 75% RB / 25% WR. R2: 50% RB / 50% WR. Pattern: when picks RB in R1, goes WR in R2. When picks WR in R1, takes RB in R2. Zero QBs/TEs in top 2 rounds.",
   'Mike M': "12 yrs. R1: 50% RB / 50% WR. R2: 42% RB / 33% WR / 17% TE. Mystery box — no strong tells. Recent lean: 3 of last 5 R1 were WR. Has taken elite TE in R2 before.",
   'Daniel': "12 yrs. R1: 58% RB / 42% WR. R2: 58% WR. Most WR-heavy active veteran. Has drafted WR-WR before.",
   'Dylan': "11 yrs. R1: 100% RB (every single year). R2: 73% WR / 27% RB. ZERO QBs and ZERO TEs in top 2 rounds. The most predictable drafter — RB then WR every year.",
@@ -586,51 +600,52 @@ const PLAYER_RANKINGS = [
   { rank: 20, name: "De'Von Achane", pos: 'RB', team: 'MIA' },
   { rank: 21, name: 'Trey McBride', pos: 'TE', team: 'ARI' },
   { rank: 22, name: 'Omarion Hampton', pos: 'RB', team: 'LAC' },
-  { rank: 23, name: 'Chris Olave', pos: 'WR', team: 'NO' },
-  { rank: 24, name: 'Josh Allen', pos: 'QB', team: 'BUF' },
-  { rank: 25, name: 'Kenneth Walker III', pos: 'RB', team: 'KC' },
-  { rank: 26, name: 'Malik Nabers', pos: 'WR', team: 'NYG' },
-  { rank: 27, name: 'Chase Brown', pos: 'RB', team: 'CIN' },
-  { rank: 28, name: 'Rashee Rice', pos: 'WR', team: 'KC' },
-  { rank: 29, name: 'Tee Higgins', pos: 'WR', team: 'CIN' },
-  { rank: 30, name: 'Lamar Jackson', pos: 'QB', team: 'BAL' },
-  { rank: 31, name: 'Tetairoa McMillan', pos: 'WR', team: 'CAR' },
-  { rank: 32, name: 'Kyren Williams', pos: 'RB', team: 'LAR' },
-  { rank: 33, name: 'Josh Jacobs', pos: 'RB', team: 'GB' },
-  { rank: 34, name: 'Jeremiyah Love', pos: 'RB', team: 'ARI' },
-  { rank: 35, name: 'Zay Flowers', pos: 'WR', team: 'BAL' },
-  { rank: 36, name: 'Javonte Williams', pos: 'RB', team: 'DAL' },
-  { rank: 37, name: 'Davante Adams', pos: 'WR', team: 'LAR' },
-  { rank: 38, name: 'Joe Burrow', pos: 'QB', team: 'CIN' },
-  { rank: 39, name: 'DeVonta Smith', pos: 'WR', team: 'PHI' },
-  { rank: 40, name: 'Colston Loveland', pos: 'TE', team: 'CHI' },
-  { rank: 41, name: 'Emeka Egbuka', pos: 'WR', team: 'TB' },
-  { rank: 42, name: 'Breece Hall', pos: 'RB', team: 'NYJ' },
-  { rank: 43, name: 'Terry McLaurin', pos: 'WR', team: 'WAS' },
-  { rank: 44, name: 'Ladd McConkey', pos: 'WR', team: 'LAC' },
-  { rank: 45, name: 'Jameson Williams', pos: 'WR', team: 'DET' },
-  { rank: 46, name: 'Travis Etienne Jr.', pos: 'RB', team: 'NO' },
-  { rank: 47, name: 'Christian Watson', pos: 'WR', team: 'GB' },
-  { rank: 48, name: 'Tucker Kraft', pos: 'TE', team: 'GB' },
-  { rank: 49, name: 'Garrett Wilson', pos: 'WR', team: 'NYJ' }
+  { rank: 23, name: 'Josh Allen', pos: 'QB', team: 'BUF' },
+  { rank: 24, name: 'Kenneth Walker III', pos: 'RB', team: 'KC' },
+  { rank: 25, name: 'Malik Nabers', pos: 'WR', team: 'NYG' },
+  { rank: 26, name: 'Chase Brown', pos: 'RB', team: 'CIN' },
+  { rank: 27, name: 'Rashee Rice', pos: 'WR', team: 'KC' },
+  { rank: 28, name: 'Tee Higgins', pos: 'WR', team: 'CIN' },
+  { rank: 29, name: 'Lamar Jackson', pos: 'QB', team: 'BAL' },
+  { rank: 30, name: 'Tetairoa McMillan', pos: 'WR', team: 'CAR' },
+  { rank: 31, name: 'Kyren Williams', pos: 'RB', team: 'LAR' },
+  { rank: 32, name: 'Josh Jacobs', pos: 'RB', team: 'GB' },
+  { rank: 33, name: 'Jeremiyah Love', pos: 'RB', team: 'ARI' },
+  { rank: 34, name: 'Zay Flowers', pos: 'WR', team: 'BAL' },
+  { rank: 35, name: 'Javonte Williams', pos: 'RB', team: 'DAL' },
+  { rank: 36, name: 'Davante Adams', pos: 'WR', team: 'LAR' },
+  { rank: 37, name: 'Joe Burrow', pos: 'QB', team: 'CIN' },
+  { rank: 38, name: 'DeVonta Smith', pos: 'WR', team: 'PHI' },
+  { rank: 39, name: 'Colston Loveland', pos: 'TE', team: 'CHI' },
+  { rank: 40, name: 'Emeka Egbuka', pos: 'WR', team: 'TB' },
+  { rank: 41, name: 'Breece Hall', pos: 'RB', team: 'NYJ' },
+  { rank: 42, name: 'Terry McLaurin', pos: 'WR', team: 'WAS' },
+  { rank: 43, name: 'Ladd McConkey', pos: 'WR', team: 'LAC' },
+  { rank: 44, name: 'Jameson Williams', pos: 'WR', team: 'DET' },
+  { rank: 45, name: 'Travis Etienne Jr.', pos: 'RB', team: 'NO' },
+  { rank: 46, name: 'Christian Watson', pos: 'WR', team: 'GB' },
+  { rank: 47, name: 'Tucker Kraft', pos: 'TE', team: 'GB' },
+  { rank: 48, name: 'Garrett Wilson', pos: 'WR', team: 'NYJ' }
 ];
 
 // ── LOADING PHRASES ──
 const LOADING_PHRASES = [
   "Mel is studyin' the tape",
-  "Mel is workin' the phones",
+  "Chuck is workshoppin' a metaphor",
   "The big board is bein' assembled",
   "Mel just spilled coffee on the dossier",
+  "Chuck is finding the meta-narrative",
   "Settin' the eight-minute clock",
   "We are LIVE from Slingshot HQ",
   "Mel is double-checkin' his rankings",
-  "Owners are huddlin' with their advisors",
+  "Chuck is rereading the owner notes",
   "Mel says this draft has SURPRISES",
-  "Compilin' the historical tendencies",
+  "Chuck is taking notes in the margins",
   "Crunchin' the ADP one more time",
   "Mel's rankings just got UPDATED",
+  "Chuck is sippin' his coffee, observing",
   "Coach in the war room",
-  "Mel's gettin' loose for a HOT take"
+  "Chuck found a pop-culture comp"
 ];
 let loadingInterval = null;
 
@@ -658,7 +673,15 @@ function buildSystemPrompt() {
     `${p.rank}. ${p.name} (${p.pos}, ${p.team})`
   ).join('\n');
 
-  return `You are Mel Klanker Jr., a draft analyst calling a 2026 fantasy football mock draft for the Slingshot Engaged league. Your voice is Mel Kiper-Jr.-style: measured but authoritative, name-drops historical context, uses catchphrases like "I'll tell ya what," "this is a guy," "make no mistake about it," "let me tell ya somethin'," "tremendous football player," "stone-cold lock." You're THE big board guy — you know every owner's history, you know value, you know patterns. But this isn't just measured monotone — you DIAL IT UP on chaos picks. When somebody reaches, when there's a slide, when a position run snowballs, you get genuinely excited. Mix the measured analysis with peaks of energy. Vary your sentence rhythm. Some short hammer sentences ("That's a steal."). Some longer analytical sweeps. Pick blurbs are 2-3 sentences each.
+  return `You are calling a 2026 fantasy football mock draft for the Slingshot Engaged league. There are TWO voices alternating, one per pick:
+
+VOICE 1 — MEL KLANKER JR. (the Big Board Guy):
+Mel Kiper-Jr.-style: measured but authoritative draft analyst. Knows every owner's history, knows value, knows patterns. Catchphrases: "I'll tell ya what," "this is a guy," "make no mistake about it," "let me tell ya somethin'," "tremendous football player," "stone-cold lock." Mostly measured — but DIALS IT UP on chaos picks. When somebody reaches, when there's a slide, when a position run snowballs, Mel gets genuinely excited. Mix the analysis with peaks of energy. Some short hammer sentences. Some longer analytical sweeps. Football brain through and through.
+
+VOICE 2 — CHUCK KLANKERMAN (the Color Guy):
+Chuck Klosterman-style essayist/cultural-critic. Treats trivial things with outsized analytical gravity, finds unexpected meaning in mundane patterns, detached ironic confidence, essayistic prose with dry asides. Pop-culture comparisons land occasionally. Honest but never cruel. Finds the meta-narrative — what does this pick SAY about the owner as a person? What does the value cost reveal about their psychology? Not "this guy is a stud" — more "there is something almost touchingly predictable about Dylan's relationship with the running back position; it is a kind of refusal to evolve that feels, in 2026, almost noble." Doesn't moralize. Lets jokes breathe. Doesn't use Mel's draft-broadcaster vocabulary.
+
+VOICES ALTERNATE STRICTLY pick by pick — Mel, then Chuck, then Mel, then Chuck. Pick 1.01 = Mel. Pick 1.02 = Chuck. Pick 1.03 = Mel. And so on through Pick 2.14. Each blurb is 2-3 sentences. Mel's are punchier. Chuck's read like polished one-paragraph essays.
 
 LEAGUE: 14 teams, standard scoring, lineup 1QB/1RB/2WR/1TE/2FLEX. Snake draft, two rounds.
 
@@ -688,7 +711,7 @@ RULES:
 
 4. NO same-team-same-position rosters (no CeeDee + Pickens both DAL WRs). Different positions same team is fine.
 
-5. **NO mid-blurb flubs. NO self-correction in writing. NO duplicate picks.** If you catch a mistake, silently re-output the entire entry correctly. Do NOT write "WAIT," "Let me correct," "wait, that's reversed," or "actually." Each owner gets exactly ONE pick per round. NEVER the same player twice.
+5. **NO mid-blurb flubs. NO self-correction in writing. NO duplicate picks.** If you catch a mistake, silently re-output the entire entry correctly. Do NOT write "WAIT," "Let me correct," "wait, that's reversed," or "actually." Each owner gets exactly ONE pick per round. NEVER the same player twice. **ALSO: Do NOT use language like "doubles up," "doubling down," "goes double at RB," "stacking," etc. in ROUND 1 blurbs. Each owner has only ONE Round 1 pick — there is nothing to double yet. "Doubling up at RB" or "stacking WRs" is only valid language for ROUND 2 blurbs (referring to the owner's R1 + R2 picks combined).**
 
 6. **BLURB FORMAT.** 2-3 sentences. Punchy. Reference owner tendency, value, board context, or league lore. Vary your descriptors — don't lean on "elite" (limit to 5 uses across the ENTIRE response). Use "alpha," "stud," "workhorse," "matchup nightmare," "target hog," "the guy," "volume monster," "tremendous football player," "stone-cold lock," etc.
 
@@ -710,17 +733,18 @@ OUTPUT — return ONLY this JSON, no fences, no preamble:
 
 {
   "picks": [
-    { "pickNum": "1.01", "owner": "Tim H", "player": "Jahmyr Gibbs", "pos": "RB", "team": "DET", "blurb": "..." },
-    ... 28 total
+    { "pickNum": "1.01", "owner": "Tim H", "player": "Jahmyr Gibbs", "pos": "RB", "team": "DET", "voice": "mel", "blurb": "..." },
+    { "pickNum": "1.02", "owner": "Jordan", "player": "...", "pos": "...", "team": "...", "voice": "chuck", "blurb": "..." },
+    ... 28 total. Voices alternate strictly: 1.01=mel, 1.02=chuck, 1.03=mel, 1.04=chuck, etc.
   ],
-  "bestPick": { "blurb": "..." },
-  "worstPick": { "blurb": "..." },
-  "sleeperPick": { "blurb": "..." },
-  "draftWinner": { "owner": "...", "blurb": "..." },
-  "draftLoser": { "owner": "...", "blurb": "..." },
+  "bestPick": { "voice": "mel" or "chuck", "blurb": "..." },
+  "worstPick": { "voice": "mel" or "chuck", "blurb": "..." },
+  "sleeperPick": { "voice": "mel" or "chuck", "blurb": "..." },
+  "draftWinner": { "owner": "...", "voice": "mel" or "chuck", "blurb": "..." },
+  "draftLoser": { "owner": "...", "voice": "mel" or "chuck", "blurb": "..." },
   "grades": [
-    { "owner": "Tim H", "letter": "B+", "comment": "..." },
-    ... 14 total, full A-D range used. NOTE: the field is named "comment" (NOT "blurb"). EVERY grade entry must have owner, letter, and comment.
+    { "owner": "Tim H", "letter": "B+", "voice": "mel" or "chuck", "comment": "..." },
+    ... 14 total, full A-D range used. Distribute Mel and Chuck roughly 7/7 across grades. NOTE: the field is named "comment" (NOT "blurb"). EVERY grade entry must have owner, letter, voice, and comment.
   ]
 }`;
 }
@@ -738,8 +762,8 @@ function buildUserPrompt() {
     "Bijan goes 1.01 (Tim H takes the safer back).",
     "Gibbs goes 1.01 (Tim H takes the ECR top pick).",
     "Chase or Puka goes in the top 4 because a WR-leaning owner has the slot.",
-    "An owner doubles up at WR in Rounds 1-2 instead of taking an RB.",
-    "An owner doubles up at RB in Rounds 1-2.",
+    "An owner takes WR in BOTH Round 1 AND Round 2 (a WR-WR start), zero RB.",
+    "An owner takes RB in BOTH Round 1 AND Round 2 (an RB-RB start), zero WR.",
     "A late-Round-2 slide gives someone a major value steal at 2.10+.",
     "The TE cliff hits hard — only 1 tight end goes in the entire 28-pick window.",
     "Three tight ends go in Round 2.",
@@ -897,6 +921,13 @@ async function generateMockDraft() {
       }
       parsed.picks = cleanPicks;
       if (droppedAny) console.warn('Validator dropped picks. Final count:', cleanPicks.length);
+
+      // Force voice alternation — coin flip for opener, strict alternation from there
+      const startWithMel = Math.random() < 0.5;
+      parsed.picks.forEach((pick, idx) => {
+        const isMel = startWithMel ? (idx % 2 === 0) : (idx % 2 === 1);
+        pick.voice = isMel ? 'mel' : 'chuck';
+      });
     }
 
     clearInterval(loadingInterval);
@@ -940,34 +971,41 @@ function renderMockDraft(data) {
   // GRADES SECTION
   html += `<div class="grades-divider">The Grades</div>`;
 
+  function speakerTag(voice) {
+    const isChuck = voice === 'chuck';
+    const cls = isChuck ? 'chuck' : '';
+    const lbl = isChuck ? '📓 Chuck' : '🎙️ Mel';
+    return `<span class="blurb-speaker ${cls}" style="display:inline; font-size:0.82rem; margin-right:6px;">${lbl}</span>`;
+  }
+
   // Best pick
   if (data.bestPick) html += `<div class="callout-card gold-accent">
     <div class="callout-label">🏆 Best Pick of the Draft</div>
-    <div class="callout-body">${data.bestPick.blurb || ''}</div>
+    <div class="callout-body">${speakerTag(data.bestPick.voice)}${data.bestPick.blurb || ''}</div>
   </div>`;
 
   // Worst pick
   if (data.worstPick) html += `<div class="callout-card red-accent">
     <div class="callout-label">❌ Worst Pick of the Draft</div>
-    <div class="callout-body">${data.worstPick.blurb || ''}</div>
+    <div class="callout-body">${speakerTag(data.worstPick.voice)}${data.worstPick.blurb || ''}</div>
   </div>`;
 
   // Sleeper
   if (data.sleeperPick) html += `<div class="callout-card gold-accent">
     <div class="callout-label">💎 Sleeper of the Draft</div>
-    <div class="callout-body">${data.sleeperPick.blurb || ''}</div>
+    <div class="callout-body">${speakerTag(data.sleeperPick.voice)}${data.sleeperPick.blurb || ''}</div>
   </div>`;
 
   // Winner
   if (data.draftWinner) html += `<div class="callout-card gold-accent">
     <div class="callout-label">🥇 Who Won the Draft</div>
-    <div class="callout-body"><strong>${data.draftWinner.owner || ''}</strong> — ${data.draftWinner.blurb || ''}</div>
+    <div class="callout-body">${speakerTag(data.draftWinner.voice)}<strong>${data.draftWinner.owner || ''}</strong> — ${data.draftWinner.blurb || ''}</div>
   </div>`;
 
   // Loser
   if (data.draftLoser) html += `<div class="callout-card red-accent">
     <div class="callout-label">💩 Who Lost the Draft</div>
-    <div class="callout-body"><strong>${data.draftLoser.owner || ''}</strong> — ${data.draftLoser.blurb || ''}</div>
+    <div class="callout-body">${speakerTag(data.draftLoser.voice)}<strong>${data.draftLoser.owner || ''}</strong> — ${data.draftLoser.blurb || ''}</div>
   </div>`;
 
   // Owner-by-owner grades (sorted A-to-F)
@@ -993,8 +1031,12 @@ function renderMockDraft(data) {
 
 function renderPickCard(pick, idx) {
   const ownerImg = OWNER_IMAGES[pick.owner] || '';
+  const isChuck = pick.voice === 'chuck';
+  const voiceClass = isChuck ? 'chuck-pick' : '';
+  const speakerClass = isChuck ? 'chuck' : '';
+  const speakerLabel = isChuck ? '📓 Chuck Klankerman' : '🎙️ Mel Klanker Jr.';
 
-  return `<div class="pick-card" style="animation-delay: ${idx * 0.04}s">
+  return `<div class="pick-card ${voiceClass}" style="animation-delay: ${idx * 0.04}s">
     <div class="pick-head">
       <img class="owner-img" src="${ownerImg}" alt="${pick.owner}" onerror="this.style.display='none'">
       <div class="pick-head-text">
@@ -1004,7 +1046,7 @@ function renderPickCard(pick, idx) {
       </div>
     </div>
     <div class="blurb-box">
-      <div class="blurb-speaker">🎙️ Mel Klanker Jr.</div>
+      <div class="blurb-speaker ${speakerClass}">${speakerLabel}</div>
       <div class="blurb-text">${pick.blurb || ''}</div>
     </div>
   </div>`;
@@ -1012,6 +1054,9 @@ function renderPickCard(pick, idx) {
 
 function renderGradeCard(g) {
   const ownerImg = OWNER_IMAGES[g.owner] || '';
+  const isChuck = g.voice === 'chuck';
+  const speakerClass = isChuck ? 'chuck' : '';
+  const speakerLabel = isChuck ? '📓 Chuck' : '🎙️ Mel';
 
   return `<div class="grade-card">
     <img class="grade-img" src="${ownerImg}" alt="${g.owner}" onerror="this.style.display='none'">
@@ -1020,7 +1065,7 @@ function renderGradeCard(g) {
         <div class="grade-owner">${g.owner}</div>
         <div class="grade-letter">${g.letter}</div>
       </div>
-      <div class="grade-comment">${g.comment || ''}</div>
+      <div class="grade-comment"><span class="blurb-speaker ${speakerClass}" style="display:inline; font-size: 0.78rem; margin-right: 6px;">${speakerLabel}</span>${g.comment || ''}</div>
     </div>
   </div>`;
 }
