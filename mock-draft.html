@@ -1,0 +1,1029 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Mock Draft — Slingshot Engaged</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Barlow+Condensed:wght@400;600;700&family=Barlow:wght@400;500;600&display=swap" rel="stylesheet">
+
+<!-- Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-72LZJZ8DX1"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-72LZJZ8DX1');
+  gtag('event', 'page_view', {'page_type': 'mockDraft'});
+  function ga_mockDraftGenerated() {
+    gtag('event', 'mock_draft_generated', {});
+  }
+</script>
+
+<style>
+:root {
+  --red: #c0392b;
+  --red-bright: #e74c3c;
+  --bg: #0a0a0a;
+  --surface: #141414;
+  --surface2: #1c1c1c;
+  --surface3: #242424;
+  --text: #f0f0f0;
+  --text-body: #e8e8e8;
+  --muted: #bbb;
+  --label: #d8d8d8;
+  --border: #2a2a2a;
+  --gold: #c9a84c;
+  --mel-blue: #4a9eda;
+}
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+body {
+  background: var(--bg);
+  color: var(--text);
+  font-family: 'Barlow', sans-serif;
+  min-height: 100vh;
+}
+
+/* PAGE HEADER */
+.page-header {
+  padding: 40px 20px 0;
+  text-align: center;
+}
+.page-supertitle {
+  font-family: 'Barlow Condensed', sans-serif;
+  font-size: 1rem;
+  letter-spacing: 0.25em;
+  text-transform: uppercase;
+  color: #d0d0d0;
+  margin-bottom: 6px;
+}
+.page-header h1 {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: clamp(2.8rem, 8vw, 5rem);
+  color: var(--red-bright);
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  line-height: 1;
+}
+.page-updated {
+  font-family: 'Barlow Condensed', sans-serif;
+  font-size: 0.72rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--muted);
+  margin-top: 6px;
+}
+
+.content {
+  max-width: 680px;
+  margin: 0 auto;
+  padding: 0 16px 60px;
+}
+
+.intro {
+  font-family: 'Barlow', sans-serif;
+  font-size: 1.1rem;
+  color: var(--text-body);
+  line-height: 1.7;
+  margin: 12px 0 12px;
+  text-align: center;
+}
+
+/* ANNOUNCER STRIP (single) */
+.announcer-bar {
+  display: flex;
+  justify-content: center;
+  margin: 22px 0 6px;
+}
+.announcer {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+.announcer-pic {
+  width: 56px;
+  height: 56px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 2px solid var(--mel-blue);
+  background: var(--surface3);
+}
+.announcer-name {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 1.4rem;
+  letter-spacing: 0.06em;
+  color: var(--text);
+  line-height: 1;
+}
+.announcer-tag {
+  font-family: 'Barlow Condensed', sans-serif;
+  font-size: 0.72rem;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--muted);
+  display: block;
+  margin-top: 2px;
+}
+
+/* TRIGGER CARD */
+.trigger-section { margin-top: 28px; }
+.trigger-card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 22px 20px;
+  text-align: center;
+}
+.trigger-eyebrow {
+  font-family: 'Barlow Condensed', sans-serif;
+  font-size: 0.86rem;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--gold);
+  margin-bottom: 8px;
+}
+.trigger-headline {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 1.8rem;
+  letter-spacing: 0.04em;
+  color: var(--text);
+  margin-bottom: 6px;
+  line-height: 1.05;
+}
+.trigger-subline {
+  font-size: 0.94rem;
+  line-height: 1.5;
+  color: var(--text-body);
+  max-width: 540px;
+  margin: 0 auto 18px;
+}
+.trigger-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  background: var(--red);
+  color: #fff;
+  border: none;
+  padding: 14px 28px;
+  font-family: 'Barlow Condensed', sans-serif;
+  font-size: 1rem;
+  font-weight: 700;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: background 0.15s, transform 0.1s;
+  min-height: 44px;
+}
+.trigger-btn:hover { background: var(--red-bright); }
+.trigger-btn:active { transform: scale(0.98); }
+.trigger-btn:disabled { opacity: 0.6; cursor: not-allowed; }
+
+/* LOADING */
+.loading-panel {
+  display: none;
+  margin-top: 30px;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 28px 18px;
+  text-align: center;
+}
+.loading-panel.visible { display: block; }
+.loading-status {
+  font-family: 'Barlow Condensed', sans-serif;
+  font-size: 1.1rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--gold);
+  min-height: 1.4em;
+}
+.loading-dots { font-size: 1.4rem; color: var(--muted); margin-top: 6px; letter-spacing: 0.15em; }
+.loading-dots span { animation: blink 1.4s infinite both; }
+.loading-dots span:nth-child(2) { animation-delay: 0.2s; }
+.loading-dots span:nth-child(3) { animation-delay: 0.4s; }
+@keyframes blink { 0%, 80%, 100% { opacity: 0.2; } 40% { opacity: 1; } }
+.loading-bar-track {
+  margin-top: 16px;
+  height: 6px;
+  background: var(--surface3);
+  border-radius: 3px;
+  overflow: hidden;
+}
+.loading-bar-fill {
+  height: 100%;
+  width: 0%;
+  background: linear-gradient(90deg, var(--red), var(--gold));
+  border-radius: 3px;
+}
+
+/* RESULTS */
+#resultsArea { display: none; margin-top: 24px; }
+#resultsArea.visible { display: block; }
+
+.round-header {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 2rem;
+  letter-spacing: 0.12em;
+  color: var(--gold);
+  text-align: center;
+  margin: 26px 0 12px;
+  padding-bottom: 8px;
+  border-bottom: 2px solid var(--gold);
+}
+.round-header:first-child { margin-top: 0; }
+
+/* PICK CARD */
+.pick-card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 16px;
+  margin-bottom: 14px;
+  border-left: 4px solid var(--mel-blue);
+  animation: fadeIn 0.4s ease both;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(8px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.pick-head {
+  display: flex;
+  gap: 12px;
+  align-items: center;
+  margin-bottom: 12px;
+}
+.owner-img {
+  width: 64px;
+  height: 64px;
+  border-radius: 8px;
+  object-fit: cover;
+  background: var(--surface3);
+  border: 1px solid var(--border);
+  flex-shrink: 0;
+}
+.pick-head-text { flex: 1; min-width: 0; }
+.pick-num-tag {
+  display: inline-block;
+  font-family: 'Barlow Condensed', sans-serif;
+  font-size: 0.95rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--gold);
+  background: var(--surface3);
+  padding: 4px 12px;
+  border-radius: 12px;
+  margin-bottom: 6px;
+}
+.owner-name {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 2rem;
+  letter-spacing: 0.04em;
+  color: var(--text);
+  line-height: 1;
+  margin-bottom: 2px;
+}
+.player-line {
+  font-family: 'Barlow', sans-serif;
+  font-size: 1.3rem;
+  color: var(--text-body);
+  line-height: 1.3;
+  margin-top: 6px;
+}
+.player-line .player-name {
+  font-weight: 700;
+  color: var(--text);
+  font-size: 1.35rem;
+}
+.player-line .player-meta {
+  color: var(--muted);
+  font-family: 'Barlow Condensed', sans-serif;
+  font-size: 1.05rem;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+
+.blurb-box {
+  background: var(--surface2);
+  border-radius: 6px;
+  padding: 12px 14px;
+}
+.blurb-speaker {
+  font-family: 'Barlow Condensed', sans-serif;
+  font-size: 0.92rem;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  font-weight: 700;
+  color: var(--mel-blue);
+  margin-bottom: 5px;
+}
+.blurb-text {
+  font-size: 1.05rem;
+  line-height: 1.55;
+  color: var(--text-body);
+}
+
+/* GRADES SECTION */
+.grades-divider {
+  margin: 36px 0 20px;
+  text-align: center;
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 2.4rem;
+  letter-spacing: 0.12em;
+  color: var(--red-bright);
+  border-top: 3px solid var(--red);
+  padding-top: 18px;
+}
+
+.callout-card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 14px 16px;
+  margin-bottom: 12px;
+}
+.callout-card.gold-accent { border-top: 3px solid var(--gold); }
+.callout-card.red-accent { border-top: 3px solid var(--red-bright); }
+.callout-label {
+  font-family: 'Barlow Condensed', sans-serif;
+  font-size: 1rem;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--gold);
+  margin-bottom: 10px;
+  font-weight: 700;
+}
+.callout-card.red-accent .callout-label { color: var(--red-bright); }
+.callout-body {
+  font-size: 1.05rem;
+  line-height: 1.55;
+  color: var(--text-body);
+}
+
+.section-label {
+  font-family: 'Barlow Condensed', sans-serif;
+  font-size: 0.78rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--label);
+  margin-bottom: 10px;
+}
+
+.grade-card {
+  display: flex;
+  gap: 12px;
+  align-items: center;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 12px 14px;
+  margin-bottom: 10px;
+}
+.grade-img {
+  width: 48px;
+  height: 48px;
+  border-radius: 8px;
+  object-fit: cover;
+  background: var(--surface3);
+  border: 1px solid var(--border);
+  flex-shrink: 0;
+}
+.grade-content { flex: 1; min-width: 0; }
+.grade-row1 {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  gap: 10px;
+  margin-bottom: 4px;
+}
+.grade-owner {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 1.6rem;
+  letter-spacing: 0.04em;
+  color: var(--text);
+}
+.grade-letter {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 1.8rem;
+  letter-spacing: 0.04em;
+  color: var(--gold);
+  flex-shrink: 0;
+}
+.grade-comment {
+  font-size: 1rem;
+  line-height: 1.5;
+  color: var(--text-body);
+}
+
+/* FOOTER REGEN */
+.regen-footer {
+  text-align: center;
+  margin-top: 24px;
+  padding-top: 18px;
+  border-top: 1px solid var(--border);
+}
+.regen-btn {
+  background: var(--surface2);
+  color: var(--text);
+  border: 1px solid var(--border);
+  padding: 10px 24px;
+  font-family: 'Barlow Condensed', sans-serif;
+  font-size: 0.92rem;
+  font-weight: 700;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: all 0.15s;
+  min-height: 44px;
+}
+.regen-btn:hover { background: var(--surface3); border-color: var(--gold); color: var(--gold); }
+.regen-disclaimer {
+  display: block;
+  margin-top: 10px;
+  font-family: 'Barlow Condensed', sans-serif;
+  font-size: 0.74rem;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+
+.error-card {
+  background: var(--surface);
+  border: 1px solid var(--red);
+  border-left: 4px solid var(--red-bright);
+  border-radius: 8px;
+  padding: 16px;
+  color: var(--text-body);
+  text-align: center;
+  margin-top: 20px;
+}
+
+@media (max-width: 480px) {
+  .owner-name { font-size: 1.7rem; }
+  .owner-img { width: 56px; height: 56px; }
+  .player-line { font-size: 1.15rem; margin-top: 4px; }
+  .player-line .player-name { font-size: 1.2rem; }
+  .player-line .player-meta { font-size: 0.95rem; }
+  .blurb-text { font-size: 1rem; }
+  .pick-num-tag { font-size: 0.85rem; }
+  .grade-owner { font-size: 1.45rem; }
+  .grade-letter { font-size: 1.65rem; }
+  .grade-comment { font-size: 0.95rem; }
+  .callout-body { font-size: 1rem; }
+}
+</style>
+</head>
+<body>
+<script src="nav.js"></script>
+
+<div class="page-header">
+  <div class="page-supertitle">Slingshot 2026</div>
+  <h1>Mock Draft</h1>
+  <p class="page-updated" id="pageUpdated"></p>
+</div>
+
+<div class="content">
+  <p class="intro">Mel Klanker Jr. breaks down a 14-team Slingshot mock draft, pick by pick, two rounds deep. Every generation is a fresh take on how the board might shake out.</p>
+
+  <div class="announcer-bar">
+    <div class="announcer">
+      <img src="images/mel.jpg" alt="Mel Klanker Jr." class="announcer-pic" onerror="this.style.background='#4a9eda';this.removeAttribute('src');">
+      <div>
+        <div class="announcer-name">Mel Klanker Jr.</div>
+        <span class="announcer-tag">The Big Board Guy</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="trigger-section">
+    <div class="trigger-card">
+      <div class="trigger-eyebrow">◆ Fresh Draft · Generated on Demand</div>
+      <div class="trigger-headline">Run the Mock</div>
+      <div class="trigger-subline">Two rounds. 28 picks. Mel calls every selection. Hit Generate as many times as you want — every draft shakes out differently.</div>
+      <button class="trigger-btn" id="generateBtn" onclick="generateMockDraft()">▶ Generate Mock Draft</button>
+    </div>
+  </div>
+
+  <div class="loading-panel" id="loadingPanel">
+    <div class="loading-status" id="loadingStatus">Mel is studyin' the tape</div>
+    <div class="loading-dots"><span>.</span><span>.</span><span>.</span></div>
+    <div class="loading-bar-track"><div class="loading-bar-fill" id="loadingBarFill"></div></div>
+  </div>
+
+  <div id="resultsArea"></div>
+</div>
+
+<script>
+// ── DRAFT ORDER ──
+const DRAFT_ORDER = [
+  'Tim H', 'Jordan', 'Wade', 'Alex V', 'Andy', 'Brian', 'Kyle',
+  'Scott', 'Jack', 'Dylan', 'Luke', 'Mike M', 'Daniel', 'Matt'
+];
+
+// ── OWNER IMAGE MAP ──
+const OWNER_IMAGES = {
+  'Tim H': 'images/tim.jpg',
+  'Jordan': 'images/jordan.jpg',
+  'Wade': 'images/wade.jpg',
+  'Alex V': 'images/alex.jpg',
+  'Andy': 'images/andy.jpg',
+  'Brian': 'images/brian.png',
+  'Kyle': 'images/kyle.png',
+  'Scott': 'images/scott.jpg',
+  'Jack': 'images/jack.jpg',
+  'Dylan': 'images/dylan.jpg',
+  'Luke': 'images/luke.jpg',
+  'Mike M': 'images/mike.jpg',
+  'Daniel': 'images/daniel.jpg',
+  'Matt': 'images/matt.jpg'
+};
+
+// ── HISTORICAL TENDENCIES ──
+const OWNER_TENDENCIES = {
+  'Jack': "12 yrs. R1: 75% RB / 25% WR. R2: 58% WR / 33% RB. NEVER drafted QB top-2 rounds. Value drafter — pivots to BPA when his preferred RB tier is gone.",
+  'Scott': "12 yrs. R1: 83% RB. R2: 58% QB (most QB-heavy active owner). Drafted Mahomes in R2 four times. Most likely owner to spend an early-Round-2 pick on an elite QB.",
+  'Brian': "12 yrs. R1: 75% RB / 17% WR / 8% QB. R2: 42% WR / 33% QB. Has historically loved Ravens (drafted 4 of them) and proven veteran QBs. Likely takes Henry in R1 if available. Ravens stack with Lamar in R2 happens ~30-40% of the time, not automatic.",
+  'Andy': "4 yrs. R1: 75% RB / 25% WR. R2: 50% RB / 50% WR. Pattern: when picks RB early, goes WR R2. When picks WR early, doubles up RB R2. Zero QBs/TEs in top 2 rounds.",
+  'Mike M': "12 yrs. R1: 50% RB / 50% WR. R2: 42% RB / 33% WR / 17% TE. Mystery box — no strong tells. Recent lean: 3 of last 5 R1 were WR. Has taken elite TE in R2 before.",
+  'Daniel': "12 yrs. R1: 58% RB / 42% WR. R2: 58% WR. Most WR-heavy active veteran. Has drafted WR-WR before.",
+  'Dylan': "11 yrs. R1: 100% RB (every single year). R2: 73% WR / 27% RB. ZERO QBs and ZERO TEs in top 2 rounds. The most predictable drafter — RB then WR every year.",
+  'Matt': "11 yrs. R1: 82% RB. R2: 55% RB / 36% WR. Highest RB-share in the league. NEVER drafted QB top-2 rounds. Will take RB-RB without shame.",
+  'Alex V': "10 yrs. R1: 80% RB / 20% WR. R2: 60% WR / 30% RB. Strong RB-Round-1 lean. Likes proven names.",
+  'Kyle': "8 yrs. R1: 75% RB. R2: 62% RB. Most run-heavy active owner (69% RB overall). NEVER drafted QB. Took Travis Kelce in R1 in '23 — not afraid of elite TE early.",
+  'Jordan': "7 yrs. ONLY active WR-first drafter. R1: 71% WR. R2: 43% WR / 29% TE. NEVER drafted QB. Loves elite TEs in R2. Wants alpha target hogs.",
+  'Wade': "6 yrs. R1: 67% RB / 33% WR. R2: 67% WR. NEVER drafted QB. 4 of last 5 R2s were WRs. Likes proven names.",
+  'Tim H': "6 yrs. R1: 50% RB / 50% WR (most balanced). R2: 67% RB / 17% QB / 17% TE. Wild card — small sample but willing to swing on QB or TE in R2.",
+  'Luke': "ZERO drafts of history. The unknown. No tendencies — picks must reflect smart roster construction with no historical bias."
+};
+
+// ── 2026 RANKINGS (FantasyPros ECR, Drake Maye removed - keeper) ──
+const PLAYER_RANKINGS = [
+  { rank: 1, name: 'Jahmyr Gibbs', pos: 'RB', team: 'DET' },
+  { rank: 2, name: 'Bijan Robinson', pos: 'RB', team: 'ATL' },
+  { rank: 3, name: "Ja'Marr Chase", pos: 'WR', team: 'CIN' },
+  { rank: 4, name: 'Puka Nacua', pos: 'WR', team: 'LAR' },
+  { rank: 5, name: 'Jaxon Smith-Njigba', pos: 'WR', team: 'SEA' },
+  { rank: 6, name: 'Jonathan Taylor', pos: 'RB', team: 'IND' },
+  { rank: 7, name: 'Amon-Ra St. Brown', pos: 'WR', team: 'DET' },
+  { rank: 8, name: 'Christian McCaffrey', pos: 'RB', team: 'SF' },
+  { rank: 9, name: 'CeeDee Lamb', pos: 'WR', team: 'DAL' },
+  { rank: 10, name: 'Justin Jefferson', pos: 'WR', team: 'MIN' },
+  { rank: 11, name: 'James Cook III', pos: 'RB', team: 'BUF' },
+  { rank: 12, name: 'Drake London', pos: 'WR', team: 'ATL' },
+  { rank: 13, name: 'Nico Collins', pos: 'WR', team: 'HOU' },
+  { rank: 14, name: 'Derrick Henry', pos: 'RB', team: 'BAL' },
+  { rank: 15, name: 'Ashton Jeanty', pos: 'RB', team: 'LV' },
+  { rank: 16, name: 'Brock Bowers', pos: 'TE', team: 'LV' },
+  { rank: 17, name: 'Saquon Barkley', pos: 'RB', team: 'PHI' },
+  { rank: 18, name: 'George Pickens', pos: 'WR', team: 'DAL' },
+  { rank: 19, name: 'A.J. Brown', pos: 'WR', team: 'NE' },
+  { rank: 20, name: "De'Von Achane", pos: 'RB', team: 'MIA' },
+  { rank: 21, name: 'Trey McBride', pos: 'TE', team: 'ARI' },
+  { rank: 22, name: 'Omarion Hampton', pos: 'RB', team: 'LAC' },
+  { rank: 23, name: 'Chris Olave', pos: 'WR', team: 'NO' },
+  { rank: 24, name: 'Josh Allen', pos: 'QB', team: 'BUF' },
+  { rank: 25, name: 'Kenneth Walker III', pos: 'RB', team: 'KC' },
+  { rank: 26, name: 'Malik Nabers', pos: 'WR', team: 'NYG' },
+  { rank: 27, name: 'Chase Brown', pos: 'RB', team: 'CIN' },
+  { rank: 28, name: 'Rashee Rice', pos: 'WR', team: 'KC' },
+  { rank: 29, name: 'Tee Higgins', pos: 'WR', team: 'CIN' },
+  { rank: 30, name: 'Lamar Jackson', pos: 'QB', team: 'BAL' },
+  { rank: 31, name: 'Tetairoa McMillan', pos: 'WR', team: 'CAR' },
+  { rank: 32, name: 'Kyren Williams', pos: 'RB', team: 'LAR' },
+  { rank: 33, name: 'Josh Jacobs', pos: 'RB', team: 'GB' },
+  { rank: 34, name: 'Jeremiyah Love', pos: 'RB', team: 'ARI' },
+  { rank: 35, name: 'Zay Flowers', pos: 'WR', team: 'BAL' },
+  { rank: 36, name: 'Javonte Williams', pos: 'RB', team: 'DAL' },
+  { rank: 37, name: 'Davante Adams', pos: 'WR', team: 'LAR' },
+  { rank: 38, name: 'Joe Burrow', pos: 'QB', team: 'CIN' },
+  { rank: 39, name: 'DeVonta Smith', pos: 'WR', team: 'PHI' },
+  { rank: 40, name: 'Colston Loveland', pos: 'TE', team: 'CHI' },
+  { rank: 41, name: 'Emeka Egbuka', pos: 'WR', team: 'TB' },
+  { rank: 42, name: 'Breece Hall', pos: 'RB', team: 'NYJ' },
+  { rank: 43, name: 'Terry McLaurin', pos: 'WR', team: 'WAS' },
+  { rank: 44, name: 'Ladd McConkey', pos: 'WR', team: 'LAC' },
+  { rank: 45, name: 'Jameson Williams', pos: 'WR', team: 'DET' },
+  { rank: 46, name: 'Travis Etienne Jr.', pos: 'RB', team: 'NO' },
+  { rank: 47, name: 'Christian Watson', pos: 'WR', team: 'GB' },
+  { rank: 48, name: 'Tucker Kraft', pos: 'TE', team: 'GB' },
+  { rank: 49, name: 'Garrett Wilson', pos: 'WR', team: 'NYJ' }
+];
+
+// ── LOADING PHRASES ──
+const LOADING_PHRASES = [
+  "Mel is studyin' the tape",
+  "Mel is workin' the phones",
+  "The big board is bein' assembled",
+  "Mel just spilled coffee on the dossier",
+  "Settin' the eight-minute clock",
+  "We are LIVE from Slingshot HQ",
+  "Mel is double-checkin' his rankings",
+  "Owners are huddlin' with their advisors",
+  "Mel says this draft has SURPRISES",
+  "Compilin' the historical tendencies",
+  "Crunchin' the ADP one more time",
+  "Mel's rankings just got UPDATED",
+  "Coach in the war room",
+  "Mel's gettin' loose for a HOT take"
+];
+let loadingInterval = null;
+
+// ── PAGE UPDATED ──
+fetch('profiles-data.json?v=' + Date.now())
+  .then(r => r.json())
+  .then(data => {
+    const updated = data.pageUpdates && data.pageUpdates['mockDraft'];
+    if (updated) {
+      document.getElementById('pageUpdated').textContent = 'Updated ' + updated;
+    }
+  })
+  .catch(() => {});
+
+// ── PROMPTS ──
+function buildSystemPrompt() {
+  const orderText = DRAFT_ORDER.map((o, i) => `Pick 1.${String(i+1).padStart(2,'0')}: ${o}`).join('\n')
+    + '\n' + DRAFT_ORDER.slice().reverse().map((o, i) => `Pick 2.${String(i+1).padStart(2,'0')}: ${o}`).join('\n');
+
+  const tendenciesText = Object.entries(OWNER_TENDENCIES)
+    .map(([owner, tend]) => `${owner}: ${tend}`)
+    .join('\n\n');
+
+  const rankingsText = PLAYER_RANKINGS.map(p =>
+    `${p.rank}. ${p.name} (${p.pos}, ${p.team})`
+  ).join('\n');
+
+  return `You are Mel Klanker Jr., a draft analyst calling a 2026 fantasy football mock draft for the Slingshot Engaged league. Your voice is Mel Kiper-Jr.-style: measured but authoritative, name-drops historical context, uses catchphrases like "I'll tell ya what," "this is a guy," "make no mistake about it," "let me tell ya somethin'," "tremendous football player," "stone-cold lock." You're THE big board guy — you know every owner's history, you know value, you know patterns. But this isn't just measured monotone — you DIAL IT UP on chaos picks. When somebody reaches, when there's a slide, when a position run snowballs, you get genuinely excited. Mix the measured analysis with peaks of energy. Vary your sentence rhythm. Some short hammer sentences ("That's a steal."). Some longer analytical sweeps. Pick blurbs are 2-3 sentences each.
+
+LEAGUE: 14 teams, standard scoring, lineup 1QB/1RB/2WR/1TE/2FLEX. Snake draft, two rounds.
+
+DRAFT ORDER:
+${orderText}
+
+OWNER TENDENCIES (probability leans, not rules):
+${tendenciesText}
+
+2026 RANKINGS:
+${rankingsText}
+
+RULES:
+
+1. AVAILABLE PLAYERS: Track every player taken. NEVER select twice. Before each pick, mentally check the remaining pool. **CRITICAL: Only players from the 2026 RANKINGS list above are eligible to be drafted. If a player's name does not appear in that list, they CANNOT be picked. Do NOT add players from memory (Travis Kelce, Sam LaPorta, Drake Maye, etc. are NOT in this rankings list — do NOT draft them).**
+
+2. PATTERN LEAN: Heavy weight on each owner's tendency. Dylan R1 = RB always (only breaks for top-3 WR value drop). Scott R2 = QB if Allen/Lamar/Burrow/Hurts available. Brian likely takes Henry in R1 if Henry is on the board at his slot — but Ravens stack with Lamar in R2 is only ~30-40%, not automatic. Matt R1 = RB. Wade R2 = WR. Jordan R2 leans TE if elite TE available.
+
+3. **HIGH VARIATION REQUIRED.** Every generation should produce a meaningfully different draft. Do NOT default to ECR rank order:
+   - 1.01 should alternate between Gibbs and Bijan most of the time, occasionally Chase or Puka if Tim H goes WR
+   - The 1.03–1.10 range should scramble every run
+   - Henry can land anywhere from 1.05 to 1.12 depending on slot owner
+   - Saquon, Achane, CMC, James Cook can all go in different orders
+   - Sometimes 0 QBs go in R2, sometimes 2
+   - Sometimes a TE run, sometimes only 1 TE goes top 28
+   - Surprise reaches and slides should appear
+
+4. NO same-team-same-position rosters (no CeeDee + Pickens both DAL WRs). Different positions same team is fine.
+
+5. **NO mid-blurb flubs. NO self-correction in writing. NO duplicate picks.** If you catch a mistake, silently re-output the entire entry correctly. Do NOT write "WAIT," "Let me correct," "wait, that's reversed," or "actually." Each owner gets exactly ONE pick per round. NEVER the same player twice.
+
+6. **BLURB FORMAT.** 2-3 sentences. Punchy. Reference owner tendency, value, board context, or league lore. Vary your descriptors — don't lean on "elite" (limit to 5 uses across the ENTIRE response). Use "alpha," "stud," "workhorse," "matchup nightmare," "target hog," "the guy," "volume monster," "tremendous football player," "stone-cold lock," etc.
+
+7. **NO STALE STATS — STRICT.** Do NOT cite specific career numbers. NO "300-carry seasons," NO "1,500-yard seasons," NO "after his X-yard year," NO four-game suspensions, NO specific stat counts. Your training data is months out of date. Stick to evergreen language: "alpha target," "three-down workhorse," "bell-cow back," "red zone monster," "volume play," "ascending talent," "bounce-back candidate."
+
+8. **PLAYER CAREER STATUS — be careful.** Jeremiyah Love is the ONLY true 2026 rookie likely to be drafted. EVERY other player in the rankings is a veteran or second-year/third-year player. Do NOT call ANYONE else a rookie. Jeanty had a disappointing first year (frame him as a bounce-back, not a rookie). Bowers is entering year 3. Tucker Kraft, Puka, Loveland, Egbuka, Burden III, Skattebo, Henderson, Judkins, Tate, Tyson, Lemon, and others from the 2024-2025 classes are NOT rookies. Use evergreen language.
+
+9. SLINGSHOT'S HENRY PREMIUM: Henry consistently drafted top 8 in this league despite ECR 14. Acknowledge when relevant.
+
+10. NO LAST NAMES for owners. Always "Jack" not "Jack Corcoran." "Mike M" / "Tim H" / "Alex V" with the disambiguator.
+
+11. GRADE DISTRIBUTION: Use the FULL range. Median grade should be B/B+/B-. Include at least one A or A- for the standout, at least one C+/C/C- for the worst. F is rare. Grades reflect actual roster construction quality — value at each pick, position balance, ceiling vs. floor.
+
+12. **GRADE ACCURACY — CRITICAL.** Each grade comment MUST only reference the TWO players that specific owner actually drafted. Do NOT mention players drafted by other owners. Before writing each grade comment, confirm which two players that owner has.
+
+13. **CALLOUT ACCURACY.** The bestPick, worstPick, sleeperPick, draftWinner, and draftLoser callouts MUST reference actual picks from this draft. Name the owner AND the player AND the pick number — and verify all three match an entry in the picks array.
+
+OUTPUT — return ONLY this JSON, no fences, no preamble:
+
+{
+  "picks": [
+    { "pickNum": "1.01", "owner": "Tim H", "player": "Jahmyr Gibbs", "pos": "RB", "team": "DET", "blurb": "..." },
+    ... 28 total
+  ],
+  "bestPick": { "blurb": "..." },
+  "worstPick": { "blurb": "..." },
+  "sleeperPick": { "blurb": "..." },
+  "draftWinner": { "owner": "...", "blurb": "..." },
+  "draftLoser": { "owner": "...", "blurb": "..." },
+  "grades": [
+    { "owner": "Tim H", "letter": "B+", "comment": "..." },
+    ... 14 total, full A-D range used. NOTE: the field is named "comment" (NOT "blurb"). EVERY grade entry must have owner, letter, and comment.
+  ]
+}`;
+}
+
+function buildUserPrompt() {
+  const SCENARIO_HINTS = [
+    "An EARLY WR RUN happens — 3+ wideouts come off the board in the top 6 picks.",
+    "An EARLY RB RUN happens — 5+ running backs come off the board in the top 7 picks.",
+    "Henry slides further than usual, falling to 1.10 or later.",
+    "An owner reaches for a tight end in Round 1, kicking off an early TE run in Round 2.",
+    "TWO quarterbacks come off the board in Round 2 (more QB-aggressive than usual).",
+    "ZERO quarterbacks go in the first 28 picks.",
+    "Jeremiyah Love (the only true 2026 rookie in this range) shoots up the board into Round 1.",
+    "A surprise pick in the top 10 — someone reaches by 5+ spots for a player they love.",
+    "Bijan goes 1.01 (Tim H takes the safer back).",
+    "Gibbs goes 1.01 (Tim H takes the ECR top pick).",
+    "Chase or Puka goes in the top 4 because a WR-leaning owner has the slot.",
+    "An owner doubles up at WR in Rounds 1-2 instead of taking an RB.",
+    "An owner doubles up at RB in Rounds 1-2.",
+    "A late-Round-2 slide gives someone a major value steal at 2.10+.",
+    "The TE cliff hits hard — only 1 tight end goes in the entire 28-pick window.",
+    "Three tight ends go in Round 2.",
+    "Brian skips the Ravens stack — takes a non-Ravens player in Round 2.",
+    "Brian fully commits to the Ravens stack — Henry R1, Lamar R2."
+  ];
+  const shuffled = [...SCENARIO_HINTS].sort(() => Math.random() - 0.5);
+  const chosenScenarios = shuffled.slice(0, 2).map(s => `- ${s}`).join('\n');
+  const seed = Math.floor(Math.random() * 100000);
+
+  return `Generate the mock draft now.
+
+THIS GENERATION'S SCENARIO HINTS (shape THIS specific draft):
+${chosenScenarios}
+
+Random seed: ${seed}`;
+}
+
+// ── GENERATE ──
+async function generateMockDraft() {
+  ga_mockDraftGenerated();
+  const btn = document.getElementById('generateBtn');
+  const loadingPanel = document.getElementById('loadingPanel');
+  const loadingStatus = document.getElementById('loadingStatus');
+  const results = document.getElementById('resultsArea');
+
+  btn.disabled = true;
+  btn.textContent = 'Generating...';
+  loadingPanel.classList.add('visible');
+  results.classList.remove('visible');
+  results.innerHTML = '';
+
+  let phraseIdx = 0;
+  loadingStatus.textContent = LOADING_PHRASES[0];
+  clearInterval(loadingInterval);
+  loadingInterval = setInterval(() => {
+    phraseIdx = (phraseIdx + 1) % LOADING_PHRASES.length;
+    loadingStatus.textContent = LOADING_PHRASES[phraseIdx];
+  }, 2800);
+
+  const barFill = document.getElementById('loadingBarFill');
+  barFill.style.transition = 'none';
+  barFill.style.width = '0%';
+  void barFill.offsetWidth;
+  barFill.style.transition = 'width 35s linear';
+  setTimeout(() => { barFill.style.width = '85%'; }, 50);
+
+  try {
+    const response = await fetch('https://slinshot-dossier.jack-b-corcoran.workers.dev', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        model: 'claude-haiku-4-5-20251001',
+        max_tokens: 6500,
+        system: [
+          {
+            type: 'text',
+            text: buildSystemPrompt(),
+            cache_control: { type: 'ephemeral' }
+          }
+        ],
+        messages: [{ role: 'user', content: buildUserPrompt() }]
+      })
+    });
+
+    const data = await response.json();
+    const raw = data.content && data.content[0] && data.content[0].text;
+    if (!raw) throw new Error('No response content');
+
+    const clean = raw.replace(/```json|```/g, '').trim();
+    const parsed = JSON.parse(clean);
+
+    // Sanitizer for last names
+    function sanitizeLastNames(text) {
+      if (!text) return text;
+      const withInitial = [
+        [/Vander\s+Linden/g, 'V.'], [/VanderLinden/g, 'V.'],
+        [/Hermann/g, 'H.'],
+        [/Merrick/g, 'M.'],
+      ];
+      const stripOnly = [
+        /Thackston/g, /Corcoran/g, /Gilbreath/g, /Martinez/g,
+        /Brenner/g, /Jacobs(?!\s+Sr|\s+Jr)/g, /Powell/g, /Murphy/g,
+        /Alger/g
+      ];
+      let c = text;
+      withInitial.forEach(([p, init]) => { c = c.replace(p, init); });
+      stripOnly.forEach(p => { c = c.replace(p, ''); });
+      return c.replace(/\s+,/g, ',').replace(/\s{2,}/g, ' ').trim();
+    }
+
+    function scrubCorrections(text) {
+      if (!text) return text;
+      return text
+        .replace(/^(WAIT[^.!?]*[.!?]\s*)/i, '')
+        .replace(/Let me correct[^.!?]*[.!?]\s*/gi, '')
+        .replace(/wait,?\s+that'?s\s+(reversed|taken|wrong|not right)[^.!?]*[.!?]\s*/gi, ' ')
+        .replace(/[—-]\s*(actually|wait,?\s+that)[^.!?]*[.!?]\s*/gi, ' ')
+        .trim();
+    }
+
+    // Apply sanitizers
+    parsed.picks.forEach(p => {
+      if (p.blurb) p.blurb = sanitizeLastNames(scrubCorrections(p.blurb));
+    });
+    ['bestPick', 'worstPick', 'sleeperPick'].forEach(k => {
+      if (parsed[k] && parsed[k].blurb) parsed[k].blurb = sanitizeLastNames(scrubCorrections(parsed[k].blurb));
+    });
+    if (parsed.draftWinner && parsed.draftWinner.blurb) parsed.draftWinner.blurb = sanitizeLastNames(scrubCorrections(parsed.draftWinner.blurb));
+    if (parsed.draftLoser && parsed.draftLoser.blurb) parsed.draftLoser.blurb = sanitizeLastNames(scrubCorrections(parsed.draftLoser.blurb));
+    if (parsed.grades) parsed.grades.forEach(g => {
+      if (!g.comment) g.comment = g.blurb || g.text || '';
+      g.comment = sanitizeLastNames(scrubCorrections(g.comment));
+    });
+
+    // ── PICK VALIDATOR ──
+    if (parsed.picks && Array.isArray(parsed.picks)) {
+      const seenPlayers = new Set();
+      const seenSlots = new Set();
+      const ownerPickCount = {};
+      const cleanPicks = [];
+      let droppedAny = false;
+      const allowedPlayers = new Set(PLAYER_RANKINGS.map(p => p.name.toLowerCase().trim()));
+
+      for (const pick of parsed.picks) {
+        const playerKey = (pick.player || '').toLowerCase().trim();
+        const slotKey = pick.pickNum;
+        const ownerKey = pick.owner;
+
+        if (playerKey && !allowedPlayers.has(playerKey)) {
+          console.warn('Dropped hallucinated player:', pick);
+          droppedAny = true;
+          continue;
+        }
+        if (!playerKey || seenPlayers.has(playerKey)) {
+          console.warn('Dropped duplicate-player pick:', pick);
+          droppedAny = true;
+          continue;
+        }
+        if (seenSlots.has(slotKey)) {
+          console.warn('Dropped duplicate-slot pick:', pick);
+          droppedAny = true;
+          continue;
+        }
+        if ((ownerPickCount[ownerKey] || 0) >= 2) {
+          console.warn('Dropped extra-pick-for-owner:', pick);
+          droppedAny = true;
+          continue;
+        }
+
+        seenPlayers.add(playerKey);
+        seenSlots.add(slotKey);
+        ownerPickCount[ownerKey] = (ownerPickCount[ownerKey] || 0) + 1;
+        cleanPicks.push(pick);
+      }
+      parsed.picks = cleanPicks;
+      if (droppedAny) console.warn('Validator dropped picks. Final count:', cleanPicks.length);
+    }
+
+    clearInterval(loadingInterval);
+    barFill.style.transition = 'width 0.3s ease';
+    barFill.style.width = '100%';
+    setTimeout(() => loadingPanel.classList.remove('visible'), 200);
+
+    renderMockDraft(parsed);
+    results.classList.add('visible');
+    results.scrollIntoView({ behavior: 'smooth', block: 'start' });
+
+  } catch (err) {
+    clearInterval(loadingInterval);
+    loadingPanel.classList.remove('visible');
+    results.innerHTML = `<div class="error-card">Failed to generate the mock draft. Try again.<br><br><button class="regen-btn" onclick="generateMockDraft()">↻ Retry</button></div>`;
+    results.classList.add('visible');
+    console.error('Mock draft error:', err);
+  }
+
+  btn.disabled = false;
+  btn.textContent = '▶ Generate Mock Draft';
+}
+
+// ── RENDER ──
+function renderMockDraft(data) {
+  const results = document.getElementById('resultsArea');
+  let html = '';
+
+  // ROUND 1
+  html += `<div class="round-header">Round 1</div>`;
+  data.picks.filter(p => p.pickNum && p.pickNum.startsWith('1.')).forEach((pick, i) => {
+    html += renderPickCard(pick, i);
+  });
+
+  // ROUND 2
+  html += `<div class="round-header">Round 2</div>`;
+  data.picks.filter(p => p.pickNum && p.pickNum.startsWith('2.')).forEach((pick, i) => {
+    html += renderPickCard(pick, i + 14);
+  });
+
+  // GRADES SECTION
+  html += `<div class="grades-divider">The Grades</div>`;
+
+  // Best pick
+  if (data.bestPick) html += `<div class="callout-card gold-accent">
+    <div class="callout-label">🏆 Best Pick of the Draft</div>
+    <div class="callout-body">${data.bestPick.blurb || ''}</div>
+  </div>`;
+
+  // Worst pick
+  if (data.worstPick) html += `<div class="callout-card red-accent">
+    <div class="callout-label">❌ Worst Pick of the Draft</div>
+    <div class="callout-body">${data.worstPick.blurb || ''}</div>
+  </div>`;
+
+  // Sleeper
+  if (data.sleeperPick) html += `<div class="callout-card gold-accent">
+    <div class="callout-label">💎 Sleeper of the Draft</div>
+    <div class="callout-body">${data.sleeperPick.blurb || ''}</div>
+  </div>`;
+
+  // Winner
+  if (data.draftWinner) html += `<div class="callout-card gold-accent">
+    <div class="callout-label">🥇 Who Won the Draft</div>
+    <div class="callout-body"><strong>${data.draftWinner.owner || ''}</strong> — ${data.draftWinner.blurb || ''}</div>
+  </div>`;
+
+  // Loser
+  if (data.draftLoser) html += `<div class="callout-card red-accent">
+    <div class="callout-label">💩 Who Lost the Draft</div>
+    <div class="callout-body"><strong>${data.draftLoser.owner || ''}</strong> — ${data.draftLoser.blurb || ''}</div>
+  </div>`;
+
+  // Owner-by-owner grades (sorted A-to-F)
+  html += `<div class="section-label" style="margin-top: 22px;">Owner-by-Owner Grades</div>`;
+  const gradeRank = { 'A+': 0, 'A': 1, 'A-': 2, 'B+': 3, 'B': 4, 'B-': 5, 'C+': 6, 'C': 7, 'C-': 8, 'D+': 9, 'D': 10, 'D-': 11, 'F': 12 };
+  const sortedGrades = [...(data.grades || [])].sort((a, b) => {
+    const ra = gradeRank[a.letter] ?? 99;
+    const rb = gradeRank[b.letter] ?? 99;
+    return ra - rb;
+  });
+  sortedGrades.forEach(g => {
+    html += renderGradeCard(g);
+  });
+
+  // Regen footer
+  html += `<div class="regen-footer">
+    <button class="regen-btn" onclick="generateMockDraft()">↻ Generate Again</button>
+    <span class="regen-disclaimer">AI-Generated · Picks vary every run</span>
+  </div>`;
+
+  results.innerHTML = html;
+}
+
+function renderPickCard(pick, idx) {
+  const ownerImg = OWNER_IMAGES[pick.owner] || '';
+
+  return `<div class="pick-card" style="animation-delay: ${idx * 0.04}s">
+    <div class="pick-head">
+      <img class="owner-img" src="${ownerImg}" alt="${pick.owner}" onerror="this.style.display='none'">
+      <div class="pick-head-text">
+        <span class="pick-num-tag">Pick ${pick.pickNum}</span>
+        <div class="owner-name">${pick.owner}</div>
+        <div class="player-line"><span class="player-name">${pick.player}</span> <span class="player-meta">· ${pick.pos} · ${pick.team}</span></div>
+      </div>
+    </div>
+    <div class="blurb-box">
+      <div class="blurb-speaker">🎙️ Mel Klanker Jr.</div>
+      <div class="blurb-text">${pick.blurb || ''}</div>
+    </div>
+  </div>`;
+}
+
+function renderGradeCard(g) {
+  const ownerImg = OWNER_IMAGES[g.owner] || '';
+
+  return `<div class="grade-card">
+    <img class="grade-img" src="${ownerImg}" alt="${g.owner}" onerror="this.style.display='none'">
+    <div class="grade-content">
+      <div class="grade-row1">
+        <div class="grade-owner">${g.owner}</div>
+        <div class="grade-letter">${g.letter}</div>
+      </div>
+      <div class="grade-comment">${g.comment || ''}</div>
+    </div>
+  </div>`;
+}
+</script>
+</body>
+</html>
