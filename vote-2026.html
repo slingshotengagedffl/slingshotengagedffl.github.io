@@ -31,8 +31,8 @@ body {
   background: var(--bg);
   color: var(--text-body);
   font-family: 'Barlow Condensed', sans-serif;
-  font-size: 1.15rem;
-  line-height: 1.55;
+  font-size: 1.25rem;
+  line-height: 1.6;
   min-height: 100vh;
 }
 .page-wrap {
@@ -212,7 +212,7 @@ body {
 /* ── BALLOT ── */
 #ballotPanel { display: none; }
 .ballot-intro {
-  font-size: 0.95rem;
+  font-size: 1.15rem;
   color: var(--muted);
   margin-bottom: 24px;
   padding-bottom: 16px;
@@ -233,48 +233,54 @@ body {
 
 .proposal-num {
   font-family: 'Bebas Neue', sans-serif;
-  font-size: 0.95rem;
+  font-size: 1.05rem;
   letter-spacing: 0.15em;
   color: var(--red);
-  margin-bottom: 4px;
+  margin-bottom: 5px;
 }
 .proposal-title {
   font-family: 'Bebas Neue', sans-serif;
-  font-size: 1.85rem;
+  font-size: 2.1rem;
   color: var(--text);
   letter-spacing: 0.04em;
   line-height: 1.1;
+  margin-bottom: 14px;
+}
+.rule-block {
+  border-radius: 6px;
+  padding: 12px 14px;
   margin-bottom: 12px;
 }
-.proposal-body {
-  font-size: 1.08rem;
-  color: var(--label);
-  line-height: 1.6;
-  margin-bottom: 16px;
+.rule-current {
+  background: var(--surface2);
+  border-left: 3px solid var(--border);
 }
-.proposal-body .rule-label {
-  font-size: 0.85rem;
-  letter-spacing: 0.1em;
-  text-transform: uppercase;
-  color: var(--muted);
+.rule-proposed {
+  background: rgba(201,168,76,0.07);
+  border-left: 3px solid var(--gold);
+}
+.rule-label {
   display: block;
-  margin-top: 10px;
-  margin-bottom: 3px;
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 0.95rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  margin-bottom: 5px;
 }
-.proposal-note {
-  font-size: 0.98rem;
-  color: var(--muted);
-  font-style: italic;
-  margin-top: 10px;
-  padding-top: 10px;
-  border-top: 1px solid var(--border);
+.rule-current .rule-label { color: var(--muted); }
+.rule-proposed .rule-label { color: var(--gold); }
+.rule-text {
+  display: block;
+  font-size: 1.12rem;
   line-height: 1.55;
 }
+.rule-current .rule-text { color: var(--muted); }
+.rule-proposed .rule-text { color: var(--text-body); }
 
 .vote-row {
   display: flex;
-  gap: 10px;
-  margin-top: 4px;
+  gap: 12px;
+  margin-top: 16px;
 }
 .vote-btn {
   flex: 1;
@@ -282,29 +288,45 @@ body {
   border: 1px solid var(--border);
   border-radius: 6px;
   color: var(--label);
-  font-family: 'Bebas Neue', sans-serif;
-  font-size: 1.5rem;
-  letter-spacing: 0.1em;
   padding: 12px;
   cursor: pointer;
-  min-height: 56px;
+  min-height: 64px;
   transition: all 0.15s;
   display: flex;
+  flex-direction: column;
   align-items: center;
   justify-content: center;
-  gap: 6px;
+  gap: 2px;
+}
+.vote-btn-main {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 1.6rem;
+  letter-spacing: 0.08em;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+.vote-btn-sub {
+  font-family: 'Barlow Condensed', sans-serif;
+  font-size: 0.95rem;
+  letter-spacing: 0.02em;
+  color: var(--muted);
+  text-transform: none;
 }
 .vote-btn:hover { border-color: var(--muted); color: var(--text); }
+.vote-btn:hover .vote-btn-sub { color: var(--label); }
 .vote-btn.active-yes {
   background: rgba(34,197,94,0.12);
   border-color: var(--yes);
   color: var(--yes);
 }
+.vote-btn.active-yes .vote-btn-sub { color: var(--yes); }
 .vote-btn.active-no {
   background: rgba(231,76,60,0.1);
   border-color: var(--red-bright);
   color: var(--red-bright);
 }
+.vote-btn.active-no .vote-btn-sub { color: var(--red-bright); }
 .vote-dot {
   width: 8px; height: 8px;
   border-radius: 50%;
@@ -934,16 +956,14 @@ const PROPOSALS = [
     num: "Proposal #2",
     title: "Bonus Wins & Losses",
     current: "Owners earn exactly one win or one loss each week against their designated H2H opponent.",
-    proposed: "Enable ESPN's Bonus Wins & Losses feature. Each week, teams in the top half of league scoring get an extra win; bottom half get an extra loss. This balances schedule luck — going 1-1 instead of 0-1 if you had the week's second-best score. Bonus W/L counts toward playoff standings only, not league records. Trial run for one year.",
-    note: "This is a Fantasy Classic season, so playoff seeding is win/loss first, total points as tiebreaker — making this a natural fit."
+    proposed: "Enable ESPN's Bonus Wins & Losses feature. Each week, teams in the top half of league scoring get an extra win; bottom half get an extra loss. So a team with the week's second-best score that loses its matchup would go 1-1 instead of 0-1. Bonus W/L counts toward playoff standings only, not league records. Trial run for one year."
   },
   {
     id: "p3",
     num: "Proposal #3",
     title: "Lineup Protection",
     current: "Players lock at kickoff of their individual game.",
-    proposed: "Enable ESPN's Lineup Protection feature — automatically replaces players listed as Out or IR in your starting lineup with the highest-ranked eligible bench player who hasn't yet played. Addresses situations like Kamaragate (London game late scratch).",
-    note: "ESPN selects by ranking, not projected points."
+    proposed: "Enable ESPN's Lineup Protection feature, which automatically replaces players listed as Out or IR in your starting lineup with an eligible bench player who hasn't yet played. ESPN selects the highest-ranked eligible player, not the highest projected. Addresses situations like Kamaragate (London game late scratch)."
   },
   {
     id: "p4",
@@ -957,7 +977,7 @@ const PROPOSALS = [
     num: "Proposal #5",
     title: "Waiver Tiebreaker: Never Reset",
     current: "FAAB tiebreaker resets to reverse standings order each week. Tied bids go to the team lower in standings.",
-    proposed: "Switch to Move to Last After Claim, Never Reset Order. Win a claim → you go to the bottom. Simple, persistent, no weekly reset."
+    proposed: "Switch to Move to Last After Claim, Never Reset Order. Win a claim → you go to the bottom of the tiebreaker list. No weekly reset."
   },
   {
     id: "p6",
@@ -970,17 +990,15 @@ const PROPOSALS = [
     id: "p7",
     num: "Proposal #7",
     title: "Money in the Bank",
-    current: "AVLMCT winner earns Prestige and a cash prize.",
-    proposed: "The AVLMCT winner also gets one Money in the Bank steal: once during the regular season, they can claim a waiver player someone else won — provided they bid at least $1 on that player and pay the winning bid + $1. The original winner gets their FAAB refunded. Must be cashed in by noon Pacific on waiver clear day.",
-    note: "The winner's FAAB total becomes a must-watch number on waiver day."
+    current: "The AVL Memorial Cup Tournament (AVLMCT) — our in-season tournament running Weeks 1–6 — awards its winner Prestige and a cash prize.",
+    proposed: "The AVLMCT winner also gets one Money in the Bank steal: once during the regular season, they can claim a waiver player someone else won — provided they bid at least $1 on that player and pay the winning bid + $1. The original winner gets their FAAB refunded. Must be cashed in by noon Pacific on waiver clear day."
   },
   {
     id: "p8",
     num: "Proposal #8",
     title: "Intercontinental Belt Bounty",
     current: "The Intercontinental Championship belt transfers on H2H losses throughout the season. Holding the belt after Week 14 is a matter of prestige — no cash prize.",
-    proposed: "$5 is added to a bounty pot each week. If the champion loses their H2H matchup, their opponent collects the full accumulated pot and the bounty resets. If the champion never loses the belt, they collect whatever has built up by end of Week 14. Total pool: $70 over 14 weeks.",
-    note: "This requires a $5 buy-in increase from $80 to $85 for the 2026 season."
+    proposed: "$5 is added to a bounty pot each week. If the champion loses their H2H matchup, their opponent collects the full accumulated pot and the bounty resets. If the champion never loses the belt, they collect whatever has built up by end of Week 14. Total pool: $70 over 14 weeks. This requires a $5 buy-in increase from $80 to $85 for the 2026 season."
   }
 ];
 
@@ -1031,6 +1049,14 @@ function init() {
     if (e.target.id === 'commishOverlay') closeCommish();
   });
 
+  // Restore remembered voter (so returning voters skip the PIN to view results)
+  try {
+    const remembered = localStorage.getItem(`slingshot_voted_${VOTE_YEAR}`);
+    if (remembered && OWNER_PINS[remembered]) {
+      currentOwner = remembered;
+    }
+  } catch(e) {}
+
   // Build proposals
   buildProposals();
 
@@ -1058,15 +1084,21 @@ function onDataUpdate() {
   }
 
   if (currentOwner) {
-    // Already authenticated — check if they voted
     const ownerVote = allVotesData[ownerKey(currentOwner)];
     if (ownerVote && ownerVote.submitted) {
+      // Remembered or authenticated voter who has voted → show their summary + results
       showAlreadyVoted(currentOwner, ownerVote.votes);
-    }
-    // If results just unlocked, update results panels
-    if (resultsUnlocked) {
-      renderResults('resultsPanel');
-      renderResults('resultsPanel2');
+      if (resultsUnlocked) {
+        renderResults('resultsPanel');
+        renderResults('resultsPanel2');
+      }
+    } else if (document.getElementById('ballotPanel').style.display === 'block') {
+      // Mid-ballot (authenticated this session, not yet submitted) — leave ballot up
+    } else {
+      // Remembered name but no vote on record (e.g. ballots were reset) → back to auth
+      currentOwner = null;
+      try { localStorage.removeItem(`slingshot_voted_${VOTE_YEAR}`); } catch(e) {}
+      document.getElementById('authPanel').style.display = 'block';
     }
   } else {
     // Show auth
@@ -1111,19 +1143,22 @@ function buildProposals() {
     card.innerHTML = `
       <div class="proposal-num">${p.num}</div>
       <div class="proposal-title">${p.title}</div>
-      <div class="proposal-body">
+      <div class="rule-block rule-current">
         <span class="rule-label">Current Rule</span>
-        ${p.current}
+        <span class="rule-text">${p.current}</span>
+      </div>
+      <div class="rule-block rule-proposed">
         <span class="rule-label">Proposal</span>
-        ${p.proposed}
-        ${p.note ? `<div class="proposal-note">${p.note}</div>` : ''}
+        <span class="rule-text">${p.proposed}</span>
       </div>
       <div class="vote-row">
         <button class="vote-btn" id="yes-${p.id}" onclick="castVote('${p.id}','yes')">
-          <span class="vote-dot"></span> ✓ YES
+          <span class="vote-btn-main"><span class="vote-dot"></span>✓ Yes</span>
+          <span class="vote-btn-sub">Adopt proposal</span>
         </button>
         <button class="vote-btn" id="no-${p.id}" onclick="castVote('${p.id}','no')">
-          <span class="vote-dot"></span> ✗ NO
+          <span class="vote-btn-main"><span class="vote-dot"></span>✗ No</span>
+          <span class="vote-btn-sub">Keep current rule</span>
         </button>
       </div>
     `;
@@ -1170,6 +1205,9 @@ async function submitVotes() {
       submitted: true,
       submittedAt: Date.now()
     });
+
+    // Remember on this device so returning to view results skips the PIN
+    try { localStorage.setItem(`slingshot_voted_${VOTE_YEAR}`, currentOwner); } catch(e) {}
 
     document.getElementById('ballotPanel').style.display = 'none';
     document.getElementById('successPanel').style.display = 'block';
