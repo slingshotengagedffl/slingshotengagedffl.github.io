@@ -99,26 +99,27 @@ body {
 }
 #authPanel h2 {
   font-family: 'Bebas Neue', sans-serif;
-  font-size: 1.5rem;
+  font-size: 2rem;
   color: var(--text);
-  margin-bottom: 4px;
+  margin-bottom: 6px;
   letter-spacing: 0.05em;
 }
 #authPanel p {
-  font-size: 0.9rem;
+  font-size: 1.15rem;
   color: var(--muted);
-  margin-bottom: 20px;
+  margin-bottom: 22px;
+  line-height: 1.5;
 }
 .auth-field {
-  margin-bottom: 14px;
+  margin-bottom: 16px;
 }
 .auth-field label {
   display: block;
-  font-size: 0.8rem;
+  font-size: 1rem;
   letter-spacing: 0.1em;
   text-transform: uppercase;
   color: var(--label);
-  margin-bottom: 6px;
+  margin-bottom: 7px;
 }
 .auth-field select,
 .auth-field input {
@@ -128,11 +129,11 @@ body {
   border-radius: 6px;
   color: var(--text);
   font-family: 'Barlow Condensed', sans-serif;
-  font-size: 1rem;
-  padding: 10px 12px;
+  font-size: 1.2rem;
+  padding: 12px 14px;
   appearance: none;
   -webkit-appearance: none;
-  min-height: 44px;
+  min-height: 48px;
 }
 .auth-field select:focus,
 .auth-field input:focus {
@@ -140,7 +141,7 @@ body {
   border-color: var(--red);
 }
 .auth-error {
-  font-size: 0.82rem;
+  font-size: 1rem;
   color: var(--red-bright);
   margin-top: 8px;
   min-height: 18px;
@@ -152,11 +153,11 @@ body {
   border-radius: 6px;
   color: #fff;
   font-family: 'Bebas Neue', sans-serif;
-  font-size: 1.2rem;
+  font-size: 1.5rem;
   letter-spacing: 0.08em;
-  padding: 12px;
+  padding: 13px;
   cursor: pointer;
-  min-height: 48px;
+  min-height: 52px;
   transition: background 0.15s;
   margin-top: 8px;
 }
@@ -235,7 +236,7 @@ body {
   font-family: 'Bebas Neue', sans-serif;
   font-size: 1.05rem;
   letter-spacing: 0.15em;
-  color: var(--red);
+  color: var(--red-bright);
   margin-bottom: 5px;
 }
 .proposal-title {
@@ -248,7 +249,7 @@ body {
 }
 .rule-block {
   border-radius: 6px;
-  padding: 12px 14px;
+  padding: 14px 16px;
   margin-bottom: 12px;
 }
 .rule-current {
@@ -262,20 +263,20 @@ body {
 .rule-label {
   display: block;
   font-family: 'Bebas Neue', sans-serif;
-  font-size: 0.95rem;
+  font-size: 1.05rem;
   letter-spacing: 0.12em;
   text-transform: uppercase;
-  margin-bottom: 5px;
+  margin-bottom: 6px;
 }
 .rule-current .rule-label { color: var(--muted); }
 .rule-proposed .rule-label { color: var(--gold); }
 .rule-text {
   display: block;
-  font-size: 1.12rem;
+  font-size: 1.22rem;
   line-height: 1.55;
 }
-.rule-current .rule-text { color: var(--muted); }
-.rule-proposed .rule-text { color: var(--text-body); }
+.rule-current .rule-text { color: var(--label); }
+.rule-proposed .rule-text { color: var(--text); }
 
 .vote-row {
   display: flex;
