@@ -5,26 +5,26 @@
       "nickname": "Dad Bod",
       "photo": "../images/matt.jpg",
       "location": "Colorado",
-      "locationEmoji": "\ud83c\udfd4\ufe0f",
+      "locationEmoji": "🏔️",
       "memberSince": 2015,
       "broughtInBy": "Recruited by Jack",
       "ryderCup": null,
       "statusLines": [],
       "traits": [
         {
-          "emoji": "\ud83c\udfa8",
+          "emoji": "🎨",
           "label": "Culture Maker"
         },
         {
-          "emoji": "\ud83c\udf89",
+          "emoji": "🎉",
           "label": "Party Commish"
         },
         {
-          "emoji": "\u2600\ufe0f",
+          "emoji": "☀️",
           "label": "Positive Attitude"
         },
         {
-          "emoji": "\ud83d\udcac",
+          "emoji": "💬",
           "label": "Prolific Chatter"
         }
       ],
@@ -518,7 +518,7 @@
         },
         {
           "year": 2024,
-          "teamName": "Osos de Agua por Vida \ud83d\udc3b\ud83c\udf0a\ud83c\udfc8 ",
+          "teamName": "Osos de Agua por Vida 🐻🌊🏈 ",
           "record": "4-10",
           "finish": 12,
           "ptsPerGame": 85.08,
@@ -952,7 +952,7 @@
       "nickname": "The Contrarian",
       "photo": "../images/mike.jpg",
       "location": "Pennsylvania",
-      "locationEmoji": "\ud83d\udd14",
+      "locationEmoji": "🔔",
       "memberSince": 2014,
       "broughtInBy": "Recruited by Jack",
       "ryderCup": null,
@@ -961,19 +961,19 @@
       ],
       "traits": [
         {
-          "emoji": "\ud83e\udd1d",
+          "emoji": "🤝",
           "label": "Man of the People"
         },
         {
-          "emoji": "\ud83d\ude24",
+          "emoji": "😤",
           "label": "Disagreeable"
         },
         {
-          "emoji": "\ud83d\udc8d",
+          "emoji": "💍",
           "label": "Eligible Bachelor"
         },
         {
-          "emoji": "\ud83d\udcc5",
+          "emoji": "📅",
           "label": "Many Meetings"
         }
       ],
@@ -1008,7 +1008,7 @@
             "record": "1-4"
           }
         ],
-        "rivals": "Kyle & Scott",
+        "rivals": "Jack & Scott",
         "ryderCup": "TBD"
       },
       "trophies": [
@@ -1497,7 +1497,7 @@
         },
         {
           "year": 2024,
-          "teamName": "Jop-O Isn\u2019t Real ",
+          "teamName": "Jop-O Isn’t Real ",
           "record": "8-6",
           "finish": 5,
           "ptsPerGame": 93.74,
@@ -1985,26 +1985,26 @@
       "nickname": "Murph",
       "photo": "../images/scott.jpg",
       "location": "California",
-      "locationEmoji": "\ud83c\udf34",
+      "locationEmoji": "🌴",
       "memberSince": 2014,
       "broughtInBy": "Recruited by Jack",
       "ryderCup": null,
       "statusLines": [],
       "traits": [
         {
-          "emoji": "\ud83d\ude04",
+          "emoji": "😄",
           "label": "Happy to Be Here"
         },
         {
-          "emoji": "\ud83e\ude99",
+          "emoji": "🪙",
           "label": "FAAB Penny Pincher"
         },
         {
-          "emoji": "\ud83e\uddd4",
+          "emoji": "🧔",
           "label": "Memorable Facial Hair"
         },
         {
-          "emoji": "\ud83e\udd10",
+          "emoji": "🤐",
           "label": "Withholding"
         }
       ],
@@ -3007,7 +3007,7 @@
       "nickname": "Dyl",
       "photo": "../images/dylan.jpg",
       "location": "Maryland",
-      "locationEmoji": "\ud83e\udd80",
+      "locationEmoji": "🦀",
       "memberSince": 2015,
       "broughtInBy": "Recruited by Brian",
       "ryderCup": null,
@@ -3016,19 +3016,19 @@
       ],
       "traits": [
         {
-          "emoji": "\ud83d\udc76",
+          "emoji": "👶",
           "label": "DINK Life"
         },
         {
-          "emoji": "\ud83d\udeab",
+          "emoji": "🚫",
           "label": "Anti-69"
         },
         {
-          "emoji": "\u2600\ufe0f",
+          "emoji": "☀️",
           "label": "Positive Attitude"
         },
         {
-          "emoji": "\ud83c\udf6a",
+          "emoji": "🍪",
           "label": "Snack Master"
         }
       ],
@@ -3054,7 +3054,7 @@
           }
         ],
         "ownedBy": [],
-        "rivals": "Brian & Jack",
+        "rivals": "Brian & Kyle",
         "ryderCup": "TBD"
       },
       "trophies": [
@@ -3133,7 +3133,7 @@
         "record": "9-5",
         "standing": 4,
         "ptsPerGame": 92.63,
-        "teamName": "\ud83e\udd77 RageCage \ud83e\udd77",
+        "teamName": "🥷 RageCage 🥷",
         "powerScore": 126.68,
         "weeksAt1": 0,
         "luckRate": 0.1044,
@@ -3543,7 +3543,7 @@
         },
         {
           "year": 2025,
-          "teamName": "\ud83e\udd77 RageCage \ud83e\udd77",
+          "teamName": "🥷 RageCage 🥷",
           "record": "9-5",
           "finish": 4,
           "ptsPerGame": 92.63,
@@ -3964,7 +3964,7 @@
       "nickname": "The Commish",
       "photo": "../images/jack.jpg",
       "location": "California",
-      "locationEmoji": "\ud83c\udf34",
+      "locationEmoji": "🌴",
       "memberSince": 2014,
       "broughtInBy": "League Founder",
       "ryderCup": null,
@@ -3975,19 +3975,19 @@
       ],
       "traits": [
         {
-          "emoji": "\ud83d\udcca",
+          "emoji": "📊",
           "label": "Spreadsheet Freak"
         },
         {
-          "emoji": "\ud83d\udc51",
+          "emoji": "👑",
           "label": "Dictator Tendencies"
         },
         {
-          "emoji": "\ud83d\udd04",
+          "emoji": "🔄",
           "label": "Serial Trader"
         },
         {
-          "emoji": "\ud83e\udd92",
+          "emoji": "🦒",
           "label": "Elite Measurements"
         }
       ],
@@ -4005,7 +4005,7 @@
           }
         ],
         "ownedBy": [],
-        "rivals": "Daniel & Dylan",
+        "rivals": "Daniel & Mike",
         "ryderCup": "TBD"
       },
       "trophies": [
@@ -4084,7 +4084,7 @@
         "record": "10-4",
         "standing": 1,
         "ptsPerGame": 104.98,
-        "teamName": "Proper Feck'n Eejits \u2618\ufe0f",
+        "teamName": "Proper Feck'n Eejits ☘️",
         "powerScore": 146.38,
         "weeksAt1": 5,
         "luckRate": 0.0714,
@@ -4442,7 +4442,7 @@
         },
         {
           "year": 2020,
-          "teamName": "Tangy \ud83d\udc45\ud83c\udf5eSourdough ",
+          "teamName": "Tangy 👅🍞Sourdough ",
           "record": "6-7",
           "finish": 9,
           "ptsPerGame": 96.79,
@@ -4455,7 +4455,7 @@
         },
         {
           "year": 2021,
-          "teamName": "Beef Spritz Boys \ud83d\udc2e\ud83d\udca6",
+          "teamName": "Beef Spritz Boys 🐮💦",
           "record": "7-7",
           "finish": 8,
           "ptsPerGame": 97.18,
@@ -4468,7 +4468,7 @@
         },
         {
           "year": 2022,
-          "teamName": "The 100 Point Exceeders \ud83d\udcaf",
+          "teamName": "The 100 Point Exceeders 💯",
           "record": "7-7",
           "finish": 8,
           "ptsPerGame": 87.02,
@@ -4494,7 +4494,7 @@
         },
         {
           "year": 2024,
-          "teamName": "Bayou Bears Be Howlin' \ud83c\udf0a\ud83d\udc3b",
+          "teamName": "Bayou Bears Be Howlin' 🌊🐻",
           "record": "6-8",
           "finish": 11,
           "ptsPerGame": 90.82,
@@ -4507,7 +4507,7 @@
         },
         {
           "year": 2025,
-          "teamName": "Proper Feck'n Eejits \u2618\ufe0f",
+          "teamName": "Proper Feck'n Eejits ☘️",
           "record": "10-4",
           "finish": 1,
           "ptsPerGame": 104.98,
@@ -4982,26 +4982,26 @@
       "nickname": "Naughty Man",
       "photo": "../images/daniel.jpg",
       "location": "Colorado",
-      "locationEmoji": "\ud83c\udfd4\ufe0f",
+      "locationEmoji": "🏔️",
       "memberSince": 2014,
       "broughtInBy": "Recruited by Jack",
       "ryderCup": null,
       "statusLines": [],
       "traits": [
         {
-          "emoji": "\ud83e\uddd7",
+          "emoji": "🧗",
           "label": "Beautiful Movement"
         },
         {
-          "emoji": "\ud83c\udf46",
+          "emoji": "🍆",
           "label": "Perv"
         },
         {
-          "emoji": "\ud83d\ude2c",
+          "emoji": "😬",
           "label": "Unprepared Drafter"
         },
         {
-          "emoji": "\ud83d\udde3\ufe0f",
+          "emoji": "🗣️",
           "label": "Certified Trash Talker"
         }
       ],
@@ -6005,26 +6005,26 @@
       "nickname": "Hot Tim",
       "photo": "../images/tim.jpg",
       "location": "Colorado",
-      "locationEmoji": "\ud83c\udfd4\ufe0f",
+      "locationEmoji": "🏔️",
       "memberSince": 2020,
       "broughtInBy": "Recruited by Matt",
       "ryderCup": null,
       "statusLines": [],
       "traits": [
         {
-          "emoji": "\ud83d\udd04",
+          "emoji": "🔄",
           "label": "Serial Trader"
         },
         {
-          "emoji": "\ud83e\udd26",
+          "emoji": "🤦",
           "label": "Poor Copy/Paste Skills"
         },
         {
-          "emoji": "\ud83c\udf46",
+          "emoji": "🍆",
           "label": "Perv"
         },
         {
-          "emoji": "\ud83e\uddd0",
+          "emoji": "🧐",
           "label": "Snooty"
         }
       ],
@@ -6137,7 +6137,7 @@
         "record": "5-9",
         "standing": 12,
         "ptsPerGame": 85.69,
-        "teamName": "Mike \ud83d\udca9's standing up",
+        "teamName": "Mike 💩's standing up",
         "powerScore": 103.0,
         "weeksAt1": 0,
         "luckRate": -0.0769,
@@ -6482,7 +6482,7 @@
         },
         {
           "year": 2025,
-          "teamName": "Mike \ud83d\udca9's standing up",
+          "teamName": "Mike 💩's standing up",
           "record": "5-9",
           "finish": 12,
           "ptsPerGame": 85.69,
@@ -6777,7 +6777,7 @@
       "nickname": "AVL",
       "photo": "../images/alex.jpg",
       "location": "Minnesota",
-      "locationEmoji": "\u2744\ufe0f",
+      "locationEmoji": "❄️",
       "memberSince": 2016,
       "broughtInBy": "Recruited by Timbe (ret)",
       "ryderCup": null,
@@ -6786,19 +6786,19 @@
       ],
       "traits": [
         {
-          "emoji": "\ud83d\udc76",
+          "emoji": "👶",
           "label": "DINK Life"
         },
         {
-          "emoji": "\ud83e\uddfb",
+          "emoji": "🧻",
           "label": "Incredibly Pale"
         },
         {
-          "emoji": "\ud83d\udc40",
+          "emoji": "👀",
           "label": "Body Analyst"
         },
         {
-          "emoji": "\u2744\ufe0f",
+          "emoji": "❄️",
           "label": "Minnesota Nice"
         }
       ],
@@ -7684,7 +7684,7 @@
       "photo": "../images/luke.jpg",
       "lastUpdated": "May 18, 2026",
       "location": "Minnesota",
-      "locationEmoji": "\u2744\ufe0f",
+      "locationEmoji": "❄️",
       "broughtInBy": "Recruited by Alex",
       "statusLines": [],
       "prestige": {
@@ -7694,19 +7694,19 @@
       },
       "traits": [
         {
-          "emoji": "\ud83d\udc8d",
+          "emoji": "💍",
           "label": "Eligible Bachelor"
         },
         {
-          "emoji": "\ud83d\udd04",
+          "emoji": "🔄",
           "label": "Serial Trader"
         },
         {
-          "emoji": "\u23f1\ufe0f",
+          "emoji": "⏱️",
           "label": "Short Timer"
         },
         {
-          "emoji": "\u2753",
+          "emoji": "❓",
           "label": "Unknown Potential"
         }
       ],
@@ -8083,26 +8083,26 @@
       "nickname": "JopO",
       "photo": "../images/jordan.jpg",
       "location": "North Carolina",
-      "locationEmoji": "\ud83c\udf32",
+      "locationEmoji": "🌲",
       "memberSince": 2019,
       "broughtInBy": "Recruited by Scott",
       "ryderCup": null,
       "statusLines": [],
       "traits": [
         {
-          "emoji": "\ud83d\udde1\ufe0f",
+          "emoji": "🗡️",
           "label": "Cutting Commentary"
         },
         {
-          "emoji": "\ud83e\uddd4",
+          "emoji": "🧔",
           "label": "Memorable Facial Hair"
         },
         {
-          "emoji": "\ud83d\udc7b",
+          "emoji": "👻",
           "label": "Questionable Availability"
         },
         {
-          "emoji": "\ud83e\udd10",
+          "emoji": "🤐",
           "label": "Withholding"
         }
       ],
@@ -8492,7 +8492,7 @@
       "seasons": [
         {
           "year": 2019,
-          "teamName": "Turns Out I\u2019m 100% That Minsh ",
+          "teamName": "Turns Out I’m 100% That Minsh ",
           "record": "4-9",
           "finish": 13,
           "ptsPerGame": 87.49,
@@ -8901,26 +8901,26 @@
       "nickname": "Bronco Superfan",
       "photo": "../images/andy.jpg",
       "location": "Colorado",
-      "locationEmoji": "\ud83c\udfd4\ufe0f",
+      "locationEmoji": "🏔️",
       "memberSince": 2022,
       "broughtInBy": "Recruited by Scott",
       "ryderCup": null,
       "statusLines": [],
       "traits": [
         {
-          "emoji": "\ud83c\udf7a",
+          "emoji": "🍺",
           "label": "Chug Champ"
         },
         {
-          "emoji": "\ud83e\ude99",
+          "emoji": "🪙",
           "label": "FAAB Penny Pincher"
         },
         {
-          "emoji": "\ud83d\udce3",
+          "emoji": "📣",
           "label": "Loud"
         },
         {
-          "emoji": "\ud83d\udc55",
+          "emoji": "👕",
           "label": "Shirt Optional"
         }
       ],
@@ -9595,7 +9595,7 @@
       "nickname": "BThax",
       "photo": "../images/brian.png",
       "location": "Maryland",
-      "locationEmoji": "\ud83e\udd80",
+      "locationEmoji": "🦀",
       "memberSince": 2014,
       "broughtInBy": "Recruited by Jack",
       "ryderCup": null,
@@ -9604,19 +9604,19 @@
       ],
       "traits": [
         {
-          "emoji": "\ud83d\ude04",
+          "emoji": "😄",
           "label": "Happy to Be Here"
         },
         {
-          "emoji": "\ud83d\udcaa",
+          "emoji": "💪",
           "label": "Jacked Upper Body"
         },
         {
-          "emoji": "\ud83c\udfe5",
+          "emoji": "🏥",
           "label": "Injury Prone"
         },
         {
-          "emoji": "\ud83d\udcac",
+          "emoji": "💬",
           "label": "Prolific Chatter"
         }
       ],
@@ -10620,7 +10620,7 @@
       "nickname": "The Snoot",
       "photo": "../images/kyle.png",
       "location": "Colorado",
-      "locationEmoji": "\ud83c\udfd4\ufe0f",
+      "locationEmoji": "🏔️",
       "memberSince": 2018,
       "broughtInBy": "Recruited by Jack",
       "ryderCup": null,
@@ -10630,19 +10630,19 @@
       ],
       "traits": [
         {
-          "emoji": "\u2705",
+          "emoji": "✅",
           "label": "Annoyingly Competent"
         },
         {
-          "emoji": "\ud83e\udd4e",
+          "emoji": "🥎",
           "label": "Weak Wiffle Baller"
         },
         {
-          "emoji": "\ud83e\uddd0",
+          "emoji": "🧐",
           "label": "Snooty"
         },
         {
-          "emoji": "\ud83d\udcbb",
+          "emoji": "💻",
           "label": "Tech Bro"
         }
       ],
@@ -10681,7 +10681,7 @@
             "record": "2-7"
           }
         ],
-        "rivals": "Mike & Wade",
+        "rivals": "Dylan & Wade",
         "ryderCup": "TBD"
       },
       "trophies": [
@@ -11053,7 +11053,7 @@
         },
         {
           "year": 2019,
-          "teamName": "\u2744\ufe0f Ice Cold Boy ",
+          "teamName": "❄️ Ice Cold Boy ",
           "record": "7-6",
           "finish": 5,
           "ptsPerGame": 106.87,
@@ -11480,26 +11480,26 @@
       "nickname": "Bathhouse",
       "photo": "../images/wade.jpg",
       "location": "Pennsylvania",
-      "locationEmoji": "\ud83d\udd14",
+      "locationEmoji": "🔔",
       "memberSince": 2020,
       "broughtInBy": "Recruited by Kyle",
       "ryderCup": null,
       "statusLines": [],
       "traits": [
         {
-          "emoji": "\ud83e\uddd4",
+          "emoji": "🧔",
           "label": "Memorable Facial Hair"
         },
         {
-          "emoji": "\ud83d\udcac",
+          "emoji": "💬",
           "label": "Prolific Chatter"
         },
         {
-          "emoji": "\ud83c\udf46",
+          "emoji": "🍆",
           "label": "Perv"
         },
         {
-          "emoji": "\ud83d\udde3\ufe0f",
+          "emoji": "🗣️",
           "label": "Certified Trash Talker"
         }
       ],
@@ -12283,7 +12283,7 @@
         "year": 2019,
         "week": 1,
         "weeks": 1,
-        "notes": "Inaugural champion. Won by posting the highest score in Week 1 \u2014 156.2 pts.",
+        "notes": "Inaugural champion. Won by posting the highest score in Week 1 — 156.2 pts.",
         "defeated": [],
         "sc": false
       },
@@ -12342,7 +12342,7 @@
       {
         "num": 5,
         "champ": "Tim C",
-        "full": "Timb\u0113",
+        "full": "Timbē",
         "year": 2020,
         "week": 5,
         "weeks": 3,
@@ -12361,9 +12361,9 @@
         "year": 2020,
         "week": 8,
         "weeks": 3,
-        "notes": "Defeated Timb\u0113, Kyle, Jack.",
+        "notes": "Defeated Timbē, Kyle, Jack.",
         "defeated": [
-          "Timb\u0113",
+          "Timbē",
           "Kyle",
           "Jack"
         ],
@@ -15915,9 +15915,9 @@
     "AssEatinFrogz",
     "axolotl cooler than frogs",
     "Back Yard Olympic Bronz Frogz",
-    "Bayou Bears Be Howlin' \ud83c\udf0a\ud83d\udc3b",
+    "Bayou Bears Be Howlin' 🌊🐻",
     "Bearly Ready",
-    "Beef Spritz Boys \ud83d\udc2e\ud83d\udca6",
+    "Beef Spritz Boys 🐮💦",
     "BellBrkzBgBodac BtfBncyBrzlnBty",
     "BEST IN THE WEST",
     "Big Hats and Mint-Shewlips",
@@ -15967,7 +15967,7 @@
     "I love Mike Merrick",
     "I Touchdown There",
     "JetFuelCantMelt Playoff Dreams",
-    "Jop-O Isn\u2019t Real",
+    "Jop-O Isn’t Real",
     "Keep My 6 and 9 Seperate",
     "Kerryon my Wayward Chubb",
     "Kicking Ass Gamma Allstars",
@@ -15985,7 +15985,7 @@
     "Megahog Messiah",
     "Merrickles Testicles",
     "Mike Tuck",
-    "Mike \ud83d\udca9's standing up",
+    "Mike 💩's standing up",
     "Mile high Magic",
     "Miz Meesh Mash",
     "Moist for Minshew",
@@ -15993,11 +15993,11 @@
     "NJDelphia Iggles",
     "no such thing as halfway rooks",
     "Not Nearly Enough Tavens",
-    "Osos de Agua por Vida \ud83d\udc3b\ud83c\udf0a\ud83c\udfc8",
+    "Osos de Agua por Vida 🐻🌊🏈",
     "Osta-A-Spankos",
     "Over the Boxers Urinators",
     "Plunder Buns",
-    "Proper Feck'n Eejits \u2618\ufe0f",
+    "Proper Feck'n Eejits ☘️",
     "Putangy SourHoe",
     "RAMsey of House Thax",
     "Real Frogs Never Die",
@@ -16024,7 +16024,7 @@
     "Sucky Nerds",
     "T-T TEAAAMMM-T- Tay-TBONE-TEAM",
     "TA(s)TE THE RAINBOW",
-    "Tangy \ud83d\udc45\ud83c\udf5eSourdough",
+    "Tangy 👅🍞Sourdough",
     "Team JimmyT",
     "Team mr.merrick",
     "Team Shake 'N Bake",
@@ -16032,7 +16032,7 @@
     "Thack Daddy B",
     "Thax Machine",
     "Thaxnut Cracker",
-    "The 100 Point Exceeders \ud83d\udcaf",
+    "The 100 Point Exceeders 💯",
     "The Beacons are Lit",
     "The Crying Dutchman",
     "The Dezman Cometh",
@@ -16050,7 +16050,7 @@
     "The Resurgent Hot Boys",
     "Trash Daddy B",
     "Trubisky Truthers",
-    "Turns Out I\u2019m 100% That Minsh",
+    "Turns Out I’m 100% That Minsh",
     "We Float Down Here",
     "WetBears",
     "Whatsa Manning Goon Squad",
@@ -16058,9 +16058,9 @@
     "White People Suck",
     "Wyfe Swappin Frogs",
     "Youre all dead to me",
-    "\u2744\ufe0f Ice Cold Boy",
-    "\ud83d\udc49 \ud83d\udc4c \ud83d\udc48",
-    "\ud83e\udd77 RageCage \ud83e\udd77"
+    "❄️ Ice Cold Boy",
+    "👉 👌 👈",
+    "🥷 RageCage 🥷"
   ],
   "prestige": [
     {
@@ -16091,7 +16091,7 @@
         {
           "year": 2017,
           "pts": 539,
-          "note": "League Champion \u00b7 Reg Season Champ"
+          "note": "League Champion · Reg Season Champ"
         },
         {
           "year": 2021,
@@ -16134,7 +16134,7 @@
         {
           "year": 2018,
           "pts": 571,
-          "note": "League Champion \u00b7 Reg Season Champ"
+          "note": "League Champion · Reg Season Champ"
         },
         {
           "year": 2019,
@@ -16144,10 +16144,10 @@
         {
           "year": 2014,
           "pts": 251,
-          "note": "Runner-Up \u00b7 Reg Season Champ"
+          "note": "Runner-Up · Reg Season Champ"
         }
       ],
-      "race": "46 pts behind Dylan (#1) \u00b7 137 ahead of Kyle (#3)"
+      "race": "46 pts behind Dylan (#1) · 137 ahead of Kyle (#3)"
     },
     {
       "name": "Kyle",
@@ -16177,7 +16177,7 @@
         {
           "year": 2024,
           "pts": 580,
-          "note": "League Champion \u00b7 Reg Season Champ"
+          "note": "League Champion · Reg Season Champ"
         },
         {
           "year": 2022,
@@ -16190,7 +16190,7 @@
           "note": "Runner-Up"
         }
       ],
-      "race": "137 pts behind Jack (#2) \u00b7 538 ahead of Mike (#4)"
+      "race": "137 pts behind Jack (#2) · 538 ahead of Mike (#4)"
     },
     {
       "name": "Mike M",
@@ -16220,7 +16220,7 @@
         {
           "year": 2020,
           "pts": 562,
-          "note": "League Champion \u00b7 Reg Season Champ"
+          "note": "League Champion · Reg Season Champ"
         },
         {
           "year": 2022,
@@ -16233,7 +16233,7 @@
           "note": "Runner-Up"
         }
       ],
-      "race": "538 pts behind Kyle (#3) \u00b7 49 ahead of Alex (#5)"
+      "race": "538 pts behind Kyle (#3) · 49 ahead of Alex (#5)"
     },
     {
       "name": "Alex V",
@@ -16263,12 +16263,12 @@
         {
           "year": 2023,
           "pts": 587,
-          "note": "League Champion \u00b7 Reg Season Champ"
+          "note": "League Champion · Reg Season Champ"
         },
         {
           "year": 2019,
           "pts": 297,
-          "note": "Runner-Up \u00b7 Reg Season Champ"
+          "note": "Runner-Up · Reg Season Champ"
         },
         {
           "year": 2020,
@@ -16276,7 +16276,7 @@
           "note": "Final Four"
         }
       ],
-      "race": "49 pts behind Mike (#4) \u00b7 374 ahead of Daniel (#6)"
+      "race": "49 pts behind Mike (#4) · 374 ahead of Daniel (#6)"
     },
     {
       "name": "Daniel",
@@ -16306,7 +16306,7 @@
         {
           "year": 2016,
           "pts": 284,
-          "note": "Runner-Up \u00b7 Reg Season Champ"
+          "note": "Runner-Up · Reg Season Champ"
         },
         {
           "year": 2024,
@@ -16319,7 +16319,7 @@
           "note": "Final Four"
         }
       ],
-      "race": "374 pts behind Alex (#5) \u00b7 48 ahead of Brian (#7)"
+      "race": "374 pts behind Alex (#5) · 48 ahead of Brian (#7)"
     },
     {
       "name": "Brian",
@@ -16362,7 +16362,7 @@
           "note": "Regular Season Wins"
         }
       ],
-      "race": "48 pts behind Daniel (#6) \u00b7 78 ahead of Jon (#8)"
+      "race": "48 pts behind Daniel (#6) · 78 ahead of Jon (#8)"
     },
     {
       "name": "Jon",
@@ -16392,7 +16392,7 @@
         {
           "year": 2021,
           "pts": 306,
-          "note": "Runner-Up \u00b7 Reg Season Champ"
+          "note": "Runner-Up · Reg Season Champ"
         },
         {
           "year": 2019,
@@ -16464,7 +16464,7 @@
           "pts": 195
         },
         {
-          "name": "120\u2013149 Pt Games",
+          "name": "120–149 Pt Games",
           "pts": 72
         },
         {
@@ -16489,7 +16489,7 @@
           "note": "Regular Season Wins"
         }
       ],
-      "race": "134 pts behind Michelle T (#9) \u00b7 32 ahead of Scott (#11)"
+      "race": "134 pts behind Michelle T (#9) · 32 ahead of Scott (#11)"
     },
     {
       "name": "Scott",
@@ -16511,7 +16511,7 @@
           "pts": 80
         },
         {
-          "name": "120\u2013149 Pt Games",
+          "name": "120–149 Pt Games",
           "pts": 48
         }
       ],
@@ -16532,7 +16532,7 @@
           "note": "Regular Season Wins"
         }
       ],
-      "race": "32 pts behind Matt (#10) \u00b7 28 ahead of Alex M (#12)"
+      "race": "32 pts behind Matt (#10) · 28 ahead of Alex M (#12)"
     },
     {
       "name": "Alex M",
@@ -16649,7 +16649,7 @@
           "note": "Consolation Champ"
         }
       ],
-      "race": "103 pts behind Tim C (#13) \u00b7 8 ahead of Tim (#15)"
+      "race": "103 pts behind Tim C (#13) · 8 ahead of Tim (#15)"
     },
     {
       "name": "Tim H",
@@ -16692,7 +16692,7 @@
           "note": "Regular Season Wins"
         }
       ],
-      "race": "8 pts behind Wade (#14) \u00b7 3 ahead of Andy (#16)"
+      "race": "8 pts behind Wade (#14) · 3 ahead of Andy (#16)"
     },
     {
       "name": "Andy",
@@ -16722,7 +16722,7 @@
         {
           "year": 2022,
           "pts": 198,
-          "note": "Final Four \u00b7 Reg Season Champ"
+          "note": "Final Four · Reg Season Champ"
         },
         {
           "year": 2023,
@@ -16735,7 +16735,7 @@
           "note": "Regular Season Wins"
         }
       ],
-      "race": "3 pts behind Tim (#15) \u00b7 3 ahead of Jordan (#17)"
+      "race": "3 pts behind Tim (#15) · 3 ahead of Jordan (#17)"
     },
     {
       "name": "Jordan",
@@ -16778,7 +16778,7 @@
           "note": "Regular Season Wins"
         }
       ],
-      "race": "3 pts behind Andy (#16) \u00b7 tied with Taylor (#18)"
+      "race": "3 pts behind Andy (#16) · tied with Taylor (#18)"
     },
     {
       "name": "Taylor",
@@ -16808,7 +16808,7 @@
         {
           "year": 2015,
           "pts": 223,
-          "note": "Runner-Up \u00b7 Reg Season Champ"
+          "note": "Runner-Up · Reg Season Champ"
         },
         {
           "year": 2014,
@@ -16842,7 +16842,7 @@
           "pts": 60
         },
         {
-          "name": "120\u2013149 Pt Games",
+          "name": "120–149 Pt Games",
           "pts": 28
         }
       ],
@@ -16996,7 +16996,7 @@
           "pts": 21
         },
         {
-          "name": "120\u2013149 Pt Games",
+          "name": "120–149 Pt Games",
           "pts": 4
         }
       ],
@@ -17024,11 +17024,11 @@
           "pts": 15
         },
         {
-          "name": "120\u2013149 Pt Games",
+          "name": "120–149 Pt Games",
           "pts": 8
         },
         {
-          "name": "120\u2013149 Pt Games (Consolation)",
+          "name": "120–149 Pt Games (Consolation)",
           "pts": 2
         }
       ],
