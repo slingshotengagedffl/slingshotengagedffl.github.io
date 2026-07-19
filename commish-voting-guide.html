@@ -1,0 +1,1060 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>The Commish's Voting Guide — Slingshot Engaged</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Barlow+Condensed:wght@400;600;700&family=Barlow:wght@400;500;600&display=swap" rel="stylesheet" />
+
+<style>
+:root {
+  --red: #c0392b;
+  --red-bright: #e74c3c;
+  --bg: #0a0a0a;
+  --surface: #141414;
+  --surface2: #1c1c1c;
+  --surface3: #242424;
+  --text: #f0f0f0;
+  --text-body: #e8e8e8;
+  --muted: #bbb;
+  --label: #d8d8d8;
+  --border: #2a2a2a;
+  --gold: #c9a84c;
+  --yes: #f97316;
+  --no: #60a5fa;
+}
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+body {
+  background: var(--bg);
+  color: var(--text);
+  font-family: 'Barlow', sans-serif;
+  min-height: 100vh;
+}
+
+/* ── PAGE HEADER ── */
+.page-header {
+  padding: 40px 20px 0;
+  text-align: center;
+}
+.page-supertitle {
+  font-family: 'Barlow Condensed', sans-serif;
+  font-size: 1rem;
+  letter-spacing: 0.25em;
+  text-transform: uppercase;
+  color: #d0d0d0;
+  margin-bottom: 6px;
+}
+.page-header h1 {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: clamp(2.8rem, 8vw, 5rem);
+  color: var(--red-bright);
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  line-height: 1;
+}
+.page-updated {
+  font-family: 'Barlow Condensed', sans-serif;
+  font-size: 0.72rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--muted);
+  margin-top: 6px;
+}
+
+/* ── CONTENT WRAPPER ── */
+.content {
+  max-width: 680px;
+  margin: 0 auto;
+  padding: 0 16px 60px;
+}
+
+.intro {
+  font-family: 'Barlow', sans-serif;
+  font-size: 1.05rem;
+  line-height: 1.7;
+  color: var(--text-body);
+  padding: 24px 0 8px;
+}
+.intro strong { color: var(--text); }
+
+.section-title {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 1.6rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--text);
+  margin: 32px 0 12px;
+}
+
+/* ── QUICK REFERENCE TABLE ── */
+.table-wrap {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+  margin-top: 8px;
+}
+table { border-collapse: collapse; width: 100%; }
+thead th {
+  font-family: 'Barlow Condensed', sans-serif;
+  font-size: 0.82rem;
+  font-weight: 700;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--label);
+  background: var(--surface2);
+  padding: 10px 12px;
+  text-align: left;
+  border-bottom: 1px solid var(--border);
+  white-space: nowrap;
+}
+tbody td {
+  padding: 10px 12px;
+  vertical-align: middle;
+  border-bottom: 1px solid var(--border);
+  color: var(--text);
+  font-size: 0.9rem;
+}
+tbody tr:last-child td { border-bottom: none; }
+tbody tr.qr-row { cursor: pointer; transition: background 0.15s; }
+tbody tr.qr-row:hover { background: var(--surface2); }
+tbody tr.qr-featured { background: rgba(201,168,76,0.09); box-shadow: inset 3px 0 0 var(--gold); }
+tbody tr.qr-featured:hover { background: rgba(201,168,76,0.16); }
+
+.qr-prop-num {
+  font-family: 'Barlow Condensed', sans-serif;
+  font-weight: 700;
+  color: var(--label);
+  white-space: nowrap;
+}
+.qr-name {
+  font-family: 'Barlow Condensed', sans-serif;
+  font-weight: 700;
+  font-size: 1rem;
+  color: var(--text);
+}
+.qr-vote-cell, .qr-conviction-cell { white-space: nowrap; }
+
+.vote-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 5px 12px;
+  border-radius: 999px;
+  font-family: 'Barlow Condensed', sans-serif;
+  font-weight: 700;
+  font-size: 0.85rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: #000;
+}
+.vote-pill.yes { background: var(--yes); }
+.vote-pill.no  { background: var(--no); }
+.vote-pill .vote-emoji { font-size: 0.95rem; }
+
+.conviction-dots {
+  display: inline-flex;
+  gap: 4px;
+  vertical-align: middle;
+}
+.dot {
+  width: 9px;
+  height: 9px;
+  border-radius: 50%;
+  background: var(--border);
+  display: inline-block;
+}
+.dot.filled { background: var(--gold); }
+
+.qr-conviction-cell .conviction-dots { margin-right: 8px; }
+.conviction-word {
+  font-family: 'Barlow Condensed', sans-serif;
+  font-weight: 700;
+  font-size: 0.85rem;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--label);
+  vertical-align: middle;
+}
+.featured-flame { font-size: 0.9rem; margin-left: 2px; }
+
+.qr-legend {
+  font-family: 'Barlow Condensed', sans-serif;
+  font-size: 0.8rem;
+  letter-spacing: 0.05em;
+  color: var(--label);
+  text-align: center;
+  padding: 10px 8px 0;
+  line-height: 1.9;
+}
+.qr-legend .dot { vertical-align: middle; margin: 0 1px; }
+
+.qr-jump {
+  font-family: 'Barlow Condensed', sans-serif;
+  font-size: 0.78rem;
+  color: var(--muted);
+  text-align: center;
+  padding: 8px 0 0;
+}
+
+/* ── PROP DETAIL CARDS ── */
+.prop-card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  margin-top: 20px;
+  padding: 24px;
+  scroll-margin-top: 76px;
+}
+.prop-card.flash { animation: flashHighlight 1.1s ease; }
+.prop-card-featured { border-color: rgba(201,168,76,0.5); box-shadow: 0 0 0 1px rgba(201,168,76,0.25); }
+@keyframes flashHighlight {
+  0%   { border-color: var(--gold); box-shadow: 0 0 0 1px var(--gold); }
+  100% { border-color: var(--border); box-shadow: none; }
+}
+
+.prop-card-header {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 12px;
+  flex-wrap: wrap;
+  border-bottom: 1px solid var(--border);
+  padding-bottom: 14px;
+  margin-bottom: 16px;
+}
+.prop-card-title-wrap { flex: 1 1 auto; min-width: 200px; }
+.prop-eyebrow {
+  font-family: 'Barlow Condensed', sans-serif;
+  font-size: 0.82rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--label);
+  margin-bottom: 4px;
+}
+.prop-card-title {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 1.7rem;
+  letter-spacing: 0.04em;
+  color: var(--text);
+  line-height: 1.1;
+}
+.prop-vote-block {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 6px;
+  flex-shrink: 0;
+}
+.prop-vote-block .conviction-label {
+  font-family: 'Barlow Condensed', sans-serif;
+  font-size: 0.72rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+
+.rule-block { margin-bottom: 16px; }
+.rule-label {
+  font-family: 'Barlow Condensed', sans-serif;
+  font-size: 0.78rem;
+  font-weight: 700;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--label);
+  margin-bottom: 6px;
+}
+.rule-text, .change-text {
+  background: var(--surface3);
+  border-radius: 6px;
+  padding: 12px 14px;
+  font-size: 0.95rem;
+  line-height: 1.6;
+  color: var(--text-body);
+}
+.rule-block.rule-old .rule-text { border-left: 3px solid var(--border); }
+.rule-block.rule-new .change-text { border-left: 3px solid var(--gold); }
+
+.narrative-label {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  font-family: 'Barlow Condensed', sans-serif;
+  font-size: 0.85rem;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: #fff;
+  background: var(--red);
+  padding: 6px 14px;
+  border-radius: 999px;
+  margin: 18px 0 10px;
+}
+.narrative-block {
+  background: rgba(192,57,43,0.10);
+  border: 1px solid rgba(192,57,43,0.35);
+  border-left: 3px solid var(--red-bright);
+  border-radius: 6px;
+  padding: 14px 16px;
+}
+.narrative-text {
+  font-family: 'Barlow', sans-serif;
+  font-size: 1rem;
+  line-height: 1.75;
+  color: var(--text-body);
+}
+.mini-list {
+  margin: 8px 0 0 20px;
+  padding: 0;
+}
+.mini-list li {
+  font-size: 0.95rem;
+  line-height: 1.6;
+  color: var(--text-body);
+  margin-bottom: 5px;
+}
+.mini-list li:last-child { margin-bottom: 0; }
+.mini-list-intro { margin-bottom: 4px; }
+
+.back-to-top {
+  display: block;
+  text-align: center;
+  font-family: 'Barlow Condensed', sans-serif;
+  font-size: 0.85rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--label);
+  text-decoration: none;
+  padding: 30px 0 0;
+}
+.back-to-top:hover { color: var(--text); text-decoration: underline; }
+
+/* ── STICKY JUMP NAV ── */
+.jumpnav-hint {
+  font-family: 'Barlow Condensed', sans-serif;
+  font-size: 0.82rem;
+  color: var(--muted);
+  text-align: center;
+  margin-bottom: 10px;
+}
+.jumpnav-wrap {
+  position: sticky;
+  top: 60px;
+  z-index: 50;
+  background: var(--bg);
+  padding: 8px 0 12px;
+  margin-bottom: 4px;
+  border-bottom: 1px solid var(--border);
+}
+.jumpnav {
+  display: flex;
+  gap: 8px;
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+  scrollbar-width: none;
+  padding: 2px;
+}
+.jumpnav::-webkit-scrollbar { display: none; }
+.jumpnav-btn {
+  flex: 0 0 auto;
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  border: 1px solid var(--border);
+  background: var(--surface);
+  color: var(--label);
+  font-family: 'Barlow Condensed', sans-serif;
+  font-weight: 700;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: background 0.15s, border-color 0.15s, color 0.15s;
+}
+.jumpnav-btn:hover { border-color: var(--muted); color: var(--text); }
+.jumpnav-btn.active { background: var(--red); border-color: var(--red); color: #fff; }
+.jumpnav-btn.jn-featured:not(.active) { border-color: rgba(201,168,76,0.6); color: var(--gold); }
+
+/* ── CARD FOOTER NAV (prev / top / next) ── */
+.card-footer-nav {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+  margin-top: 22px;
+  padding-top: 16px;
+  border-top: 1px solid var(--border);
+}
+.card-nav-link {
+  font-family: 'Barlow Condensed', sans-serif;
+  font-size: 0.82rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--label);
+  text-decoration: none;
+  display: flex;
+  align-items: center;
+  min-height: 44px;
+  transition: color 0.15s;
+  cursor: pointer;
+}
+.card-nav-link:hover { color: var(--text); }
+.card-nav-link.cn-top { color: var(--muted); flex: 0 0 auto; justify-content: center; }
+.card-nav-link.cn-prev { justify-content: flex-start; flex: 1 1 0; }
+.card-nav-link.cn-next { justify-content: flex-end; flex: 1 1 0; text-align: right; }
+.card-nav-spacer { flex: 1 1 0; }
+
+@media (max-width: 480px) {
+  .prop-card-header { flex-direction: column; }
+  .prop-vote-block { align-items: flex-start; flex-direction: row; gap: 10px; }
+}
+</style>
+</head>
+<body>
+
+<script src="nav.js"></script>
+
+<div class="page-header">
+  <div class="page-supertitle">Slingshot Engaged</div>
+  <h1>The Commish's Voting Guide</h1>
+  <p class="page-updated">Last Updated July 19, 2026</p>
+</div>
+
+<div class="content">
+
+  <p class="intro">
+    Ten proposals are on the 2026 ballot. If you don't feel like digging into each one, just vote along with me below — <strong>the more dots filled in, the more strongly I feel about it.</strong> If you want the full reasoning, scroll down for the breakdown on every prop: the current rule, what's being proposed, and why I landed where I did.
+  </p>
+
+  <h2 class="section-title" id="quickref">Quick Reference</h2>
+  <div class="table-wrap">
+    <table>
+      <thead>
+        <tr>
+          <th>Prop</th>
+          <th>Proposal</th>
+          <th>Vote</th>
+          <th>Conviction</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr class="qr-row" data-target="prop-1">
+          <td class="qr-prop-num">1</td>
+          <td class="qr-name"># of Playoff Teams</td>
+          <td class="qr-vote-cell">
+            <span class="vote-pill yes"><span class="vote-emoji">👍</span>Yes</span>
+          </td>
+          <td class="qr-conviction-cell">
+            <span class="conviction-dots" aria-label="Strong conviction">
+              <span class="dot filled"></span><span class="dot filled"></span><span class="dot filled"></span>
+            
+            </span>
+            <span class="conviction-word">Strong</span>
+          </td>
+        </tr>
+        <tr class="qr-row qr-featured" data-target="prop-2">
+          <td class="qr-prop-num">2</td>
+          <td class="qr-name">Bonus Wins and Losses</td>
+          <td class="qr-vote-cell">
+            <span class="vote-pill yes"><span class="vote-emoji">👍</span>Yes</span>
+          </td>
+          <td class="qr-conviction-cell">
+            <span class="conviction-dots" aria-label="Strong conviction">
+              <span class="dot filled"></span><span class="dot filled"></span><span class="dot filled"></span>
+            
+            </span>
+            <span class="conviction-word">Strong</span> <span class="featured-flame" title="Strongest conviction of all 10">🔥</span>
+          </td>
+        </tr>
+        <tr class="qr-row" data-target="prop-3">
+          <td class="qr-prop-num">3</td>
+          <td class="qr-name">Lineup Protection</td>
+          <td class="qr-vote-cell">
+            <span class="vote-pill yes"><span class="vote-emoji">👍</span>Yes</span>
+          </td>
+          <td class="qr-conviction-cell">
+            <span class="conviction-dots" aria-label="Mild conviction">
+              <span class="dot filled"></span><span class="dot"></span><span class="dot"></span>
+            
+            </span>
+            <span class="conviction-word">Mild</span>
+          </td>
+        </tr>
+        <tr class="qr-row" data-target="prop-4">
+          <td class="qr-prop-num">4</td>
+          <td class="qr-name">Bench Size</td>
+          <td class="qr-vote-cell">
+            <span class="vote-pill no"><span class="vote-emoji">👎</span>No</span>
+          </td>
+          <td class="qr-conviction-cell">
+            <span class="conviction-dots" aria-label="Moderate conviction">
+              <span class="dot filled"></span><span class="dot filled"></span><span class="dot"></span>
+            
+            </span>
+            <span class="conviction-word">Moderate</span>
+          </td>
+        </tr>
+        <tr class="qr-row" data-target="prop-5">
+          <td class="qr-prop-num">5</td>
+          <td class="qr-name">Waiver Tiebreaker</td>
+          <td class="qr-vote-cell">
+            <span class="vote-pill yes"><span class="vote-emoji">👍</span>Yes</span>
+          </td>
+          <td class="qr-conviction-cell">
+            <span class="conviction-dots" aria-label="Mild conviction">
+              <span class="dot filled"></span><span class="dot"></span><span class="dot"></span>
+            
+            </span>
+            <span class="conviction-word">Mild</span>
+          </td>
+        </tr>
+        <tr class="qr-row" data-target="prop-6">
+          <td class="qr-prop-num">6</td>
+          <td class="qr-name">FAAB Boost for Playoff Teams</td>
+          <td class="qr-vote-cell">
+            <span class="vote-pill no"><span class="vote-emoji">👎</span>No</span>
+          </td>
+          <td class="qr-conviction-cell">
+            <span class="conviction-dots" aria-label="Mild conviction">
+              <span class="dot filled"></span><span class="dot"></span><span class="dot"></span>
+            
+            </span>
+            <span class="conviction-word">Mild</span>
+          </td>
+        </tr>
+        <tr class="qr-row" data-target="prop-7">
+          <td class="qr-prop-num">7</td>
+          <td class="qr-name">Money in the Bank</td>
+          <td class="qr-vote-cell">
+            <span class="vote-pill yes"><span class="vote-emoji">👍</span>Yes</span>
+          </td>
+          <td class="qr-conviction-cell">
+            <span class="conviction-dots" aria-label="Strong conviction">
+              <span class="dot filled"></span><span class="dot filled"></span><span class="dot filled"></span>
+            
+            </span>
+            <span class="conviction-word">Strong</span>
+          </td>
+        </tr>
+        <tr class="qr-row" data-target="prop-8">
+          <td class="qr-prop-num">8</td>
+          <td class="qr-name">Intercontinental Championship Bounty</td>
+          <td class="qr-vote-cell">
+            <span class="vote-pill yes"><span class="vote-emoji">👍</span>Yes</span>
+          </td>
+          <td class="qr-conviction-cell">
+            <span class="conviction-dots" aria-label="Moderate conviction">
+              <span class="dot filled"></span><span class="dot filled"></span><span class="dot"></span>
+            
+            </span>
+            <span class="conviction-word">Moderate</span>
+          </td>
+        </tr>
+        <tr class="qr-row" data-target="prop-9">
+          <td class="qr-prop-num">9</td>
+          <td class="qr-name">Keeper Eligibility &amp; Trade Deadline</td>
+          <td class="qr-vote-cell">
+            <span class="vote-pill yes"><span class="vote-emoji">👍</span>Yes</span>
+          </td>
+          <td class="qr-conviction-cell">
+            <span class="conviction-dots" aria-label="Strong conviction">
+              <span class="dot filled"></span><span class="dot filled"></span><span class="dot filled"></span>
+            
+            </span>
+            <span class="conviction-word">Strong</span>
+          </td>
+        </tr>
+        <tr class="qr-row" data-target="prop-10">
+          <td class="qr-prop-num">10</td>
+          <td class="qr-name">Keeper Eligibility Locked on Draft Day</td>
+          <td class="qr-vote-cell">
+            <span class="vote-pill yes"><span class="vote-emoji">👍</span>Yes</span>
+          </td>
+          <td class="qr-conviction-cell">
+            <span class="conviction-dots" aria-label="Moderate conviction">
+              <span class="dot filled"></span><span class="dot filled"></span><span class="dot"></span>
+            
+            </span>
+            <span class="conviction-word">Moderate</span>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  <p class="qr-legend">
+    Conviction:
+    <span class="dot filled"></span> Mild &nbsp;·&nbsp;
+    <span class="dot filled"></span><span class="dot filled"></span> Moderate &nbsp;·&nbsp;
+    <span class="dot filled"></span><span class="dot filled"></span><span class="dot filled"></span> Strong
+  </p>
+  <p class="qr-jump">Tap any row to jump to the full breakdown ↓</p>
+
+  <h2 class="section-title" id="details">The Full Breakdown</h2>
+  <p class="jumpnav-hint">Jump straight to any prop:</p>
+  <div class="jumpnav-wrap">
+    <div class="jumpnav" id="jumpnav">
+      <button class="jumpnav-btn" data-target="prop-1">1</button>
+      <button class="jumpnav-btn jn-featured" data-target="prop-2">2</button>
+      <button class="jumpnav-btn" data-target="prop-3">3</button>
+      <button class="jumpnav-btn" data-target="prop-4">4</button>
+      <button class="jumpnav-btn" data-target="prop-5">5</button>
+      <button class="jumpnav-btn" data-target="prop-6">6</button>
+      <button class="jumpnav-btn" data-target="prop-7">7</button>
+      <button class="jumpnav-btn" data-target="prop-8">8</button>
+      <button class="jumpnav-btn" data-target="prop-9">9</button>
+      <button class="jumpnav-btn" data-target="prop-10">10</button>
+    </div>
+  </div>
+
+  <!-- PROP 1 -->
+  <div class="prop-card" id="prop-1">
+    <div class="prop-card-header">
+      <div class="prop-card-title-wrap">
+        <div class="prop-eyebrow">Prop 1</div>
+        <div class="prop-card-title"># of Playoff Teams</div>
+      </div>
+      <div class="prop-vote-block">
+        <span class="vote-pill yes"><span class="vote-emoji">👍</span>Yes</span>
+        <span class="conviction-dots" aria-label="Strong conviction">
+          <span class="dot filled"></span><span class="dot filled"></span><span class="dot filled"></span>
+        </span>
+        <span class="conviction-label">Strong Yes</span>
+      </div>
+    </div>
+
+    <div class="rule-block rule-old">
+      <div class="rule-label">2025 Rule</div>
+      <div class="rule-text"><strong>Seven of 14</strong> teams made the playoffs in 2025, a one-year departure from the traditional six-team field. Only the #1 seed received a first-round bye.</div>
+    </div>
+    <div class="rule-block rule-new">
+      <div class="rule-label">2026 Proposal</div>
+      <div class="change-text">Adopt the <strong>seven-team</strong> playoff field as the new standard going forward.</div>
+    </div>
+
+    <div class="narrative-label">🎙️ The Commish's Take</div>
+    <div class="narrative-block">
+      <p class="narrative-text">Seven teams gives real incentive to earn the #1 seed, since it's the only bye — with six teams, two clubs got one. More teams in the mix for a title is more exciting, and this format doesn't need to be so serious. The NFL runs seven per conference, and the NBA takes more than half its league to the playoffs.</p>
+    </div>
+  
+    <div class="card-footer-nav">
+      <span class="card-nav-spacer"></span>
+      <a class="card-nav-link cn-top" data-target="jumptop">&uarr; Top</a>
+      <a class="card-nav-link cn-next" data-target="prop-2">Prop 2 &rarr;</a>
+    </div>
+  </div>
+
+  <!-- PROP 2 -->
+  <div class="prop-card prop-card-featured" id="prop-2">
+    <div class="prop-card-header">
+      <div class="prop-card-title-wrap">
+        <div class="prop-eyebrow">Prop 2 &nbsp;·&nbsp; 🔥 Strongest Feeling of All 10</div>
+        <div class="prop-card-title">Bonus Wins and Losses</div>
+      </div>
+      <div class="prop-vote-block">
+        <span class="vote-pill yes"><span class="vote-emoji">👍</span>Yes</span>
+        <span class="conviction-dots" aria-label="Strong conviction">
+          <span class="dot filled"></span><span class="dot filled"></span><span class="dot filled"></span>
+        </span>
+        <span class="conviction-label">Strong Yes</span>
+      </div>
+    </div>
+
+    <div class="rule-block rule-old">
+      <div class="rule-label">2025 Rule</div>
+      <div class="rule-text">Owners earn exactly one win or one loss each week against their designated head-to-head opponent.</div>
+    </div>
+    <div class="rule-block rule-new">
+      <div class="rule-label">2026 Proposal</div>
+      <div class="change-text">
+        <div class="mini-list-intro">Try ESPN's "Bonus Wins and Losses" feature for one season, applied only to playoff seeding — not official league records:</div>
+        <ul class="mini-list">
+          <li>Score in the league's top half for the week → extra win</li>
+          <li>Score in the bottom half → extra loss</li>
+        </ul>
+        <div class="mini-list-intro" style="margin-top:8px;">This matters more in 2026's "Fantasy Classic" format, where seeding goes by record first and total points as the tiebreaker.</div>
+      </div>
+    </div>
+
+    <div class="narrative-label">🎙️ The Commish's Take</div>
+    <div class="narrative-block">
+      <p class="narrative-text">This balances out schedule luck — if you post the second-best score of the week but lose to the best score, you go 1-1 instead of 0-1 in the standings. It's a common feature among fantasy players, and I've heard it makes Sunday and Monday night games more interesting since more teams have something at stake trying to crack the top half. We can try it for one year in this simpler seeding format and see if we like it. Of all ten proposals, I feel strongest about this one.</p>
+    </div>
+  
+    <div class="card-footer-nav">
+      <a class="card-nav-link cn-prev" data-target="prop-1">&larr; Prop 1</a>
+      <a class="card-nav-link cn-top" data-target="jumptop">&uarr; Top</a>
+      <a class="card-nav-link cn-next" data-target="prop-3">Prop 3 &rarr;</a>
+    </div>
+  </div>
+
+  <!-- PROP 3 -->
+  <div class="prop-card" id="prop-3">
+    <div class="prop-card-header">
+      <div class="prop-card-title-wrap">
+        <div class="prop-eyebrow">Prop 3</div>
+        <div class="prop-card-title">Lineup Protection</div>
+      </div>
+      <div class="prop-vote-block">
+        <span class="vote-pill yes"><span class="vote-emoji">👍</span>Yes</span>
+        <span class="conviction-dots" aria-label="Mild conviction">
+          <span class="dot filled"></span><span class="dot"></span><span class="dot"></span>
+        </span>
+        <span class="conviction-label">Mild Yes</span>
+      </div>
+    </div>
+
+    <div class="rule-block rule-old">
+      <div class="rule-label">2025 Rule</div>
+      <div class="rule-text">Players are locked into a lineup at the kickoff time of their game.</div>
+    </div>
+    <div class="rule-block rule-new">
+      <div class="rule-label">2026 Proposal</div>
+      <div class="change-text">Turn on ESPN's "Lineup Protection" feature, which automatically replaces a starter listed as Out or on IR with an eligible bench player who hasn't played yet. Per ESPN's own description, the replacement is their highest-ranked eligible player for that roster spot — not necessarily the highest-projected one.</div>
+    </div>
+
+    <div class="narrative-label">🎙️ The Commish's Take</div>
+    <div class="narrative-block">
+      <p class="narrative-text">I don't feel strongly either way on this one. It would ease situations where a player is ruled out unexpectedly close to kickoff, or where an owner can't log in in time to make a swap. It's a small win for competitive fairness since no one accidentally starts an inactive player, and I don't see a real downside.</p>
+    </div>
+  
+    <div class="card-footer-nav">
+      <a class="card-nav-link cn-prev" data-target="prop-2">&larr; Prop 2</a>
+      <a class="card-nav-link cn-top" data-target="jumptop">&uarr; Top</a>
+      <a class="card-nav-link cn-next" data-target="prop-4">Prop 4 &rarr;</a>
+    </div>
+  </div>
+
+  <!-- PROP 4 -->
+  <div class="prop-card" id="prop-4">
+    <div class="prop-card-header">
+      <div class="prop-card-title-wrap">
+        <div class="prop-eyebrow">Prop 4</div>
+        <div class="prop-card-title">Bench Size</div>
+      </div>
+      <div class="prop-vote-block">
+        <span class="vote-pill no"><span class="vote-emoji">👎</span>No</span>
+        <span class="conviction-dots" aria-label="Moderate conviction">
+          <span class="dot filled"></span><span class="dot filled"></span><span class="dot"></span>
+        </span>
+        <span class="conviction-label">Moderate No</span>
+      </div>
+    </div>
+
+    <div class="rule-block rule-old">
+      <div class="rule-label">2025 Rule</div>
+      <div class="rule-text"><strong>Five</strong> bench spots, plus one IR spot.</div>
+    </div>
+    <div class="rule-block rule-new">
+      <div class="rule-label">2026 Proposal</div>
+      <div class="change-text">Reduce bench size to <strong>four</strong> spots, plus one IR spot.</div>
+    </div>
+
+    <div class="narrative-label">🎙️ The Commish's Take</div>
+    <div class="narrative-block">
+      <p class="narrative-text">Five bench spots is already pretty restrictive, and I don't see a need to cut it further.</p>
+    </div>
+  
+    <div class="card-footer-nav">
+      <a class="card-nav-link cn-prev" data-target="prop-3">&larr; Prop 3</a>
+      <a class="card-nav-link cn-top" data-target="jumptop">&uarr; Top</a>
+      <a class="card-nav-link cn-next" data-target="prop-5">Prop 5 &rarr;</a>
+    </div>
+  </div>
+
+  <!-- PROP 5 -->
+  <div class="prop-card" id="prop-5">
+    <div class="prop-card-header">
+      <div class="prop-card-title-wrap">
+        <div class="prop-eyebrow">Prop 5</div>
+        <div class="prop-card-title">Waiver Tiebreaker</div>
+      </div>
+      <div class="prop-vote-block">
+        <span class="vote-pill yes"><span class="vote-emoji">👍</span>Yes</span>
+        <span class="conviction-dots" aria-label="Mild conviction">
+          <span class="dot filled"></span><span class="dot"></span><span class="dot"></span>
+        </span>
+        <span class="conviction-label">Mild Yes</span>
+      </div>
+    </div>
+
+    <div class="rule-block rule-old">
+      <div class="rule-label">2025 Rule</div>
+      <div class="rule-text">Each week, ties for the highest FAAB bid go to the team lower in the standings.</div>
+    </div>
+    <div class="rule-block rule-new">
+      <div class="rule-label">2026 Proposal</div>
+      <div class="change-text">Change the tiebreaker method to "Move to Last After Claim, Never Reset." Any time a team wins a FAAB bid, they move to the bottom of the tiebreaker order. Standings no longer factor in.</div>
+    </div>
+
+    <div class="narrative-label">🎙️ The Commish's Take</div>
+    <div class="narrative-block">
+      <p class="narrative-text">This seems simpler than resetting based on standings — it's a straightforward rotation that isn't tied to how teams are performing. As simple as that.</p>
+    </div>
+  
+    <div class="card-footer-nav">
+      <a class="card-nav-link cn-prev" data-target="prop-4">&larr; Prop 4</a>
+      <a class="card-nav-link cn-top" data-target="jumptop">&uarr; Top</a>
+      <a class="card-nav-link cn-next" data-target="prop-6">Prop 6 &rarr;</a>
+    </div>
+  </div>
+
+  <!-- PROP 6 -->
+  <div class="prop-card" id="prop-6">
+    <div class="prop-card-header">
+      <div class="prop-card-title-wrap">
+        <div class="prop-eyebrow">Prop 6</div>
+        <div class="prop-card-title">FAAB Boost for Playoff Teams</div>
+      </div>
+      <div class="prop-vote-block">
+        <span class="vote-pill no"><span class="vote-emoji">👎</span>No</span>
+        <span class="conviction-dots" aria-label="Mild conviction">
+          <span class="dot filled"></span><span class="dot"></span><span class="dot"></span>
+        </span>
+        <span class="conviction-label">Mild No</span>
+      </div>
+    </div>
+
+    <div class="rule-block rule-old">
+      <div class="rule-label">2025 Rule</div>
+      <div class="rule-text">Everyone starts the season with <strong>$100 FAAB</strong>. FAAB can be traded. Half the league wins an additional <strong>$20 FAAB</strong> for winning the Ryder Cup.</div>
+    </div>
+    <div class="rule-block rule-new">
+      <div class="rule-label">2026 Proposal</div>
+      <div class="change-text">In addition to the above, teams that reach the playoffs receive an additional <strong>$20 FAAB</strong> at the end of the regular season to help them in the playoffs.</div>
+    </div>
+
+    <div class="narrative-label">🎙️ The Commish's Take</div>
+    <div class="narrative-block">
+      <p class="narrative-text">Saving FAAB for the playoffs is already a strategy choice teams can make on their own. Non-playoff teams are still contending for something — the Hottest Team in Sports Bowl, and avoiding the Bronze Franz — so I don't think playoff teams need an extra boost.</p>
+    </div>
+  
+    <div class="card-footer-nav">
+      <a class="card-nav-link cn-prev" data-target="prop-5">&larr; Prop 5</a>
+      <a class="card-nav-link cn-top" data-target="jumptop">&uarr; Top</a>
+      <a class="card-nav-link cn-next" data-target="prop-7">Prop 7 &rarr;</a>
+    </div>
+  </div>
+
+  <!-- PROP 7 -->
+  <div class="prop-card" id="prop-7">
+    <div class="prop-card-header">
+      <div class="prop-card-title-wrap">
+        <div class="prop-eyebrow">Prop 7</div>
+        <div class="prop-card-title">Money in the Bank</div>
+      </div>
+      <div class="prop-vote-block">
+        <span class="vote-pill yes"><span class="vote-emoji">👍</span>Yes</span>
+        <span class="conviction-dots" aria-label="Strong conviction">
+          <span class="dot filled"></span><span class="dot filled"></span><span class="dot filled"></span>
+        </span>
+        <span class="conviction-label">Strong Yes</span>
+      </div>
+    </div>
+
+    <div class="rule-block rule-old">
+      <div class="rule-label">2025 Rule</div>
+      <div class="rule-text">The AVL Memorial Cup Tournament (AVLMCT) winner receives Prestige, a cash prize, and the #1 pick in the Week 14 schedule draft.</div>
+    </div>
+    <div class="rule-block rule-new">
+      <div class="rule-label">2026 Proposal</div>
+      <div class="change-text">
+        <div class="mini-list-intro">In honor of WWE's "Money in the Bank," the AVLMCT winner earns one perk: once during the season, they can steal a player another owner won on waivers after waivers clear.</div>
+        <ul class="mini-list">
+          <li>The AVLMCT winner must have personally bid <strong>at least $1</strong> on the player being stolen (no sniping a player they never wanted)</li>
+          <li>They pay the player's original winning bid, <strong>plus $1</strong></li>
+          <li>The owner who originally won the player — and now loses them — has their FAAB refunded</li>
+          <li>Must be exercised by <strong>noon Pacific</strong> on the day waivers clear</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="narrative-label">🎙️ The Commish's Take</div>
+    <div class="narrative-block">
+      <p class="narrative-text">This is just fun — more chaos, more strategy, more reason to care what your rivals are bidding on waivers. It's a one-time event each season, so it's not a huge competitive swing.</p>
+    </div>
+  
+    <div class="card-footer-nav">
+      <a class="card-nav-link cn-prev" data-target="prop-6">&larr; Prop 6</a>
+      <a class="card-nav-link cn-top" data-target="jumptop">&uarr; Top</a>
+      <a class="card-nav-link cn-next" data-target="prop-8">Prop 8 &rarr;</a>
+    </div>
+  </div>
+
+  <!-- PROP 8 -->
+  <div class="prop-card" id="prop-8">
+    <div class="prop-card-header">
+      <div class="prop-card-title-wrap">
+        <div class="prop-eyebrow">Prop 8</div>
+        <div class="prop-card-title">Intercontinental Championship Bounty</div>
+      </div>
+      <div class="prop-vote-block">
+        <span class="vote-pill yes"><span class="vote-emoji">👍</span>Yes</span>
+        <span class="conviction-dots" aria-label="Moderate conviction">
+          <span class="dot filled"></span><span class="dot filled"></span><span class="dot"></span>
+        </span>
+        <span class="conviction-label">Moderate Yes</span>
+      </div>
+    </div>
+
+    <div class="rule-block rule-old">
+      <div class="rule-label">2025 Rule</div>
+      <div class="rule-text">The Intercontinental Championship transfers between owners throughout the season based on head-to-head results. Holding the belt at the end of Week 14 is a matter of prestige but carries no cash prize.</div>
+    </div>
+    <div class="rule-block rule-new">
+      <div class="rule-label">2026 Proposal</div>
+      <div class="change-text">
+        <div class="mini-list-intro">The IC belt now carries a cash bounty that grows <strong>$5 each week</strong>:</div>
+        <ul class="mini-list">
+          <li>Belt changes hands (champion loses their matchup) → new champion immediately collects the accumulated pot, bounty resets to $0</li>
+          <li>Whoever holds the belt at the end of Week 14 collects whatever has built up since the belt last changed hands</li>
+          <li>Maximum possible payout if the belt never changes hands all season: <strong>$70</strong></li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="narrative-label">🎙️ The Commish's Take</div>
+    <div class="narrative-block">
+      <p class="narrative-text">Adds a little extra excitement to the Intercontinental race. I don't see a real downside.</p>
+    </div>
+  
+    <div class="card-footer-nav">
+      <a class="card-nav-link cn-prev" data-target="prop-7">&larr; Prop 7</a>
+      <a class="card-nav-link cn-top" data-target="jumptop">&uarr; Top</a>
+      <a class="card-nav-link cn-next" data-target="prop-9">Prop 9 &rarr;</a>
+    </div>
+  </div>
+
+  <!-- PROP 9 -->
+  <div class="prop-card" id="prop-9">
+    <div class="prop-card-header">
+      <div class="prop-card-title-wrap">
+        <div class="prop-eyebrow">Prop 9</div>
+        <div class="prop-card-title">Keeper Eligibility &amp; Trade Deadline</div>
+      </div>
+      <div class="prop-vote-block">
+        <span class="vote-pill yes"><span class="vote-emoji">👍</span>Yes</span>
+        <span class="conviction-dots" aria-label="Strong conviction">
+          <span class="dot filled"></span><span class="dot filled"></span><span class="dot filled"></span>
+        </span>
+        <span class="conviction-label">Strong Yes</span>
+      </div>
+    </div>
+
+    <div class="rule-block rule-old">
+      <div class="rule-label">2025 Rule</div>
+      <div class="rule-text">A player must be on your roster prior to the <strong>trade deadline</strong>, and held through <strong>Week 17</strong>, to be keeper-eligible.</div>
+    </div>
+    <div class="rule-block rule-new">
+      <div class="rule-label">2026 Proposal</div>
+      <div class="change-text">Drop the trade-deadline requirement entirely. Keeper eligibility would be based solely on being on your roster at the end of <strong>Week 17</strong>. Cost would still be determined by the existing draft-position and waiver rules.</div>
+    </div>
+
+    <div class="narrative-label">🎙️ The Commish's Take</div>
+    <div class="narrative-block">
+      <p class="narrative-text">The deadline rule exists to stop teams from dropping useful players late to stash cheap keepers. But the cheapest possible keeper cost is already a 4th-round pick, and almost nothing on waivers in December is worth that next year. It protects against a risk that barely exists, and cutting it makes keeper tracking way simpler.</p>
+    </div>
+  
+    <div class="card-footer-nav">
+      <a class="card-nav-link cn-prev" data-target="prop-8">&larr; Prop 8</a>
+      <a class="card-nav-link cn-top" data-target="jumptop">&uarr; Top</a>
+      <a class="card-nav-link cn-next" data-target="prop-10">Prop 10 &rarr;</a>
+    </div>
+  </div>
+
+  <!-- PROP 10 -->
+  <div class="prop-card" id="prop-10">
+    <div class="prop-card-header">
+      <div class="prop-card-title-wrap">
+        <div class="prop-eyebrow">Prop 10</div>
+        <div class="prop-card-title">Keeper Eligibility Locked on Draft Day</div>
+      </div>
+      <div class="prop-vote-block">
+        <span class="vote-pill yes"><span class="vote-emoji">👍</span>Yes</span>
+        <span class="conviction-dots" aria-label="Moderate conviction">
+          <span class="dot filled"></span><span class="dot filled"></span><span class="dot"></span>
+        </span>
+        <span class="conviction-label">Moderate Yes</span>
+      </div>
+    </div>
+
+    <div class="rule-block rule-old">
+      <div class="rule-label">2025 Rule</div>
+      <div class="rule-text">Any player who spent time on waivers during the season costs a flat <strong>4th-round pick</strong> to keep the following season. Exception: players originally drafted in rounds 3–5 cost their draft round minus two (a 3rd-round pick costs a 1st, a 4th costs a 2nd, a 5th costs a 3rd).</div>
+    </div>
+    <div class="rule-block rule-new">
+      <div class="rule-label">2026 Proposal</div>
+      <div class="change-text">
+        <div class="mini-list-intro">Lock every player's keeper cost in on draft day, even if they're later dropped and re-added off waivers:</div>
+        <ul class="mini-list">
+          <li>Drafted rounds 1–2: not keeper-eligible</li>
+          <li>Drafted rounds 3–14: cost = draft round minus two</li>
+          <li>Undrafted / added off waivers: <strong>flat 4th-round pick</strong></li>
+          <li>Kept a 2nd consecutive year: <strong>flat 1st-round pick</strong></li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="narrative-label">🎙️ The Commish's Take</div>
+    <div class="narrative-block">
+      <p class="narrative-text">This is about simplicity — every player's keeper cost is locked in on draft day, which makes it far easier to sort out keepers at the end of the season. It also creates more desirable keeper options, since a player drafted late, dropped, and made valuable again can still be scooped up at their original cost. That adds more strategy and more fun to the format.</p>
+    </div>
+  
+    <div class="card-footer-nav">
+      <a class="card-nav-link cn-prev" data-target="prop-9">&larr; Prop 9</a>
+      <a class="card-nav-link cn-top" data-target="jumptop">&uarr; Top</a>
+      <span class="card-nav-spacer"></span>
+    </div>
+  </div>
+
+</div>
+
+<script>
+function scrollToId(id) {
+  const target = id === 'jumptop'
+    ? document.getElementById('quickref')
+    : document.getElementById(id);
+  if (!target) return;
+  target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+  if (id !== 'jumptop') {
+    target.classList.remove('flash');
+    void target.offsetWidth;
+    target.classList.add('flash');
+  }
+}
+
+// Table rows, jump nav buttons, and card footer prev/top/next all share one handler
+document.querySelectorAll('.qr-row, .jumpnav-btn, .card-nav-link').forEach(el => {
+  el.addEventListener('click', (e) => {
+    e.preventDefault();
+    scrollToId(el.dataset.target);
+  });
+});
+
+// Scroll-spy: highlight the jump nav button for whichever prop card is in view
+const jumpButtons = Array.from(document.querySelectorAll('.jumpnav-btn'));
+const cards = jumpButtons
+  .map(btn => document.getElementById(btn.dataset.target))
+  .filter(Boolean);
+
+if ('IntersectionObserver' in window && cards.length) {
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (!entry.isIntersecting) return;
+      const idx = cards.indexOf(entry.target);
+      if (idx === -1) return;
+      jumpButtons.forEach(b => b.classList.remove('active'));
+      jumpButtons[idx].classList.add('active');
+      jumpButtons[idx].scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'center' });
+    });
+  }, { rootMargin: '-120px 0px -65% 0px', threshold: 0 });
+  cards.forEach(c => observer.observe(c));
+}
+</script>
+
+</body>
+</html>
