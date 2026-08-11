@@ -2899,16 +2899,19 @@ async function pullDossier() {
         'Content-Type': 'application/json',
       },
       body: JSON.stringify({
-        model: 'claude-sonnet-5',
+        model: 'claude-sonnet-4-6',
         max_tokens: 1500,
-        thinking: { type: 'disabled' },
         messages: [{ role: 'user', content: buildDossierPrompt(p, activeTone) }]
       })
     });
 
     const data = await response.json();
+    if (!response.ok) {
+      const apiMsg = (data && data.error && data.error.message) ? data.error.message : JSON.stringify(data);
+      throw new Error(`HTTP ${response.status}: ${apiMsg}`);
+    }
     const raw = data.content && data.content[0] && data.content[0].text;
-    if (!raw) throw new Error('No response content');
+    if (!raw) throw new Error('No response content: ' + JSON.stringify(data));
 
     const clean = raw.replace(/```json|```/g, '').trim();
     const parsed = JSON.parse(clean);
@@ -2963,7 +2966,8 @@ async function pullDossier() {
   } catch (err) {
     clearInterval(dossierPhraseInterval);
     loading.style.display = 'none';
-    report.innerHTML = `<div class="dossier-error">Failed to retrieve file. Try again.<br><button class="gen-again-btn" style="margin-top:12px" onclick="pullDossier()">↻ Retry</button></div>`;
+    const debugMsg = (err && err.message) ? err.message : String(err);
+    report.innerHTML = `<div class="dossier-error">Failed to retrieve file. Try again.<br><span style="opacity:0.6;font-size:0.85em;">(${debugMsg})</span><br><button class="gen-again-btn" style="margin-top:12px" onclick="pullDossier()">↻ Retry</button></div>`;
     report.style.display = 'block';
     console.error('Dossier error:', err);
   }
