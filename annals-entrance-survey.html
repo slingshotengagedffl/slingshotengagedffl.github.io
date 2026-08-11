@@ -1203,8 +1203,8 @@ function formatDate(iso) {
 
 function buildForm() {
   const formBody = $("formBody");
-  const ryderA = dbState?.config?.ryderCupMatchup?.teamA || "Team A";
-  const ryderB = dbState?.config?.ryderCupMatchup?.teamB || "Team B";
+  const ryderA = dbState?.config?.ryderCupMatchup?.teamA || "Founders";
+  const ryderB = dbState?.config?.ryderCupMatchup?.teamB || "Newcomers";
 
   // Build a "pts" descriptor for each category label
   function ptsDesc(cat) {
@@ -1800,8 +1800,8 @@ function renderContestView(scored, actuals, regFin) {
       if (cat.type === "owner") topLabel = ownerName(top[0]);
       else if (cat.type === "yn") topLabel = top[0] === "yes" ? "Yes" : "No";
       else if (cat.type === "ryder") {
-        const ryderA = dbState?.config?.ryderCupMatchup?.teamA || "Team A";
-        const ryderB = dbState?.config?.ryderCupMatchup?.teamB || "Team B";
+        const ryderA = dbState?.config?.ryderCupMatchup?.teamA || "Founders";
+        const ryderB = dbState?.config?.ryderCupMatchup?.teamB || "Newcomers";
         topLabel = top[0] === "teamA" ? ryderA : ryderB;
       } else if (cat.type === "ff") {
         topLabel = top[0].split(",").map(ownerName).join(", ");
@@ -1884,8 +1884,8 @@ function describePick(cat, pick) {
   if (cat.type === "finish") return `${pick}${getOrdinal(pick)} place`;
   if (cat.type === "yn") return pick === "yes" ? "Yes" : pick === "no" ? "No" : "—";
   if (cat.type === "ryder") {
-    const ryderA = dbState?.config?.ryderCupMatchup?.teamA || "Team A";
-    const ryderB = dbState?.config?.ryderCupMatchup?.teamB || "Team B";
+    const ryderA = dbState?.config?.ryderCupMatchup?.teamA || "Founders";
+    const ryderB = dbState?.config?.ryderCupMatchup?.teamB || "Newcomers";
     return pick === "teamA" ? ryderA : pick === "teamB" ? ryderB : "—";
   }
   return String(pick);
@@ -1930,8 +1930,8 @@ function renderPicksCard(cardEl, row, actuals) {
       pickDisplay = pick === "yes" ? "Yes" : pick === "no" ? "No" : "—";
       actualDisplay = actual === "yes" ? "Yes" : actual === "no" ? "No" : "TBD";
     } else if (cat.type === "ryder") {
-      const ryderA = dbState?.config?.ryderCupMatchup?.teamA || "Team A";
-      const ryderB = dbState?.config?.ryderCupMatchup?.teamB || "Team B";
+      const ryderA = dbState?.config?.ryderCupMatchup?.teamA || "Founders";
+      const ryderB = dbState?.config?.ryderCupMatchup?.teamB || "Newcomers";
       pickDisplay = pick === "teamA" ? ryderA : pick === "teamB" ? ryderB : "—";
       actualDisplay = actual === "teamA" ? ryderA : actual === "teamB" ? ryderB : "TBD";
     }
@@ -2048,8 +2048,8 @@ function describeActual(cat, actual) {
   if (cat.type === "finish") return `${actual}${getOrdinal(actual)} place`;
   if (cat.type === "yn") return actual === "yes" ? "Yes" : "No";
   if (cat.type === "ryder") {
-    const ryderA = dbState?.config?.ryderCupMatchup?.teamA || "Team A";
-    const ryderB = dbState?.config?.ryderCupMatchup?.teamB || "Team B";
+    const ryderA = dbState?.config?.ryderCupMatchup?.teamA || "Founders";
+    const ryderB = dbState?.config?.ryderCupMatchup?.teamB || "Newcomers";
     return actual === "teamA" ? ryderA : ryderB;
   }
   return String(actual);
@@ -2164,7 +2164,7 @@ function buildFakeState(mode) {
       ? new Date(Date.now() + 5 * 86400000).toISOString()   // 5 days in future
       : new Date(Date.now() - 7 * 86400000).toISOString(),  // 7 days ago
     locked: false,
-    ryderCupMatchup: { teamA: "Team Tall", teamB: "Team Short" }
+    ryderCupMatchup: { teamA: "Founders", teamB: "Newcomers" }
   };
 
   if (mode === "live") {
@@ -2384,8 +2384,8 @@ function renderCommishPanel() {
   // Ryder Cup
   html += `<div class="commish-section"><h3>Ryder Cup Matchup</h3>`;
   html += `<div class="commish-row two-col">`;
-  html += `<div><label class="form-label">Team A Name</label><input type="text" id="cRyderA" value="${escapeHTML(ryderA)}" placeholder="e.g. Tall Team" /></div>`;
-  html += `<div><label class="form-label">Team B Name</label><input type="text" id="cRyderB" value="${escapeHTML(ryderB)}" placeholder="e.g. Short Team" /></div>`;
+  html += `<div><label class="form-label">Team A Name</label><input type="text" id="cRyderA" value="${escapeHTML(ryderA)}" placeholder="e.g. Founders" /></div>`;
+  html += `<div><label class="form-label">Team B Name</label><input type="text" id="cRyderB" value="${escapeHTML(ryderB)}" placeholder="e.g. Newcomers" /></div>`;
   html += `</div>`;
   html += `<button class="secondary-btn" id="cSaveRyder">Save Matchup</button></div>`;
 
@@ -2425,8 +2425,8 @@ function renderCommishPanel() {
     } else if (cat.type === "ryder") {
       const v = actuals[cat.key];
       html += `<div class="radio-group" data-akey="${cat.key}">`;
-      html += `<button type="button" class="radio-btn ${v === "teamA" ? "selected" : ""}" data-aval="teamA">${escapeHTML(ryderA || "Team A")}</button>`;
-      html += `<button type="button" class="radio-btn ${v === "teamB" ? "selected" : ""}" data-aval="teamB">${escapeHTML(ryderB || "Team B")}</button>`;
+      html += `<button type="button" class="radio-btn ${v === "teamA" ? "selected" : ""}" data-aval="teamA">${escapeHTML(ryderA || "Founders")}</button>`;
+      html += `<button type="button" class="radio-btn ${v === "teamB" ? "selected" : ""}" data-aval="teamB">${escapeHTML(ryderB || "Newcomers")}</button>`;
       html += `</div>`;
     }
     html += `</div>`;
