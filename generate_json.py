@@ -968,7 +968,7 @@ def build_profiles_data(matchups, season_stats, all_time_lucky, existing_json, n
             if opp_key:
                 opp_record = h2h_summary.get(key, {}).get(opp_key, {}).get('all')
                 if opp_record:
-                    owner_next_game['lifetimeVsOpponent'] = f"{opp_record.get('w0', 0)}-{opp_record.get('w1', 0)}"
+                    owner_next_game['lifetimeVsOpponent'] = f"{opp_record[0]}-{opp_record[1]}"
                 else:
                     owner_next_game['lifetimeVsOpponent'] = None
             else:
