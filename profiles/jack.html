@@ -2900,7 +2900,8 @@ async function pullDossier() {
       },
       body: JSON.stringify({
         model: 'claude-sonnet-5',
-        max_tokens: 1000,
+        max_tokens: 1500,
+        thinking: { type: 'disabled' },
         messages: [{ role: 'user', content: buildDossierPrompt(p, activeTone) }]
       })
     });
