@@ -38,7 +38,7 @@
       ]
     },
     { emoji: '🤝', label: 'Wager Wall',              href: 'wager-wall.html',   external: false },
-    { emoji: '📜', label: 'Constitution',            href: 'https://drive.google.com/file/d/1JlzWfYNrNl5kQKR5EiHa-jbtJd3jeRNJ/view?usp=drive_link', external: true },
+    { emoji: '📜', label: 'Constitution',            href: 'https://drive.google.com/file/d/1EzEl3ZsuUMjhGu8ZU5ABAqshwAvjfFFz/view?usp=sharing', external: true },
     { emoji: '📸', label: 'Album',                   href: 'https://photos.app.goo.gl/B97a54JNwhCwhof39', external: true },
     { emoji: '🌍', label: "Franks 'Round the World", href: 'https://maps.app.goo.gl/jM1vFzPdmUkwxZN57?g_st=ac', external: true },
     { emoji: '🍺', label: 'League Weekend Memories', href: 'annals-league-weekends.html', external: false },
