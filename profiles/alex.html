@@ -2849,11 +2849,13 @@ FINAL CHECK BEFORE WRITING:
 Could this report have been written about this person's stat line alone — without knowing who they are? If yes, rewrite. The report must feel specifically theirs, not a generic Klosterman essay with their name pasted in.
 
 OUTPUT FORMAT:
-Return a JSON object with exactly two keys:
-- "pullQuote": A single punchy sentence (in quotes) capturing this owner's essence. Dry, memorable, specific. Under 25 words.
-- "report": 3 paragraphs of flowing Klosterman-voice prose. No bullet points. No headers. Each paragraph separated by a newline. Final paragraph must address 2026 per the tone instructions above.
+Do NOT return JSON. Return plain text in exactly this structure, with no other markup:
 
-Return only valid JSON. No markdown fences. No preamble.`;
+PULL_QUOTE: <a single punchy sentence capturing this owner's essence — dry, memorable, specific, under 25 words, on one line>
+===REPORT===
+<3 paragraphs of flowing Klosterman-voice prose. No bullet points. No headers. Each paragraph separated by a blank line. Final paragraph must address 2026 per the tone instructions above.>
+
+Do not include markdown fences, quotation marks around the pull quote itself, or any preamble before "PULL_QUOTE:". Quotes, dashes, and apostrophes inside your prose are fine to use naturally — there is no escaping required in this format.`;
 }
 let activeTone = 'analytical';
 function setTone(tone) {
@@ -2899,18 +2901,29 @@ async function pullDossier() {
         'Content-Type': 'application/json',
       },
       body: JSON.stringify({
-        model: 'claude-sonnet-4-20250514',
-        max_tokens: 1000,
+        model: 'claude-sonnet-4-6',
+        max_tokens: 1500,
         messages: [{ role: 'user', content: buildDossierPrompt(p, activeTone) }]
       })
     });
 
     const data = await response.json();
+    if (!response.ok) {
+      const apiMsg = (data && data.error && data.error.message) ? data.error.message : JSON.stringify(data);
+      throw new Error(`HTTP ${response.status}: ${apiMsg}`);
+    }
     const raw = data.content && data.content[0] && data.content[0].text;
-    if (!raw) throw new Error('No response content');
+    if (!raw) throw new Error('No response content: ' + JSON.stringify(data));
 
-    const clean = raw.replace(/```json|```/g, '').trim();
-    const parsed = JSON.parse(clean);
+    const clean = raw.replace(/```/g, '').trim();
+    const reportSplit = clean.split('===REPORT===');
+    if (reportSplit.length < 2) throw new Error('Missing ===REPORT=== marker in response: ' + clean.slice(0, 200));
+    const pullQuoteMatch = reportSplit[0].match(/PULL_QUOTE:\s*([\s\S]+)/);
+    if (!pullQuoteMatch) throw new Error('Missing PULL_QUOTE in response: ' + reportSplit[0].slice(0, 200));
+    const parsed = {
+      pullQuote: pullQuoteMatch[1].trim().replace(/^["']|["']$/g, ''),
+      report: reportSplit[1].trim()
+    };
 
     function sanitizeLastNames(text) {
       // Disambiguation: replace last name with initial for owners with name collisions
@@ -2962,7 +2975,8 @@ async function pullDossier() {
   } catch (err) {
     clearInterval(dossierPhraseInterval);
     loading.style.display = 'none';
-    report.innerHTML = `<div class="dossier-error">Failed to retrieve file. Try again.<br><button class="gen-again-btn" style="margin-top:12px" onclick="pullDossier()">↻ Retry</button></div>`;
+    const debugMsg = (err && err.message) ? err.message : String(err);
+    report.innerHTML = `<div class="dossier-error">Failed to retrieve file. Try again.<br><span style="opacity:0.6;font-size:0.85em;">(${debugMsg})</span><br><button class="gen-again-btn" style="margin-top:12px" onclick="pullDossier()">↻ Retry</button></div>`;
     report.style.display = 'block';
     console.error('Dossier error:', err);
   }
