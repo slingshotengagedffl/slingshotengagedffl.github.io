@@ -2567,6 +2567,73 @@ $("commishUnlock").addEventListener("click", () => {
   }
 });
 
+function buildPickBreakdownHTML() {
+  const subs = dbState?.submissions || {};
+  const ownerIds = Object.keys(subs);
+  const rowStyle = "display:flex; justify-content:space-between; gap:12px; padding:6px 0; border-bottom:1px solid var(--border); font-size:0.95rem;";
+
+  let html = `<p style="font-size:0.9rem; color:var(--label); margin-bottom:14px;">${ownerIds.length} submission${ownerIds.length === 1 ? "" : "s"} in.</p>`;
+
+  CATEGORIES.forEach(cat => {
+    html += `<div style="margin-bottom:24px;">`;
+    html += `<div style="font-family:'Bebas Neue', sans-serif; font-size:1.15rem; letter-spacing:0.05em; text-transform:uppercase; color:var(--gold); margin-bottom:6px;">${escapeHTML(cat.label)}</div>`;
+
+    if (cat.type === "ou14") {
+      // Per-owner win-total line: count Over vs Under, most lopsided/most-picked side first
+      const ouRows = OU_ORDER.map(o => {
+        let over = 0, under = 0;
+        ownerIds.forEach(id => {
+          const v = subs[id].picks?.[cat.key]?.[o.id];
+          if (v === "over") over++;
+          else if (v === "under") under++;
+        });
+        return { o, over, under, max: Math.max(over, under) };
+      }).sort((a, b) => b.max - a.max);
+      ouRows.forEach(r => {
+        html += `<div style="${rowStyle}"><span>${escapeHTML(r.o.name)} <span style="color:var(--label);">(line ${OU_LINES[r.o.id]})</span></span><span>Over ${r.over} · Under ${r.under}</span></div>`;
+      });
+    } else if (cat.type === "ff") {
+      // Final Four: tally how many times each owner appears across everyone's 4 picks
+      const counts = {};
+      ownerIds.forEach(id => {
+        const pick = subs[id].picks?.[cat.key];
+        if (Array.isArray(pick)) pick.forEach(oid => { if (oid) counts[oid] = (counts[oid] || 0) + 1; });
+      });
+      const sorted = Object.entries(counts).sort((a, b) => b[1] - a[1]);
+      if (!sorted.length) html += `<div style="color:var(--label); font-size:0.95rem;">No picks yet.</div>`;
+      sorted.forEach(([oid, count]) => {
+        html += `<div style="${rowStyle}"><span>${escapeHTML(ownerName(oid))}</span><span>${count}</span></div>`;
+      });
+    } else {
+      // owner / yn / ryder — group by the raw pick value
+      const counts = {};
+      ownerIds.forEach(id => {
+        const pick = subs[id].picks?.[cat.key];
+        if (pick == null) return;
+        counts[pick] = (counts[pick] || 0) + 1;
+      });
+      const sorted = Object.entries(counts).sort((a, b) => b[1] - a[1]);
+      if (!sorted.length) html += `<div style="color:var(--label); font-size:0.95rem;">No picks yet.</div>`;
+      sorted.forEach(([val, count]) => {
+        let label;
+        if (cat.type === "owner") label = ownerName(val);
+        else if (cat.type === "yn") label = val === "yes" ? "Yes" : "No";
+        else if (cat.type === "ryder") {
+          const ryderA = dbState?.config?.ryderCupMatchup?.teamA || "Founders";
+          const ryderB = dbState?.config?.ryderCupMatchup?.teamB || "Newcomers";
+          label = val === "teamA" ? ryderA : ryderB;
+        } else {
+          label = String(val);
+        }
+        html += `<div style="${rowStyle}"><span>${escapeHTML(label)}</span><span>${count}</span></div>`;
+      });
+    }
+    html += `</div>`;
+  });
+
+  return html;
+}
+
 function renderCommishPanel() {
   const cfg = dbState?.config || {};
   const actuals = cfg.actualResults || {};
@@ -2580,6 +2647,13 @@ function renderCommishPanel() {
   html += `<div class="commish-section"><h3>Preview Results Page</h3>`;
   html += `<p style="font-size:0.95rem; color:var(--label); margin-bottom:10px; line-height:1.45;">See the live results page exactly as it will look once the deadline passes. Uses real submissions. Read-only view — your existing gear-panel access stays intact.</p>`;
   html += `<button class="submit-btn" id="cPreviewResults" style="background:var(--gold); color:#000;">Open Results Preview</button>`;
+  html += `</div>`;
+
+  // Pick Breakdown — every category, all picks ranked by popularity, in one view
+  html += `<div class="commish-section"><h3>Pick Breakdown</h3>`;
+  html += `<p style="font-size:0.95rem; color:var(--label); margin-bottom:10px; line-height:1.45;">Every category's picks, most popular first. Works anytime — doesn't require the deadline to pass.</p>`;
+  html += `<button class="secondary-btn" id="cToggleBreakdown">Show Pick Breakdown</button>`;
+  html += `<div id="cBreakdownContainer" class="hidden" style="margin-top:14px;"></div>`;
   html += `</div>`;
 
   // Deadline + Lock
@@ -2673,6 +2747,19 @@ function renderCommishPanel() {
     // Pre-authorize so the gate doesn't ask for the passcode again
     sessionStorage.setItem("rpAuth", "1");
     location.search = "?preview=results";
+  });
+
+  $("cToggleBreakdown").addEventListener("click", () => {
+    const container = $("cBreakdownContainer");
+    const showing = !container.classList.contains("hidden");
+    if (showing) {
+      container.classList.add("hidden");
+      $("cToggleBreakdown").textContent = "Show Pick Breakdown";
+    } else {
+      container.innerHTML = buildPickBreakdownHTML();
+      container.classList.remove("hidden");
+      $("cToggleBreakdown").textContent = "Hide Pick Breakdown";
+    }
   });
 
   $("cSaveDeadline").addEventListener("click", async () => {
