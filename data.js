@@ -1,175 +1,324 @@
 const leagueNote = {
-  week: "0",
+  week: "2",
   year: "2026",
-  text: `<p><font size="4">Gents, the time is nigh. The league's most treasured tradition, The Draft Draft, takes place this Saturday, June 6. To help you prepare for your season-deciding choice of draft position, consider your 2026 Keeper options below. Huge thank you to Alex for putting this together. It's a huge lift and is the one place where I kind of feel like we need to make this league a little less complex. Please note, ultimately you're responsible for your keeper options, so if you disagree with any of these costs or think a player is missing, let us know.</font></p>
-<p><font size="4"><br></font></p>
-<p><font size="4">In addition to your keeper options, be sure to check out the <a href="https://slingshotengagedffl.github.io/annals-draft-position-success.html" target="_blank" style="color:#e74c3c;">Draft Position Success</a> page to use undeniable data in your selection process.</font></p>
-<p><font size="4"><br></font></p>
-<p><font size="4">Finally, before getting to the keepers, here is The Draft Draft order:</font></p>
-<p><font size="4"><br></font></p>
-<p><font size="4">1. Tim<br>
-2. Wade<br>
-3. Jordan<br>
-4. Alex<br>
-5. Brian<br>
-6. Andy<br>
-7. Kyle<br>
-8. Scott<br>
-9. Matt<br>
-10. Daniel<br>
-11. Jack<br>
-12. Mike<br>
-13. Dylan<br>
-14. Luke</font></p>
-<p><font size="4"><br></font></p>
-<p><font size="4"><b>2026 Keeper Eligible Players</b></font></p>
-<p><font size="4">All keepable players heading into the 2026 season. Each owner may keep one. The round listed is what it will cost you in this year's draft.</font></p>
-<p><font size="4"><br></font></p>
-<p><font size="4"><strong>Alex</strong></font></p>
-<p><font size="4">Zay Flowers — Rd 1 · Draft<br>
-Brian Thomas Jr. — Rd 1 · kept '25<br>
-DJ Moore — Rd 2 · Draft<br>
-Sam Darnold — Rd 4 · FA<br>
-Jordan Addison — Rd 5 · Draft</font></p>
-<p><font size="4"><br></font></p>
-<p><font size="4"><strong>Andy</strong></font></p>
-<p><font size="4">Baker Mayfield — Rd 1 · kept '25<br>
-Isiah Pacheco — Rd 2 · Draft<br>
-D'Andre Swift — Rd 3 · Draft<br>
-Matthew Stafford — Rd 4 · FA<br>
-Juwan Johnson — Rd 4 · FA<br>
-Jake Elliott — Rd 4 · FA<br>
-Jerry Jeudy — Rd 5 · Trade<br>
-Quinshon Judkins — Rd 7 · Draft</font></p>
-<p><font size="4"><br></font></p>
-<p><font size="4"><strong>Brian</strong></font></p>
-<p><font size="4">Jalen Hurts — Rd 1 · Draft<br>
-Chase Brown — Rd 1 · kept '25<br>
-Mark Andrews — Rd 3 · FA<br>
-Chris Boswell — Rd 4 · FA<br>
-Travis Kelce — Rd 4 · Draft<br>
-Deebo Samuel — Rd 5 · Draft<br>
-Khalil Shakir — Rd 6 · Draft<br>
-Rashid Shaheed — Rd 8 · Draft<br>
-Trey Benson — Rd 9 · Draft<br>
-Seahawks D/ST — Rd 12 · Draft</font></p>
-<p><font size="4"><br></font></p>
-<p><font size="4"><strong>Daniel</strong></font></p>
-<p><font size="4">Davante Adams — Rd 1 · Draft<br>
-Bo Nix — Rd 3 · Draft<br>
-Troy Franklin — Rd 4 · FA<br>
-Josh Downs — Rd 4 · FA<br>
-Texans D/ST — Rd 4 · FA<br>
-Andy Borregales — Rd 4 · FA<br>
-Rashee Rice — Rd 4 · Draft<br>
-Kayshon Boutte — Rd 4 · FA<br>
-Kareem Hunt — Rd 4 · FA<br>
-Tucker Kraft — Rd 6 · Draft</font></p>
-<p><font size="4"><br></font></p>
-<p><font size="4"><strong>Dylan</strong></font></p>
-<p><font size="4">Jameson Williams — Rd 1 · Trade<br>
-George Pickens — Rd 2 · Draft<br>
-DK Metcalf — Rd 2 · Trade<br>
-Brock Purdy — Rd 4 · FA<br>
-Chase McLaughlin — Rd 4 · FA<br>
-Emari Demercado — Rd 4 · FA<br>
-Tyjae Spears — Rd 8 · Trade<br>
-Rico Dowdle — Rd 11 · Trade</font></p>
-<p><font size="4"><br></font></p>
-<p><font size="4"><strong>Jack</strong></font></p>
-<p><font size="4">David Montgomery — Rd 1 · Trade<br>
-Tyler Warren — Rd 5 · Draft<br>
-Zach Charbonnet — Rd 5 · Trade<br>
-Rhamondre Stevenson — Rd 7 · Trade<br>
-Broncos D/ST — Rd 7 · Trade</font></p>
-<p><font size="4"><br></font></p>
-<p><font size="4"><strong>Jordan</strong></font></p>
-<p><font size="4">TreVeyon Henderson — Rd 1 · FA<br>
-Terry McLaurin — Rd 1 · Draft<br>
-Chuba Hubbard — Rd 1 · kept '25<br>
-Ladd McConkey — Rd 1 · kept '25<br>
-Tetairoa McMillan — Rd 2 · Draft<br>
-Blake Corum — Rd 4 · FA<br>
-Jason Myers — Rd 4 · FA<br>
-Samaje Perine — Rd 4 · FA<br>
-Drake Maye — Rd 6 · Draft<br>
-Brandon Aiyuk — Rd 8 · Draft<br>
-Hunter Henry — Rd 12 · Draft</font></p>
-<p><font size="4"><br></font></p>
-<p><font size="4"><strong>Kyle</strong></font></p>
-<p><font size="4">George Kittle — Rd 1 · Draft<br>
-Garrett Wilson — Rd 1 · Trade<br>
-DeVonta Smith — Rd 2 · Draft<br>
-Jaylen Waddle — Rd 3 · Draft<br>
-Woody Marks — Rd 4 · FA<br>
-Bills D/ST — Rd 4 · FA<br>
-Tyler Loop — Rd 4 · FA<br>
-Emeka Egbuka — Rd 4 · Draft<br>
-Jake Ferguson — Rd 4 · FA<br>
-Emanuel Wilson — Rd 4 · FA<br>
-Cowboys D/ST — Rd 4 · FA<br>
-Caleb Williams — Rd 9 · Draft</font></p>
-<p><font size="4"><br></font></p>
-<p><font size="4"><strong>Luke</strong></font></p>
-<p><font size="4">Jacoby Brissett — Rd 4 · FA<br>
-Dalton Schultz — Rd 4 · FA<br>
-Cam Little — Rd 4 · FA<br>
-Quentin Johnston — Rd 4 · FA<br>
-Travis Etienne Jr. — Rd 5 · Draft<br>
-Jakobi Meyers — Rd 6 · Draft<br>
-Dalton Kincaid — Rd 7 · Draft<br>
-Tyler Allgeier — Rd 7 · Trade</font></p>
-<p><font size="4"><br></font></p>
-<p><font size="4"><strong>Matt</strong></font></p>
-<p><font size="4">Alvin Kamara — Rd 1 · Trade<br>
-RJ Harvey — Rd 2 · Draft<br>
-Christian Watson — Rd 4 · FA<br>
-Jordan Mason — Rd 4 · Draft<br>
-Michael Pittman Jr. — Rd 4 · FA<br>
-Cam Skattebo — Rd 5 · Draft<br>
-Patrick Mahomes — Rd 6 · Draft</font></p>
-<p><font size="4"><br></font></p>
-<p><font size="4"><strong>Mike</strong></font></p>
-<p><font size="4">Bucky Irving — Rd 1 · kept '25<br>
-Trey McBride — Rd 1 · Draft<br>
-Ricky Pearsall — Rd 3 · Draft<br>
-Dak Prescott — Rd 4 · Draft<br>
-Stefon Diggs — Rd 4 · Trade<br>
-Rams D/ST — Rd 4 · FA<br>
-Alec Pierce — Rd 4 · FA<br>
-Michael Wilson — Rd 4 · FA</font></p>
-<p><font size="4"><br></font></p>
-<p><font size="4"><strong>Scott</strong></font></p>
-<p><font size="4">Rome Odunze — Rd 1 · kept '25<br>
-Theo Johnson — Rd 4 · FA<br>
-Justin Herbert — Rd 5 · Draft<br>
-Keenan Allen — Rd 6 · Draft<br>
-Wan'Dale Robinson — Rd 8 · Draft<br>
-Jake Bates — Rd 11 · Draft<br>
-Patriots D/ST — Rd 12 · Draft</font></p>
-<p><font size="4"><br></font></p>
-<p><font size="4"><strong>Tim</strong></font></p>
-<p><font size="4">Courtland Sutton — Rd 1 · kept '25<br>
-Brock Bowers — Rd 1 · kept '25<br>
-Tony Pollard — Rd 2 · Trade<br>
-Xavier Worthy — Rd 2 · Draft<br>
-Kyle Monangai — Rd 4 · FA<br>
-Bam Knight — Rd 4 · FA<br>
-Javonte Williams — Rd 5 · Trade<br>
-Bhayshul Tuten — Rd 8 · Trade<br>
-Brandon Aubrey — Rd 10 · Draft<br>
-Romeo Doubs — Rd 12 · Draft</font></p>
-<p><font size="4"><br></font></p>
-<p><font size="4"><strong>Wade</strong></font></p>
-<p><font size="4">Jaylen Warren — Rd 1 · kept '25<br>
-Joe Burrow — Rd 2 · Draft<br>
-Chris Olave — Rd 4 · Trade<br>
-Harold Fannin Jr. — Rd 4 · FA<br>
-Steelers D/ST — Rd 4 · FA<br>
-Marvin Harrison Jr. — Rd 4 · FA<br>
-Kimani Vidal — Rd 4 · FA<br>
-Colston Loveland — Rd 4 · FA<br>
-J.K. Dobbins — Rd 5 · Draft<br>
-Jauan Jennings — Rd 6 · Trade<br>
-Jared Goff — Rd 8 · Draft</font></p>`
+  text: `<p class="MsoNormal" style="text-align: center;"><b><font color="#f05442" style="" size="4">WEEK 2 RIVALRY WEEK</font></b><o:p></o:p></p>
+
+<p class="MsoNormal" style="text-align: center;"><o:p>&nbsp;</o:p></p>
+
+<p class="MsoNormal" style="text-align: center;">The 13th installment of Slingshot Engaged is underway with a
+bang. 2026 Week 1 was the fourth highest scoring opening week in league history
+and the highest since 2021 as teams averaged 99.18 points per game. The
+fireworks created lots of major headlines.<o:p></o:p></p>
+
+<p class="MsoNormal" style="text-align: center;"><o:p>&nbsp;</o:p></p>
+
+<p class="MsoNormal" style="text-align: center;">Scott put up the weekly high score, finally experiencing the
+joy that comes with having Derrick Henry in your lineup. Close on his heels
+were Tim and Andy. The spread between the three for top score was just 1.78
+points, the second closest spread of that kind in league history.<o:p></o:p></p>
+
+<p class="MsoNormal" style="text-align: center;"><o:p>&nbsp;</o:p></p>
+
+<p class="MsoNormal" style="text-align: center;">Speaking of Scott, Tim, and Andy, a hell of a parlay took
+place in Week 1. Those three studs, plus Jordan and Wade all won their head to
+head matchups this week. Before this year they were a combined 11-24 in season
+openers. A sign that we may really be entering a new era?<o:p></o:p></p>
+
+<p class="MsoNormal" style="text-align: center;"><o:p>&nbsp;</o:p></p>
+
+<p class="MsoNormal" style="text-align: center;">Wade faced an immovable object vs unstoppable force scenario
+with his perfect 6-0 lifetime record against Daniel versus his 0-6 lifetime
+record in Week 1. In large part due to the Broncos MNF implosion, Wade got the
+W despite just 1.2 points from his #3 overall pick.<o:p></o:p></p>
+
+<p class="MsoNormal" style="text-align: center;"><o:p>&nbsp;</o:p></p>
+
+<p class="MsoNormal" style="text-align: center;">Jordan earned his first ever Clenched Victory (a win by less
+than 3 points) as Ken Walker came up six yards shy of pulling the miracle
+comeback for Jack. The 0.52 margin of victory made this the closest Week 1 game
+in league history. Prior to Week 1, Jack was 49-2 when scoring 111 or more.<o:p></o:p></p>
+
+<p class="MsoNormal" style="text-align: center;"><o:p>&nbsp;</o:p></p>
+
+<p class="MsoNormal" style="text-align: center;">Defending Champ Dyl put up the worst Week 1 score of his
+career, allowing Mike to earn some revenge for the beating he took in Slingshot
+Bowl XII.<o:p></o:p></p>
+
+<p class="MsoNormal" style="text-align: center;"><o:p>&nbsp;</o:p></p>
+
+<p class="MsoNormal" style="text-align: center;">The new Bonus Wins and Losses feature rewarded Jack and Alex
+for high scores in losing efforts and took a little shine off easy wins for
+Mike and Wade.<o:p></o:p></p>
+
+<p class="MsoNormal" style="text-align: center;"><o:p>&nbsp;</o:p></p>
+
+<p class="MsoNormal" style="text-align: center;"><b>IF THE PLAYOFFS STARTED TODAY</b><o:p></o:p></p>
+
+<p class="MsoNormal" style="text-align: center;"><o:p>&nbsp;</o:p></p>
+
+<p class="MsoNormal" style="text-align: center;">#1 Scott (2-0, 126.70 points) Bye<o:p></o:p></p>
+
+<p class="MsoNormal" style="text-align: center;">#2 Tim (2-0, 125.46)<o:p></o:p></p>
+
+<p class="MsoNormal" style="text-align: center;">#3 Andy (2-0, 124.92)<o:p></o:p></p>
+
+<p class="MsoNormal" style="text-align: center;">#4 Jordan (2-0, 111.62)<o:p></o:p></p>
+
+<p class="MsoNormal" style="text-align: center;">#5 Kyle (2-0, 107.36)<o:p></o:p></p>
+
+<p class="MsoNormal" style="text-align: center;">#6 Jack (1-1, 111.10)<o:p></o:p></p>
+
+<p class="MsoNormal" style="text-align: center;">#7 Alex (1-1, 102.80)<o:p></o:p></p>
+
+<p class="MsoNormal" style="text-align: center;"><o:p>&nbsp;</o:p></p>
+
+<p class="MsoNormal" style="text-align: center;"><b>POWER RANKINGS</b><o:p></o:p></p>
+
+<p class="MsoNormal" style="text-align: center;"><o:p>&nbsp;</o:p></p>
+
+<p class="MsoNormal" style="text-align: center;">The highly anticipated power rankings will be revealed after
+Week 2.<o:p></o:p></p>
+
+<p class="MsoNormal" style="text-align: center;"><o:p>&nbsp;</o:p></p>
+
+<p class="MsoNormal" style="text-align: center;"><b>AVL MEMORIAL CUP</b><o:p></o:p></p>
+
+<p class="MsoNormal" style="text-align: center;"><o:p>&nbsp;</o:p></p>
+
+<p class="MsoNormal" style="text-align: center;">The first three weeks of the season are pool play for the
+AVL Memorial Cup. The eight owners with the most Tournament Points after Week 3
+reach the bracket round in Weeks 4-6. A Tournament Point can be earned by
+winning your head-to-head matchup and by having a top seven score in a week.
+With the Bonus Wins and Losses feature turned on this year, Tournament
+Points/AVL Standings are basically the same as the regular standings, except
+for the AVL Tournament, tie breaker goes to head-to-head wins, not total points
+scored. The winner is crowned in Week 6, and they earn \$60 and a dollop of
+Prestige.<o:p></o:p></p>
+
+<p class="MsoNormal" style="text-align: center;"><o:p>&nbsp;</o:p></p>
+
+<p class="MsoNormal" style="text-align: center;"><b>WINNINGS</b><o:p></o:p></p>
+
+<p class="MsoNormal" style="text-align: center;"><o:p>&nbsp;</o:p></p>
+
+<p class="MsoNormal" style="text-align: center;">Scott \$10<o:p></o:p></p>
+
+<p class="MsoNormal" style="text-align: center;"><o:p>&nbsp;</o:p></p>
+
+<p class="MsoNormal" style="text-align: center;"><b>LUCK KING AND PUNCHING BAG</b><o:p></o:p></p>
+
+<p class="MsoNormal" style="text-align: center;"><o:p>&nbsp;</o:p></p>
+
+<p class="MsoNormal" style="text-align: center;">Wade won his head-to-head despite only going 4-9 against the
+rest of the league, while Jack lost his head-to-head while going 9-4.<o:p></o:p></p>
+
+<p class="MsoNormal" style="text-align: center;"><o:p>&nbsp;</o:p></p>
+
+<p class="MsoNormal" style="text-align: center;"><b>BAD BEAT</b><o:p></o:p></p>
+
+<p class="MsoNormal" style="text-align: center;"><o:p>&nbsp;</o:p></p>
+
+<p class="MsoNormal" style="text-align: center;">\$5 is added to the Bad Beat pot weekly. The accumulated
+amount cashes in whenever the 2nd highest scorer of the week loses to the high
+scorer. \$10 carried over from the 2025 season. Going into Week 2, the pot is up
+to \$20.<o:p></o:p></p>
+
+<p class="MsoNormal" style="text-align: center;"><o:p>&nbsp;</o:p></p>
+
+<p class="MsoNormal" style="text-align: center;"><b>SHOTS CALLED</b><o:p></o:p></p>
+
+<p class="MsoNormal" style="text-align: center;"><o:p>&nbsp;</o:p></p>
+
+<p class="MsoNormal" style="text-align: center;">Once per season, every owner must guarantee a victory in the
+chat and at the Call Your Shot link above. This guarantee puts \$5 onto the
+matchup from the buy-in pot. If you win, you get the \$5. If you lose, your
+opponent gets it.<o:p></o:p></p>
+
+<p class="MsoNormal" style="text-align: center;"><o:p>&nbsp;</o:p></p>
+
+<p class="MsoNormal" style="text-align: center;">No shots were called in Week 1. Will we see some in Rivalry
+Week?<o:p></o:p></p>
+
+<p class="MsoNormal" style="text-align: center;"><o:p>&nbsp;</o:p></p>
+
+<p class="MsoNormal" style="text-align: center;"><b>RIVALRY WEEK</b><o:p></o:p></p>
+
+<p class="MsoNormal" style="text-align: center;"><o:p>&nbsp;</o:p></p>
+
+<p class="MsoNormal" style="text-align: center;">Weeks 2 and 13 are designated Rivalry Weeks. To generate
+sweet, sweet content, owners are encouraged to make side bets with their rivals
+during these two weeks. The owner who goes 2-0 in head-to-head matchups during
+Rivalry Weeks with the greatest combined margin of victory wins the \$75 prize
+and a dollop of Prestige. To be eligible, you must be able to show you at least
+made a good faith effort with both Rivals to secure a side bet.<o:p></o:p></p>
+
+<p class="MsoNormal" style="text-align: center;"><o:p>&nbsp;</o:p></p>
+
+<p class="MsoNormal" style="text-align: center;"><b>GAME OF THE WEEK</b><o:p></o:p></p>
+
+<p class="MsoNormal" style="text-align: center;"><o:p>&nbsp;</o:p></p>
+
+<p class="MsoNormal" style="text-align: center;">Mike <span style="font-family:&quot;Segoe UI Emoji&quot;,sans-serif;
+mso-bidi-font-family:&quot;Segoe UI Emoji&quot;">💩</span>'s standing up (Tim) 2-0<o:p></o:p></p>
+
+<p class="MsoNormal" style="text-align: center;">vs<o:p></o:p></p>
+
+<p class="MsoNormal" style="text-align: center;">The Modern Era (Andy) 2-0<o:p></o:p></p>
+
+<p class="MsoNormal" style="text-align: center;">Andy leads all-time 4-2</p>
+
+<p class="MsoNormal" style="text-align: center;">Side Bet: None. Sad!<o:p></o:p></p>
+
+<p class="MsoNormal" style="text-align: center;"><o:p>&nbsp;</o:p></p>
+
+<p class="MsoNormal" style="text-align: center;">Week 1's 2nd and 3rd highest scorers enter Week 2 hungry to
+prove themselves. Andy, having never been a fan of the Browns, is pioneering a
+Start Multiple Browns strategy, while Tim decided it was wise to just draft the
+two most dominant players in fantasy, Gibbs and Allen.<o:p></o:p></p>
+
+<p class="MsoNormal" style="text-align: center;"><o:p>&nbsp;</o:p></p>
+
+<p class="MsoNormal" style="text-align: center;"><b>INTERCONTINENTAL TITLE TRACKER</b><o:p></o:p></p>
+
+<p class="MsoNormal" style="text-align: center;"><o:p>&nbsp;</o:p></p>
+
+<p class="MsoNormal" style="text-align: center;">Week 1: Dylan carries the belt into Week 1 from 2025. Mike
+beats Dylan to begin his fifth career Intercontinental reign.<o:p></o:p></p>
+
+<p class="MsoNormal" style="text-align: center;"><o:p>&nbsp;</o:p></p>
+
+<p class="MsoNormal" style="text-align: center;">Week 2: ...<o:p></o:p></p>
+
+<p class="MsoNormal" style="text-align: center;"><o:p>&nbsp;</o:p></p>
+
+<p class="MsoNormal" style="text-align: center;"><b>INTERCONTINENTAL TITLE BOUT</b><o:p></o:p></p>
+
+<p class="MsoNormal" style="text-align: center;"><o:p>&nbsp;</o:p></p>
+
+<p class="MsoNormal" style="text-align: center;">High Desert Sugar Ants <span style="font-family:&quot;Segoe UI Emoji&quot;,sans-serif;
+mso-bidi-font-family:&quot;Segoe UI Emoji&quot;">🏜️</span>(Jack) 1-1<o:p></o:p></p>
+
+<p class="MsoNormal" style="text-align: center;">vs<o:p></o:p></p>
+
+<p class="MsoNormal" style="text-align: center;"><span style="font-family:&quot;Segoe UI Emoji&quot;,sans-serif;
+mso-bidi-font-family:&quot;Segoe UI Emoji&quot;">🚫</span> sugar ants until u eat
+ur <span style="font-family:&quot;Segoe UI Emoji&quot;,sans-serif;mso-bidi-font-family:
+&quot;Segoe UI Emoji&quot;">🥦</span> (Mike) 1-1<o:p></o:p></p>
+
+<p class="MsoNormal" style="text-align: center;">Jack leads all-time 10-5<o:p></o:p></p>
+
+<p class="MsoNormal" style="text-align: center;">Side Bet: Loser recreates four gifs of winner's choosing and
+shares with the league in gif format.<o:p></o:p></p>
+
+<p class="MsoNormal" style="text-align: center;"><o:p>&nbsp;</o:p></p>
+
+<p class="MsoNormal" style="text-align: center;"><o:p>&nbsp;</o:p></p>
+
+<p class="MsoNormal" style="text-align: center;"><b>Career Record in Intercontinental Title Bouts</b><o:p></o:p></p>
+
+<p class="MsoNormal" style="text-align: center;">Mike: 9-7<o:p></o:p></p>
+
+<p class="MsoNormal" style="text-align: center;">Jack: 13-9<o:p></o:p></p>
+
+<p class="MsoNormal" style="text-align: center;"><o:p>&nbsp;</o:p></p>
+
+<p class="MsoNormal" style="text-align: center;"><b>THE UNDERCARD</b><o:p></o:p></p>
+
+<p class="MsoNormal" style="text-align: center;"><o:p>&nbsp;</o:p></p>
+
+<p class="MsoNormal" style="text-align: center;">Pink Eye Cometh (Kyle) 2-0<o:p></o:p></p>
+
+<p class="MsoNormal" style="text-align: center;">vs<o:p></o:p></p>
+
+<p class="MsoNormal" style="text-align: center;">BellBrkzBgBodac BtfBncyBrzl (Wade) 1-1<o:p></o:p></p>
+
+<p class="MsoNormal" style="text-align: center;">Kyle leads all-time 5-2<o:p></o:p></p>
+
+<p class="MsoNormal" style="text-align: center;">Side Bet: None. Sad!<o:p></o:p></p>
+
+<p class="MsoNormal" style="text-align: center;"><o:p>&nbsp;</o:p></p>
+
+<p class="MsoNormal" style="text-align: center;">LonDone Wiv U Bruv (Dylan) 0-2<o:p></o:p></p>
+
+<p class="MsoNormal" style="text-align: center;">vs<o:p></o:p></p>
+
+<p class="MsoNormal" style="text-align: center;"><span style="font-family:&quot;Segoe UI Emoji&quot;,sans-serif;
+mso-bidi-font-family:&quot;Segoe UI Emoji&quot;">🌊</span> The Deep Wuhtah <span style="font-family:&quot;Segoe UI Emoji&quot;,sans-serif;mso-bidi-font-family:&quot;Segoe UI Emoji&quot;">🌊</span>(Brian) 0-2<o:p></o:p></p>
+
+<p class="MsoNormal" style="text-align: center;">Dylan leads all-time 7-5<o:p></o:p></p>
+
+<p class="MsoNormal" style="text-align: center;">Side Bet: The winner provides the loser with a custom poster
+of their own design, to be displayed prominently in the loser’s garage or man
+cave, through the regular season of fantasy football. The winner will charge
+the loser for the cost of the poster.<o:p></o:p></p>
+
+<p class="MsoNormal" style="text-align: center;"><o:p>&nbsp;</o:p></p>
+
+<p class="MsoNormal" style="text-align: center;">Dunkey Punchers (Scott) 2-0<o:p></o:p></p>
+
+<p class="MsoNormal" style="text-align: center;">vs<o:p></o:p></p>
+
+<p class="MsoNormal" style="text-align: center;">Its Bijness Time (Jordan) 2-0<o:p></o:p></p>
+
+<p class="MsoNormal" style="text-align: center;">Jordan leads all-time 5-2<o:p></o:p></p>
+
+<p class="MsoNormal" style="text-align: center;">Side Bet: None. Sad!<o:p></o:p></p>
+
+<p class="MsoNormal" style="text-align: center;"><o:p>&nbsp;</o:p></p>
+
+<p class="MsoNormal" style="text-align: center;">Big Up The Frogs Innit (Daniel) 0-2<o:p></o:p></p>
+
+<p class="MsoNormal" style="text-align: center;">vs<o:p></o:p></p>
+
+<p class="MsoNormal" style="text-align: center;">El Bod de Padre (Matt) 0-2<o:p></o:p></p>
+
+<p class="MsoNormal" style="text-align: center;">Daniel leads all-time 8-5<o:p></o:p></p>
+
+<p class="MsoNormal" style="text-align: center;">Side Bet: None. Sad!<o:p></o:p></p>
+
+<p class="MsoNormal" style="text-align: center;"><o:p>&nbsp;</o:p></p>
+
+<p class="MsoNormal" style="text-align: center;">4<sup>th</sup> P3rv on the Grassy Knoll (Alex) 1-1<o:p></o:p></p>
+
+<p class="MsoNormal" style="text-align: center;">vs<o:p></o:p></p>
+
+<p class="MsoNormal" style="text-align: center;">The Alchemy (Luke) 0-2<o:p></o:p></p>
+
+<p class="MsoNormal" style="text-align: center;">All-time series tied 0-0<o:p></o:p></p>
+
+<p class="MsoNormal" style="text-align: center;">Side Bet: Loser must set up a golf (disc or standard,
+winners choice) outing with the winner and pick up the winner at their home
+with breakfast in-hand.<o:p></o:p></p>
+
+<p class="MsoNormal" style="text-align: center;"><o:p>&nbsp;</o:p></p>
+
+<p class="MsoNormal" style="text-align: center;"><b>SURVIVOR</b><o:p></o:p></p>
+
+<p class="MsoNormal" style="text-align: center;"><br></p><p class="MsoNormal" style="text-align: center;">Alex, Daniel, Dylan, Kyle, and Matt trusted the Chargers.
+Never trust the Chargers. Fortunately for them, everyone gets a second chance.<o:p></o:p></p>
+
+<p class="MsoNormal" style="text-align: center;"><o:p>&nbsp;</o:p></p>
+
+<p class="MsoNormal" style="text-align: center;">Picks must be submitted at the link at the top of the page
+before kickoff of early slate on Sunday, unless you are choosing an earlier
+game in which case your pick must be in prior to that kickoff.<o:p></o:p></p>
+
+<p class="MsoNormal" style="text-align: center;"><o:p>&nbsp;</o:p></p>
+
+<p class="MsoNormal" style="text-align: center;"><b>DEGEN BOWL</b><o:p></o:p></p>
+
+<p class="MsoNormal" style="text-align: center;"><o:p>&nbsp;</o:p></p>
+
+<p class="MsoNormal" style="text-align: center;">See Kyle's GroupMe monologue and the Degen Bowl link at the
+top of this page. Bets must be submitted before kickoff of the first game of
+the week.<o:p></o:p></p>
+
+<p class="MsoNormal" style="text-align: center;"><o:p>&nbsp;</o:p></p>
+
+<p class="MsoNormal" style="text-align: center;"><b>DA CHOPPAAA</b><o:p></o:p></p>
+
+<p class="MsoNormal" style="text-align: center;"><o:p>&nbsp;</o:p></p>
+
+<p class="MsoNormal" style="text-align: center;">Defending Slingshot Champ Dyl became the first victim of Da
+Choppaaa.<o:p></o:p></p>`
 };
