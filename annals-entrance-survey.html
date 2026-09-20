@@ -222,57 +222,65 @@
     border-radius: 8px;
     padding: 16px 16px 14px;
   }
-  .cp-card.cp-hit { border-color: var(--green-dim); }
   .cp-cat-label {
     font-family: 'Barlow Condensed', sans-serif;
     font-size: 0.82rem;
     letter-spacing: 0.13em;
     text-transform: uppercase;
     color: var(--label);
-    margin-bottom: 10px;
+    margin-bottom: 12px;
   }
-  .cp-top-row {
+  .cp-bar-row { margin-bottom: 10px; }
+  .cp-bar-row:last-child { margin-bottom: 0; }
+  .cp-bar-head {
     display: flex;
     align-items: baseline;
     justify-content: space-between;
     gap: 8px;
-    margin-bottom: 8px;
+    margin-bottom: 6px;
   }
-  .cp-top-name {
+  .cp-bar-name {
     font-family: 'Bebas Neue', sans-serif;
-    font-size: 1.3rem;
+    font-size: 1.15rem;
     letter-spacing: 0.03em;
     text-transform: uppercase;
     color: var(--text);
     line-height: 1.15;
   }
-  .cp-hit-tag { font-size: 0.95rem; }
-  .cp-top-pct {
+  .cp-hit-tag { font-size: 0.9rem; }
+  .cp-bar-pct {
     font-family: 'Bebas Neue', sans-serif;
-    font-size: 1.15rem;
+    font-size: 0.95rem;
     color: var(--gold);
     flex-shrink: 0;
+    white-space: nowrap;
+  }
+  .cp-bar-count {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 0.78rem;
+    color: var(--muted);
+    letter-spacing: 0.03em;
   }
   .cp-bar-track {
     background: var(--surface3);
     border-radius: 4px;
     height: 7px;
     overflow: hidden;
-    margin-bottom: 8px;
   }
   .cp-bar-fill {
     background: linear-gradient(90deg, var(--red), var(--red-bright));
     height: 100%;
     border-radius: 4px;
   }
-  .cp-card.cp-hit .cp-bar-fill { background: linear-gradient(90deg, var(--green-dim), var(--green)); }
-  .cp-top-sub {
+  .cp-bar-row.cp-hit .cp-bar-fill { background: linear-gradient(90deg, var(--green-dim), var(--green)); }
+  .cp-bar-row.cp-hit .cp-bar-name { color: var(--green); }
+  .cp-wide-open {
     font-family: 'Barlow Condensed', sans-serif;
-    font-size: 0.82rem;
-    letter-spacing: 0.08em;
+    font-size: 0.9rem;
+    font-style: italic;
     color: var(--muted);
-    text-transform: uppercase;
-    margin-bottom: 6px;
+    letter-spacing: 0.02em;
+    margin-bottom: 10px;
   }
   .cp-others {
     font-family: 'Barlow Condensed', sans-serif;
@@ -280,9 +288,11 @@
     color: var(--muted);
     letter-spacing: 0.02em;
     line-height: 1.5;
-    padding-top: 6px;
+    padding-top: 10px;
+    margin-top: 2px;
     border-top: 1px solid var(--border);
   }
+  .cp-others b { color: var(--label); font-weight: 600; }
   .cp-empty {
     font-family: 'Barlow Condensed', sans-serif;
     font-size: 0.9rem;
@@ -2007,24 +2017,44 @@ function renderCrowdPicks(subs, actuals) {
 
   const cards = CATEGORIES.filter(cat => cat.type !== "ou14").map(cat => {
     const { counts, total } = tallyPicks(cat, subs);
-    const entries = Object.entries(counts).sort((a, b) => b[1] - a[1]);
+    // Sort by votes desc; alphabetical by label breaks ties in display order only
+    // (every tied entry still gets its own bar, so the tie itself is never hidden).
+    const entries = Object.entries(counts).sort((a, b) =>
+      b[1] - a[1] || pickValueLabel(cat, a[0]).localeCompare(pickValueLabel(cat, b[0]))
+    );
     if (!entries.length) {
       return `<div class="cp-card"><div class="cp-cat-label">${escapeHTML(cat.label)}</div><div class="cp-empty">No picks yet</div></div>`;
     }
-    const [topValue, topCount] = entries[0];
-    const pct = Math.round((topCount / total) * 100);
-    const { hit } = crowdFavoriteHit(cat, topValue, actuals);
-    const hitTag = hit ? `<span class="cp-hit-tag" title="Crowd favorite came through">✅</span>` : "";
 
-    let html = `<div class="cp-card${hit ? " cp-hit" : ""}">`;
+    const multi = entries.filter(([, v]) => v > 1);
+    const single = entries.filter(([, v]) => v === 1);
+
+    let html = `<div class="cp-card">`;
     html += `<div class="cp-cat-label">${escapeHTML(cat.label)}</div>`;
-    html += `<div class="cp-top-row"><div class="cp-top-name">${escapeHTML(pickValueLabel(cat, topValue))} ${hitTag}</div><div class="cp-top-pct">${pct}%</div></div>`;
-    html += `<div class="cp-bar-track"><div class="cp-bar-fill" style="width:${pct}%"></div></div>`;
-    html += `<div class="cp-top-sub">${topCount} of ${total} owners</div>`;
-    if (entries.length > 1) {
-      const others = entries.slice(1, 4).map(([k, v]) => `${escapeHTML(pickValueLabel(cat, k))} (${v})`).join(" · ");
-      html += `<div class="cp-others">Also: ${others}</div>`;
+
+    if (multi.length) {
+      multi.forEach(([value, count]) => {
+        const pct = Math.round((count / total) * 100);
+        const { hit } = crowdFavoriteHit(cat, value, actuals);
+        const hitTag = hit ? `<span class="cp-hit-tag" title="Crowd favorite came through">✅</span>` : "";
+        html += `<div class="cp-bar-row${hit ? " cp-hit" : ""}">`;
+        html += `<div class="cp-bar-head"><span class="cp-bar-name">${escapeHTML(pickValueLabel(cat, value))} ${hitTag}</span><span class="cp-bar-pct">${pct}% <span class="cp-bar-count">(${count})</span></span></div>`;
+        html += `<div class="cp-bar-track"><div class="cp-bar-fill" style="width:${pct}%"></div></div>`;
+        html += `</div>`;
+      });
+    } else {
+      html += `<div class="cp-wide-open">Wide open — every pick got just one vote</div>`;
     }
+
+    if (single.length) {
+      const names = single.map(([value]) => {
+        const { hit } = crowdFavoriteHit(cat, value, actuals);
+        const label = escapeHTML(pickValueLabel(cat, value));
+        return hit ? `<b>${label} ✅</b>` : label;
+      }).join(", ");
+      html += `<div class="cp-others">${multi.length ? "1 vote each: " : ""}${names}</div>`;
+    }
+
     html += `</div>`;
     return html;
   }).join("");
