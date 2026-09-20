@@ -72,6 +72,23 @@ def get_key(name):
         return None
     return NAME_TO_KEY.get(name.strip())
 
+TEAM_NAME_RECORD_RE = re.compile(r'[\s\xa0]*\(\d+-\d+(?:-\d+)?\)[\s\xa0]*$')
+TEAM_NAME_TRUNC_RECORD_RE = re.compile(r'[\s\xa0]*\(\d+(?:-\d+)*-?\s*$')
+
+def clean_team_name(name):
+    """Strip the '(W-L)' or '(W-L-T)' record suffix ESPN appends to team names in matchups.
+    Handles non-breaking spaces (\\xa0) that appear in older-year rows, and truncated
+    record suffixes (e.g. 'Team(8-6-') caused by cell overflow in the source sheet."""
+    if not isinstance(name, str):
+        return name
+    # Strip complete record suffix
+    cleaned = TEAM_NAME_RECORD_RE.sub('', name)
+    # Strip truncated record suffix (e.g. 'Foo(8-6-' or 'Foo(1-')
+    cleaned = TEAM_NAME_TRUNC_RECORD_RE.sub('', cleaned)
+    # Normalize non-breaking spaces and collapse trailing whitespace
+    cleaned = cleaned.replace('\xa0', ' ').strip()
+    return cleaned if cleaned else None
+
 def load_xlsx(path):
     xl = pd.read_excel(path, sheet_name=None)
     matchups = xl['High.Low and All Matchups']
@@ -82,6 +99,11 @@ def load_xlsx(path):
     matchups['Week'] = matchups['Week'].astype(int)
     matchups['Away Score'] = pd.to_numeric(matchups['Away Score'], errors='coerce')
     matchups['Home Score'] = pd.to_numeric(matchups['Home Score'], errors='coerce')
+    # Strip (X-Y-Z) record suffix from team names in matchups sheet
+    if 'Away' in matchups.columns:
+        matchups['Away'] = matchups['Away'].apply(clean_team_name)
+    if 'Home' in matchups.columns:
+        matchups['Home'] = matchups['Home'].apply(clean_team_name)
 
     # Capture upcoming games (blank scores) BEFORE dropping them
     upcoming_raw = matchups[matchups['Away Score'].isna() | matchups['Home Score'].isna()].copy()
@@ -365,7 +387,9 @@ def compute_season_records(matchups):
             else: r['losses'] += 1
     return records
 
-def compute_standings(matchups, year):
+def compute_standings(matchups, year, bonus_wl=None):
+    """Rank owners for a year. If bonus_wl is given, use COMBINED H2H+bonus W/L (ESPN style)
+    with total points-for as tiebreaker. Otherwise use H2H W/L with points-for tiebreaker."""
     reg = matchups[(matchups['game_type'] == 'Regular') & (matchups['Year'] == year)]
     wins = defaultdict(int)
     losses = defaultdict(int)
@@ -383,7 +407,15 @@ def compute_standings(matchups, year):
             if not away_won: wins[hk] += 1
             else: losses[hk] += 1
     all_keys = set(list(wins.keys()) + list(losses.keys()))
-    ranked = sorted(all_keys, key=lambda k: (-wins[k], -pts[k]))
+    if bonus_wl:
+        # Combined W/L: H2H + median-based bonus. Points-for is the tiebreaker.
+        def combined_wins(k):
+            return wins[k] + bonus_wl.get((k, year), [0,0])[0]
+        def combined_losses(k):
+            return losses[k] + bonus_wl.get((k, year), [0,0])[1]
+        ranked = sorted(all_keys, key=lambda k: (-combined_wins(k), combined_losses(k), -pts[k]))
+    else:
+        ranked = sorted(all_keys, key=lambda k: (-wins[k], -pts[k]))
     standings = {k: i+1 for i, k in enumerate(ranked)}
     return standings
 
@@ -678,12 +710,14 @@ def build_team_names(matchups, season_stats, existing_json):
     existing_names = set(existing_json.get('teamNames', []))
 
     new_names = set()
-    # From matchups sheet
-    for col in ['Away Team Name', 'Home Team Name']:
+    # From matchups sheet — Away and Home carry team names (already suffix-stripped in load_xlsx)
+    for col in ['Away', 'Home']:
         if col in matchups.columns:
             for n in matchups[col].dropna():
-                new_names.add(str(n).strip())
-    # From season stats sheet
+                s = str(n).strip()
+                if s:
+                    new_names.add(s)
+    # From season stats sheet (legacy — column now absent, but keep guard for future)
     if 'Team Name' in season_stats.columns:
         for n in season_stats['Team Name'].dropna():
             new_names.add(str(n).strip())
@@ -786,7 +820,10 @@ def build_profiles_data(matchups, season_stats, all_time_lucky, existing_json, n
     finals, final_fours, championships = compute_playoff_structure(matchups)
     h2h_summary, h2h_logs = compute_h2h(matchups)
     season_records = compute_season_records(matchups)
-    standings = compute_standings(matchups, current_year)
+    # Standings on beefcake profile pages use COMBINED H2H+bonus W/L with total points as tiebreaker
+    # (ESPN median-based bonus system). Career stats and other pages continue to use H2H-only.
+    # bonus_wl is populated further down; recompute standings after it's built.
+    standings = {}  # placeholder — will be filled after bonus_wl is built
 
     ss_lookup = {}
     ss_valid = season_stats[season_stats['Year'].between(2014, 2030)].copy()
@@ -796,8 +833,51 @@ def build_profiles_data(matchups, season_stats, all_time_lucky, existing_json, n
             yr = int(row['Year'])
             ss_lookup[(key, yr)] = row
 
-    # Per-year buy-in proxy: negate the min Net Earnings across all owners that year
-    # (the most-negative net earnings = the buy-in). Used to compute gross earnings.
+    # Per-owner-per-year team name lookup — pulled from the LATEST matchups row for that owner in that year.
+    # Team Name column was removed from Season Stats; matchups sheet's Away/Home carry the team names.
+    team_name_by_owner_year = {}
+    for _, row in matchups.sort_values(['Year','Week']).iterrows():
+        yr = int(row['Year'])
+        ak, hk = row['away_key'], row['home_key']
+        if ak and isinstance(row.get('Away'), str) and row['Away']:
+            team_name_by_owner_year[(ak, yr)] = row['Away']
+        if hk and isinstance(row.get('Home'), str) and row['Home']:
+            team_name_by_owner_year[(hk, yr)] = row['Home']
+
+    # Bonus W/L per (owner, year, week) — top 7 scores in a week get a bonus W, bottom 7 get a bonus L.
+    # Regular season only. Used for currentSeason combined record + standing on profile pages.
+    # NOTE: The ESPN bonus system started in 2026. Do NOT apply to historical years.
+    BONUS_SYSTEM_START_YEAR = 2026
+    bonus_wl = defaultdict(lambda: [0, 0])  # (owner_key, year) -> [bonus_wins, bonus_losses]
+    reg_matchups = matchups[(matchups['game_type'] == 'Regular') & (matchups['Year'] >= BONUS_SYSTEM_START_YEAR)]
+    for (yr, wk), grp in reg_matchups.groupby(['Year', 'Week']):
+        scores_this_week = []
+        for _, row in grp.iterrows():
+            ak, hk = row['away_key'], row['home_key']
+            if ak:
+                scores_this_week.append((ak, float(row['Away Score'])))
+            if hk:
+                scores_this_week.append((hk, float(row['Home Score'])))
+        if not scores_this_week:
+            continue
+        # Rank descending; top half get bonus W, bottom half get bonus L
+        scores_this_week.sort(key=lambda x: -x[1])
+        n = len(scores_this_week)
+        half = n // 2
+        for i, (k, _) in enumerate(scores_this_week):
+            if i < half:
+                bonus_wl[(k, yr)][0] += 1
+            else:
+                bonus_wl[(k, yr)][1] += 1
+
+    # Now that bonus_wl exists, compute combined standings for the current display year.
+    standings = compute_standings(matchups, current_year, bonus_wl=bonus_wl)
+
+    # Per-year buy-in proxy. Historically the min Net Earnings was used, but that overstates
+    # the base buy-in whenever an owner has extra fees (mulligans, side pots, commish fees).
+    # New heuristic: use the MODE of losses when it has multiple hits (represents the shared
+    # base entry fee everyone paid); fall back to min only when losses are all distinct.
+    from collections import Counter
     buyin_by_year = {}
     for yr in sorted(ss_valid['Year'].dropna().unique()):
         yr_int = int(yr)
@@ -810,9 +890,19 @@ def build_profiles_data(matchups, season_stats, all_time_lucky, existing_json, n
                     yr_nets.append(float(ne))
                 except Exception:
                     pass
-        if yr_nets:
-            min_net = min(yr_nets)
-            buyin_by_year[yr_int] = -min_net if min_net < 0 else 0
+        if not yr_nets:
+            buyin_by_year[yr_int] = 0
+            continue
+        losses = [n for n in yr_nets if n < 0]
+        if losses:
+            loss_counter = Counter(round(l) for l in losses)
+            most_common_loss, count = loss_counter.most_common(1)[0]
+            if count >= 2:
+                # Mode is the shared base entry fee
+                buyin_by_year[yr_int] = -most_common_loss
+            else:
+                # No clear mode — fall back to min
+                buyin_by_year[yr_int] = -min(yr_nets)
         else:
             buyin_by_year[yr_int] = 0
 
@@ -952,27 +1042,40 @@ def build_profiles_data(matchups, season_stats, all_time_lucky, existing_json, n
         curr_standing = standings.get(key, '—')
         last_game = get_last_game(matchups, key, current_year)
 
+        # Combined record (H2H + bonus median) — profile currentSeason display only.
+        curr_bonus = bonus_wl.get((key, current_year), [0, 0])
+        curr_combined_wins = curr_wins + curr_bonus[0]
+        curr_combined_losses = curr_losses + curr_bonus[1]
+
         ss_row = ss_lookup.get((key, current_year), {})
-        team_name_curr = ss_row.get('Team Name', '') if hasattr(ss_row, 'get') else ''
+        # Team name now sourced from matchups sheet, not Season Stats
+        team_name_curr = team_name_by_owner_year.get((key, current_year), '')
         power_score_curr = safe_round(ss_row.get('Regular Season Power Score')) if hasattr(ss_row, 'get') else None
         weeks_at_1_curr = safe_round(ss_row.get('Regular Season Weeks at #1', 0), 0) if hasattr(ss_row, 'get') else 0
         luck_curr = safe_round(ss_row.get('Lucky/Unlucky %'), 4) if hasattr(ss_row, 'get') else None
         prestige_curr = safe_round(ss_row.get('Prestige Earned'), 0) if hasattr(ss_row, 'get') else None
         net_earn_curr = safe_round(ss_row.get('Net Earnings'), 2) if hasattr(ss_row, 'get') else None
 
-        # Attach lifetime record vs upcoming opponent to nextGame, if applicable
+        # Attach lifetime record vs opponent to nextGame and lastGame.
+        # h2h_summary[owner][opp]['all'] is a [wins, losses] list.
+        def _lifetime_vs(owner_key, opp_key):
+            if not opp_key:
+                return None
+            rec = h2h_summary.get(owner_key, {}).get(opp_key, {}).get('all')
+            if rec and isinstance(rec, (list, tuple)) and len(rec) >= 2:
+                return f"{rec[0]}-{rec[1]}"
+            # No prior history — show as 0-0 rather than nothing
+            return "0-0"
+
         owner_next_game = next_game.get(key)
         if owner_next_game:
             owner_next_game = dict(owner_next_game)  # don't mutate shared dict
-            opp_key = owner_next_game.get('opponentKey')
-            if opp_key:
-                opp_record = h2h_summary.get(key, {}).get(opp_key, {}).get('all')
-                if opp_record:
-                    owner_next_game['lifetimeVsOpponent'] = f"{opp_record[0]}-{opp_record[1]}"
-                else:
-                    owner_next_game['lifetimeVsOpponent'] = None
-            else:
-                owner_next_game['lifetimeVsOpponent'] = None
+            owner_next_game['lifetimeVsOpponent'] = _lifetime_vs(key, owner_next_game.get('opponentKey'))
+
+        # Also populate last_game lifetime record (previously hardcoded to None)
+        if last_game and last_game.get('opponentKey'):
+            last_game = dict(last_game)
+            last_game['lifetimeVsOpponent'] = _lifetime_vs(key, last_game.get('opponentKey'))
 
         lucky_row = lucky_lookup.get(key, {})
         career_luck = safe_round(lucky_row.get('Lucky/Unlucky %'), 4) if hasattr(lucky_row, 'get') else None
@@ -996,7 +1099,8 @@ def build_profiles_data(matchups, season_stats, all_time_lucky, existing_json, n
             existing_seasons = {s_['year']: s_ for s_ in existing_owner.get('seasons', []) if 'year' in s_}
             existing_yr = existing_seasons.get(yr, {})
 
-            team_name = yr_ss.get('Team Name', existing_yr.get('teamName', '')) if hasattr(yr_ss, 'get') else existing_yr.get('teamName', '')
+            # Team name now sourced from matchups sheet (Away/Home cols), not Season Stats
+            team_name = team_name_by_owner_year.get((key, yr), existing_yr.get('teamName', ''))
             power_score = safe_round(yr_ss.get('Regular Season Power Score')) if hasattr(yr_ss, 'get') else existing_yr.get('powerScore')
             prestige_earned = safe_round(yr_ss.get('Prestige Earned'), 0) if hasattr(yr_ss, 'get') else existing_yr.get('prestigeEarned')
             net_earnings = safe_round(yr_ss.get('Net Earnings'), 2) if hasattr(yr_ss, 'get') else existing_yr.get('winnings')
@@ -1026,6 +1130,9 @@ def build_profiles_data(matchups, season_stats, all_time_lucky, existing_json, n
                 result = 'semifinal'
             elif yr_playoff:
                 result = 'playoff'
+            elif yr == current_year and is_offseason is False:
+                # In-progress season — playoffs haven't happened yet, don't call it "missed"
+                result = 'in-progress'
             else:
                 result = existing_yr.get('result', 'missed')
 
@@ -1036,10 +1143,16 @@ def build_profiles_data(matchups, season_stats, all_time_lucky, existing_json, n
             else:
                 gross_winnings = None
 
+            # Season table record: use COMBINED (H2H + bonus) so it matches the beefcake hero.
+            # For historical pre-bonus years, bonus_wl is empty so combined == H2H.
+            yr_bonus = bonus_wl.get((key, yr), [0, 0])
+            yr_combined_wins = yr_wins + yr_bonus[0]
+            yr_combined_losses = yr_losses + yr_bonus[1]
+
             seasons_list.append({
                 'year': yr,
                 'teamName': str(team_name) if team_name and str(team_name) != 'nan' else None,
-                'record': f"{yr_wins}-{yr_losses}",
+                'record': f"{yr_combined_wins}-{yr_combined_losses}",
                 'finish': existing_yr.get('finish'),
                 'ptsPerGame': safe_round(yr_ppg),
                 'pointShare': safe_round(pt_share_yr, 4),
@@ -1213,7 +1326,7 @@ def build_profiles_data(matchups, season_stats, all_time_lucky, existing_json, n
         else:
             current_season_block = {
                 'year': int(display_year),
-                'record': f"{curr_wins}-{curr_losses}",
+                'record': f"{curr_combined_wins}-{curr_combined_losses}",
                 'standing': curr_standing,
                 'ptsPerGame': safe_round(curr_ppg),
                 'teamName': str(team_name_curr) if team_name_curr and str(team_name_curr) != 'nan' else None,
@@ -1350,15 +1463,16 @@ def main(xlsx_path, profiles_json_path, output_profiles_path, output_h2h_path):
         'prestige': existing_json.get('prestige', []),
     }
 
-    # Update page dates — format as "May 18, 2026"
+    # Update page dates — bump only pages whose displayed data the script actually rewrites.
+    # intercontinental + prestige-rankings are editorial (data preserved as-is), so no weekly bump.
+    # streak-and-drought is end-of-regular-season only, so no weekly bump.
     today = date.today().strftime('%B %-d, %Y')
     profiles_out['pageUpdates']['profiles'] = today
     profiles_out['pageUpdates']['head-to-head'] = today
     profiles_out['pageUpdates']['career-records'] = today
     profiles_out['pageUpdates']['boom-start-bust'] = today
-    profiles_out['pageUpdates']['intercontinental'] = today
-    profiles_out['pageUpdates']['prestige-rankings'] = today
     profiles_out['pageUpdates']['single-game-records'] = today
+    profiles_out['pageUpdates']['single-season-records'] = today
 
     # Owner lastUpdated also bumped
     for k in profiles_out.get('owners', {}):
