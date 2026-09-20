@@ -202,6 +202,94 @@
   }
   .lb-row.expanded .lb-chevron { transform: rotate(180deg); }
 
+  /* ── CROWD FAVORITES ── */
+  .crowd-picks-sub {
+    font-family: 'Barlow', sans-serif;
+    font-size: 0.98rem;
+    color: var(--label);
+    line-height: 1.5;
+    margin: -4px 0 16px;
+  }
+  .crowd-picks-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(230px, 1fr));
+    gap: 12px;
+    margin-bottom: 8px;
+  }
+  .cp-card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 16px 16px 14px;
+  }
+  .cp-card.cp-hit { border-color: var(--green-dim); }
+  .cp-cat-label {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 0.82rem;
+    letter-spacing: 0.13em;
+    text-transform: uppercase;
+    color: var(--label);
+    margin-bottom: 10px;
+  }
+  .cp-top-row {
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+    gap: 8px;
+    margin-bottom: 8px;
+  }
+  .cp-top-name {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 1.3rem;
+    letter-spacing: 0.03em;
+    text-transform: uppercase;
+    color: var(--text);
+    line-height: 1.15;
+  }
+  .cp-hit-tag { font-size: 0.95rem; }
+  .cp-top-pct {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 1.15rem;
+    color: var(--gold);
+    flex-shrink: 0;
+  }
+  .cp-bar-track {
+    background: var(--surface3);
+    border-radius: 4px;
+    height: 7px;
+    overflow: hidden;
+    margin-bottom: 8px;
+  }
+  .cp-bar-fill {
+    background: linear-gradient(90deg, var(--red), var(--red-bright));
+    height: 100%;
+    border-radius: 4px;
+  }
+  .cp-card.cp-hit .cp-bar-fill { background: linear-gradient(90deg, var(--green-dim), var(--green)); }
+  .cp-top-sub {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 0.82rem;
+    letter-spacing: 0.08em;
+    color: var(--muted);
+    text-transform: uppercase;
+    margin-bottom: 6px;
+  }
+  .cp-others {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 0.85rem;
+    color: var(--muted);
+    letter-spacing: 0.02em;
+    line-height: 1.5;
+    padding-top: 6px;
+    border-top: 1px solid var(--border);
+  }
+  .cp-empty {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 0.9rem;
+    color: var(--muted);
+    letter-spacing: 0.04em;
+  }
+
   /* ── Picks card (expanded) ── */
   .picks-card {
     display: none;
@@ -1138,6 +1226,12 @@
       <div class="leaderboard" id="leaderboard"></div>
     </div>
 
+    <div id="crowdPicksSection" class="hidden">
+      <div class="section-title">Crowd Favorites</div>
+      <div class="crowd-picks-sub">What the league predicted for each category, at a glance.</div>
+      <div class="crowd-picks-grid" id="crowdPicksGrid"></div>
+    </div>
+
     <div id="contestView" class="hidden">
       <div class="contest-picker">
         <label class="contest-picker-label" for="contestSelect">Choose a Contest</label>
@@ -1820,6 +1914,7 @@ function renderLockedState() {
 
   // Build leaderboard data
   const submitterIds = Object.keys(subs);
+  renderCrowdPicks(subs, actuals);
   if (submitterIds.length === 0) {
     $("leaderboard").innerHTML = `<div style="padding:24px; text-align:center; color:var(--label);">No submissions were made before the deadline.</div>`;
     $("contestDetail").innerHTML = "";
@@ -1855,6 +1950,86 @@ function renderLockedState() {
 
   // Rules
   renderRulesContent("rulesContent2");
+}
+
+// ==================== CROWD FAVORITES ====================
+
+function pickValueLabel(cat, value) {
+  if (cat.type === "owner" || cat.type === "ff") return ownerName(value);
+  if (cat.type === "yn") return value === "yes" ? "Yes" : "No";
+  if (cat.type === "ryder") {
+    const ryderA = dbState?.config?.ryderCupMatchup?.teamA || "Founders";
+    const ryderB = dbState?.config?.ryderCupMatchup?.teamB || "Newcomers";
+    return value === "teamA" ? ryderA : ryderB;
+  }
+  return String(value);
+}
+
+function tallyPicks(cat, subs) {
+  const counts = {};
+  let total = 0;
+  Object.values(subs).forEach(sub => {
+    const pick = sub.picks?.[cat.key];
+    if (pick == null) return;
+    if (cat.type === "ff") {
+      if (!Array.isArray(pick) || !pick.length) return;
+      total++; // one ballot, counted once for the % denominator
+      pick.forEach(id => { counts[id] = (counts[id] || 0) + 1; });
+    } else {
+      total++;
+      counts[pick] = (counts[pick] || 0) + 1;
+    }
+  });
+  return { counts, total };
+}
+
+function crowdFavoriteHit(cat, topValue, actuals) {
+  const actual = actuals[cat.key];
+  if (cat.type === "ff") {
+    if (!Array.isArray(actual) || !actual.length) return { resolved: false, hit: false };
+    return { resolved: true, hit: actual.includes(topValue) };
+  }
+  const resolved = actual !== undefined && actual !== null && !(Array.isArray(actual) && !actual.length);
+  return { resolved, hit: resolved && String(actual) === String(topValue) };
+}
+
+function renderCrowdPicks(subs, actuals) {
+  const section = $("crowdPicksSection");
+  const grid = $("crowdPicksGrid");
+  if (!section || !grid) return;
+  const submitterCount = Object.keys(subs).length;
+  if (submitterCount === 0) {
+    section.classList.add("hidden");
+    grid.innerHTML = "";
+    return;
+  }
+  section.classList.remove("hidden");
+
+  const cards = CATEGORIES.filter(cat => cat.type !== "ou14").map(cat => {
+    const { counts, total } = tallyPicks(cat, subs);
+    const entries = Object.entries(counts).sort((a, b) => b[1] - a[1]);
+    if (!entries.length) {
+      return `<div class="cp-card"><div class="cp-cat-label">${escapeHTML(cat.label)}</div><div class="cp-empty">No picks yet</div></div>`;
+    }
+    const [topValue, topCount] = entries[0];
+    const pct = Math.round((topCount / total) * 100);
+    const { hit } = crowdFavoriteHit(cat, topValue, actuals);
+    const hitTag = hit ? `<span class="cp-hit-tag" title="Crowd favorite came through">✅</span>` : "";
+
+    let html = `<div class="cp-card${hit ? " cp-hit" : ""}">`;
+    html += `<div class="cp-cat-label">${escapeHTML(cat.label)}</div>`;
+    html += `<div class="cp-top-row"><div class="cp-top-name">${escapeHTML(pickValueLabel(cat, topValue))} ${hitTag}</div><div class="cp-top-pct">${pct}%</div></div>`;
+    html += `<div class="cp-bar-track"><div class="cp-bar-fill" style="width:${pct}%"></div></div>`;
+    html += `<div class="cp-top-sub">${topCount} of ${total} owners</div>`;
+    if (entries.length > 1) {
+      const others = entries.slice(1, 4).map(([k, v]) => `${escapeHTML(pickValueLabel(cat, k))} (${v})`).join(" · ");
+      html += `<div class="cp-others">Also: ${others}</div>`;
+    }
+    html += `</div>`;
+    return html;
+  }).join("");
+
+  grid.innerHTML = cards;
 }
 
 function renderLeaderboard(scored, actuals) {
