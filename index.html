@@ -197,8 +197,12 @@
   .league-note-text p { margin: 8px 0; }
   .league-note-text strong { color: #fff; }
   .league-note-text em { color: var(--text-body); }
-  .league-note-text ul { padding-left: 20px; margin: 8px 0; }
-  .league-note-text li { margin: 4px 0; }
+  .league-note-text ul, .league-note-text ol {
+    list-style-position: outside;
+    padding-left: 1.4em;
+    margin: 8px 0;
+  }
+  .league-note-text li { margin: 4px 0; padding-left: 0.2em; }
 
   /* ── LEAGUE NOTE — COMMISH EDIT CONTROLS ── */
   .league-note-edit-btn {
@@ -257,6 +261,10 @@
     border: 1px solid var(--border);
     border-radius: 6px 6px 0 0;
     padding: 8px;
+    position: sticky;
+    top: 0;
+    z-index: 40;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.35);
   }
   .league-note-toolbar button {
     background: var(--surface3);
@@ -317,8 +325,12 @@
   .league-note-editable:focus { outline: none; border-color: var(--red); }
   .league-note-editable h1 { font-family: 'Bebas Neue', sans-serif; font-size: 2.2rem; letter-spacing: 0.06em; margin: 12px 0 6px; }
   .league-note-editable h2 { font-family: 'Bebas Neue', sans-serif; font-size: 1.6rem; letter-spacing: 0.06em; color: var(--red-bright); margin: 10px 0 6px; }
-  .league-note-editable ul { padding-left: 20px; margin: 8px 0; }
-  .league-note-editable li { margin: 4px 0; }
+  .league-note-editable ul, .league-note-editable ol {
+    list-style-position: outside;
+    padding-left: 1.4em;
+    margin: 8px 0;
+  }
+  .league-note-editable li { margin: 4px 0; padding-left: 0.2em; }
 
   .league-note-editor-actions {
     display: flex;
@@ -1920,6 +1932,7 @@
         <button type="button" data-cmd="justifyRight" title="Align right">⯈</button>
         <div class="league-note-toolbar-sep"></div>
         <button type="button" data-cmd="insertUnorderedList" title="Bullet list">☰</button>
+        <button type="button" data-cmd="insertOrderedList" title="Numbered list">①</button>
       </div>
       <div class="league-note-editable" id="lnEditable" contenteditable="true"></div>
       <div class="league-note-editor-actions">
