@@ -1,0 +1,469 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>2027 Keeper Costs — Slingshot Engaged</title>
+<link rel="icon" type="image/png" href="/images/icon.png">
+<link rel="apple-touch-icon" href="/images/icon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Barlow+Condensed:wght@400;600;700&family=Barlow:wght@400;500;600&display=swap" rel="stylesheet" />
+<style>
+  :root {
+    --red: #c0392b;
+    --red-bright: #e74c3c;
+    --bg: #0a0a0a;
+    --surface: #141414;
+    --surface2: #1c1c1c;
+    --surface3: #242424;
+    --text: #f0f0f0;
+    --text-body: #e8e8e8;
+    --muted: #bbb;
+    --label: #d8d8d8;
+    --border: #2a2a2a;
+    --gold: #c9a84c;
+  }
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: 'Barlow', sans-serif;
+    min-height: 100vh;
+  }
+
+  /* ── PAGE HEADER ── */
+  .page-header {
+    padding: 40px 20px 0;
+    text-align: center;
+  }
+  .page-supertitle {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 1rem;
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+    color: #d0d0d0;
+    margin-bottom: 6px;
+  }
+  .page-header h1 {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: clamp(2.8rem, 8vw, 5rem);
+    color: var(--red-bright);
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    line-height: 1;
+  }
+  .page-updated {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 0.72rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--muted);
+    margin-top: 6px;
+  }
+
+  .header-spacer { height: 20px; }
+
+  .content {
+    max-width: 680px;
+    margin: 0 auto;
+    padding: 0 16px 60px;
+  }
+
+  .intro {
+    font-family: 'Barlow', sans-serif;
+    font-size: 1.1rem;
+    color: var(--text-body);
+    line-height: 1.7;
+    margin: 12px 0 12px;
+    text-align: center;
+  }
+
+  /* ── SEARCH ── */
+  .search-wrap {
+    margin: 20px 0 16px;
+  }
+  .search-label {
+    display: block;
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 0.86rem;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--label);
+    margin-bottom: 8px;
+  }
+  .search-input {
+    width: 100%;
+    background: var(--surface3);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    color: var(--text);
+    font-family: 'Barlow', sans-serif;
+    font-size: 1.05rem;
+    padding: 14px 16px;
+    min-height: 52px;
+    transition: border-color 0.15s;
+  }
+  .search-input::placeholder { color: var(--muted); }
+  .search-input:focus {
+    outline: none;
+    border-color: var(--red);
+  }
+
+  /* ── SEARCH RESULT CARD ── */
+  .search-result {
+    display: none;
+    background: var(--surface2);
+    border: 1px solid var(--border);
+    border-left: 4px solid var(--gold);
+    border-radius: 8px;
+    padding: 18px 20px;
+    margin-bottom: 20px;
+  }
+  .search-result.show { display: block; }
+  .search-result.not-eligible { border-left-color: var(--red-bright); }
+  .search-result-name {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 1.5rem;
+    letter-spacing: 0.04em;
+    color: var(--text);
+    text-transform: uppercase;
+    margin-bottom: 6px;
+  }
+  .search-result-cost {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 1.15rem;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--gold);
+  }
+  .search-result.not-eligible .search-result-cost { color: var(--red-bright); }
+  .search-result-note {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 0.86rem;
+    letter-spacing: 0.06em;
+    color: var(--label);
+    margin-top: 6px;
+  }
+  .search-result-multi {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 0.82rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--muted);
+    margin-top: 10px;
+  }
+
+  /* ── TABLE ── */
+  .table-wrap {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+  }
+  table {
+    width: 100%;
+    border-collapse: collapse;
+  }
+  thead th {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 0.82rem;
+    font-weight: 700;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--label);
+    background: var(--surface2);
+    padding: 10px 12px;
+    text-align: left;
+    border-bottom: 1px solid var(--border);
+    white-space: nowrap;
+    position: sticky;
+    top: 0;
+    z-index: 1;
+  }
+  thead th.col-cost { text-align: right; }
+  tbody td {
+    padding: 10px 12px;
+    vertical-align: middle;
+    border-bottom: 1px solid var(--border);
+    color: var(--text);
+    font-size: 0.9rem;
+  }
+  tbody td.col-cost {
+    text-align: right;
+    font-family: 'Barlow Condensed', sans-serif;
+    font-weight: 700;
+    letter-spacing: 0.06em;
+    color: var(--gold);
+    white-space: nowrap;
+  }
+  tbody tr.ineligible td.col-cost { color: var(--muted); }
+  tbody tr.ineligible td.col-player { color: var(--muted); }
+  tbody tr:last-child td { border-bottom: none; }
+  tbody tr:hover { background: var(--surface2); transition: background 0.15s; }
+  tbody tr.row-hidden { display: none; }
+
+  .col-note {
+    font-size: 0.78rem;
+    color: var(--label);
+  }
+
+  .no-results {
+    display: none;
+    text-align: center;
+    padding: 30px 16px;
+    font-family: 'Barlow', sans-serif;
+    font-size: 1.02rem;
+    color: var(--muted);
+  }
+  .no-results.show { display: block; }
+
+  .table-footnote {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 0.78rem;
+    letter-spacing: 0.05em;
+    color: var(--label);
+    text-align: center;
+    margin-top: 16px;
+    line-height: 1.5;
+  }
+</style>
+</head>
+<body>
+
+<script src="nav.js"></script>
+
+<div class="page-header">
+  <div class="page-supertitle">The Annals of History</div>
+  <h1>2027 Keeper Costs</h1>
+  <p class="page-updated" id="pageUpdated"></p>
+</div>
+
+<div class="header-spacer"></div>
+
+<div class="content">
+  <p class="intro">Every player drafted in the 2026 season and what it would cost to keep them in 2027, per Article 6 of the Constitution. Search for a player below, or scroll the full list.</p>
+
+  <div class="search-wrap">
+    <label class="search-label" for="playerSearch">Search a Player</label>
+    <input type="text" id="playerSearch" class="search-input" placeholder="Enter a first or last name…" autocomplete="off">
+  </div>
+
+  <div class="search-result" id="searchResult">
+    <div class="search-result-name" id="searchResultName"></div>
+    <div class="search-result-cost" id="searchResultCost"></div>
+    <div class="search-result-note" id="searchResultNote"></div>
+    <div class="search-result-multi" id="searchResultMulti"></div>
+  </div>
+
+  <div class="table-wrap">
+    <table id="keeperTable">
+      <thead>
+        <tr>
+          <th class="col-player">Player</th>
+          <th class="col-cost">2027 Cost</th>
+        </tr>
+      </thead>
+      <tbody id="keeperTableBody"></tbody>
+    </table>
+  </div>
+
+  <p class="no-results" id="noResults">No player found — showing default cost below.</p>
+
+  <p class="table-footnote">Round 1–2 picks are permanently not keeper-eligible per Article 6, Section 2(a). Players kept once in 2026 cost a flat 1st round pick to keep again in 2027, and become ineligible in 2028.</p>
+</div>
+
+<script>
+// 2027 keeper costs — player: cost round (1-12), or "N/A" for ineligible Round 1/2 picks
+// Players kept once in 2026 already show their correct 2027 cost (flat 1st round) below.
+const KEEPER_DATA = [
+  // Round 1 — Not Eligible
+  ["Jahmyr Gibbs", "N/A"], ["Bijan Robinson", "N/A"], ["Ja'Marr Chase", "N/A"], ["Jonathan Taylor", "N/A"],
+  ["Jaxon Smith-Njigba", "N/A"], ["Puka Nacua", "N/A"], ["Christian McCaffrey", "N/A"], ["Derrick Henry", "N/A"],
+  ["Kenneth Walker III", "N/A"], ["James Cook III", "N/A"], ["Amon-Ra St. Brown", "N/A"], ["Saquon Barkley", "N/A"],
+  ["Justin Jefferson", "N/A"], ["Chase Brown", "N/A"],
+  // Round 2 — Not Eligible
+  ["De'Von Achane", "N/A"], ["Omarion Hampton", "N/A"], ["Ashton Jeanty", "N/A"], ["CeeDee Lamb", "N/A"],
+  ["Drake London", "N/A"], ["DeVonta Smith", "N/A"], ["Malik Nabers", "N/A"], ["Kyren Williams", "N/A"],
+  ["Jeremiyah Love", "N/A"], ["George Pickens", "N/A"], ["Nico Collins", "N/A"], ["Breece Hall", "N/A"],
+  ["Ladd McConkey", "N/A"], ["Trey McBride", "N/A"],
+  // Round 3 -> 1st
+  ["Josh Allen", 1], ["D'Andre Swift", 1], ["Joe Burrow", 1], ["Bucky Irving", 1], ["David Montgomery", 1],
+  ["Lamar Jackson", 1], ["Zay Flowers", 1], ["Jadarian Price", 1], ["Tee Higgins", 1], ["Tetairoa McMillan", 1],
+  ["Emeka Egbuka", 1], ["Garrett Wilson", 1], ["Brock Bowers", 1], ["Colston Loveland", 1],
+  // Round 4 -> 2nd
+  ["Jaylen Waddle", 2], ["Rashee Rice", 1], ["Luther Burden III", 2], ["Bhayshul Tuten", 2], ["Davante Adams", 2],
+  ["Mike Evans", 2], ["Rome Odunze", 2], ["DJ Moore", 2], ["Jameson Williams", 2], ["Christian Watson", 2],
+  ["Terry McLaurin", 2], ["Chris Olave", 1], ["Parker Washington", 2], ["DK Metcalf", 2],
+  // Round 5 -> 3rd
+  ["Javonte Williams", 1], ["Jonathon Brooks", 3], ["Jaylen Warren", 3], ["Courtland Sutton", 3], ["Jalen Hurts", 3],
+  ["Marvin Harrison Jr.", 3], ["Carnell Tate", 3], ["Matthew Golden", 3], ["Tyler Warren", 3], ["Tucker Kraft", 3],
+  ["Travis Etienne Jr.", 1], ["A.J. Brown", 3], ["MarShawn Lloyd", 3], ["Cam Skattebo", 1],
+  // Round 6 -> 4th
+  ["Alec Pierce", 4], ["Michael Pittman Jr.", 4], ["Brian Thomas Jr.", 4], ["Jayden Daniels", 4], ["TreVeyon Henderson", 4],
+  ["Jordan Mason", 4], ["Sam LaPorta", 4], ["Kyle Pitts Sr.", 4], ["George Kittle", 4], ["Harold Fannin Jr.", 4],
+  ["Chris Godwin Jr.", 4], ["J.K. Dobbins", 4], ["Drake Maye", 1], ["Quentin Johnston", 4],
+  // Round 7 -> 5th
+  ["Blake Corum", 5], ["Josh Downs", 5], ["Juwan Johnson", 5], ["Chuba Hubbard", 5], ["Quinshon Judkins", 1],
+  ["Jordan Addison", 5], ["Tony Pollard", 5], ["Jaxson Dart", 5], ["Rhamondre Stevenson", 1], ["Jacory Croskey-Merritt", 5],
+  ["Michael Wilson", 5], ["Dalton Kincaid", 5], ["RJ Harvey", 5], ["Chris Rodriguez Jr.", 5],
+  // Round 8 -> 6th
+  ["Stefon Diggs", 6], ["Jakobi Meyers", 6], ["Trevor Lawrence", 6], ["Travis Kelce", 6], ["Jayden Reed", 6],
+  ["Brock Purdy", 6], ["Kyle Monangai", 6], ["Justin Herbert", 6], ["Aaron Jones Sr.", 6], ["Tyler Allgeier", 6],
+  ["Kenny Gainwell", 6], ["Texans D/ST", 6], ["Makai Lemon", 6], ["KC Concepcion", 6],
+  // Round 9 -> 7th
+  ["Xavier Worthy", 7], ["Kyler Murray", 7], ["Deebo Samuel Sr.", 7], ["Dak Prescott", 7], ["Mike Washington Jr.", 7],
+  ["Keaton Mitchell", 7], ["Caleb Williams", 1], ["Jalen Coker", 7], ["Josh Jacobs", 7], ["Wan'Dale Robinson", 7],
+  ["Patrick Mahomes", 7], ["Woody Marks", 7], ["Bo Nix", 7], ["Jared Goff", 7],
+  // Round 10 -> 8th
+  ["Jonah Coleman", 8], ["De'Zhaun Stribling", 8], ["Tank Bigsby", 8], ["Kaelon Black", 8], ["Baker Mayfield", 8],
+  ["Romeo Doubs", 8], ["Brian Robinson Jr.", 8], ["Jordyn Tyson", 8], ["Khalil Shakir", 8], ["Rashid Shaheed", 8],
+  ["Brenton Strange", 8], ["Matthew Stafford", 8], ["Alvin Kamara", 8], ["Dallas Goedert", 8],
+  // Round 11 -> 9th
+  ["Tre Tucker", 9], ["Kayshon Boutte", 9], ["Chris Brooks", 9], ["Steelers D/ST", 9], ["Chris Bell", 9],
+  ["Ja'Kobi Lane", 9], ["Emmett Johnson", 9], ["Adonai Mitchell", 9], ["Brandon Aubrey", 9], ["Rico Dowdle", 1],
+  ["Denzel Boston", 9], ["Isaiah Likely", 9], ["Broncos D/ST", 9], ["Jordan Love", 9],
+  // Round 12 -> 10th
+  ["Rams D/ST", 10], ["Rachaad White", 10], ["Chargers D/ST", 10], ["Jake Ferguson", 10], ["Eagles D/ST", 10],
+  ["Jaguars D/ST", 10], ["Ravens D/ST", 10], ["Mark Andrews", 10], ["Seahawks D/ST", 1], ["Lions D/ST", 10],
+  ["Jaylin Noel", 10], ["Malachi Fields", 10], ["T.J. Hockenson", 10], ["Zach Charbonnet", 10],
+  // Round 13 -> 11th
+  ["Vikings D/ST", 11], ["Cameron Dicker", 11], ["Cam Little", 11], ["Ka'imi Fairbairn", 11], ["Omar Cooper Jr.", 11],
+  ["Eddy Pineiro", 11], ["Patriots D/ST", 11], ["Jake Bates", 11], ["Ray Davis", 11], ["Evan McPherson", 11],
+  ["Tyjae Spears", 11], ["Spencer Shrader", 11], ["Wil Lutz", 11], ["Jason Myers", 11],
+  // Round 14 -> 12th
+  ["Pat Bryant", 12], ["Nicholas Singleton", 12], ["Dylan Sampson", 12], ["Chiefs D/ST", 12], ["Malik Washington", 12],
+  ["Travis Hunter", 12], ["Jaylen Wright", 12], ["Tyler Loop", 12], ["Tyrone Tracy Jr.", 12], ["Harrison Butker", 12],
+  ["Keenan Allen", 12], ["Kaytron Allen", 12], ["49ers D/ST", 12], ["Sam Darnold", 12]
+];
+
+// Players kept once in 2026 — flagged with a note in the table and search result
+const KEPT_2026 = new Set([
+  "Rhamondre Stevenson", "Chris Olave", "Drake Maye", "Caleb Williams", "Rashee Rice",
+  "Travis Etienne Jr.", "Seahawks D/ST", "Rico Dowdle", "Cam Skattebo", "Quinshon Judkins", "Javonte Williams"
+]);
+
+const ORDINAL = {1:"1st",2:"2nd",3:"3rd",4:"4th",5:"5th",6:"6th",7:"7th",8:"8th",9:"9th",10:"10th",11:"11th",12:"12th"};
+
+function costLabel(cost) {
+  if (cost === "N/A") return "Not Eligible";
+  return ORDINAL[cost] + " Round";
+}
+
+// Sort: eligible players by cost round then name, then ineligible players alphabetically at the end
+const sorted = [...KEEPER_DATA].sort((a, b) => {
+  const aElig = a[1] !== "N/A", bElig = b[1] !== "N/A";
+  if (aElig && !bElig) return -1;
+  if (!aElig && bElig) return 1;
+  if (aElig && bElig && a[1] !== b[1]) return a[1] - b[1];
+  return a[0].localeCompare(b[0]);
+});
+
+const tbody = document.getElementById('keeperTableBody');
+sorted.forEach(([name, cost]) => {
+  const tr = document.createElement('tr');
+  tr.dataset.name = name.toLowerCase();
+  if (cost === "N/A") tr.classList.add('ineligible');
+
+  const tdName = document.createElement('td');
+  tdName.className = 'col-player';
+  tdName.textContent = name;
+  if (KEPT_2026.has(name)) {
+    const note = document.createElement('div');
+    note.className = 'col-note';
+    note.textContent = 'Kept in 2026';
+    tdName.appendChild(note);
+  }
+
+  const tdCost = document.createElement('td');
+  tdCost.className = 'col-cost';
+  tdCost.textContent = costLabel(cost);
+
+  tr.appendChild(tdName);
+  tr.appendChild(tdCost);
+  tbody.appendChild(tr);
+});
+
+// ── SEARCH ──
+const searchInput = document.getElementById('playerSearch');
+const searchResult = document.getElementById('searchResult');
+const searchResultName = document.getElementById('searchResultName');
+const searchResultCost = document.getElementById('searchResultCost');
+const searchResultNote = document.getElementById('searchResultNote');
+const searchResultMulti = document.getElementById('searchResultMulti');
+const noResults = document.getElementById('noResults');
+const tableWrap = document.querySelector('.table-wrap');
+const allRows = Array.from(tbody.querySelectorAll('tr'));
+
+function matchesQuery(name, query) {
+  const parts = name.toLowerCase().split(/\s+/);
+  return parts.some(p => p.startsWith(query)) || name.toLowerCase().includes(query);
+}
+
+searchInput.addEventListener('input', () => {
+  const query = searchInput.value.trim().toLowerCase();
+
+  if (!query) {
+    searchResult.classList.remove('show');
+    noResults.classList.remove('show');
+    tableWrap.style.display = '';
+    allRows.forEach(r => r.classList.remove('row-hidden'));
+    return;
+  }
+
+  const matches = KEEPER_DATA.filter(([name]) => matchesQuery(name, query));
+
+  // Filter the table to matching rows too
+  let visibleCount = 0;
+  allRows.forEach(row => {
+    const isMatch = matchesQuery(row.dataset.name, query);
+    row.classList.toggle('row-hidden', !isMatch);
+    if (isMatch) visibleCount++;
+  });
+
+  if (matches.length === 0) {
+    // No player on the list — show default undrafted cost per Article 6, Section 2(b)
+    searchResult.classList.remove('not-eligible');
+    searchResult.classList.add('show');
+    searchResultName.textContent = searchInput.value.trim();
+    searchResultCost.textContent = "4th Round";
+    searchResultNote.textContent = "";
+    searchResultMulti.textContent = "";
+    noResults.classList.add('show');
+    tableWrap.style.display = 'none';
+  } else if (matches.length === 1) {
+    const [name, cost] = matches[0];
+    searchResult.classList.toggle('not-eligible', cost === "N/A");
+    searchResult.classList.add('show');
+    searchResultName.textContent = name;
+    searchResultCost.textContent = costLabel(cost);
+    searchResultNote.textContent = KEPT_2026.has(name) ? "Kept in 2026" : "";
+    searchResultMulti.textContent = "";
+    noResults.classList.remove('show');
+    tableWrap.style.display = '';
+  } else {
+    // Multiple matches — show the table filtered, hide the single-result card
+    searchResult.classList.remove('show');
+    noResults.classList.remove('show');
+    tableWrap.style.display = '';
+  }
+});
+
+// ── LAST UPDATED ──
+fetch('profiles-data.json')
+  .then(r => r.json())
+  .then(data => {
+    const date = data.pageUpdates && data.pageUpdates['keeper-costs'];
+    if (date) {
+      document.getElementById('pageUpdated').textContent = 'Updated · ' + date;
+    }
+  })
+  .catch(() => {});
+</script>
+
+</body>
+</html>
