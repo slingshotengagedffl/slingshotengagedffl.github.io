@@ -1887,6 +1887,8 @@
     .then(r => r.json())
     .then(data => {
       NAMES = (data.teamNames || []).filter(n => n && n.trim());
+      // de-dupe names that map to the same Firebase key (e.g. straight vs curly apostrophes)
+      { const seen = new Set(); NAMES = NAMES.filter(n => { const k = nameToKey(n); if (seen.has(k)) return false; seen.add(k); return true; }); }
       loadFromFirebase();
     })
     .catch(() => {
