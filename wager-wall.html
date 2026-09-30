@@ -1144,6 +1144,11 @@ textarea:hover, textarea:focus {
           <div id="commishPending"></div>
         </div>
         <div class="commish-section">
+          <h3>Fix a Result</h3>
+          <p class="commish-note">Picked the wrong winner? Toggle who lost on any active side bet or wildcard, then save. The wall updates immediately.</p>
+          <div id="commishEdit"></div>
+        </div>
+        <div class="commish-section">
           <h3>Active Debts</h3>
           <p class="commish-note">Mark a debt paid once the wager has been honored. It moves to the settled history.</p>
           <div id="commishOutstanding"></div>
@@ -1913,6 +1918,29 @@ function renderCommishPanel() {
         </div>`;
       }).join("");
 
+  /* active -> fix result (side bets + wildcards; all-star cards are per-owner) */
+  const editable = active.filter(d => d.type !== "allstar");
+  $("commishEdit").innerHTML = editable.length === 0
+    ? `<div class="commish-mini-empty">No active side bets or wildcards to edit.</div>`
+    : editable.map(d => {
+        const debtors = d.debtors || [];
+        const toggles = (d.owners || []).map(id => {
+          const isLoser = debtors.includes(id);
+          return `<div class="loser-row" data-id="${id}">
+            ${photoHTML(id, "loser-row-photo", "loser-row-initials")}
+            <span class="loser-row-name">${escapeHTML(ownerName(id))}</span>
+            <button type="button" class="loser-toggle ${isLoser ? "is-loser" : "is-winner"}" data-etoggle>${isLoser ? "Loser — Owes" : "Winner"}</button>
+          </div>`;
+        }).join("");
+        return `<div class="resolve-block" data-edit="${escapeHTML(d.key)}">
+          <div class="commish-debt-who">${escapeHTML(debtSummaryText(d))}</div>
+          <div class="commish-debt-what">${escapeHTML(d.stakes || "")}</div>
+          <div class="loser-grid" style="margin-top:8px;">${toggles}</div>
+          <button class="mini-settle-btn" data-esave="${escapeHTML(d.key)}"
+            style="width:100%;margin-top:8px;">Save Change</button>
+        </div>`;
+      }).join("");
+
   /* active -> settle or renege */
   $("commishOutstanding").innerHTML = active.length === 0
     ? `<div class="commish-mini-empty">No active debts.</div>`
@@ -1982,6 +2010,33 @@ async function resolvePending(key) {
   }
 }
 
+/* change who lost on an already-assigned wager */
+async function saveEdit(key) {
+  if (!commishUnlocked) return;
+  const d = wallData[key];
+  if (!d) return;
+  const block = document.querySelector(`.resolve-block[data-edit="${cssEsc(key)}"]`);
+  if (!block) return;
+  const debtors = [...block.querySelectorAll(".loser-row")]
+    .filter(r => r.querySelector(".loser-toggle").classList.contains("is-loser"))
+    .map(r => r.getAttribute("data-id"));
+  if (debtors.length === 0) {
+    alert("Tag at least one owner as the loser.");
+    return;
+  }
+  const winners = (d.owners || []).filter(id => !debtors.includes(id));
+  if (d.type === "sidebet" && debtors.length !== 1) {
+    alert("A side bet has exactly one loser.");
+    return;
+  }
+  if (!confirm(`Save this change?\n\n${debtSummaryText(d)}\n\nOn the hook: ${debtors.map(ownerName).join(", ")}`)) return;
+  try {
+    await update(ref(db, `wagerWall/${key}`), { debtors, winners });
+  } catch (err) {
+    alert("Couldn't update — " + (err.message || ""));
+  }
+}
+
 /* escape a string for use inside a CSS attribute selector */
 function cssEsc(s) {
   return String(s).replace(/["\\]/g, "\\$&");
@@ -1996,6 +2051,24 @@ $("commishPanel").addEventListener("click", e => {
     rtoggle.textContent = loser ? "Loser — Owes" : "Winner";
     return;
   }
+  const etoggle = e.target.closest("[data-etoggle]");
+  if (etoggle) {
+    const block = etoggle.closest("[data-edit]");
+    const isSide = wallData[block.getAttribute("data-edit")]?.type === "sidebet";
+    const makeLoser = !etoggle.classList.contains("is-loser");
+    if (isSide && makeLoser) {
+      /* side bet: exactly one loser, so flip the other to winner */
+      block.querySelectorAll("[data-etoggle]").forEach(b => {
+        b.classList.remove("is-loser"); b.classList.add("is-winner"); b.textContent = "Winner";
+      });
+    }
+    etoggle.classList.toggle("is-loser", makeLoser);
+    etoggle.classList.toggle("is-winner", !makeLoser);
+    etoggle.textContent = makeLoser ? "Loser — Owes" : "Winner";
+    return;
+  }
+  const esave = e.target.closest("[data-esave]");
+  if (esave) { saveEdit(esave.getAttribute("data-esave")); return; }
   const rconfirm = e.target.closest("[data-rconfirm]");
   if (rconfirm) { resolvePending(rconfirm.getAttribute("data-rconfirm")); return; }
 
