@@ -1826,7 +1826,7 @@ function renderProfile(p) {
         ${lastGame ? `
         <div class="last-game-result">
           <div class="result-pill ${resultClass}">${lastGame.result}</div>
-          <div class="last-game-detail">vs. ${d(lastGame.opponent)} · ${d(lastGame.score)}</div>
+          <div class="last-game-detail">vs. ${d(lastGame.opponent)} · ${d(lastGame.score)}${lastGame.oppScore != null ? '–' + d(lastGame.oppScore) : ''}</div>
         </div>
         <div class="last-game-record">Lifetime ${d(lastGame.lifetimeVsOpponent)}</div>
         ` : `
