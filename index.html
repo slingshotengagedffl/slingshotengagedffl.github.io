@@ -1792,7 +1792,8 @@
         <button class="gon-rankings-btn" id="gonBottomBtn" onclick="gonToggleBottom()">Bottom 69 ▾</button>
       </div>
     </div>
-    <div id="gonSaveWarn" style="display:none;padding:8px 16px;font-family:'Barlow Condensed',sans-serif;font-size:0.95rem;letter-spacing:0.08em;color:#e74c3c;background:rgba(231,76,60,0.08);border-top:1px solid var(--border);"></div>
+    <div id="gonLastVote" style="display:none;padding:8px 16px;font-family:'Barlow Condensed',sans-serif;font-size:0.95rem;letter-spacing:0.06em;color:var(--label);border-top:1px solid var(--border);line-height:1.5;"></div>
+    <div id="gonSaveWarn"style="display:none;padding:8px 16px;font-family:'Barlow Condensed',sans-serif;font-size:0.95rem;letter-spacing:0.08em;color:#e74c3c;background:rgba(231,76,60,0.08);border-top:1px solid var(--border);"></div>
     <div class="gon-rankings" id="gonRankings">
       <div class="gon-rankings-title">Top 69 — All-Time Elo Rankings</div>
       <div id="gonRankList">Loading rankings…</div>
@@ -1920,6 +1921,11 @@
       totalVotes = newTotal;
       updateCount();
       showSaveWarning('');
+      const lv = document.getElementById('gonLastVote');
+      if (lv) {
+        lv.textContent = 'Saved ✓  ' + winName + ': ' + rW + ' → ' + newW.elo + '   |   ' + loseName + ': ' + rL + ' → ' + newL.elo;
+        lv.style.display = 'block';
+      }
     } catch (e) {
       console.error('Game of Names vote was NOT saved:', e);
       showSaveWarning('⚠ Votes aren’t being saved right now. Tell the commish.');
