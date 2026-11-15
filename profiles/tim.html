@@ -877,6 +877,29 @@
   .badge-missed { background: #2a1a1a; color: #aa5555; border: 1px solid #aa5555; }
   .badge-bronze { background: #2a1a0a; color: #cd7f32; border: 1px solid #cd7f32; }
 
+  .badge-inprogress { background: #1a2a3a; color: #6aa5d8; border: 1px solid #6aa5d8; }
+
+  /* ── PINNED OWNER BAR (shrunk hero; appears once the full hero scrolls away) ── */
+  .pin-bar {
+    position: fixed;
+    top: 0; left: 50%;
+    width: 100%; max-width: 780px;
+    transform: translate(-50%, -100%);
+    z-index: 900;
+    display: flex; align-items: center; gap: 12px;
+    padding: 8px 16px;
+    background: rgba(10,10,10,0.96);
+    border-bottom: 2px solid var(--red);
+    box-shadow: 0 4px 16px rgba(0,0,0,0.6);
+    transition: transform 0.25s ease;
+    pointer-events: none;
+  }
+  .pin-bar.show { transform: translate(-50%, 0); pointer-events: auto; }
+  .pin-bar-photo { width: 38px; height: 38px; border-radius: 50%; overflow: hidden; flex-shrink: 0; border: 2px solid var(--red); background: #222; }
+  .pin-bar-photo img { width: 100%; height: 100%; object-fit: cover; display: block; }
+  .pin-bar-name { font-family: 'Bebas Neue', sans-serif; font-size: 1.5rem; letter-spacing: 2px; color: var(--white); line-height: 1; }
+  .pin-bar-nick { font-family: 'Bebas Neue', sans-serif; font-size: 1.2rem; letter-spacing: 2px; color: var(--red); line-height: 1; }
+
   .trigger-snapshot {
     display: flex;
     flex-direction: column;
@@ -1686,7 +1709,8 @@ function renderProfile(p) {
       semifinal: ['badge-playoff', 'Semifinals'],
       playoff:   ['badge-playoff', 'Playoffs'],
       missed:    ['badge-missed', 'Missed'],
-      bronze:    ['badge-bronze', 'Bronze Franz']
+      bronze:    ['badge-bronze', 'Bronze Franz'],
+      'in-progress': ['badge-inprogress', 'In Progress']
     };
     const [cls, label] = map[result] || ['badge-missed', 'Missed'];
     return `<span class="trigger-badge ${cls}">${label}</span>`;
@@ -1795,6 +1819,12 @@ function renderProfile(p) {
   }).join('');
 
   const html = `
+    <!-- PINNED OWNER BAR -->
+    <div class="pin-bar" id="pinBar">
+      <div class="pin-bar-photo">${photoHTML}</div>
+      <div><span class="pin-bar-name">${p.name}</span> <span class="pin-bar-nick">"${p.nickname}"</span></div>
+    </div>
+
     <!-- HERO -->
     <section class="hero">
       <div class="owner-name">${p.name}</div>
@@ -1973,6 +2003,16 @@ function renderProfile(p) {
   document.getElementById('loadingState').style.display = 'none';
   const content = document.getElementById('profileContent');
   content.innerHTML = html;
+
+  // Pinned owner bar: slides in once the full hero has scrolled out of view
+  (function () {
+    const bar = document.getElementById('pinBar');
+    const hero = content.querySelector('.hero');
+    if (!bar || !hero) return;
+    function sync() { bar.classList.toggle('show', hero.getBoundingClientRect().bottom < 0); }
+    window.addEventListener('scroll', sync, { passive: true });
+    sync();
+  })();
   content.style.display = 'block';
 
   // Scroll fade-in
