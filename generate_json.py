@@ -99,6 +99,10 @@ def load_xlsx(path):
     matchups['Week'] = matchups['Week'].astype(int)
     matchups['Away Score'] = pd.to_numeric(matchups['Away Score'], errors='coerce')
     matchups['Home Score'] = pd.to_numeric(matchups['Home Score'], errors='coerce')
+    # Treat 0-0 rows as unplayed (placeholder zeros for upcoming weeks) — no fantasy team scores exactly 0
+    zero_zero_mask = (matchups['Away Score'] == 0) & (matchups['Home Score'] == 0)
+    matchups.loc[zero_zero_mask, 'Away Score'] = pd.NA
+    matchups.loc[zero_zero_mask, 'Home Score'] = pd.NA
     # Strip (X-Y-Z) record suffix from team names in matchups sheet
     if 'Away' in matchups.columns:
         matchups['Away'] = matchups['Away'].apply(clean_team_name)
@@ -1138,7 +1142,10 @@ def build_profiles_data(matchups, season_stats, all_time_lucky, existing_json, n
 
             # Winnings shown in season-by-season = gross earnings (matches analytics graph)
             # Gross = max(0, net + buy-in)
-            if net_earnings is not None:
+            _explicit_gross = yr_ss.get('Earnings') if hasattr(yr_ss, 'get') else None
+            if _explicit_gross is not None and pd.notna(_explicit_gross):
+                gross_winnings = safe_round(_explicit_gross, 2)
+            elif net_earnings is not None:
                 gross_winnings = safe_round(max(0, net_earnings + buyin_by_year.get(yr, 0)), 2)
             else:
                 gross_winnings = None
@@ -1152,7 +1159,7 @@ def build_profiles_data(matchups, season_stats, all_time_lucky, existing_json, n
             seasons_list.append({
                 'year': yr,
                 'teamName': str(team_name) if team_name and str(team_name) != 'nan' else None,
-                'record': f"{yr_combined_wins}-{yr_combined_losses}",
+                'record': f"{yr_wins}-{yr_losses}",  # head-to-head only; bonus W/L is a 2026 seeding tool shown only in the hero box
                 'finish': existing_yr.get('finish'),
                 'ptsPerGame': safe_round(yr_ppg),
                 'pointShare': safe_round(pt_share_yr, 4),
@@ -1179,7 +1186,10 @@ def build_profiles_data(matchups, season_stats, all_time_lucky, existing_json, n
                 # Finish: editorial value from existing seasons, fallback to compute_standings
                 existing_yr_entry = existing_seasons_by_year.get(yr, {})
                 fin = existing_yr_entry.get('finish')
-                if fin is None:
+                if yr == current_year and not is_offseason:
+                    # In-progress season: finish = live standing INCLUDING bonus W/L (same as hero box)
+                    fin = standings.get(key)
+                elif fin is None:
                     yr_standings = compute_standings(matchups, yr)
                     fin = yr_standings.get(key)
                 finish_chart.append(fin)
@@ -1214,7 +1224,10 @@ def build_profiles_data(matchups, season_stats, all_time_lucky, existing_json, n
             net_clean = safe_round(ne_val, 2) if pd.notna(ne_val) else None
             winnings_chart.append(net_clean)
             # Gross = net + buy-in (only positive; floor at 0)
-            if net_clean is not None:
+            _explicit_gross = yr_ss.get('Earnings') if hasattr(yr_ss, 'get') else None
+            if _explicit_gross is not None and pd.notna(_explicit_gross):
+                gross_earnings_chart.append(safe_round(_explicit_gross, 2))
+            elif net_clean is not None:
                 gross = net_clean + buyin_by_year.get(yr, 0)
                 gross_earnings_chart.append(safe_round(max(0, gross), 2))
             else:
